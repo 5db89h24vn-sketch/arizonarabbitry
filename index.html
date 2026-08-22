@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbitry</title>
+<meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, eight-week minimum, and lifetime support for every owner.">
+<meta name="theme-color" content="#241F1D">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ARIZONA RABBITRY — arizonarabbitry.com
+
+     ─── STATUS ───
+     Name, phone, email, domain, socials AND the form endpoint are all
+     filled in. Both forms deliver to Formspree (account under
+     william.pomeroy@, submissions arrive by email). No launch blockers
+     left in this file: what remains is content — real photos, real
+     rabbits in rabbits.js — and deploying. See DEPLOY-GUIDE.md.
+
+     ─── DAY TO DAY ───
+     You edit rabbits.js, never this file. See MOBILE-WORKFLOW.md.
+
+     ─── PRICING ───
+     Prices are set per rabbit on the cards, highest first. There is
+     deliberately no range and no "from $X" anywhere a visitor can
+     see — see the PRICING RULES comment above the rabbit cards
+     before you change any of it. The only range in this file is the
+     schema priceRange below, which is machine-readable for Google
+     and never shown on the page; set it to what you actually charge.
+
+     ─── PHOTOS ───
+     The hero, about and included images are TEMPORARY STOCK, marked
+     STOCK-SWAP in a comment. Replace them with your own before launch;
+     stock photos of other people's rabbits hurt you here because
+     buyers reverse-image-search.
+     Rabbit cards need no stock at all: leave photo: "" in rabbits.js
+     and the site draws its own rabbit illustration.
+
+     ─── DELIBERATELY LEFT BLANK ───
+     No ARBA number, review count, follower count or testimonial
+     appears anywhere, because those facts don't exist yet. Add them
+     only when true. Inventing testimonials is illegal under the FTC
+     reviews rule — see PROJECT-CONTEXT.md.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<link rel="canonical" href="https://arizonarabbitry.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arizonarabbitry.com/">
+<meta property="og:site_name" content="Arizona Rabbitry">
+<meta property="og:title" content="Arizona Rabbitry — Holland Lop Rabbits for Sale in Tucson">
+<meta property="og:description" content="Hand-raised, handled daily from birth. Eight-week minimum. Lifetime support.">
+<!-- STOCK-SWAP: share preview image. When a buyer texts this link to a spouse or
+     posts it in a group chat, this is the picture that renders with it; links
+     with an image preview get read, links without one get skipped. Replace with
+     your own best photo at the same time as the hero. -->
+<!-- Absolute URL by design: share crawlers can't resolve relative paths.
+     Goes live the moment the site is deployed at arizonarabbitry.com. -->
+<meta property="og:image" content="https://arizonarabbitry.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
+  --ink-faint:#8B817A; --line:#E3DACC; --line-soft:#EDE6DA;
+  --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8; --moss:#57694F;
+  --gold:#B08430; --serif:'Fraunces',ui-serif,Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --maxw:1140px; --r:8px;
+
+  /* ── FLOATING SURFACES ──
+     The page already had two radii in play: 8px on cards, and fully round on
+     small pills (counter, fact chips, nav pills). An island sits between them
+     and needs its own value, chosen rather than guessed. Radii nest correctly
+     when the outer equals the inner plus the padding between them: the nav
+     pills are 44px tall, so 22px round, and the island pads them by 7px, which
+     puts the island at 29px. That is why the curves look like one family
+     instead of two arbitrary numbers.
+     The tint is the paper colour, never white: over warm paper a white scrim
+     goes grey and cold.
+
+     ── ON TRANSPARENCY ──
+     Opacity alone cannot buy openness. Thinning the tint lets the paragraph
+     underneath compete with the nav labels sitting on it, which is legibility
+     spent for nothing. Blur is what buys it: at 32px what's behind survives as
+     light, colour and movement but stops resolving into words, so the material
+     can be much thinner and still read as a surface. So the tint drops to 62%
+     and the blur nearly doubles, rather than the tint dropping on its own.
+
+     ── THE GLASS ──
+     Real Liquid Glass is an operating-system material and a web page cannot
+     call for it. What a browser can do is the same three things it is built
+     from: refract (heavy blur), enrich (saturation lifted past 100% so colour
+     behind blooms through rather than going flat), and catch the light (a
+     bright inner rim along the top edge, a fainter one along the bottom, so
+     the edge reads as a lit bevel instead of a drawn border). */
+  /* The palette is a committed light design; without this, a viewer's dark-mode
+     browser renders NATIVE controls (radios, select popups, scrollbars) in its
+     dark theme — unchecked radios came out as solid dark circles that read as
+     "all selected". This pins every native control to light rendering. */
+  color-scheme:light;
+  --float:rgba(251,248,243,.62);
+  --float-solid:rgba(251,248,243,.93);   /* where blur is unavailable */
+  --float-line:rgba(255,251,244,.55);
+  --float-r:29px;
+  --float-blur:saturate(185%) blur(32px);
+  --float-shadow:
+    0 10px 30px rgba(36,31,29,.13),
+    0 2px 6px rgba(36,31,29,.07),
+    inset 0 1px 0 rgba(255,255,255,.72),
+    inset 0 -1px 0 rgba(255,255,255,.26);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:78px}
+/* anchored sections stop below the floating dock rather than under it. The dock
+   is ~87px including the gap it floats in, plus a little air so a heading never
+   sits flush against the island's underside */
+@media(max-width:980px){html{scroll-padding-top:100px}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.015em;margin:0;
+  text-wrap:balance}
+/* stops a single short word dropping alone onto the last line */
+p,li,small,.lede,.svc-lede,figcaption{text-wrap:pretty}
+p{margin:0}
+:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+section{padding:60px 0}
+/* 44px top and bottom meant 88px of empty paper at every section join, which on
+   a phone is a tenth of the screen showing nothing. 34 still separates the
+   sections clearly and gives back roughly 140px over the length of the page.
+   This is the only place air was taken: type size, line spacing and the room
+   around headings are what make it feel open, and cutting those would have made
+   the page smaller and worse at the same time. */
+@media(max-width:760px){section{padding:34px 0}.wrap{padding:0 20px}}
+h2{font-size:clamp(27px,3.5vw,37px);margin-bottom:14px;letter-spacing:-.022em}
+.lede{font-size:clamp(16.5px,1.6vw,18px);color:var(--ink-soft);line-height:1.65;max-width:56ch}
+.kicker{font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:12px}
+.center{text-align:center}
+.center .lede{margin-left:auto;margin-right:auto}
+
+/* Every button compresses 4% under the finger, ~90ms in, spring back out.
+   Feedback this frequent stays this small on purpose: the research window for
+   simple control feedback is about 100ms, and pressing should feel faster
+   than releasing. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;
+  border-radius:var(--r);border:1px solid transparent;font-weight:500;font-size:16px;
+  text-decoration:none;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s,
+    transform .18s cubic-bezier(.34,1.56,.64,1)}
+.btn:active{transform:scale(.96);transition-duration:.15s,.15s,.15s,.09s}
+.btn-primary{background:var(--brick);color:#fff}
+.btn-primary:hover{background:var(--brick-dk)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(36,31,29,.03)}
+.btn-sm{padding:10px 18px;font-size:14.5px}
+.btn-block{width:100%}
+/* .link — inline text link inside body copy. Currently unused; keep for future prose links. */
+.link{color:var(--brick);text-decoration:none;border-bottom:1px solid rgba(160,82,45,.3)}
+.link:hover{border-color:var(--brick)}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:80;background:var(--paper);
+  border-bottom:1px solid transparent;transition:border-color .2s}
+header.nav.stuck{border-bottom-color:var(--line)}
+/* ── THE DOCK ──
+   Nothing hides any more. The header used to slide away on scroll-down to hand
+   back its 124px, and the movement itself was the problem: it fired on the
+   smallest downward nudge and read as the page flinching. The same space comes
+   back a calmer way. The brand row stops being furniture and becomes what it
+   actually is, the top of the page, so it scrolls off like any other content.
+   That leaves only the dock pinned, and the dock is 68px against the old 124px.
+   Permanently spent screen goes 23% -> ~17%, and because the island is inset
+   and see-through, what remains stops reading as a wall. */
+.dock{display:none}
+@media(max-width:980px){
+  header.nav{position:relative;border-bottom:0}
+  header.nav.stuck{border-bottom-color:transparent}
+  /* The header region's closing edge. When the island spanned the full width it
+     drew this boundary itself; now that it hugs the pills, the brand row's three
+     clusters (logo left, phone and CTA right, capsule centred) sit on different
+     alignment axes and whitespace alone can't group them — the common-region
+     boundary does. One hairline, faded at the ends so it doesn't cut hard into
+     the margins; it scrolls away with the brand row, and the floating island's
+     own shadow takes over from there. Desktop draws the same line when stuck. */
+  header.nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--line) 14%,var(--line) 86%,transparent)}
+  .dock{display:block;position:sticky;top:0;z-index:80;pointer-events:none;
+    padding:9px max(11px,env(safe-area-inset-left)) 4px max(11px,env(safe-area-inset-right))}
+  /* opaque by default; the thin glass only applies where blur exists to carry it */
+  /* bottom padding trimmed to 2px: the rail's own 10px of grip clearance now
+     provides the visual gap, so keeping 10 here would double it up.
+     Top trimmed 7px -> 2px in the same trade: the rail's new 5px of pop
+     clearance replaces it, so the pills sit exactly where they did. */
+  /* The island hugs its content. On phones the pill row overflows the screen
+     and this changes nothing — the capsule still spans full width and the rail
+     scrolls. On wider screens (tablet, narrow desktop) the row is shorter than
+     the screen, and a full-width island left a long dead stretch of track after
+     Contact; hugging the row ends the bar exactly at the last pill, so every
+     section's stretch of track is its own pill's width at every screen size. */
+  .dock-in{pointer-events:auto;border-radius:var(--float-r);background:var(--float-solid);
+    border:1px solid var(--float-line);box-shadow:var(--float-shadow);
+    padding:2px 7px;overflow:hidden;
+    width:max-content;max-width:100%;margin:0 auto}
+  @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+    /* a top-to-bottom falloff in the tint itself: light gathers along the upper
+       edge and thins toward the base, which is what stops a blurred panel
+       looking like flat frosting */
+    .dock-in{background:linear-gradient(rgba(251,248,243,.68),rgba(251,248,243,.56));
+      -webkit-backdrop-filter:var(--float-blur);backdrop-filter:var(--float-blur)}
+  }
+  /* iOS Reduce Transparency, and its desktop equivalents, turn the glass off */
+  @media(prefers-reduced-transparency:reduce){
+    .dock-in{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none;
+      border-color:var(--line)}
+  }
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:66px}
+.brand{text-decoration:none;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.1}
+.brand small{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{text-decoration:none;font-size:14.5px;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-tel{text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap}
+.nav-tel:hover{color:var(--brick)}
+@media(max-width:980px){.nav-links{display:none}}
+@media(max-width:600px){.nav-tel{display:none}}
+
+/* ── MOBILE SECTION NAV ──
+   Shown only where the desktop .nav-links are hidden, so the two can never
+   both appear. Horizontal rail of real labels, no hidden menu. */
+.mnav{display:none}
+@media(max-width:980px){
+  .mnav{display:block}
+  /* the track is only the scroll window now; the pills and the bar travel
+     together inside it as one content block */
+  .mnav-track{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch}
+  .mnav-track::-webkit-scrollbar{display:none}
+  /* position:relative so pill offsetLefts and the bar share one origin, which
+     is what the grip math reads.
+     padding-bottom is load-bearing: a horizontally scrolling container clips
+     vertically as well, and the grip stands ~9px proud of the 4px bar (more
+     mid-drag, when it scales up). Without reserved space below the bar, the
+     rail sliced the bottom half of the circle off. */
+  /* padding-top is load-bearing for the same reason: the active pill scales up
+     6% off its base (briefly more at the overshoot peak), and without reserved
+     space above the row the rail slices the top of every enlarged pill. The
+     5px lives here instead of on the island so the pills don't move. */
+  .mnav-inner{position:relative;width:max-content;min-width:100%;padding:5px 0 10px}
+  .mnav-row{display:flex;gap:6px;min-width:max-content}
+  .nav-in{height:56px}
+  .brand{display:flex;flex-direction:column;justify-content:center;min-height:44px}
+  /* pills are 44px tall, so 22px round; the island pads them by 7px and lands
+     on 29px, which is why the two curves belong to each other */
+  /* The pills carry the labels' legibility now that the island beneath them is
+     thin. Each one is its own near-solid chip, so the words never sit directly
+     on top of whatever paragraph is scrolling underneath. Ink darkened a step
+     for the same reason. */
+  /* ── THE POP ──
+     Becoming the active section scales the pill up 6% through an easing curve
+     that overshoots a little and settles, so arrival reads as a snap rather
+     than a fade. Two rules keep it satisfying instead of noisy, both from
+     animation-duration research: frequent animations must be subtle and short
+     (this one fires on every section change, so 6% and 220ms, not 20% and
+     half a second), and feedback should start fast and decelerate. The scale
+     is a transform, so it never moves a neighbouring pill or the bar's
+     boundaries; its origin is the pill's base, so it grows up off the bar. */
+  .mnav-track a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;
+    padding:0 15px;border-radius:100px;background:rgba(246,241,233,.92);
+    border:1px solid rgba(255,255,255,.5);
+    font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap;
+    transform-origin:50% 100%;
+    transition:background .15s,color .15s,border-color .15s,
+      transform .22s cubic-bezier(.34,1.56,.64,1)}
+  /* current section — colour AND weight, so it doesn't rest on colour alone */
+  .mnav-track a.on{background:var(--brick-tint);border-color:#E8D5C6;color:var(--brick-dk);
+    font-weight:600;transform:scale(1.06)}
+  /* The end pills grow INWARD. A centre origin pushes half the growth past the
+     rail's edge, where the scroll container clips it — the first pill lost its
+     left side into the island corner, the last its right. Anchoring the origin
+     to the outer edge sends all sideways growth toward the middle of the row,
+     so nothing ever crosses the clip line. Vertical behaviour is unchanged. */
+  .mnav-track a:first-child{transform-origin:0 100%}
+  .mnav-track a:last-child{transform-origin:100% 100%}
+  /* pressing compresses, at press speed: ~90ms, faster than the release */
+  .mnav-track a:active{background:var(--line-soft);transform:scale(.95);
+    transition-duration:.15s,.15s,.15s,.09s}
+}
+
+/* ── SCRUBBER ──
+   A draggable position bar for the phone, where there's no grabbable
+   scrollbar of any kind. What makes it more than a percentage is the
+   label: drag it and the section you're passing is named, so you seek
+   by place rather than by number.
+
+   It used to carry notches at each section boundary. They were cut. Sat
+   directly under a rail of section labels that scrolls on its own axis,
+   they looked like they ought to line up with the pills above and never
+   could, and being paper-coloured on a brick fill they read as breaks in
+   the bar rather than as markers. A marker that looks like a rendering
+   fault is worse than no marker. The drag label does the work. */
+.sprog{display:none}
+@media(max-width:980px){
+  /* inset from the island's inner edge and fully rounded, so it reads as part
+     of the same object rather than a strip pinned underneath it */
+  .sprog{display:block;position:relative;height:4px;margin:9px 8px 0;border-radius:100px;
+    background:rgba(210,196,176,.55);
+    touch-action:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .sprog::before{content:'';position:absolute;left:-8px;right:-8px;top:-10px;bottom:-8px}
+  .sprog-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--brick);
+    border-radius:100px}
+  /* left is set in script as calc(), so the grip stays fully on screen at both
+     ends instead of hanging half off the right edge at the bottom of the page */
+  /* The grip's scale is a custom property so the detent can compose with the
+     drag state instead of fighting it: the tick multiplies whatever the base
+     scale currently is, so mid-drag it swells from the enlarged size rather
+     than collapsing to normal first and blipping. */
+  .sprog-grip{--gs:1;position:absolute;top:50%;left:0;width:15px;height:15px;margin:-7.5px 0 0 0;
+    border-radius:50%;background:var(--paper);border:2px solid var(--brick);
+    box-shadow:0 1px 3px rgba(36,31,29,.2);pointer-events:none;
+    transform:scale(var(--gs))}
+  .sprog.drag .sprog-grip{--gs:1.18}
+  /* Crossing into a new section: a 12% swell over a third of a second, peak in
+     the middle, gentle ease both ways. The first version was 50% and read as a
+     lunge — this is tuned for peripheral vision, not focus. At 15px, 12% is
+     under a millimetre of growth on a phone screen: below the threshold where
+     the eye re-fixates, above the threshold where the change registers. Seen
+     without being looked at. */
+  @keyframes gripTick{
+    0%{transform:scale(var(--gs))}
+    50%{transform:scale(calc(var(--gs)*1.12))}
+    100%{transform:scale(var(--gs))}
+  }
+  .sprog-grip.tick{animation:gripTick .32s ease-in-out}
+  /* Fixed, not absolute. The island clips its contents so the nav pills stay
+     inside its rounded corners, and an absolutely positioned label below the
+     bar would be clipped by exactly that. Fixed puts it in the viewport, clear
+     of the island entirely; script places it under the thumb. */
+  .sprog-tag{position:fixed;left:0;top:0;transform:translateX(-50%);white-space:nowrap;
+    background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:6px 12px;
+    border-radius:100px;opacity:0;pointer-events:none;transition:opacity .12s;z-index:95;
+    box-shadow:0 3px 10px rgba(36,31,29,.2)}
+  .sprog.drag .sprog-tag{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){.sprog.drag .sprog-grip{transform:none}}
+
+/* HERO */
+.hero{padding:40px 0 44px}
+/* stretch, not center: the photo matches the text column exactly instead of setting
+   its own taller height and pushing the rabbits below the fold */
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:stretch}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:26px}.hero{padding:28px 0 36px}}
+.hero h1{font-size:clamp(31px,4.4vw,47px);letter-spacing:-.03em;margin-bottom:16px;max-width:19ch}
+.hero-sub{font-size:clamp(16.5px,1.7vw,18.5px);color:var(--ink-soft);max-width:48ch;margin-bottom:22px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
+/* Benefit stack. Label on line one, qualifier on line two — no commas, no flex-gap
+   artefacts, and the eye reads three fixed columns instead of parsing a run-on line. */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0 38px;
+  border-top:1px solid var(--line);margin-top:30px;padding-top:20px}
+.facts b{display:block;font-weight:600;font-size:15px;color:var(--ink);line-height:1.3}
+.facts small{display:block;font-size:13.5px;color:var(--ink-faint);margin-top:4px;line-height:1.45}
+@media(max-width:600px){.facts{grid-template-columns:1fr;gap:15px}}
+/* The photo must FOLLOW the text column's height, never set its own. With the
+   img in normal flow its intrinsic 4:5 ratio joins the row-height negotiation
+   and wins, leaving a dead zone under the fact strip. Absolutely filling the
+   media cell removes it from that negotiation: the text column alone decides
+   the height, and the photo crops itself to end on exactly the same line. */
+.hero-media{position:relative}
+.hero-img{position:absolute;inset:0;border-radius:var(--r);object-fit:cover;
+  object-position:50% 38%;width:100%;height:100%}
+@media(max-width:920px){
+  .hero-media{position:static;min-height:0}
+  .hero-img{position:static;height:auto;aspect-ratio:16/10;min-height:0}}
+
+/* AVAILABLE */
+.avail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+  flex-wrap:wrap;margin-bottom:26px}
+.count{display:inline-flex;align-items:center;gap:9px;background:var(--brick-tint);
+  border:1px solid #E8D5C6;border-radius:100px;padding:7px 15px;font-size:14px;
+  font-weight:600;color:var(--brick-dk);white-space:nowrap}
+/* Horizontal rail. The section's height is now ONE card tall no matter how many
+   rabbits you list, so adding stock never lengthens the page. A partial 4th card
+   is always visible at the right edge, which is what tells people it scrolls. */
+.rail{position:relative}
+.bunnies{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding:2px 2px 8px;margin:0 -2px;
+  scrollbar-width:none;-ms-overflow-style:none}
+.bunnies::-webkit-scrollbar{display:none}
+.bunny{flex:0 0 300px;scroll-snap-align:start}
+.rail-btn{position:absolute;top:38%;width:40px;height:40px;border-radius:50%;
+  background:#fff;border:1px solid var(--line);display:grid;place-items:center;
+  cursor:pointer;z-index:5;box-shadow:0 3px 12px rgba(36,31,29,.10);
+  transition:opacity .2s,border-color .15s}
+.rail-btn:hover{border-color:var(--brick)}
+.rail-btn svg{width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:2.2}
+.rail-btn.prev{left:-14px}
+.rail-btn.next{right:-14px}
+.rail-btn[disabled]{opacity:0;pointer-events:none}
+@media(max-width:900px){.rail-btn{display:none}}
+@media(max-width:600px){
+  .bunnies{gap:12px}
+  /* 78vw leaves a sliver of the next card showing, so swiping is discoverable */
+  .bunny{flex:0 0 78vw}
+}
+/* Whole card is the link. Bigger target, and one less decision than
+   "read the card, then find the button". */
+.bunny{background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;
+  transition:border-color .15s,transform .15s,box-shadow .15s}
+.bunny:hover{border-color:var(--brick);transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(36,31,29,.07)}
+/* The CONTAINER owns the 4:3 box, not the image. If a photo is missing or fails
+   to load, the card keeps its exact shape instead of collapsing or stretching. */
+.bunny-media{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--paper-2)}
+.bunny-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease}
+.bunny:hover .bunny-media img{transform:scale(1.03)}
+.status{position:absolute;top:11px;left:11px;z-index:2;padding:5px 11px;border-radius:4px;
+  font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:#fff}
+.st-open{color:#2C6B41;border:1px solid #C3DECB}
+.st-hold{color:#8A5A08;border:1px solid #EBD9B6}
+.st-gone{color:#6E6058;border:1px solid #DDD3C8}
+.bunny-body{padding:16px 17px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
+.bunny-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bunny-top h3{font-size:20px}
+.price{font-family:var(--serif);font-size:18px;color:var(--ink-soft);white-space:nowrap}
+.meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
+/* clamped to 2 lines so every card is the same height no matter how much
+   you write. Uneven card heights are the main thing that makes a grid look untidy. */
+.bunny p.desc{font-size:15px;color:var(--ink-soft);line-height:1.55;flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bunny-cta{font-size:14.5px;font-weight:600;color:var(--brick);display:flex;
+  align-items:center;gap:6px;margin-top:2px}
+.bunny-cta .cta-short{display:none}
+.bunny-cta svg{width:14px;height:14px;transition:transform .15s}
+.bunny:hover .bunny-cta svg{transform:translateX(3px)}
+.sold-dim{opacity:.58}
+.sold-dim:hover{transform:none;border-color:var(--line);box-shadow:none}
+.sold-dim:hover .bunny-media img{transform:none}
+
+/* WAITLIST */
+.wl{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px 28px;margin-top:26px;display:grid;grid-template-columns:1fr auto;
+  gap:22px;align-items:center}
+@media(max-width:800px){.wl{grid-template-columns:1fr;gap:16px}}
+.wl h3{font-size:20px;margin-bottom:5px}
+.wl p{font-size:15px;color:var(--ink-soft);max-width:52ch}
+.wl-form{display:flex;gap:9px;min-width:340px}
+@media(max-width:800px){.wl-form{min-width:0;width:100%}}
+.wl-form input{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r);
+  font:inherit;font-size:16px;background:#fff;min-width:0}
+.wl-form input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
+.wl-ok{display:none;font-size:15px;font-weight:600;color:#2C6B41}
+.wl-ok.show{display:block}
+
+/* SERVICE BLOCK */
+.svc{display:grid;grid-template-columns:1fr auto;gap:0;align-items:stretch;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.svc-main{padding:40px 44px}
+@media(max-width:820px){.svc{grid-template-columns:1fr}.svc-main{padding:30px 24px}}
+.svc h2{font-size:clamp(24px,3vw,31px);margin-bottom:14px}
+.svc-lede{color:var(--ink-soft);font-size:16.5px;line-height:1.72;max-width:52ch}
+.svc ul{list-style:none;margin:24px 0 0;padding:22px 0 0;display:grid;gap:11px;
+  border-top:1px solid var(--line-soft)}
+.svc li{font-size:15.5px;color:var(--ink-soft);line-height:1.6;position:relative;padding-left:27px}
+.svc li::before{content:'';position:absolute;left:0;top:.34em;width:15px;height:15px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0522D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
+.callout{margin-top:26px;background:var(--brick-tint);border:1px solid #EBD9C9;
+  border-left:3px solid var(--brick);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;max-width:56ch}
+.callout b{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--brick);margin-bottom:6px}
+.callout p{font-size:14.5px;color:var(--ink-soft);line-height:1.68}
+.svc .btn{margin-top:26px}
+.rate{background:var(--paper-2);border-left:1px solid var(--line);
+  padding:40px 34px;min-width:250px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:820px){.rate{min-width:0;border-left:0;border-top:1px solid var(--line);padding:30px 24px}}
+.rate-row{text-align:center}
+.rate-row b{font-family:var(--serif);font-size:35px;display:block;line-height:1;font-weight:500}
+.rate-row .per{font-size:11px;color:var(--ink-faint);letter-spacing:.13em;text-transform:uppercase;
+  display:block;margin-top:6px}
+.rate-row em{font-style:normal;display:block;font-size:15px;font-weight:600;margin-top:10px}
+.rate-row small{display:block;font-size:13.5px;color:var(--ink-faint);margin-top:3px}
+.rate hr{border:0;border-top:1px solid var(--line);margin:20px 0}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+/* same rule as the hero — image fills the row rather than dictating it */
+.split img{border-radius:var(--r);object-fit:cover;width:100%;height:100%;min-height:340px}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:26px}
+  .split img{height:auto;aspect-ratio:16/10;min-height:0}}
+.tinted{background:var(--paper-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+
+/* STAGES */
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:34px}
+@media(max-width:900px){.stages{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.stages{grid-template-columns:1fr}}
+.stage-when{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--brick);display:block;margin-bottom:7px;padding-top:12px;border-top:2px solid var(--brick)}
+.stage h3{font-size:17px;margin-bottom:5px}
+.stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+/* SOCIAL */
+.social-head{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.social-head h3{font-size:20px;margin-bottom:6px}
+.social-head p{font-size:15.5px;color:var(--ink-soft);max-width:52ch}
+.social{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.social a{display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 12px;
+  transition:border-color .15s,transform .15s,background .15s}
+.social a:hover{border-color:var(--brick);background:var(--brick-tint);transform:translateY(-2px)}
+.social svg{width:25px;height:25px;fill:var(--ink);transition:fill .15s;flex:none}
+.social a:hover svg{fill:var(--brick)}
+.social b{font-size:15px;font-weight:600;line-height:1.2}
+.social small{font-size:12.5px;color:var(--ink-faint);line-height:1.3;text-align:center;
+  word-break:break-word}
+@media(max-width:600px){
+  .social{gap:9px;margin-top:16px}
+  .social a{padding:16px 6px;gap:7px}
+  .social svg{width:22px;height:22px}
+  .social b{font-size:13.5px}
+  /* was 11px — small enough to read as decoration rather than a handle */
+  .social small{font-size:12px}
+  .social-head{margin-top:32px;padding-top:22px}
+}
+
+/* INCLUDED */
+.incl{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
+.incl li{padding:15px 0;border-bottom:1px solid var(--line)}
+.incl b{display:block;font-weight:600;font-size:16px;margin-bottom:3px}
+.incl small{color:var(--ink-soft);font-size:15px;line-height:1.6;display:block}
+
+/* CUSTOMER PHOTOS — ready for when you have real ones. No star ratings by design. */
+.homes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px}
+@media(max-width:900px){.homes{grid-template-columns:1fr 1fr;gap:20px}}
+@media(max-width:560px){.homes{grid-template-columns:1fr}}
+.home{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  display:flex;flex-direction:column}
+.home img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.home figcaption{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.home p{font-family:var(--serif);font-size:16px;line-height:1.62;flex:1}
+.home cite{font-style:normal;font-size:13.5px;color:var(--ink-faint);
+  border-top:1px solid var(--line-soft);padding-top:12px}
+.home cite b{font-weight:600;color:var(--ink-soft);font-style:normal}
+
+/* FAQ */
+.faq{max-width:760px;margin:32px auto 0;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{padding:17px 38px 17px 0;cursor:pointer;font-weight:500;font-size:16.5px;
+  font-family:var(--serif);list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--brick)}
+summary::after{content:'';position:absolute;right:6px;top:50%;width:10px;height:10px;
+  border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
+  transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.faq-body{padding:0 0 20px;color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:62ch}
+.faq-body p+p{margin-top:11px}
+/* Refund terms are scanned, not read. A list lets someone find their own case
+   in one pass instead of parsing a paragraph for it. */
+.faq-body ul{margin:11px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.faq-body li{position:relative;padding-left:19px}
+.faq-body li::before{content:'';position:absolute;left:2px;top:.62em;width:5px;height:5px;
+  border-radius:50%;background:var(--brick)}
+
+/* FORM */
+.form-sec{background:var(--ink);color:#EFE8DE}
+.form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:start}
+@media(max-width:940px){.form-grid{grid-template-columns:1fr;gap:30px}}
+.form-sec h2{color:#fff}
+.form-sec .lede{color:rgba(239,232,222,.74)}
+.form-sec .kicker{color:rgba(239,232,222,.5)}
+.reach{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid rgba(255,255,255,.12)}
+.reach li{border-bottom:1px solid rgba(255,255,255,.12)}
+.reach a{display:block;text-decoration:none;padding:15px 0;transition:padding-left .18s}
+.reach a:hover{padding-left:8px}
+.reach b{display:block;font-size:15.5px;color:#fff;font-weight:500}
+.reach small{color:rgba(239,232,222,.55);font-size:13px}
+.formcard{background:var(--paper);border-radius:var(--r);padding:30px;color:var(--ink)}
+@media(max-width:560px){.formcard{padding:24px 20px}}
+.prog{display:flex;gap:6px;margin-bottom:8px}
+.prog i{height:3px;flex:1;border-radius:2px;background:var(--line);transition:background .3s}
+.prog i.on{background:var(--brick)}
+.prog-label{font-size:12.5px;color:var(--ink-faint);margin-bottom:20px;display:block}
+.fstep{display:none}
+.fstep.active{display:block}
+.fstep h3{font-size:20px;margin-bottom:5px}
+.fstep>p.hint{font-size:14.5px;color:var(--ink-faint);margin-bottom:19px}
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+label .req{color:var(--brick)}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;padding:13px 15px;
+  border:1px solid var(--line);border-radius:var(--r);font:inherit;font-size:16px;
+  background:#fff;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brick);
+  box-shadow:0 0 0 3px rgba(160,82,45,.11)}
+textarea{resize:vertical;min-height:88px}
+select{-webkit-appearance:none;appearance:none;padding-right:40px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%2357504A' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:14px;cursor:pointer;
+  border:1px solid var(--line);border-radius:var(--r);background:#fff;transition:border-color .15s,background .15s}
+.opt:hover{border-color:#C9BAA6}
+/* Custom-drawn radios: native rendering varies by platform and theme, and the
+   states must be unmistakable at a glance — unchecked is an EMPTY ring (the
+   universal "not chosen"), checked is a brick dot inside a brick ring. */
+.opt input{-webkit-appearance:none;appearance:none;margin:2px 0 0;width:18px;height:18px;flex:none;
+  border:2px solid #C9BAA6;border-radius:50%;background:#fff;cursor:pointer;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+.opt:hover input{border-color:#B3A28C}
+.opt input:checked{border-color:var(--brick);background:var(--brick);
+  box-shadow:inset 0 0 0 3.5px #fff}
+.opt input:focus{box-shadow:0 0 0 3px rgba(160,82,45,.11)}
+.opt input:checked:focus{box-shadow:inset 0 0 0 3.5px #fff,0 0 0 3px rgba(160,82,45,.11)}
+.opt b{display:block;font-size:15px;font-weight:500}
+.opt small{color:var(--ink-soft);font-size:13px;line-height:1.45;display:block}
+.opt:has(input:checked){border-color:var(--brick);background:var(--brick-tint)}
+.err{color:#A32218;font-size:13px;margin-top:5px;display:none}
+.err.show{display:block}
+.fnav{display:flex;gap:10px;margin-top:22px}
+.fnav .btn{flex:1}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.privacy{font-size:12.5px;color:var(--ink-faint);margin-top:14px;line-height:1.55}
+.done{display:none;padding:16px 0}
+.done.show{display:block}
+.done h3{margin-bottom:10px}
+.done p{color:var(--ink-soft);font-size:15.5px}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-size:14.5px}
+@media(min-width:761px){footer{padding-bottom:44px}}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:44px 0;
+  border-top:1px solid rgba(255,255,255,.12)}
+@media(max-width:760px){.foot{grid-template-columns:1fr;gap:26px}}
+.foot a{color:rgba(239,232,222,.58);text-decoration:none}
+.foot a:hover{color:#fff}
+.foot .brand{color:#fff;display:block;margin-bottom:12px}
+.foot .brand small{color:rgba(239,232,222,.45)}
+.foot h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(239,232,222,.45);font-family:var(--sans);font-weight:600;margin-bottom:12px}
+.foot-links{display:flex;flex-direction:column;gap:8px}
+/* Footer links were 23px tall on a phone, roughly half the 44px minimum both Apple
+   and Google publish, which is where mis-taps come from. Height only, no visual change.
+   Scoped to 980px, not 760px, so tablets get it too: they're touch devices, and 980px
+   is where the mobile nav takes over. */
+@media(max-width:980px){
+  .foot-links{gap:0}
+  .foot-links a{display:flex;align-items:center;min-height:44px}
+}
+/* Tablet only. Must not reach below 600px, where the header hides the number on
+   purpose: putting it back there squeezes the brand and the button onto two lines
+   each. The bottom bar carries "Call or text" on phones anyway. */
+@media(min-width:601px) and (max-width:980px){
+  .nav-tel{display:inline-flex;align-items:center;min-height:44px}
+}
+.foot-legal{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;font-size:13px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:rgba(239,232,222,.42)}
+
+/* MOBILE BAR */
+/* The action bar is the same object as the dock, mirrored: same tint, same
+   hairline, same radius, same shadow. Two islands of one material top and
+   bottom read as a frame the page moves through. A bar welded to the bottom
+   edge reads as a floor the page stops at. */
+/* Sits lower than it did. It used to clear the home indicator by its full
+   reserved strip plus 9px of my own, which on a modern iPhone parked it about
+   40px up the screen and wasted the gap. The controls still keep clear of the
+   gesture area, but only by the part of it that matters: a little over half,
+   plus 5px. On a phone with no indicator the inset is zero and it simply sits
+   5px off the edge. Roughly 22px of middle screen comes back. */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:8px;
+  padding:5px max(10px,env(safe-area-inset-left))
+          calc(5px + env(safe-area-inset-bottom) * 0.58) max(10px,env(safe-area-inset-right));
+  background:transparent;border-top:0;pointer-events:none}
+@media(max-width:760px){
+  .mbar{display:flex;border-radius:var(--float-r)}
+  /* the island is the padded row itself, so the buttons sit inside its curve */
+  .mbar::before{content:'';position:absolute;inset:3px max(6px,env(safe-area-inset-left))
+    calc(3px + env(safe-area-inset-bottom) * 0.58) max(6px,env(safe-area-inset-right));
+    border-radius:var(--float-r);background:var(--float-solid);
+    border:1px solid var(--float-line);box-shadow:var(--float-shadow)}
+  @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+    .mbar::before{background:linear-gradient(rgba(251,248,243,.68),rgba(251,248,243,.56));
+      -webkit-backdrop-filter:var(--float-blur);backdrop-filter:var(--float-blur)}
+  }
+  @media(prefers-reduced-transparency:reduce){
+    .mbar::before{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none;
+      border-color:var(--line)}
+  }
+  /* Fully opaque, no alpha. The island is a surface and glass suits it; a button
+     is a control, and a control with the page showing through its own label is
+     just harder to read. Transparency stops at the edge of anything you tap. */
+  .mbar .btn-ghost{background:#FCFAF6;border-color:rgba(198,182,162,.9)}
+}
+/* 12px rather than 13px: shaves another 2px off the island without taking the
+   buttons below the 44px they need to stay comfortably tappable */
+.mbar .btn{flex:1;padding:12px 10px;font-size:15px;position:relative;z-index:1;
+  pointer-events:auto;border-radius:100px;min-height:44px}
+/* The hero already shows these two buttons, so at the top of the page the fixed bar
+   is a duplicate of what's on screen — four buttons, two actions. It stays out of the
+   way until the hero pair scrolls off, then takes over. Gated behind a JS-set class so
+   that with JS off the bar simply stays visible as before. */
+.js-mbar .mbar{transform:translateY(115%);transition:transform .22s ease}
+.js-mbar .mbar.show{transform:none}
+
+/* Section reveals were a half-second drift; now a 300ms snap on a sharp
+   decelerating curve. Same motion, but it arrives and STOPS, which is where
+   the satisfying part lives — the settle, not the travel. */
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+/* cards inside a revealed group stagger by a beat, so a grid clicks into
+   place piece by piece instead of arriving as one slab */
+.rv.in .bunny:nth-child(2){transition-delay:.04s}
+.rv.in .bunny:nth-child(3){transition-delay:.08s}
+.rv.in .bunny:nth-child(4){transition-delay:.12s}
+/* tap feedback for touch, where hover states never fire */
+@media(max-width:980px){
+  .bunny{transition:border-color .15s,transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .15s}
+  .bunny:active{transform:scale(.977)}
+  .social a:active{transform:scale(.96)}
+  .opt:active{transform:scale(.985)}
+  .opt{transition:border-color .15s,background .15s,transform .12s ease-out}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PHOTO VIEW — opens when a rabbit has two or more photos.
+   Thumbnails are visible on purpose rather than swipe-only: testing
+   found people swiping a hidden gallery lose track of how many photos
+   there are, and some leave thinking the listing is thin. Thumbnails
+   also give a much bigger tap target than dots do.
+   ══════════════════════════════════════════════════════════════════ */
+.viewer{position:fixed;inset:0;z-index:120;display:none;background:rgba(24,20,18,.82);
+  padding:0;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.viewer.open{display:flex;align-items:center;justify-content:center}
+/* the photo view arrives with the same snap as everything else: a fast
+   scale-and-rise that settles in a quarter second */
+@keyframes viewerIn{from{opacity:0;transform:scale(.955) translateY(10px)}to{opacity:1;transform:none}}
+.viewer.open .viewer-box{animation:viewerIn .24s cubic-bezier(.22,1,.36,1)}
+.viewer-box{background:var(--paper);border-radius:var(--r);width:min(620px,calc(100vw - 28px));
+  max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);
+  display:flex;flex-direction:column;overflow:hidden;position:relative}
+.viewer-close{position:absolute;top:9px;right:9px;z-index:3;width:40px;height:40px;
+  border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;
+  display:grid;place-items:center;line-height:1;font-size:19px;color:var(--ink)}
+.viewer-close:hover{border-color:var(--brick);color:var(--brick)}
+.viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:4/3;flex:none}
+.viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.viewer-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;
+  border-radius:50%;border:1px solid var(--line);background:rgba(251,248,243,.94);
+  display:grid;place-items:center;cursor:pointer;z-index:2}
+.viewer-nav:hover{border-color:var(--brick)}
+.viewer-nav svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2.3}
+.viewer-nav.prev{left:10px}
+.viewer-nav.next{right:10px}
+.viewer-nav[disabled]{opacity:.32;pointer-events:none}
+.viewer-body{padding:15px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.viewer-when{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--brick)}
+.viewer-cap{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.viewer-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.viewer-strip::-webkit-scrollbar{display:none}
+.viewer-strip button{flex:0 0 62px;height:52px;padding:0;border-radius:6px;overflow:hidden;
+  border:2px solid transparent;background:var(--paper-2);cursor:pointer;position:relative}
+.viewer-strip img{width:100%;height:100%;object-fit:cover;display:block}
+.viewer-strip button.on{border-color:var(--brick)}
+.viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.viewer-head h3{font-size:21px}
+.viewer-head .price{font-size:18px}
+.viewer-meta{font-size:13.5px;color:var(--ink-faint);line-height:1.5}
+.viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6}
+.viewer-box .btn{width:100%}
+@media(max-width:600px){
+  .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
+  .viewer-body{padding:13px 14px 16px;gap:10px}
+  .viewer-strip button{flex:0 0 56px;height:47px}
+}
+/* count badge so people know there's more than one before they tap */
+.shots{position:absolute;bottom:9px;right:9px;z-index:2;display:inline-flex;align-items:center;
+  gap:5px;padding:4px 9px;border-radius:100px;background:rgba(24,20,18,.72);color:#fff;
+  font-size:11.5px;font-weight:600;letter-spacing:.02em}
+.shots svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+body.locked{overflow:hidden}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHONES — 360px (Galaxy S24) through 440px (iPhone 17 Pro Max).
+   Goal: fewer, smaller graphics and a shorter scroll, without
+   shrinking type or tap targets below usable size.
+   ═══════════════════════════════════════════════════════════════════ */
+@media(max-width:760px){
+
+  /* respect notch/curved edges in landscape */
+  .wrap{padding-left:max(20px,env(safe-area-inset-left));
+        padding-right:max(20px,env(safe-area-inset-right))}
+
+  /* photo first: the rabbit is the hook, it shouldn't sit below four
+     paragraphs of text on a phone */
+  .hero{padding:24px 0 28px}
+  .hero-media{order:-1}
+  .hero-grid{gap:18px}
+  .hero-img{aspect-ratio:3/2;border-radius:var(--r)}
+  /* 26–32px keeps the headline to two lines at every phone width; the
+     desktop size wrapped to four and cost ~100px on its own */
+  .hero h1{font-size:clamp(26px,7vw,32px);letter-spacing:-.022em;max-width:none;margin-bottom:12px}
+  .hero-sub{font-size:16.5px;margin-bottom:16px}
+  .hero-cta{gap:9px}
+  .hero-cta .btn{flex:1 1 auto;min-height:48px}
+
+  /* facts collapse to one scannable row of pills — the qualifiers are
+     desktop-only detail and cost ~130px of hero height on a phone */
+  .facts{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;padding-top:15px}
+  .facts small{display:none}
+  .facts div{background:var(--paper-2);border-radius:100px;padding:5px 11px}
+  .facts b{font-size:12.5px;letter-spacing:-.01em}
+
+  /* rabbits 2-up: 1,334px of stacked cards becomes ~577px, and you can
+     compare two at a glance instead of scrolling between them.
+     display:grid was missing here, so this rule never actually took effect —
+     cards kept scrolling horizontally in one long row instead of wrapping 2-up. */
+  .bunnies{display:grid;grid-template-columns:1fr 1fr;gap:12px;overflow-x:visible}
+  .bunny-media img{aspect-ratio:1/1}
+  .bunny-body{padding:13px;gap:8px}
+  .bunny-top{flex-direction:column;align-items:flex-start;gap:2px}
+  .bunny-top h3{font-size:17px}
+  .price{font-size:16px}
+  .meta{font-size:12.5px;line-height:1.45}
+  /* short CTA only, and never wrapping — a wrapped label overflowed the card */
+  .bunny-cta{white-space:nowrap}
+  .bunny-cta .cta-full{display:none}
+  .bunny-cta .cta-short{display:inline}
+  .bunny p.desc{display:none}          /* description reads on desktop; on a
+                                          170px card it becomes noise */
+  .bunny .btn{padding:11px 8px;font-size:13.5px;min-height:44px}
+  .status{font-size:10px;padding:4px 8px;top:8px;left:8px}
+
+  /* secondary images: wider and shorter so they read as accents, not walls */
+  .split img{aspect-ratio:3/2}
+  .split{gap:22px}
+
+  h2{font-size:26px}
+  .lede,.svc-lede{font-size:16px}
+  .stages{gap:18px}
+  .svc-main{padding:26px 20px}
+  .rate{padding:24px 20px}
+  .rate-row b{font-size:31px}
+  .incl li{padding:13px 0}
+  .btn-sm{min-height:44px}            /* Apple/Google minimum tap target */
+  .wl{padding:22px 20px}
+  .formcard{padding:22px 18px}
+  .faq{margin-top:24px}
+  summary{font-size:16px;padding:15px 34px 15px 0}
+}
+
+/* very small phones — stop the 2-up grid getting cramped */
+@media(max-width:359px){
+  .bunnies{grid-template-columns:1fr}
+  .bunny-media img{aspect-ratio:16/10}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+
+<noscript><style>
+  .rv{opacity:1!important;transform:none!important}
+  .fstep{display:block!important;border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+  .fstep:first-of-type{border-top:0;padding-top:0;margin-top:0}
+  .prog,.prog-label,[data-next],[data-back]{display:none!important}
+</style></noscript>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23A0522D'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23FBF8F3' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+
+<!-- Local business + FAQ structured data. Fill the [[ ]] values and Google can
+     show your phone, location and FAQs directly in search results. -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Arizona Rabbitry",
+  "url":"https://arizonarabbitry.com/",
+  "description":"Hand-raised Holland Lop rabbits for sale in Tucson, Arizona.",
+  "telephone":"+1-520-270-2827",
+  "email":"hello@arizonarabbitry.com",
+  "sameAs":[
+    "https://www.instagram.com/arizonarabbitry",
+    "https://www.tiktok.com/@arizonarabbitry",
+    "https://www.facebook.com/arizonarabbitry"
+  ],
+  "address":{"@type":"PostalAddress","addressLocality":"Tucson","addressRegion":"AZ","addressCountry":"US"},
+  "areaServed":"Tucson, Arizona",
+  "priceRange":"$350–$400"
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="btn btn-sm" style="position:absolute;left:-9999px;top:8px;z-index:200"
+   onfocus="this.style.left='8px'" onblur="this.style.left='-9999px'">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">Arizona Rabbitry<small>Tucson</small></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#available">Available</a>
+      <a href="#about">About</a>
+      <a href="#raised">How they're raised</a>
+      <a href="#boarding">Boarding</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+15202702827" class="nav-tel">(520) 270-2827</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Get in touch</a>
+    </div>
+  </div>
+
+  <!-- THE DOCK. On a phone this floats free of the page as a rounded island:
+       nav rail on top, position bar beneath, one object. It is what stays on
+       screen, and the brand row above it scrolls away like the page content it
+       is. Detaching it is not decoration. A full-width opaque bar draws a hard
+       line across the screen and the page reads as walled off below it; an
+       inset, translucent island has content visibly running past it on three
+       sides, so the page reads as continuous and the same square footage feels
+       far less shut in. -->
+</header>
+  <div class="dock" id="dock">
+    <div class="dock-in">
+      <!-- Visible labels in a scrolling rail, deliberately NOT a hamburger:
+           hidden navigation measurably costs discoverability and slows people down.
+           The active link highlights and scrolls itself into view, so the rail
+           doubles as a "you are here" marker. The cut-off pill at the right edge
+           is what tells people it scrolls. -->
+      <!-- THE BAR LIVES INSIDE THE RAIL. It used to sit below it as a separate
+           full-width strip, and that built a lie into the layout: the pills scroll
+           sideways and the bar didn't, so the grip could never sit where the lit
+           pill was. Readers judge the grip against the pill directly above it —
+           the only honest fix is for both to share one coordinate space. Now the
+           bar is as wide as the pill row itself, scrolls with it, and each pill's
+           own width IS its stretch of track: arrive at Boarding and the grip is
+           under Boarding's left edge, finish Boarding and it leaves under its
+           right edge. Alignment is by construction, not by tuning. -->
+      <nav class="mnav" id="mnav" aria-label="Page sections">
+        <div class="mnav-track" id="mnavTrack">
+          <div class="mnav-inner">
+            <div class="mnav-row">
+              <!-- The hero's own pill. Two jobs: it gives the opening screen a real
+                   stretch of progress track (the bar moves from the first pixel of
+                   scroll instead of sitting frozen until Available), and it doubles
+                   as a back-to-top control on a long single page.
+                   Labeled "Home" not "Top": NN/g's homepage-links research finds many
+                   users look for an explicit Home link and that logo-as-home is not
+                   understood by everyone — and this page's logo scrolls away. "Top"
+                   is button shorthand, not a navigation label. -->
+              <a href="#top">Home</a>
+              <a href="#available">Available</a>
+              <a href="#about">About</a>
+              <a href="#raised">How they're raised</a>
+              <a href="#included">Included</a>
+              <a href="#boarding">Boarding</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="sprog" id="sprog" role="slider" tabindex="0" aria-label="Scroll through the page"
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="sprog-fill" id="sprogFill"></div>
+              <div class="sprog-grip" id="sprogGrip"></div>
+              <div class="sprog-tag" id="sprogTag"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+<main id="main">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Hand-raised Holland Lops in Tucson.</h1>
+      <p class="hero-sub">Handled every single day from their first week. Yours arrives already
+      comfortable being picked up, by anyone, not just me.</p>
+      <div class="hero-cta">
+        <a href="#available" class="btn btn-primary">See available rabbits</a>
+        <a href="tel:+15202702827" class="btn btn-ghost">Call or text</a>
+      </div>
+      <!-- No price here on purpose. A "from $X" line anchors buyers to your
+           lowest number and sets up a negative surprise when you quote higher.
+           Prices live on each rabbit, one screen down, next to its photo. -->
+      <!-- Each column: complete claim in bold, qualifier underneath. No punctuation joining
+           them, so nothing can drift out of alignment. Keep all three qualifiers to 2-4 words. -->
+      <div class="facts">
+        <div><b>8-week minimum</b><small>No exceptions</small></div>
+        <div><b>20% off</b><small>On a second rabbit</small></div>
+        <div><b>Lifetime support</b><small>Ask me anything</small></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <!-- Real photo: William's Holland Lop held in his hand. The hand in frame is the
+           point — it shows "hand-raised" instead of claiming it. -->
+      <img class="hero-img" src="img/hero.jpg"
+           alt="A tan Holland Lop rabbit with a heart-charm collar, held gently in one hand" width="900" height="1125" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AVAILABLE — deliberately placed first ══════════ -->
+<section id="available" style="padding-top:0">
+  <div class="wrap">
+    <div class="avail-head rv">
+      <div>
+        <h2 style="margin-bottom:8px">Available now</h2>
+        <p class="lede">Litters are small and I don't rush them. Every price below is the full
+        price. It covers eight weeks of daily handling, the go-home kit, and my number for
+        as long as you have the rabbit.</p>
+      </div>
+      <!-- Counts the real cards below. No invented numbers. -->
+      <span class="count" id="count">Checking availability…</span>
+    </div>
+
+    <!-- ─── COPY ONE CARD PER RABBIT ───
+         Each card is a single <a class="bunny"> so the whole thing is clickable.
+         Keep the description to one or two sentences: it's clamped to 2 lines so every
+         card stays the same height, and anything longer just gets cut off.
+         Status: st-open (Available) · st-hold (Reserved) · st-gone (Found a home)
+         For claimed rabbits add class "sold-dim" to the <a> too.
+
+         AUTO-RETIRE: when a rabbit finds a home, set its status to st-gone and add
+         data-sold="YYYY-MM-DD" to the <a>. It shows as social proof for 3 days, then
+         removes itself automatically. The demo card below uses 2099-01-01 so it stays
+         visible while you build; replace that with the real date when you go live.
+         The counter above updates itself from these cards.
+
+         ★ PRICING RULES — these are doing real work, don't undo them ★
+
+         1. ALWAYS ORDER HIGHEST PRICE FIRST. Descending order anchors buyers
+            to your top number, so everything after it reads as reasonable.
+            Ascending order does the opposite and costs you money.
+
+         2. LIST A REAL PRICE ON EVERY RABBIT. Never "POA", never "message me",
+            never a range. Hidden pricing raises bounce ~38% and the extra
+            enquiries it generates close at a much lower rate.
+
+         3. USE THE PRICE YOU ACTUALLY CHARGE. If you never sell at $300, never
+            print $300. The gap between advertised and quoted is the single
+            fastest way to lose a buyer who was already sold.
+
+         4. VARY THE PRICES HONESTLY. With one breed, the top price is carried
+            by colour rarity: a $400 blue-eyed white sitting next to a $350
+            chestnut makes the $350 feel like the sensible pick. That only
+            works if both numbers are genuine, and the rarity must be STATED
+            in the note or the premium looks arbitrary. -->
+
+    <div class="rail rv">
+      <button class="rail-btn prev" type="button" aria-label="Scroll to previous rabbits" disabled>
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="bunnies" id="rail"><!-- cards are built from rabbits.js -->
+      </div>
+      <button class="rail-btn next" type="button" aria-label="Scroll to more rabbits">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- One-field capture for the majority who aren't buying today.
+         Also the destination for reserved/adopted cards, which is why it needs an id. -->
+    <div class="wl rv" id="waitlist">
+      <div>
+        <h3>Nothing quite right yet?</h3>
+        <p>The waitlist hears about a litter before it goes up here. One email, no newsletter.</p>
+      </div>
+      <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Email for waitlist" required>
+        <input type="hidden" name="_subject" value="Waitlist signup">
+        <button type="submit" class="btn btn-primary">Join</button>
+      </form>
+      <p class="wl-ok" id="wlok">Added. I'll be in touch before the next litter goes public.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY MINE ══════════ -->
+<section id="about" class="tinted">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="kicker">About</p>
+      <h2>Temperament is decided before you ever meet them.</h2>
+
+      <p class="lede" style="margin-bottom:14px">I'm William, and I came to rabbits through
+      chinchillas. They're remarkable animals and I still think they're some of the most beautiful
+      things a person can keep. But a chinchilla doesn't want to be held. That's their nature, not
+      a shortcoming, and keeping them taught me what I was actually after: an animal that comes to
+      you.</p>
+
+      <p class="lede" style="margin-bottom:14px">Then a farmer sold me a Satin Angora, and that was
+      the end of that. A Holland Lop followed. When those two had their first litter, I stopped
+      calling it a hobby.</p>
+
+      <p class="lede" style="margin-bottom:14px">Every dollar this makes goes straight back into
+      the rabbits. The plan is to be the best breeder in Tucson, then in Arizona, and I don't
+      intend to stop there.</p>
+
+      <p class="lede" style="margin-bottom:14px">Which is why I care about this next part more than
+      anything else on the page.</p>
+
+      <p class="lede">Rabbits are prey animals. Left alone, instinct fills in the gaps, and by five
+      months you have one that flattens when a hand comes near. People assume they picked a shy
+      one. Usually they picked one nobody spent time with.</p>
+      <p class="lede" style="margin-top:14px">The window is roughly the first eight weeks and it
+      doesn't reopen. So I use it, with daily handling and handling by people who aren't me. A rabbit
+      that's calm only with its breeder isn't socialized, and you'll find that out the first time a
+      friend tries to hold it.</p>
+    </div>
+    <div class="rv">
+      <!-- Real photo: William's rabbit loose on a café table beside his laptop — the
+           one-man shop and the socialized-rabbit claim in a single frame.
+           UPGRADE PATH: a photo with William's face in it would be stronger still — a face
+           beside a name is the one trust signal no competitor can copy. Swap when he has one. -->
+      <img src="img/about.jpg"
+           alt="A Holland Lop rabbit sitting calmly on a café table next to an open laptop and its travel carrier" width="800" height="800" loading="lazy">
+    </div>
+  </div>
+  <!-- A three-point row lived here and was cut. Every claim in it already appeared
+       elsewhere: "good with everyone" restated the paragraph directly above it, "you keep
+       my number" duplicated the hero strip and the included list, and "20% off a second"
+       duplicated the hero strip and the FAQ. Repeating a claim within two screens doesn't
+       reinforce it, it just costs scroll. -->
+</section>
+
+<!-- ══════════ HOW THEY'RE RAISED ══════════ -->
+<section id="raised">
+  <div class="wrap">
+    <p class="kicker rv">The first eight weeks</p>
+    <h2 class="rv">What happens before you meet them</h2>
+    <p class="lede rv">The whole routine. Ask me about any part of it.</p>
+    <div class="stages rv">
+      <div class="stage">
+        <span class="stage-when">Week 1–2</span>
+        <h3>First handling</h3>
+        <p>Short, gentle sessions within days of birth, nest kept warm and mostly undisturbed.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-when">Week 3–5</span>
+        <h3>Carrying becomes normal</h3>
+        <p>Lifting paired with calm and food. Leaving the ground is the fear most pet rabbits
+        never lose.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-when">Week 6–8</span>
+        <h3>New people, new noise</h3>
+        <p>Visitors, kids, household sound, car rides, other animals. Variety is what builds
+        real confidence.</p>
+      </div>
+      <div class="stage">
+        <span class="stage-when">Week 8</span>
+        <h3>Ready to go home</h3>
+        <p>Eight weeks is my floor, no exceptions. Early weaning is what causes enteritis. Health
+        checked and holding weight, or they stay longer.</p>
+      </div>
+    </div>
+
+    <!-- Placed here deliberately: everything above is a claim about daily handling.
+         The socials are the evidence for it, so they sit directly underneath. -->
+    <div class="social-head rv">
+      <h3>Watch it happen daily</h3>
+      <p>Don't take my word for any of the above. Photos and video most days, including the
+      unglamorous parts.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/arizonarabbitry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+          <b>Instagram</b>
+          <small>@arizonarabbitry</small>
+        </a>
+        <a href="https://www.tiktok.com/@arizonarabbitry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          <b>TikTok</b>
+          <small>@arizonarabbitry</small>
+        </a>
+        <a href="https://www.facebook.com/arizonarabbitry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
+          <b>Facebook</b>
+          <small>Arizona Rabbitry</small>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ INCLUDED ══════════ -->
+<section id="included" class="tinted">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="kicker">Included</p>
+      <h2>What you take home</h2>
+      <p class="lede">The first two weeks decide how the next ten years go, so nobody should be
+      guessing through them.</p>
+      <ul class="incl">
+        <li><b>Two weeks of their current food</b><small>Switching pellets suddenly is a common cause of GI trouble. Transition slowly.</small></li>
+        <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
+        <li><b>A health check you watch</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
+        <li><b>Tucson exotic vet recommendations</b><small>Not every clinic here treats rabbits. Better to know now.</small></li>
+        <li><b>My phone number, kept</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
+      </ul>
+    </div>
+    <div class="rv">
+      <!-- Real photo: three of William's lops in the travel carrier with pellets and hay —
+           the actual animals and the actual gear, which is what this section promises. -->
+      <img src="img/included.jpg"
+           alt="Three young Holland Lop rabbits inside a mesh travel carrier with a bowl of pellets and fresh hay" width="800" height="1200" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BOARDING ══════════ -->
+<section id="boarding">
+  <div class="wrap">
+    <div class="svc rv">
+      <div class="svc-main">
+        <p class="kicker">Also offered</p>
+        <h2>Boarding, whenever you travel</h2>
+        <p class="svc-lede">Most kennels aren't set up for rabbits, and one left with a stranger
+        spends the whole week stressed. If you're going away, yours comes back to the same routine,
+        the same food, and the same hands that raised it.</p>
+        <ul>
+          <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
+          <li>Photos while you're gone, so you're not left wondering</li>
+          <li>Charged by the day, so you only pay for the days you're actually away</li>
+        </ul>
+        <div class="callout">
+          <b>My own rabbits only</b>
+          <p>RHDV2 is circulating in Arizona's wild rabbit population again this year. Keeping the
+          property closed to outside rabbits is how I keep everyone here safe, yours included.</p>
+        </div>
+        <a href="#contact" class="btn btn-primary">Ask about dates</a>
+      </div>
+      <div class="rate">
+        <div class="rate-row">
+          <b>$20</b>
+          <span class="per">per day</span>
+          <em>One rabbit</em>
+          <small>$15/day after week one</small>
+        </div>
+        <hr>
+        <div class="rate-row">
+          <b>$30</b>
+          <span class="per">per day</span>
+          <em>Bonded pair</em>
+          <small>$22/day after week one</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS — REMOVED ON PURPOSE ══════════
+
+     No quotes are shown because there are no real ones yet, and inventing them is now
+     illegal, not just unwise.
+
+     THE LAW. The FTC's Rule on the Use of Consumer Reviews and Testimonials took effect
+     21 October 2024. It bans testimonials from people who never used the product, bans
+     paying for a specific sentiment, requires conspicuous disclosure when a reviewer is
+     an insider or a relative, and bans suppressing negative reviews. Civil penalties run
+     to roughly $51,700+ per violation, and the FTC issued its first warning letters in
+     December 2025. Writing your own quotes, or having family write them, is squarely
+     inside this rule.
+
+     THE PLAN INSTEAD: customer PHOTOS with a short quote and NO star rating. This is the
+     stronger format, not a compromise. A self-awarded 5-star rating is the least credible
+     element on any website — nobody gives themselves four. Dropping it removes the weakest
+     signal and keeps the strongest one.
+
+     Why photos: 81% of ecommerce marketers say customer photos outperform professional
+     product photography, 84% of people trust a brand more when it uses customer content,
+     and pages using it convert measurably better because a rabbit in someone's living room
+     reads as evidence rather than marketing.
+
+     RULES WHEN YOU BUILD IT:
+       1. Get written permission before using anyone's photo. A text saying "happy for you
+          to put this on the site" is enough, but keep it.
+       2. Quote must be their words, unedited. Trimming for length is fine; rewriting is not.
+       3. Specificity beats praise. "She flopped over on my lap the first evening" is worth
+          ten of "great breeder, highly recommend."
+       4. No stars, no ratings, no "5/5" anywhere.
+       5. Also set up a Google Business Profile. A review there carries far more weight than
+          anything on your own site because you can't curate it, and it feeds local search.
+
+     MARKUP IS READY — CSS classes .homes / .home already exist. Paste this between the
+     boarding and FAQ sections and repeat the <figure> per customer:
+
+       <section id="homes"><div class="wrap">
+         <p class="kicker rv">Settled in</p>
+         <h2 class="rv">Where they ended up</h2>
+         <div class="homes rv">
+           <figure class="home">
+             <img src="photo.jpg" alt="Their rabbit at home" loading="lazy">
+             <figcaption>
+               <p>“Their words, unedited.”</p>
+               <cite><b>First name L.</b> · Tucson · adopted Poppy</cite>
+             </figcaption>
+           </figure>
+         </div>
+       </div></section>
+     ══════════════════════════════════════════════════════ -->
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq" class="tinted">
+  <div class="wrap center">
+    <p class="kicker rv">FAQ</p>
+    <h2 class="rv">Things people ask</h2>
+    <p class="lede rv">If yours isn't here, text me. There's no dumb rabbit question.</p>
+  </div>
+  <div class="wrap">
+    <div class="faq rv" style="text-align:left">
+      <details open>
+        <summary>How does this work?</summary>
+        <div class="faq-body">
+          <p>Send me a note or a text with a bit about your situation. I'll tell you honestly which
+          rabbit fits, including if the answer is none right now and you should wait for the next
+          litter. Then we set a time and you come and meet them, and that visit is free and there's no
+          booking fee.</p>
+          <p>If one's right for you, $100 holds them and comes off the price. Rabbits open for
+          reservation at four weeks old and go home at eight. At pickup we go through the care
+          sheet together and you leave with everything on the list above.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Why do they cost what they cost?</summary>
+        <div class="faq-body">
+          <p>Every rabbit's price is listed on its own photo above, and that number is what you
+          pay. No appointment fee, no no-show fee, nothing added at pickup. Second rabbit is 20% off.</p>
+          <p>What the price covers is eight weeks of daily handling before the rabbit is
+          old enough to leave, a health check you watch me do, two weeks of the food they're
+          already eating, a written care sheet, and my phone number for as long as you have
+          them. Prices differ between rabbits because colour and temperament differ. The rarer
+          colours, a blue-eyed white in particular, sit at the top of the range simply because
+          far fewer are born that way.</p>
+          <p>You can find a cheaper rabbit. You'll find plenty on classifieds for under a
+          hundred. What you're paying the difference for is a rabbit that's already comfortable
+          being picked up, and someone who answers the phone at month seven.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Is there a deposit, and what happens to it?</summary>
+        <div class="faq-body">
+          <p><b>$100 holds a rabbit, and it comes straight off the price.</b> Once it's paid I take
+          that rabbit off the list so nobody else can claim it, and it's yours until pickup.</p>
+          <p><b>Rabbits open for reservation at four weeks old.</b> Before that I won't take your
+          money. At two weeks I can't tell you for certain what sex a kit is and the coat is still
+          settling, so anything I said would be a guess dressed up as a fact. Four weeks is the
+          point where I can describe a rabbit to you honestly.</p>
+          <p>The deposit is non-refundable, and I'll be straight about why: holding a rabbit means
+          turning other people away, so if someone changes their mind late I've lost weeks of
+          interest on that animal. But <b>it isn't lost money. It's transferable.</b> If your
+          circumstances change, or you meet them and click with a different one, I'll move your
+          $100 to another rabbit or a future litter.</p>
+          <p>Three things get you a full refund instead, no argument:</p>
+          <ul>
+            <li>The rabbit becomes ill or doesn't make it while still in my care.</li>
+            <li>I'm the one who cancels, for any reason.</li>
+            <li><b>The rabbit isn't what I told you it was.</b> If the sex is wrong, the colour is
+            materially different from the listing, it isn't the rabbit you reserved, or it doesn't
+            pass the health check we do together at pickup, you get your money back.</li>
+          </ul>
+          <p>One honest note on that last one, because four weeks is early. Colour and markings can
+          still develop between reservation and pickup, and a five week old rabbit is not finished
+          becoming itself. When you reserve I'll tell you plainly what's already certain and what
+          could still change, and you'll get photos the whole way through so nothing at pickup is a
+          surprise. Normal growing up isn't grounds for a refund. Being wrong about something I
+          stated as fact is.</p>
+          <p><b>How to pay:</b> Zelle, Apple Pay, or cash. The balance is due at pickup and cash is
+          easiest for that.</p>
+          <p>If you're local and would rather not send money to someone you haven't met yet, which
+          is a reasonable instinct, <b>come and meet them first and pay the deposit in cash while
+          you're here.</b> That's genuinely fine by me and it's what I'd suggest. Visits are
+          free and there's no booking fee, so nothing is at stake until you've decided. For anyone
+          further out, I'll send written confirmation the moment a deposit lands, with the rabbit's
+          name, the amount, and the date, so you have it on record.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Can I take one home before eight weeks?</summary>
+        <div class="faq-body">
+          <p>No, and I'd think twice about anyone who says yes. Rabbits taken early have immature
+          digestive systems, and weaning enteritis, the most common cause of death in young
+          rabbits, is overwhelmingly a problem of leaving the mother too soon.</p>
+          <p>I'll send photos and video the whole way through so the wait is easier. But the date
+          doesn't move.</p>
+        </div>
+      </details>
+      <details>
+        <summary>I've never had a rabbit. Is that a problem?</summary>
+        <div class="faq-body">
+          <p>No. First-timers are often who I enjoy working with most, because they actually read
+          the care sheet. I'll say plainly that rabbits aren't low-maintenance starter pets. They
+          need space, daily attention, and a vet who treats exotics. If that works for you, they're
+          one of the best animals you can live with.</p>
+        </div>
+      </details>
+      <details>
+        <summary>How much grooming do they need?</summary>
+        <div class="faq-body">
+          <p>Not much. Holland Lops are short-coated, so a brush once a week is plenty most of the
+          year, a little more often when they moult. Nails every few weeks. They keep themselves
+          clean, so no bathing, which is stressful for a rabbit and genuinely dangerous.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Indoors or outdoors?</summary>
+        <div class="faq-body">
+          <p>Indoors, particularly here. Rabbits handle cold far better than heat, and sustained
+          temperatures above the mid-80s are dangerous. A Tucson summer isn't survivable in a
+          hutch. An indoor pen with daily supervised run-around time is what I recommend.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Can you look after my rabbit while I'm away?</summary>
+        <div class="faq-body">
+          <p>Yes, for rabbits I've bred. <b>One rabbit is $20 a day, dropping to $15 a day after
+          the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</b> Hay, pellets, clean bedding and
+          the same daily handling they grew up with are all included, and I'll send you photos
+          while you're gone.</p>
+          <p>It's priced by the day rather than the week on purpose, so you only pay for the days
+          you're actually away and you can extend without renegotiating anything.</p>
+          <p><b>Why only my own rabbits:</b> RHDV2 is circulating in Arizona's wild rabbit
+          population again this year. It survives months in the environment, travels on shoes and
+          clothing, and it's frequently fatal. Taking in outside rabbits would put every rabbit
+          here at risk, including the babies waiting to go to their homes. A closed property is
+          the same reason I can tell you with confidence that your rabbit was healthy the day you
+          collected it.</p>
+          <p>If your rabbit came from somewhere else, ask me anyway and I'll point you toward a
+          Tucson boarder or exotic vet who takes outside rabbits.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I'm not in Tucson. Can you meet partway or come to me?</summary>
+        <div class="faq-body">
+          <p>Get in touch and we'll work it out together. Tell me roughly where you are and I'll
+          tell you honestly what I think is easiest on the rabbit. Sometimes that's meeting
+          somewhere in the middle, sometimes it makes more sense for me to drive to you, and if
+          you're close by then straightforward pickup is usually the gentlest option.</p>
+          <p>I'd rather sort this out with you directly than post a blanket rule, because the same
+          drive in October and in July are not the same trip for a rabbit. Heat is the one thing
+          I'll be firm about. If a journey isn't safe on the day, we move it, and I'll say so.</p>
+        </div>
+      </details>
+      <details>
+        <summary>What if something goes wrong after pickup?</summary>
+        <div class="faq-body">
+          <p>Call me. Day three or year three, I'd rather hear early than after it's serious.</p>
+          <p>Here's what you're standing on. Before any rabbit leaves, we do the health check
+          together at pickup: ears, teeth, eyes, weight and coat, in your hands, not mine. If
+          it doesn't pass, it doesn't go home and you get your deposit back in full. And once
+          they're home, my number doesn't expire. If your rabbit seems off, you call me first
+          and we work out together whether it's a Tuesday thing or a vet-today thing.</p>
+          <p>I'd rather promise what I can actually deliver than print a guarantee with fine
+          print. What I can deliver is a rabbit that was healthy when you took it, and me,
+          reachable, for the whole of its life.</p>
+          <!-- A formal written health guarantee is still on the paperwork to-do list
+               (sales agreement, deposit policy). When those terms exist, state them
+               here. Until then this answer promises only what is already true. -->
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="form-sec" id="contact">
+  <div class="wrap form-grid">
+    <div class="rv">
+      <p class="kicker">Get in touch</p>
+      <h2>Tell me a little about you</h2>
+      <p class="lede">Three quick questions, under a minute. I read every one myself and reply
+      personally, almost always the same day. If a rabbit isn't right for your situation, I'll
+      say so.</p>
+      <!-- Two channels only, both direct. Social links were removed from this list on purpose:
+           this is the decision point, and offering a browse-instead option here gives people a
+           lower-effort action that FEELS like progress but isn't. The socials live further up
+           and in the footer, where browsing is the right behaviour. -->
+      <ul class="reach">
+        <li><a href="tel:+15202702827"><b>(520) 270-2827</b><small>Call or text. Texting is completely fine, and it's the fastest way to reach me.</small></a></li>
+        <li><a href="mailto:hello@arizonarabbitry.com"><b>hello@arizonarabbitry.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></a></li>
+      </ul>
+    </div>
+
+    <div class="rv">
+      <div class="formcard">
+        <!-- ═══ FORM SETUP — DONE ═══
+             Both forms deliver through the Formspree account under
+             william.pomeroy@. Submissions arrive as email. To change where
+             they go later, log in at formspree.io and update the form there;
+             the URL below stays the same. -->
+        <form id="lead" action="https://formspree.io/f/xppanonl" method="POST" novalidate>
+          <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+          <span class="prog-label" id="plabel">Step 1 of 3</span>
+          <div class="hp"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+
+          <div class="fstep active" data-step="1">
+            <h3>What are you after?</h3>
+            <p class="hint">No wrong answer. This tells me where to start.</p>
+            <div class="field">
+              <div class="opts" role="radiogroup" aria-label="What are you looking for">
+                <label class="opt"><input type="radio" name="interest" value="One rabbit" required>
+                  <span><b>One rabbit</b><small>A single Holland Lop.</small></span></label>
+                <label class="opt"><input type="radio" name="interest" value="A pair">
+                  <span><b>A pair</b><small>Two rabbits, 20% off the second.</small></span></label>
+                <label class="opt"><input type="radio" name="interest" value="Not sure yet">
+                  <span><b>Not sure yet</b><small>Tell me your situation and I'll recommend straight.</small></span></label>
+              </div>
+              <p class="err" data-for="interest">Pick one so I know where to start.</p>
+            </div>
+            <div class="fnav"><button type="button" class="btn btn-primary btn-block" data-next>Continue</button></div>
+          </div>
+
+          <div class="fstep" data-step="2">
+            <h3>A bit about your situation</h3>
+            <p class="hint">This is how I match the right rabbit to the right person.</p>
+            <div class="field">
+              <label for="exp">Have you had a rabbit before? <span class="req">*</span></label>
+              <select id="exp" name="experience" required>
+                <option value="">Choose one…</option>
+                <option>First rabbit, complete beginner</option>
+                <option>Had one years ago</option>
+                <option>Have a rabbit now</option>
+                <option>Experienced, multiple rabbits</option>
+              </select>
+              <p class="err" data-for="experience">Let me know so I can point you the right way.</p>
+            </div>
+            <div class="field">
+              <label for="when">When are you hoping to bring one home? <span class="req">*</span></label>
+              <select id="when" name="timeline" required>
+                <option value="">Choose one…</option>
+                <option>Whenever one is ready</option>
+                <option>Within the next month</option>
+                <option>Two or three months out</option>
+                <option>Just researching for now</option>
+              </select>
+              <p class="err" data-for="timeline">Pick whichever is closest.</p>
+            </div>
+            <div class="field">
+              <label for="msg">Anything you want me to know? <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label>
+              <textarea id="msg" name="message" placeholder="Kids or other pets at home, a rabbit above you had your eye on, a question you want answered first…"></textarea>
+            </div>
+            <div class="fnav">
+              <button type="button" class="btn btn-ghost" data-back>Back</button>
+              <button type="button" class="btn btn-primary" data-next>Continue</button>
+            </div>
+          </div>
+
+          <div class="fstep" data-step="3">
+            <h3>Where should I reply?</h3>
+            <p class="hint">I'll get back to you myself, usually the same day.</p>
+            <div class="field">
+              <label for="name">Your name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+              <p class="err" data-for="name">I'd like to know who I'm talking to.</p>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+              <p class="err" data-for="email">Give that address another look for me.</p>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span style="color:var(--ink-faint);font-weight:400">(optional, but quickest)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(520) 555-0142">
+            </div>
+            <div class="fnav">
+              <button type="button" class="btn btn-ghost" data-back>Back</button>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+            <p class="privacy">This comes to me and nowhere else. No mailing list you didn't ask for.</p>
+          </div>
+        </form>
+
+        <div class="done" id="done" role="status">
+          <h3>Got it, thank you.</h3>
+          <p>I'll read this myself and get back to you shortly, usually the same day. If it's
+          urgent, text me at <b>(520) 270-2827</b>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div style="max-width:34ch">
+        <span class="brand">Arizona Rabbitry<small>Tucson</small></span>
+        <p style="line-height:1.65">A small home rabbitry in Tucson raising Holland Lops. Handled
+        daily, eight-week minimum, and every owner keeps my number.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <div class="foot-links">
+          <a href="#available">Available</a>
+          <a href="#about">About</a>
+          <a href="#raised">How they're raised</a>
+          <a href="#included">What's included</a>
+          <a href="#boarding">Boarding</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="foot-links">
+          <a href="tel:+15202702827">(520) 270-2827</a>
+          <a href="mailto:hello@arizonarabbitry.com">hello@arizonarabbitry.com</a>
+          <a href="https://www.instagram.com/arizonarabbitry" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@arizonarabbitry" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.facebook.com/arizonarabbitry" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© <span id="yr">2026</span> Arizona Rabbitry</span>
+      <span>A rabbit is an eight to twelve year commitment. Please be sure.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a href="tel:+15202702827" class="btn btn-ghost">Call or text</a>
+  <a href="#available" class="btn btn-primary">See rabbits</a>
+</div>
+
+<!-- Photo view. Built and filled by script only when a rabbit has 2+ photos, so
+     with one photo or none nothing here ever appears and the cards behave exactly
+     as before. Images inside load only when it's opened, which keeps the extra
+     photos off the page's initial load. -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-name">
+  <div class="viewer-box">
+    <button class="viewer-close" type="button" id="viewerClose" aria-label="Close photos">&#215;</button>
+    <div class="viewer-stage">
+      <img id="viewerImg" src="" alt="">
+      <button class="viewer-nav prev" type="button" id="viewerPrev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="viewer-nav next" type="button" id="viewerNext" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="viewer-body">
+      <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
+      <p class="viewer-meta" id="viewerMeta"></p>
+      <p class="viewer-when" id="viewerWhen"></p>
+      <p class="viewer-cap" id="viewerCap"></p>
+      <div class="viewer-strip" id="viewerStrip"></div>
+      <p class="viewer-note" id="viewerNote"></p>
+      <a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
+    </div>
+  </div>
+</div>
+
+<!-- Your rabbit list. This is the only file you edit day to day. -->
+<script src="rabbits.js"></script>
+
+<script>
+(function(){
+  'use strict';
+  var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
+
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('stuck',window.scrollY>8)};
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* The dock never hides, so there is nothing to hold open. Kept as a no-op
+     because the nav rail and the scrubber both call it. */
+  window.__holdHeader=function(){};
+
+  /* ══════════════════════════════════════════════════════════════
+     MOBILE SECTION NAV — "you are here" + reveal of the bottom bar
+     Both are progressive enhancements: with JS off, the nav still
+     works as plain anchor links and the bottom bar stays visible.
+     ══════════════════════════════════════════════════════════════ */
+  var mnav=document.getElementById('mnav');
+  if(mnav && 'IntersectionObserver' in window){
+    var links={}, order=[];
+    mnav.querySelectorAll('a').forEach(function(a){
+      var id=a.getAttribute('href').slice(1);
+      var sec=document.getElementById(id);
+      if(sec){ links[id]=a; order.push({id:id,el:sec}); }
+    });
+
+    var current='';
+    var setActive=function(id){
+      if(id===current || !links[id]) return;
+      current=id;
+      for(var k in links) links[k].classList.toggle('on', k===id);
+      /* the active pill's weight change nudges pill widths, and the bar's
+         boundaries are those widths — tell the scrubber to re-measure once
+         the transition settles */
+      window.dispatchEvent(new Event('navpill'));
+      /* keep the active pill in view without dragging the page with it.
+         The scroll container is the track; the pill's parent is now just the
+         row inside it. Skipped mid-drag so the rail doesn't fight the thumb. */
+      var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
+      var spEl=document.getElementById('sprog');
+      if(spEl && spEl.classList.contains('drag')) return;
+      var left=a.offsetLeft-(track.clientWidth-a.offsetWidth)/2;
+      if(track.scrollTo) track.scrollTo({left:left,behavior:'smooth'});
+      else track.scrollLeft=left;
+    };
+
+    /* Pick the section covering the top of the readable area, rather than
+       whichever one happens to be most visible — that way the highlight
+       matches the heading actually under the header. */
+    var pick=function(){
+      /* The reading line sits a little BELOW the sticky header, not flush with it.
+         Tapping a link scrolls that section's top to exactly the header edge, and at
+         a flush boundary sub-pixel rounding decided the comparison either way, so the
+         highlight could land on the previous section. The margin removes the tie.
+         Measured off the dock, which is the thing actually pinned to the top of
+         the screen now that the brand row scrolls away with the page. */
+      var dockEl=document.getElementById('dock');
+      var hdr=(dockEl && getComputedStyle(dockEl).display!=='none')
+        ? dockEl.getBoundingClientRect().bottom
+        : nav.offsetHeight;
+      var line=window.scrollY+hdr+32, found='';
+      for(var i=0;i<order.length;i++){
+        var t=order[i].el.getBoundingClientRect().top+window.scrollY;
+        if(t<=line) found=order[i].id;
+      }
+      /* at the very bottom, the last link should win even if its section is short */
+      if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4 && order.length)
+        found=order[order.length-1].id;
+      if(found) setActive(found); else { current=''; for(var k in links) links[k].classList.remove('on'); }
+    };
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){ pick(); ticking=false; });
+    },{passive:true});
+    window.addEventListener('resize',pick);
+    /* a tap here starts a downward scroll, which would otherwise tuck the header
+       away mid-jump; hold it open long enough for the smooth scroll to land */
+    mnav.addEventListener('click',function(e){
+      if(window.__holdHeader) window.__holdHeader(1100);
+      /* "Top" means the actual top — brand row included — not the hero's
+         anchor offset below the sticky dock */
+      var a=e.target.closest && e.target.closest('a');
+      if(a && a.getAttribute('href')==='#top'){
+        e.preventDefault();
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+    pick();
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     SCRUBBER
+
+     The bar's ruler is the pill row itself. Equal abstract slices were
+     tried and failed the eye test: the grip said 62% while the Boarding
+     pill sat at 50% of the rail, and any reader sensibly judges the grip
+     against the pill directly above it. No amount of tuning reconciles
+     two different coordinate systems, so there is now only one. The bar
+     lives inside the rail, scrolls with it, and each section's stretch
+     of track runs from its own pill's left edge to the next pill's left
+     edge. Arrive at Boarding: grip under Boarding's left edge. Read
+     through Boarding: grip crosses the Boarding pill. Finish: it exits
+     under its right edge. The scroll boundaries come from the same
+     reference line that lights the pills, so the pill changes in the
+     same instant the grip crosses between pills.
+     ══════════════════════════════════════════════════════════════ */
+  var sp=document.getElementById('sprog');
+  if(sp && typeof IntersectionObserver!=='undefined'){
+    var spFill=document.getElementById('sprogFill'),
+        spGrip=document.getElementById('sprogGrip'),
+        spTag=document.getElementById('sprogTag');
+    var spTrack=document.getElementById('mnavTrack');
+    var segs=[], xB=[], segNames=[];  /* scroll-px boundaries, bar-px boundaries, names */
+    var dragging=false;
+    var GRIP=15;
+
+    var docSpan=function(){ return Math.max(1, document.body.scrollHeight-window.innerHeight); };
+    var barW=function(){ return Math.max(1, sp.clientWidth); };
+
+    /* The same line pick() uses to decide the active pill. Sharing it is what
+       keeps the two in lockstep. */
+    function anchorOffset(){
+      var d=document.getElementById('dock');
+      return (d && getComputedStyle(d).display!=='none')
+        ? d.getBoundingClientRect().height+32 : 0;
+    }
+
+    function measure(){
+      var span=docSpan(), a=anchorOffset();
+      var srcs=(typeof order!=='undefined' && order.length)
+        ? order
+        : [].slice.call(document.querySelectorAll('section[id]')).map(function(el){return {id:el.id,el:el};});
+      segs=[0]; xB=[0]; segNames=['Home'];
+      var spLeft=sp.offsetLeft;                    /* bar and pills share .mnav-inner as origin */
+      srcs.forEach(function(o){
+        var link=document.querySelector('.mnav-track a[href="#'+o.id+'"]');
+        var top=o.el.getBoundingClientRect().top+window.scrollY-a;
+        /* the hero starts the page: its boundary is scroll 0 by definition,
+           not its measured offset, so no dead zone precedes it */
+        if(o.id==='top') top=0;
+        segs.push(Math.min(span, Math.max(0, top)));
+        xB.push(link ? Math.max(0, link.offsetLeft-spLeft) : xB[xB.length-1]);
+        segNames.push(link?link.textContent.trim():o.id);
+      });
+      segs.push(span); xB.push(barW());
+      /* neither ruler may run backwards, or a stretch inverts */
+      for(var i=1;i<segs.length;i++){ if(segs[i]<segs[i-1]) segs[i]=segs[i-1];
+                                      if(xB[i]<xB[i-1]) xB[i]=xB[i-1]; }
+    }
+
+    /* scroll position -> grip x on the bar, section by section */
+    function xFromScroll(y){
+      var n=segs.length-1;
+      for(var i=0;i<n;i++){
+        if(y<segs[i+1] || i===n-1){
+          var a=segs[i], b=segs[i+1];
+          var w=(b>a)?Math.min(1,Math.max(0,(y-a)/(b-a))):0;
+          return xB[i]+(xB[i+1]-xB[i])*w;
+        }
+      }
+      return barW();
+    }
+
+    /* grip x -> scroll position, the exact inverse */
+    function scrollFromX(x){
+      var n=segs.length-1;
+      x=Math.min(barW(), Math.max(0, x));
+      for(var i=0;i<n;i++){
+        if(x<xB[i+1] || i===n-1){
+          var a=xB[i], b=xB[i+1];
+          var w=(b>a)?Math.min(1,Math.max(0,(x-a)/(b-a))):0;
+          return segs[i]+(segs[i+1]-segs[i])*w;
+        }
+      }
+      return segs[segs.length-1];
+    }
+
+    function nameAt(x){
+      var best='Home';
+      for(var i=0;i<segNames.length;i++){ if(x>=xB[i]-1) best=segNames[i]; }
+      return best;
+    }
+
+    /* the grip swells once each time it crosses into a new section — a detent
+       you can see. Tracked by section index so it fires exactly once per
+       crossing, in either direction. */
+    var lastSec=-1;
+    spGrip.addEventListener('animationend',function(){ spGrip.classList.remove('tick'); });
+    function tickAt(x){
+      var si=0;
+      for(var i=0;i<xB.length-1;i++){ if(x>=xB[i]-1) si=i; }
+      if(si!==lastSec){
+        if(lastSec>=0){
+          spGrip.classList.remove('tick');
+          void spGrip.offsetWidth;            /* restart the animation cleanly */
+          spGrip.classList.add('tick');
+        }
+        lastSec=si;
+      }
+    }
+
+    function render(x){
+      x=Math.min(barW(), Math.max(0, x));
+      tickAt(x);
+      spFill.style.width=x+'px';
+      /* inset the grip by its own width as it travels, so at the far end its
+         right edge lands on the bar's end rather than its centre */
+      spGrip.style.left=(x-(x/barW())*GRIP)+'px';
+      sp.setAttribute('aria-valuenow', Math.round(x/barW()*100));
+      sp.setAttribute('aria-valuetext', nameAt(x));
+      if(dragging){
+        spTag.textContent=nameAt(x);
+        /* the label is fixed to escape the island's clipping; place it under
+           the grip's on-screen position, clamped to the viewport */
+        var bx=sp.getBoundingClientRect();
+        var vx=bx.left+x;
+        var half=Math.max(40, spTag.offsetWidth/2)+8;
+        spTag.style.left=Math.min(window.innerWidth-half, Math.max(half, vx))+'px';
+        spTag.style.top=(bx.bottom+12)+'px';
+        /* keep the grip on screen: the bar is wider than the window, so the
+           rail pans when the thumb reaches an edge of the scroll window */
+        if(spTrack){
+          var tr=spTrack.getBoundingClientRect();
+          if(vx>tr.right-44) spTrack.scrollLeft+=10;
+          else if(vx<tr.left+44) spTrack.scrollLeft-=10;
+        }
+      }
+    }
+
+    function fromScroll(){ if(!dragging) render(xFromScroll(window.scrollY)); }
+
+    function seek(clientX){
+      /* clientX -> x on the bar. The bar scrolls with the rail, and its
+         bounding rect already accounts for that. */
+      var box=sp.getBoundingClientRect();
+      var x=Math.min(barW(), Math.max(0, clientX-box.left));
+      /* The page sets scroll-behavior:smooth, which is right for tapping a nav
+         link and wrong here: it animates every drag step, so the page lags a
+         long way behind your thumb. Dragging has to land instantly to feel
+         like you're moving the page yourself. */
+      var y=scrollFromX(x);
+      try{ window.scrollTo({top:y, behavior:'instant'}); }
+      catch(e){ window.scrollTo(0, y); }
+      render(x);
+    }
+
+    sp.addEventListener('pointerdown',function(ev){
+      dragging=true; sp.classList.add('drag');
+      /* this bar lives in the header, and dragging it scrolls the page down.
+         Without a hold the header would tuck away underneath your own thumb. */
+      if(window.__holdHeader) window.__holdHeader(600);
+      if(sp.setPointerCapture) sp.setPointerCapture(ev.pointerId);
+      seek(ev.clientX); ev.preventDefault();
+    });
+    sp.addEventListener('pointermove',function(ev){
+      if(!dragging) return;
+      if(window.__holdHeader) window.__holdHeader(600);
+      seek(ev.clientX); ev.preventDefault();
+    });
+    var endDrag=function(){ if(!dragging) return; dragging=false; sp.classList.remove('drag'); };
+    sp.addEventListener('pointerup',endDrag);
+    sp.addEventListener('pointercancel',endDrag);
+
+    /* keyboard: one slice per press, landing exactly on a boundary */
+    sp.addEventListener('keydown',function(ev){
+      var y=window.scrollY, i, target=null;
+      if(ev.key==='ArrowRight'||ev.key==='ArrowDown'){
+        for(i=0;i<segs.length;i++){ if(segs[i]>y+2){ target=segs[i]; break; } }
+        if(target===null) target=segs[segs.length-1];
+      } else if(ev.key==='ArrowLeft'||ev.key==='ArrowUp'){
+        for(i=segs.length-1;i>=0;i--){ if(segs[i]<y-2){ target=segs[i]; break; } }
+        if(target===null) target=0;
+      } else if(ev.key==='Home'){ target=0; }
+      else if(ev.key==='End'){ target=segs[segs.length-1]; }
+      else return;
+      ev.preventDefault();
+      window.scrollTo({top:target, behavior:'smooth'});
+    });
+
+    var spTick=false;
+    window.addEventListener('scroll',function(){
+      if(spTick) return; spTick=true;
+      requestAnimationFrame(function(){ fromScroll(); spTick=false; });
+    },{passive:true});
+    window.addEventListener('resize',function(){ measure(); fromScroll(); });
+    /* images finishing can change the page height, so re-measure once things settle */
+    window.addEventListener('load',function(){ measure(); fromScroll(); });
+    /* Opening or closing an FAQ answer moves every boundary below it. Without
+       this the slices keep pointing at where the sections used to be. */
+    document.addEventListener('toggle',function(ev){
+      if(ev.target && ev.target.tagName==='DETAILS'){ measure(); fromScroll(); }
+    },true);
+    /* the active pill's bolder weight shifts pill widths a couple of px;
+       re-measure once its transition has settled */
+    var npT=null;
+    window.addEventListener('navpill',function(){
+      clearTimeout(npT);
+      npT=setTimeout(function(){ measure(); fromScroll(); },260);
+    });
+    measure(); fromScroll();
+  }
+
+  /* Bottom bar hides while the hero's own buttons are on screen */
+  var mbar=document.querySelector('.mbar');
+  var heroCta=document.querySelector('.hero-cta');
+  if(mbar && heroCta && 'IntersectionObserver' in window){
+    document.body.classList.add('js-mbar');
+    new IntersectionObserver(function(es){
+      mbar.classList.toggle('show', !es[0].isIntersecting);
+    },{threshold:0}).observe(heroCta);
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     RABBIT RAIL — built from rabbits.js
+     Everything you edit lives in that file. This code enforces the
+     rules so they can't be undone by accident:
+       · sorted most expensive first (price anchoring)
+       · adopted rabbits retire automatically after RETIRE_DAYS
+       · the availability counter is derived, never typed
+     ══════════════════════════════════════════════════════════════ */
+  var RETIRE_DAYS=3;
+  var LABEL={available:['st-open','Available'],
+             reserved :['st-hold','Reserved'],
+             adopted  :['st-gone','Found a home']};
+
+  /* House placeholder. Used automatically whenever a rabbit has no photo yet,
+     and as the fallback if a real photo ever fails to load. Drawn in the site's
+     own palette so an unfinished listing still looks deliberate. */
+  var PLACEHOLDER="data:image/svg+xml,"+encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">'+
+    '<rect width="200" height="150" fill="#F3EDE3"/>'+
+    '<g fill="#CBBBA8">'+
+    '<ellipse cx="88" cy="108" rx="31" ry="25"/>'+
+    '<circle cx="121" cy="86" r="17"/>'+
+    '<ellipse cx="115" cy="52" rx="5.8" ry="22" transform="rotate(-12 115 52)"/>'+
+    '<ellipse cx="130" cy="54" rx="5.4" ry="20" transform="rotate(8 130 54)"/>'+
+    '<circle cx="58" cy="102" r="7.5"/></g>'+
+    '<circle cx="127" cy="83" r="2.2" fill="#F3EDE3"/></svg>');
+
+  function esc(t){
+    return String(t==null?'':t).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  var railEl=document.getElementById('rail');
+  var countEl=document.getElementById('count');
+
+  /* Normalises whichever photo fields a rabbit has into one list.
+     photo: "one.jpg"                       -> single, no photo view
+     photos: [{src,date,note}, ...]         -> photo view once there are 2+ */
+  function galleryFor(r){
+    var out=[];
+    if(Array.isArray(r.photos)){
+      r.photos.forEach(function(p){
+        if(!p) return;
+        if(typeof p==='string'){ out.push({src:p,date:'',note:''}); }
+        else if(p.src){ out.push({src:p.src,date:p.date||'',note:p.note||''}); }
+      });
+    }
+    if(r.photo && !out.some(function(p){return p.src===r.photo;})) out.unshift({src:r.photo,date:'',note:''});
+    /* oldest first: the point of dating them is watching the rabbit grow up */
+    out.sort(function(a,b){
+      if(!a.date) return -1; if(!b.date) return 1;
+      return a.date<b.date?-1:(a.date>b.date?1:0);
+    });
+    return out;
+  }
+
+  /* "2026-08-05" -> "5 Aug". Left alone if it isn't a plain date. */
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function niceDate(s){
+    if(!s) return '';
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+    if(!m) return s;
+    return parseInt(m[3],10)+' '+MON[parseInt(m[2],10)-1]+' '+m[1];
+  }
+
+  if(railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
+    var list=RABBITS.filter(function(r){
+      if(r.status!=='adopted' || !r.soldOn) return true;
+      var d=new Date(r.soldOn+'T00:00:00');
+      if(isNaN(d.getTime())) return true;                 // bad date, keep it
+      return (Date.now()-d.getTime())/86400000 <= RETIRE_DAYS;
+    }).sort(function(a,b){ return (b.price||0)-(a.price||0); });
+
+    var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"'+
+              ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+              '<path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+    /* Only print the breed on the cards when there's more than one on offer.
+       Listing "Holland Lop" six times tells a reader nothing and costs a whole
+       line on a phone-sized card. Keep breed in rabbits.js regardless: the moment
+       you list a second breed, it starts showing again on its own. */
+    var breeds={}, breedCount=0;
+    list.forEach(function(r){ if(r.breed && !breeds[r.breed]){ breeds[r.breed]=1; breedCount++; } });
+    var showBreed = breedCount > 1;
+
+    railEl.innerHTML=list.map(function(r){
+      var st=LABEL[r.status]||LABEL.available;
+      var dim=(r.status==='available')?'':' sold-dim';
+      var meta=[showBreed?r.breed:null,r.sex,r.colour].filter(Boolean).map(esc).join(' &middot; ');
+      if(r.ready && r.status==='available') meta+=' &middot; Ready '+esc(r.ready);
+      /* Two labels, one shown per screen size by CSS. On a phone the cards sit 2-up at
+         about 170px wide, and "Ask about Marshmallow" wrapped onto a second line and
+         got clipped by the card's own overflow. The full label still reads on desktop. */
+      /* ── WHERE EACH CARD SENDS PEOPLE ──
+         The dividing line is "could this rabbit still end up being mine?", not
+         "is it spoken for?".
+
+           available  -> yes. Contact form. Includes rabbits that aren't old enough
+                         to leave yet: a "Ready 12 Sept" rabbit is claimed with the
+                         $100 deposit, not with a waitlist. The deposit is what turns
+                         interest into commitment, so nothing free should sit beside
+                         it offering the same thing for nothing.
+           reserved   -> maybe. Deposits here are transferable, so these do come back
+                         on the market occasionally. Contact form, so a genuine
+                         "tell me if Mochi frees up" reaches a person who can answer.
+           adopted    -> no, never. The only honest offer left is hearing about the
+                         next litter first, which is the one waitlist on the page. */
+      var open=(r.status==='available');
+      var gone=(r.status==='adopted');
+      var href=gone?'#waitlist':'#contact';
+      var ctaFull=gone?'Join the waitlist':('Ask about '+esc(r.name));
+      var ctaShort=gone?'Waitlist':'Ask';
+      var cta='<span class="cta-full">'+ctaFull+'</span>'+
+              '<span class="cta-short">'+ctaShort+'</span>';
+
+      /* Photo set. Accepts the old single photo: "" and the newer photos: [ ]
+         list, so nothing in rabbits.js has to change until you want it to.
+         Sorted oldest first, so flicking through reads as the rabbit growing up. */
+      var shots=galleryFor(r);
+      var many=shots.length>1;
+      var cover=(r.photo || (shots[0] && shots[0].src) || PLACEHOLDER);
+      var badge=many
+        ? '<span class="shots"><svg viewBox="0 0 24 24" aria-hidden="true">'+
+          '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/>'+
+          '</svg>'+shots.length+'</span>'
+        : '';
+      /* With several photos the card opens the photo view instead of jumping
+         straight to the form. Kept as a real <a> with an href so it still works
+         with JavaScript off, and so it can be opened in a new tab. */
+      var attrs=many
+        ? ' href="'+href+'" data-shots="'+esc(r.name)+'"'
+        : ' href="'+href+'"';
+      return '<a class="bunny'+dim+'"'+attrs+'>'+
+        '<div class="bunny-media"><span class="status '+st[0]+'">'+st[1]+'</span>'+
+        '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
+        ' loading="lazy" onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
+        '<div class="bunny-body">'+
+        '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
+        '<span class="price">$'+esc(r.price)+'</span></div>'+
+        '<p class="meta">'+meta+'</p>'+
+        '<p class="desc">'+esc(r.note)+'</p>'+
+        '<span class="bunny-cta">'+cta+arrow+'</span></div></a>';
+    }).join('');
+
+    if(countEl){
+      var open=list.filter(function(r){return r.status==='available'}).length;
+      countEl.textContent = open===0
+        ? 'All reserved. Join the waitlist below.'
+        : open+' of '+list.length+' still available';
+    }
+  } else if(countEl){
+    countEl.textContent='Call or text for current litters';
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     PHOTO VIEW
+     Opens only for rabbits with 2+ photos. Everything inside loads
+     on open, never on page load, so extra photos cost nothing until
+     somebody actually asks to see them.
+     ══════════════════════════════════════════════════════════════ */
+  var vw=document.getElementById('viewer');
+  if(vw && railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
+    var vImg=document.getElementById('viewerImg'),
+        vName=document.getElementById('viewer-name'),
+        vPrice=document.getElementById('viewerPrice'),
+        vMeta=document.getElementById('viewerMeta'),
+        vWhen=document.getElementById('viewerWhen'),
+        vCap=document.getElementById('viewerCap'),
+        vStrip=document.getElementById('viewerStrip'),
+        vNote=document.getElementById('viewerNote'),
+        vCta=document.getElementById('viewerCta'),
+        vPrev=document.getElementById('viewerPrev'),
+        vNext=document.getElementById('viewerNext'),
+        vClose=document.getElementById('viewerClose');
+    var shots=[], at=0, lastFocus=null;
+
+    function paint(i){
+      if(i<0||i>=shots.length) return;
+      at=i;
+      var s=shots[at];
+      vImg.src=s.src; vImg.alt=(vName.textContent||'Rabbit')+', photo '+(at+1)+' of '+shots.length;
+      vWhen.textContent=niceDate(s.date);
+      vWhen.style.display=s.date?'':'none';
+      vCap.textContent=s.note||'';
+      vCap.style.display=s.note?'':'none';
+      vPrev.disabled=(at===0); vNext.disabled=(at===shots.length-1);
+      var btns=vStrip.querySelectorAll('button');
+      for(var n=0;n<btns.length;n++) btns[n].classList.toggle('on',n===at);
+      if(btns[at]&&btns[at].scrollIntoView) btns[at].scrollIntoView({block:'nearest',inline:'nearest'});
+    }
+
+    function openFor(r){
+      shots=galleryFor(r); if(shots.length<2) return false;
+      lastFocus=document.activeElement;
+      vName.textContent=r.name;
+      vPrice.textContent='$'+r.price;
+      vMeta.textContent=[r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
+        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+      vNote.textContent=r.note||'';
+      vNote.style.display=r.note?'':'none';
+      var goneNow=(r.status==='adopted');
+      vCta.textContent=goneNow?'Join the waitlist':('Ask about '+r.name);
+      vCta.setAttribute('href',goneNow?'#waitlist':'#contact');
+      /* thumbnails built here, so their images are requested on open too */
+      vStrip.innerHTML=shots.map(function(s,n){
+        return '<button type="button" aria-label="Photo '+(n+1)+
+          (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'" alt=""'+
+          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'"></button>';
+      }).join('');
+      vStrip.querySelectorAll('button').forEach(function(b,n){
+        b.addEventListener('click',function(){paint(n)});
+      });
+      vw.classList.add('open');
+      document.body.classList.add('locked');
+      paint(0);
+      vClose.focus();
+      return true;
+    }
+
+    function shut(){
+      vw.classList.remove('open');
+      document.body.classList.remove('locked');
+      vImg.src='';
+      if(lastFocus&&lastFocus.focus) lastFocus.focus();
+    }
+
+    /* Card taps. Only intercepts cards flagged as having several photos, so
+       every other card keeps its normal link behaviour untouched. */
+    railEl.addEventListener('click',function(ev){
+      var card=ev.target.closest('.bunny[data-shots]'); if(!card) return;
+      var name=card.getAttribute('data-shots');
+      var r=RABBITS.filter(function(x){return x.name===name;})[0];
+      if(r && openFor(r)) ev.preventDefault();
+    });
+
+    vClose.addEventListener('click',shut);
+    vw.addEventListener('click',function(ev){ if(ev.target===vw) shut(); });
+    vPrev.addEventListener('click',function(){paint(at-1)});
+    vNext.addEventListener('click',function(){paint(at+1)});
+    vCta.addEventListener('click',shut);
+    document.addEventListener('keydown',function(ev){
+      if(!vw.classList.contains('open')) return;
+      if(ev.key==='Escape') shut();
+      else if(ev.key==='ArrowLeft') paint(at-1);
+      else if(ev.key==='ArrowRight') paint(at+1);
+      else if(ev.key==='Tab'){
+        /* keep tabbing inside the dialog while it's open */
+        var f=vw.querySelectorAll('button:not([disabled]), a[href]');
+        if(!f.length) return;
+        var first=f[0], last=f[f.length-1];
+        if(ev.shiftKey && document.activeElement===first){ ev.preventDefault(); last.focus(); }
+        else if(!ev.shiftKey && document.activeElement===last){ ev.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* ── Rabbit rail: arrows, and hide them when there's nothing to scroll to ── */
+  var rail=document.getElementById('rail');
+  if(rail){
+    var prev=document.querySelector('.rail-btn.prev'),
+        next=document.querySelector('.rail-btn.next');
+    var step=function(){
+      var c=rail.querySelector('.bunny');
+      return c ? c.getBoundingClientRect().width+18 : 300;
+    };
+    var sync=function(){
+      var max=rail.scrollWidth-rail.clientWidth-2;
+      prev.disabled = rail.scrollLeft<=2;
+      next.disabled = rail.scrollLeft>=max;
+    };
+    prev.addEventListener('click',function(){rail.scrollBy({left:-step()*2,behavior:'smooth'})});
+    next.addEventListener('click',function(){rail.scrollBy({left:step()*2,behavior:'smooth'})});
+    rail.addEventListener('scroll',sync,{passive:true});
+    window.addEventListener('resize',sync);
+    sync();
+  }
+
+  var rvs=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+    rvs.forEach(function(el){io.observe(el)});
+  } else { rvs.forEach(function(el){el.classList.add('in')}); }
+
+  /* Waitlist */
+  var wf=document.getElementById('wlform'), wok=document.getElementById('wlok');
+  if(wf){
+    wf.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var a=wf.getAttribute('action')||'';
+      var finish=function(){ wf.style.display='none'; wok.classList.add('show'); };
+      /* Unconfigured endpoint: tell the truth. This used to show the normal
+         success message while sending nothing, which is the single worst thing
+         a trust-based site can do: a visitor who believes they signed up and
+         never hears back doesn't come away neutral, they come away burned.
+         Credibility research is blunt on this: broken functionality damages
+         trust more than almost anything else on a page. */
+      if(a.indexOf('[[')!==-1||!a){
+        wok.textContent='The signup form isn’t switched on quite yet. Text me at (520) 270-2827 and I’ll add you myself.';
+        finish();
+        console.warn('Form endpoint not set — replace [[FORM_ENDPOINT]].');
+        return;
+      }
+      fetch(a,{method:'POST',body:new FormData(wf),headers:{'Accept':'application/json'}})
+        .then(function(r){ if(!r.ok) throw 0; finish(); })
+        .catch(function(){ alert('That didn\'t send. Text me at (520) 270-2827 instead.'); });
+    });
+  }
+
+  /* Multi-step form */
+  var form=document.getElementById('lead'); if(!form) return;
+  var steps=form.querySelectorAll('.fstep'), bars=form.querySelectorAll('.prog i');
+  var label=document.getElementById('plabel'), doneEl=document.getElementById('done'), cur=0;
+
+  function show(i){
+    steps[cur].classList.remove('active'); cur=i; steps[cur].classList.add('active');
+    bars.forEach(function(b,n){b.classList.toggle('on',n<=cur)});
+    label.textContent='Step '+(cur+1)+' of '+steps.length;
+    var f=steps[cur].querySelector('input, select, textarea');
+    if(f&&cur>0){ try{f.focus({preventScroll:true})}catch(e){} }
+  }
+
+  function validate(step){
+    step.querySelectorAll('.err').forEach(function(e){e.classList.remove('show')});
+    var ok=true;
+    var radios=step.querySelectorAll('input[type=radio][required]');
+    if(radios.length){
+      var nm=radios[0].name;
+      if(!step.querySelector('input[name="'+nm+'"]:checked')){
+        var e=step.querySelector('.err[data-for="'+nm+'"]'); if(e) e.classList.add('show'); ok=false;
+      }
+    }
+    step.querySelectorAll('input[required], select[required], textarea[required]').forEach(function(f){
+      if(f.type==='radio') return;
+      var bad=!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.value.trim()));
+      if(bad){ var er=step.querySelector('.err[data-for="'+f.name+'"]'); if(er) er.classList.add('show');
+        f.style.borderColor='#A32218'; ok=false; } else { f.style.borderColor=''; }
+    });
+    return ok;
+  }
+
+  form.addEventListener('click',function(ev){
+    if(ev.target.closest('[data-next]')){ if(validate(steps[cur])&&cur<steps.length-1) show(cur+1); }
+    else if(ev.target.closest('[data-back]')){ if(cur>0) show(cur-1); }
+  });
+  function clr(t){ if(!t||!t.name) return;
+    var e=steps[cur].querySelector('.err[data-for="'+t.name+'"]'); if(e) e.classList.remove('show');
+    t.style.borderColor=''; }
+  form.addEventListener('input',function(e){clr(e.target)});
+  form.addEventListener('change',function(e){clr(e.target)});
+
+  form.addEventListener('submit',function(ev){
+    if(!validate(steps[cur])){ ev.preventDefault(); return; }
+    ev.preventDefault();
+    var action=form.getAttribute('action')||'';
+    if(action.indexOf('[[')!==-1||!action){
+      /* Same honesty rule as the waitlist: never show "Got it, I'll reply
+         shortly" for a message that went nowhere. Route them somewhere real. */
+      var dh=doneEl.querySelector('h3'), dp=doneEl.querySelector('p');
+      if(dh) dh.textContent='One more step.';
+      if(dp) dp.innerHTML='The form isn’t connected quite yet, so your answers didn’t send. '+
+        'Text or call me at <b>(520) 270-2827</b>, or email '+
+        '<b>hello@arizonarabbitry.com</b>, and I’ll get right back to you.';
+      form.style.display='none'; doneEl.classList.add('show');
+      doneEl.scrollIntoView({block:'center',behavior:'smooth'});
+      console.warn('Form endpoint not set — replace [[FORM_ENDPOINT]].'); return;
+    }
+    var btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
+    btn.textContent='Sending…'; btn.disabled=true;
+    fetch(action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+      .then(function(r){ if(!r.ok) throw 0;
+        form.style.display='none'; doneEl.classList.add('show');
+        doneEl.scrollIntoView({block:'center',behavior:'smooth'}); })
+      .catch(function(){ btn.textContent=orig; btn.disabled=false;
+        alert('That didn\'t send. Please text me at (520) 270-2827 instead.'); });
+  });
+})();
+</script>
+</body>
+</html>
