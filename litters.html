@@ -217,6 +217,24 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
 .litter p{color:var(--ink-soft)}
 .litter p + p{margin-top:10px}
+/* Rabbit tiles: same card DNA as the main rail — --r radius, --line border,
+   4/3 photo. Two across on a phone, four on a desktop. A placed rabbit's photo
+   is quieted exactly the way the rail's sold-dim does it, so full colour keeps
+   meaning "yours to have" everywhere on the site. The status line reserves its
+   height with a non-breaking space so tiles stay one height while script fills
+   them in. */
+.whograph{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(min-width:700px){.whograph{grid-template-columns:repeat(4,1fr)}}
+.wt{display:block;text-decoration:none;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.wt img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.wt b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;
+  padding:9px 12px 1px}
+.wt small{display:block;font-size:12.5px;color:var(--ink-faint);padding:0 12px 10px;
+  line-height:1.4;min-height:28px}
+.wt .st-open{color:#2C6B41}
+.wt .st-hold{color:#8A5A08}
+.wt-gone img{opacity:.82;filter:saturate(.75)}
 .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .who a,.who span{display:inline-flex;align-items:center;min-height:38px;
   font-size:14.5px;font-weight:500;padding:0 13px;border-radius:100px;
@@ -288,11 +306,36 @@ h1,h2,h3{text-wrap:balance}
           worth nothing to you if I only print the numbers that flatter me.</p>
           <p>The four went up on the site at four weeks old, once I could tell you their sex
           and colour honestly. Two fawn does and two sable point bucks.</p>
-          <div class="who">
-            <a href="index.html#r-teddy">Teddy</a>
-            <a href="index.html#r-butterscotch">Butterscotch</a>
-            <a href="index.html#r-sundae">Sundae</a>
-            <a href="index.html#r-cloud">Cloud</a>
+          <!-- THE LITTER'S RABBITS, AS OUTCOMES. Photo, name, and what happened
+               to each one, under the day-one nest photo that proves the litter is
+               real. The status line is written by script from rabbits.js — the
+               same single source the whole site reads — so it can never go stale;
+               with scripts off the tile is still a photo and a name and the link
+               still lands on the live listing, which always knows.
+               "Went home <date>" rather than SOLD, on purpose: a date is a fact,
+               SOLD is pressure, and placed work already sells remaining work on
+               its own (Tian, Chen & Xu 2022). Price appears only while a rabbit
+               can actually be bought.
+               FUTURE LITTERS: data-rid is the rabbit's ADDRESS, not its name.
+               For a repeated name, use the dated form (teddy-20270315) that
+               index.html assigns, or the tile will land on the earlier rabbit. -->
+          <div class="whograph">
+            <a class="wt" href="index.html#r-teddy" data-rid="teddy">
+              <img src="photos/teddy.jpg" alt="Teddy, a fawn Holland Lop" loading="lazy">
+              <b>Teddy</b><small>&nbsp;</small>
+            </a>
+            <a class="wt" href="index.html#r-butterscotch" data-rid="butterscotch">
+              <img src="photos/butterscotch.jpg" alt="Butterscotch, a fawn Holland Lop" loading="lazy">
+              <b>Butterscotch</b><small>&nbsp;</small>
+            </a>
+            <a class="wt" href="index.html#r-sundae" data-rid="sundae">
+              <img src="photos/sundae.jpg" alt="Sundae, a sable point Holland Lop" loading="lazy">
+              <b>Sundae</b><small>&nbsp;</small>
+            </a>
+            <a class="wt" href="index.html#r-cloud" data-rid="cloud">
+              <img src="photos/cloud.jpg" alt="Cloud, a sable point Holland Lop" loading="lazy">
+              <b>Cloud</b><small>&nbsp;</small>
+            </a>
           </div>
         </div>
       </div>
@@ -416,6 +459,48 @@ h1,h2,h3{text-wrap:balance}
     if(!m) continue;
     last.textContent=m[1]+'\u00A0'+m[3];
   }
+})();
+</script>
+<script src="rabbits.js?v=8aeed8e7"></script>
+<script>
+/* Fills each tile's status line from rabbits.js — the one file that knows.
+   Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html
+   uses, replicated exactly: slug of the name, earliest-born keeps the bare form,
+   later same-names get a dated suffix. If script or rabbits.js fails to load,
+   the lines stay blank and every tile still links to the live listing. */
+(function(){
+  if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
+  function rslug(t){return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+  var groups={};
+  RABBITS.forEach(function(r){var s=rslug(r.name);(groups[s]=groups[s]||[]).push(r);});
+  Object.keys(groups).forEach(function(s){
+    var g=groups[s];
+    if(g.length===1){g[0].addr=s;return;}
+    g.sort(function(a,b){return String(a.dob||'').localeCompare(String(b.dob||''));});
+    var used={};
+    g.forEach(function(r,i){
+      var a=i===0?s:s+'-'+String(r.dob||'').replace(/[^0-9]/g,'');
+      if(used[a])a=a+'-'+(++used[a]);else used[a]=1;
+      r.addr=a;
+    });
+  });
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function nice(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+    return m?(+m[3])+' '+MON[+m[2]-1]+' '+m[1]:'';}
+  document.querySelectorAll('.wt[data-rid]').forEach(function(tile){
+    var rid=tile.getAttribute('data-rid');
+    var r=RABBITS.filter(function(x){return x.addr===rid;})[0];
+    var el=tile.querySelector('small');
+    if(!r||!el) return;
+    if(r.status==='adopted'){
+      el.textContent=r.soldOn?('Went home '+nice(r.soldOn)):'Found a home';
+      tile.classList.add('wt-gone');
+    } else if(r.status==='reserved'){
+      el.textContent='Reserved'; el.className='st-hold';
+    } else {
+      el.textContent='Available \u00B7 $'+r.price; el.className='st-open';
+    }
+  });
 })();
 </script>
 </body>
