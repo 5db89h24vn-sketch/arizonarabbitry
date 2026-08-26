@@ -127,7 +127,7 @@ const RABBITS = [
   {
     name:   "Teddy",
     photos: [
-      { src: "photos/teddy.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/teddy.jpg", date: "2026-08-23" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -154,7 +154,7 @@ const RABBITS = [
   {
     name:   "Butterscotch",
     photos: [
-      { src: "photos/butterscotch.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/butterscotch.jpg", date: "2026-08-23" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -176,7 +176,7 @@ const RABBITS = [
   {
     name:   "Sundae",
     photos: [
-      { src: "photos/sundae.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/sundae.jpg", date: "2026-08-23" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big he really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -198,7 +198,7 @@ const RABBITS = [
   {
     name:   "Cloud",
     photos: [
-      { src: "photos/cloud.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/cloud.jpg", date: "2026-08-23" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big he really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },

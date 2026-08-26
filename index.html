@@ -5,7 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbits</title>
 <meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, eight-week minimum, and lifetime support for every owner.">
-<meta name="theme-color" content="#241F1D">
+<!-- iOS Safari paints the status bar and toolbar with this colour, so on a phone it is
+     the band sitting behind the Dynamic Island. It was --ink, the TEXT colour, where
+     --paper, the background, belongs: a near-black bar hard against a cream page.
+     There is no dark mode on this site, so cream is right nearly everywhere. The two
+     exceptions are the contact section and the footer, which really are dark, and the
+     script near the foot of this file swaps the value when either reaches the top of
+     the screen. With scripts off this static value stands and is still correct for the
+     part of the page anyone lands on. -->
+<meta name="theme-color" content="#FBF8F3">
 
 <!-- ═══════════════════════════════════════════════════════════════
      ARIZONA RABBITS — arizonarabbits.com
@@ -906,6 +914,31 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
     .mbar::before{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none;
       border-color:var(--line)}
   }
+  /* THE BOTTOM EDGE, SOFTENED.
+     Content used to run under the island and stop dead against the browser's own
+     toolbar, which reads as a shelf the page is sitting on. This ramps a blur in over
+     the last stretch so the page dissolves toward the edge instead of being sliced,
+     and the island reads as floating over depth rather than resting on a ledge.
+
+     BLUR RATHER THAN A COLOUR WASH, deliberately. A cream gradient would be right over
+     most of the page and wrong over the two dark grounds (the contact section and the
+     footer), where it would grey them out. Blurring whatever is actually behind it is
+     colour-agnostic, so one rule holds everywhere and nothing clashes.
+
+     Sits at z-index 85: above the page, below the island's 90, so the buttons stay
+     crisp. pointer-events:none, so it never eats a tap. */
+  .edgefade{position:fixed;left:0;right:0;bottom:0;z-index:85;pointer-events:none;
+    height:calc(env(safe-area-inset-bottom) + 88px);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    -webkit-mask-image:linear-gradient(to top,#000 22%,rgba(0,0,0,.55) 55%,transparent);
+            mask-image:linear-gradient(to top,#000 22%,rgba(0,0,0,.55) 55%,transparent)}
+  /* No blur available means no half-measure: a masked layer with nothing to blur is an
+     invisible no-op, which is the right outcome. */
+  @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+    .edgefade{display:none}
+  }
+  /* Same switch the islands already respect. */
+  @media(prefers-reduced-transparency:reduce){ .edgefade{display:none} }
   /* Fully opaque, no alpha. The island is a surface and glass suits it; a button
      is a control, and a control with the page showing through its own label is
      just harder to read. Transparency stops at the edge of anything you tap. */
@@ -998,10 +1031,28 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .viewer-box{background:var(--paper);border-radius:var(--r);width:min(620px,calc(100vw - 28px));
   max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);
   display:flex;flex-direction:column;overflow:hidden;position:relative}
-.viewer-close{position:absolute;top:9px;right:9px;z-index:3;width:40px;height:40px;
+/* ONE RULE FOR BOTH ROUND CONTROLS. Share and close are the same object in two
+   jobs, so they are declared together rather than as two rules that happen to
+   agree today. Anything that changes the shape changes both, which is the only
+   way two buttons stay identical over time. */
+.viewer-close,.viewer-share{position:absolute;top:9px;z-index:3;width:40px;height:40px;
   border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;
   display:grid;place-items:center;line-height:1;font-size:19px;color:var(--ink)}
-.viewer-close:hover{border-color:var(--brick);color:var(--brick)}
+.viewer-close{right:9px}
+/* 8px gap: the same rhythm the buttons themselves sit on, so the pair reads as
+   one cluster rather than two loose circles. */
+.viewer-share{right:57px}
+.viewer-close:hover,.viewer-share:hover{border-color:var(--brick);color:var(--brick)}
+.viewer-share svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+/* the tick shown after a copy, and only then */
+.viewer-share .tick{display:none}
+.viewer-share.done .tick{display:block}
+.viewer-share.done .glyph{display:none}
+.viewer-share.done{color:var(--moss);border-color:var(--moss)}
+/* Hidden until the script has confirmed the browser can actually share or copy.
+   A share button that does nothing when tapped is worse than no share button. */
+.viewer-share[hidden]{display:none}
 .viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:4/3;flex:none}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* BORN ON. Bottom left, the same spot on every frame of every rabbit.
@@ -1024,7 +1075,16 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    Drawn to match the site's other icons: 24 viewBox, stroked, nothing filled. */
 /* top-left of the enlarged photo, mirroring the card exactly so the two read
    as the same badge rather than two different ideas */
-.vstatus{top:12px;left:12px}
+/* In the panel the chip is part of a row, not pinned to a corner, so it drops
+   absolute positioning entirely. */
+.vstatus{top:12px;left:12px;display:inline-flex;align-items:center;gap:6px}
+/* THE DOT. The camera on the date chip exists because a bare number in the corner
+   of a photograph does not say which date it is. Same argument: a dot is the most
+   learned "live state" cue there is, and it tells the two overlays apart at a
+   glance -- camera means this is about the picture, dot means this is the rabbit
+   right now. */
+.vstatus::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:currentColor;flex:none}
 .vstatus[hidden]{display:none}
 .vborn{position:absolute;left:12px;bottom:12px;z-index:2;
   display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);
@@ -1122,6 +1182,13 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
   gap:5px;padding:4px 9px;border-radius:100px;background:rgba(24,20,18,.72);color:#fff;
   font-size:11.5px;font-weight:600;letter-spacing:.02em}
 .shots svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+/* overflow:hidden alone is enough here, and it was checked rather than assumed.
+   A scroll-position-preserving lock (position:fixed plus a negative top plus a
+   restore on close) was written, measured, and taken back out again: driving the
+   page the way a reader does, the place is already kept. The apparent loss that
+   prompted it was the test driver scrolling the card into view before clicking,
+   not the page. Do not add that machinery back without a measurement that shows
+   a real loss, taken with a click that does not move the page first. */
 body.locked{overflow:hidden}
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1806,7 +1873,7 @@ body.locked{overflow:hidden}
           money. At two weeks I can't tell you for certain what sex a kit is and the coat is still
           settling, so anything I said would be a guess dressed up as a fact. Four weeks is the
           point where I can describe a rabbit to you honestly.</p>
-          <p>The deposit is non-refundable, and I'll be straight about why: holding a rabbit means
+          <p>The deposit is non-refundable if you change your mind partway through, and I'll be straight about why: holding a rabbit means
           turning other people away, so if someone changes their mind late I've lost weeks of
           interest on that animal. But <b>it isn't lost money. It's transferable.</b> If your
           circumstances change, or you meet them and click with a different one, I'll move your
@@ -1836,9 +1903,25 @@ body.locked{overflow:hidden}
           becoming itself. When you reserve I'll tell you plainly what's already certain and what
           could still change, and you'll get photos the whole way through so nothing at pickup is a
           surprise. Normal growing up isn't grounds for a refund. Being wrong about something I
-          stated as fact is. Those three all happen before a rabbit leaves here. For what happens
-          once one has gone home with you, see "What if something goes wrong after pickup?"
-          below.</p>
+          stated as fact is. Those three all happen before a rabbit leaves here.</p>
+          <!-- COLLECTION-DAY CHANGE OF MIND. Not an exception bolted on: it is the last point
+               at which a buyer can still walk away whole, and it is worth more to him than the
+               $100 it occasionally costs. Somebody who takes home a rabbit they were unsure
+               about on the day is the person most likely to be back later wanting out, and by
+               then the rabbit has lived somewhere it was not wanted. FIRST RESERVATION ONLY:
+               after a switch the cost is real and already explained above, so the amount is
+               negotiated rather than promised. That vagueness is deliberate and is stated as
+               vagueness, because a number printed here would have to hold in every case. -->
+          <p><b>And if you get to collection day, meet them, and change your mind, you get the
+          whole $100 back.</b> That holds for the first rabbit you reserve. I'd far rather you
+          said so on the day than took home a rabbit you weren't sure about.</p>
+          <p>If you've already switched once before that, I can't promise you the whole amount.
+          Every switch puts a rabbit back on the list weeks after the people who wanted it have
+          moved on, and by then I'm starting over on that animal. What I'll do is work out what
+          it actually cost me and settle on something we both think is fair. I'd rather say that
+          plainly than print a number here I couldn't stand behind in every case.</p>
+          <p>Everything in this answer happens before a rabbit leaves here. For what happens once
+          one has gone home with you, see "What if something goes wrong after pickup?" below.</p>
           <p><b>How to pay:</b> Zelle, Apple Pay, or cash. The balance is due at pickup and cash is
           easiest for that.</p>
           <p>If you're local and would rather not send money to someone you haven't met yet, which
@@ -1964,58 +2047,36 @@ body.locked{overflow:hidden}
           <p>I'd rather promise what I can actually deliver than print a guarantee with fine
           print. What I can deliver is a rabbit that was healthy when you took it, and me,
           reachable, for the whole of its life.</p>
-          <!-- THE AFTER-PICKUP REFUND RULE.
-               DESIGN: no deadline, very narrow cause. That combination is deliberate and it is
-               the opposite of the usual shape, so the reasoning is recorded here.
+          <!-- AFTER PICKUP: ALL SALES FINAL. William's decision, and the reasoning he gave
+               is real: the health check is done together at pickup with the rabbit in the
+               buyer's hands, and nobody leaves without the food the rabbit is already on, a
+               written care sheet, and a number that stays answerable.
 
-               WHY NO DEADLINE. Malocclusion, the common inherited fault in lop and dwarf
-               breeds, is a simple autosomal recessive with 81% penetrance, and vets see it
-               anywhere from 8-10 weeks to 12-18 months of age (UFAW, Netherland Dwarf: Dental
-               Malocclusion). A 30 or 60 day window therefore expires before the main thing this
-               clause exists for can even appear. A window that closes before the fault shows is
-               a promise that costs the seller nothing and protects the buyer from nothing.
-
-               WHY THE CAUSE IS NARROW. The risk William named is a buyer who keeps a rabbit
-               badly, then uses a refund to hand the consequences back. The defence is not a
-               clock, it is CAUSE: only a condition a licensed vet will put in writing as
-               congenital or inherited, which by definition existed before the rabbit left here
-               and cannot have been caused at the buyer's house. Everything acquired after
-               pickup is excluded by name.
-
-               WHY THE RABBIT COMES BACK. Refund without return would let someone keep the money
-               and the animal, which is the exact scenario to design out.
-
-               WHY THE TIE GOES TO THE BUYER. Genuine disputes are rare; a clause that is only
-               defensive reads as defensive. Conceding the tie costs little and is what makes
-               the rest of it credible.
-
-               THIS REPLACED an earlier "only rabbits sold over eight months old" line. That
-               rule protected William but also refused the one case that is genuinely his doing:
-               a kit sold at eight weeks that turns out to carry an inherited fault. It also
-               made this clause vacuous, since almost every sale here is a kit.
+               WHAT THIS DELIBERATELY DOES NOT COVER, recorded so nobody re-opens it by
+               accident. Malocclusion, the common inherited fault in lop and dwarf breeds, is a
+               simple autosomal recessive with 81% penetrance and vets see it anywhere from
+               8-10 weeks to 12-18 months (UFAW, Netherland Dwarf: Dental Malocclusion). A kit
+               collected at eight weeks can pass its check honestly and still carry it, because
+               the check cannot see a fault that has not appeared yet. That case is therefore
+               out of scope by choice, not by oversight. He was shown the argument and decided
+               the exposure was his to refuse, which is his call to make.
 
                NOT LEGAL ADVICE and no statute forces any of it: A.R.S. 44-1799.05 covers cats
-               and dogs from pet dealers only, so rabbits sit outside it. -->
-          <p><b>Refunds after a rabbit goes home.</b> There's one, and it has no deadline. It's
-          also narrow on purpose, so here is exactly how narrow.</p>
-          <p>If a licensed vet examines your rabbit and writes down that it has a condition it
-          was born with, I refund what you paid and the rabbit comes back to me. No time limit on
-          that. Some inherited faults in lops take months to show, teeth being the usual one, so
-          a thirty day window would be worth nothing to you.</p>
-          <p>What I need is the vet's written diagnosis saying the condition is congenital or
-          inherited, and their name and number so I can call them myself. Tell me within a week
-          of that diagnosis. If I don't agree with it, I'll pay for my own vet to examine the
-          rabbit, and if those two can't agree, you get the refund.</p>
-          <p>What it doesn't cover is anything the rabbit picked up after it left here. Injury,
-          weight, an infection, parasites, teeth worn wrong on the wrong food, anything that
-          comes down to how it's been kept. Not because I assume the worst of anybody, but once a
-          rabbit is living at your house I have no way of knowing what happened, and I won't
-          guess.</p>
+               and dogs from pet dealers only, so rabbits sit outside it.
+
+               The rehoming offer below is what keeps this from being a dead end. It gives a
+               buyer who cannot keep a rabbit somewhere to go that is not a refund fight, which
+               is better for the rabbit and cheaper for him than the alternative. -->
+          <p><b>Once a rabbit goes home with you, the sale is final.</b> I don't take one back
+          for a refund after that, and I'd rather you read it here than find it out later.</p>
+          <p>The check above is why. Nothing about the rabbit is hidden from you on the day, you
+          leave with the food they're already on and a written care sheet, and my number doesn't
+          expire.</p>
           <p>If it simply isn't working out, that isn't a refund, but it isn't the end of it
           either. Call me. I'd rather help you find it the right home than have it stay somewhere
           it isn't wanted.</p>
-          <p>The refunds in the deposit answer are a separate thing and they don't change. All of
-          those happen before a rabbit ever leaves here.</p>
+          <p>The refunds in the deposit answer are a separate thing. All of those happen before a
+          rabbit ever leaves here.</p>
           <!-- A formal written health guarantee is still on the paperwork to-do list
                (sales agreement, standalone policy pages). The REFUND terms now exist and are
                stated above; the health guarantee is the part that does not. Until it does,
@@ -2044,7 +2105,14 @@ body.locked{overflow:hidden}
              dialer. Now the sentence and the link agree, and the text option is the one
              carrying the recommendation. -->
         <li><a href="sms:+15202702827"><b>Text (520) 270-2827</b><small>The fastest way to reach me, and completely fine for a first message.</small></a></li>
-        <li><a href="tel:+15202702827"><b>Call (520) 270-2827</b><small>If you would rather talk it through, this rings my phone.</small></a></li>
+        <!-- The digits deliberately appear ONCE in this list. Splitting "Call or text" into two
+             controls was right (one tel: link labelled as both only ever did one of them), but
+             printing the same ten digits on two rows a centimetre apart makes a reader stop and
+             compare them for no gain. The number stays on the Text row because texting is the
+             recommended channel, and this row says plainly that it is the same one, which is the
+             question dropping the digits would otherwise raise. aria-label keeps the actual
+             number on the link for anyone navigating by links out of context. -->
+        <li><a href="tel:+15202702827" aria-label="Call (520) 270-2827"><b>Call the same number</b><small>If you would rather talk it through, this rings my phone.</small></a></li>
         <!-- CLOUDFLARE EMAIL OBFUSCATION IS ON FOR THIS ZONE and it was rewriting both
              of these links in flight. Live, they read "[email protected]" and pointed at
              /cdn-cgi/l/email-protection, so the address only appeared once a Cloudflare
@@ -2231,19 +2299,40 @@ body.locked{overflow:hidden}
      control of its own anywhere on the site. sms: is the one scheme that actually opens
      a message; tel: cannot. Call is narrower than Text on purpose: the label is shorter
      and the intent is rarer. -->
+<!-- Purely decorative, hidden from assistive tech: it softens the bottom edge and
+     carries no information. Must stay BEFORE .mbar so the island paints over it. -->
+<div class="edgefade" aria-hidden="true"></div>
 <div class="mbar">
   <a href="tel:+15202702827" class="btn btn-ghost mbar-call" aria-label="Call William">Call</a>
   <a href="sms:+15202702827" class="btn btn-ghost">Text</a>
   <a href="#available" class="btn btn-primary">See rabbits</a>
 </div>
 
-<!-- Photo view. Built and filled by script only when a rabbit has 2+ photos, so
-     with one photo or none nothing here ever appears and the cards behave exactly
-     as before. Images inside load only when it's opened, which keeps the extra
-     photos off the page's initial load. -->
+<!-- The listing, full screen. EVERY card opens it now, not only rabbits with a
+     second photograph: it carries the price, the Reserved badge, the growth row and
+     the Ask button, all of which are worth opening for one photo. Images inside load
+     only when it opens, so they stay off the page's initial load. -->
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-name">
   <div class="viewer-box">
+    <!-- Hidden by default and revealed by script only where sharing or copying is
+         actually available. The icon is the platform share glyph because most of
+         the traffic here is iPhone, and it is never the only cue: the button
+         carries a real aria-label naming the rabbit. -->
+    <button class="viewer-share" type="button" id="viewerShare" hidden>
+      <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 15.5V4"/><path d="M8.2 7.4L12 3.6l3.8 3.8"/>
+        <path d="M7 10.6H5.4v9.8h13.2v-9.8H17"/>
+      </svg>
+      <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.6l4.6 4.6L19 7.8"/></svg>
+      <span class="sr-only" id="viewerShareSaid" role="status"></span>
+    </button>
     <button class="viewer-close" type="button" id="viewerClose" aria-label="Close photos">&#215;</button>
+    <!-- ON THE PHOTOGRAPH, where it started. It was moved into the panel for a
+         turn on the theory that a badge on the picture reads as being about the
+         picture; that was not what William was asking about, and the move cost a
+         line of height, so it came back. The dot stayed: it costs nothing and it
+         is the part that says "this is the state right now" rather than a label. -->
+    <span class="status vstatus" id="viewerStatus" hidden></span>
     <div class="viewer-stage">
       <img id="viewerImg" src="" alt="">
       <button class="viewer-nav prev" type="button" id="viewerPrev" aria-label="Previous photo">
@@ -2257,7 +2346,6 @@ body.locked{overflow:hidden}
            behind it read Reserved, you tapped the photo, and the big view showed a
            price and an Ask button as though nothing had happened. That is the
            loophole, and it points straight at the inbox. -->
-      <span class="status vstatus" id="viewerStatus" hidden></span>
       <span class="vborn" id="viewerBorn">
         <svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="7" width="18" height="13" rx="2.6"/>
@@ -2270,7 +2358,7 @@ body.locked{overflow:hidden}
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
       <div id="viewerGrow"></div>
-      <div class="viewer-said">
+      <div class="viewer-said" id="viewerSaid">
         <p class="viewer-cap" id="viewerCap"></p>
       </div>
       <div class="viewer-strip" id="viewerStrip"></div>
@@ -2281,7 +2369,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=1f56e7a8"></script>
+<script src="rabbits.js?v=8aeed8e7"></script>
 
 <script>
 (function(){
@@ -2882,7 +2970,16 @@ body.locked{overflow:hidden}
        already says "of eight", and repeating it in words wrapped the line onto
        three. The photo view has the room for the stage name and the full
        phrasing. */
-    var txt='<b>Week '+wk+(full?' of '+LAST_WEEK:'')+'</b>';
+    /* "NOW IN". The photo above this row carries its own age, frozen at the day
+       the shutter went: "23 Aug 2026 · 3 weeks, 5 days old". This row is today.
+       Both numbers are right and they do not match, because one is a completed
+       duration on a past date and the other is the ordinal week the rabbit is
+       living through right now. An unlabelled number sitting under a labelled one
+       gets read against the label, so this one said "Week 5" three days after a
+       chip said "3 weeks, 5 days" and left the reader to work out that nothing was
+       wrong. Two words fix it, and they only go on the viewer's form: the card has
+       no photo date to be confused with. */
+    var txt='<b>'+(full?'Now in week ':'Week ')+wk+(full?' of '+LAST_WEEK:'')+'</b>';
     if(full&&st) txt+=' &middot; '+esc(st.label.toLowerCase());
     /* Once the day arrives the stage name already reads "ready to go home", so
        saying it twice in one line would be the same fact restated.
@@ -2899,7 +2996,8 @@ body.locked{overflow:hidden}
          REMAINING. One word removes the ambiguity and it still fits the one-line rule. */
       txt+=' &middot; '+left+(left===1?' day left':' days left');
     else if(!full && r.status==='available') txt+=' &middot; ready';
-    return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="Week '+wk+
+    return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="'+
+      (full?'Now in week ':'Week ')+wk+
       ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
       '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
       '<span class="grow-txt">'+txt+'</span></div>';
@@ -2917,6 +3015,57 @@ body.locked{overflow:hidden}
     if(!m) return s;
     return parseInt(m[3],10)+' '+MON[parseInt(m[2],10)-1]+' '+m[1];
   }
+
+  /* ══════════════════════════════════════════════════════════════
+     ONE RABBIT, ONE ADDRESS -- INCLUDING THE SECOND RABBIT OF THAT NAME.
+
+     Addresses were the name, lowercased. That is fine until a name comes round
+     again, which over years of litters it will, and adopted rabbits are kept in
+     rabbits.js forever so their pages stay alive. Measured on a fixture with two
+     rabbits called Teddy: the second had no address at all, and worse, TAPPING
+     ITS CARD OPENED THE FIRST ONE -- another rabbit's birth date, price and
+     availability, with nothing on screen to say so. This file's own rule is that
+     showing the wrong rabbit is worse than showing none.
+
+     THE RULE, and it is chosen so nothing already sent to anybody breaks:
+       a name used once            -> "teddy", exactly as before
+       a name used more than once  -> the EARLIEST BORN keeps the bare "teddy",
+                                      later ones become "teddy-20270315"
+     Sorted by birth date, not by position in the file, so adding a rabbit can
+     never silently move an address that is already out in the world on somebody's
+     phone. Same name and same day, which would mean two littermates named alike,
+     falls back to a counter rather than colliding.
+
+     Assigned once, here, before a single card is built, so the cards, the address
+     bar, the share button and the router all read the same value instead of each
+     working it out and eventually disagreeing.
+     ══════════════════════════════════════════════════════════════ */
+  function rslug(t){
+    return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  }
+  if(typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
+    (function assignAddresses(){
+      var groups={};
+      RABBITS.forEach(function(r){
+        var s=rslug(r.name);
+        (groups[s]=groups[s]||[]).push(r);
+      });
+      Object.keys(groups).forEach(function(s){
+        var g=groups[s];
+        if(g.length===1){ g[0].addr=s; return; }
+        g.sort(function(a,b){
+          return String(a.dob||'').localeCompare(String(b.dob||''));
+        });
+        var used={};
+        g.forEach(function(r,i){
+          var a = i===0 ? s : s+'-'+String(r.dob||'').replace(/[^0-9]/g,'');
+          if(used[a]) a = a+'-'+(++used[a]); else used[a]=1;
+          r.addr=a;
+        });
+      });
+    })();
+  }
+  function addrOf(r){ return (r && r.addr) || rslug(r && r.name); }
 
   if(railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
     var list=RABBITS.filter(function(r){
@@ -3004,7 +3153,11 @@ body.locked{overflow:hidden}
          must not ask either again — see the ASK ABOUT block in the script. */
       var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
               (r.status==='available'?' data-avail="1"':'');
-      var attrs=' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"';
+      /* data-rid is the UNIQUE address; data-shots stays the name because other
+         things read it. Two rabbits of one name have one data-shots and two
+         data-rids, and the tap handler uses the one that can tell them apart. */
+      var attrs=' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"'+
+                ' data-rid="'+esc(addrOf(r))+'"';
       return '<a class="bunny'+dim+'"'+attrs+'>'+
         '<div class="bunny-media"><span class="status '+st[0]+'">'+st[1]+'</span>'+
         '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
@@ -3108,6 +3261,7 @@ body.locked{overflow:hidden}
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
         vCap=document.getElementById('viewerCap'),
+        vSaid=document.getElementById('viewerSaid'),
         vStrip=document.getElementById('viewerStrip'),
         vNote=document.getElementById('viewerNote'),
         vCta=document.getElementById('viewerCta'),
@@ -3118,7 +3272,11 @@ body.locked{overflow:hidden}
         vBornWhat=document.getElementById('viewerBornWhat'),
         vPrev=document.getElementById('viewerPrev'),
         vNext=document.getElementById('viewerNext'),
-        vClose=document.getElementById('viewerClose');
+        vClose=document.getElementById('viewerClose'),
+        vShare=document.getElementById('viewerShare'),
+        vShareSaid=document.getElementById('viewerShareSaid');
+    /* the rabbit currently on screen, so the share button never has to guess */
+    var shown=null;
     var shots=[], at=0, lastFocus=null;
 
     function paint(i){
@@ -3190,20 +3348,31 @@ body.locked{overflow:hidden}
       /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail after
          three days, but its link from the litter page has to keep working
          forever, and what a reader wants from it then is not a price, it is
-         "what happened to this one". So an adopted rabbit says when it left. */
-      if(r.status==='reserved'){
-        vMeta.appendChild(document.createTextNode(' · Reserved'));
-      }
+         "what happened to this one". So an adopted rabbit says when it left.
+
+         NO STATUS WORD HERE ANY MORE. The chip at the head of this row says
+         Reserved or Found a home; repeating it a centimetre later is the clutter
+         that moving the chip off the photograph was meant to clear. Only the DATE
+         stays, worded so it is not a second copy of the chip.
+
+         KEEP THIS IN STEP WITH metaText() BELOW. That one is what fitBlocks
+         measures to reserve this row's height, and this one is what the reader
+         actually sees. They drifted apart exactly once: the status words were
+         removed from the measurer and left in the renderer, so the line still
+         said "Found a home" on screen while the tests were told it would not. */
       if(r.status==='adopted'&&r.soldOn){
-        vMeta.appendChild(document.createTextNode(' · Found a home '+niceDate(r.soldOn)));
+        vMeta.appendChild(document.createTextNode(' · Went home '+niceDate(r.soldOn)));
       }
     }
     function metaText(r){
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
         (r.dob?(' · Born '+niceDate(r.dob)):'')+
         (r.ready&&r.status==='available'?(' · Ready '+r.ready):'')+
-        (r.status==='reserved'?' · Reserved':'')+
-        (r.status==='adopted'&&r.soldOn?(' · Found a home '+niceDate(r.soldOn)):'');
+        /* NO LONGER REPEATS THE STATUS. The chip beside this line already says
+           Reserved or Found a home, and saying it twice in one row is the clutter
+           this move was meant to remove. What the chip cannot carry is WHEN, so
+           that is all this keeps, worded so it is not a second copy of the chip. */
+        (r.status==='adopted'&&r.soldOn?(' · Went home '+niceDate(r.soldOn)):'');
     }
     /* How old, in the unit a person would actually use. Days for the first
        fortnight, because a four day old rabbit is not "0 weeks"; whole weeks
@@ -3261,18 +3430,46 @@ body.locked{overflow:hidden}
          it is the same line for all of them, but two litters listed at once sit
          at different weeks with different stage names, and that is exactly the
          kind of difference that put two rabbits' boxes 24px apart before. */
+      /* MEASURED FROM WHAT IS ACTUALLY RENDERED. This list used to be built by
+         hand here, and it had drifted: it appended " · N days to go", which the
+         viewer's form has not printed since the countdown moved to the card, and
+         it now also missed the "Now in " prefix. A measurer that quietly disagrees
+         with the renderer reserves the wrong height, which is how a row clips or
+         carries dead space with every test still green. Strip the tags off the
+         real output instead, so the two cannot come apart again. */
       var grows=[];
       for(var g=0;g<RABBITS.length;g++){
-        var gw=weekOf(RABBITS[g].dob);
-        if(gw===null) continue;
-        var gs=stageOf(gw), gl=daysFrom(RABBITS[g].dob,56);
-        grows.push('Week '+gw+' of '+LAST_WEEK+(gs?' · '+gs.label.toLowerCase():'')+
-          (gl!==null?' · '+gl+' days to go':''));
+        if(weekOf(RABBITS[g].dob)===null) continue;
+        grows.push(growHTML(RABBITS[g],true)
+          .replace(/^[\s\S]*?class="grow-txt">/,'')
+          .replace(/<[^>]*>/g,'')
+          .replace(/&middot;/g,'·')
+          .replace(/\s+/g,' ').trim());
       }
       if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
       vNote.style.height=tallest(vNote,'viewer-note',notes,w)+'px';
-      vCap.style.height =tallest(vCap ,'viewer-cap' ,caps ,w)+'px';
+      /* A CAPTION SLOT NOBODY IS USING TAKES NO SPACE.
+         Every real photograph carried "Out on the brick.", which described what
+         anyone could already see. The Guardian's own guidance on captions is that
+         they exist to add information "rather than insulting their intelligence by
+         stating the obvious", and the much-repeated claim that captions are read
+         four times more than body copy turns out to trace to a thin Ogilvy/Gallup
+         line rather than to solid work. A caption earns its space by saying
+         something the picture cannot; that one did not, so it is gone, and the
+         reserved height goes with it.
+
+         DECIDED ACROSS THE WHOLE LIST, not per rabbit, and that matters: the slot
+         is either present for every rabbit or absent for every rabbit, so the box
+         stays exactly one size. The moment any photograph anywhere carries a real
+         caption ("in my hands, so you can see how big she is"), the slot comes
+         back for all of them on its own.
+
+         Same rule the date row already follows a few lines up. */
+      var anyCap=false;
+      for(var c=0;c<caps.length;c++) if(caps[c]){ anyCap=true; break; }
+      if(vSaid) vSaid.style.display = anyCap ? '' : 'none';
+      if(anyCap) vCap.style.height = tallest(vCap,'viewer-cap',caps,w)+'px';
       fittedAt=w;
     }
 
@@ -3339,6 +3536,26 @@ body.locked{overflow:hidden}
          Disabling the arrows was not enough -- a greyed-out control still reads
          as something that ought to work. */
       vw.classList.toggle('solo', shots.length < 2);
+      /* THE ADDRESS BAR NOW NAMES THE RABBIT ON SCREEN.
+         Every rabbit already had its own address and the router already answered
+         it, but nothing ever WROTE one: opening a listing by tapping a card left
+         the URL on the bare homepage, so anybody who shared what they were looking
+         at sent the front page instead. Half a feature, and the half that was
+         missing is the half a customer uses.
+
+         replaceState, not location.hash: assigning the hash fires the router again
+         and makes the browser scroll to a fragment, so the listing would reopen
+         itself and the page would jump underneath it. This writes the address
+         silently and leaves the view alone. */
+      shown = r;
+      /* named, not "Share": out of context a screen reader reads the label alone,
+         and "Share" alone does not say share what */
+      if(vShare) vShare.setAttribute('aria-label', 'Share ' + r.name);
+      if(history.replaceState){
+        var addr = '#r-' + addrOf(r);
+        if(location.hash !== addr)
+          history.replaceState(null, '', location.pathname + location.search + addr);
+      }
       vw.classList.add('open');
       document.body.classList.add('locked');
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
@@ -3378,8 +3595,10 @@ body.locked{overflow:hidden}
          element a tap on the Ask row's arrow actually lands on, and a rule that
          depends on that is a rule that works in one browser. */
       if(!ev.target.closest('.bunny-media')) return;
-      var name=card.getAttribute('data-shots');
-      var r=RABBITS.filter(function(x){return x.name===name;})[0];
+      /* BY ADDRESS, NOT BY NAME. Matching on the name returned the first rabbit
+         called that, so the second Teddy's card opened the first Teddy. */
+      var rid=card.getAttribute('data-rid');
+      var r=RABBITS.filter(function(x){return addrOf(x)===rid;})[0];
       /* forced: openFor() declines on its own for a rabbit with a single photo,
          which is the right default for a gallery and the wrong one here. What
          the tap is asking for is the LISTING, and a listing is worth opening
@@ -3409,19 +3628,27 @@ body.locked{overflow:hidden}
        #r-butterscotch all land correctly and a rabbit called
        "Miss Marple" is reachable at #r-miss-marple.
        ══════════════════════════════════════════════════════════════ */
-    function slug(t){
-      return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-')
-        .replace(/^-+|-+$/g,'');
-    }
+    /* slug() lived here and did exactly what rslug() does further up. It was left
+       behind when addresses moved to rslug/addrOf, and two functions that must agree
+       forever are one function waiting to disagree, so this one is gone. */
     function rabbitFromHash(){
       var m=/^#r-(.+)$/.exec(location.hash||'');
       if(!m) return null;
-      var want=slug(decodeURIComponent(m[1]));
+      var want=rslug(decodeURIComponent(m[1]));
       /* the FULL list, not the filtered rail: a retired rabbit is exactly
          the case this has to answer */
       for(var i=0;i<RABBITS.length;i++)
-        if(slug(RABBITS[i].name)===want) return RABBITS[i];
-      return null;
+        if(addrOf(RABBITS[i])===want) return RABBITS[i];
+      /* FALLING BACK TO THE BARE NAME. Links written by hand elsewhere on this
+         site, and links shared before a name came round a second time, point at
+         "#r-teddy" and have to keep landing on the rabbit they were written for.
+         That is the earliest of the name, which is also the one that keeps the
+         bare address, so this only ever fires for a name whose bare form was
+         never assigned. */
+      var pool=RABBITS.filter(function(r){ return rslug(r.name)===want; });
+      if(!pool.length) return null;
+      pool.sort(function(a,b){ return String(a.dob||'').localeCompare(String(b.dob||'')); });
+      return pool[0];
     }
     function openFromHash(){
       var r=rabbitFromHash();
@@ -3443,6 +3670,68 @@ body.locked{overflow:hidden}
     window.addEventListener('hashchange',function(){
       if(/^#r-/.test(location.hash||'')) openFromHash();
     });
+
+    /* ══════════════════════════════════════════════════════════════
+       SHARE THIS RABBIT.
+
+       Two routes, and the button only appears if one of them exists, because a
+       share control that does nothing when tapped is worse than none at all.
+
+         navigator.share   the platform sheet. On the iPhones most of this
+                           traffic arrives on, this is the whole feature: it
+                           hands Messages, Mail and everything else the link.
+         clipboard         everywhere else. The tick is the receipt, and the
+                           words go to a live region so it is not a colour
+                           change nobody can hear.
+
+       WHAT GETS SHARED is read off the screen rather than rebuilt from the data,
+       so the message can never say something the listing does not. A reserved
+       rabbit shares as reserved, with no price, which is the honest thing to send
+       to somebody who is about to ask about it.
+       ══════════════════════════════════════════════════════════════ */
+    function shareUrl(r){
+      /* split off any existing fragment and drop index.html: the live host
+         308-redirects /index.html to /, and a shared link should not spend a
+         round trip proving that. */
+      var base = location.href.split('#')[0].replace(/index\.html$/, '');
+      return base + '#r-' + addrOf(r);
+    }
+    function shareText(){
+      var bits = [ (vName.textContent || '').trim() ];
+      var meta = (vMeta.textContent || '').replace(/\s+/g, ' ').trim();
+      if (meta) bits.push(meta);
+      /* price only where there is still one to pay */
+      if (shown && shown.status === 'available' && vPrice.textContent)
+        bits.push(vPrice.textContent.trim());
+      return bits.join(' \u00B7 ');
+    }
+    var canShare = !!(navigator.share),
+        canCopy  = !!(navigator.clipboard && navigator.clipboard.writeText);
+    if (vShare && (canShare || canCopy)) {
+      vShare.hidden = false;
+      vShare.addEventListener('click', function(){
+        if (!shown) return;
+        var url = shareUrl(shown);
+        if (canShare) {
+          navigator.share({
+            title: (vName.textContent || 'Arizona Rabbits').trim() + ' \u00B7 Arizona Rabbits',
+            text:  shareText(),
+            url:   url
+          })["catch"](function(){ /* the reader closed the sheet; not an error */ });
+          return;
+        }
+        navigator.clipboard.writeText(url).then(function(){
+          vShare.classList.add('done');
+          vShareSaid.textContent = 'Link copied';
+          setTimeout(function(){
+            vShare.classList.remove('done');
+            vShareSaid.textContent = '';
+          }, 1800);
+        })["catch"](function(){
+          vShareSaid.textContent = 'Could not copy the link';
+        });
+      });
+    }
 
     vClose.addEventListener('click',shut);
     vw.addEventListener('click',function(ev){ if(ev.target===vw) shut(); });
@@ -3795,6 +4084,51 @@ body.locked{overflow:hidden}
   if(vwEl && 'MutationObserver' in window)
     new MutationObserver(function(){ noOrphans(vwEl); })
       .observe(vwEl,{childList:true,subtree:true,characterData:true});
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   THE STATUS BAR FOLLOWS THE PAGE.
+
+   iOS Safari tints its own chrome with <meta name="theme-color">, so on a phone
+   that value is the band behind the Dynamic Island. One static colour cannot be
+   right for this page: nearly all of it is cream, but the contact section and
+   the footer are genuinely dark, and whichever colour is chosen clashes with the
+   other. So it follows whatever is at the very top of the screen.
+
+   IntersectionObserver, not a scroll handler. rootMargin pulls the root's bottom
+   edge almost all the way up to its top edge, leaving a thin band across the top
+   of the screen, which turns "is it intersecting" into "is it under the strip
+   Safari is tinting". That makes this passive and event-free: it fires twice per
+   boundary crossing and does nothing at all in between.
+
+   -99% RATHER THAN -100%. At -100% the root collapses to a line of no height, and
+   whether an element that merely touches such a line counts as intersecting it is
+   the sort of edge case not worth depending on. A band of real height, roughly
+   eight pixels, is unambiguous and is also a truer description of the strip Safari
+   actually tints. (Both engines were in fact fine at -100%; this is caution, not a
+   fix for an observed bug, and it should not be written up as one.)
+
+   The meta's static value stays cream, so with scripts off the colour is still
+   right for the part of the page anyone actually lands on.
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if(!meta || !('IntersectionObserver' in window)) return;
+  var dark = [].slice.call(document.querySelectorAll('.form-sec, footer'));
+  if(!dark.length) return;
+  var PAPER = '#FBF8F3', INK = '#241F1D';
+  var hit = [];
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var i = dark.indexOf(e.target);
+      if(i > -1) hit[i] = e.isIntersecting;
+    });
+    var want = hit.some(Boolean) ? INK : PAPER;
+    /* only write on a real change: assigning the same value still makes Safari
+       re-run its own cross-fade, which is visible as a flicker */
+    if(meta.getAttribute('content') !== want) meta.setAttribute('content', want);
+  }, { rootMargin: '0px 0px -99% 0px', threshold: 0 });
+  dark.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
