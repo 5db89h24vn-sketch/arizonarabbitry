@@ -184,7 +184,7 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "available",
+    status: "reserved",
     soldOn: "",
     photo:  "photos/sundae.jpg",
     note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
@@ -206,7 +206,7 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "available",
+    status: "reserved",
     soldOn: "",
     photo:  "photos/cloud.jpg",
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
