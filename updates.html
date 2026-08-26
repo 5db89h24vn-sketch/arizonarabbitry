@@ -6,12 +6,36 @@
 <title>Site News | Arizona Rabbits</title>
 <meta name="description" content="What's new on Arizona Rabbits. A weekly log of the work going into the site.">
 <meta name="theme-color" content="#241F1D">
-<link rel="canonical" href="https://arizonarabbits.com/updates.html">
+<link rel="canonical" href="https://arizonarabbits.com/updates">
+<!-- SOCIAL AND CANONICAL METADATA. Both subpages had none, so a link to either
+     one pasted into a text message, Instagram DM or Facebook post arrived as a bare
+     grey URL while the homepage arrived with a photograph. The litter archive is the
+     single most shareable thing on this site -- it is the proof -- and it was the
+     page least equipped to travel.
+
+     CANONICAL POINTS AT THE CLEAN URL. Cloudflare Pages serves /litters and answers
+     /litters.html with a 308 to it, so a canonical naming the .html version pointed
+     search engines at a redirect. The internal links stay relative and keep their
+     .html, because that is what makes the whole page work from a local file during
+     testing, and one 308 costs a visitor nothing. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arizona Rabbits">
+<meta property="og:title" content="Rabbitry news | Arizona Rabbits">
+<meta property="og:description" content="New litters, who is available, and anything about the rabbits worth telling you. Holland Lops in Tucson.">
+<meta property="og:url" content="https://arizonarabbits.com/updates">
+<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rabbitry news | Arizona Rabbits">
+<meta name="twitter:description" content="New litters, who is available, and anything about the rabbits worth telling you. Holland Lops in Tucson.">
+<meta name="twitter:image" content="https://arizonarabbits.com/img/og.jpg">
+
 
 <!-- ═══════════════════════════════════════════════════════════════
-     SITE NEWS — the public changelog.
-     Maintained by the Monday "Site news" task from SITE-NEWS-LOG.md.
-     One <article class="edition"> per published Monday, newest first.
+     RABBITRY NEWS — written for BUYERS, not a changelog. Website bug notes stay
+     private. One <article class="edition"> per entry, newest first.
+     NO PUBLISHING CADENCE IS PROMISED on this page, and none should be added: a
+     schedule that slips costs more trust than having no schedule at all. Post when
+     there is something about the rabbits worth telling people.
      Entries are written for BUYERS: plain language, no dev jargon.
      The "coming soon" placeholder below is replaced by the first
      real edition on Monday, August 24, 2026.
@@ -73,6 +97,13 @@ footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px
    half of it never did anything. */
 p,li,small,summary,figcaption{text-wrap:pretty}
 h1,h2,h3{text-wrap:balance}
+.newscta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.newscta .btn{display:inline-flex;align-items:center;justify-content:center;
+  min-height:46px;padding:0 20px;border-radius:100px;font-weight:600;font-size:15px;
+  text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.newscta .btn-primary{background:var(--brick);border-color:var(--brick);color:#fff}
+.newscta .btn:hover{border-color:var(--brick);color:var(--brick-dk)}
+.newscta .btn-primary:hover{background:var(--brick-dk);color:#fff}
 </style>
 </head>
 <body>
@@ -80,16 +111,27 @@ h1,h2,h3{text-wrap:balance}
 <header>
   <div class="wrap">
     <a class="back" href="index.html">&larr; Back to the rabbits</a>
-    <h1>Site news</h1>
-    <!-- VOICE RULES for every edition on this page: William's first person, plain
-         and concrete, matching the rest of the site. No em dashes. No lists of
-         three. No balanced clever sentences. The calibration William settled on:
-         short plain sentences, a little warmth, enough body to fill its space,
-         zero padding. The lede below is the approved reference for the voice. -->
-    <p class="lede">Every Monday I post a quick rundown of what's changed on the site.
-    Some weeks that's big news, like new rabbits going up. Other weeks it's small fixes
-    you'd probably never notice. If nothing changed at all, I skip the week rather than
-    make something up.</p>
+    <h1>Rabbitry news</h1>
+    <!-- WHAT THIS PAGE IS FOR, because it drifted once already.
+         It was a developer changelog: fixed the TikTok link, the progress bar
+         works in more places, the answer circles looked pre-selected in dark
+         mode. Every one of those was true and none of them was news to somebody
+         deciding whether to buy a rabbit. A buyer reading a list of site repairs
+         learns that the site was broken, which is the opposite of the point.
+
+         The test for an item: would it matter to someone who has never seen the
+         website before? Litters, availability, health milestones, what the
+         rabbits are doing. If the answer is no, it belongs in a commit message.
+
+         NO CADENCE PROMISE. This used to open "Every Monday I post a rundown".
+         A weekly promise on a one-man rabbitry is a clock you can only lose to,
+         and a page whose last entry is six weeks old reads as abandoned.
+
+         VOICE RULES: William's first person, plain and concrete. No em dashes.
+         No lists of three. No balanced clever sentences. -->
+    <p class="lede">What is actually happening here. New litters, who is available, and
+    anything about the rabbits that is worth telling you. I post when there is something
+    to say rather than to a schedule.</p>
   </div>
 </header>
 
@@ -97,38 +139,33 @@ h1,h2,h3{text-wrap:balance}
   <div class="wrap">
 
     <article class="edition">
+      <time datetime="2026-08-26">Tuesday, August 26, 2026</time>
+      <h2>Two of the July litter are spoken for</h2>
+      <p>Sundae and Cloud, the two sable point bucks, are both reserved. Teddy and
+      Butterscotch are still available. Both are fawn does from the same litter, born
+      28 July, and they can go home from 22 September.</p>
+      <p>If you want one of the two that are left, the deposit holds it and comes off
+      the price. If you would rather wait for the next litter, put your email on the
+      list and you will see photos before they go up here.</p>
+      <p class="newscta">
+        <a class="btn btn-primary" href="index.html#available">See who is available</a>
+        <a class="btn btn-ghost" href="index.html#waitlist">Hear about the next litter</a>
+      </p>
+    </article>
+
+    <article class="edition">
       <time datetime="2026-08-24">Monday, August 24, 2026</time>
-      <h2>New name, and the site is live</h2>
-      <p>Big week. The two things worth knowing:</p>
-      <p><b>I changed the name.</b> This used to be Arizona Rabbitry. It is Arizona
-      Rabbits now, at arizonarabbits.com. I was out meeting people and nobody could
-      spell the old one. Most folks heard it as "rabbit tree" and then couldn't find
-      me later. That is a bad problem to have when you sell rabbits. If you knew me
-      as Arizona Rabbitry you are in the right place, and the old web address still
-      brings you here. It always will. The old email still reaches me too, so if you
-      have written to me before, nothing you have saved has stopped working.</p>
-      <p><b>The stock photos are gone.</b> Every rabbit picture on the site is now
-      one of mine. The one on the front page, the one on the About section, and the
-      three lops sitting in the travel carrier are all my own animals. It felt wrong
-      selling real rabbits with someone else's photos.</p>
-      <p>The rest is smaller stuff you may or may not notice:</p>
-      <ul>
-        <li>The contact form works properly now. I tested it end to end and messages
-        come straight to me.</li>
-        <li>Tap a rabbit's picture and you get a bigger view you can flick through. Right now most of the slots say coming soon, because I am still taking the photos. They will fill in over the next week or two.</li>
-        <li>The Available section shows the date I last checked it, so you can tell
-        whether you are looking at something current.</li>
-        <li>This Site news page is new. It is linked at the bottom of every page and
-        from that availability date.</li>
-        <li>The Call and See rabbits buttons at the bottom of your screen now slide
-        in properly instead of half showing at the edge.</li>
-        <li>The little progress bar at the top works in more places, including when
-        you open the site from a link inside Instagram or TikTok.</li>
-        <li>Fixed the TikTok link, which was pointing at the wrong account.</li>
-        <li>Fixed the answer circles on the contact form, which looked like they were
-        all already picked if your phone was in dark mode.</li>
-      </ul>
-      <p>If something looks broken to you, tell me. I would rather hear it than not.</p>
+      <h2>New name, same rabbits</h2>
+      <p><b>This used to be Arizona Rabbitry. It is Arizona Rabbits now,</b> at
+      arizonarabbits.com. I was out meeting people and nobody could spell the old one.
+      Most folks heard it as "rabbit tree" and then could not find me later. That is a
+      bad problem to have when you sell rabbits. If you knew me as Arizona Rabbitry you
+      are in the right place, the old web address still brings you here, and the old
+      email still reaches me.</p>
+      <p><b>Every rabbit photo on this site is one of mine.</b> There were stock photos
+      here at the start and they are gone. It felt wrong selling real rabbits with
+      someone else's pictures, and you cannot judge how I keep them from a photograph
+      taken by a stranger.</p>
     </article>
 
   </div>

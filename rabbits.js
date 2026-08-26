@@ -143,7 +143,12 @@ const RABBITS = [
     status: "available",
     soldOn: "",
     photo:  "photos/teddy.jpg",
-    note:   "Solid fawn all over, like a little bear. The ears still stand for now. They lop on their own over the next few weeks."
+    /* EARS: DESCRIBE, DO NOT PROMISE. This said "They lop on their own over the
+       next few weeks", which is a guarantee about how an individual animal's body
+       will develop. Ear carriage in a young lop is not certain, and a buyer who is
+       told it will happen and then finds it did not has been misled about the one
+       feature the breed is named for. Say what is true today and what is usual. */
+    note:   "Solid fawn all over, like a little bear. Both ears still stand at the moment. Most lop over the coming weeks, though I can only tell you what they look like today."
   },
 
   {

@@ -6,7 +6,29 @@
 <title>Litters | Arizona Rabbits</title>
 <meta name="description" content="The photo I take the day a litter is born, with the date on the picture itself.">
 <meta name="theme-color" content="#241F1D">
-<link rel="canonical" href="https://arizonarabbits.com/litters.html">
+<link rel="canonical" href="https://arizonarabbits.com/litters">
+<!-- SOCIAL AND CANONICAL METADATA. Both subpages had none, so a link to either
+     one pasted into a text message, Instagram DM or Facebook post arrived as a bare
+     grey URL while the homepage arrived with a photograph. The litter archive is the
+     single most shareable thing on this site -- it is the proof -- and it was the
+     page least equipped to travel.
+
+     CANONICAL POINTS AT THE CLEAN URL. Cloudflare Pages serves /litters and answers
+     /litters.html with a 308 to it, so a canonical naming the .html version pointed
+     search engines at a redirect. The internal links stay relative and keep their
+     .html, because that is what makes the whole page work from a local file during
+     testing, and one 308 costs a visitor nothing. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arizona Rabbits">
+<meta property="og:title" content="Every litter, with the photo taken the day they were born">
+<meta property="og:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson. The date is burned into each photograph so you can check it yourself.">
+<meta property="og:url" content="https://arizonarabbits.com/litters">
+<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every litter, with the photo taken the day they were born">
+<meta name="twitter:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson. The date is burned into each photograph so you can check it yourself.">
+<meta name="twitter:image" content="https://arizonarabbits.com/img/og.jpg">
+
 
 <!-- ═══════════════════════════════════════════════════════════════
      LITTER ARCHIVE.
@@ -217,6 +239,13 @@ footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px
    half of it never did anything. */
 p,li,small,summary,figcaption{text-wrap:pretty}
 h1,h2,h3{text-wrap:balance}
+.newscta{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 4px}
+.newscta .btn{display:inline-flex;align-items:center;justify-content:center;
+  min-height:46px;padding:0 20px;border-radius:100px;font-weight:600;font-size:15px;
+  text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.newscta .btn-primary{background:var(--brick);border-color:var(--brick);color:#fff}
+.newscta .btn:hover{border-color:var(--brick);color:var(--brick-dk)}
+.newscta .btn-primary:hover{background:var(--brick-dk);color:#fff}
 </style>
 </head>
 <body>
@@ -330,6 +359,15 @@ h1,h2,h3{text-wrap:balance}
         </div>
 
       </div>
+
+      <!-- THE ARCHIVE WAS A DEAD END. Somebody arrives here from a shared link,
+           reads the proof this page exists to provide, and then the only way
+           onward was the browser's back button. The strongest moment to ask is
+           straight after the evidence lands. -->
+      <p class="newscta">
+        <a class="btn btn-primary" href="index.html#available">See who is available</a>
+        <a class="btn btn-ghost" href="index.html#waitlist">Hear about the next litter</a>
+      </p>
     </div>
 
   </div>

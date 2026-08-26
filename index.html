@@ -91,7 +91,12 @@
 <style>
 :root{
   --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
-  --ink-faint:#8B817A; --line:#E3DACC; --line-soft:#EDE6DA;
+  --ink-faint:#736A64;  /* was #8B817A: 3.59:1 on paper, 3.27:1 on the tinted
+                           sections. WCAG AA wants 4.5:1 for text this size, and this
+                           colour carries dates, the age line, captions and the photo
+                           counts -- the small print a buyer squints at. #736A64 is the
+                           same hue walked down until it clears on BOTH grounds
+                           (4.99:1 and 4.54:1). Do not lighten it back. */ --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8; --moss:#57694F;
   --gold:#B08430; --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -471,7 +476,9 @@ header.nav.stuck{border-bottom-color:var(--line)}
    the height, and the photo crops itself to end on exactly the same line. */
 .hero-media{position:relative}
 .hero-img{position:absolute;inset:0;border-radius:var(--r);object-fit:cover;
-  object-position:50% 38%;width:100%;height:100%}
+  /* the face sits right of centre in the brick photo, so a tall desktop crop has to
+     favour that side or the head is the first thing cover() throws away */
+  object-position:64% 52%;width:100%;height:100%}
 @media(max-width:920px){
   .hero-media{position:static;min-height:0}
   .hero-img{position:static;height:auto;aspect-ratio:16/10;min-height:0}}
@@ -480,7 +487,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .avail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
   flex-wrap:wrap;margin-bottom:26px}
 /* quiet by design: a freshness note, not a headline. The link is the doorway
-   to Site news for exactly the reader doubting the claim beside it — Stanford
+   to the rabbitry news for exactly the reader doubting the claim beside it — Stanford
    credibility guideline: make a claim verifiable where it is made. */
 .avail-stamp{font-size:13.5px;color:var(--ink-faint);margin-top:8px}
 /* The stamp and its link are two statements, not one sentence with a divider.
@@ -569,7 +576,13 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .bunny-cta .cta-short{display:none}
 .bunny-cta svg{width:14px;height:14px;transition:transform .15s}
 .bunny:hover .bunny-cta svg{transform:translateX(3px)}
-.sold-dim{opacity:.58}
+/* DIM THE PICTURE, NOT THE WORDS. Fading the whole card took the name, price
+   and description down with it, so the moment a rabbit was reserved its details
+   became the hardest text on the page to read -- and reserved cards are exactly
+   what a returning visitor scans for. The photo recedes; everything you might
+   need to read stays at full contrast. */
+.sold-dim .bunny-media img{opacity:.55;filter:saturate(.75)}
+.sold-dim .bunny-body{opacity:1}
 .sold-dim:hover{transform:none;border-color:var(--line);box-shadow:none}
 .sold-dim:hover .bunny-media img{transform:none}
 
@@ -900,6 +913,11 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 }
 /* 12px rather than 13px: shaves another 2px off the island without taking the
    buttons below the 44px they need to stay comfortably tappable */
+/* THREE BUTTONS NOW, NOT TWO. Equal flex would give "Call" the same width as
+   "See rabbits", which wastes the row on the least-used action. Call and Text are
+   sized to their words; the primary action keeps the rest. Still one row, still
+   48px tall, still inside the island's curve. */
+.mbar .mbar-call{flex:0 0 auto;min-width:74px}
 .mbar .btn{flex:1;padding:12px 10px;font-size:15px;position:relative;z-index:1;
   pointer-events:auto;border-radius:100px;min-height:44px}
 /* The hero already shows these two buttons, so at the top of the page the fixed bar
@@ -1023,6 +1041,7 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 /* said aloud, never seen: the icon is decorative, the meaning is here */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.viewer.solo .viewer-nav,.viewer.solo .viewer-strip{display:none}
 .viewer-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;
   border-radius:50%;border:1px solid var(--line);background:rgba(251,248,243,.94);
   display:grid;place-items:center;cursor:pointer;z-index:2}
@@ -1314,11 +1333,25 @@ body.locked{overflow:hidden}
   <div class="wrap hero-grid">
     <div>
       <h1>Hand-raised Holland Lops in Tucson.</h1>
-      <p class="hero-sub">Handled every single day from their first week. Yours arrives already
-      comfortable being picked up, by anyone, not just me.</p>
+      <!-- "Yours arrives already comfortable being picked up, by anyone" promised an
+           individual animal's future behaviour towards strangers. Handling is stressful for
+           many rabbits and the response is the rabbit's, not the breeder's, to guarantee.
+           The claim now describes the ROUTINE, which is checkable, and the intended effect
+           rather than a promised outcome. It sells the same thing without a hostage. -->
+      <p class="hero-sub">Handled gently every day from their first week, and not only by me.
+      The point is that being picked up is nothing new by the time it's you.</p>
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
-        <a href="tel:+15202702827" class="btn btn-ghost">Call or text</a>
+        <!-- "Call or text" on a tel: link is a label that does one of the two things it
+             names. On a phone it opens the dialer; there is no way to text from it. The
+             hero keeps one secondary button so the choice stays simple, and it now says
+             what it does. The bottom bar, where there is room for two, offers both. -->
+        <!-- TEXT, not call. The reach list two sections down says in his own words
+             that texting is the fastest way to reach him and completely fine for a
+             first message, and this button was still offering the other one. Calling
+             is not lost: the number in the header is a tap-to-call link and the
+             floating bar carries a Call button. -->
+        <a href="sms:+15202702827" class="btn btn-ghost">Text William</a>
       </div>
       <!-- No price here on purpose. A "from $X" line anchors buyers to your
            lowest number and sets up a negative surprise when you quote higher.
@@ -1332,10 +1365,21 @@ body.locked{overflow:hidden}
       </div>
     </div>
     <div class="hero-media">
-      <!-- Real photo: William's Holland Lop held in his hand. The hand in frame is the
-           point — it shows "hand-raised" instead of claiming it. -->
-      <img class="hero-img" src="img/hero.jpg"
-           alt="A tan Holland Lop rabbit with a heart-charm collar, held gently in one hand" width="900" height="1125" fetchpriority="high">
+      <!-- THE OLD HERO WAS A WELFARE PROBLEM, on the one image the site leads with.
+           It showed a rabbit wearing a collar with a charm, inside a car beside the
+           steering wheel, held up with its hindquarters unsupported. The RSPCA's handling
+           guidance is explicit: support the back and bottom at all times, and interact at
+           ground level because it is less likely to frighten them. A rabbit-savvy buyer
+           reads that photo in a second, and everything the page claims about careful
+           handling dies with it.
+           This one is Butterscotch on the brick: settled, at ground level, unrestrained,
+           no collar, nothing to explain away. The one lopped ear and one upright ear is a
+           bonus, because it shows the honest state of a five-week-old's ears instead of
+           the finished animal the copy used to promise.
+           NEW FILENAME ON PURPOSE: img/ is cached for a day, so replacing a picture under
+           its old name would have left the collar photo on returning visitors' screens. -->
+      <img class="hero-img" src="img/hero-brick.jpg"
+           alt="Butterscotch, a fawn Holland Lop kit, resting on a brick ledge with one ear lopped and one still upright" width="1600" height="1066" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -1366,7 +1410,7 @@ body.locked{overflow:hidden}
              of its own, which is a layout rather than a fragment. -->
         <p class="avail-stamp">Availability
           <time id="availStamp" datetime="2026-08-26">current as of August 26, 2026</time>
-          <a href="updates.html">what's changed lately</a></p>
+          <a href="updates.html">rabbitry news</a></p>
       </div>
       <!-- Counts the real cards below. No invented numbers.
            THE WORDS TYPED HERE ARE THE ONES A CRAWLER READS. The count is
@@ -1458,7 +1502,13 @@ body.locked{overflow:hidden}
   <div class="wrap split">
     <div class="rv">
       <p class="kicker">About</p>
-      <h2>Temperament is decided before you ever meet them.</h2>
+      <!-- "decided" was the last absolute left standing on the page. Early handling
+             genuinely shifts how a rabbit responds to people, but genetics and the
+             months after collection both keep a vote, so a breeder cannot honestly
+             claim the matter is closed. "Mostly settled" keeps the whole point of the
+             sentence -- that the formative window happens HERE, before the buyer is
+             ever involved -- and stops promising an outcome no one can promise. -->
+        <h2>Temperament is mostly settled before you ever meet them.</h2>
 
       <p class="lede" style="margin-bottom:14px">I'm William, and I came to rabbits through
       chinchillas. They're remarkable animals, but a chinchilla doesn't want to be
@@ -1527,14 +1577,22 @@ body.locked{overflow:hidden}
       <div class="stage">
         <span class="stage-when">Week 3–5</span>
         <h3>Carrying becomes normal</h3>
-        <p>Lifting paired with calm and food. Leaving the ground is the fear most pet rabbits
-        never lose.</p>
+        <p>Lifting with a hand under the back and bottom every time, and long stretches at
+        floor level, which is where a rabbit is most at ease. Leaving the ground is the fear
+        most pet rabbits never lose.</p>
       </div>
       <div class="stage">
         <span class="stage-when">Week 6–8</span>
         <h3>New people, new noise</h3>
-        <p>Visitors, kids, household sound, car rides, other animals. Variety is what builds
-        real confidence.</p>
+        <!-- CAR RIDES AND OTHER ANIMALS CAME OUT. Welfare guidance treats travel as
+             something to do when it is necessary, not as an enrichment exercise, and
+             "other animals" with no species or barrier named reads as a predator sitting
+             in the room. The carrier replaces the car ride: it is the part of travel that
+             actually needs practising, and practising it calmly is what makes the real
+             journeys easier. -->
+        <p>Visitors, children, the noise of a house, and the carrier with the door open so
+        it stops being a trap. Ordinary life at their own pace, with somewhere to retreat
+        to whenever they want it.</p>
       </div>
       <div class="stage">
         <span class="stage-when">Week 8</span>
@@ -1725,7 +1783,9 @@ body.locked{overflow:hidden}
         <summary>Why do they cost what they cost?</summary>
         <div class="faq-body">
           <p>Every rabbit's price is listed on its own photo above, and that number is what you
-          pay. No appointment fee, no no-show fee, nothing added at pickup. Second rabbit is 20% off.</p>
+          pay. No appointment fee, no no-show fee, nothing added at pickup. Second rabbit is
+          20% off, and before you take a pair we'll talk through neutering and introductions,
+          because two rabbits are not a bonded pair on their own.</p>
           <p>What the price covers is eight weeks of daily handling before the rabbit is
           old enough to leave, a health check you watch me do, two weeks of the food they're
           already eating, a written care sheet, and my phone number for as long as you have
@@ -1776,7 +1836,9 @@ body.locked{overflow:hidden}
           becoming itself. When you reserve I'll tell you plainly what's already certain and what
           could still change, and you'll get photos the whole way through so nothing at pickup is a
           surprise. Normal growing up isn't grounds for a refund. Being wrong about something I
-          stated as fact is.</p>
+          stated as fact is. Those three all happen before a rabbit leaves here. For what happens
+          once one has gone home with you, see "What if something goes wrong after pickup?"
+          below.</p>
           <p><b>How to pay:</b> Zelle, Apple Pay, or cash. The balance is due at pickup and cash is
           easiest for that.</p>
           <p>If you're local and would rather not send money to someone you haven't met yet, which
@@ -1880,18 +1942,84 @@ body.locked{overflow:hidden}
       <details>
         <summary>What if something goes wrong after pickup?</summary>
         <div class="faq-body">
-          <p>Call me. Day three or year three, I'd rather hear early than after it's serious.</p>
+          <!-- VET FIRST. This answer used to open "Call me" and later said "you call me
+               first". A rabbit that stops eating can go from off-colour to critical in a
+               matter of hours (VCA Animal Hospitals, Gastrointestinal Stasis in Rabbits),
+               so any minute spent waiting on a breeder to pick up is a minute lost. The
+               urgent path now comes first and names the signs, because "seems off" is not
+               something a first-time owner can act on. Do not reorder these paragraphs. -->
+          <p><b>If your rabbit stops eating, stops leaving droppings, sits hunched and quiet,
+          breathes with effort, or has loose watery droppings, treat it as a same-day
+          emergency and get to a rabbit-savvy vet.</b> A rabbit that isn't eating can go from
+          off-colour to critical in hours. Don't wait to reach me first. Call or text me on
+          the way, or afterwards, and I'll help with whatever I can.</p>
+          <p>For anything that isn't urgent, call me. Day three or year three, I'd rather
+          hear early than after it's serious.</p>
           <p>Here's what you're standing on. Before any rabbit leaves, we do the health check
           together at pickup: ears, teeth, eyes, weight and coat, in your hands, not mine. If
           it doesn't pass, it doesn't go home and you get your deposit back in full. And once
-          they're home, my number doesn't expire. If your rabbit seems off, you call me first
-          and we work out together whether it's a Tuesday thing or a vet-today thing.</p>
+          they're home, my number doesn't expire. For the ordinary questions, the ones that aren't
+          on the list above, we work out together whether it's a Tuesday thing or a vet-today
+          thing.</p>
           <p>I'd rather promise what I can actually deliver than print a guarantee with fine
           print. What I can deliver is a rabbit that was healthy when you took it, and me,
           reachable, for the whole of its life.</p>
+          <!-- THE AFTER-PICKUP REFUND RULE.
+               DESIGN: no deadline, very narrow cause. That combination is deliberate and it is
+               the opposite of the usual shape, so the reasoning is recorded here.
+
+               WHY NO DEADLINE. Malocclusion, the common inherited fault in lop and dwarf
+               breeds, is a simple autosomal recessive with 81% penetrance, and vets see it
+               anywhere from 8-10 weeks to 12-18 months of age (UFAW, Netherland Dwarf: Dental
+               Malocclusion). A 30 or 60 day window therefore expires before the main thing this
+               clause exists for can even appear. A window that closes before the fault shows is
+               a promise that costs the seller nothing and protects the buyer from nothing.
+
+               WHY THE CAUSE IS NARROW. The risk William named is a buyer who keeps a rabbit
+               badly, then uses a refund to hand the consequences back. The defence is not a
+               clock, it is CAUSE: only a condition a licensed vet will put in writing as
+               congenital or inherited, which by definition existed before the rabbit left here
+               and cannot have been caused at the buyer's house. Everything acquired after
+               pickup is excluded by name.
+
+               WHY THE RABBIT COMES BACK. Refund without return would let someone keep the money
+               and the animal, which is the exact scenario to design out.
+
+               WHY THE TIE GOES TO THE BUYER. Genuine disputes are rare; a clause that is only
+               defensive reads as defensive. Conceding the tie costs little and is what makes
+               the rest of it credible.
+
+               THIS REPLACED an earlier "only rabbits sold over eight months old" line. That
+               rule protected William but also refused the one case that is genuinely his doing:
+               a kit sold at eight weeks that turns out to carry an inherited fault. It also
+               made this clause vacuous, since almost every sale here is a kit.
+
+               NOT LEGAL ADVICE and no statute forces any of it: A.R.S. 44-1799.05 covers cats
+               and dogs from pet dealers only, so rabbits sit outside it. -->
+          <p><b>Refunds after a rabbit goes home.</b> There's one, and it has no deadline. It's
+          also narrow on purpose, so here is exactly how narrow.</p>
+          <p>If a licensed vet examines your rabbit and writes down that it has a condition it
+          was born with, I refund what you paid and the rabbit comes back to me. No time limit on
+          that. Some inherited faults in lops take months to show, teeth being the usual one, so
+          a thirty day window would be worth nothing to you.</p>
+          <p>What I need is the vet's written diagnosis saying the condition is congenital or
+          inherited, and their name and number so I can call them myself. Tell me within a week
+          of that diagnosis. If I don't agree with it, I'll pay for my own vet to examine the
+          rabbit, and if those two can't agree, you get the refund.</p>
+          <p>What it doesn't cover is anything the rabbit picked up after it left here. Injury,
+          weight, an infection, parasites, teeth worn wrong on the wrong food, anything that
+          comes down to how it's been kept. Not because I assume the worst of anybody, but once a
+          rabbit is living at your house I have no way of knowing what happened, and I won't
+          guess.</p>
+          <p>If it simply isn't working out, that isn't a refund, but it isn't the end of it
+          either. Call me. I'd rather help you find it the right home than have it stay somewhere
+          it isn't wanted.</p>
+          <p>The refunds in the deposit answer are a separate thing and they don't change. All of
+          those happen before a rabbit ever leaves here.</p>
           <!-- A formal written health guarantee is still on the paperwork to-do list
-               (sales agreement, deposit policy). When those terms exist, state them
-               here. Until then this answer promises only what is already true. -->
+               (sales agreement, standalone policy pages). The REFUND terms now exist and are
+               stated above; the health guarantee is the part that does not. Until it does,
+               this answer promises only what is already true. -->
         </div>
       </details>
     </div>
@@ -1912,8 +2040,25 @@ body.locked{overflow:hidden}
            lower-effort action that FEELS like progress but isn't. The socials live further up
            and in the footer, where browsing is the right behaviour. -->
       <ul class="reach">
-        <li><a href="tel:+15202702827"><b>(520) 270-2827</b><small>Call or text. Texting is completely fine, and it's the fastest way to reach me.</small></a></li>
-        <li><a href="mailto:hello@arizonarabbits.com"><b>hello@arizonarabbits.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></a></li>
+        <!-- This said texting was the fastest way to reach him and then handed you a
+             dialer. Now the sentence and the link agree, and the text option is the one
+             carrying the recommendation. -->
+        <li><a href="sms:+15202702827"><b>Text (520) 270-2827</b><small>The fastest way to reach me, and completely fine for a first message.</small></a></li>
+        <li><a href="tel:+15202702827"><b>Call (520) 270-2827</b><small>If you would rather talk it through, this rings my phone.</small></a></li>
+        <!-- CLOUDFLARE EMAIL OBFUSCATION IS ON FOR THIS ZONE and it was rewriting both
+             of these links in flight. Live, they read "[email protected]" and pointed at
+             /cdn-cgi/l/email-protection, so the address only appeared once a Cloudflare
+             script had run, and the link opened an interstitial instead of a mail
+             composer. The email_off comment pair below is Cloudflare's own documented
+             opt-out and needs no dashboard access.
+             It costs nothing, because the same address is already published in plain
+             text in the LocalBusiness JSON-LD at the top of this file, which Cloudflare
+             does not touch. The obfuscation was breaking a contact route while
+             protecting an address that was never hidden.
+             Do not write the marker itself inside a comment: HTML comments do not
+             nest, its closing bracket ends the comment early and the rest of the note
+             lands on the page as visible text. commenttest.js now fails on that. -->
+        <li><!--email_off--><a href="mailto:hello@arizonarabbits.com"><b>hello@arizonarabbits.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></a><!--/email_off--></li>
       </ul>
     </div>
 
@@ -1927,7 +2072,12 @@ body.locked{overflow:hidden}
         <form id="lead" action="https://formspree.io/f/xppanonl" method="POST" novalidate>
           <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
           <span class="prog-label" id="plabel">Step 1 of 3</span>
-          <div class="hp"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <!-- The spam trap was off-screen but still in the accessibility tree, so a
+               screen-reader user was read a "Company" field that must stay empty and
+               got no way to know that. aria-hidden takes it out of the reading order;
+               tabindex keeps it out of the tab order. Bots that parse the DOM still
+               find it, which is the whole point. -->
+          <div class="hp" aria-hidden="true"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 
           <!-- Shown only when someone arrived here by tapping a rabbit. It is
                the receipt for a question they have already answered, and it
@@ -1938,7 +2088,12 @@ body.locked{overflow:hidden}
           <div class="askabout" id="askAbout" tabindex="-1">
             <p class="ask-lead">Asking about <b id="askName"></b></p>
             <div class="rpick" id="askPick" role="group" aria-label="Which rabbits"></div>
-            <p class="pairnote" id="askPair">Two rabbits, so the second is 20% off.</p>
+            <!-- The discount and the bonding warning have to arrive together. Two rabbits
+                 sold as a pair are not automatically a bonded pair: compatibility can change
+                 at puberty, and welfare guidance is that a pair needs neutering and a proper
+                 introduction. Offering the money without the condition sells a problem. -->
+            <p class="pairnote" id="askPair">Two rabbits, so the second is 20% off. We'll talk
+            through neutering and how to introduce them before you take a pair.</p>
           </div>
           <input type="hidden" name="rabbit" id="askField" value="">
 
@@ -2051,14 +2206,14 @@ body.locked{overflow:hidden}
           <!-- The public changelog. Footer on purpose: it serves the cautious
                researcher vetting the business, not the buying journey. -->
           <a href="litters.html">Litters</a>
-          <a href="updates.html">Site news</a>
+          <a href="updates.html">Rabbitry news</a>
         </div>
       </div>
       <div>
         <h4>Contact</h4>
         <div class="foot-links">
           <a href="tel:+15202702827">(520) 270-2827</a>
-          <a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a>
+          <!--email_off--><a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a><!--/email_off-->
           <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/@arizona.rabbits" target="_blank" rel="noopener">TikTok</a>
           <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener">Facebook</a>
@@ -2072,8 +2227,13 @@ body.locked{overflow:hidden}
   </div>
 </footer>
 
+<!-- Three controls, because texting is the channel he says is fastest and it had no
+     control of its own anywhere on the site. sms: is the one scheme that actually opens
+     a message; tel: cannot. Call is narrower than Text on purpose: the label is shorter
+     and the intent is rarer. -->
 <div class="mbar">
-  <a href="tel:+15202702827" class="btn btn-ghost">Call or text</a>
+  <a href="tel:+15202702827" class="btn btn-ghost mbar-call" aria-label="Call William">Call</a>
+  <a href="sms:+15202702827" class="btn btn-ghost">Text</a>
   <a href="#available" class="btn btn-primary">See rabbits</a>
 </div>
 
@@ -2121,7 +2281,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=7a4931a5"></script>
+<script src="rabbits.js?v=1f56e7a8"></script>
 
 <script>
 (function(){
@@ -2142,7 +2302,16 @@ body.locked{overflow:hidden}
   (function(){
     var el=document.getElementById('availStamp'); if(!el) return;
     var s=el.getAttribute('datetime'), n=daysFromToday(s);
-    if(n===null||n>0) return;                      /* never claim a future check */
+    /* A FUTURE DATE IS A DATA ERROR, SO SAY NOTHING RATHER THAN SOMETHING WRONG.
+       This used to return early and leave the hand-typed words on screen, which
+       meant a stamp accidentally set a day ahead displayed a date that had not
+       happened yet. An audit caught exactly that. The date is typed by hand and
+       Arizona does not observe daylight saving, so a late-night edit made from
+       anywhere east of here can easily land on tomorrow. Hiding it costs one line
+       of reassurance; printing tomorrow's date costs the reader's trust in every
+       other number on the page. */
+    if(n===null) return;
+    if(n>0){ el.hidden=true; return; }
     var d=-n;
     if(d===0) el.textContent='checked today';
     else if(d===1) el.textContent='checked yesterday';
@@ -2622,13 +2791,26 @@ body.locked{overflow:hidden}
   /* Normalises whichever photo fields a rabbit has into one list.
      photo: "one.jpg"                       -> single, no photo view
      photos: [{src,date,note}, ...]         -> photo view once there are 2+ */
+  /* A PLACEHOLDER IS NOT A PHOTOGRAPH.
+     The Coming soon frames were built so William could judge the gallery layout
+     before taking the pictures. That was right while the site was private. Live,
+     they became a promise: the card badge counted six, the reader tapped, and got
+     one real photo and five apologies. A count that overstates by five is exactly
+     the kind of small inaccuracy that teaches a buyer the other numbers on the
+     page are approximate too, which is expensive on a page selling $375 animals.
+
+     So they are filtered out of everything a customer sees. They STAY in
+     rabbits.js on purpose: the list is William's shot list, and every note on a
+     placeholder is the photo still to take. Replace a coming-soon src with a real
+     file and that frame appears on its own, badge and all. Nothing else to do. */
+  function realPhoto(src){ return !!src && src.indexOf('coming-soon') < 0; }
   function galleryFor(r){
     var out=[];
     if(Array.isArray(r.photos)){
       r.photos.forEach(function(p){
         if(!p) return;
-        if(typeof p==='string'){ out.push({src:p,date:'',note:''}); }
-        else if(p.src){ out.push({src:p.src,date:p.date||'',note:p.note||''}); }
+        if(typeof p==='string'){ if(realPhoto(p)) out.push({src:p,date:'',note:''}); }
+        else if(p.src && realPhoto(p.src)){ out.push({src:p.src,date:p.date||'',note:p.note||''}); }
       });
     }
     if(r.photo && !out.some(function(p){return p.src===r.photo;})) out.unshift({src:r.photo,date:'',note:''});
@@ -2713,7 +2895,9 @@ body.locked{overflow:hidden}
        once — the card counts down in days, the photo view gives the date and
        spends its room on the stage name instead. */
     if(!full && r.status==='available' && left!==null && left>0)
-      txt+=' &middot; '+left+(left===1?' day':' days');
+      /* "Week 5 · 28 days" reads as though the rabbit is 28 days old. It is days
+         REMAINING. One word removes the ambiguity and it still fits the one-line rule. */
+      txt+=' &middot; '+left+(left===1?' day left':' days left');
     else if(!full && r.status==='available') txt+=' &middot; ready';
     return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="Week '+wk+
       ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
@@ -2806,17 +2990,21 @@ body.locked{overflow:hidden}
           '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/>'+
           '</svg>'+shots.length+'</span>'
         : '';
-      /* With several photos the card opens the photo view instead of jumping
-         straight to the form. Kept as a real <a> with an href so it still works
-         with JavaScript off, and so it can be opened in a new tab. */
+      /* THE PICTURE OPENS THE LISTING ON EVERY CARD, not only on cards that
+         happen to have a second photograph. Those two things were one flag
+         until the Coming soon frames stopped being counted as photos, and the
+         moment they did, every rabbit dropped to one picture and tapping a
+         rabbit quietly stopped opening its listing at all -- taking the
+         Reserved badge, the price, the growth row and the eight-week note with
+         it. The photo count and the tap target are separate facts now.
+         Kept as a real <a> with an href so it still works with JavaScript off,
+         and so it can be opened in a new tab. */
       /* data-ask carries this rabbit's name into the form. The click has
          already answered both "which rabbit" and "one or a pair", so the form
          must not ask either again — see the ASK ABOUT block in the script. */
       var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
               (r.status==='available'?' data-avail="1"':'');
-      var attrs=many
-        ? ' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"'
-        : ' href="'+href+'"'+ask;
+      var attrs=' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"';
       return '<a class="bunny'+dim+'"'+attrs+'>'+
         '<div class="bunny-media"><span class="status '+st[0]+'">'+st[1]+'</span>'+
         '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
@@ -2877,7 +3065,11 @@ body.locked{overflow:hidden}
           }
         };
         if(img) p.image=img;
-        if(r.breed) p.brand={'@type':'Brand','name':r.breed};
+        /* NO brand PROPERTY. This used to publish the breed as the Brand, and a
+           breed is not a manufacturer -- Holland Lop is a kind of rabbit, not a
+           maker of rabbits. Google reads Brand as the maker, so it was a small
+           false statement in machine-readable form. The breed is already in
+           category, where it belongs. */
         return {'@type':'ListItem','position':i+1,'item':p};
       });
       if(!items.length) return;
@@ -3139,6 +3331,14 @@ body.locked{overflow:hidden}
       vStrip.querySelectorAll('button').forEach(function(b,n){
         b.addEventListener('click',function(){paint(n)});
       });
+      /* ONE PHOTOGRAPH MEANS NO PHOTO CONTROLS.
+         Every rabbit currently has exactly one, so the listing was showing a
+         back arrow, a forward arrow and a thumbnail strip containing a single
+         thumbnail of the picture already on screen. Three controls that do
+         nothing, and a strip that promises more photographs than exist.
+         Disabling the arrows was not enough -- a greyed-out control still reads
+         as something that ought to work. */
+      vw.classList.toggle('solo', shots.length < 2);
       vw.classList.add('open');
       document.body.classList.add('locked');
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
@@ -3165,8 +3365,9 @@ body.locked{overflow:hidden}
       if(lastFocus&&lastFocus.focus) lastFocus.focus();
     }
 
-    /* Card taps. Only intercepts cards flagged as having several photos, so
-       every other card keeps its normal link behaviour untouched. */
+    /* Card taps. The PICTURE opens the full listing; the name, price and Ask
+       row keep their normal link behaviour and go straight to the form, so the
+       one-tap route to asking about a rabbit is untouched. */
     railEl.addEventListener('click',function(ev){
       var card=ev.target.closest('.bunny[data-shots]'); if(!card) return;
       /* The PICTURE is what opens more pictures. Everything else on the card --
@@ -3179,7 +3380,11 @@ body.locked{overflow:hidden}
       if(!ev.target.closest('.bunny-media')) return;
       var name=card.getAttribute('data-shots');
       var r=RABBITS.filter(function(x){return x.name===name;})[0];
-      if(r && openFor(r)) ev.preventDefault();
+      /* forced: openFor() declines on its own for a rabbit with a single photo,
+         which is the right default for a gallery and the wrong one here. What
+         the tap is asking for is the LISTING, and a listing is worth opening
+         for one photograph. */
+      if(r && openFor(r,true)) ev.preventDefault();
     });
 
     /* ══════════════════════════════════════════════════════════════
@@ -3482,11 +3687,12 @@ body.locked{overflow:hidden}
   document.addEventListener('click',function(ev){
     var card=ev.target.closest && ev.target.closest('.bunny[data-ask]');
     if(!card) return;
-    /* On a card with several photos the PICTURE belongs to the photo view --
-       looking closer is the whole point of putting it there. The rest of the
-       card is still the form's. A card with one photo has nothing to open, so
-       all of it goes to the form. Same test as the photo view's own handler,
-       from the other side, so the two can never both decline a tap. */
+    /* The PICTURE belongs to the listing -- price, Reserved badge, growth row,
+       eight-week note -- on every card, including a rabbit with one photograph
+       and including one already sold, whose card opens its archive. The rest of
+       the card is still the form's, so the one-tap route to asking is intact.
+       Same test as the listing's own handler, from the other side, so the two
+       can never both decline a tap. */
     if(card.hasAttribute('data-shots') && ev.target.closest('.bunny-media')) return;
     askAbout(card.getAttribute('data-ask'));
     ev.preventDefault();     /* the anchor's own jump would land in the wrong place */
