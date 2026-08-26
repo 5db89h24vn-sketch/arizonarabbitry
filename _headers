@@ -1,36 +1,54 @@
 # ═══════════════════════════════════════════════════════════════════
 # CACHING RULES FOR CLOUDFLARE PAGES.
 #
-# WHY THIS FILE EXISTS.
-# Pages caches static assets by file type. HTML is served with
-# max-age=0 and revalidated on every visit, which is right. But
-# rabbits.js is a .js file, so it was getting the default:
+# READ THIS BEFORE CHANGING ANY OF IT.
 #
-#     cache-control: public, max-age=14400, must-revalidate
+# Measured, from the two hosts side by side:
 #
-# Four hours, in the visitor's own browser. rabbits.js is the ONE
-# file on this site whose whole job is to be accurate today. Two
-# rabbits were marked reserved and the site kept telling returning
-# visitors they were available, because their browser had a copy from
-# earlier and would not ask again for four hours. Someone enquires
-# about a rabbit that is already spoken for, and the site looks
-# either careless or dishonest. Neither is recoverable in one email.
+#   arizonarabbitry.pages.dev/rabbits.js   max-age=0, must-revalidate
+#   arizonarabbits.com/rabbits.js          max-age=14400
 #
-# max-age=0 with must-revalidate does NOT mean re-downloading it
-# every time. The file still carries an ETag, so the browser asks
-# "has this changed?" and gets a 304 with no body when it hasn't.
-# The cost is one round trip; the benefit is that availability is
-# never wrong.
+# Pages sends the right thing. The ZONE rewrites it. Cloudflare's
+# Browser Cache TTL sits at its 4 hour default, and by its own rules
+# it overrides the origin whenever the origin asks for LESS. So this
+# file cannot win on its own, and the setting has to change too:
 #
-# Photographs are deliberately left alone. A rabbit's photo does not
-# change after it is published, so the long default cache is right
-# for those and keeps the site fast.
+#   dash.cloudflare.com > arizonarabbits.com > Caching >
+#   Configuration > Browser Cache TTL > "Respect Existing Headers"
+#
+# Until that is done, availability can be up to four hours stale in a
+# returning visitor's browser. Two rabbits were marked reserved and
+# the site kept showing them as available, which is how this was
+# found.
+#
+# WHY THE SPLIT BELOW.
+# A stale photograph is a mild problem: you see yesterday's picture of
+# the right rabbit. Stale availability is a severe one: somebody asks
+# about a rabbit that is already spoken for, and the site looks either
+# careless or dishonest. So the two are cached completely differently.
+#
+# max-age=0 does NOT mean downloading it again every time. The ETag
+# still stands, so an unchanged file answers 304 with no body. One
+# small round trip, and availability is never wrong.
 # ═══════════════════════════════════════════════════════════════════
 
+# THE ONE FILE THAT MUST NEVER BE STALE. Every price, status and
+# countdown on the site is read from it.
 /rabbits.js
   Cache-Control: public, max-age=0, must-revalidate
 
-# Same reasoning: this page carries what is available and what has
-# been placed, and it is cheap to revalidate.
+# Carries what is available and what has been placed.
 /litters.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Pictures, cached for a day rather than forever ON PURPOSE. Photos on
+# this site DO get replaced under the same filename: every "Coming
+# soon" frame becomes a real photograph eventually. Cache one of those
+# for a year and the placeholder outlives the real picture.
+# If you replace a photo and want it seen immediately, give the new
+# file a new name and point rabbits.js at it. That is instant, and it
+# costs nothing.
+/photos/*
+  Cache-Control: public, max-age=86400
+/img/*
+  Cache-Control: public, max-age=86400
