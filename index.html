@@ -1242,6 +1242,34 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .litterlink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .litterlink:hover{border-bottom-style:solid}
+/* CITED CLAIMS. A factual claim a stranger might reasonably doubt carries a link
+   to the strongest source that verifies it, woven into the sentence that makes
+   the claim -- never a "Source:" footnote, and never a new sentence. The anchor
+   is the claim itself, so the words the reader doubts are the words they tap.
+
+   THE BAR FOR A SOURCE, in order: it verifies the SPECIFIC claim (not just the
+   topic); it is the recognised authority for that claim; it is written plainly
+   enough that a buyer can read it without it becoming a research project; and it
+   is not carpeted in ads or trackers. Chosen by comparison, not by first result:
+   RHDV2 went to Arizona Game & Fish's July 2026 release (the state wildlife
+   authority, ~400 words, says exactly what our sentence says) over USDA APHIS
+   (authoritative but ~2,000 clinical words with no 2026 Arizona activity) and
+   Cornell's lab page (New York-focused). The URL is the department's bulletin on
+   GovDelivery, the state's own notification service, rather than the same release
+   on azgfd.com: identical official text, but azgfd.com returns 403 to every
+   automated check, and a citation this project cannot monitor is a citation that
+   can die under a health claim without anyone knowing. Link what can be watched. The two care claims went to the
+   rabbit.org Foundation, a vet-reviewed 501(c)(3) with no commercial chrome,
+   whose GI-stasis page even uses this site's own phrase "rabbit-savvy vet".
+   PetMD and similar ad-farms were rejected on sight, whatever the article said.
+
+   citetest.js holds the allowlist: every .cite link must be on it, be https,
+   answer 200, and still contain the claim's keyword -- so a dead or drifted
+   source fails the build instead of quietly eroding the transparency this
+   exists to provide. */
+.cite{color:var(--brick-dk);text-decoration:none;
+  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+.cite:hover{border-bottom-style:solid}
 /* Same treatment as the Born link on the line above it. Two doorways out of one
    listing, and they must look like the same kind of thing. */
 .stagelink{color:var(--ink-faint);text-decoration:none;
@@ -1407,6 +1435,17 @@ body.locked{overflow:hidden}
       <a href="#available">Available</a>
       <a href="#about">About</a>
       <a href="#raised">How they're raised</a>
+      <!-- A PAGE, not a section, in a row of sections -- deliberate. The litter
+           archive is the proof-of-work surface: dated day-one photos, every rabbit
+           kept after it sells. Two studies say showing placed work sells the
+           remaining work (Tian/Chen/Xu 2022: sold-out options raise purchases of
+           what's left through quality inference, up to a point; Barton et al.
+           2022 meta-analysis, 131 studies: scarcity raises intent, supply-based
+           strongest for high-involvement purchases like a pet). It had exactly two
+           doorways, one in the footer. The MOBILE pill row is left alone: pills
+           are a scroll position indicator for THIS page, and a pill that navigates
+           away would break what the row means. -->
+      <a href="litters.html">Litters</a>
       <a href="#boarding">Boarding</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -1558,7 +1597,8 @@ body.locked{overflow:hidden}
              of its own, which is a layout rather than a fragment. -->
         <p class="avail-stamp">Availability
           <time id="availStamp" datetime="2026-08-26">current as of August 26, 2026</time>
-          <a href="updates.html">rabbitry news</a></p>
+          <a href="updates.html">rabbitry news</a> &middot;
+          <a href="litters.html">every litter</a></p>
       </div>
       <!-- Counts the real cards below. No invented numbers.
            THE WORDS TYPED HERE ARE THE ONES A CRAWLER READS. The count is
@@ -1831,7 +1871,8 @@ body.locked{overflow:hidden}
         <div class="callout">
           <b>My own rabbits only</b>
           <p>There is a rabbit virus going round Arizona's wild rabbits again this year, called
-          RHDV2, and it is usually fatal. Keeping the property closed to outside rabbits is how
+          <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
+             target="_blank" rel="noopener">RHDV2</a>, and it is usually fatal. Keeping the property closed to outside rabbits is how
           I keep everyone here safe, yours included.</p>
         </div>
         <a href="#contact" class="btn btn-primary">Ask about dates</a>
@@ -1933,12 +1974,14 @@ body.locked{overflow:hidden}
           <p>Every rabbit's price is listed on its own photo above, and that number is what you
           pay. No appointment fee, no no-show fee, nothing added at pickup. Second rabbit is
           20% off, and before you take a pair we'll talk through neutering and introductions,
-          because two rabbits are not a bonded pair on their own.</p>
+          because two rabbits are <a class="cite"
+          href="https://rabbit.org/behavior/bonding-rabbits-faq/"
+          target="_blank" rel="noopener">not a bonded pair on their own</a>.</p>
           <p>What the price covers is eight weeks of daily handling before the rabbit is
           old enough to leave, a health check you watch me do, two weeks of the food they're
           already eating, a written care sheet, and my phone number for as long as you have
-          them. Prices differ between rabbits because colour and temperament differ, and the rarer
-          a colour is, the higher it sits. Right now the two fawn does are the $375 ones and the
+          them. Prices differ between rabbits because colour and temperament differ, and rarer
+          colours cost more. Right now the two fawn does are the $375 ones and the
           two sable point bucks are $350.</p>
           <p>You can find a cheaper rabbit. You'll find plenty on classifieds for under a
           hundred. What you're paying the difference for is a rabbit that's already comfortable
@@ -1952,7 +1995,7 @@ body.locked{overflow:hidden}
           that rabbit off the list so nobody else can claim it, and it's yours until pickup.</p>
           <p><b>Rabbits open for reservation at four weeks old.</b> Before that I won't take your
           money. At two weeks I can't tell you for certain what sex a kit is and the coat is still
-          settling, so anything I said would be a guess dressed up as a fact. Four weeks is the
+          settling, so anything I told you would be a guess. Four weeks is the
           point where I can describe a rabbit to you honestly.</p>
           <p>The deposit is non-refundable if you change your mind partway through, and I'll be straight about why: holding a rabbit means
           turning other people away, so if someone changes their mind late I've lost weeks of
@@ -1980,8 +2023,8 @@ body.locked{overflow:hidden}
             pass the health check we do together at pickup, you get your money back.</li>
           </ul>
           <p>One honest note on that last one, because four weeks is early. Colour and markings can
-          still develop between reservation and pickup, and a five week old rabbit is not finished
-          becoming itself. When you reserve I'll tell you plainly what's already certain and what
+          still develop between reservation and pickup, and a five-week-old rabbit is still
+          changing. When you reserve I'll tell you plainly what's already certain and what
           could still change, and you'll get photos the whole way through so nothing at pickup is a
           surprise. Normal growing up isn't grounds for a refund. Being wrong about something I
           stated as fact is. Those three all happen before a rabbit leaves here.</p>
@@ -2036,14 +2079,15 @@ body.locked{overflow:hidden}
                he already knows, and that conversation was never going to happen on
                this page. Do not put a "no exceptions" back in. -->
           <p>Eight weeks is when they're actually finished. The last stretch is when they come
-          off milk and onto solid food for good, and their gut is still learning the job. A new
+          off milk and onto solid food for good, and <a class="cite"
+          href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
+          target="_blank" rel="noopener">their gut is still learning the job</a>. A new
           house, new water and a new bag of food all landing at once is a lot to ask on top of
           that, so I'd rather they do the settling here, where nothing else is changing.</p>
           <p>That's the whole reason for the date. I'll send photos and video the whole way
           through so the wait is easier, and they go home eating exactly what they've been
           eating, so nothing changes on day one.</p>
-          <p>I'll send photos and video the whole way through so the wait is easier. But the date
-          doesn't move.</p>
+          <p>But the date doesn't move.</p>
         </div>
       </details>
       <details>
@@ -2051,7 +2095,9 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p>No. First-timers are often who I enjoy working with most, because they actually read
           the care sheet. I'll say plainly that rabbits aren't low-maintenance starter pets. They
-          need space, daily attention, and a vet who treats exotics. If that works for you, they're
+          need space, daily attention, and <a class="cite"
+          href="https://rabbit.org/care/rabbit-vets-near-me/"
+          target="_blank" rel="noopener">a vet who treats exotics</a>. If that works for you, they're
           one of the best animals you can live with.</p>
         </div>
       </details>
@@ -2060,14 +2106,18 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p>Not much. Holland Lops are short-coated, so a brush once a week is plenty most of the
           year, a little more often when they moult. Nails every few weeks. They keep themselves
-          clean, so no bathing, which is stressful for a rabbit and genuinely dangerous.</p>
+          clean, so no bathing, which is stressful for a rabbit and <a class="cite"
+          href="https://rabbitwelfare.co.uk/welfare-need/bathing-rabbits/"
+          target="_blank" rel="noopener">genuinely dangerous</a>.</p>
         </div>
       </details>
       <details>
         <summary>Indoors or outdoors?</summary>
         <div class="faq-body">
-          <p>Indoors, particularly here. Rabbits handle cold far better than heat, and sustained
-          temperatures above the mid-80s are dangerous. A Tucson summer isn't survivable in a
+          <p>Indoors, particularly here. Rabbits handle cold far better than heat, and <a class="cite"
+          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
+          target="_blank" rel="noopener">sustained
+          temperatures above the mid-80s are dangerous</a>. A Tucson summer isn't survivable in a
           hutch. An indoor pen with daily supervised run-around time is what I recommend.</p>
         </div>
       </details>
@@ -2080,8 +2130,12 @@ body.locked{overflow:hidden}
           while you're gone.</p>
           <p>It's priced by the day rather than the week on purpose, so you only pay for the days
           you're actually away and you can extend without renegotiating anything.</p>
-          <p><b>Why only my own rabbits:</b> RHDV2 is circulating in Arizona's wild rabbit
-          population again this year. It survives months in the environment, travels on shoes and
+          <p><b>Why only my own rabbits:</b> <a class="cite"
+          href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
+          target="_blank" rel="noopener">RHDV2</a> is circulating in Arizona's wild rabbit
+          population again this year. It <a class="cite"
+          href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
+          target="_blank" rel="noopener">survives months in the environment</a>, travels on shoes and
           clothing, and it's frequently fatal. Taking in outside rabbits would put every rabbit
           here at risk, including the babies waiting to go to their homes. A closed property is
           the same reason I can tell you with confidence that your rabbit was healthy the day you
@@ -2115,19 +2169,25 @@ body.locked{overflow:hidden}
           <p><b>If your rabbit stops eating, stops leaving droppings, sits hunched and quiet,
           breathes with effort, or has loose watery droppings, treat it as a same-day
           emergency and get to a rabbit-savvy vet.</b> A rabbit that isn't eating can go from
-          off-colour to critical in hours. Don't wait to reach me first. Call or text me on
+          <a class="cite" href="https://rabbit.org/care/gi-stasis/"
+             target="_blank" rel="noopener">off-colour to critical in hours</a>. Don't wait to reach me first. Call or text me on
           the way, or afterwards, and I'll help with whatever I can.</p>
-          <p>For anything that isn't urgent, call me. Day three or year three, I'd rather
-          hear early than after it's serious.</p>
-          <p>Here's what you're standing on. Before any rabbit leaves, we do the health check
+          <p>For anything that isn't urgent, call me. Whether you've had the rabbit three days
+          or three years, I'd rather hear early than after it's serious.</p>
+          <!-- VOICE: the plain register rule, learned the hard way. "My number doesn't
+               expire", "a Tuesday thing or a vet-today thing", "Day three or year three",
+               "here's what you're standing on" -- William called this register cringe and
+               he is right: each one is a small performance where a plain sentence would
+               carry more weight. Facts stated plainly ARE the voice of this site. Vivid is
+               fine ("A Tucson summer isn't survivable in a hutch"); clever is not. -->
+          <p>Before any rabbit leaves, we do the health check
           together at pickup: ears, teeth, eyes, weight and coat, in your hands, not mine. If
-          it doesn't pass, it doesn't go home and you get your deposit back in full. And once
-          they're home, my number doesn't expire. For the ordinary questions, the ones that aren't
-          on the list above, we work out together whether it's a Tuesday thing or a vet-today
-          thing.</p>
+          it doesn't pass, it doesn't go home and you get your deposit back in full. And that
+          doesn't end once they're home. For ordinary questions, the ones that aren't on the
+          list above, we'll work out together whether it needs a vet today or can wait.</p>
           <p>I'd rather promise what I can actually deliver than print a guarantee with fine
-          print. What I can deliver is a rabbit that was healthy when you took it, and me,
-          reachable, for the whole of its life.</p>
+          print. What I can deliver is a rabbit that was healthy when you took it, and me staying
+          reachable for the whole of its life.</p>
           <!-- AFTER PICKUP: ALL SALES FINAL. William's decision, and the reasoning he gave
                is real: the health check is done together at pickup with the rabbit in the
                buyer's hands, and nobody leaves without the food the rabbit is already on, a
@@ -2151,8 +2211,7 @@ body.locked{overflow:hidden}
           <p><b>Once a rabbit goes home with you, the sale is final.</b> I don't take one back
           for a refund after that, and I'd rather you read it here than find it out later.</p>
           <p>The check above is why. Nothing about the rabbit is hidden from you on the day, you
-          leave with the food they're already on and a written care sheet, and my number doesn't
-          expire.</p>
+          leave with the food they're already on, a written care sheet, and my direct number.</p>
           <p>If it simply isn't working out, that isn't a refund, but it isn't the end of it
           either. Call me. I'd rather help you find it the right home than have it stay somewhere
           it isn't wanted.</p>
