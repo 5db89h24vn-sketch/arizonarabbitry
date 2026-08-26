@@ -677,10 +677,53 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .grow-bar i.on{background:var(--brick)}
 .grow-bar i.now{background:var(--brick-dk)}
 @media(prefers-reduced-motion:no-preference){
-  /* the only moving thing on the page, and it moves slowly: this is a liveness
-     signal, not an animation */
+  /* the only ambient movement on the page, and it moves slowly: this is a
+     liveness signal, not an animation */
   .grow-bar i.now{animation:growPulse 2.6s ease-in-out infinite}
   @keyframes growPulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+  /* ── THE BAR COUNTS ITSELF UP WHEN A LISTING OPENS ──────────────────────
+     THE PROBLEM: the row sits under a photograph carrying its own age, frozen
+     on the day it was taken, so the week count gets read as belonging to the
+     picture. The word "Now" did not settle it on its own.
+
+     WHY NOT A PULSING "LIVE" BADGE, which is the obvious answer. Two reasons,
+     and the first is measured rather than argued: a slow pulse on the current
+     pip ALREADY EXISTS, directly above this rule, and it did not communicate
+     anything -- the row still read as the photo's. More of a signal that has
+     already failed is not a fix. The second is that it would not be true. This
+     number changes once every seven days. "Live" is what you put on a thing
+     that updates while you watch, and this project has spent a lot of effort
+     taking claims down to what it can actually stand behind.
+
+     WHAT THIS DOES INSTEAD: it shows the derivation rather than asserting it.
+     The pips draw in from the left, week one first, arriving at the week the
+     rabbit is in today. You watch the count start at birth and travel to now,
+     which is the exact fact that was ambiguous. It is a gesture, not a badge,
+     and it costs no words and no space.
+
+     Finite on purpose. It runs once when the listing opens and stops. Permanent
+     motion beside a $375 decision competes with the button underneath it.
+
+     LAYOUT-SAFE: only opacity and transform are animated. Neither affects
+     layout, so the reserved heights the whole box depends on cannot move.
+     Colour is left entirely to the classes, so the current pip keeps its darker
+     shade instead of being overwritten by a keyframe. */
+  .viewer-grow .grow-bar i.on{animation:growCount .3s ease-out both}
+  .viewer-grow .grow-bar i.on:nth-child(1){animation-delay:.02s}
+  .viewer-grow .grow-bar i.on:nth-child(2){animation-delay:.07s}
+  .viewer-grow .grow-bar i.on:nth-child(3){animation-delay:.12s}
+  .viewer-grow .grow-bar i.on:nth-child(4){animation-delay:.17s}
+  .viewer-grow .grow-bar i.on:nth-child(5){animation-delay:.22s}
+  .viewer-grow .grow-bar i.on:nth-child(6){animation-delay:.27s}
+  .viewer-grow .grow-bar i.on:nth-child(7){animation-delay:.32s}
+  .viewer-grow .grow-bar i.on:nth-child(8){animation-delay:.37s}
+  @keyframes growCount{from{opacity:0;transform:scaleY(.35)}
+                        to{opacity:1;transform:scaleY(1)}}
+  /* the current pip does both: it draws in with the rest, then takes up the
+     slow pulse once the count has arrived */
+  .viewer-grow .grow-bar i.now{
+    animation:growCount .3s ease-out both, growPulse 2.6s ease-in-out .75s infinite}
 }
 .grow-txt{font-size:12.5px;color:var(--ink-faint);line-height:1.3;
   font-variant-numeric:tabular-nums;
