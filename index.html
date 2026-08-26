@@ -1004,6 +1004,10 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    the frame really is a dated photograph. On a Coming soon frame the stamp
    falls back to the birth date, and a camera beside that would be a small lie.
    Drawn to match the site's other icons: 24 viewBox, stroked, nothing filled. */
+/* top-left of the enlarged photo, mirroring the card exactly so the two read
+   as the same badge rather than two different ideas */
+.vstatus{top:12px;left:12px}
+.vstatus[hidden]{display:none}
 .vborn{position:absolute;left:12px;bottom:12px;z-index:2;
   display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);
   padding:6px 12px;border-radius:100px;
@@ -1747,6 +1751,18 @@ body.locked{overflow:hidden}
           interest on that animal. But <b>it isn't lost money. It's transferable.</b> If your
           circumstances change, or you meet them and click with a different one, I'll move your
           $100 to another rabbit or a future litter.</p>
+          <!-- THE SWITCH RULE. Stated with the arithmetic done, because a policy
+               written as a percentage is one the reader has to work out and one
+               that can be argued about later. "Half the deposit" and "$50" both
+               appear so there is nothing to interpret.
+               The reason is given before the number. A fee with no reason reads
+               as a penalty for changing your mind, which is the opposite of the
+               transferable deposit sitting directly above it. -->
+          <p><b>The first switch is free. After that each one is $50.</b> That's half the deposit,
+          paid when you switch. Changing your mind once is normal and I'd rather you ended up with
+          the right rabbit than the one you picked first. But every switch puts a rabbit back on the
+          list weeks after everyone interested has moved on, and by then I'm starting over on that
+          animal. The fee is what that costs me, not a punishment.</p>
           <p>Three things get you a full refund instead, no argument:</p>
           <ul>
             <li>The rabbit becomes ill or doesn't make it while still in my care.</li>
@@ -2076,6 +2092,12 @@ body.locked{overflow:hidden}
       <button class="viewer-nav next" type="button" id="viewerNext" aria-label="Next photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
+      <!-- THE SAME PILL THE CARD CARRIES. Without it the enlarged listing was the
+           one place on the site that did not say a rabbit was spoken for: the card
+           behind it read Reserved, you tapped the photo, and the big view showed a
+           price and an Ask button as though nothing had happened. That is the
+           loophole, and it points straight at the inbox. -->
+      <span class="status vstatus" id="viewerStatus" hidden></span>
       <span class="vborn" id="viewerBorn">
         <svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="7" width="18" height="13" rx="2.6"/>
@@ -2897,6 +2919,7 @@ body.locked{overflow:hidden}
         vStrip=document.getElementById('viewerStrip'),
         vNote=document.getElementById('viewerNote'),
         vCta=document.getElementById('viewerCta'),
+        vStatus=document.getElementById('viewerStatus'),
         vBorn=document.getElementById('viewerBorn'),
         vGrow=document.getElementById('viewerGrow'),
         vBornText=document.getElementById('viewerBornText'),
@@ -2976,6 +2999,9 @@ body.locked{overflow:hidden}
          three days, but its link from the litter page has to keep working
          forever, and what a reader wants from it then is not a price, it is
          "what happened to this one". So an adopted rabbit says when it left. */
+      if(r.status==='reserved'){
+        vMeta.appendChild(document.createTextNode(' · Reserved'));
+      }
       if(r.status==='adopted'&&r.soldOn){
         vMeta.appendChild(document.createTextNode(' · Found a home '+niceDate(r.soldOn)));
       }
@@ -2984,6 +3010,7 @@ body.locked{overflow:hidden}
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
         (r.dob?(' · Born '+niceDate(r.dob)):'')+
         (r.ready&&r.status==='available'?(' · Ready '+r.ready):'')+
+        (r.status==='reserved'?' · Reserved':'')+
         (r.status==='adopted'&&r.soldOn?(' · Found a home '+niceDate(r.soldOn)):'');
     }
     /* How old, in the unit a person would actually use. Days for the first
@@ -3080,12 +3107,29 @@ body.locked{overflow:hidden}
          shutter went. The birth date itself moves to the line under the name,
          where it is on screen no matter which frame you are looking at, so the
          two can be read against each other without flicking back. */
-      var goneNow=(r.status==='adopted');
-      vCta.textContent=goneNow?'See the next litter first':('Ask about '+r.name);
-      vCta.setAttribute('href',goneNow?'#waitlist':'#contact');
-      /* an adopted rabbit is not askable, so the waitlist link stays a plain link */
-      if(goneNow) vCta.removeAttribute('data-ask');
-      else vCta.setAttribute('data-ask',r.name);
+      /* THE BADGE, AND WHAT THE BUTTON IS ALLOWED TO OFFER.
+         Reserved used to be shown on the card and then quietly dropped here, so
+         the enlarged listing still said "Ask about Sundae" for a rabbit that was
+         already spoken for. Every one of those taps is an email about something
+         that cannot be sold.
+
+         Reserved and adopted are different facts but the same offer: this one
+         is not yours to have, and the honest next thing is the next litter. So
+         both send to the waitlist, which captures the interest without costing
+         an inbox message, and the badge says which of the two it is. */
+      var st=LABEL[r.status]||LABEL.available;
+      if(vStatus){
+        vStatus.textContent=st[1];
+        vStatus.className='status vstatus '+st[0];
+        vStatus.hidden=false;
+      }
+      var openNow=(r.status==='available');
+      vCta.textContent=openNow?('Ask about '+r.name):'See the next litter first';
+      vCta.setAttribute('href',openNow?'#contact':'#waitlist');
+      /* a rabbit that is not available is not askable, so the waitlist link
+         stays a plain link and never carries a name into the form */
+      if(openNow) vCta.setAttribute('data-ask',r.name);
+      else vCta.removeAttribute('data-ask');
       /* thumbnails built here, so their images are requested on open too */
       vStrip.innerHTML=shots.map(function(s,n){
         return '<button type="button" aria-label="Photo '+(n+1)+
