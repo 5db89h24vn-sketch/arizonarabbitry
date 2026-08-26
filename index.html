@@ -3,19 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbitry</title>
+<title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbits</title>
 <meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, eight-week minimum, and lifetime support for every owner.">
 <meta name="theme-color" content="#241F1D">
 
 <!-- ═══════════════════════════════════════════════════════════════
-     ARIZONA RABBITRY — arizonarabbitry.com
+     ARIZONA RABBITS — arizonarabbits.com
 
      ─── STATUS ───
-     Name, phone, email, domain, socials AND the form endpoint are all
-     filled in. Both forms deliver to Formspree (account under
-     william.pomeroy@, submissions arrive by email). No launch blockers
-     left in this file: what remains is content — real photos, real
-     rabbits in rabbits.js — and deploying. See DEPLOY-GUIDE.md.
+     LIVE. Deployed via GitHub repo "arizonarabbitry" + Cloudflare Pages
+     at arizonarabbits.com (also arizonarabbitry.pages.dev). Both forms
+     deliver through Formspree to william.pomeroy@ (form tested end to
+     end on the live site). Publishing an update = drag the changed
+     file(s) to the GitHub repo; Cloudflare redeploys automatically.
+     Remaining content work: real rabbits in rabbits.js.
+
+     ─── THE NAME ───
+     Renamed from "Arizona Rabbitry" in Aug 2026. In person nobody could
+     spell it, and most heard "rabbit tree" — a real phrase, so they never
+     asked him to repeat it, and every search after a conversation found
+     nothing. The old domain is NOT retired: arizonarabbitry.com is held
+     on auto-renew forever and 301-redirects here, so everyone handed the
+     old address still arrives and the search history carries over.
+     Old mail aliases (hello@ and william.pomeroy@ at the old domain) stay
+     live on the same mailbox permanently for the same reason.
+     The GitHub repo and the *.pages.dev subdomain deliberately keep their
+     old names — renaming the repo would break the Cloudflare deploy hook,
+     and neither is public-facing.
 
      ─── DAY TO DAY ───
      You edit rabbits.js, never this file. See MOBILE-WORKFLOW.md.
@@ -29,10 +43,9 @@
      and never shown on the page; set it to what you actually charge.
 
      ─── PHOTOS ───
-     The hero, about and included images are TEMPORARY STOCK, marked
-     STOCK-SWAP in a comment. Replace them with your own before launch;
-     stock photos of other people's rabbits hurt you here because
-     buyers reverse-image-search.
+     Hero, about, included and the og: share image are William's REAL
+     photos (img/ folder). One upgrade still open: a photo of William
+     himself for the About section — see the UPGRADE PATH comment there.
      Rabbit cards need no stock at all: leave photo: "" in rabbits.js
      and the site draws its own rabbit illustration.
 
@@ -43,24 +56,37 @@
      reviews rule — see PROJECT-CONTEXT.md.
      ═══════════════════════════════════════════════════════════════ -->
 
-<link rel="canonical" href="https://arizonarabbitry.com/">
+<link rel="canonical" href="https://arizonarabbits.com/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://arizonarabbitry.com/">
-<meta property="og:site_name" content="Arizona Rabbitry">
-<meta property="og:title" content="Arizona Rabbitry — Holland Lop Rabbits for Sale in Tucson">
-<meta property="og:description" content="Hand-raised, handled daily from birth. Eight-week minimum. Lifetime support.">
+<meta property="og:url" content="https://arizonarabbits.com/">
+<meta property="og:site_name" content="Arizona Rabbits">
+<meta property="og:title" content="Arizona Rabbits — Holland Lop Rabbits for Sale in Tucson">
+<meta property="og:description" content="Hand-raised, handled daily from birth. Home at eight weeks, and you keep my number.">
 <!-- STOCK-SWAP: share preview image. When a buyer texts this link to a spouse or
      posts it in a group chat, this is the picture that renders with it; links
      with an image preview get read, links without one get skipped. Replace with
      your own best photo at the same time as the hero. -->
 <!-- Absolute URL by design: share crawlers can't resolve relative paths.
-     Goes live the moment the site is deployed at arizonarabbitry.com. -->
-<meta property="og:image" content="https://arizonarabbitry.com/img/og.jpg">
+     Goes live the moment the site is deployed at arizonarabbits.com. -->
+<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- THE FONT SHEET NO LONGER HOLDS UP THE FIRST PAINT.
+     Measured, not assumed: with this stylesheet render-blocking, nothing at all
+     appeared until the request to Google came back. Blocked outright, the page
+     was on screen in 95ms. Everything in between was a visitor looking at
+     white while another company's server was asked for a font.
+     media="print" makes the browser fetch it at low priority without waiting
+     for it, and the onload flips it to apply the moment it lands. The URL
+     already carries display=swap, so text draws immediately in the fallback
+     stack and swaps when Fraunces and Inter arrive. The <noscript> copy keeps
+     the fonts for anyone without scripts, where the old blocking behaviour is
+     the only option available and is fine.
+     Do not "tidy" the media="print" away. It is the whole mechanism. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 
 <style>
 :root{
@@ -121,13 +147,25 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:78p
 @media(max-width:980px){html{scroll-padding-top:100px}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;display:block}
+/* height:auto IS LOAD-BEARING. A width/height pair on an <img> tag maps
+   straight onto the CSS height property, and CSS height beats aspect-ratio.
+   So <img width="1400" height="1050"> with width:100% rendered 1050px tall
+   whatever the stylesheet asked for, which is why one litter photo filled a
+   whole phone screen. The attributes stay, because they are what reserves the
+   right space while the picture loads; this is what stops them dictating the
+   size afterwards. */
+img{max-width:100%;display:block;height:auto}
 button{font:inherit;color:inherit}
 a{color:inherit}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.015em;margin:0;
   text-wrap:balance}
-/* stops a single short word dropping alone onto the last line */
-p,li,small,.lede,.svc-lede,figcaption{text-wrap:pretty}
+/* Asks the browser not to drop a single short word onto the last line.
+   ASKS. text-wrap:pretty is a request, engines honour it differently, and the
+   measured sweep found stranded words surviving it in both. It stays because
+   it costs nothing and improves the lines it does reach, but the actual
+   guarantee is the non-breaking space tied by NO ORPHANS at the foot of this
+   file, which no engine can decline. */
+p,li,small,summary,.lede,.svc-lede,figcaption{text-wrap:pretty}
 p{margin:0}
 :focus-visible{outline:2px solid var(--brick);outline-offset:3px}
 
@@ -225,8 +263,23 @@ header.nav.stuck{border-bottom-color:var(--line)}
 }
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:66px}
 .brand{text-decoration:none;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.1}
-.brand small{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
+.brand small,.brandsub{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+.brandbox{display:flex;flex-direction:column;justify-content:center}
+/* The number rides the header's second line on phones. Desktop already carries it
+   on the right, so this one stays hidden there and nothing about that layout moves.
+   It goes UNDER the brand rather than beside it because beside it was tried and
+   abandoned: at phone widths the brand and the button both wrapped to two lines.
+   A second line inside a block that already has one costs no height at all. */
+.brandtel{display:none}
+@media(max-width:600px){
+  .brandsub{font-size:10.5px;white-space:nowrap}
+  .brandtel{display:inline;color:var(--brick-dk);font-weight:700;font-size:12px;
+    letter-spacing:.02em;text-decoration:none;
+    /* a bigger target than the type, without adding a pixel to the row */
+    padding:7px 2px;margin:-7px 0}
+  .brandtel::before{content:'·';margin:0 6px;color:var(--ink-faint);font-weight:500}
+}
 .nav-links{display:flex;gap:24px;align-items:center}
 .nav-links a{text-decoration:none;font-size:14.5px;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--ink)}
@@ -247,6 +300,24 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .mnav-track{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
     -webkit-overflow-scrolling:touch}
   .mnav-track::-webkit-scrollbar{display:none}
+  /* Both ends of the rail dissolve instead of being sliced. The hard clip was
+     doing a real job — a pill cut mid-word is the clearest possible signal that
+     the row continues past the edge, and NN/g's illusion-of-completeness work
+     (6 of 8 users missing content that looked finished) is about exactly that
+     cue. So this cannot simply soften the edge away: kill the partial pill and
+     the rail starts reading as if it ends at Contact.
+     The fade is therefore deliberately SHORT. 22px is enough to stop the edge
+     looking like a rendering fault and not enough to hide that a pill is only
+     half there, so the Gestalt continuation cue survives intact and only the
+     mechanical-looking cut goes. The mask sits on the track, which is the fixed
+     window, so the fade stays welded to the screen edges while the pills and
+     the bar travel underneath it. Paint only, no layout effect, so the baked
+     scrubber geometry is untouched. */
+  .mnav-track{
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,
+      #000 calc(100% - 22px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,
+      #000 calc(100% - 22px),transparent 100%)}
   /* position:relative so pill offsetLefts and the bar share one origin, which
      is what the grip math reads.
      padding-bottom is load-bearing: a horizontally scrolling container clips
@@ -260,7 +331,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .mnav-inner{position:relative;width:max-content;min-width:100%;padding:5px 0 10px}
   .mnav-row{display:flex;gap:6px;min-width:max-content}
   .nav-in{height:56px}
-  .brand{display:flex;flex-direction:column;justify-content:center;min-height:44px}
+  .brandbox{min-height:44px}
   /* pills are 44px tall, so 22px round; the island pads them by 7px and lands
      on 29px, which is why the two curves belong to each other */
   /* The pills carry the labels' legibility now that the island beneath them is
@@ -354,6 +425,28 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .sprog.drag .sprog-tag{opacity:1}
 }
 @media(prefers-reduced-motion:reduce){.sprog.drag .sprog-grip{transform:none}}
+/* ── SCRIPTLESS FALLBACK ──
+   Where scripts don't run (file previews, reader modes, script-blocking
+   browsers) the bar tracks total page scroll, driven by the rendering engine
+   itself. This is deliberately the SIMPLE form of scroll-driven CSS and
+   nothing fancier: scroll(root) behaves identically in Chromium and WebKit,
+   which was proven on a real device. A cleverer version that also lit the
+   current section's pill used view timelines, which WebKit accepts
+   syntactically but runs differently than Chromium — it shipped green on a
+   Chromium test bench and arrived broken on an iPhone. Lesson recorded:
+   fallbacks here use only engine-agreed features, and pill highlighting is
+   a scripts-only nicety. html.js (stamped by the first line of script)
+   switches this off so the real scrubber owns the bar wherever scripts run. */
+@supports (animation-timeline: scroll()){
+  html:not(.js) .sprog-fill{width:0;
+    animation-name:csFill;animation-duration:auto;animation-timing-function:linear;
+    animation-fill-mode:both;animation-timeline:scroll(root)}
+  html:not(.js) .sprog-grip{
+    animation-name:csGrip;animation-duration:auto;animation-timing-function:linear;
+    animation-fill-mode:both;animation-timeline:scroll(root)}
+  @keyframes csFill{from{width:0}to{width:100%}}
+  @keyframes csGrip{from{left:0}to{left:calc(100% - 15px)}}
+}
 
 /* HERO */
 .hero{padding:40px 0 44px}
@@ -386,6 +479,28 @@ header.nav.stuck{border-bottom-color:var(--line)}
 /* AVAILABLE */
 .avail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
   flex-wrap:wrap;margin-bottom:26px}
+/* quiet by design: a freshness note, not a headline. The link is the doorway
+   to Site news for exactly the reader doubting the claim beside it — Stanford
+   credibility guideline: make a claim verifiable where it is made. */
+.avail-stamp{font-size:13.5px;color:var(--ink-faint);margin-top:8px}
+/* The stamp and its link are two statements, not one sentence with a divider.
+   Held together by a middot they broke mid-phrase on a narrow screen. Held
+   apart, the link either fits on the line or takes a line of its own, and
+   either way it reads as deliberate. The date never splits from its label. */
+.avail-stamp time{white-space:nowrap}
+.avail-stamp a{white-space:nowrap}
+/* width:max-content keeps the underline under the words rather than stretching
+   across the column, and the top margin stays negative so the 44px tap target
+   is preserved exactly as it is on wider screens. */
+@media(max-width:430px){
+  .avail-stamp a{display:block;width:max-content;margin:-13px -4px -15px}
+}
+/* invisible padding pulls the tap target up to the 44px minimum without
+   moving a pixel visually — same trick as the footer links */
+.avail-stamp a{color:var(--ink-soft);text-decoration:underline;
+  text-underline-offset:2px;text-decoration-color:var(--line);
+  display:inline-block;padding:15px 4px;margin:-15px -4px}
+.avail-stamp a:hover{color:var(--brick-dk);text-decoration-color:var(--brick-dk)}
 .count{display:inline-flex;align-items:center;gap:9px;background:var(--brick-tint);
   border:1px solid #E8D5C6;border-radius:100px;padding:7px 15px;font-size:14px;
   font-weight:600;color:var(--brick-dk);white-space:nowrap}
@@ -435,7 +550,16 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .bunny-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .bunny-top h3{font-size:20px}
 .price{font-family:var(--serif);font-size:18px;color:var(--ink-soft);white-space:nowrap}
-.meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
+/* ONE LINE, ALWAYS, WHATEVER IS TYPED IN rabbits.js.
+   This wrapped and the grid went ragged: "Doe · Fawn" fits, "Buck · Sable point"
+   plus a date does not, so two cards were a line taller than the other two.
+   Shortening the text fixes today's four rabbits and nothing else — the next
+   colour name long enough to wrap brings the same bug straight back. So the
+   rule is structural: the line cannot wrap, at any width, for any content.
+   Anything genuinely too long is cut with an ellipsis rather than allowed to
+   push the card taller, and the full detail is in the photo view. */
+.meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* clamped to 2 lines so every card is the same height no matter how much
    you write. Uneven card heights are the main thing that makes a grid look untidy. */
 .bunny p.desc{font-size:15px;color:var(--ink-soft);line-height:1.55;flex:1;
@@ -509,6 +633,49 @@ header.nav.stuck{border-bottom-color:var(--line)}
   color:var(--brick);display:block;margin-bottom:7px;padding-top:12px;border-top:2px solid var(--brick)}
 .stage h3{font-size:17px;margin-bottom:5px}
 .stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+/* ── WHERE THIS RABBIT IS TODAY ──
+   Eight segments, one per week, filled to the week the rabbit is actually in.
+   It is driven by the birth date and recomputed on every page load, so it moves
+   on its own whether or not a photograph is ever replaced. That is the point:
+   the photo is a moment, this is now.
+   The labels are read out of the "How they're raised" section at runtime rather
+   than copied here, so the card can never describe a stage differently from the
+   section explaining it. Edit the section and these follow. */
+/* On a card the bar sits above its label: side by side, the label wrapped to
+   three lines against a bar four pixels tall and the two stopped looking
+   related. In the photo view there is room for one line. */
+.grow{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:10px}
+/* top aligned, not centred: when the line wraps to two, a centred bar floats in
+   the middle of the block and stops looking attached to anything */
+.viewer-grow{flex-direction:row;align-items:flex-start;gap:10px}
+.viewer-grow .grow-bar{margin-top:7px}
+.grow-bar{display:flex;gap:2px;flex:none}
+.grow-bar i{width:7px;height:4px;border-radius:1px;background:var(--line);
+  transition:background .2s}
+.grow-bar i.on{background:var(--brick)}
+.grow-bar i.now{background:var(--brick-dk)}
+@media(prefers-reduced-motion:no-preference){
+  /* the only moving thing on the page, and it moves slowly: this is a liveness
+     signal, not an animation */
+  .grow-bar i.now{animation:growPulse 2.6s ease-in-out infinite}
+  @keyframes growPulse{0%,100%{opacity:1}50%{opacity:.45}}
+}
+.grow-txt{font-size:12.5px;color:var(--ink-faint);line-height:1.3;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+/* the viewer has room to breathe and its own longer wording, so it wraps */
+.viewer-grow .grow-txt{white-space:normal;overflow:visible}
+.grow-txt b{color:var(--ink-soft);font-weight:600}
+.viewer-grow{margin:0 0 2px}
+/* At 360px the bar and the text share a row and the text loses, wrapping and
+   stranding the last word. Stacking below 400px gives the sentence the whole
+   column instead of shortening it, so nothing is dropped to make it fit. */
+@media(max-width:400px){
+  .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
+  .viewer-grow .grow-bar{margin-top:0}
+}
+.viewer-grow .grow-txt{font-size:13px}
 
 /* SOCIAL */
 .social-head{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
@@ -588,6 +755,35 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .reach small{color:rgba(239,232,222,.55);font-size:13px}
 .formcard{background:var(--paper);border-radius:var(--r);padding:30px;color:var(--ink)}
 @media(max-width:560px){.formcard{padding:24px 20px}}
+/* The "asking about Teddy" receipt. Hidden by default and switched on only
+   when a rabbit card sent them here, so anyone who reaches the form the normal
+   way never sees it. */
+.askabout{display:none;margin:0 0 20px;padding:14px 15px 13px;
+  background:var(--brick-tint);border:1px solid #E8D5C6;border-radius:12px}
+.askabout.on{display:block}
+.askabout:focus{outline:none}
+.askabout .ask-lead{font-size:15.5px;color:var(--ink-soft);margin:0 0 11px}
+.askabout .ask-lead b{color:var(--brick-dk);font-weight:600}
+/* One chip per rabbit that's actually for sale, so wanting two is two taps
+   rather than a sentence typed into a box. Built from the rendered cards, so
+   it can never list a rabbit the page isn't showing. */
+.rpick{display:flex;flex-wrap:wrap;gap:8px}
+.rpick button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:15px;
+  padding:9px 14px;min-height:44px;border-radius:100px;cursor:pointer;color:var(--ink);
+  border:1.5px solid #E0D3C2;background:#fff;transition:background .15s,border-color .15s}
+.rpick button:hover{border-color:#C9BAA6}
+.rpick button .tick{width:15px;height:15px;flex:0 0 auto;border-radius:50%;
+  border:1.5px solid #D6C7B4;background:#fff;position:relative}
+.rpick button.on{background:var(--brick);border-color:var(--brick);color:#fff;font-weight:600}
+.rpick button.on .tick{background:#fff;border-color:#fff}
+.rpick button.on .tick::after{content:'';position:absolute;left:4.5px;top:1.5px;
+  width:4px;height:8px;border:solid var(--brick);border-width:0 2px 2px 0;transform:rotate(42deg)}
+.rpick button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+/* Appears only when two or more are picked. The discount is real and already
+   stated elsewhere; saying it at the moment they choose the second rabbit is
+   where it actually changes a decision. */
+.pairnote{display:none;margin:11px 0 0;font-size:14.5px;color:var(--brick-dk)}
+.pairnote.on{display:block}
 .prog{display:flex;gap:6px;margin-bottom:8px}
 .prog i{height:3px;flex:1;border-radius:2px;background:var(--line);transition:background .3s}
 .prog i.on{background:var(--brick)}
@@ -710,8 +906,35 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
    is a duplicate of what's on screen — four buttons, two actions. It stays out of the
    way until the hero pair scrolls off, then takes over. Gated behind a JS-set class so
    that with JS off the bar simply stays visible as before. */
-.js-mbar .mbar{transform:translateY(115%);transition:transform .22s ease}
-.js-mbar .mbar.show{transform:none}
+/* Parked, the bar used to stop just 9px below the screen edge while its own
+   shadow reached 20px back up, so an 11px strip of it was on screen the whole
+   time it was meant to be gone. On iOS that margin disappears completely:
+   Safari collapses its toolbar as you scroll, the safe-area inset changes
+   underneath a fixed element, and the buttons themselves creep into view. Two
+   fixes, because the first alone still depends on geometry holding still. It
+   now travels far enough to take the shadow with it, AND once parked it is not
+   rendered at all, so no viewport shift can bring any part of it back.
+   Visibility flips the instant it is asked to appear and only after the slide
+   has finished on the way out, so the motion itself is unchanged. Not being
+   rendered also means the parked buttons can't be tapped by accident or
+   land as invisible tab stops, both of which they could before.
+
+   The motion itself follows the Material Design entrance/exit spec, which
+   matches NN/g's research on animation duration: entrances get the long
+   decelerating curve — the element arrives at full speed and eases to a
+   stop, so it feels responsive while giving the eye time to land on it —
+   and exits get a short accelerating one, because a leaving element holds
+   no information and shouldn't hold the screen. 400ms in, 200ms out, with
+   a fade riding along so the island materializes instead of shunting.
+   NN/g's ceiling is 500ms ("a real drag" past that); 400ms is their stated
+   allowance for large movements, and a 60px bar crossing the screen edge
+   qualifies. The old .22s symmetric ease read as a mechanical pop. */
+.js-mbar .mbar{transform:translateY(calc(115% + 26px));opacity:0;visibility:hidden;
+  transition:transform .2s cubic-bezier(.3,0,.8,.15),
+             opacity .15s ease,visibility 0s linear .2s}
+.js-mbar .mbar.show{transform:none;opacity:1;visibility:visible;
+  transition:transform .4s cubic-bezier(.05,.7,.1,1),
+             opacity .25s ease-out,visibility 0s}
 
 /* Section reveals were a half-second drift; now a 300ms snap on a sharp
    decelerating curve. Same motion, but it arrives and STOPS, which is where
@@ -743,6 +966,13 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .viewer{position:fixed;inset:0;z-index:120;display:none;background:rgba(24,20,18,.82);
   padding:0;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .viewer.open{display:flex;align-items:center;justify-content:center}
+/* The island is a page-level control and the photo view is a modal over the
+   page. Leaving it lit under the dimmed backdrop offers a way out that is not
+   the way out, and it sits below the overlay so tapping it does nothing. */
+/* .show is set by three classes, so this has to match it or the island simply
+   stays lit -- which is exactly what it did the first time round. */
+body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
+  transition:opacity .18s ease}
 /* the photo view arrives with the same snap as everything else: a fast
    scale-and-rise that settles in a quarter second */
 @keyframes viewerIn{from{opacity:0;transform:scale(.955) translateY(10px)}to{opacity:1;transform:none}}
@@ -756,6 +986,39 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .viewer-close:hover{border-color:var(--brick);color:var(--brick)}
 .viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:4/3;flex:none}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* BORN ON. Bottom left, the same spot on every frame of every rabbit.
+   Position: the caption corner. Top left is the optical entry point and belongs
+   to the subject of the photograph, not to metadata about it; the top right is
+   the close button; the sides are the arrows. Bottom left is where a gallery or
+   a newspaper has always put the line about the picture, so it reads as a label
+   rather than as something covering the rabbit.
+   Colour: white on a dark translucent scrim rather than tinted text. The frames
+   behind it run from a dark brick wall to near-white placeholder card, and only
+   a scrim holds its contrast across both -- WCAG contrast is a property of the
+   pair, and text alone over an unknown photograph has no guaranteed pair. */
+/* A camera, because three dates are on screen at once -- taken, born, ready --
+   and a bare number in the corner of a photograph does not say which one it is.
+   NN/g's icon work is blunt that an icon carrying meaning ALONE gets misread,
+   so this one never does: it sits against the date it describes, and screen
+   readers are handed the words "Photo taken" in its place. It appears only when
+   the frame really is a dated photograph. On a Coming soon frame the stamp
+   falls back to the birth date, and a camera beside that would be a small lie.
+   Drawn to match the site's other icons: 24 viewBox, stroked, nothing filled. */
+.vborn{position:absolute;left:12px;bottom:12px;z-index:2;
+  display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);
+  padding:6px 12px;border-radius:100px;
+  background:rgba(24,20,18,.62);color:#fff;
+  font-size:12.5px;font-weight:600;letter-spacing:.03em;line-height:1.25;
+  -webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
+@media(prefers-reduced-transparency:reduce){
+  .vborn{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.vcam{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.vborn.nocam .vcam{display:none}
+/* said aloud, never seen: the icon is decorative, the meaning is here */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .viewer-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;
   border-radius:50%;border:1px solid var(--line);background:rgba(251,248,243,.94);
   display:grid;place-items:center;cursor:pointer;z-index:2}
@@ -764,11 +1027,36 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .viewer-nav.prev{left:10px}
 .viewer-nav.next{right:10px}
 .viewer-nav[disabled]{opacity:.32;pointer-events:none}
-.viewer-body{padding:15px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
-.viewer-when{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--brick)}
-.viewer-cap{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
-.viewer-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+/* Small gap is the DEFAULT so that things in the same stratum sit together;
+   the three margins below are the only places a new stratum starts. Grouping by
+   proximity costs nothing and does the work that a fourth font size was
+   failing to do. */
+.viewer-body{padding:15px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+.viewer-said{margin-top:13px}
+.viewer-note{margin-top:13px}
+#viewerCta{margin-top:14px}
+/* THE BOX IS ONE SIZE. A dialog that grows and shrinks as you step through the
+   photos makes the whole thing feel unfinished, and it moves the Ask button out
+   from under your thumb between taps. The picture is already fixed by its 4/3
+   stage; what used to breathe was this text, because a frame with no date and
+   no caption collapsed to nothing.
+   Both slots are reserved in script, at the height of the tallest one in the
+   entire rabbit list, measured at the width actually in use -- see fitBlocks.
+   Empty ones hide with visibility, which keeps the space, never with display,
+   which takes it away. The date row is not reserved at all until at least one
+   photo somewhere has a date, so an all-undated set is not carrying a blank
+   line around. */
+.viewer-said{flex:none}
+.viewer-cap.empty{visibility:hidden}
+.viewer-cap{font-size:13px;color:var(--ink-faint);line-height:1.55;overflow:hidden}
+.viewer-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;
+  /* same treatment as the section rail: a thumbnail sliced off flat at the
+     edge reads as a rendering fault, a thumbnail fading out reads as "there
+     is more this way" */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,
+    #000 calc(100% - 14px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 14px,
+    #000 calc(100% - 14px),transparent 100%)}
 .viewer-strip::-webkit-scrollbar{display:none}
 .viewer-strip button{flex:0 0 62px;height:52px;padding:0;border-radius:6px;overflow:hidden;
   border:2px solid transparent;background:var(--paper-2);cursor:pointer;position:relative}
@@ -777,8 +1065,29 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .viewer-head h3{font-size:21px}
 .viewer-head .price{font-size:18px}
-.viewer-meta{font-size:13.5px;color:var(--ink-faint);line-height:1.5}
-.viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6}
+/* THREE SIZES, NOT NINE.
+   Measured, this box had ten pieces of text and NINE different combinations of
+   size, weight and colour: 12.5, 13.5, 14.5, 15, 16, 18, 19 and 21px stacked in
+   700 pixels. Nothing grouped, because nothing shared a treatment, so all of it
+   arrived at once. That is what "a lot of information" was describing: not the
+   57 words in here, which is nothing, but the number of levels they were said
+   in. NN/g's rule is no more than three sizes and at most two elements allowed
+   to be big; the name and the price are the two.
+   Secondary text is now one size and one colour, and the strata are separated
+   by space instead of by size. */
+.viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
+/* The birth date is the way through to the litter this rabbit came from. It opens
+   in a NEW TAB on purpose: closing the photo view to go and read a different page
+   would throw away the place of somebody who is mid-decision, which is the whole
+   objection to putting the link on the photo stamp instead. */
+.litterlink{color:var(--brick-dk);text-decoration:none;
+  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+.litterlink:hover{border-bottom-style:solid}
+/* Height is set in script to the tallest description in the whole list, measured
+   at the width actually in use, so every rabbit's box is the same size as every
+   other rabbit's. Sundae's description runs a line longer than his siblings' and
+   that alone made his card 24px taller than theirs. */
+.viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6;overflow:hidden}
 .viewer-box .btn{width:100%}
 @media(max-width:600px){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
@@ -882,25 +1191,33 @@ body.locked{overflow:hidden}
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23A0522D'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23FBF8F3' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 
-<!-- Local business + FAQ structured data. Fill the [[ ]] values and Google can
-     show your phone, location and FAQs directly in search results. -->
+<!-- WHO I AM. This block never mentions a rabbit: the per-rabbit Product markup
+     is built from rabbits.js at the bottom of the page, so it cannot fall out of
+     step with the prices on the cards. Nothing here needs filling in.
+
+     NO FAQPage MARKUP, DELIBERATELY. An older note here promised FAQ rich
+     results. Google withdrew FAQ rich results for ordinary sites in 2023 and
+     now shows them only for a short list of health and government domains, so
+     the markup would be pure weight for no result. The FAQ answers are still
+     plain indexable text on the page, which is the part that was ever worth
+     anything. -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"LocalBusiness",
-  "name":"Arizona Rabbitry",
-  "url":"https://arizonarabbitry.com/",
+  "name":"Arizona Rabbits",
+  "url":"https://arizonarabbits.com/",
   "description":"Hand-raised Holland Lop rabbits for sale in Tucson, Arizona.",
   "telephone":"+1-520-270-2827",
-  "email":"hello@arizonarabbitry.com",
+  "email":"hello@arizonarabbits.com",
   "sameAs":[
-    "https://www.instagram.com/arizonarabbitry",
-    "https://www.tiktok.com/@arizonarabbitry",
-    "https://www.facebook.com/arizonarabbitry"
+    "https://www.instagram.com/arizonarabbits",
+    "https://www.tiktok.com/@arizona.rabbits",
+    "https://www.facebook.com/share/14oLBrmQCTG/"
   ],
   "address":{"@type":"PostalAddress","addressLocality":"Tucson","addressRegion":"AZ","addressCountry":"US"},
   "areaServed":"Tucson, Arizona",
-  "priceRange":"$350–$400"
+  "priceRange":"$350–$375"
 }
 </script>
 </head>
@@ -911,7 +1228,10 @@ body.locked{overflow:hidden}
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="#top" class="brand">Arizona Rabbitry<small>Tucson</small></a>
+    <div class="brandbox">
+      <a href="#top" class="brand">Arizona Rabbits</a>
+      <small class="brandsub">Tucson<a href="tel:+15202702827" class="brandtel">(520) 270-2827</a></small>
+    </div>
     <nav class="nav-links" aria-label="Main">
       <a href="#available">Available</a>
       <a href="#about">About</a>
@@ -1002,9 +1322,9 @@ body.locked{overflow:hidden}
       <!-- Each column: complete claim in bold, qualifier underneath. No punctuation joining
            them, so nothing can drift out of alignment. Keep all three qualifiers to 2-4 words. -->
       <div class="facts">
-        <div><b>8-week minimum</b><small>No exceptions</small></div>
+        <div><b>Home at eight weeks</b><small>Weaned and settled first</small></div>
         <div><b>20% off</b><small>On a second rabbit</small></div>
-        <div><b>Lifetime support</b><small>Ask me anything</small></div>
+        <div><b>You keep my number</b><small>For as long as you have them</small></div>
       </div>
     </div>
     <div class="hero-media">
@@ -1022,12 +1342,38 @@ body.locked{overflow:hidden}
     <div class="avail-head rv">
       <div>
         <h2 style="margin-bottom:8px">Available now</h2>
-        <p class="lede">Litters are small and I don't rush them. Every price below is the full
-        price. It covers eight weeks of daily handling, the go-home kit, and my number for
-        as long as you have the rabbit.</p>
+        <p class="lede">Litters are small and I don't rush them. The price you see is the whole
+        price, and it covers eight weeks of daily handling before the rabbit is old enough
+        to leave.</p>
+        <!-- FRESHNESS STAMP — Stanford credibility guideline: show the page is
+             reviewed recently. Scoped to availability only (the one thing that
+             actually goes stale), never a site-wide "last updated".
+             MAINTENANCE RULE: bump the datetime AND the words inside <time> on
+             every rabbits.js change, and whenever William confirms availability
+             is still current. Set by hand at edit time so it can never lie by
+             accident.
+             The words are rewritten in script to "Checked today" or "Checked 3
+             days ago", because how recently a page was checked is the question
+             being asked, and a date only answers it after the reader has done
+             the subtraction. With scripts off the written date still stands. -->
+        <!-- The separator used to be a middot, and at 360px the line broke after
+             it and left "what's changed lately" hanging on its own. The link is
+             now its own element that either sits inline or drops to a full line
+             of its own, which is a layout rather than a fragment. -->
+        <p class="avail-stamp">Availability
+          <time id="availStamp" datetime="2026-08-24">current as of August 24, 2026</time>
+          <a href="updates.html">what's changed lately</a></p>
       </div>
-      <!-- Counts the real cards below. No invented numbers. -->
-      <span class="count" id="count">Checking availability…</span>
+      <!-- Counts the real cards below. No invented numbers.
+           THE WORDS TYPED HERE ARE THE ONES A CRAWLER READS. The count is
+           written by script, so anything sitting in the markup is what gets
+           indexed and what a scripts-off reader is left holding. It used to
+           say "Checking availability…", which is a loading state offered to
+           someone who will never see it finish. The fallback now matches the
+           one the script itself falls back to lower down, so the page has
+           exactly one thing to say when it cannot count, and that thing is
+           useful and can never go stale. -->
+      <span class="count" id="count">Call or text for current litters</span>
     </div>
 
     <!-- ─── COPY ONE CARD PER RABBIT ───
@@ -1068,6 +1414,16 @@ body.locked{overflow:hidden}
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       <div class="bunnies" id="rail"><!-- cards are built from rabbits.js -->
+        <!-- NOTHING PERISHABLE GOES IN HERE. This is the only part of the
+             listing that is typed rather than derived, so it deliberately
+             carries no name, no price and no count: those live in rabbits.js
+             and nowhere else, and a second copy of them here would be the one
+             that goes out of date. It is replaced the instant scripts run. -->
+        <noscript>
+          <p class="lede" style="max-width:46ch">The rabbits are listed here with photos, prices
+          and dates of birth. If you're reading this, the listings didn't load. Call or text me on
+          <a href="tel:+15202702827">(520) 270-2827</a> and I'll tell you what I have.</p>
+        </noscript>
       </div>
       <button class="rail-btn next" type="button" aria-label="Scroll to more rabbits">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -1078,15 +1434,17 @@ body.locked{overflow:hidden}
          Also the destination for reserved/adopted cards, which is why it needs an id. -->
     <div class="wl rv" id="waitlist">
       <div>
-        <h3>Nothing quite right yet?</h3>
-        <p>The waitlist hears about a litter before it goes up here. One email, no newsletter.</p>
+        <h3>Want to see the next litter first?</h3>
+        <p>When a litter is born I send one email with photos of them, a few days before
+        they go up on the site. That is the only thing I use your address for, and you can
+        tell me to stop whenever you want.</p>
       </div>
       <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
-        <input type="email" name="email" placeholder="you@email.com" aria-label="Email for waitlist" required>
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Your email address, to hear about the next litter" required>
         <input type="hidden" name="_subject" value="Waitlist signup">
-        <button type="submit" class="btn btn-primary">Join</button>
+        <button type="submit" class="btn btn-primary">Add me</button>
       </form>
-      <p class="wl-ok" id="wlok">Added. I'll be in touch before the next litter goes public.</p>
+      <p class="wl-ok" id="wlok">You're on the list. The next email you get from me will be photos of the new litter.</p>
     </div>
   </div>
 </section>
@@ -1099,29 +1457,40 @@ body.locked{overflow:hidden}
       <h2>Temperament is decided before you ever meet them.</h2>
 
       <p class="lede" style="margin-bottom:14px">I'm William, and I came to rabbits through
-      chinchillas. They're remarkable animals and I still think they're some of the most beautiful
-      things a person can keep. But a chinchilla doesn't want to be held. That's their nature, not
-      a shortcoming, and keeping them taught me what I was actually after: an animal that comes to
-      you.</p>
+      chinchillas. They're remarkable animals, but a chinchilla doesn't want to be
+      held. That's their nature, not a shortcoming, and keeping them taught me what I was
+      actually after: an animal that comes to you.</p>
 
       <p class="lede" style="margin-bottom:14px">Then a farmer sold me a Satin Angora, and that was
-      the end of that. A Holland Lop followed. When those two had their first litter, I stopped
-      calling it a hobby.</p>
+      the animal I had been describing to myself. A Holland Lop followed, and when those two had
+      their first litter I stopped calling it a hobby.</p>
 
       <p class="lede" style="margin-bottom:14px">Every dollar this makes goes straight back into
       the rabbits. The plan is to be the best breeder in Tucson, then in Arizona, and I don't
       intend to stop there.</p>
 
-      <p class="lede" style="margin-bottom:14px">Which is why I care about this next part more than
-      anything else on the page.</p>
+      <p class="lede" style="margin-bottom:14px">None of that counts for anything if the rabbit
+      won't let you pick it up. So this next part is the one I care about most.</p>
 
-      <p class="lede">Rabbits are prey animals. Left alone, instinct fills in the gaps, and by five
+      <p class="lede">Rabbits are prey animals. Left alone, instinct fills in the gaps. By five
       months you have one that flattens when a hand comes near. People assume they picked a shy
       one. Usually they picked one nobody spent time with.</p>
-      <p class="lede" style="margin-top:14px">The window is roughly the first eight weeks and it
-      doesn't reopen. So I use it, with daily handling and handling by people who aren't me. A rabbit
-      that's calm only with its breeder isn't socialized, and you'll find that out the first time a
-      friend tries to hold it.</p>
+      <!-- EVIDENCE NOTE. This used to read "the window is roughly the first eight
+           weeks and it doesn't reopen." That was overstated. The reviewed welfare
+           literature puts the pre-weaning socialisation period much earlier and much
+           narrower: Bradbury & Dickens, "Appropriate handling of pet rabbits" (J Appl
+           Anim Welf Sci), names the sensitive periods around and after eye-opening,
+           "between days 10 and 20 postpartum". Nothing credible says the door slams
+           at eight weeks, and the evidence for fixing it later is thin either way.
+           So the claim now names the real window. It is also a BETTER argument: that
+           fortnight happens before any buyer could possibly be involved, which is
+           exactly why it has to be the breeder who spends it. Do not re-absolutise
+           this sentence. -->
+      <p class="lede" style="margin-top:14px">The part that decides it happens early, around the
+      time their eyes open in the second week. That's weeks before you'd ever meet them, so it
+      falls on me. I use it, and I keep handling them every day after, including by people who
+      aren't me. A rabbit that's calm only with its breeder isn't socialized. You find that out
+      the first time a friend tries to hold it.</p>
     </div>
     <div class="rv">
       <!-- Real photo: William's rabbit loose on a café table beside his laptop — the
@@ -1166,32 +1535,43 @@ body.locked{overflow:hidden}
       <div class="stage">
         <span class="stage-when">Week 8</span>
         <h3>Ready to go home</h3>
-        <p>Eight weeks is my floor, no exceptions. Early weaning is what causes enteritis. Health
-        checked and holding weight, or they stay longer.</p>
+        <!-- TONE NOTE. This card used to say "my floor, no exceptions" and led with a
+             gut illness that kills. Two problems, and only one of them was tone.
+             The absolute was the real one: a stated never is a promise, and a page
+             that promises a never its author intends to bend is the same defect as
+             an advertised price he doesn't charge. So the card now says what he
+             DOES, not what he'll never do. That is true either way, and it does not
+             invite a stranger to open a negotiation about whether they're the
+             exception. The reason is now the mechanism rather than the death: the
+             changeover from milk to solid food, which is also the actual risk factor
+             the literature names. -->
+        <p>Eight weeks is when they go home. By then they're off milk, eating and drinking on
+        their own, and settled enough that a move isn't a shock. I check weight and health
+        before anyone leaves, and one that isn't quite there waits.</p>
       </div>
     </div>
 
     <!-- Placed here deliberately: everything above is a claim about daily handling.
          The socials are the evidence for it, so they sit directly underneath. -->
     <div class="social-head rv">
-      <h3>Watch it happen daily</h3>
+      <h3>Watch them grow up</h3>
       <p>Don't take my word for any of the above. Photos and video most days, including the
       unglamorous parts.</p>
       <div class="social">
-        <a href="https://www.instagram.com/arizonarabbitry" target="_blank" rel="noopener">
+        <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
           <b>Instagram</b>
-          <small>@arizonarabbitry</small>
+          <small>@arizonarabbits</small>
         </a>
-        <a href="https://www.tiktok.com/@arizonarabbitry" target="_blank" rel="noopener">
+        <a href="https://www.tiktok.com/@arizona.rabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
           <b>TikTok</b>
-          <small>@arizonarabbitry</small>
+          <small>@arizona.rabbits</small>
         </a>
-        <a href="https://www.facebook.com/arizonarabbitry" target="_blank" rel="noopener">
+        <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
           <b>Facebook</b>
-          <small>Arizona Rabbitry</small>
+          <small>Arizona Rabbits</small>
         </a>
       </div>
     </div>
@@ -1207,7 +1587,7 @@ body.locked{overflow:hidden}
       <p class="lede">The first two weeks decide how the next ten years go, so nobody should be
       guessing through them.</p>
       <ul class="incl">
-        <li><b>Two weeks of their current food</b><small>Switching pellets suddenly is a common cause of GI trouble. Transition slowly.</small></li>
+        <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
         <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
         <li><b>A health check you watch</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
         <li><b>Tucson exotic vet recommendations</b><small>Not every clinic here treats rabbits. Better to know now.</small></li>
@@ -1231,8 +1611,8 @@ body.locked{overflow:hidden}
         <p class="kicker">Also offered</p>
         <h2>Boarding, whenever you travel</h2>
         <p class="svc-lede">Most kennels aren't set up for rabbits, and one left with a stranger
-        spends the whole week stressed. If you're going away, yours comes back to the same routine,
-        the same food, and the same hands that raised it.</p>
+        spends the whole week stressed. Yours comes back to the same routine, the same food, and
+        the same hands that raised it.</p>
         <ul>
           <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
           <li>Photos while you're gone, so you're not left wondering</li>
@@ -1240,8 +1620,9 @@ body.locked{overflow:hidden}
         </ul>
         <div class="callout">
           <b>My own rabbits only</b>
-          <p>RHDV2 is circulating in Arizona's wild rabbit population again this year. Keeping the
-          property closed to outside rabbits is how I keep everyone here safe, yours included.</p>
+          <p>There is a rabbit virus going round Arizona's wild rabbits again this year, called
+          RHDV2, and it is usually fatal. Keeping the property closed to outside rabbits is how
+          I keep everyone here safe, yours included.</p>
         </div>
         <a href="#contact" class="btn btn-primary">Ask about dates</a>
       </div>
@@ -1256,7 +1637,7 @@ body.locked{overflow:hidden}
         <div class="rate-row">
           <b>$30</b>
           <span class="per">per day</span>
-          <em>Bonded pair</em>
+          <em>Two who live together</em>
           <small>$22/day after week one</small>
         </div>
       </div>
@@ -1344,9 +1725,9 @@ body.locked{overflow:hidden}
           <p>What the price covers is eight weeks of daily handling before the rabbit is
           old enough to leave, a health check you watch me do, two weeks of the food they're
           already eating, a written care sheet, and my phone number for as long as you have
-          them. Prices differ between rabbits because colour and temperament differ. The rarer
-          colours, a blue-eyed white in particular, sit at the top of the range simply because
-          far fewer are born that way.</p>
+          them. Prices differ between rabbits because colour and temperament differ, and the rarer
+          a colour is, the higher it sits. Right now the two fawn does are the $375 ones and the
+          two sable point bucks are $350.</p>
           <p>You can find a cheaper rabbit. You'll find plenty on classifieds for under a
           hundred. What you're paying the difference for is a rabbit that's already comfortable
           being picked up, and someone who answers the phone at month seven.</p>
@@ -1393,9 +1774,32 @@ body.locked{overflow:hidden}
       <details>
         <summary>Can I take one home before eight weeks?</summary>
         <div class="faq-body">
-          <p>No, and I'd think twice about anyone who says yes. Rabbits taken early have immature
-          digestive systems, and weaning enteritis, the most common cause of death in young
-          rabbits, is overwhelmingly a problem of leaving the mother too soon.</p>
+          <!-- EVIDENCE NOTE. This used to say enteritis "is almost always caused by
+               leaving the mother too soon." Not true, and checkable: the Merck
+               Veterinary Manual attributes enterotoxaemia to Clostridium spiroforme
+               with low dietary fibre and certain antibiotics as the named risk
+               factors, in rabbits four to eight weeks old. Weaning age is not the
+               cause. What IS true is the timing: the danger window and the age a
+               buyer wants to collect are the same weeks, and a change of food is a
+               named risk factor. That is the honest reason for the date, and it is
+               the one the answer now gives.
+
+               THE ANSWER NO LONGER SAYS "NO". It used to open "No, and I'd think
+               twice about anyone who says yes." That was an absolute William does
+               not actually hold, and a page that states a never its author intends
+               to bend has the same defect as an advertised price he doesn't charge.
+               It also insulted every other breeder, and him. It now explains the
+               reason and leaves it there. A cold enquiry reads it as settled and
+               doesn't argue; anyone he'd genuinely make an exception for is someone
+               he already knows, and that conversation was never going to happen on
+               this page. Do not put a "no exceptions" back in. -->
+          <p>Eight weeks is when they're actually finished. The last stretch is when they come
+          off milk and onto solid food for good, and their gut is still learning the job. A new
+          house, new water and a new bag of food all landing at once is a lot to ask on top of
+          that, so I'd rather they do the settling here, where nothing else is changing.</p>
+          <p>That's the whole reason for the date. I'll send photos and video the whole way
+          through so the wait is easier, and they go home eating exactly what they've been
+          eating, so nothing changes on day one.</p>
           <p>I'll send photos and video the whole way through so the wait is easier. But the date
           doesn't move.</p>
         </div>
@@ -1493,7 +1897,7 @@ body.locked{overflow:hidden}
            and in the footer, where browsing is the right behaviour. -->
       <ul class="reach">
         <li><a href="tel:+15202702827"><b>(520) 270-2827</b><small>Call or text. Texting is completely fine, and it's the fastest way to reach me.</small></a></li>
-        <li><a href="mailto:hello@arizonarabbitry.com"><b>hello@arizonarabbitry.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></a></li>
+        <li><a href="mailto:hello@arizonarabbits.com"><b>hello@arizonarabbits.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></a></li>
       </ul>
     </div>
 
@@ -1509,8 +1913,21 @@ body.locked{overflow:hidden}
           <span class="prog-label" id="plabel">Step 1 of 3</span>
           <div class="hp"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 
+          <!-- Shown only when someone arrived here by tapping a rabbit. It is
+               the receipt for a question they have already answered, and it
+               stays a live control rather than a label: wanting a second
+               rabbit is one more tap, never a sentence typed into a box.
+               Chips are built from the cards on the page, so this can never
+               offer a rabbit that isn't for sale. -->
+          <div class="askabout" id="askAbout" tabindex="-1">
+            <p class="ask-lead">Asking about <b id="askName"></b></p>
+            <div class="rpick" id="askPick" role="group" aria-label="Which rabbits"></div>
+            <p class="pairnote" id="askPair">Two rabbits, so the second is 20% off.</p>
+          </div>
+          <input type="hidden" name="rabbit" id="askField" value="">
+
           <div class="fstep active" data-step="1">
-            <h3>What are you after?</h3>
+            <h3>What are you looking for?</h3>
             <p class="hint">No wrong answer. This tells me where to start.</p>
             <div class="field">
               <div class="opts" role="radiogroup" aria-label="What are you looking for">
@@ -1519,7 +1936,7 @@ body.locked{overflow:hidden}
                 <label class="opt"><input type="radio" name="interest" value="A pair">
                   <span><b>A pair</b><small>Two rabbits, 20% off the second.</small></span></label>
                 <label class="opt"><input type="radio" name="interest" value="Not sure yet">
-                  <span><b>Not sure yet</b><small>Tell me your situation and I'll recommend straight.</small></span></label>
+                  <span><b>Not sure yet</b><small>Tell me your situation and I'll tell you straight.</small></span></label>
               </div>
               <p class="err" data-for="interest">Pick one so I know where to start.</p>
             </div>
@@ -1602,8 +2019,8 @@ body.locked{overflow:hidden}
   <div class="wrap">
     <div class="foot">
       <div style="max-width:34ch">
-        <span class="brand">Arizona Rabbitry<small>Tucson</small></span>
-        <p style="line-height:1.65">A small home rabbitry in Tucson raising Holland Lops. Handled
+        <span class="brand">Arizona Rabbits<small>Tucson</small></span>
+        <p style="line-height:1.65">A small home operation in Tucson raising Holland Lops. Handled
         daily, eight-week minimum, and every owner keeps my number.</p>
       </div>
       <div>
@@ -1615,21 +2032,25 @@ body.locked{overflow:hidden}
           <a href="#included">What's included</a>
           <a href="#boarding">Boarding</a>
           <a href="#faq">FAQ</a>
+          <!-- The public changelog. Footer on purpose: it serves the cautious
+               researcher vetting the business, not the buying journey. -->
+          <a href="litters.html">Litters</a>
+          <a href="updates.html">Site news</a>
         </div>
       </div>
       <div>
         <h4>Contact</h4>
         <div class="foot-links">
           <a href="tel:+15202702827">(520) 270-2827</a>
-          <a href="mailto:hello@arizonarabbitry.com">hello@arizonarabbitry.com</a>
-          <a href="https://www.instagram.com/arizonarabbitry" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.tiktok.com/@arizonarabbitry" target="_blank" rel="noopener">TikTok</a>
-          <a href="https://www.facebook.com/arizonarabbitry" target="_blank" rel="noopener">Facebook</a>
+          <a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a>
+          <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@arizona.rabbits" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
     </div>
     <div class="foot-legal">
-      <span>© <span id="yr">2026</span> Arizona Rabbitry</span>
+      <span>© <span id="yr">2026</span> Arizona Rabbits</span>
       <span>A rabbit is an eight to twelve year commitment. Please be sure.</span>
     </div>
   </div>
@@ -1655,12 +2076,21 @@ body.locked{overflow:hidden}
       <button class="viewer-nav next" type="button" id="viewerNext" aria-label="Next photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
+      <span class="vborn" id="viewerBorn">
+        <svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="7" width="18" height="13" rx="2.6"/>
+          <path d="M8.6 7l1.3-2.3h4.2L15.4 7"/>
+          <circle cx="12" cy="13.6" r="3.2"/>
+        </svg><span class="sr-only" id="viewerBornWhat"></span><span id="viewerBornText"></span>
+      </span>
     </div>
     <div class="viewer-body">
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
-      <p class="viewer-when" id="viewerWhen"></p>
-      <p class="viewer-cap" id="viewerCap"></p>
+      <div id="viewerGrow"></div>
+      <div class="viewer-said">
+        <p class="viewer-cap" id="viewerCap"></p>
+      </div>
       <div class="viewer-strip" id="viewerStrip"></div>
       <p class="viewer-note" id="viewerNote"></p>
       <a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
@@ -1674,11 +2104,140 @@ body.locked{overflow:hidden}
 <script>
 (function(){
   'use strict';
+  /* stamp "scripts are alive" so the CSS scriptless fallback stands down.
+     Must be the first statement: the fallback targets html:not(.js). */
+  document.documentElement.className+=' js';
+  function daysFromToday(s){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!m) return null;
+    var d=new Date(+m[1], +m[2]-1, +m[3]);
+    var now=new Date(); now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    return Math.round((d-now)/86400000);
+  }
   var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
 
+  /* Freshness in the reader's terms. Past a week the plain date is the more
+     useful answer again, so it stays. */
+  (function(){
+    var el=document.getElementById('availStamp'); if(!el) return;
+    var s=el.getAttribute('datetime'), n=daysFromToday(s);
+    if(n===null||n>0) return;                      /* never claim a future check */
+    var d=-n;
+    if(d===0) el.textContent='checked today';
+    else if(d===1) el.textContent='checked yesterday';
+    else if(d<=7) el.textContent='checked '+d+' days ago';
+  })();
+
+  /* ══════════════════════════════════════════════════════════════
+     WHO IS SCROLLING
+
+     Three features need one number: how far down the page we are.
+     window.scrollY is the obvious source and it is not always the
+     right one. In a normal browser the document scrolls and scrollY
+     is correct. Inside embedded viewers — in-app browsers, preview
+     panes, webviews — the content is often placed in a WRAPPER
+     element that scrolls instead, which leaves window.scrollY pinned
+     at 0 no matter how far the reader travels. Sticky positioning
+     keeps working there, so the symptom is a page scrolling normally
+     underneath a progress bar that never moves.
+
+     Guessing which element scrolls is what failed here: a viewer can
+     nest several scrollable boxes, and picking the wrong one reads a
+     number that is always zero. So nothing is guessed. Position is
+     measured GEOMETRICALLY, from the one fact that holds everywhere:
+     an element's layout position never changes when something scrolls,
+     but where it lands on screen does. The gap between the two is the
+     distance travelled, whether that comes from the window, a wrapper,
+     a nested wrapper, or a transform.
+
+     For scrolling the page programmatically (dragging the bar, tapping
+     Home) the scroller does have to be identified — so it is TESTED
+     rather than assumed: nudge a candidate, check whether the world
+     actually moved, put it back. The one that responds is remembered.
+
+     Subscriptions go through one registry: scroll events are caught in
+     the capture phase (element scrolls do not bubble, but they can be
+     captured), with a frame-by-frame check as a backstop for viewers
+     that fire no scroll events at all.
+     ══════════════════════════════════════════════════════════════ */
+  var mainEl=document.getElementById('main');
+
+  /* layout position, walking the offsetParent chain — scroll-independent */
+  function absTop(el){ var y=0; while(el){ y+=el.offsetTop||0; el=el.offsetParent; } return y; }
+
+  /* rawPos is offset by however far the viewer's own frame sits from the
+     top of the screen, so the smallest value ever seen is treated as the
+     true top and everything is measured from there. It self-corrects the
+     first time the reader reaches the top. */
+  var posBase=null;
+  function rawPos(){
+    return mainEl ? absTop(mainEl)-mainEl.getBoundingClientRect().top : 0;
+  }
+  function scrollPos(){
+    if(!mainEl) return window.pageYOffset||0;
+    var v=rawPos();
+    if(posBase===null || v<posBase) posBase=v;
+    var d=v-posBase;
+    return d>0.5 ? d : (window.pageYOffset||0);
+  }
+
+  function scrollSpan(){
+    var doc=document.documentElement, bd=document.body;
+    var vh=window.innerHeight||doc.clientHeight;
+    var s=Math.max(bd.scrollHeight,doc.scrollHeight,bd.offsetHeight)-vh;
+    if(s<8){                       /* the document is not the scroller: measure content */
+      var last=document.querySelector('footer')||mainEl;
+      if(last) s=absTop(last)+last.offsetHeight-vh;
+    }
+    return Math.max(1,s);
+  }
+
+  /* undefined = not tested yet, null = the window is the scroller */
+  var learned;
+  function resetScroller(){ learned=undefined; }
+  function candidates(){
+    var out=[], el=mainEl;
+    while(el){ if(el.scrollHeight-el.clientHeight>8) out.push(el); el=el.parentElement; }
+    if(document.scrollingElement) out.push(document.scrollingElement);
+    return out;
+  }
+  function learnScroller(){
+    if(learned!==undefined) return learned;
+    var at=scrollPos(), step=(at>scrollSpan()-8)?-4:4, list=candidates();
+    for(var i=0;i<list.length;i++){
+      var el=list[i], prev=el.scrollTop;
+      el.scrollTop=prev+step;
+      var moved=Math.abs(scrollPos()-at)>0.5;
+      el.scrollTop=prev;                       /* put it back either way */
+      if(moved){ learned=el; return learned; }
+    }
+    learned=null; return null;
+  }
+  function scrollToY(y,smooth){
+    var el=learnScroller();
+    if(el){
+      var target=el.scrollTop+(y-scrollPos());
+      if(smooth && el.scrollTo){ try{ el.scrollTo({top:target,behavior:'smooth'}); return; }catch(e){} }
+      el.scrollTop=target; return;
+    }
+    try{ window.scrollTo({top:y,behavior:smooth?'smooth':'instant'}); }
+    catch(e){ window.scrollTo(0,y); }
+  }
+
+  var subs=[], lastSeen=-1;
+  function onScrollChange(fn){ subs.push(fn); }
+  function fireScroll(){ for(var i=0;i<subs.length;i++) subs[i](); }
+  document.addEventListener('scroll',fireScroll,{passive:true,capture:true});
+  window.addEventListener('scroll',fireScroll,{passive:true});
+  window.addEventListener('resize',resetScroller);
+  (function watchPos(){
+    var p=scrollPos();
+    if(p!==lastSeen){ lastSeen=p; fireScroll(); }
+    requestAnimationFrame(watchPos);
+  })();
+
   var nav=document.getElementById('nav');
-  var onScroll=function(){nav.classList.toggle('stuck',window.scrollY>8)};
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var onScroll=function(){nav.classList.toggle('stuck',scrollPos()>8)};
+  onScrollChange(onScroll); onScroll();
 
   /* The dock never hides, so there is nothing to hold open. Kept as a no-op
      because the nav rail and the scrubber both call it. */
@@ -1690,7 +2249,10 @@ body.locked{overflow:hidden}
      works as plain anchor links and the bottom bar stays visible.
      ══════════════════════════════════════════════════════════════ */
   var mnav=document.getElementById('mnav');
-  if(mnav && 'IntersectionObserver' in window){
+  /* No feature gate: this block runs on scroll events and rAF only. It was
+     needlessly gated on IntersectionObserver, which some embedded viewers
+     lack — freezing the pill highlight in surfaces that scroll just fine. */
+  if(mnav){
     var links={}, order=[];
     mnav.querySelectorAll('a').forEach(function(a){
       var id=a.getAttribute('href').slice(1);
@@ -1713,7 +2275,13 @@ body.locked{overflow:hidden}
       var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
       var spEl=document.getElementById('sprog');
       if(spEl && spEl.classList.contains('drag')) return;
-      var left=a.offsetLeft-(track.clientWidth-a.offsetWidth)/2;
+      /* "How they're raised" is wider than the rail on a small phone, and a pill
+         that cannot fit has to lose an end. It loses the RIGHT one: you can read
+         a label whose tail is cut off, you cannot read one whose start is gone.
+         Centring it, which is what this did, cut both. */
+      var left=(a.offsetWidth>track.clientWidth)
+        ? a.offsetLeft
+        : a.offsetLeft-(track.clientWidth-a.offsetWidth)/2;
       if(track.scrollTo) track.scrollTo({left:left,behavior:'smooth'});
       else track.scrollLeft=left;
     };
@@ -1729,24 +2297,32 @@ body.locked{overflow:hidden}
          Measured off the dock, which is the thing actually pinned to the top of
          the screen now that the brand row scrolls away with the page. */
       var dockEl=document.getElementById('dock');
-      var hdr=(dockEl && getComputedStyle(dockEl).display!=='none')
-        ? dockEl.getBoundingClientRect().bottom
-        : nav.offsetHeight;
-      var line=window.scrollY+hdr+32, found='';
+      var hdr;
+      if(dockEl && getComputedStyle(dockEl).display!=='none'){
+        var dr=dockEl.getBoundingClientRect();
+        /* normally the dock is pinned and bottom == its height. Where a viewer
+           breaks sticky positioning the dock scrolls away and bottom goes
+           negative, which would drag the reading line up past every heading
+           and freeze the highlight on the first pill. Its own height is the
+           honest floor. */
+        hdr=Math.max(dr.bottom, dr.height);
+      } else hdr=nav.offsetHeight;
+      var sy=scrollPos();
+      var line=sy+hdr+32, found='';
       for(var i=0;i<order.length;i++){
-        var t=order[i].el.getBoundingClientRect().top+window.scrollY;
+        var t=order[i].el.getBoundingClientRect().top+sy;
         if(t<=line) found=order[i].id;
       }
       /* at the very bottom, the last link should win even if its section is short */
-      if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4 && order.length)
+      if(sy>=scrollSpan()-4 && order.length)
         found=order[order.length-1].id;
       if(found) setActive(found); else { current=''; for(var k in links) links[k].classList.remove('on'); }
     };
     var ticking=false;
-    window.addEventListener('scroll',function(){
+    onScrollChange(function(){
       if(ticking) return; ticking=true;
       requestAnimationFrame(function(){ pick(); ticking=false; });
-    },{passive:true});
+    });
     window.addEventListener('resize',pick);
     /* a tap here starts a downward scroll, which would otherwise tuck the header
        away mid-jump; hold it open long enough for the smooth scroll to land */
@@ -1757,7 +2333,7 @@ body.locked{overflow:hidden}
       var a=e.target.closest && e.target.closest('a');
       if(a && a.getAttribute('href')==='#top'){
         e.preventDefault();
-        window.scrollTo({top:0,behavior:'smooth'});
+        scrollToY(0,true);
       }
     });
     pick();
@@ -1780,7 +2356,8 @@ body.locked{overflow:hidden}
      same instant the grip crosses between pills.
      ══════════════════════════════════════════════════════════════ */
   var sp=document.getElementById('sprog');
-  if(sp && typeof IntersectionObserver!=='undefined'){
+  /* Same as the nav block: scroll + rAF only, so no feature gate. */
+  if(sp){
     var spFill=document.getElementById('sprogFill'),
         spGrip=document.getElementById('sprogGrip'),
         spTag=document.getElementById('sprogTag');
@@ -1789,7 +2366,7 @@ body.locked{overflow:hidden}
     var dragging=false;
     var GRIP=15;
 
-    var docSpan=function(){ return Math.max(1, document.body.scrollHeight-window.innerHeight); };
+    var docSpan=scrollSpan;   /* measured off whatever element actually scrolls */
     var barW=function(){ return Math.max(1, sp.clientWidth); };
 
     /* The same line pick() uses to decide the active pill. Sharing it is what
@@ -1801,7 +2378,8 @@ body.locked{overflow:hidden}
     }
 
     function measure(){
-      var span=docSpan(), a=anchorOffset();
+      resetScroller();                  /* the viewer may have re-laid out */
+      var span=docSpan(), a=anchorOffset(), sy=scrollPos();
       var srcs=(typeof order!=='undefined' && order.length)
         ? order
         : [].slice.call(document.querySelectorAll('section[id]')).map(function(el){return {id:el.id,el:el};});
@@ -1809,7 +2387,7 @@ body.locked{overflow:hidden}
       var spLeft=sp.offsetLeft;                    /* bar and pills share .mnav-inner as origin */
       srcs.forEach(function(o){
         var link=document.querySelector('.mnav-track a[href="#'+o.id+'"]');
-        var top=o.el.getBoundingClientRect().top+window.scrollY-a;
+        var top=o.el.getBoundingClientRect().top+sy-a;
         /* the hero starts the page: its boundary is scroll 0 by definition,
            not its measured offset, so no dead zone precedes it */
         if(o.id==='top') top=0;
@@ -1902,20 +2480,18 @@ body.locked{overflow:hidden}
       }
     }
 
-    function fromScroll(){ if(!dragging) render(xFromScroll(window.scrollY)); }
+    function fromScroll(){ if(!dragging) render(xFromScroll(scrollPos())); }
 
     function seek(clientX){
       /* clientX -> x on the bar. The bar scrolls with the rail, and its
          bounding rect already accounts for that. */
-      var box=sp.getBoundingClientRect();
-      var x=Math.min(barW(), Math.max(0, clientX-box.left));
+      var rect=sp.getBoundingClientRect();
+      var x=Math.min(barW(), Math.max(0, clientX-rect.left));
       /* The page sets scroll-behavior:smooth, which is right for tapping a nav
          link and wrong here: it animates every drag step, so the page lags a
          long way behind your thumb. Dragging has to land instantly to feel
          like you're moving the page yourself. */
-      var y=scrollFromX(x);
-      try{ window.scrollTo({top:y, behavior:'instant'}); }
-      catch(e){ window.scrollTo(0, y); }
+      scrollToY(scrollFromX(x), false);
       render(x);
     }
 
@@ -1938,7 +2514,7 @@ body.locked{overflow:hidden}
 
     /* keyboard: one slice per press, landing exactly on a boundary */
     sp.addEventListener('keydown',function(ev){
-      var y=window.scrollY, i, target=null;
+      var y=scrollPos(), i, target=null;
       if(ev.key==='ArrowRight'||ev.key==='ArrowDown'){
         for(i=0;i<segs.length;i++){ if(segs[i]>y+2){ target=segs[i]; break; } }
         if(target===null) target=segs[segs.length-1];
@@ -1949,14 +2525,14 @@ body.locked{overflow:hidden}
       else if(ev.key==='End'){ target=segs[segs.length-1]; }
       else return;
       ev.preventDefault();
-      window.scrollTo({top:target, behavior:'smooth'});
+      scrollToY(target,true);
     });
 
     var spTick=false;
-    window.addEventListener('scroll',function(){
+    onScrollChange(function(){
       if(spTick) return; spTick=true;
       requestAnimationFrame(function(){ fromScroll(); spTick=false; });
-    },{passive:true});
+    });
     window.addEventListener('resize',function(){ measure(); fromScroll(); });
     /* images finishing can change the page height, so re-measure once things settle */
     window.addEventListener('load',function(){ measure(); fromScroll(); });
@@ -2034,9 +2610,14 @@ body.locked{overflow:hidden}
       });
     }
     if(r.photo && !out.some(function(p){return p.src===r.photo;})) out.unshift({src:r.photo,date:'',note:''});
-    /* oldest first: the point of dating them is watching the rabbit grow up */
+    /* Oldest first: the point of dating them is watching the rabbit grow up.
+       Anything undated goes to the END rather than the front. Undated first
+       meant the card's cover photo led the set with a blank date and no
+       caption, so the first thing you saw after tapping was the one frame
+       that said nothing. */
     out.sort(function(a,b){
-      if(!a.date) return -1; if(!b.date) return 1;
+      if(!a.date&&!b.date) return 0;
+      if(!a.date) return 1; if(!b.date) return -1;
       return a.date<b.date?-1:(a.date>b.date?1:0);
     });
     return out;
@@ -2044,6 +2625,86 @@ body.locked{overflow:hidden}
 
   /* "2026-08-05" -> "5 Aug". Left alone if it isn't a plain date. */
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  /* HOW LONG UNTIL. A date only answers "when" if you already know where the
+     month sits, which is work the page can do instead of asking for it. The
+     go-home date is derived from the birth date plus the eight week rule, so it
+     cannot drift out of step with the rabbit's own age. Counted in whole days
+     from today, floored, and it stops counting once the day arrives. */
+  /* Read the eight-week timeline out of the section that explains it, so the
+     rabbit cards and that section can never drift apart. "Week 3–5" becomes
+     {from:3,to:5}. If the section is ever removed the cards simply stop showing
+     a stage rather than showing a wrong one. */
+  var STAGES=(function(){
+    var out=[];
+    document.querySelectorAll('#raised .stage').forEach(function(el){
+      var when=el.querySelector('.stage-when'), h3=el.querySelector('h3');
+      if(!when||!h3) return;
+      var m=/(\d+)\s*(?:[-\u2012-\u2015]\s*(\d+))?/.exec(when.textContent||'');
+      if(!m) return;
+      out.push({from:+m[1], to:m[2]?+m[2]:+m[1], label:h3.textContent.trim()});
+    });
+    return out;
+  })();
+  var LAST_WEEK=STAGES.length?STAGES[STAGES.length-1].to:8;
+
+  /* Week 1 is the first seven days of life, so a newborn is in week 1, not 0. */
+  function weekOf(dob){
+    var n=daysOld(dob); if(n===null) return null;
+    return Math.min(LAST_WEEK, Math.floor(n/7)+1);
+  }
+  /* Searched backwards on purpose. Week 8 sits inside "Week 6-8, new people,
+     new noise" AND inside "Week 8, ready to go home", and the later, narrower
+     one is the truer answer on the day it matters. Forwards, every rabbit in
+     its final week was still described as meeting new people. */
+  function stageOf(week){
+    for(var i=STAGES.length-1;i>=0;i--)
+      if(week>=STAGES[i].from && week<=STAGES[i].to) return STAGES[i];
+    return STAGES.length?STAGES[0]:null;
+  }
+  function daysOld(dob){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(dob||''); if(!m) return null;
+    var d=new Date(+m[1], +m[2]-1, +m[3]);
+    var now=new Date(); now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    return Math.max(0, Math.round((now-d)/86400000));
+  }
+  /* The bar plus its wording. `full` adds the stage name and is used where
+     there is room for it; the card gets the short form. */
+  function growHTML(r, full){
+    var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
+    var st=stageOf(wk), left=daysFrom(r.dob,56), bar='';
+    for(var i=1;i<=LAST_WEEK;i++)
+      bar+='<i class="'+(i<wk?'on':i===wk?'on now':'')+'"></i>';
+    /* The card is a 170px column on a phone, so it gets the short form: the bar
+       already says "of eight", and repeating it in words wrapped the line onto
+       three. The photo view has the room for the stage name and the full
+       phrasing. */
+    var txt='<b>Week '+wk+(full?' of '+LAST_WEEK:'')+'</b>';
+    if(full&&st) txt+=' &middot; '+esc(st.label.toLowerCase());
+    /* Once the day arrives the stage name already reads "ready to go home", so
+       saying it twice in one line would be the same fact restated.
+
+       THE COUNTDOWN IS ON THE CARD, NOT IN THE PHOTO VIEW. "Week 5 of 8 ·
+       carrying becomes normal · 28 days to go" is too long for the viewer's
+       column and wrapped, stranding "to go" on a line of its own. It was also
+       the same fact twice over: the line directly above it already reads
+       "Born 28 Jul 2026 · Ready 22 Sept". So each surface now says when exactly
+       once — the card counts down in days, the photo view gives the date and
+       spends its room on the stage name instead. */
+    if(!full && r.status==='available' && left!==null && left>0)
+      txt+=' &middot; '+left+(left===1?' day':' days');
+    else if(!full && r.status==='available') txt+=' &middot; ready';
+    return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="Week '+wk+
+      ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
+      '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
+      '<span class="grow-txt">'+txt+'</span></div>';
+  }
+
+  function daysFrom(dob, add){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(dob||''); if(!m) return null;
+    var d=new Date(+m[1], +m[2]-1, +m[3]); d.setDate(d.getDate()+add);
+    var now=new Date(); now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    return Math.round((d-now)/86400000);
+  }
   function niceDate(s){
     if(!s) return '';
     var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
@@ -2075,7 +2736,18 @@ body.locked{overflow:hidden}
       var st=LABEL[r.status]||LABEL.available;
       var dim=(r.status==='available')?'':' sold-dim';
       var meta=[showBreed?r.breed:null,r.sex,r.colour].filter(Boolean).map(esc).join(' &middot; ');
-      if(r.ready && r.status==='available') meta+=' &middot; Ready '+esc(r.ready);
+      /* THE CARD SAYS "WHEN" EXACTLY ONCE.
+         The growth row directly underneath already answers it, and answers it
+         better on a card: "Week 5 · 28 days" needs no arithmetic, where a date
+         only answers the question after the reader has done the subtraction.
+         That is the same reasoning the availability stamp uses higher up.
+         Printing both put four facts on a line built for three and wrapped the
+         longer-coloured cards onto a second line, which is what made the grid
+         ragged. So the date is printed here ONLY when there is no growth row to
+         carry it — a rabbit listed without a date of birth. The exact date is
+         always in the photo view, which has the room for it. */
+      if(r.ready && r.status==='available' && !growHTML(r,false))
+        meta+=' &middot; Ready '+esc(r.ready);
       /* Two labels, one shown per screen size by CSS. On a phone the cards sit 2-up at
          about 170px wide, and "Ask about Marshmallow" wrapped onto a second line and
          got clipped by the card's own overflow. The full label still reads on desktop. */
@@ -2096,8 +2768,8 @@ body.locked{overflow:hidden}
       var open=(r.status==='available');
       var gone=(r.status==='adopted');
       var href=gone?'#waitlist':'#contact';
-      var ctaFull=gone?'Join the waitlist':('Ask about '+esc(r.name));
-      var ctaShort=gone?'Waitlist':'Ask';
+      var ctaFull=gone?'See the next litter first':('Ask about '+esc(r.name));
+      var ctaShort=gone?'Next litter':'Ask';
       var cta='<span class="cta-full">'+ctaFull+'</span>'+
               '<span class="cta-short">'+ctaShort+'</span>';
 
@@ -2115,9 +2787,14 @@ body.locked{overflow:hidden}
       /* With several photos the card opens the photo view instead of jumping
          straight to the form. Kept as a real <a> with an href so it still works
          with JavaScript off, and so it can be opened in a new tab. */
+      /* data-ask carries this rabbit's name into the form. The click has
+         already answered both "which rabbit" and "one or a pair", so the form
+         must not ask either again — see the ASK ABOUT block in the script. */
+      var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
+              (r.status==='available'?' data-avail="1"':'');
       var attrs=many
-        ? ' href="'+href+'" data-shots="'+esc(r.name)+'"'
-        : ' href="'+href+'"';
+        ? ' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"'
+        : ' href="'+href+'"'+ask;
       return '<a class="bunny'+dim+'"'+attrs+'>'+
         '<div class="bunny-media"><span class="status '+st[0]+'">'+st[1]+'</span>'+
         '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
@@ -2125,7 +2802,7 @@ body.locked{overflow:hidden}
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
         '<span class="price">$'+esc(r.price)+'</span></div>'+
-        '<p class="meta">'+meta+'</p>'+
+        '<p class="meta">'+meta+'</p>'+growHTML(r,false)+
         '<p class="desc">'+esc(r.note)+'</p>'+
         '<span class="bunny-cta">'+cta+arrow+'</span></div></a>';
     }).join('');
@@ -2133,11 +2810,75 @@ body.locked{overflow:hidden}
     if(countEl){
       var open=list.filter(function(r){return r.status==='available'}).length;
       countEl.textContent = open===0
-        ? 'All reserved. Join the waitlist below.'
+        ? 'All reserved. Ask to see the next litter first, below.'
         : open+' of '+list.length+' still available';
     }
-  } else if(countEl){
-    countEl.textContent='Call or text for current litters';
+
+    /* ── STRUCTURED DATA FOR THE LISTINGS ──────────────────────────
+       The page carries LocalBusiness markup in the head, which tells a
+       search engine who I am but nothing about what is for sale. Each
+       rabbit is a distinct thing with a name, a photo and a price, and
+       schema.org has an exact type for that, so it gets one.
+
+       BUILT FROM rabbits.js, NEVER TYPED. A hand-written copy of this
+       would be a second list of prices to keep in step with the first,
+       and the day it drifted it would be feeding a wrong price to Google
+       rather than to a reader. Derived, it cannot drift.
+
+       Client-side is fine here and this is checkable, not assumed:
+       Google's own documentation says Search "can understand and process
+       structured data that's available in the DOM when it renders the
+       page" (Generate Structured Data with JavaScript, Search Central).
+       Verify after any change with the Rich Results Test, which renders
+       the same way:  https://search.google.com/test/rich-results
+       ────────────────────────────────────────────────────────────── */
+    (function(){
+      var SITE='https://arizonarabbits.com/';
+      var STOCK={available:'InStock', reserved:'OutOfStock', adopted:'SoldOut'};
+      var items=list.map(function(r,i){
+        var cov=(r.photos&&r.photos.length&&r.photos[0].src)||r.photo||'';
+        /* a Coming soon frame is a promise of a photo, not a photo of a
+           rabbit, so it is never offered to a search engine as one */
+        var img=(cov && cov.indexOf('coming-soon')<0) ? SITE+cov : null;
+        var p={
+          '@type':'Product',
+          'name':r.name,
+          'description':r.note||'',
+          'category':(r.breed||'Holland Lop')+' rabbit',
+          'offers':{
+            '@type':'Offer',
+            'price':String(r.price),
+            'priceCurrency':'USD',
+            'availability':'https://schema.org/'+(STOCK[r.status]||'InStock'),
+            'url':SITE+'#available',
+            'seller':{'@type':'LocalBusiness','name':'Arizona Rabbits'}
+          }
+        };
+        if(img) p.image=img;
+        if(r.breed) p.brand={'@type':'Brand','name':r.breed};
+        return {'@type':'ListItem','position':i+1,'item':p};
+      });
+      if(!items.length) return;
+      var s=document.createElement('script');
+      s.type='application/ld+json';
+      s.textContent=JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'ItemList',
+        'name':'Holland Lop rabbits available in Tucson',
+        'itemListElement':items
+      });
+      document.head.appendChild(s);
+    })();
+  } else {
+    /* rabbits.js missing or malformed. The <noscript> fallback in the rail
+       does NOT cover this case: scripts are running, so the browser hides it,
+       and the reader is left with an empty strip where the rabbits should be.
+       Say the same thing the crawler would have read. */
+    if(countEl) countEl.textContent='Call or text for current litters';
+    if(railEl && !railEl.querySelector('.bunny'))
+      railEl.innerHTML='<p class="lede" style="max-width:46ch">The listings didn\'t load. '+
+        'Call or text me on <a href="tel:+15202702827">(520) 270-2827</a> and I\'ll tell you '+
+        'what I have.</p>';
   }
 
   /* ══════════════════════════════════════════════════════════════
@@ -2152,11 +2893,14 @@ body.locked{overflow:hidden}
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
-        vWhen=document.getElementById('viewerWhen'),
         vCap=document.getElementById('viewerCap'),
         vStrip=document.getElementById('viewerStrip'),
         vNote=document.getElementById('viewerNote'),
         vCta=document.getElementById('viewerCta'),
+        vBorn=document.getElementById('viewerBorn'),
+        vGrow=document.getElementById('viewerGrow'),
+        vBornText=document.getElementById('viewerBornText'),
+        vBornWhat=document.getElementById('viewerBornWhat'),
         vPrev=document.getElementById('viewerPrev'),
         vNext=document.getElementById('viewerNext'),
         vClose=document.getElementById('viewerClose');
@@ -2167,28 +2911,166 @@ body.locked{overflow:hidden}
       at=i;
       var s=shots[at];
       vImg.src=s.src; vImg.alt=(vName.textContent||'Rabbit')+', photo '+(at+1)+' of '+shots.length;
-      vWhen.textContent=niceDate(s.date);
-      vWhen.style.display=s.date?'':'none';
+      /* One line, always, in the same corner. A dated frame says when it was
+         taken and does the arithmetic; an undated one falls back to the birth
+         date, so the stamp is never empty and never two different heights. */
+      var age=ageAt(born,s.date);
+      vBornText.textContent=s.date
+        ? (niceDate(s.date)+(age?(' · '+age):''))
+        : (born?('Born '+niceDate(born)):'');
+      vBornWhat.textContent=s.date?'Photo taken ':'';
+      vBorn.classList.toggle('nocam',!s.date);
+      vBorn.style.display=vBornText.textContent?'':'none';
+      /* .empty hides without removing the space -- see .viewer-said */
       vCap.textContent=s.note||'';
-      vCap.style.display=s.note?'':'none';
+      vCap.classList.toggle('empty',!s.note);
       vPrev.disabled=(at===0); vNext.disabled=(at===shots.length-1);
       var btns=vStrip.querySelectorAll('button');
       for(var n=0;n<btns.length;n++) btns[n].classList.toggle('on',n===at);
       if(btns[at]&&btns[at].scrollIntoView) btns[at].scrollIntoView({block:'nearest',inline:'nearest'});
     }
 
+    /* ONE BOX, EVERY RABBIT.
+       Reserving a fixed number of lines would either clip the longest
+       description or leave dead space under the shortest, and the count that is
+       right at 430px is wrong at 360px. So measure instead: lay every
+       description out at the width in use, take the tallest, and give the
+       description slot that height for all of them. Cached per width, so it
+       costs one pass on first open and nothing after that. */
+    var born='';
+    /* One place, because fitBlocks has to lay out every rabbit's version of this
+       line to reserve the right height. Adding the birth date pushed "Sable
+       point" onto a second line while "Fawn" stayed on one, and that alone made
+       two rabbits' boxes 20px apart. */
+    /* metaText is the flat string, used only for measuring the reserved height.
+       paintMeta builds the same line for real, with the date as a link. */
+    /* Same rule the cards use: with one breed listed, "Holland Lop" is a fact
+       about the whole page, not about this rabbit, and it was costing a wrapped
+       line in the densest part of the box. It comes back the day a second breed
+       appears. */
+    function oneBreed(){
+      var seen={}, n=0;
+      for(var i=0;i<RABBITS.length;i++){
+        var bd=RABBITS[i].breed||''; if(bd&&!seen[bd]){seen[bd]=1;n++;}
+      }
+      return n<2;
+    }
+    function paintMeta(r){
+      vMeta.textContent='';
+      vMeta.appendChild(document.createTextNode(
+        [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')));
+      if(r.dob){
+        vMeta.appendChild(document.createTextNode(' · '));
+        var a=document.createElement('a');
+        a.className='litterlink';
+        a.href='litters.html#L'+r.dob;
+        a.target='_blank'; a.rel='noopener';
+        a.title='See the litter this rabbit came from';
+        a.textContent='Born '+niceDate(r.dob);
+        vMeta.appendChild(a);
+      }
+      if(r.ready&&r.status==='available'){
+        vMeta.appendChild(document.createTextNode(' · Ready '+r.ready));
+      }
+    }
+    function metaText(r){
+      return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
+        (r.dob?(' · Born '+niceDate(r.dob)):'')+
+        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+    }
+    /* How old, in the unit a person would actually use. Days for the first
+       fortnight, because a four day old rabbit is not "0 weeks"; whole weeks
+       after that, which is how litters are talked about and how his own eight
+       week rule is written; months once weeks stop being useful. Floored, never
+       rounded up: claiming a rabbit is older than it is would be the one
+       direction of error that matters here. */
+    function ageAt(dob,when){
+      if(!dob||!when) return '';
+      var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
+      if(isNaN(a)||isNaN(b)||b<a) return '';
+      var d=Math.floor((b-a)/86400000);
+      if(d===0) return 'the day it was born';
+      if(d<14)  return d+(d===1?' day old':' days old');
+      if(d<84){
+        /* Say the remainder rather than pick a rounding rule. Flooring made a
+           27 day old rabbit "3 weeks", which loses most of a week at the age
+           where a week is most of the animal; rounding up would have claimed
+           days it had not lived. "3 weeks, 6 days" needs neither. */
+        var w=Math.floor(d/7), rem=d%7;
+        return w+' week'+(w===1?'':'s')+
+               (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
+      }
+      var m=Math.floor(d/30.44);
+      return m+(m===1?' month old':' months old');
+    }
+
+    var fittedAt=-1;
+    function tallest(el, cls, texts, w){
+      var probe=document.createElement('p');
+      probe.className=cls;
+      probe.style.cssText='position:absolute;visibility:hidden;height:auto;width:'+w+'px';
+      el.parentNode.appendChild(probe);
+      var tall=0;
+      for(var i=0;i<texts.length;i++){
+        probe.textContent=texts[i]||'';
+        if(probe.offsetHeight>tall) tall=probe.offsetHeight;
+      }
+      probe.parentNode.removeChild(probe);
+      return tall;
+    }
+    function fitBlocks(){
+      var w=vNote.clientWidth;
+      if(!w||w===fittedAt) return;
+      var notes=[], caps=[], metas=[];
+      for(var i=0;i<RABBITS.length;i++){
+        notes.push(RABBITS[i].note||'');
+        metas.push(metaText(RABBITS[i]));
+        var g=galleryFor(RABBITS[i]);
+        for(var j=0;j<g.length;j++){
+          caps.push(g[j].note||'');
+        }
+      }
+      /* The growth row is reserved too. Today every rabbit shares a birth date so
+         it is the same line for all of them, but two litters listed at once sit
+         at different weeks with different stage names, and that is exactly the
+         kind of difference that put two rabbits' boxes 24px apart before. */
+      var grows=[];
+      for(var g=0;g<RABBITS.length;g++){
+        var gw=weekOf(RABBITS[g].dob);
+        if(gw===null) continue;
+        var gs=stageOf(gw), gl=daysFrom(RABBITS[g].dob,56);
+        grows.push('Week '+gw+' of '+LAST_WEEK+(gs?' · '+gs.label.toLowerCase():'')+
+          (gl!==null?' · '+gl+' days to go':''));
+      }
+      if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
+      vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
+      vNote.style.height=tallest(vNote,'viewer-note',notes,w)+'px';
+      vCap.style.height =tallest(vCap ,'viewer-cap' ,caps ,w)+'px';
+      fittedAt=w;
+    }
+
     function openFor(r){
       shots=galleryFor(r); if(shots.length<2) return false;
+      var cover=r.photo||shots[0].src;
       lastFocus=document.activeElement;
       vName.textContent=r.name;
       vPrice.textContent='$'+r.price;
-      vMeta.textContent=[r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
-        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+      paintMeta(r);
+      vGrow.innerHTML=growHTML(r,true);
+      born=r.dob||'';
       vNote.textContent=r.note||'';
       vNote.style.display=r.note?'':'none';
+      /* The stamp is set per frame in paint(), because a dated photo can say
+         something a bare birth date cannot: how old the rabbit was when the
+         shutter went. The birth date itself moves to the line under the name,
+         where it is on screen no matter which frame you are looking at, so the
+         two can be read against each other without flicking back. */
       var goneNow=(r.status==='adopted');
-      vCta.textContent=goneNow?'Join the waitlist':('Ask about '+r.name);
+      vCta.textContent=goneNow?'See the next litter first':('Ask about '+r.name);
       vCta.setAttribute('href',goneNow?'#waitlist':'#contact');
+      /* an adopted rabbit is not askable, so the waitlist link stays a plain link */
+      if(goneNow) vCta.removeAttribute('data-ask');
+      else vCta.setAttribute('data-ask',r.name);
       /* thumbnails built here, so their images are requested on open too */
       vStrip.innerHTML=shots.map(function(s,n){
         return '<button type="button" aria-label="Photo '+(n+1)+
@@ -2200,7 +3082,13 @@ body.locked{overflow:hidden}
       });
       vw.classList.add('open');
       document.body.classList.add('locked');
-      paint(0);
+      fitBlocks();        /* needs the dialog laid out, so it runs after .open */
+      /* Open on the photo the card was showing, not on photo one. You tapped a
+         picture; that picture has to still be there a moment later. Swapping it
+         for a different frame reads as the wrong thing opening. */
+      var start=0;
+      for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
+      paint(start);
       vClose.focus();
       return true;
     }
@@ -2216,6 +3104,14 @@ body.locked{overflow:hidden}
        every other card keeps its normal link behaviour untouched. */
     railEl.addEventListener('click',function(ev){
       var card=ev.target.closest('.bunny[data-shots]'); if(!card) return;
+      /* The PICTURE is what opens more pictures. Everything else on the card --
+         name, price, the "Ask" row -- goes to the form, so the word on the
+         control is what the control does.
+         Keyed on the photo rather than on the Ask row because the photo is one
+         large unambiguous target: WebKit and Chromium disagreed about which
+         element a tap on the Ask row's arrow actually lands on, and a rule that
+         depends on that is a rule that works in one browser. */
+      if(!ev.target.closest('.bunny-media')) return;
       var name=card.getAttribute('data-shots');
       var r=RABBITS.filter(function(x){return x.name===name;})[0];
       if(r && openFor(r)) ev.preventDefault();
@@ -2225,7 +3121,20 @@ body.locked{overflow:hidden}
     vw.addEventListener('click',function(ev){ if(ev.target===vw) shut(); });
     vPrev.addEventListener('click',function(){paint(at-1)});
     vNext.addEventListener('click',function(){paint(at+1)});
-    vCta.addEventListener('click',shut);
+    /* "Ask about this rabbit" has to do what a tap on the card does: name the
+       rabbit in the form and land you on it. Without this it was a bare
+       #contact link, so someone who had just looked through six photos of
+       Butterscotch arrived at a form that had never heard of her -- the worst
+       place to lose them, because they are further along than anyone else on
+       the page. The viewer closes first: the body is scroll-locked while it is
+       open, so scrolling before that does nothing. */
+    vCta.addEventListener('click',function(ev){
+      var n=vCta.getAttribute('data-ask');
+      shut();
+      if(!n) return;                       /* no name: plain #contact link */
+      ev.preventDefault();
+      document.dispatchEvent(new CustomEvent('rabbit:ask',{detail:n}));
+    });
     document.addEventListener('keydown',function(ev){
       if(!vw.classList.contains('open')) return;
       if(ev.key==='Escape') shut();
@@ -2328,6 +3237,150 @@ body.locked{overflow:hidden}
     return ok;
   }
 
+  /* ══════════════════════════════════════════════════════════════
+     ASK ABOUT A SPECIFIC RABBIT
+
+     Tapping a card is itself an answer: it says which rabbit, and it says
+     one rather than a pair. Asking step one again after that is asking a
+     question we already hold the answer to, and every question that isn't
+     load-bearing costs completions. The measured curve on lead forms is
+     23.1% at three fields, 17.0% at five, 11.4% at seven — the cost of a
+     field roughly doubles once you pass five, and this form sits at seven.
+     Dropping the redundant one is the cheapest field to lose because it
+     costs the visitor nothing to skip and William nothing to know.
+
+     What we do NOT do is flatten the wizard into one long form. Two-step
+     beats one-step at every length tested (+14% at five fields, +19% at
+     seven), so the steps stay and only the redundant one is skipped.
+
+     Wanting two rabbits is the case that breaks a plain text field. "I'd like
+     Teddy and Cloud" is a sentence someone has to compose, and composing is
+     the most expensive thing a form can ask for. So the receipt is not a
+     label, it is a live picker: every rabbit for sale is a chip, the one they
+     tapped starts selected, and a second is one more tap. Selecting two also
+     surfaces the pair discount at the only moment it can change a decision.
+
+     The names ride along in a hidden field, so William's email says which
+     rabbits without anybody typing them. The interest radio is still set
+     underneath, so the answer is recorded exactly as it always was.
+     ══════════════════════════════════════════════════════════════ */
+  var askBox=document.getElementById('askAbout'),
+      askName=document.getElementById('askName'),
+      askField=document.getElementById('askField'),
+      askPick=document.getElementById('askPick'),
+      askPair=document.getElementById('askPair'),
+      picked=[];
+
+  function joinNames(a){
+    if(a.length<2) return a[0]||'';
+    return a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+  }
+  function setInterest(v){
+    var r=form.querySelector('input[name="interest"][value="'+v+'"]');
+    form.querySelectorAll('input[name="interest"]').forEach(function(x){x.checked=false});
+    if(r) r.checked=true;
+  }
+  function syncAsk(){
+    askField.value=picked.join(', ');
+    askName.textContent=picked.length?joinNames(picked):'no one in particular yet';
+    askPair.classList.toggle('on',picked.length>1);
+    setInterest(picked.length>1?'A pair':picked.length===1?'One rabbit':'Not sure yet');
+    askPick.querySelectorAll('button').forEach(function(b){
+      var on=picked.indexOf(b.getAttribute('data-name'))>-1;
+      b.classList.toggle('on',on);
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+  }
+  /* Chips come from the cards the page actually rendered, never from the data
+     file directly, so a rabbit that is reserved or retired can't appear here. */
+  function buildPick(){
+    if(!askPick) return;
+    var names=[].map.call(document.querySelectorAll('.bunny[data-avail]'),
+      function(c){return c.getAttribute('data-ask')});
+    askPick.innerHTML=names.map(function(n){
+      return '<button type="button" data-name="'+n+'" aria-pressed="false">'+
+             '<span class="tick" aria-hidden="true"></span>'+n+'</button>';
+    }).join('');
+  }
+  if(askPick){
+    askPick.addEventListener('click',function(ev){
+      var b=ev.target.closest('button[data-name]'); if(!b) return;
+      var n=b.getAttribute('data-name'), i=picked.indexOf(n);
+      if(i>-1) picked.splice(i,1); else picked.push(n);
+      syncAsk();
+    });
+  }
+
+  function askAbout(name){
+    if(!askBox||!name) return;
+    if(!askPick.children.length) buildPick();
+    if(picked.indexOf(name)===-1) picked.push(name);
+    syncAsk();
+    askBox.classList.add('on');
+    if(cur!==1) show(1);            /* straight past "what are you after" */
+  }
+  /* WHERE A TAP ON A RABBIT LANDS YOU.
+
+     The card is a real <a href="#contact">. Left to the browser, that drops
+     you at the TOP of the contact section: the heading, the phone number, the
+     email address. On a phone the form is a full screen further down, so you
+     tap Butterscotch and arrive somewhere that never says Butterscotch. The
+     tap looks like it did nothing, or like it went to the wrong place. It is
+     the same failure as a "read more" link that lands above the article.
+
+     So with scripts on we take the scroll ourselves and land on the form card,
+     where the first things in view are "Step 2 of 3" and "Asking about
+     Butterscotch" with her chip already lit. The destination IS the receipt
+     for the tap. NN/g's finding on in-page links is that the target has to be
+     unmistakable at the moment you arrive; a heading three screens above the
+     thing you asked for is not.
+
+     With scripts off nothing is intercepted and the plain anchor still works,
+     which is why the href stays a real one. */
+  function bringToForm(){
+    var card=form.closest('.formcard')||form;
+    var pad=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+    var b=askBox.getBoundingClientRect();
+    /* Already looking straight at it -- somebody who scrolled to the form and
+       then tapped a card up the page and came back. Yanking the page under a
+       person who can already see the answer is its own bug. The island covers
+       the bottom ~96px, so "visible" has to mean visible above that. */
+    if(b.top>=pad && b.bottom<=innerHeight-96) return;
+    card.scrollIntoView({block:'start',behavior:'smooth'});
+    /* Move focus with it, or a keyboard user's next Tab carries on from the
+       rabbit card in the footer while their eyes are on the form. preventScroll
+       so the focus call cannot fight the smooth scroll it was just handed. */
+    try{ askBox.focus({preventScroll:true}) }catch(e){ }
+  }
+
+  /* Delegated on the document so it survives the rabbit cards being rebuilt.
+     Capture phase: the card is a real <a href="#contact">, and we want the
+     form primed BEFORE the browser jumps, so the visitor never sees step one
+     flash past. */
+  document.addEventListener('click',function(ev){
+    var card=ev.target.closest && ev.target.closest('.bunny[data-ask]');
+    if(!card) return;
+    /* On a card with several photos the PICTURE belongs to the photo view --
+       looking closer is the whole point of putting it there. The rest of the
+       card is still the form's. A card with one photo has nothing to open, so
+       all of it goes to the form. Same test as the photo view's own handler,
+       from the other side, so the two can never both decline a tap. */
+    if(card.hasAttribute('data-shots') && ev.target.closest('.bunny-media')) return;
+    askAbout(card.getAttribute('data-ask'));
+    ev.preventDefault();     /* the anchor's own jump would land in the wrong place */
+    bringToForm();
+  },true);
+
+  /* Handed over by the photo view's "Ask about <name>" button, which cannot
+     call in here directly -- it lives in its own closure. Same destination as
+     a card tap, so someone who browsed the photos first is not treated as a
+     different kind of visitor. */
+  document.addEventListener('rabbit:ask',function(ev){
+    if(!ev.detail) return;
+    askAbout(ev.detail);
+    bringToForm();
+  });
+
   form.addEventListener('click',function(ev){
     if(ev.target.closest('[data-next]')){ if(validate(steps[cur])&&cur<steps.length-1) show(cur+1); }
     else if(ev.target.closest('[data-back]')){ if(cur>0) show(cur-1); }
@@ -2349,7 +3402,7 @@ body.locked{overflow:hidden}
       if(dh) dh.textContent='One more step.';
       if(dp) dp.innerHTML='The form isn’t connected quite yet, so your answers didn’t send. '+
         'Text or call me at <b>(520) 270-2827</b>, or email '+
-        '<b>hello@arizonarabbitry.com</b>, and I’ll get right back to you.';
+        '<b>hello@arizonarabbits.com</b>, and I’ll get right back to you.';
       form.style.display='none'; doneEl.classList.add('show');
       doneEl.scrollIntoView({block:'center',behavior:'smooth'});
       console.warn('Form endpoint not set — replace [[FORM_ENDPOINT]].'); return;
@@ -2363,6 +3416,57 @@ body.locked{overflow:hidden}
       .catch(function(){ btn.textContent=orig; btn.disabled=false;
         alert('That didn\'t send. Please text me at (520) 270-2827 instead.'); });
   });
+
+  /* ══════════════════════════════════════════════════════════════
+     NO ORPHANS
+     A single word stranded on a line of its own reads as a mistake,
+     and it happens on a width nobody tested rather than the one the
+     page was designed at. text-wrap:pretty is supposed to prevent
+     it. Measuring every block at six widths in both engines found
+     stranded words surviving it in both, so it is not the guarantee.
+
+     This is: the space between the last two words is replaced with
+     a non-breaking one, so those two words can only ever wrap
+     together. The last line then has at least two words by
+     construction, at every width, in every engine, forever.
+
+     Run over generated text too — a rabbit's description comes from
+     rabbits.js and the photo view is built when it opens, so both
+     are bound after they exist rather than once at load.
+     ══════════════════════════════════════════════════════════════ */
+  function noOrphans(root){
+    if(!root) return;
+    var sel='p, li, summary, figcaption, blockquote, dd';
+    var els=root.querySelectorAll(sel);
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.querySelector(sel)) continue;                 /* leaves only */
+      /* fewer than three words and there is nothing to strand */
+      if((el.textContent.trim().split(/\s+/)||[]).length<3) continue;
+      var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
+      while((n=w.nextNode())){
+        if(!n.textContent.trim()) continue;
+        if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+        last=n;
+      }
+      if(!last) continue;
+      var t=last.textContent;
+      /* NB: written as an escape on purpose. A literal non-breaking space here
+         is invisible in an editor and one careless find-and-replace turns this
+         guarantee off without changing anything anybody can see. */
+      if(t.indexOf('\u00A0')>-1) continue;             /* already bound */
+      /* the final run of whitespace that has a word on each side of it */
+      var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
+      if(!m) continue;
+      last.textContent=m[1]+'\u00A0'+m[3];
+    }
+  }
+  noOrphans(document.body);
+  /* the photo view writes its text when it opens, so bind it then */
+  var vwEl=document.getElementById('viewer');
+  if(vwEl && 'MutationObserver' in window)
+    new MutationObserver(function(){ noOrphans(vwEl); })
+      .observe(vwEl,{childList:true,subtree:true,characterData:true});
 })();
 </script>
 </body>

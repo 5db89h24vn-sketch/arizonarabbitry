@@ -1,11 +1,10 @@
 /* ══════════════════════════════════════════════════════════════════════
-   ARIZONA RABBITRY — YOUR RABBIT LIST
+   ARIZONA RABBITS — YOUR RABBIT LIST
 
    This is the ONLY file you edit day to day. Never touch index.html.
 
-   ⚠ THE SIX BELOW ARE SAMPLES so you can see the layout working.
-     Replace the names, colours, dates and notes with your real rabbits
-     before you launch. Nothing here describes an actual animal.
+   These are your real rabbits, born 28 July 2026. Reservable now,
+   ready to go home 22 September (the eight week mark).
 
    ── TO MARK ONE RESERVED ──
       change   status: "available"
@@ -33,6 +32,32 @@
         When you have a real photo, put the file next to index.html and
         write  photo:  "photos/clover.jpg"
 
+   ── REPLACING A "COMING SOON" SLOT ──
+      Every rabbit currently lists five placeholder frames after its real
+      photo, so the card opens a photo view with the shots still to come.
+      When you take one, do two things:
+
+        1. Put the file next to index.html in the photos folder, named
+           after the rabbit and the shot:  photos/teddy-hands.jpg
+           (Your phone's date is stripped out when photos travel through
+           chat, so I cannot read it off the file. Type it in yourself.)
+        2. In that rabbit's photos list, swap the placeholder line's src
+           for yours and add the date you took it:
+
+             { src: "photos/teddy-hands.jpg", date: "2026-09-02",
+               note: "In my hands, so you can see how big she really is." }
+
+      Dated photos sort oldest first and the undated placeholders drop to
+      the end by themselves, so the set always reads as the rabbit growing
+      up with the gaps trailing behind. When the last placeholder is gone,
+      delete nothing else. It just works.
+
+      A NOTE ON THE COUNTER: the little badge on each card counts frames,
+      so today it says 6 when only one is a real photograph. Anyone who
+      taps it finds five Coming soon cards. That is a promise the page is
+      making on your behalf, so the sooner those slots are filled the
+      better. Five photos of four rabbits is about twenty minutes.
+
    ── ADDING MORE THAN ONE PHOTO ──
       Add a photos: [ ] list and the card becomes tappable: it opens a
       bigger view with all of them, dates included. Two or more photos
@@ -43,22 +68,51 @@
           { src: "photos/clover-2.jpg", date: "2026-08-19", note: "First time out on the rug" }
         ],
 
+      THE DATE IS WORTH FILLING IN. Whatever date you put on a photo gets
+      stamped in the corner of that photo along with how old the rabbit was
+      that day, worked out from its dob. So "date: 2026-08-24" on a rabbit
+      born 28 July shows as
+
+          24 Aug 2026 · 3 weeks, 6 days old
+
+      A photo with no date falls back to "Born 28 Jul 2026", which is still
+      true but says less. Nobody has to count weeks on their fingers, and
+      the growing-up sequence explains itself.
+
       date is optional, note is optional. Dates show as "5 Aug" under
       the photo, and the list is sorted oldest first so it reads as the
       rabbit growing up.
 
-      HOW MANY: four to six is the sweet spot. Testing across 240+ shops
-      found each photo up to about six adds roughly 5-8% to the odds of a
-      sale, and past six most of that stops. Nine is the practical ceiling
-      for a considered purchase like this. There's no hard limit in the
-      code, but photos are the slowest thing on any page, and slower pages
-      sell less, so more is not free.
+      HOW MANY: five or six. Not because more angles are more charming,
+      but because each photo should retire one question a person would
+      otherwise have to ask you, or decide on without an answer. Once the
+      questions are answered, another photo is just another slow thing on
+      the page.
 
-      WHAT TO SHOOT: hold one back for scale (a hand, or next to something
-      familiar). 71% of people who return an online purchase say the item
-      didn't match the photos, and for you that's the "not as described"
-      refund in the FAQ. Photos that show the truth cost you less than
-      refunds do.
+      Baymard Institute's usability testing is the source worth trusting
+      here: 56% of people start exploring the images the moment a product
+      page loads, before they read anything, and only about 25% of shops
+      give them enough to decide on. Underphotographing is the common
+      failure, not overphotographing.
+
+      WHAT TO SHOOT — each of these does a job:
+        1. Face on, eyes visible. This is the one that stops the scroll.
+        2. Full body from the side, standing. Shape, proportion, coat.
+        3. In someone's hands. Scale. "How big is this actually" is the
+           question people are worst at answering from a photo alone.
+        4. Ears and head close up. For a Holland Lop this is the breed
+           trait people are buying, and yours are still setting.
+        5. Doing something ordinary -- eating, mid-hop, sitting in the
+           run. Temperament reads from behaviour, never from a portrait.
+        6. Optional: alongside a littermate, for colour comparison.
+
+      Even light, plain background, and shoot at the rabbit's eye level
+      rather than from standing height. Down-angled phone photos make any
+      animal look smaller and further away.
+
+      Photograph what is actually there. Your own FAQ offers a refund if a
+      rabbit is not as described, so a flattering photo is a refund you
+      pay for later, plus a person who tells people about it.
 
    ── THE ONLY WAY TO BREAK THIS ──
       Every line inside a { } block ends with a comma, except the last.
@@ -71,81 +125,91 @@
 const RABBITS = [
 
   {
-    name:   "Marshmallow",
-    price:  400,
-    breed:  "Holland Lop",
-    sex:    "Doe",
-    colour: "Blue-eyed white",
-    ready:  "5 Sept",
-    status: "available",
-    soldOn: "",
-    photo:  "",
-    note:   "The rarest colour in this litter, and the calmest of the six. Settles in your arms within seconds."
-  },
-
-  {
-    name:   "Clover",
+    name:   "Teddy",
+    photos: [
+      { src: "photos/teddy.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
     price:  375,
     breed:  "Holland Lop",
     sex:    "Doe",
-    colour: "Broken tort",
-    ready:  "5 Sept",
+    colour: "Fawn",
+    dob:    "2026-07-28",
+    ready:  "22 Sept",
     status: "available",
     soldOn: "",
-    photo:  "",
-    note:   "First to the front of the pen every single time. Nosy in the best way."
+    photo:  "photos/teddy.jpg",
+    note:   "Solid fawn all over, like a little bear. The ears still stand for now. They lop on their own over the next few weeks."
   },
 
   {
-    name:   "Waffles",
+    name:   "Butterscotch",
+    photos: [
+      { src: "photos/butterscotch.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
     price:  375,
+    breed:  "Holland Lop",
+    sex:    "Doe",
+    colour: "Fawn",
+    dob:    "2026-07-28",
+    ready:  "22 Sept",
+    status: "available",
+    soldOn: "",
+    photo:  "photos/butterscotch.jpg",
+    note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down this week, which is exactly how the lop starts."
+  },
+
+  {
+    name:   "Sundae",
+    photos: [
+      { src: "photos/sundae.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big he really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,
     breed:  "Holland Lop",
     sex:    "Buck",
     colour: "Sable point",
-    ready:  "12 Sept",
+    dob:    "2026-07-28",
+    ready:  "22 Sept",
     status: "available",
     soldOn: "",
-    photo:  "",
-    note:   "Flops over the moment you start on his ears. Completely unbothered by noise."
+    photo:  "photos/sundae.jpg",
+    note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
   },
 
   {
-    name:   "Hazel",
-    price:  350,
-    breed:  "Holland Lop",
-    sex:    "Doe",
-    colour: "Chestnut",
-    ready:  "12 Sept",
-    status: "available",
-    soldOn: "",
-    photo:  "",
-    note:   "Quietest of the litter and very steady. A good first rabbit for a calmer house."
-  },
-
-  {
-    name:   "Mochi",
-    price:  350,
-    breed:  "Holland Lop",
-    sex:    "Doe",
-    colour: "Blue otter",
-    ready:  "",
-    status: "reserved",
-    soldOn: "",
-    photo:  "",
-    note:   "Reserved. Keeping sold and reserved rabbits visible is deliberate: it shows these prices are what people actually paid."
-  },
-
-  {
-    name:   "Barley",
+    name:   "Cloud",
+    photos: [
+      { src: "photos/cloud.jpg", date: "2026-08-23", note: "Out on the brick." },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big he really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
     price:  350,
     breed:  "Holland Lop",
     sex:    "Buck",
-    colour: "Broken black",
-    ready:  "",
-    status: "adopted",
-    soldOn: "2099-01-01",
-    photo:  "",
-    note:   "Dated 2099 on purpose so he stays visible while you build. Put a real date here and he retires himself after 3 days."
+    colour: "Sable point",
+    dob:    "2026-07-28",
+    ready:  "22 Sept",
+    status: "available",
+    soldOn: "",
+    photo:  "photos/cloud.jpg",
+    note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
   }
 
 ];

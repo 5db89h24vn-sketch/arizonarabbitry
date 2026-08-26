@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Litters | Arizona Rabbits</title>
+<meta name="description" content="The photo I take the day a litter is born, with the date on the picture itself.">
+<meta name="theme-color" content="#241F1D">
+<link rel="canonical" href="https://arizonarabbits.com/litters.html">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LITTER ARCHIVE.
+
+     TWO VIEWS, ONE PAGE, NO JAVASCRIPT.
+
+       the GRID     every litter as a small dated tile
+       the LITTER   one litter opened up, with the day-0 photo
+
+     The grid is what you see first. Tapping a tile opens that litter.
+     Backing out returns to the grid. A link from a rabbit on the main
+     page (litters.html#L2026-07-28) lands straight in the opened
+     litter, and "All litters" from there shows the whole archive.
+
+     HOW IT WORKS, so you don't undo it by accident: the browser's own
+     :target rule does all of it. A litter is hidden until the address
+     bar ends in its id, and the grid hides itself whenever a litter is
+     open. That means the back button works, links can be shared, and
+     it all still works with scripts switched off. There is no
+     JavaScript holding this together and there doesn't need to be.
+
+     THE ORDER OF THE BLOCKS MATTERS. Every <article> must sit ABOVE
+     <div class="browse">, because the rule that hides the grid reads
+     forwards only. Paste new litters above the others but always
+     before the browse block.
+
+     ─── TO ADD A LITTER ───
+
+     1. Take the photo the day they are born and stamp the date into
+        the picture itself. That dated record going back through every
+        litter is the one thing a classified ad can never copy, so
+        take it on day one before anything else.
+     2. Copy a whole <article> block and paste it ABOVE the newest one.
+        Change: the id (id="L2026-07-28" is the date born, and rabbits
+        link to it), the <time>, the photo src, the count, the names.
+     3. Copy a whole <a class="tile"> and paste it as the FIRST tile in
+        the grid, pointing at the same id. Same photo, same date.
+     4. Delete one "Coming soon" tile so the grid stays full rather
+        than growing a tail of placeholders.
+
+     WHEN A RABBIT IS PLACED, swap its link for a plain span in the
+     names row: <span class="gone">Teddy</span>. It stays in the
+     record, greyed, because the litter is a historical fact and the
+     names in it do not disappear when the rabbits do.
+
+     NOTHING HERE NAMES A RABBIT UNTIL IT IS FOUR WEEKS OLD. Most kit
+     losses happen in the first fortnight. The count can go up on day
+     one; the names wait.
+
+     RECORD BOTH NUMBERS. Born, and raised. Always both, every litter,
+     including the litters where they are the same. A page that only
+     ever reports whole litters surviving is a page nobody has any
+     reason to believe, and the day-0 photograph shows the nest, so a
+     count that quietly shrinks is a count a reader can catch. The
+     first entry here said "four kits, all four made it" and six were
+     born. That is the mistake this rule exists to stop.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- THE FONT SHEET NO LONGER HOLDS UP THE FIRST PAINT.
+     Measured, not assumed: with this stylesheet render-blocking, nothing at all
+     appeared until the request to Google came back. Blocked outright, the page
+     was on screen in 95ms. Everything in between was a visitor looking at
+     white while another company's server was asked for a font.
+     media="print" makes the browser fetch it at low priority without waiting
+     for it, and the onload flips it to apply the moment it lands. The URL
+     already carries display=swap, so text draws immediately in the fallback
+     stack and swaps when Fraunces and Inter arrive. The <noscript> copy keeps
+     the fonts for anyone without scripts, where the old blocking behaviour is
+     the only option available and is fine.
+     Do not "tidy" the media="print" away. It is the whole mechanism. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
+
+<style>
+:root{
+  color-scheme:light;
+  --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
+  --ink-faint:#8B817A; --line:#E3DACC; --line-soft:#EDE6DA;
+  --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
+  --serif:'Fraunces',ui-serif,Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --r:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* height:auto IS LOAD-BEARING. A width/height pair on an <img> tag maps
+   straight onto the CSS height property, and CSS height beats aspect-ratio.
+   So <img width="1400" height="1050"> with width:100% rendered 1050px tall
+   whatever the stylesheet asked for, which is why one litter photo filled a
+   whole phone screen. The attributes stay, because they are what reserves the
+   right space while the picture loads; this is what stops them dictating the
+   size afterwards. */
+img{max-width:100%;display:block;height:auto}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px}
+header{padding:26px 0 0}
+.back{display:inline-flex;align-items:center;gap:7px;min-height:44px;
+  color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
+.back:hover{text-decoration:underline}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
+  letter-spacing:-.02em;margin:18px 0 10px}
+.lede{color:var(--ink-soft);max-width:52ch;margin-bottom:28px}
+
+/* ─── THE GRID ─────────────────────────────────────────────────
+   Dated tiles, as many to a screen as the width allows. One litter
+   used to fill a phone from top to bottom, which is fine with one
+   litter and unusable with twelve: the page became a scroll with no
+   way to see what was in it. A tile is a date and a picture, which
+   is all you need to decide whether to open it. */
+.grid{display:grid;gap:12px;margin-bottom:8px;
+  grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
+.tile{display:block;border:1px solid var(--line);border-radius:var(--r);
+  background:#fff;overflow:hidden;text-decoration:none;color:inherit;
+  transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--brick);transform:translateY(-2px)}
+.tile img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
+.tile-body{padding:11px 12px 12px}
+/* one line, always. A date that wraps makes one tile taller than the
+   rest and the whole grid goes ragged. */
+.tile-date{font-family:var(--serif);font-weight:600;font-size:16px;
+  letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile-sub{font-size:13px;color:var(--ink-faint);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* a placeholder, so the grid reads as an archive that keeps going
+   rather than a page with one thing on it */
+.tile.soon{background:var(--paper-2);border-style:dashed;cursor:default}
+.tile.soon:hover{border-color:var(--line);transform:none}
+.soon-art{width:100%;aspect-ratio:4/3;display:flex;align-items:center;
+  justify-content:center;color:#CBBBA8}
+.soon-art svg{width:30px;height:30px;stroke:currentColor;fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* SAME TYPE AS A REAL TILE, only fainter. Giving the placeholder its own
+   smaller sans face made it a different height from a real tile, and a grid
+   where some squares are shorter than others is the exact complaint this page
+   was rebuilt to answer. Every tile carries both rows, so every tile matches. */
+.tile.soon .tile-date,.tile.soon .tile-sub{color:var(--ink-faint)}
+
+/* ─── ONE LITTER, OPENED ───────────────────────────────────────
+   Hidden until the address bar ends in this litter's id. */
+.litter{display:none}
+.litter:target{display:block}
+/* and when one is open, the grid steps aside. Reads forwards only,
+   which is why every article has to sit above the browse block. */
+.litter:target ~ .browse{display:none}
+
+.allback{display:inline-flex;align-items:center;gap:7px;min-height:44px;
+  color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px;
+  margin-bottom:10px}
+.allback:hover{text-decoration:underline}
+.litter-card{border:1px solid var(--line);border-radius:var(--r);background:#fff;
+  overflow:hidden;margin-bottom:18px}
+/* CAPPED ON PURPOSE. Left to itself the photo took the whole screen and
+   pushed everything that explains it below the fold. 4:3 keeps the shape
+   consistent with the tiles; the viewport cap keeps it from ever being
+   the only thing you can see. */
+.litter-card img{width:100%;aspect-ratio:4/3;max-height:54vh;object-fit:cover;
+  background:var(--paper-2)}
+.litter-body{padding:22px 24px 20px}
+.litter time{display:inline-block;font-size:13.5px;font-weight:600;
+  color:var(--brick-dk);background:var(--brick-tint);border:1px solid #E8D5C6;
+  border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
+.litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
+.litter p{color:var(--ink-soft)}
+.litter p + p{margin-top:10px}
+.who{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.who a,.who span{display:inline-flex;align-items:center;min-height:38px;
+  font-size:14.5px;font-weight:500;padding:0 13px;border-radius:100px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  text-decoration:none;white-space:nowrap}
+.who a:hover{border-color:var(--brick);color:var(--brick-dk)}
+/* For a rabbit that has already been placed: <span class="gone">Teddy</span>
+   instead of a link, since there is nothing left to send a reader to. The audit
+   found this style with no markup using it, which made it dead weight. It is
+   kept rather than deleted because every litter reaches this state eventually,
+   and it is documented here so it is a feature rather than a puzzle. */
+.who .gone{color:var(--ink-faint)}
+
+footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
+  font-size:13.5px;color:var(--ink-faint)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.001ms!important}
+}
+/* see NO ORPHANS at the foot of this file: this asks, that guarantees */
+/* headings balance, body text avoids a stranded last word. Headings were
+   in BOTH lists and the balance rule below cancelled the pretty one, so
+   half of it never did anything. */
+p,li,small,summary,figcaption{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <h1>Litters</h1>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- ══════ ONE ARTICLE PER LITTER, NEWEST FIRST ══════
+         All of these must stay ABOVE the browse block below. -->
+
+    <article class="litter" id="L2026-07-28">
+      <a class="allback" href="#all">&larr; All litters</a>
+      <div class="litter-card">
+        <img src="photos/litter-2026-07-28.jpg" width="1400" height="1050"
+             alt="Newborn Holland Lop kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
+        <div class="litter-body">
+          <time datetime="2026-07-28">Born 28 July 2026</time>
+          <h2>Six born, four raised</h2>
+          <p>This is the photo from the day they arrived, before their eyes were open and
+          before they had any fur. The fawn rabbit in the frame is from the litter before this
+          one, about a month old here.</p>
+          <p>Six were born and four made it through the first fortnight. Losing kits that
+          early is ordinary and it is not something I am going to leave out. This page is
+          worth nothing to you if I only print the numbers that flatter me.</p>
+          <p>The four went up on the site at four weeks old, once I could tell you their sex
+          and colour honestly. Two fawn does and two sable point bucks.</p>
+          <div class="who">
+            <a href="index.html#available">Teddy</a>
+            <a href="index.html#available">Butterscotch</a>
+            <a href="index.html#available">Sundae</a>
+            <a href="index.html#available">Cloud</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══════ THE GRID ══════ -->
+    <div class="browse" id="all">
+      <!-- VOICE RULES: William's first person, plain and concrete. No em dashes.
+           No lists of three. No balanced clever sentences. -->
+      <!-- IT USED TO SAY "Every litter I've raised". It wasn't, and the page's own
+           photograph gave it away: the fawn rabbit sitting in that nest box is a
+           month-old kit from an earlier litter I raised before this page existed. An
+           archive that claims to be complete and visibly isn't costs more than the
+           gap it was hiding, so the claim is now the true one. -->
+      <p class="lede">The photo I take the day a litter is born, kept here from then on. The
+      date is on the picture itself, so you can see for yourself that these are mine. This
+      record starts in July 2026. There was a litter a month before it that I raised before
+      this page existed.</p>
+
+      <div class="grid">
+
+        <a class="tile" href="#L2026-07-28">
+          <img src="photos/litter-2026-07-28.jpg" width="1400" height="1050" loading="lazy"
+               alt="Newborn Holland Lop kits curled together in a hay and fur nest box">
+          <div class="tile-body">
+            <div class="tile-date">28 July 2026</div>
+            <div class="tile-sub">Six born, four raised</div>
+          </div>
+        </a>
+
+        <!-- PLACEHOLDERS. Delete one each time you add a real litter, so the
+             grid stays full instead of growing a tail of empty squares. They
+             carry no date, because inventing a date for a litter that does not
+             exist is the one thing on this page that would cost you the trust
+             the dated photos are here to earn. -->
+        <div class="tile soon">
+          <div class="soon-art">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="14" rx="2"/>
+              <circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/>
+            </svg>
+          </div>
+          <div class="tile-body">
+            <div class="tile-date">Coming soon</div>
+            <div class="tile-sub">Photo on day one</div>
+          </div>
+        </div>
+
+        <div class="tile soon">
+          <div class="soon-art">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="14" rx="2"/>
+              <circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/>
+            </svg>
+          </div>
+          <div class="tile-body">
+            <div class="tile-date">Coming soon</div>
+            <div class="tile-sub">Photo on day one</div>
+          </div>
+        </div>
+
+        <div class="tile soon">
+          <div class="soon-art">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="14" rx="2"/>
+              <circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/>
+            </svg>
+          </div>
+          <div class="tile-body">
+            <div class="tile-date">Coming soon</div>
+            <div class="tile-sub">Photo on day one</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
+  </div>
+</footer>
+
+<script>
+/* NO ORPHANS. Same guarantee as the main page: the space between the last two
+   words becomes a non-breaking one, so a single word can never be stranded on a
+   line of its own. text-wrap:pretty asks for this; measuring found stranded
+   words surviving it in both engines, so the binding is what actually holds.
+   Written as an escape, never as a literal: an invisible character here is a
+   guarantee that can be switched off by accident and never noticed. */
+(function(){
+  var sel='p, li, summary, figcaption, blockquote, dd';
+  var els=document.querySelectorAll(sel);
+  for(var i=0;i<els.length;i++){
+    var el=els[i];
+    if(el.querySelector(sel)) continue;
+    if(el.textContent.trim().split(/\s+/).length<3) continue;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()) continue;
+      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+      last=n;
+    }
+    if(!last) continue;
+    var t=last.textContent;
+    if(t.indexOf('\u00A0')>-1) continue;
+    var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
+    if(!m) continue;
+    last.textContent=m[1]+'\u00A0'+m[3];
+  }
+})();
+</script>
+</body>
+</html>
