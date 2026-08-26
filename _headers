@@ -1,0 +1,36 @@
+# ═══════════════════════════════════════════════════════════════════
+# CACHING RULES FOR CLOUDFLARE PAGES.
+#
+# WHY THIS FILE EXISTS.
+# Pages caches static assets by file type. HTML is served with
+# max-age=0 and revalidated on every visit, which is right. But
+# rabbits.js is a .js file, so it was getting the default:
+#
+#     cache-control: public, max-age=14400, must-revalidate
+#
+# Four hours, in the visitor's own browser. rabbits.js is the ONE
+# file on this site whose whole job is to be accurate today. Two
+# rabbits were marked reserved and the site kept telling returning
+# visitors they were available, because their browser had a copy from
+# earlier and would not ask again for four hours. Someone enquires
+# about a rabbit that is already spoken for, and the site looks
+# either careless or dishonest. Neither is recoverable in one email.
+#
+# max-age=0 with must-revalidate does NOT mean re-downloading it
+# every time. The file still carries an ETag, so the browser asks
+# "has this changed?" and gets a 304 with no body when it hasn't.
+# The cost is one round trip; the benefit is that availability is
+# never wrong.
+#
+# Photographs are deliberately left alone. A rabbit's photo does not
+# change after it is published, so the long default cache is right
+# for those and keeps the site fast.
+# ═══════════════════════════════════════════════════════════════════
+
+/rabbits.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Same reasoning: this page carries what is available and what has
+# been placed, and it is cheap to revalidate.
+/litters.html
+  Cache-Control: public, max-age=0, must-revalidate
