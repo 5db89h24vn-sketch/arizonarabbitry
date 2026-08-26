@@ -2972,11 +2972,19 @@ body.locked{overflow:hidden}
       if(r.ready&&r.status==='available'){
         vMeta.appendChild(document.createTextNode(' · Ready '+r.ready));
       }
+      /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail after
+         three days, but its link from the litter page has to keep working
+         forever, and what a reader wants from it then is not a price, it is
+         "what happened to this one". So an adopted rabbit says when it left. */
+      if(r.status==='adopted'&&r.soldOn){
+        vMeta.appendChild(document.createTextNode(' · Found a home '+niceDate(r.soldOn)));
+      }
     }
     function metaText(r){
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
         (r.dob?(' · Born '+niceDate(r.dob)):'')+
-        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'')+
+        (r.status==='adopted'&&r.soldOn?(' · Found a home '+niceDate(r.soldOn)):'');
     }
     /* How old, in the unit a person would actually use. Days for the first
        fortnight, because a four day old rabbit is not "0 weeks"; whole weeks
@@ -3049,8 +3057,15 @@ body.locked{overflow:hidden}
       fittedAt=w;
     }
 
-    function openFor(r){
-      shots=galleryFor(r); if(shots.length<2) return false;
+    /* force=true means "somebody asked for THIS rabbit by name", which is a
+       different question from "is there a gallery worth opening". A tap on a
+       card only opens the viewer when there are several photos to justify it.
+       A link from the litter page is a request for the listing itself, and it
+       has to answer even for a rabbit with one photo or none yet. */
+    function openFor(r, force){
+      shots=galleryFor(r);
+      if(shots.length<2 && !force) return false;
+      if(!shots.length) shots=[{src:(r.photo||PLACEHOLDER)}];
       var cover=r.photo||shots[0].src;
       lastFocus=document.activeElement;
       vName.textContent=r.name;
@@ -3097,6 +3112,12 @@ body.locked{overflow:hidden}
       vw.classList.remove('open');
       document.body.classList.remove('locked');
       vImg.src='';
+      /* Drop the #r- address once the listing is closed, or a refresh reopens
+         the thing the reader just dismissed. replaceState rather than a new
+         entry, so Back still leaves the page instead of stepping through
+         every rabbit that was opened. */
+      if(/^#r-/.test(location.hash||'') && history.replaceState)
+        history.replaceState(null,'',location.pathname+location.search);
       if(lastFocus&&lastFocus.focus) lastFocus.focus();
     }
 
@@ -3115,6 +3136,63 @@ body.locked{overflow:hidden}
       var name=card.getAttribute('data-shots');
       var r=RABBITS.filter(function(x){return x.name===name;})[0];
       if(r && openFor(r)) ev.preventDefault();
+    });
+
+    /* ══════════════════════════════════════════════════════════════
+       ONE RABBIT, ONE ADDRESS.
+
+       index.html#r-teddy opens Teddy's listing full screen, whatever
+       else is on the page. That is what the name chips on the litter
+       archive point at, and it means every rabbit has a real address
+       that can be texted to somebody.
+
+       IT WORKS FOR SOLD RABBITS TOO, and that is the point of it. An
+       adopted rabbit leaves the rail after three days, but the link
+       still opens its listing, which now reads "Found a home 12 Sept"
+       and offers the next litter instead of a price. A litter page
+       whose names stop working after a fortnight is not an archive.
+
+       SO: DO NOT DELETE ADOPTED RABBITS FROM rabbits.js. Set the
+       status to adopted and give it a soldOn date. The rail hides it
+       on its own; this keeps its page alive.
+
+       The name is slugged both sides, so #r-teddy, #r-Teddy and
+       #r-butterscotch all land correctly and a rabbit called
+       "Miss Marple" is reachable at #r-miss-marple.
+       ══════════════════════════════════════════════════════════════ */
+    function slug(t){
+      return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-')
+        .replace(/^-+|-+$/g,'');
+    }
+    function rabbitFromHash(){
+      var m=/^#r-(.+)$/.exec(location.hash||'');
+      if(!m) return null;
+      var want=slug(decodeURIComponent(m[1]));
+      /* the FULL list, not the filtered rail: a retired rabbit is exactly
+         the case this has to answer */
+      for(var i=0;i<RABBITS.length;i++)
+        if(slug(RABBITS[i].name)===want) return RABBITS[i];
+      return null;
+    }
+    function openFromHash(){
+      var r=rabbitFromHash();
+      /* AN #r- ADDRESS THAT NAMES NOBODY MUST CLOSE WHAT IS OPEN, not leave it.
+         Going from #r-sundae to a mistyped or deleted name used to do nothing
+         at all, which meant Sundae stayed on screen while the address bar said
+         something else entirely. Showing the wrong rabbit is worse than showing
+         none: a reader who followed a link to one rabbit and got another has no
+         way to know it happened. */
+      if(!r){
+        if(vw.classList.contains('open')) shut();
+        return false;
+      }
+      if(vw.classList.contains('open')) shut();
+      return openFor(r,true);
+    }
+    /* on arrival, and again if the address changes while the page is open */
+    openFromHash();
+    window.addEventListener('hashchange',function(){
+      if(/^#r-/.test(location.hash||'')) openFromHash();
     });
 
     vClose.addEventListener('click',shut);

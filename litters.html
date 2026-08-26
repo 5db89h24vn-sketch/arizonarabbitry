@@ -47,10 +47,26 @@
      4. Delete one "Coming soon" tile so the grid stays full rather
         than growing a tail of placeholders.
 
-     WHEN A RABBIT IS PLACED, swap its link for a plain span in the
-     names row: <span class="gone">Teddy</span>. It stays in the
-     record, greyed, because the litter is a historical fact and the
-     names in it do not disappear when the rabbits do.
+     EVERY NAME HERE IS A LINK TO THAT RABBIT'S LISTING.
+     index.html#r-teddy opens Teddy full screen: photos, birth date,
+     the lot. The name in the link is lowercased with spaces turned
+     into hyphens, so "Miss Marple" becomes #r-miss-marple.
+
+     THIS KEEPS WORKING AFTER THE RABBIT IS SOLD, which is the whole
+     reason it is built this way. An adopted rabbit drops off the
+     front page after three days, but its listing still opens from
+     here and reads "Found a home 12 Sept" instead of a price. That
+     turns this page into a real archive rather than a list of dead
+     links.
+
+     FOR THAT TO HOLD, DO NOT DELETE SOLD RABBITS FROM rabbits.js.
+     Set status to "adopted" and add soldOn: "YYYY-MM-DD". The front
+     page hides it on its own. Delete the entry and this link breaks.
+
+     Use <span class="gone">Teddy</span> instead of a link only if you
+     have genuinely removed the rabbit from rabbits.js. The name stays
+     in the record either way, because the litter is a historical fact
+     and the names in it do not disappear when the rabbits do.
 
      NOTHING HERE NAMES A RABBIT UNTIL IT IS FOUR WEEKS OLD. Most kit
      losses happen in the first fortnight. The count can go up on day
@@ -235,10 +251,10 @@ h1,h2,h3{text-wrap:balance}
           <p>The four went up on the site at four weeks old, once I could tell you their sex
           and colour honestly. Two fawn does and two sable point bucks.</p>
           <div class="who">
-            <a href="index.html#available">Teddy</a>
-            <a href="index.html#available">Butterscotch</a>
-            <a href="index.html#available">Sundae</a>
-            <a href="index.html#available">Cloud</a>
+            <a href="index.html#r-teddy">Teddy</a>
+            <a href="index.html#r-butterscotch">Butterscotch</a>
+            <a href="index.html#r-sundae">Sundae</a>
+            <a href="index.html#r-cloud">Cloud</a>
           </div>
         </div>
       </div>
