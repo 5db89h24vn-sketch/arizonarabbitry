@@ -37,8 +37,9 @@
      schedule that slips costs more trust than having no schedule at all. Post when
      there is something about the rabbits worth telling people.
      Entries are written for BUYERS: plain language, no dev jargon.
-     The "coming soon" placeholder below is replaced by the first
-     real edition on Monday, August 24, 2026.
+     The weekday in a <time> is NOT typed by hand. datetest.js checks every
+     one against its own datetime attribute: a date naming the wrong day is
+     exactly the small wrongness this page cannot afford.
      ═══════════════════════════════════════════════════════════════ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +63,11 @@
 :root{
   color-scheme:light;
   --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
-  --ink-faint:#8B817A; --line:#E3DACC; --line-soft:#EDE6DA;
+  --ink-faint:#736A64;  /* was #8B817A = 3.59:1 on paper, which fails WCAG AA.
+     Darkened on index.html and MISSED HERE for days: the four pages each carry
+     their own copy of the palette, so a fix to one silently leaves the others
+     behind. palettetest.js now fails the build when any token drifts between
+     pages. Do not lighten this back. */ --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -104,6 +109,11 @@ h1,h2,h3{text-wrap:balance}
 .newscta .btn-primary{background:var(--brick);border-color:var(--brick);color:#fff}
 .newscta .btn:hover{border-color:var(--brick);color:var(--brick-dk)}
 .newscta .btn-primary:hover{background:var(--brick-dk);color:#fff}
+/* Inline doorway between pages, the same treatment as the Born link inside a
+   listing: a dotted rule rather than a coloured word, so prose stays prose. */
+.xlink{color:var(--brick-dk);text-decoration:none;
+  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+.xlink:hover{border-bottom-style:solid}
 </style>
 </head>
 <body>
@@ -139,11 +149,11 @@ h1,h2,h3{text-wrap:balance}
   <div class="wrap">
 
     <article class="edition">
-      <time datetime="2026-08-26">Tuesday, August 26, 2026</time>
+      <time datetime="2026-08-26">Wednesday, August 26, 2026</time>
       <h2>Two of the July litter are spoken for</h2>
       <p>Sundae and Cloud, the two sable point bucks, are both reserved. Teddy and
-      Butterscotch are still available. Both are fawn does from the same litter, born
-      28 July, and they can go home from 22 September.</p>
+      Butterscotch are still available. Both are fawn does from the same <a class="xlink" href="litters.html#L2026-07-28">litter, born
+      28 July</a>, and they can go home from 22 September.</p>
       <p>If you want one of the two that are left, the deposit holds it and comes off
       the price. If you would rather wait for the next litter, put your email on the
       list and you will see photos before they go up here.</p>

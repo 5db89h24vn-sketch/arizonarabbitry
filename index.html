@@ -653,6 +653,16 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .stage-when{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--brick);display:block;margin-bottom:7px;padding-top:12px;border-top:2px solid var(--brick)}
 .stage h3{font-size:17px;margin-bottom:5px}
+/* ARRIVING FROM A LISTING. Sent to one of four near-identical blocks, a reader
+   needs to know which one answered them. :target does it with no script, the
+   same device the litter archive already runs on. It fades rather than flashes:
+   the point is recognition, not alarm. */
+.stage:target .stage-when{border-top-width:4px}
+.stage:target h3{color:var(--brick-dk)}
+@media(prefers-reduced-motion:no-preference){
+  .stage:target{animation:stageArrive 1.6s ease-out both}
+  @keyframes stageArrive{0%{background:var(--brick-tint)}100%{background:transparent}}
+}
 .stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
 
 /* ── WHERE THIS RABBIT IS TODAY ──
@@ -970,11 +980,34 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 
      Sits at z-index 85: above the page, below the island's 90, so the buttons stay
      crisp. pointer-events:none, so it never eats a tap. */
+  /* TUNED BY MEASUREMENT, because it shipped far too heavy the first time.
+     The first version blurred 14px over an 88px band and climbed a third of the
+     way up the rabbit cards; on a phone it read as a smear, not a softening.
+
+     HOW THESE NUMBERS WERE CHOSEN. Four candidates were rendered in Chromium
+     with the band over the CARD RAIL -- the busiest thing that ever passes under
+     it -- and compared pixel by pixel against the same frame with the layer
+     hidden. Mean smear across the band, out of 255, and how far above the bottom
+     edge any change was still visible:
+
+         14px / 88px  (was)    3.22    reaches 78px      a smear
+          7px / 72px            1.41   reaches 54px
+          5px / 64px  (this)    0.76   reaches 24px      a softened edge
+        3.5px / 56px            0.46   reaches 23px      barely present
+
+     The first attempt at measuring was done over a flat stretch of page, where
+     blurring nothing produces nothing and all four scored the same. Anything
+     judging this has to be pointed at the cards.
+
+     NOTE FOR ANYONE CHANGING IT: headless WebKit does not composite
+     backdrop-filter at all, so this cannot be seen or measured there. Chromium
+     can, and real Safari on a phone certainly can. edgetest checks the geometry
+     of this layer in both engines; it has never checked how it looks. */
   .edgefade{position:fixed;left:0;right:0;bottom:0;z-index:85;pointer-events:none;
-    height:calc(env(safe-area-inset-bottom) + 88px);
-    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-    -webkit-mask-image:linear-gradient(to top,#000 22%,rgba(0,0,0,.55) 55%,transparent);
-            mask-image:linear-gradient(to top,#000 22%,rgba(0,0,0,.55) 55%,transparent)}
+    height:calc(env(safe-area-inset-bottom) + 64px);
+    -webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+    -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.85) 0,rgba(0,0,0,.3) 42%,transparent 78%);
+            mask-image:linear-gradient(to top,rgba(0,0,0,.85) 0,rgba(0,0,0,.3) 42%,transparent 78%)}
   /* No blur available means no half-measure: a masked layer with nothing to blur is an
      invisible no-op, which is the right outcome. */
   @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
@@ -1209,6 +1242,11 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .litterlink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .litterlink:hover{border-bottom-style:solid}
+/* Same treatment as the Born link on the line above it. Two doorways out of one
+   listing, and they must look like the same kind of thing. */
+.stagelink{color:var(--ink-faint);text-decoration:none;
+  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
+.stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
 /* Height is set in script to the tallest description in the whole list, measured
    at the width actually in use, so every rabbit's box is the same size as every
    other rabbit's. Sundae's description runs a line longer than his siblings' and
@@ -2976,6 +3014,12 @@ body.locked{overflow:hidden}
       if(!when||!h3) return;
       var m=/(\d+)\s*(?:[-\u2012-\u2015]\s*(\d+))?/.exec(when.textContent||'');
       if(!m) return;
+      /* THE ANCHOR IS ASSIGNED FROM THE SAME PARSE THAT BUILDS THE DATA, rather
+         than typed into the markup by hand. A hand-written id and a parsed week
+         range are two sources of truth for one fact, and the day somebody edits
+         "Week 3-5" the link would quietly point at the wrong block. This cannot
+         drift: the block a rabbit is linked to IS the block its stage came from. */
+      el.id = 'stage-w' + (+m[1]);
       out.push({from:+m[1], to:m[2]?+m[2]:+m[1], label:h3.textContent.trim()});
     });
     return out;
@@ -3023,7 +3067,13 @@ body.locked{overflow:hidden}
        wrong. Two words fix it, and they only go on the viewer's form: the card has
        no photo date to be confused with. */
     var txt='<b>'+(full?'Now in week ':'Week ')+wk+(full?' of '+LAST_WEEK:'')+'</b>';
-    if(full&&st) txt+=' &middot; '+esc(st.label.toLowerCase());
+    /* The stage name is a doorway. Somebody reading "carrying becomes normal"
+       has just been told the phase this rabbit is in and has no way to find out
+       what it means or what follows it; the whole routine is sitting further
+       down the same page. Links to the block for THIS rabbit's week, not to the
+       top of the section, so the answer is the first thing on screen. */
+    if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
+                      esc(st.label.toLowerCase())+'</a>';
     /* Once the day arrives the stage name already reads "ready to go home", so
        saying it twice in one line would be the same fact restated.
 
@@ -3775,6 +3825,22 @@ body.locked{overflow:hidden}
         });
       });
     }
+
+    /* THE STAGE LINK HAS TO CLOSE THE LISTING BEFORE IT CAN GO ANYWHERE.
+       While the listing is open the page behind it is locked with overflow:hidden,
+       so an ordinary anchor would change the address and then sit there, having
+       visibly done nothing. Shut it, wait one frame for the lock to release, then
+       set the address and let the browser's own smooth scrolling take it down.
+       Delegated on the container, which survives, rather than on the link, which
+       is rebuilt on every open. */
+    if(vGrow) vGrow.addEventListener('click',function(ev){
+      var a=ev.target.closest&&ev.target.closest('.stagelink');
+      if(!a) return;
+      ev.preventDefault();
+      var to=a.getAttribute('href');
+      shut();
+      requestAnimationFrame(function(){ location.hash=to; });
+    });
 
     vClose.addEventListener('click',shut);
     vw.addEventListener('click',function(ev){ if(ev.target===vw) shut(); });

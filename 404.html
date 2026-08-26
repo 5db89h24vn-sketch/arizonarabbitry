@@ -35,7 +35,11 @@
 <style>
 :root{
   color-scheme:light;
-  --paper:#FBF8F3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#8B817A;
+  --paper:#FBF8F3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#736A64;  /* was #8B817A = 3.59:1 on paper, which fails WCAG AA.
+     Darkened on index.html and MISSED HERE for days: the four pages each carry
+     their own copy of the palette, so a fix to one silently leaves the others
+     behind. palettetest.js now fails the build when any token drifts between
+     pages. Do not lighten this back. */
   --line:#E3DACC; --brick:#A0522D; --brick-dk:#7C3E21;
   --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -83,7 +87,7 @@ small{display:block;margin-top:22px;font-size:13.5px;color:var(--ink-faint)}
 
   <div class="row">
     <a class="btn primary" href="/">See the rabbits</a>
-    <a class="btn" href="/litters.html">Past litters</a>
+    <a class="btn" href="/litters">Past litters</a>
   </div>
 
   <small>Still stuck? Call or text me on <a href="tel:+15202702827"
