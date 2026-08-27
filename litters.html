@@ -68,6 +68,9 @@
         the grid, pointing at the same id. Same photo, same date.
      4. Delete one "Coming soon" tile so the grid stays full rather
         than growing a tail of placeholders.
+     5. The "Every rabbit from these litters" wall under the grid needs
+        NOTHING from you. It builds itself from rabbits.js, and each of
+        its tiles links to the rabbit AND back to the litter here.
 
      EVERY NAME HERE IS A LINK TO THAT RABBIT'S LISTING.
      index.html#r-teddy opens Teddy full screen: photos, birth date,
@@ -235,6 +238,27 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .wt .st-open{color:#2C6B41}
 .wt .st-hold{color:#8A5A08}
 .wt-gone img{opacity:.82;filter:saturate(.75)}
+
+/* THE WALL: every rabbit from the recorded litters, in one place on the
+   browse view. Script builds it from rabbits.js at the foot of this file, so
+   it can never lag the data, and adding a litter adds its rabbits here with
+   no work at all. Without script the page is simply the litter grid above,
+   which stands on its own. A wall tile is a DIV holding two links, because
+   one tile now goes two places: photo and name to the rabbit's live listing,
+   and a "See this litter" row to the litter it came from, full screen. Links
+   cannot nest, so the tile itself stopped being one. */
+.wall{margin-top:44px}
+.wall h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:4px}
+.wallhead{font-family:var(--serif);font-weight:600;font-size:15.5px;margin-top:22px}
+.wallhead a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.wallhead a:hover{color:var(--brick-dk);border-color:var(--brick)}
+.wt-main{display:block;color:inherit;text-decoration:none}
+/* 44px to match .back and .allback: this is a tap target, not a caption.
+   brick-dk on paper is 7.72:1, brick (hover) 5.30:1 — both clear AA. */
+.wt-lit{display:flex;align-items:center;min-height:44px;padding:0 12px;
+  border-top:1px solid var(--line-soft);font-size:12.5px;font-weight:500;
+  color:var(--brick-dk);text-decoration:none}
+.wt-lit:hover{color:var(--brick)}
 .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .who a,.who span{display:inline-flex;align-items:center;min-height:38px;
   font-size:14.5px;font-weight:500;padding:0 13px;border-radius:100px;
@@ -487,6 +511,67 @@ h1,h2,h3{text-wrap:balance}
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function nice(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
     return m?(+m[3])+' '+MON[+m[2]-1]+' '+m[1]:'';}
+  /* THE WALL. Every rabbit, grouped by birth date, newest first, inserted
+     before the newscta inside .browse so opening a litter hides it with the
+     grid. Two details that matter:
+     - the rabbit-link base is read off the first static tile, so in the
+       standalone viewing card (where those are rewritten to the live site)
+       the generated tiles follow along instead of pointing at a file that
+       is not there;
+     - the "See this litter" row is only added when the litter's own section
+       exists on this page, so a rabbit entered in rabbits.js ahead of its
+       litter write-up never carries a link to nothing. */
+  try{
+    var FM=['January','February','March','April','May','June','July','August',
+            'September','October','November','December'];
+    function full(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+      return m?(+m[3])+' '+FM[+m[2]-1]+' '+m[1]:'';}
+    var BASE='index.html#r-';
+    var probe=document.querySelector('a.wt[href*="#r-"]');
+    if(probe){var bm=/^(.*#r-)/.exec(probe.getAttribute('href'));if(bm)BASE=bm[1];}
+    var byDob={};
+    RABBITS.forEach(function(r){(byDob[r.dob||'']=byDob[r.dob||'']||[]).push(r);});
+    var dobs=Object.keys(byDob).sort().reverse();
+    var browse=document.querySelector('.browse');
+    var cta=browse?browse.querySelector('.newscta'):null;
+    if(browse&&dobs.length){
+      var wall=document.createElement('section');wall.className='wall';
+      var h=document.createElement('h2');h.textContent='Every rabbit from these litters';
+      wall.appendChild(h);
+      dobs.forEach(function(d){
+        var lid='L'+d, hasLitter=!!document.getElementById(lid);
+        if(dobs.length>1){
+          var head=document.createElement('p');head.className='wallhead';
+          if(hasLitter){
+            var la=document.createElement('a');la.href='#'+lid;
+            la.textContent='Born '+full(d);head.appendChild(la);
+          }else head.textContent='Born '+full(d);
+          wall.appendChild(head);
+        }
+        var grid=document.createElement('div');grid.className='whograph';
+        byDob[d].forEach(function(r){
+          var tile=document.createElement('div');tile.className='wt';
+          tile.setAttribute('data-rid',r.addr);
+          var main=document.createElement('a');main.className='wt-main';
+          main.href=BASE+r.addr;
+          var im=document.createElement('img');im.src=r.photo;im.loading='lazy';
+          im.alt=r.name+', a '+String(r.colour||'').toLowerCase()+' '+(r.breed||'rabbit');
+          var b=document.createElement('b');b.textContent=r.name;
+          var sm=document.createElement('small');sm.innerHTML='&nbsp;';
+          main.appendChild(im);main.appendChild(b);main.appendChild(sm);
+          tile.appendChild(main);
+          if(hasLitter){
+            var lit=document.createElement('a');lit.className='wt-lit';
+            lit.href='#'+lid;lit.textContent='See this litter \u2192';
+            tile.appendChild(lit);
+          }
+          grid.appendChild(tile);
+        });
+        wall.appendChild(grid);
+      });
+      cta?browse.insertBefore(wall,cta):browse.appendChild(wall);
+    }
+  }catch(e){}
   document.querySelectorAll('.wt[data-rid]').forEach(function(tile){
     var rid=tile.getAttribute('data-rid');
     var r=RABBITS.filter(function(x){return x.addr===rid;})[0];
