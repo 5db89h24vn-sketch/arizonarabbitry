@@ -1296,6 +1296,16 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    Secondary text is now one size and one colour, and the strata are separated
    by space instead of by size. */
 .viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
+/* THE DATED STATUS LINE — "Went home 20 Aug 2026" / "Spoken for since 28 Aug
+   2026" — is its own row, NOT a suffix on the meta. Appended to the meta it
+   pushed that one-line row onto two lines at phone widths and stranded the
+   date (orphantest caught it the day the first reservation date shipped, and
+   the sold state carried the same break latently: its meta plus a date was
+   just as long, only never rendered on real data yet). The avail-stamp
+   precedent applies: two statements get two lines by LAYOUT, not by
+   overflow. Height is reserved in fitBlocks across the whole list like
+   every other viewer row, so the dialog stays one size for every rabbit. */
+.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
 /* The birth date is the way through to the litter this rabbit came from. It opens
    in a NEW TAB on purpose: closing the photo view to go and read a different page
    would throw away the place of somebody who is mid-decision, which is the whole
@@ -2558,6 +2568,7 @@ body.locked{overflow:hidden}
     <div class="viewer-body">
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
+      <p class="viewer-when" id="viewerWhen" hidden></p>
       <div id="viewerGrow"></div>
       <div class="viewer-said" id="viewerSaid">
         <p class="viewer-cap" id="viewerCap"></p>
@@ -2570,7 +2581,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=c32cd94a"></script>
+<script src="rabbits.js?v=6f25c4a9"></script>
 
 <script>
 (function(){
@@ -3546,6 +3557,7 @@ body.locked{overflow:hidden}
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
+        vWhen=document.getElementById('viewerWhen'),
         vCap=document.getElementById('viewerCap'),
         vSaid=document.getElementById('viewerSaid'),
         vStrip=document.getElementById('viewerStrip'),
@@ -3634,31 +3646,42 @@ body.locked{overflow:hidden}
       /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail after
          three days, but its link from the litter page has to keep working
          forever, and what a reader wants from it then is not a price, it is
-         "what happened to this one". So an adopted rabbit says when it left.
+         "what happened to this one". So an adopted rabbit says when it left,
+         and a reserved one says when it was spoken for.
 
-         NO STATUS WORD HERE ANY MORE. The chip at the head of this row says
-         Reserved or Found a home; repeating it a centimetre later is the clutter
-         that moving the chip off the photograph was meant to clear. Only the DATE
-         stays, worded so it is not a second copy of the chip.
-
-         KEEP THIS IN STEP WITH metaText() BELOW. That one is what fitBlocks
-         measures to reserve this row's height, and this one is what the reader
-         actually sees. They drifted apart exactly once: the status words were
-         removed from the measurer and left in the renderer, so the line still
-         said "Found a home" on screen while the tests were told it would not. */
-      if(r.status==='adopted'&&r.soldOn){
-        vMeta.appendChild(document.createTextNode(' · Went home '+niceDate(r.soldOn)));
-      }
+         NO STATUS WORD HERE. The chip at the head of this row says Reserved
+         or Found a home; repeating it a centimetre later is the clutter that
+         moving the chip off the photograph was meant to clear. Only the WHEN
+         shows, worded so it is not a second copy of the chip — and it lives
+         on its OWN .viewer-when row, because as a suffix on the meta it
+         pushed that one-line row onto two at phone widths (see the
+         stylesheet note). Renderer and measurer both call whenText(), so
+         they cannot drift apart — the drift between a renderer and its
+         measurer is exactly the bug the old version of this comment
+         recorded. Only when the data carries the date; the site never
+         invents one. */
+      /* not toggled per rabbit: the slot's height is reserved across the whole
+         list in fitBlocks (the caption rule — one geometry for every rabbit),
+         so an empty when simply leaves the reserved line blank, exactly the
+         way a short meta sits in the tallest meta's box. The hidden attribute
+         in the markup only keeps the empty row out of the scriptless page. */
+      vWhen.textContent=whenText(r);
+      vWhen.hidden=false;
+    }
+    function whenText(r){
+      if(r.status==='adopted'&&r.soldOn)   return 'Went home '+niceDate(r.soldOn);
+      if(r.status==='reserved'&&r.reservedOn) return 'Spoken for since '+niceDate(r.reservedOn);
+      return '';
     }
     function metaText(r){
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
         (r.dob?(' · Born '+niceDate(r.dob)):'')+
-        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'')+
-        /* NO LONGER REPEATS THE STATUS. The chip beside this line already says
-           Reserved or Found a home, and saying it twice in one row is the clutter
-           this move was meant to remove. What the chip cannot carry is WHEN, so
-           that is all this keeps, worded so it is not a second copy of the chip. */
-        (r.status==='adopted'&&r.soldOn?(' · Went home '+niceDate(r.soldOn)):'');
+        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+        /* NO STATUS AND NO DATE HERE ANY MORE. The chip says the status; the
+           WHEN moved to its own .viewer-when row (whenText above), because as
+           a suffix here it pushed this one-line row onto two at phone widths.
+           This measurer now matches the renderer by construction: the meta is
+           only what paint() puts in the meta. */
     }
     /* How old, in the unit a person would actually use. Days for the first
        fortnight, because a four day old rabbit is not "0 weeks"; whole weeks
@@ -3734,6 +3757,13 @@ body.locked{overflow:hidden}
       }
       if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
+      /* the when-row follows the caption rule: sized across the WHOLE list so
+         the dialog is one geometry for every rabbit. While any rabbit carries
+         a dated status the slot is reserved for all of them; when none does,
+         whens are all empty and the row costs nothing. */
+      var whens=[];
+      for(var q=0;q<RABBITS.length;q++) whens.push(whenText(RABBITS[q]));
+      vWhen.style.minHeight=tallest(vWhen,'viewer-when',whens,w)+'px';
       vNote.style.height=tallest(vNote,'viewer-note',notes,w)+'px';
       /* A CAPTION SLOT NOBODY IS USING TAKES NO SPACE.
          Every real photograph carried "Out on the brick.", which described what

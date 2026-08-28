@@ -9,6 +9,10 @@
    ── TO MARK ONE RESERVED ──
       change   status: "available"
       to       status: "reserved"
+      and set  reservedOn: "2026-08-28"  (today's date, YYYY-MM-DD)
+      The date shows beside Reserved on the litter tiles and in the
+      photo view — a dated record reads as a live one. Leave it out
+      and the site just says Reserved; it never guesses a date.
 
    ── TO MARK ONE SOLD ──
       change   status: "available"
@@ -156,6 +160,7 @@ const RABBITS = [
     dob:    "2026-07-28",
     ready:  "22 Sept",
     status: "reserved",
+    reservedOn: "2026-08-28",
     soldOn: "",
     photo:  "photos/teddy.jpg",
     /* EARS: DESCRIBE, DO NOT PROMISE. This said "They lop on their own over the

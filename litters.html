@@ -500,7 +500,7 @@ h1,h2,h3{text-wrap:balance}
   }
 })();
 </script>
-<script src="rabbits.js?v=c32cd94a"></script>
+<script src="rabbits.js?v=6f25c4a9"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
    Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html
@@ -596,7 +596,13 @@ h1,h2,h3{text-wrap:balance}
       el.textContent=r.soldOn?('Went home '+nice(r.soldOn)):'Found a home';
       tile.classList.add('wt-gone');
     } else if(r.status==='reserved'){
-      el.textContent='Reserved'; el.className='st-hold';
+      /* dated when the data knows the date — "Reserved 28 Aug 2026" is the
+         same vocabulary as "Went home 20 Aug 2026" one branch up: a fact
+         with a date on it reads as a record being kept, not a label left
+         behind. When reservedOn is absent the word stands alone; the site
+         never invents a date it wasn't given. */
+      el.textContent=r.reservedOn?('Reserved '+nice(r.reservedOn)):'Reserved';
+      el.className='st-hold';
     } else {
       el.textContent='Available \u00B7 $'+r.price; el.className='st-open';
     }
