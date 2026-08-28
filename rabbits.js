@@ -28,6 +28,21 @@
         reorder them yourself; the order in this file doesn't matter.
       • The "X of Y still available" counter updates itself.
       • Adopted rabbits vanish 3 days after their soldOn date.
+
+   ── THE FRONT-PAGE HERO ──
+      The big photo at the top of the site is the FEATURED rabbit, and
+      clicking it opens that rabbit's listing.
+      • Put   feature: true   on the rabbit you want up there. Only
+        AVAILABLE rabbits are ever featured — reserve or sell the
+        featured one and the hero switches to the next available rabbit
+        by itself. Nobody available = the classic brick photo, linking
+        to the waitlist with a "Next litter" chip.
+      • Optional  hero: "img/....jpg"  uses a nicer photo than the
+        card photo for the hero only (that is how Butterscotch uses the
+        brick shot). Optional  heroPos: "50% 40%"  nudges the crop if a
+        face gets cut on tall screens.
+      • Hero photos carry the welfare bar: settled, ground level,
+        unrestrained, nothing to explain away.
       • Leave photo: "" and the site draws its own rabbit illustration.
         When you have a real photo, put the file next to index.html and
         write  photo:  "photos/clover.jpg"
@@ -170,6 +185,8 @@ const RABBITS = [
     status: "available",
     soldOn: "",
     photo:  "photos/butterscotch.jpg",
+    feature: true,
+    hero:   "img/hero-brick.jpg",
     note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down this week, which is exactly how the lop starts."
   },
 

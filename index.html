@@ -72,22 +72,23 @@
 <meta property="og:description" content="Hand-raised, handled daily from birth. Home at eight weeks, and you keep my number.">
 <!-- SHARE PREVIEW IMAGE. When a buyer texts this link to a spouse or posts it
      in a group chat, this picture IS the first impression; links with an image
-     preview get read, links without one get skipped. It is the HERO photo,
-     cropped to 1200x630: the rabbit fills the frame, and the card matches what
-     the page shows on arrival. It was a photo of a laptop with a rabbit beside
-     it until 27 Aug 2026 — first outside feedback flagged it, and the swap was
-     already this comment's own written instruction. No logo, no text in the
-     image: the title line under the card carries the words, an unknown mark
-     identifies nothing, and the rabbit is the argument.
-     TO SWAP LATER: replace img/og.jpg (keep 1200x630, under ~300 KB) AND bump
+     preview get read, links without one get skipped. Since 27 Aug 2026 it is
+     the front of William's BUSINESS CARD, cropped to 1200x630: the same face
+     handed across a table and rendered in a group chat, on purpose — one
+     identity everywhere it appears. (The day before, the swap from the old
+     laptop photo went to the plain hero shot; the card supersedes it because
+     the card now exists in the world, and matching it beats an unbranded
+     photo. This share image is for the FRONT PAGE only — each rabbit's own
+     shareable address under /r/ carries that rabbit's photo instead.)
+     TO SWAP LATER: replace img/og.jpg (keep 1200x630, under ~400 KB) AND bump
      the ?v= number below, or chat apps keep showing their cached old picture.
      build.py checks the file, the size, and these tags on every build. -->
 <!-- Absolute URL by design: share crawlers can't resolve relative paths.
      Goes live the moment the site is deployed at arizonarabbits.com. -->
-<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=2">
+<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A fawn Holland Lop rabbit lying on a brick ledge">
+<meta property="og:image:alt" content="Arizona Rabbits — hand-raised Holland Lops in Tucson. A fawn Holland Lop lying on a brick ledge.">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -501,6 +502,28 @@ header.nav.stuck{border-bottom-color:var(--line)}
 @media(max-width:920px){
   .hero-media{position:static;min-height:0}
   .hero-img{position:static;height:auto;aspect-ratio:16/10;min-height:0}}
+/* FEATURED-RABBIT HERO. Script wraps the hero photo in this link and pins the
+   chip when an available rabbit is being featured; with scripts off the hero
+   is simply the picture, exactly as before. The link stays position:static on
+   desktop so the photo keeps anchoring to .hero-media; on phones .hero-media
+   goes static, so the link takes over as the chip's anchor instead. */
+/* The link must HAVE a box: on desktop it fills .hero-media exactly as the
+   photo does (and the photo then anchors to it, same pixels as before); a
+   zero-size wrapper would still navigate through its child but would be
+   invisible to keyboard focus. On phones it becomes the in-flow wrapper. */
+.hero-go{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;
+  border-radius:var(--r)}
+@media(max-width:920px){.hero-go{position:relative;inset:auto}}
+/* THE CHIP IS A LABEL, NOT A BUTTON — the whole photo is the tap target,
+   so the pill owes no minimum size of its own and stays quiet. One ink for
+   both words on purpose: the first cut set gray sans against dark serif and
+   the pair read as two systems fighting; hierarchy now comes from size and
+   typeface alone, which is one contrast, balanced. */
+.hero-chip{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;
+  gap:7px;min-height:34px;padding:5px 13px;background:var(--paper);
+  border:1px solid var(--line);border-radius:100px;box-shadow:0 2px 8px rgba(36,31,29,.14)}
+.hero-chip b{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink)}
+.hero-chip small{font-size:12.5px;font-weight:500;color:var(--ink)}
 
 /* AVAILABLE */
 .avail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
@@ -2520,7 +2543,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=8aeed8e7"></script>
+<script src="rabbits.js?v=7ae5fd79"></script>
 
 <script>
 (function(){
@@ -3230,6 +3253,79 @@ body.locked{overflow:hidden}
   }
   function addrOf(r){ return (r && r.addr) || rslug(r && r.name); }
 
+  /* THE HERO IS THE FEATURED RABBIT — never a dice roll. Rotation and
+     random picks were rejected on the carousel evidence (auto-rotating
+     heroes go unseen or mis-clicked; engagement collapses past slide one)
+     and on first-impression research: the anchor image is too expensive
+     to gamble. Instead: the best AVAILABLE rabbit, chosen by a feature
+     flag in rabbits.js, else the first available with a real photo. The
+     photo becomes a link to that rabbit's listing with a small chip; on a
+     sale the hero hands itself to the next available rabbit, and with
+     nobody available the brand photo stands and links to the WAITLIST with
+     a "Next litter / Join the waitlist" chip, so the front door is never a
+     dead end whatever the stock is. Day one this
+     features Butterscotch USING THE SAME hero-brick photograph the page
+     already led with (it is her), so nothing visibly changes until the
+     data does. Featured photos carry the same welfare bar as the comment
+     above the hero markup: settled, ground level, unrestrained. */
+  (function(){
+    try{
+      var img=document.querySelector('.hero-img');
+      if(!img || typeof RABBITS==='undefined' || !Array.isArray(RABBITS)) return;
+      var avail=RABBITS.filter(function(r){
+        return r.status==='available' && realPhoto(r.hero||r.photo);
+      });
+      /* NOBODY AVAILABLE — the photo stays (the brand shot, a real rabbit
+         William raised, never a made graphic: a "coming soon" banner is the
+         classified-ad move and pattern-matches to an ad, and "very soon" is
+         a date-shaped promise with no date in it, the exact staleness this
+         site refuses to publish). But the hero still has a job: it links to
+         the waitlist with the same quiet chip furniture — "Next litter ·
+         Join the waitlist" — so the front door is never a dead end whatever
+         the stock is. */
+      if(!avail.length){
+        var wl=document.getElementById('waitlist');
+        if(!wl) return;
+        var aw=document.createElement('a');
+        aw.className='hero-go';
+        aw.href='#waitlist';
+        aw.setAttribute('aria-label','Join the waitlist for the next litter');
+        img.parentNode.replaceChild(aw,img);
+        aw.appendChild(img);
+        var chw=document.createElement('span'); chw.className='hero-chip';
+        var sw=document.createElement('small'); sw.textContent='Next litter';
+        var bw=document.createElement('b'); bw.textContent='Join the waitlist';
+        chw.appendChild(sw); chw.appendChild(bw);
+        aw.appendChild(chw);
+        return;
+      }
+      var pick=null;
+      for(var i=0;i<avail.length;i++){ if(avail[i].feature){ pick=avail[i]; break; } }
+      pick=pick||avail[0];
+      var src=pick.hero||pick.photo;
+      if(img.getAttribute('src')!==src) img.setAttribute('src',src);
+      if(pick.heroPos) img.style.objectPosition=pick.heroPos;
+      img.alt=pick.name+', a '+String(pick.colour||'').toLowerCase()+' '+(pick.breed||'rabbit');
+      var a=document.createElement('a');
+      a.className='hero-go';
+      a.href='#r-'+addrOf(pick);
+      a.setAttribute('aria-label','See '+pick.name+"'s listing");
+      img.parentNode.replaceChild(a,img);
+      a.appendChild(img);
+      /* PASSIVE ON PURPOSE — William's call, and it matches the site's own
+         rule that a status word is pressure. The chip says only "Meet
+         <name>": no price, no Available, no green. Whoever taps chooses to
+         see the listing, and the listing tells the whole truth. Only
+         available rabbits are ever featured, so nothing is being hidden —
+         it is just not being shouted. */
+      var chip=document.createElement('span'); chip.className='hero-chip';
+      var s=document.createElement('small'); s.textContent='Meet';
+      var b=document.createElement('b'); b.textContent=pick.name;
+      chip.appendChild(s); chip.appendChild(b);
+      a.appendChild(chip);
+    }catch(e){}
+  })();
+
   if(railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
     var list=RABBITS.filter(function(r){
       if(r.status!=='adopted' || !r.soldOn) return true;
@@ -3853,11 +3949,17 @@ body.locked{overflow:hidden}
        to somebody who is about to ask about it.
        ══════════════════════════════════════════════════════════════ */
     function shareUrl(r){
-      /* split off any existing fragment and drop index.html: the live host
-         308-redirects /index.html to /, and a shared link should not spend a
-         round trip proving that. */
-      var base = location.href.split('#')[0].replace(/index\.html$/, '');
-      return base + '#r-' + addrOf(r);
+      /* THE SHARED ADDRESS IS /r/<addr>, ABSOLUTE, NOT the #r- fragment.
+         Chat apps build their preview by fetching the URL server-side, and a
+         #fragment is never sent to a server — so every share of /#r-teddy
+         previewed as the front page, whichever rabbit it was. /r/teddy is a
+         real page (generated from rabbits.js by makeshare.py at build time)
+         carrying THAT rabbit's photo and name in its share tags, which then
+         forwards the human straight to the listing at /#r-teddy. Absolute on
+         purpose: a link copied from the viewing card or a local file must
+         still point at the live site. Links already sent as #r- keep working
+         forever; the router is untouched. */
+      return 'https://arizonarabbits.com/r/' + addrOf(r);
     }
     function shareText(){
       var bits = [ (vName.textContent || '').trim() ];
