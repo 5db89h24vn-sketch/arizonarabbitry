@@ -3239,6 +3239,15 @@ body.locked{overflow:hidden}
     if(!m) return s;
     return parseInt(m[3],10)+' '+MON[parseInt(m[2],10)-1]+' '+m[1];
   }
+  /* the CARD's date register: day and month, no year — the same register as
+     "Ready 22 Sept". Used by the status pill, where the year would spend a
+     third of the pill saying something recency already says: the whole point
+     of dating the pill is that the date is fresh. Full dates live on the
+     litter tiles and in the photo view. */
+  function dayMon(s){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+    return m?parseInt(m[3],10)+' '+MON[parseInt(m[2],10)-1]:'';
+  }
 
   /* ══════════════════════════════════════════════════════════════
      ONE RABBIT, ONE ADDRESS -- INCLUDING THE SECOND RABBIT OF THAT NAME.
@@ -3455,8 +3464,20 @@ body.locked{overflow:hidden}
          data-rids, and the tap handler uses the one that can tell them apart. */
       var attrs=' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"'+
                 ' data-rid="'+esc(addrOf(r))+'"';
+      /* THE PILL CARRIES THE DATE, his call, and the psychology backs it:
+         a bare "Reserved" is the exact shape of fabricated scarcity, so
+         some readers discount it, while a specific checkable date reads as
+         a record ("Reserved 28 Aug" is a claim you could catch me lying
+         about; "Reserved" is not). A recent date is also the liveliest
+         proof the site is maintained — the availability stamp's argument,
+         now on every card where a status changes. Card register (day and
+         month, see dayMon); the pill stays a bare word when the data has
+         no date, because the site never invents one. */
+      var stLabel=st[1];
+      if(r.status==='reserved'&&r.reservedOn) stLabel='Reserved '+dayMon(r.reservedOn);
+      else if(r.status==='adopted'&&r.soldOn) stLabel='Went home '+dayMon(r.soldOn);
       return '<a class="bunny'+dim+'"'+attrs+'>'+
-        '<div class="bunny-media"><span class="status '+st[0]+'">'+st[1]+'</span>'+
+        '<div class="bunny-media"><span class="status '+st[0]+'">'+stLabel+'</span>'+
         '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
         ' loading="lazy" onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
         '<div class="bunny-body">'+
