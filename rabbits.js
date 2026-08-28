@@ -155,7 +155,7 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "available",
+    status: "reserved",
     soldOn: "",
     photo:  "photos/teddy.jpg",
     /* EARS: DESCRIBE, DO NOT PROMISE. This said "They lop on their own over the
