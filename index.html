@@ -518,8 +518,14 @@ header.nav.stuck{border-bottom-color:var(--line)}
    so the pill owes no minimum size of its own and stays quiet. One ink for
    both words on purpose: the first cut set gray sans against dark serif and
    the pair read as two systems fighting; hierarchy now comes from size and
-   typeface alone, which is one contrast, balanced. */
-.hero-chip{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;
+   typeface alone, which is one contrast, balanced.
+   BASELINE, not center: two words at different sizes read along a shared
+   baseline, and centering put Meet's baseline 1px below Butterscotch's --
+   a visible step at phone pixel densities that read as a bug (it was
+   reported as one from a real phone). Flexbox baseline alignment is the
+   fix; the pill's height still comes from min-height, so nothing else
+   moves. */
+.hero-chip{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:baseline;
   gap:7px;min-height:34px;padding:5px 13px;background:var(--paper);
   border:1px solid var(--line);border-radius:100px;box-shadow:0 2px 8px rgba(36,31,29,.14)}
 .hero-chip b{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--ink)}
@@ -1085,17 +1091,38 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
    decelerating curve — the element arrives at full speed and eases to a
    stop, so it feels responsive while giving the eye time to land on it —
    and exits get a short accelerating one, because a leaving element holds
-   no information and shouldn't hold the screen. 400ms in, 200ms out, with
-   a fade riding along so the island materializes instead of shunting.
+   no information and shouldn't hold the screen. 400ms in, 200ms out.
    NN/g's ceiling is 500ms ("a real drag" past that); 400ms is their stated
    allowance for large movements, and a 60px bar crossing the screen edge
-   qualifies. The old .22s symmetric ease read as a mechanical pop. */
+   qualifies. The old .22s symmetric ease read as a mechanical pop.
+
+   NO ENTRANCE FADE, AND THE MILDER DECELERATION CURVE — both changed after
+   the bar was reported (from a real phone) as teleporting in whenever the
+   eyes were on the rabbits, animation or no animation. Frame capture of the
+   old entrance (fade + emphasized-decelerate) explained it: of the bar's
+   95px of travel, 9px happened at 80%+ opacity — two-thirds of the distance
+   was covered in the first 50ms at ~30% opacity, and by full contrast it
+   was creeping sub-pixel. Away from the point of gaze the eye detects
+   moving CONTRAST, not easing intent: a ghost did the traveling, a solid
+   bar appeared near-stationary, so off-fovea the percept was a pop. The
+   fade was decoration this element never needed — it enters from BELOW THE
+   SCREEN EDGE, which already occludes it — so the fade is gone (a 50ms ramp
+   only so no frame ever flashes) and the travel now happens at full
+   contrast on the standard decelerate curve, which spreads visible motion
+   across ~250ms instead of burning it in 50. Same duration, same quiet: a
+   coherent upward slide is a weaker attention grab than an abrupt onset,
+   not a stronger one — onset transients are the thing peripheral vision
+   is MOST wired to flag. Measured after: 74% of raw travel at 80%+
+   opacity, and the sub-opacity remainder all happens below the screen
+   edge — every pixel of travel the screen ever shows is at full contrast.
+   prefers-reduced-motion flattens this to a near-instant appearance via
+   the global .001ms rule, which is the correct treatment for it. */
 .js-mbar .mbar{transform:translateY(calc(115% + 26px));opacity:0;visibility:hidden;
   transition:transform .2s cubic-bezier(.3,0,.8,.15),
              opacity .15s ease,visibility 0s linear .2s}
 .js-mbar .mbar.show{transform:none;opacity:1;visibility:visible;
-  transition:transform .4s cubic-bezier(.05,.7,.1,1),
-             opacity .25s ease-out,visibility 0s}
+  transition:transform .4s cubic-bezier(0,0,.2,1),
+             opacity .05s linear,visibility 0s}
 
 /* Section reveals were a half-second drift; now a 300ms snap on a sharp
    decelerating curve. Same motion, but it arrives and STOPS, which is where
