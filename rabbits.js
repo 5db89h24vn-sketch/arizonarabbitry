@@ -14,11 +14,33 @@
       photo view — a dated record reads as a live one. Leave it out
       and the site just says Reserved; it never guesses a date.
 
-   ── TO MARK ONE SOLD ──
-      change   status: "available"
+   ── TO MARK ONE SOLD (paid in full, still here) ──
+      change   status: "reserved"  (or "available")
+      to       status: "sold"
+      and set  soldOn: "2026-08-29"      (the day it was paid for)
+      The rabbit STAYS on the site, growing week by week under a
+      dated Sold label. That is the point: a sold rabbit visibly
+      staying until eight weeks is the strongest proof the
+      home-at-eight-weeks promise is real.
+
+   ── IF A SOLD RABBIT IS NO LONGER HERE ──
+      add      departed: true
+      It comes off the front page at once. A listing on the rail tells
+      people the rabbit is in the nursery, and the site must not say
+      what isn't so. Its litter tile and archive entry keep the dated
+      record ("Sold 29 Aug 2026", photo dimmed) and its link keeps
+      opening. Do NOT set wentHome unless it is the real day the
+      rabbit left — this site never prints a date that didn't happen.
+
+   ── TO MARK ONE PICKED UP (it actually went home) ──
+      change   status: "sold"  (or whatever it was)
       to       status: "adopted"
-      and set  soldOn: "2026-08-20"      (today's date, YYYY-MM-DD)
-      It stays up as proof for 3 days, then disappears on its own.
+      and set  wentHome: "2026-09-22"    (the day it actually left)
+      NEVER a date before eight weeks — the site now refuses to
+      build if an adopted rabbit's went-home date is under 56 days
+      after its dob, because "Went home" earlier than the promise
+      would contradict the site's own cited rule in public.
+      It stays up as proof for 7 days, then disappears on its own.
 
    ── TO ADD A NEW RABBIT ──
       Copy any block between { and }, including the comma at the end,
@@ -28,10 +50,12 @@
       Delete its whole block, from { to },
 
    ── RULES THE SITE HANDLES FOR YOU ──
-      • Cards are sorted most expensive first, automatically. Don't
+      • Cards sort themselves: available rabbits first, then reserved,
+        then sold, most expensive first within each group. Don't
         reorder them yourself; the order in this file doesn't matter.
       • The "X of Y still available" counter updates itself.
-      • Adopted rabbits vanish 3 days after their soldOn date.
+      • Sold rabbits with departed: true never show on the front page.
+      • Adopted rabbits vanish 7 days after the day they went home.
 
    ── THE FRONT-PAGE HERO ──
       The big photo at the top of the site is the FEATURED rabbit, and
@@ -211,8 +235,10 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "reserved",
-    soldOn: "",
+    status: "sold",
+    reservedOn: "2026-08-25",
+    soldOn: "2026-08-29",
+    departed: true,
     photo:  "photos/sundae.jpg",
     note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
   },
@@ -233,8 +259,10 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "reserved",
-    soldOn: "",
+    status: "sold",
+    reservedOn: "2026-08-25",
+    soldOn: "2026-08-29",
+    departed: true,
     photo:  "photos/cloud.jpg",
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
   }

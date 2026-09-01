@@ -1667,7 +1667,7 @@ body.locked{overflow:hidden}
              now its own element that either sits inline or drops to a full line
              of its own, which is a layout rather than a fragment. -->
         <p class="avail-stamp">Availability
-          <time id="availStamp" datetime="2026-08-28">current as of August 28, 2026</time>
+          <time id="availStamp" datetime="2026-08-30">current as of August 30, 2026</time>
           <a href="updates.html">rabbitry news</a> &middot;
           <a href="litters.html">every litter</a></p>
       </div>
@@ -2581,7 +2581,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=6f25c4a9"></script>
+<script src="rabbits.js?v=5ba56b18"></script>
 
 <script>
 (function(){
@@ -3056,13 +3056,29 @@ body.locked{overflow:hidden}
      RABBIT RAIL — built from rabbits.js
      Everything you edit lives in that file. This code enforces the
      rules so they can't be undone by accident:
-       · sorted most expensive first (price anchoring)
+       · sorted available first, then reserved, then sold; most
+         expensive first within each group (price anchoring on the
+         rabbits a person can actually buy)
        · adopted rabbits retire automatically after RETIRE_DAYS
        · the availability counter is derived, never typed
      ══════════════════════════════════════════════════════════════ */
-  var RETIRE_DAYS=3;
+  /* SEVEN, up from three, his call on the number's direction and mine on the
+     figure: a dated "Went home" card is recency proof, the rail is small
+     enough that a week of it crowds nothing, and seven days spans every
+     weekly visiting pattern once. The clock starts the day the rabbit
+     actually LEFT (wentHome; older records carried it in soldOn before
+     "sold" became its own state, so that stays as the fallback). */
+  var RETIRE_DAYS=7;
   var LABEL={available:['st-open','Available'],
              reserved :['st-hold','Reserved'],
+             /* SOLD IS ITS OWN STATE, added the day both sable points were
+                paid for at four and a half weeks old. "Adopted" says the
+                rabbit LEFT, and writing that before eight weeks would
+                contradict the site's cited promise in public — but "sold and
+                still here, growing" is true, dated, and the best proof the
+                promise holds. Sold rabbits stay on the rail until they
+                actually go home; only then do they become adopted. */
+             sold     :['st-hold','Sold'],
              adopted  :['st-gone','Found a home']};
 
   /* House placeholder. Used automatically whenever a rabbit has no photo yet,
@@ -3375,11 +3391,33 @@ body.locked{overflow:hidden}
 
   if(railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
     var list=RABBITS.filter(function(r){
-      if(r.status!=='adopted' || !r.soldOn) return true;
-      var d=new Date(r.soldOn+'T00:00:00');
+      /* SOLD AND ALREADY GONE: departed:true takes a sold rabbit off the
+         rail immediately, no timer. A card on the rail tells the reader
+         the rabbit is in the nursery; for a rabbit that has left, the
+         page would be saying something false by arrangement, which is
+         the one thing this site never does. Its address, photo view,
+         litter tile and wall entry all stay live and keep the dated
+         true record ("Sold 29 Aug 2026"). No went-home line ever
+         renders for it unless a real wentHome date is entered. */
+      if(r.status==='sold' && r.departed) return false;
+      var left=r.wentHome||r.soldOn;
+      if(r.status!=='adopted' || !left) return true;
+      var d=new Date(left+'T00:00:00');
       if(isNaN(d.getTime())) return true;                 // bad date, keep it
       return (Date.now()-d.getTime())/86400000 <= RETIRE_DAYS;
-    }).sort(function(a,b){ return (b.price||0)-(a.price||0); });
+    }).sort(function(a,b){
+      /* AVAILABLE FIRST, his catch: sorted by price alone, a sold rabbit
+         could sit ABOVE an available one — the space at the top of the rail
+         going to rabbits nobody can buy. Price anchoring only works on the
+         CHOICE SET, so anchoring is preserved (the available group still
+         leads with its most expensive) and improved: the first prices seen
+         are all buyable. Sold and reserved sink below, still visible,
+         still dated, still telling the eight-week story. */
+      var RANK={available:0,reserved:1,sold:2,adopted:3};
+      var ra=(RANK[a.status]!=null?RANK[a.status]:9), rb=(RANK[b.status]!=null?RANK[b.status]:9);
+      if(ra!==rb) return ra-rb;
+      return (b.price||0)-(a.price||0);
+    });
 
     var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"'+
               ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
@@ -3427,7 +3465,11 @@ body.locked{overflow:hidden}
            adopted    -> no, never. The only honest offer left is hearing about the
                          next litter first, which is the one waitlist on the page. */
       var open=(r.status==='available');
-      var gone=(r.status==='adopted');
+      /* sold joins adopted on the FAR side of the dividing line above: paid in
+         full is "no, never", so the only honest offer is the next litter. The
+         card itself stays with the living rail (not retired) — the rabbit is
+         still here, still growing, which is the story being told. */
+      var gone=(r.status==='adopted'||r.status==='sold');
       var href=gone?'#waitlist':'#contact';
       var ctaFull=gone?'See the next litter first':('Ask about '+esc(r.name));
       var ctaShort=gone?'Next litter':'Ask';
@@ -3475,7 +3517,8 @@ body.locked{overflow:hidden}
          no date, because the site never invents one. */
       var stLabel=st[1];
       if(r.status==='reserved'&&r.reservedOn) stLabel='Reserved '+dayMon(r.reservedOn);
-      else if(r.status==='adopted'&&r.soldOn) stLabel='Went home '+dayMon(r.soldOn);
+      else if(r.status==='sold'&&r.soldOn) stLabel='Sold '+dayMon(r.soldOn);
+      else if(r.status==='adopted'&&(r.wentHome||r.soldOn)) stLabel='Went home '+dayMon(r.wentHome||r.soldOn);
       return '<a class="bunny'+dim+'"'+attrs+'>'+
         '<div class="bunny-media"><span class="status '+st[0]+'">'+stLabel+'</span>'+
         '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
@@ -3515,7 +3558,7 @@ body.locked{overflow:hidden}
        ────────────────────────────────────────────────────────────── */
     (function(){
       var SITE='https://arizonarabbits.com/';
-      var STOCK={available:'InStock', reserved:'OutOfStock', adopted:'SoldOut'};
+      var STOCK={available:'InStock', reserved:'OutOfStock', sold:'SoldOut', adopted:'SoldOut'};
       var items=list.map(function(r,i){
         var cov=(r.photos&&r.photos.length&&r.photos[0].src)||r.photo||'';
         /* a Coming soon frame is a promise of a photo, not a photo of a
@@ -3664,8 +3707,9 @@ body.locked{overflow:hidden}
       if(r.ready&&r.status==='available'){
         vMeta.appendChild(document.createTextNode(' · Ready '+r.ready));
       }
-      /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail after
-         three days, but its link from the litter page has to keep working
+      /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail (7
+         days after going home, or at once if a sold one has already left),
+         but its link from the litter page has to keep working
          forever, and what a reader wants from it then is not a price, it is
          "what happened to this one". So an adopted rabbit says when it left,
          and a reserved one says when it was spoken for.
@@ -3690,7 +3734,8 @@ body.locked{overflow:hidden}
       vWhen.hidden=false;
     }
     function whenText(r){
-      if(r.status==='adopted'&&r.soldOn)   return 'Went home '+niceDate(r.soldOn);
+      if(r.status==='adopted'&&(r.wentHome||r.soldOn)) return 'Went home '+niceDate(r.wentHome||r.soldOn);
+      if(r.status==='sold'&&r.soldOn)      return 'Sold '+niceDate(r.soldOn);
       if(r.status==='reserved'&&r.reservedOn) return 'Spoken for since '+niceDate(r.reservedOn);
       return '';
     }
@@ -3952,14 +3997,16 @@ body.locked{overflow:hidden}
        that can be texted to somebody.
 
        IT WORKS FOR SOLD RABBITS TOO, and that is the point of it. An
-       adopted rabbit leaves the rail after three days, but the link
-       still opens its listing, which now reads "Found a home 12 Sept"
-       and offers the next litter instead of a price. A litter page
-       whose names stop working after a fortnight is not an archive.
+       adopted rabbit leaves the rail 7 days after it went home, and a
+       sold rabbit marked departed leaves it at once — but the link
+       still opens its listing, which reads "Went home 12 Sept" or
+       "Sold 29 Aug 2026" and offers the next litter instead of a
+       price. A litter page whose names stop working after a fortnight
+       is not an archive.
 
-       SO: DO NOT DELETE ADOPTED RABBITS FROM rabbits.js. Set the
-       status to adopted and give it a soldOn date. The rail hides it
-       on its own; this keeps its page alive.
+       SO: DO NOT DELETE PLACED RABBITS FROM rabbits.js. Set the
+       status (adopted + wentHome, or sold + departed) and the rail
+       hides it on its own; this keeps its page alive.
 
        The name is slugged both sides, so #r-teddy, #r-Teddy and
        #r-butterscotch all land correctly and a rabbit called
