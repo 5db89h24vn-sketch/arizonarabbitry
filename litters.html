@@ -71,6 +71,17 @@
      5. The "Every rabbit from these litters" wall under the grid needs
         NOTHING from you. It builds itself from rabbits.js, and each of
         its tiles links to the rabbit AND back to the litter here.
+     6. PROGRESS PHOTOS. As the litter grows, add one <figure> per photo
+        to the litter's <div class="litter-set"> ("As they grow"),
+        oldest first: the picture, a <time> with the date it was taken,
+        and a one-line note. The date is also burned into the picture
+        itself by litterprogress.py, the same stamp as the nest photo,
+        so the picture carries its own proof wherever it travels. The
+        strip is visible with no script at all; script adds the age that
+        day ("2 Sep 2026 · 6 days old"), the count badge on the card and
+        the tile, and the tap-to-open full-size view. Nothing else to
+        edit. A litter with no progress photos yet has no strip, no
+        badge and no tap: one photo is a photo, not a set.
 
      EVERY NAME HERE IS A LINK TO THAT RABBIT'S LISTING.
      index.html#r-teddy opens Teddy full screen: photos, birth date,
@@ -217,11 +228,67 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
    the only thing you can see. */
 .litter-card img{width:100%;aspect-ratio:4/3;max-height:54vh;object-fit:cover;
   background:var(--paper-2)}
+/* THE LITTER'S PHOTO SET. The day-one nest photo is the card. The dated photos
+   that follow it open from that card in a photo view, one frame per date, each
+   stamped "2 Sep 2026 · 6 days old" in the same corner and the same words the
+   rabbit galleries use, so a litter growing up and a rabbit growing up read as
+   one record. The count badge is the rabbit card's badge, pixel for pixel.
+   Both appear only once a litter has two or more photos: one photo is a
+   photo, not a set (the rabbit cards draw the same line). With scripts off
+   the card is a plain photograph and nothing is lost but the extra frames. */
+.litter-media{position:relative;display:block}
+.litter-media.opens{cursor:pointer}
+.tile{position:relative}
+.shots{position:absolute;bottom:9px;right:9px;z-index:2;display:inline-flex;align-items:center;
+  gap:5px;padding:4px 9px;border-radius:100px;background:rgba(24,20,18,.72);color:#fff;
+  font-size:11.5px;font-weight:600;letter-spacing:.02em;pointer-events:none}
+.shots svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+.lbox{position:fixed;inset:0;z-index:50;background:rgba(24,20,18,.94);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;padding:56px 14px 22px}
+.lbox[hidden]{display:none}
+.lbox img{max-width:100%;max-height:calc(100vh - 190px);border-radius:8px;background:#000;
+  object-fit:contain}
+/* the stamp under the frame is the gallery stamp: date, then the age the
+   litter was that day, worked out from the litter's own <time> */
+.lbox-stamp{margin-top:12px;display:inline-flex;gap:6px;align-items:baseline;padding:6px 14px;
+  border-radius:100px;background:rgba(255,255,255,.12);color:#fff;font-size:13.5px;font-weight:600;
+  white-space:nowrap}
+.lbox-stamp small{font-weight:500;opacity:.75;font-size:12.5px}
+.lbox-cap{color:#fff;opacity:.85;font-size:15px;line-height:1.45;text-align:center;
+  max-width:560px;margin:10px 0 0;min-height:1.45em}
+.lbox button{position:absolute;border:0;border-radius:100px;background:rgba(255,255,255,.22);box-shadow:0 1px 6px rgba(0,0,0,.35);
+  color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;line-height:1}
+.lbox button:hover{background:rgba(255,255,255,.34)}
+.lbox button:disabled{opacity:.3;cursor:default}
+.lbox .close{top:12px;right:12px}
+.lbox .prev{left:12px;top:50%;transform:translateY(-50%)}
+.lbox .next{right:12px;top:50%;transform:translateY(-50%)}
+.lbox .counter{position:absolute;top:24px;left:16px;color:#fff;opacity:.7;font-size:13px;font-weight:600}
+body.lbox-open{overflow:hidden}
 .litter-body{padding:22px 24px 20px}
 .litter time{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--brick-dk);background:var(--brick-tint);border:1px solid #E8D5C6;
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
+/* AS THEY GROW: the dated progress photos, visible without any script. A
+   strip of figures, each a photo, its date, and a one-line note; script adds
+   the age that day after the date and makes each one open full size. */
+.litter-set{margin:18px 0 6px}
+.litter-set h3{font-family:var(--serif);font-weight:600;font-size:17px;margin:0 0 10px}
+.litter-set .frames{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:700px){.litter-set .frames{grid-template-columns:repeat(3,1fr)}}
+.litter-set figure{margin:0;border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;background:#fff;position:relative}
+.litter-set figure.opens{cursor:pointer}
+.litter-set figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
+.litter-set figcaption{padding:9px 11px 0;font-size:13px;font-weight:600;color:var(--brick-dk);
+  line-height:1.35}
+/* the date inside a frame is plain text, not the litter's pill: the pill is
+   the litter's birth date, said once at the top of the card */
+.litter-set figcaption time{display:inline;background:none;border:0;padding:0;margin:0;
+  font-size:inherit;color:inherit;white-space:normal;border-radius:0}
+.litter-set figure p{padding:3px 11px 11px;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
 .litter p{color:var(--ink-soft)}
 .litter p + p{margin-top:10px}
 /* Rabbit tiles: same card DNA as the main rail — --r radius, --line border,
@@ -321,13 +388,36 @@ h1,h2,h3{text-wrap:balance}
     <article class="litter" id="L2026-08-27">
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
-        <img src="photos/litter-2026-08-27.jpg" width="1400" height="1050"
-             alt="Six newborn Holland Lop kits curled together in a wooden nest box lined with wood shavings and pulled fur">
+        <div class="litter-media" data-note="Six of them, in a nest of shavings and the fur their mother pulled to line it.">
+          <img src="photos/litter-2026-08-27.jpg" width="1400" height="1050"
+               alt="Six newborn Holland Lop kits curled together in a wooden nest box lined with wood shavings and pulled fur">
+        </div>
         <div class="litter-body">
           <time datetime="2026-08-27">Born 27 August 2026</time>
           <h2>Six born</h2>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
+          <p>At six days old, one is white and five are fawn. Coats can still shift a
+          little as they come in, so the honest read on colour is at four weeks, when I
+          name them. The dated photos below are them growing up; tap any of them to see
+          it full size.</p>
+          <!-- AS THEY GROW: the litter's dated progress photos, oldest first, each
+               with the date burned into the picture (litterprogress.py) and typed
+               here as well. The age that day ("6 days old") is added after the
+               date by script, from the litter's own <time> above; the count badge
+               and the tap-to-open view build themselves from these figures. With
+               scripts off this is still every photo, dated, in order. -->
+          <div class="litter-set">
+            <h3>As they grow</h3>
+            <div class="frames">
+              <figure>
+                <img src="photos/litter-2026-08-27-2026-09-02.jpg" width="1050" height="1400" loading="lazy"
+                     alt="Six six-day-old kits on the floor beside the cage, one white and five fawn">
+                <figcaption><time datetime="2026-09-02">2 Sep 2026</time></figcaption>
+                <p>Six days old. One white and five fawn so far.</p>
+              </figure>
+            </div>
+          </div>
           <p>The first two weeks decide everything, so I don't name kits or take
           reservations until four weeks, once I can tell you sex and colour honestly.
           The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
@@ -340,8 +430,10 @@ h1,h2,h3{text-wrap:balance}
     <article class="litter" id="L2026-07-28">
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
-        <img src="photos/litter-2026-07-28.jpg" width="1400" height="1050"
-             alt="Newborn Holland Lop kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
+        <div class="litter-media" data-note="The day they arrived, before their eyes were open.">
+          <img src="photos/litter-2026-07-28.jpg" width="1400" height="1050"
+               alt="Newborn Holland Lop kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
+        </div>
         <div class="litter-body">
           <time datetime="2026-07-28">Born 28 July 2026</time>
           <h2>Six born, four raised</h2>
@@ -624,6 +716,149 @@ h1,h2,h3{text-wrap:balance}
       el.textContent='Available \u00B7 $'+r.price; el.className='st-open';
     }
   });
+
+  /* ══════════════════════════════════════════════════════════════
+     THE LITTER PHOTO VIEW. A litter grows up in dated pictures the
+     same way a rabbit does on the front page, and it is shown the
+     same way: tap the photo, step through the frames, read the date
+     and the age under each one. Built from each article's visible
+     "As they grow" figures, so William adds a figure and this does
+     the rest.
+
+     THREE RULES CARRIED OVER FROM THE RABBIT GALLERY, on purpose:
+       - ageAt() below is the front page's function, copied WORD FOR
+         WORD, and littergallerytest fails the build if the two ever
+         differ. "6 days old" must mean the same thing on both pages.
+       - one photo is a photo, not a set: no badge, no tap.
+       - the address bar is never touched. This page's navigation is
+         the browser's own :target rule, and a photo view that changed
+         the hash would close the litter underneath itself.
+     ══════════════════════════════════════════════════════════════ */
+  try{
+    /* FROM index.html, VERBATIM. Do not edit here; edit there and copy. */
+    function ageAt(dob,when){
+      if(!dob||!when) return '';
+      var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
+      if(isNaN(a)||isNaN(b)||b<a) return '';
+      var d=Math.floor((b-a)/86400000);
+      if(d===0) return 'the day it was born';
+      if(d<14)  return d+(d===1?' day old':' days old');
+      if(d<84){
+        /* Say the remainder rather than pick a rounding rule. Flooring made a
+           27 day old rabbit "3 weeks", which loses most of a week at the age
+           where a week is most of the animal; rounding up would have claimed
+           days it had not lived. "3 weeks, 6 days" needs neither. */
+        var w=Math.floor(d/7), rem=d%7;
+        return w+' week'+(w===1?'':'s')+
+               (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
+      }
+      var m=Math.floor(d/30.44);
+      return m+(m===1?' month old':' months old');
+    }
+    var CAM='<svg viewBox="0 0 24 24" aria-hidden="true">'+
+            '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/></svg>';
+    function badge(n){
+      var b=document.createElement('span'); b.className='shots';
+      b.innerHTML=CAM+n; return b;
+    }
+
+    /* one view for the whole page, built once, hidden until a tap */
+    var box=document.createElement('div'); box.className='lbox'; box.hidden=true;
+    box.setAttribute('role','dialog'); box.setAttribute('aria-label','Litter photos');
+    box.innerHTML=
+      '<span class="counter" id="lbCount"></span>'+
+      '<button type="button" class="close" aria-label="Close">\u2715</button>'+
+      '<img id="lbImg" alt="">'+
+      '<div class="lbox-stamp"><small id="lbWhat"></small><span id="lbText"></span></div>'+
+      '<p class="lbox-cap" id="lbCap"></p>'+
+      '<button type="button" class="prev" aria-label="Previous photo">\u2039</button>'+
+      '<button type="button" class="next" aria-label="Next photo">\u203A</button>';
+    document.body.appendChild(box);
+    var lbImg=box.querySelector('#lbImg'), lbWhat=box.querySelector('#lbWhat'),
+        lbText=box.querySelector('#lbText'), lbCap=box.querySelector('#lbCap'),
+        lbCount=box.querySelector('#lbCount'),
+        bClose=box.querySelector('.close'), bPrev=box.querySelector('.prev'), bNext=box.querySelector('.next');
+    var shots=[], born='', at=0, lastFocus=null, label='';
+
+    function paint(i){
+      if(i<0||i>=shots.length) return;
+      at=i; var s=shots[at];
+      lbImg.src=s.src; lbImg.alt=label+', photo '+(at+1)+' of '+shots.length;
+      /* the same line the rabbit gallery writes: date, then the age that day;
+         an undated frame falls back to the birth date so the stamp is never
+         empty and never a different height */
+      var age=ageAt(born,s.date);
+      lbText.textContent=s.date?(nice(s.date)+(age?(' \u00B7 '+age):'')):(born?('Born '+nice(born)):'');
+      lbWhat.textContent=s.date?'Photo taken ':'';
+      lbCap.textContent=s.note||'';
+      lbCount.textContent=(at+1)+' of '+shots.length;
+      bPrev.disabled=(at===0); bNext.disabled=(at===shots.length-1);
+    }
+    function open(set,dob,name,i){
+      shots=set; born=dob; label=name; lastFocus=document.activeElement;
+      box.hidden=false; document.body.classList.add('lbox-open');
+      paint(i||0); bClose.focus();
+    }
+    function shut(){
+      box.hidden=true; document.body.classList.remove('lbox-open');
+      if(lastFocus&&lastFocus.focus) lastFocus.focus();
+    }
+    bClose.addEventListener('click',shut);
+    bPrev.addEventListener('click',function(){paint(at-1);});
+    bNext.addEventListener('click',function(){paint(at+1);});
+    box.addEventListener('click',function(e){ if(e.target===box) shut(); });
+    document.addEventListener('keydown',function(e){
+      if(box.hidden) return;
+      if(e.key==='Escape') shut();
+      else if(e.key==='ArrowLeft') paint(at-1);
+      else if(e.key==='ArrowRight') paint(at+1);
+    });
+
+    /* wire every litter that has progress photos. The set is: the day-one
+       photo on the card (its note rides on data-note), then each figure in
+       "As they grow", in page order. */
+    var arts=document.querySelectorAll('article.litter');
+    for(var i=0;i<arts.length;i++){
+      (function(art){
+        var figs=art.querySelectorAll('.litter-set figure'); if(!figs.length) return;
+        var media=art.querySelector('.litter-media'); var mimg=media?media.querySelector('img'):null;
+        var t=art.querySelector('time'); var dob=t?(t.getAttribute('datetime')||''):'';
+        var h=art.querySelector('h2'); var name=(h?h.textContent:'')||'Litter';
+        var set=[];
+        if(mimg) set.push({src:mimg.getAttribute('src'), date:dob, note:media.getAttribute('data-note')||''});
+        for(var k=0;k<figs.length;k++){
+          var fg=figs[k], im=fg.querySelector('img'), tm=fg.querySelector('time'), nt=fg.querySelector('p');
+          var when=tm?(tm.getAttribute('datetime')||''):'';
+          set.push({src:im?im.getAttribute('src'):'', date:when,
+                    note:nt?(nt.textContent||'').replace(/\s+/g,' ').trim():''});
+          /* the age that day, after the date, from the litter's own birth date */
+          if(tm&&when){ var age=ageAt(dob,when); if(age) tm.parentNode.appendChild(document.createTextNode(' \u00B7 '+age)); }
+          (function(idx,el){
+            el.classList.add('opens'); el.setAttribute('role','button'); el.setAttribute('tabindex','0');
+            el.setAttribute('aria-label','See this photo full size');
+            el.addEventListener('click',function(){open(set,dob,name,idx);});
+            el.addEventListener('keydown',function(e){
+              if(e.key==='Enter'||e.key===' '){e.preventDefault();open(set,dob,name,idx);}
+            });
+          })(set.length-1,fg);
+        }
+        if(set.length<2) return;                       /* one photo is a photo */
+        if(media){
+          media.appendChild(badge(set.length)); media.classList.add('opens');
+          media.setAttribute('role','button'); media.setAttribute('tabindex','0');
+          media.setAttribute('aria-label','See all '+set.length+' photos of this litter');
+          media.addEventListener('click',function(){open(set,dob,name,0);});
+          media.addEventListener('keydown',function(e){
+            if(e.key==='Enter'||e.key===' '){e.preventDefault();open(set,dob,name,0);}
+          });
+        }
+        /* the grid tile wears the same badge, so the count is visible before
+           the litter is even opened */
+        var tile=document.querySelector('a.tile[href="#'+art.id+'"]');
+        if(tile) tile.appendChild(badge(set.length));
+      })(arts[i]);
+    }
+  }catch(e){}
 })();
 </script>
 </body>
