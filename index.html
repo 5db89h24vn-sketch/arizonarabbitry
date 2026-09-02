@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbits</title>
-<meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, eight-week minimum, and lifetime support for every owner.">
+<meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, home once they are weaned, and lifetime support for every owner.">
 <!-- iOS Safari paints the status bar and toolbar with this colour, so on a phone it is
      the band sitting behind the Dynamic Island. It was --ink, the TEXT colour, where
      --paper, the background, belongs: a near-black bar hard against a cream page.
@@ -69,7 +69,7 @@
 <meta property="og:url" content="https://arizonarabbits.com/">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Arizona Rabbits — Holland Lop Rabbits for Sale in Tucson">
-<meta property="og:description" content="Hand-raised, handled daily from birth. Home at eight weeks, and you keep my number.">
+<meta property="og:description" content="Hand-raised, handled daily from birth. Home once they are weaned, and you keep my number.">
 <!-- SHARE PREVIEW IMAGE. When a buyer texts this link to a spouse or posts it
      in a group chat, this picture IS the first impression; links with an image
      preview get read, links without one get skipped. Since 27 Aug 2026 it is
@@ -1615,9 +1615,17 @@ body.locked{overflow:hidden}
            lowest number and sets up a negative surprise when you quote higher.
            Prices live on each rabbit, one screen down, next to its photo. -->
       <!-- Each column: complete claim in bold, qualifier underneath. No punctuation joining
-           them, so nothing can drift out of alignment. Keep all three qualifiers to 2-4 words. -->
+           them, so nothing can drift out of alignment. Keep all three qualifiers to 2-4 words.
+           THE FIRST FACT USED TO BE "Home at eight weeks / Weaned and settled first".
+           Retired 2026-09-02 on William's own account of his practice: there is no
+           set go-home age here, it is his call kit by kit, some at eight weeks and
+           some sooner. A bolded promise the author does not keep is the defect this
+           whole page is built to avoid, so the fact now states what he DOES hold to
+           every time (weaned, per the readiness list in the Going home block and the
+           FAQ) and says plainly that the age is not fixed. Do not put a number back
+           here unless he states one. -->
       <div class="facts">
-        <div><b>Home at eight weeks</b><small>Weaned and settled first</small></div>
+        <div><b>Home when weaned</b><small>Not at a set age</small></div>
         <div><b>20% off</b><small>Second of a pair</small></div>
         <div><b>You keep my number</b><small>For as long as you have them</small></div>
       </div>
@@ -1648,9 +1656,8 @@ body.locked{overflow:hidden}
     <div class="avail-head rv">
       <div>
         <h2 style="margin-bottom:8px">Available now</h2>
-        <p class="lede">Litters are small and I don't rush them. The price you see is the whole
-        price, and it covers eight weeks of daily handling before the rabbit is old enough
-        to leave.</p>
+        <p class="lede">Litters are small. The price you see is the whole price, and it covers
+        daily handling from the day they're born to the day they leave.</p>
         <!-- FRESHNESS STAMP — Stanford credibility guideline: show the page is
              reviewed recently. Scoped to availability only (the one thing that
              actually goes stale), never a site-wide "last updated".
@@ -1824,9 +1831,10 @@ body.locked{overflow:hidden}
 <!-- ══════════ HOW THEY'RE RAISED ══════════ -->
 <section id="raised">
   <div class="wrap">
-    <p class="kicker rv">The first eight weeks</p>
+    <p class="kicker rv">The routine here</p>
     <h2 class="rv">What happens before you meet them</h2>
-    <p class="lede rv">The whole routine. Ask me about any part of it.</p>
+    <p class="lede rv">The whole routine, week by week. Every listing shows which week its
+    rabbit is in. Ask me about any part of it.</p>
     <div class="stages rv">
       <div class="stage">
         <span class="stage-when">Week 1–2</span>
@@ -1854,21 +1862,24 @@ body.locked{overflow:hidden}
         to whenever they want it.</p>
       </div>
       <div class="stage">
-        <span class="stage-when">Week 8</span>
-        <h3>Ready to go home</h3>
-        <!-- TONE NOTE. This card used to say "my floor, no exceptions" and led with a
-             gut illness that kills. Two problems, and only one of them was tone.
-             The absolute was the real one: a stated never is a promise, and a page
-             that promises a never its author intends to bend is the same defect as
-             an advertised price he doesn't charge. So the card now says what he
-             DOES, not what he'll never do. That is true either way, and it does not
-             invite a stranger to open a negotiation about whether they're the
-             exception. The reason is now the mechanism rather than the death: the
-             changeover from milk to solid food, which is also the actual risk factor
-             the literature names. -->
-        <p>Eight weeks is when they go home. By then they're off milk, eating and drinking on
-        their own, and settled enough that a move isn't a shock. I check weight and health
-        before anyone leaves, and one that isn't quite there waits.</p>
+        <!-- NO WEEK NUMBER ON THIS BLOCK, ON PURPOSE. It was "Week 8 / Ready to go
+             home / Eight weeks is when they go home". On 2026-09-02 William stated
+             his actual practice: no fixed go-home age, his call for each kit, some
+             at eight weeks and some sooner, and he declined to name a minimum. So
+             this block carries his readiness list instead of an age, and its label
+             has no digits: the stage parser in the script skips it, which means the
+             growth bar still counts the eight-week routine above (weeks 1-8 from the
+             three dated blocks) and no listing ever links here as "its week".
+             stagelinktest.js knows a week-less block is allowed exactly here.
+             A stated never was already ruled out of this block once (it used to say
+             "my floor, no exceptions"); a stated number he does not hold to is the
+             same defect. Do not put a week back on this block unless he states one. -->
+        <span class="stage-when">Going home</span>
+        <h3>When they're ready</h3>
+        <p>There's no set age for it. A kit goes home once it's off milk and eating hay and
+        pellets on its own, and has been eating and drinking well for at least a week. I
+        weigh it, and it has to be holding or gaining, with nothing wrong with it. Some get
+        there at eight weeks and some sooner. One that isn't there yet waits.</p>
       </div>
     </div>
 
@@ -2035,8 +2046,9 @@ body.locked{overflow:hidden}
           litter. Then we set a time and you come and meet them, and that visit is free and there's no
           booking fee.</p>
           <p>If one's right for you, $100 holds them and comes off the price. Rabbits open for
-          reservation at four weeks old and go home at eight. At pickup we go through the care
-          sheet together and you leave with everything on the list above.</p>
+          reservation at four weeks old and go home once they're ready, which I decide kit by
+          kit rather than by a set age. At pickup we go through the care sheet together and you
+          leave with everything on the list above.</p>
         </div>
       </details>
       <details>
@@ -2050,8 +2062,8 @@ body.locked{overflow:hidden}
           because two rabbits are <a class="cite"
           href="https://rabbit.org/behavior/bonding-rabbits-faq/"
           target="_blank" rel="noopener">not a bonded pair on their own</a>.</p>
-          <p>What the price covers is eight weeks of daily handling before the rabbit is
-          old enough to leave, a health check you watch me do, two weeks of the food they're
+          <p>What the price covers is daily handling from the day the rabbit is born to the
+          day it leaves, a health check you watch me do, two weeks of the food they're
           already eating, a written care sheet, and my phone number for as long as you have
           them. Prices differ between rabbits because colour and temperament differ, and rarer
           colours cost more. Right now the two fawn does are the $375 ones and the
@@ -2130,7 +2142,7 @@ body.locked{overflow:hidden}
         </div>
       </details>
       <details>
-        <summary>Can I take one home before eight weeks?</summary>
+        <summary>When can I take one home?</summary>
         <div class="faq-body">
           <!-- EVIDENCE NOTE. This used to say enteritis "is almost always caused by
                leaving the mother too soon." Not true, and checkable: the Merck
@@ -2139,28 +2151,38 @@ body.locked{overflow:hidden}
                factors, in rabbits four to eight weeks old. Weaning age is not the
                cause. What IS true is the timing: the danger window and the age a
                buyer wants to collect are the same weeks, and a change of food is a
-               named risk factor. That is the honest reason for the date, and it is
-               the one the answer now gives.
+               named risk factor. That is the honest reason for holding a kit that
+               is not through the changeover, and it is the one the answer gives.
 
                THE ANSWER NO LONGER SAYS "NO". It used to open "No, and I'd think
                twice about anyone who says yes." That was an absolute William does
                not actually hold, and a page that states a never its author intends
                to bend has the same defect as an advertised price he doesn't charge.
-               It also insulted every other breeder, and him. It now explains the
-               reason and leaves it there. A cold enquiry reads it as settled and
-               doesn't argue; anyone he'd genuinely make an exception for is someone
-               he already knows, and that conversation was never going to happen on
-               this page. Do not put a "no exceptions" back in. -->
-          <p>Eight weeks is when they're actually finished. The last stretch is when they come
-          off milk and onto solid food for good, and <a class="cite"
+               Do not put a "no exceptions" back in.
+
+               AND IT NO LONGER NAMES EIGHT WEEKS AS THE DATE. The question was "Can
+               I take one home before eight weeks?" and the answer ended "But the
+               date doesn't move." On 2026-09-02 William stated his practice: no
+               fixed go-home age, decided kit by kit, some at eight weeks and some
+               sooner, no minimum named. The readiness list below is his, item for
+               item, and the answer says the age is not fixed rather than implying
+               one. Nothing here may describe a kit that leaves early as finished;
+               it describes the test every kit has to pass, whatever its age. -->
+          <p>When it's ready, and there's no set age for that. I decide kit by kit, and the
+          test is the same every time. It has to be off milk and eating hay and pellets on
+          its own, and it has to have been eating and drinking well for at least seven days.
+          I weigh it, and it has to be holding or gaining, with nothing wrong with it. Some
+          get there at eight weeks and some sooner.</p>
+          <p>The reason I hold to that is the changeover. Coming off milk and onto solid food
+          for good is the stretch where <a class="cite"
           href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
-          target="_blank" rel="noopener">their gut is still learning the job</a>. A new
-          house, new water and a new bag of food all landing at once is a lot to ask on top of
-          that, so I'd rather they do the settling here, where nothing else is changing.</p>
-          <p>That's the whole reason for the date. I'll send photos and video the whole way
-          through so the wait is easier, and they go home eating exactly what they've been
-          eating, so nothing changes on day one.</p>
-          <p>But the date doesn't move.</p>
+          target="_blank" rel="noopener">their gut is still learning the job</a>, and a new
+          house, new water and a new bag of food all landing at once on top of it is a lot
+          to ask. So a kit that isn't there yet waits here, where nothing else is changing.
+          Whenever it does go, it goes eating exactly what it's been eating, with two weeks
+          of that food in the bag, so nothing changes on day one.</p>
+          <p>Where a listing shows a Ready date, that's the date I expect for that rabbit.
+          I'll send photos and video the whole way through so the wait is easier.</p>
         </div>
       </details>
       <details>
@@ -2473,7 +2495,7 @@ body.locked{overflow:hidden}
       <div style="max-width:34ch">
         <span class="brand">Arizona Rabbits<small>Tucson</small></span>
         <p style="line-height:1.65">A small home operation in Tucson raising Holland Lops. Handled
-        daily, eight-week minimum, and every owner keeps my number.</p>
+        daily from the day they're born, and every owner keeps my number.</p>
       </div>
       <div>
         <h4>Pages</h4>
@@ -2583,7 +2605,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=5ba56b18"></script>
+<script src="rabbits.js?v=6c07335c"></script>
 
 <script>
 (function(){
@@ -3075,11 +3097,13 @@ body.locked{overflow:hidden}
              reserved :['st-hold','Reserved'],
              /* SOLD IS ITS OWN STATE, added the day both sable points were
                 paid for at four and a half weeks old. "Adopted" says the
-                rabbit LEFT, and writing that before eight weeks would
-                contradict the site's cited promise in public — but "sold and
-                still here, growing" is true, dated, and the best proof the
-                promise holds. Sold rabbits stay on the rail until they
-                actually go home; only then do they become adopted. */
+                rabbit LEFT; "sold" says paid for and still here, growing,
+                which is true and dated. Sold rabbits stay on the rail until
+                they actually go home (then adopted, with the real wentHome
+                date), or come off it at once with departed:true when a
+                paid-for rabbit has already left and no leaving date was
+                given. Since 2026-09-02 the site states no fixed go-home
+                age, so none of these states implies one. */
              sold     :['st-hold','Sold'],
              adopted  :['st-gone','Found a home']};
 
@@ -3149,9 +3173,13 @@ body.locked{overflow:hidden}
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   /* HOW LONG UNTIL. A date only answers "when" if you already know where the
      month sits, which is work the page can do instead of asking for it. The
-     go-home date is derived from the birth date plus the eight week rule, so it
-     cannot drift out of step with the rabbit's own age. Counted in whole days
-     from today, floored, and it stops counting once the day arrives. */
+     count runs to the rabbit's OWN readyOn date in rabbits.js, the date William
+     expects for that rabbit, because since 2026-09-02 there is no fixed go-home
+     age here (his practice, stated: his call kit by kit, some at eight weeks and
+     some sooner). It used to be the birth date plus 56 days, which would now be
+     counting down to a rule the site no longer states. A rabbit with no readyOn
+     gets no count and no "ready" word at all: the page does not guess a date.
+     Counted in whole days from today, and it stops counting once the day arrives. */
   /* Read the eight-week timeline out of the section that explains it, so the
      rabbit cards and that section can never drift apart. "Week 3–5" becomes
      {from:3,to:5}. If the section is ever removed the cards simply stop showing
@@ -3180,10 +3208,11 @@ body.locked{overflow:hidden}
     var n=daysOld(dob); if(n===null) return null;
     return Math.min(LAST_WEEK, Math.floor(n/7)+1);
   }
-  /* Searched backwards on purpose. Week 8 sits inside "Week 6-8, new people,
-     new noise" AND inside "Week 8, ready to go home", and the later, narrower
-     one is the truer answer on the day it matters. Forwards, every rabbit in
-     its final week was still described as meeting new people. */
+  /* Searched backwards on purpose. When two blocks cover the same week (week 8
+     once sat inside "Week 6-8" AND inside a "Week 8, ready to go home" block),
+     the later, narrower one is the truer answer on the day it matters. The
+     week-8 block is gone since 2026-09-02 (going home has no week number now),
+     so today this simply finds "Week 6-8"; the rule stays for the next time. */
   function stageOf(week){
     for(var i=STAGES.length-1;i>=0;i--)
       if(week>=STAGES[i].from && week<=STAGES[i].to) return STAGES[i];
@@ -3199,7 +3228,7 @@ body.locked{overflow:hidden}
      there is room for it; the card gets the short form. */
   function growHTML(r, full){
     var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
-    var st=stageOf(wk), left=daysFrom(r.dob,56), bar='';
+    var st=stageOf(wk), left=(r.readyOn?daysFrom(r.readyOn,0):null), bar='';
     for(var i=1;i<=LAST_WEEK;i++)
       bar+='<i class="'+(i<wk?'on':i===wk?'on now':'')+'"></i>';
     /* The card is a 170px column on a phone, so it gets the short form: the bar
@@ -3237,7 +3266,10 @@ body.locked{overflow:hidden}
       /* "Week 5 · 28 days" reads as though the rabbit is 28 days old. It is days
          REMAINING. One word removes the ambiguity and it still fits the one-line rule. */
       txt+=' &middot; '+left+(left===1?' day left':' days left');
-    else if(!full && r.status==='available') txt+=' &middot; ready';
+    /* "ready" only once the rabbit's own date has arrived. With no readyOn there
+       is no date to have arrived, so the row ends at the week: no count, no
+       claim. That is the honest state of a rabbit William has not dated yet. */
+    else if(!full && r.status==='available' && left!==null) txt+=' &middot; ready';
     return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="'+
       (full?'Now in week ':'Week ')+wk+
       ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
@@ -3414,7 +3446,7 @@ body.locked{overflow:hidden}
          CHOICE SET, so anchoring is preserved (the available group still
          leads with its most expensive) and improved: the first prices seen
          are all buyable. Sold and reserved sink below, still visible,
-         still dated, still telling the eight-week story. */
+         still dated, still telling the story of where each one is. */
       var RANK={available:0,reserved:1,sold:2,adopted:3};
       var ra=(RANK[a.status]!=null?RANK[a.status]:9), rb=(RANK[b.status]!=null?RANK[b.status]:9);
       if(ra!==rb) return ra-rb;
@@ -3494,7 +3526,7 @@ body.locked{overflow:hidden}
          until the Coming soon frames stopped being counted as photos, and the
          moment they did, every rabbit dropped to one picture and tapping a
          rabbit quietly stopped opening its listing at all -- taking the
-         Reserved badge, the price, the growth row and the eight-week note with
+         Reserved badge, the price, the growth row and the stage note with
          it. The photo count and the tap target are separate facts now.
          Kept as a real <a> with an href so it still works with JavaScript off,
          and so it can be opened in a new tab. */
@@ -4385,7 +4417,7 @@ body.locked{overflow:hidden}
     var card=ev.target.closest && ev.target.closest('.bunny[data-ask]');
     if(!card) return;
     /* The PICTURE belongs to the listing -- price, Reserved badge, growth row,
-       eight-week note -- on every card, including a rabbit with one photograph
+       stage note -- on every card, including a rabbit with one photograph
        and including one already sold, whose card opens its archive. The rest of
        the card is still the form's, so the one-tap route to asking is intact.
        Same test as the listing's own handler, from the other side, so the two

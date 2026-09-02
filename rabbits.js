@@ -3,8 +3,18 @@
 
    This is the ONLY file you edit day to day. Never touch index.html.
 
-   These are your real rabbits, born 28 July 2026. Reservable now,
-   ready to go home 22 September (the eight week mark).
+   These are your real rabbits, born 28 July 2026. Reservable now.
+
+   ── THE READY DATE ──
+      Each rabbit can carry the date you expect it to be ready:
+         ready:   "22 Sept"        (how it is printed)
+         readyOn: "2026-09-22"     (the same day, YYYY-MM-DD)
+      The card counts down to readyOn ("Week 5 · 20 days left"), then
+      says "ready" once the day arrives. There is no fixed go-home age
+      on the site any more (your call, kit by kit, some at eight weeks
+      and some sooner), so the site never invents a date: a rabbit
+      with no readyOn shows its week and nothing else. Both fields must
+      name the same day or the build stops.
 
    ── TO MARK ONE RESERVED ──
       change   status: "available"
@@ -19,9 +29,7 @@
       to       status: "sold"
       and set  soldOn: "2026-08-29"      (the day it was paid for)
       The rabbit STAYS on the site, growing week by week under a
-      dated Sold label. That is the point: a sold rabbit visibly
-      staying until eight weeks is the strongest proof the
-      home-at-eight-weeks promise is real.
+      dated Sold label, until the day it actually goes home.
 
    ── IF A SOLD RABBIT IS NO LONGER HERE ──
       add      departed: true
@@ -36,10 +44,9 @@
       change   status: "sold"  (or whatever it was)
       to       status: "adopted"
       and set  wentHome: "2026-09-22"    (the day it actually left)
-      NEVER a date before eight weeks — the site now refuses to
-      build if an adopted rabbit's went-home date is under 56 days
-      after its dob, because "Went home" earlier than the promise
-      would contradict the site's own cited rule in public.
+      Only ever the REAL day it left. The build refuses a went-home
+      date before the rabbit was four weeks old, because nothing is
+      reserved before four weeks, so an earlier date can only be a typo.
       It stays up as proof for 7 days, then disappears on its own.
 
    ── TO ADD A NEW RABBIT ──
@@ -183,6 +190,7 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
+    readyOn: "2026-09-22",
     status: "reserved",
     reservedOn: "2026-08-28",
     soldOn: "",
@@ -211,6 +219,7 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
+    readyOn: "2026-09-22",
     status: "available",
     soldOn: "",
     photo:  "photos/butterscotch.jpg",
@@ -235,6 +244,7 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
+    readyOn: "2026-09-22",
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
@@ -259,6 +269,7 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
+    readyOn: "2026-09-22",
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",

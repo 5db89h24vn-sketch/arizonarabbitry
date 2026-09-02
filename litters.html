@@ -91,7 +91,8 @@
      THIS KEEPS WORKING AFTER THE RABBIT IS GONE, which is the whole
      reason it is built this way. A sold rabbit stays on the front
      page, growing under a dated Sold label, until it actually goes
-     home at eight weeks; an adopted (picked up) rabbit drops off the
+     home (there is no fixed go-home age on the site since 2026-09-02;
+     William decides kit by kit); an adopted (picked up) rabbit drops off the
      front page after seven days, but its listing still opens from
      here and reads "Went home 22 Sept" instead of a price. That
      turns this page into a real archive rather than a list of dead
@@ -99,8 +100,8 @@
 
      FOR THAT TO HOLD, DO NOT DELETE RABBITS FROM rabbits.js.
      Sold (paid, still here): status "sold" + soldOn. Picked up:
-     status "adopted" + wentHome: "YYYY-MM-DD" — never a date before
-     eight weeks. The front page manages both on its own. Delete the
+     status "adopted" + wentHome: "YYYY-MM-DD" — only ever the real
+     day it left. The front page manages both on its own. Delete the
      entry and this link breaks.
 
      Use <span class="gone">Teddy</span> instead of a link only if you
@@ -596,7 +597,7 @@ h1,h2,h3{text-wrap:balance}
   }
 })();
 </script>
-<script src="rabbits.js?v=5ba56b18"></script>
+<script src="rabbits.js?v=6c07335c"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
    Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html
@@ -694,8 +695,8 @@ h1,h2,h3{text-wrap:balance}
       tile.classList.add('wt-gone');
     } else if(r.status==='sold'){
       /* sold and still here: dated like everything else, NOT dimmed — the
-         rabbit has not gone anywhere, and its staying until eight weeks is
-         the story. Amber like Reserved: both are the hold family.
+         rabbit has not gone anywhere, and its staying and growing is the
+         story. Amber like Reserved: both are the hold family.
          sold AND departed is the other sold: paid for and already gone.
          Same true words ("Sold 29 Aug 2026"), photo dimmed like an adopted
          tile, because the dim here means "not in the nursery any more" and
