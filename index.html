@@ -2605,7 +2605,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=6c07335c"></script>
+<script src="rabbits.js?v=865d2858"></script>
 
 <script>
 (function(){
@@ -3171,15 +3171,6 @@ body.locked{overflow:hidden}
 
   /* "2026-08-05" -> "5 Aug". Left alone if it isn't a plain date. */
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  /* HOW LONG UNTIL. A date only answers "when" if you already know where the
-     month sits, which is work the page can do instead of asking for it. The
-     count runs to the rabbit's OWN readyOn date in rabbits.js, the date William
-     expects for that rabbit, because since 2026-09-02 there is no fixed go-home
-     age here (his practice, stated: his call kit by kit, some at eight weeks and
-     some sooner). It used to be the birth date plus 56 days, which would now be
-     counting down to a rule the site no longer states. A rabbit with no readyOn
-     gets no count and no "ready" word at all: the page does not guess a date.
-     Counted in whole days from today, and it stops counting once the day arrives. */
   /* Read the eight-week timeline out of the section that explains it, so the
      rabbit cards and that section can never drift apart. "Week 3–5" becomes
      {from:3,to:5}. If the section is ever removed the cards simply stop showing
@@ -3224,65 +3215,91 @@ body.locked{overflow:hidden}
     var now=new Date(); now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
     return Math.max(0, Math.round((now-d)/86400000));
   }
+  /* AGE, IN WORDS. Lifted out of the photo view 2026-09-02 so the growth row
+     can use it too: one arithmetic for every age the site prints. This is the
+     copy the litters page must match word for word (littergallerytest.js). */
+  function ageAt(dob,when){
+    if(!dob||!when) return '';
+    var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
+    if(isNaN(a)||isNaN(b)||b<a) return '';
+    var d=Math.floor((b-a)/86400000);
+    if(d===0) return 'the day it was born';
+    if(d<14)  return d+(d===1?' day old':' days old');
+    if(d<84){
+      /* Say the remainder rather than pick a rounding rule. Flooring made a
+         27 day old rabbit "3 weeks", which loses most of a week at the age
+         where a week is most of the animal; rounding up would have claimed
+         days it had not lived. "3 weeks, 6 days" needs neither. */
+      var w=Math.floor(d/7), rem=d%7;
+      return w+' week'+(w===1?'':'s')+
+             (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
+    }
+    var m=Math.floor(d/30.44);
+    return m+(m===1?' month old':' months old');
+  }
+
   /* The bar plus its wording. `full` adds the stage name and is used where
      there is room for it; the card gets the short form. */
+  /* THE GROWTH ROW SAYS HOW OLD THE RABBIT IS TODAY, over the bar of the
+     eight-week routine. William's call, 2026-09-02, replacing the countdown:
+     with no fixed go-home age, "20 days left" was counting down to a date he
+     only expects, and read like a promise; the age is a fact. Computed from
+     today's date on every load, and recomputed at midnight if the page is left
+     open (tickAges below), so it is never stale.
+     The arithmetic is ageAt(), the same function that stamps every photo, so
+     the two can never disagree in method. They do differ in the DATE they are
+     asked about: the photo chip says how old the rabbit was the day the
+     shutter went, this row says today. In the photo view, where a photo date
+     sits directly above, "Now" marks which is which; the card has no photo
+     date near it, so it gets the bare age. */
+  function todayISO(){
+    var n=new Date();
+    return n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);
+  }
   function growHTML(r, full){
     var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
-    var st=stageOf(wk), left=(r.readyOn?daysFrom(r.readyOn,0):null), bar='';
+    var st=stageOf(wk), bar='';
     for(var i=1;i<=LAST_WEEK;i++)
       bar+='<i class="'+(i<wk?'on':i===wk?'on now':'')+'"></i>';
-    /* The card is a 170px column on a phone, so it gets the short form: the bar
-       already says "of eight", and repeating it in words wrapped the line onto
-       three. The photo view has the room for the stage name and the full
-       phrasing. */
-    /* "NOW IN". The photo above this row carries its own age, frozen at the day
-       the shutter went: "23 Aug 2026 · 3 weeks, 5 days old". This row is today.
-       Both numbers are right and they do not match, because one is a completed
-       duration on a past date and the other is the ordinal week the rabbit is
-       living through right now. An unlabelled number sitting under a labelled one
-       gets read against the label, so this one said "Week 5" three days after a
-       chip said "3 weeks, 5 days" and left the reader to work out that nothing was
-       wrong. Two words fix it, and they only go on the viewer's form: the card has
-       no photo date to be confused with. */
-    var txt='<b>'+(full?'Now in week ':'Week ')+wk+(full?' of '+LAST_WEEK:'')+'</b>';
+    var age=ageAt(r.dob, todayISO());
+    if(age==='the day it was born') age='Born today';
+    var txt=(full&&age!=='Born today'?'Now ':'')+'<b>'+esc(age)+'</b>';
     /* The stage name is a doorway. Somebody reading "carrying becomes normal"
        has just been told the phase this rabbit is in and has no way to find out
        what it means or what follows it; the whole routine is sitting further
        down the same page. Links to the block for THIS rabbit's week, not to the
-       top of the section, so the answer is the first thing on screen. */
+       top of the section, so the answer is the first thing on screen. The card
+       is a 170px column on a phone, so it gets the age alone. */
     if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
-    /* Once the day arrives the stage name already reads "ready to go home", so
-       saying it twice in one line would be the same fact restated.
-
-       THE COUNTDOWN IS ON THE CARD, NOT IN THE PHOTO VIEW. "Week 5 of 8 ·
-       carrying becomes normal · 28 days to go" is too long for the viewer's
-       column and wrapped, stranding "to go" on a line of its own. It was also
-       the same fact twice over: the line directly above it already reads
-       "Born 28 Jul 2026 · Ready 22 Sept". So each surface now says when exactly
-       once — the card counts down in days, the photo view gives the date and
-       spends its room on the stage name instead. */
-    if(!full && r.status==='available' && left!==null && left>0)
-      /* "Week 5 · 28 days" reads as though the rabbit is 28 days old. It is days
-         REMAINING. One word removes the ambiguity and it still fits the one-line rule. */
-      txt+=' &middot; '+left+(left===1?' day left':' days left');
-    /* "ready" only once the rabbit's own date has arrived. With no readyOn there
-       is no date to have arrived, so the row ends at the week: no count, no
-       claim. That is the honest state of a rabbit William has not dated yet. */
-    else if(!full && r.status==='available' && left!==null) txt+=' &middot; ready';
-    return '<div class="grow'+(full?' viewer-grow':'')+'" role="img" aria-label="'+
-      (full?'Now in week ':'Week ')+wk+
+    /* WHEN a rabbit can go home is no longer on the card at all. The listing one
+       tap away carries "Ready 22 Sept" beside the birth date for an available
+       rabbit, and the FAQ says what that date means. A card that printed the
+       age AND a ready date wrapped the longer colour names onto a second line
+       and made the grid ragged (linetest.js), and a date on the card would be
+       the one place the site states an expectation as tersely as a fact. */
+    return '<div class="grow'+(full?' viewer-grow':'')+'" data-dob="'+esc(r.dob||'')+
+      '" role="img" aria-label="'+(full?'Now ':'')+esc(age)+', week '+wk+
       ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
       '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
       '<span class="grow-txt">'+txt+'</span></div>';
   }
-
-  function daysFrom(dob, add){
-    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(dob||''); if(!m) return null;
-    var d=new Date(+m[1], +m[2]-1, +m[3]); d.setDate(d.getDate()+add);
-    var now=new Date(); now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    return Math.round((d-now)/86400000);
+  /* LIVE: the age turns over at midnight. Every row carries its birth date, so
+     the page can rebuild just the rows without touching anything else (the
+     open listing included). Re-arms itself for the next midnight. */
+  function tickAges(){
+    var n=new Date(), next=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1,0,0,2);
+    setTimeout(function(){
+      var rows=document.querySelectorAll('.grow[data-dob]');
+      for(var i=0;i<rows.length;i++){
+        var el=rows[i], html=growHTML({dob:el.getAttribute('data-dob')}, el.classList.contains('viewer-grow'));
+        if(html){ var box=document.createElement('div'); box.innerHTML=html; el.parentNode.replaceChild(box.firstChild, el); }
+      }
+      tickAges();
+    }, Math.max(1000, next-n));
   }
+  tickAges();
+
   function niceDate(s){
     if(!s) return '';
     var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
@@ -3469,16 +3486,14 @@ body.locked{overflow:hidden}
       var st=LABEL[r.status]||LABEL.available;
       var dim=(r.status==='available')?'':' sold-dim';
       var meta=[showBreed?r.breed:null,r.sex,r.colour].filter(Boolean).map(esc).join(' &middot; ');
-      /* THE CARD SAYS "WHEN" EXACTLY ONCE.
-         The growth row directly underneath already answers it, and answers it
-         better on a card: "Week 5 · 28 days" needs no arithmetic, where a date
-         only answers the question after the reader has done the subtraction.
-         That is the same reasoning the availability stamp uses higher up.
-         Printing both put four facts on a line built for three and wrapped the
-         longer-coloured cards onto a second line, which is what made the grid
-         ragged. So the date is printed here ONLY when there is no growth row to
-         carry it — a rabbit listed without a date of birth. The exact date is
-         always in the photo view, which has the room for it. */
+      /* THE CARD SAYS HOW OLD, NOT WHEN. The growth row underneath carries the
+         rabbit's age today (William's call 2026-09-02, replacing a countdown to
+         a ready date he only expects). Printing a Ready date here as well put
+         four facts on a line built for three and wrapped the longer-coloured
+         cards onto a second line, which made the grid ragged. So the date is
+         printed here ONLY when there is no growth row to carry the card's one
+         time fact — a rabbit listed without a date of birth. For an available
+         rabbit the exact date is always in the photo view, beside Born. */
       if(r.ready && r.status==='available' && !growHTML(r,false))
         meta+=' &middot; Ready '+esc(r.ready);
       /* Two labels, one shown per screen size by CSS. On a phone the cards sit 2-up at
@@ -3789,25 +3804,6 @@ body.locked{overflow:hidden}
        week rule is written; months once weeks stop being useful. Floored, never
        rounded up: claiming a rabbit is older than it is would be the one
        direction of error that matters here. */
-    function ageAt(dob,when){
-      if(!dob||!when) return '';
-      var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
-      if(isNaN(a)||isNaN(b)||b<a) return '';
-      var d=Math.floor((b-a)/86400000);
-      if(d===0) return 'the day it was born';
-      if(d<14)  return d+(d===1?' day old':' days old');
-      if(d<84){
-        /* Say the remainder rather than pick a rounding rule. Flooring made a
-           27 day old rabbit "3 weeks", which loses most of a week at the age
-           where a week is most of the animal; rounding up would have claimed
-           days it had not lived. "3 weeks, 6 days" needs neither. */
-        var w=Math.floor(d/7), rem=d%7;
-        return w+' week'+(w===1?'':'s')+
-               (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
-      }
-      var m=Math.floor(d/30.44);
-      return m+(m===1?' month old':' months old');
-    }
 
     var fittedAt=-1;
     function tallest(el, cls, texts, w){

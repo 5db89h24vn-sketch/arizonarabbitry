@@ -6,15 +6,13 @@
    These are your real rabbits, born 28 July 2026. Reservable now.
 
    ── THE READY DATE ──
-      Each rabbit can carry the date you expect it to be ready:
-         ready:   "22 Sept"        (how it is printed)
-         readyOn: "2026-09-22"     (the same day, YYYY-MM-DD)
-      The card counts down to readyOn ("Week 5 · 20 days left"), then
-      says "ready" once the day arrives. There is no fixed go-home age
-      on the site any more (your call, kit by kit, some at eight weeks
-      and some sooner), so the site never invents a date: a rabbit
-      with no readyOn shows its week and nothing else. Both fields must
-      name the same day or the build stops.
+      ready: "22 Sept"  is the date you expect that rabbit to be ready.
+      It is printed as typed, beside Born, in an AVAILABLE rabbit's
+      listing only. There is no fixed go-home age on the site (your
+      call, kit by kit, some at eight weeks and some sooner), so leave
+      it out for a rabbit you have not dated and the site says nothing.
+      The card under each photo shows how old the rabbit is today,
+      worked out from dob on every visit, so it is never stale.
 
    ── TO MARK ONE RESERVED ──
       change   status: "available"
@@ -190,7 +188,6 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    readyOn: "2026-09-22",
     status: "reserved",
     reservedOn: "2026-08-28",
     soldOn: "",
@@ -219,7 +216,6 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    readyOn: "2026-09-22",
     status: "available",
     soldOn: "",
     photo:  "photos/butterscotch.jpg",
@@ -244,7 +240,6 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    readyOn: "2026-09-22",
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
@@ -269,7 +264,6 @@ const RABBITS = [
     colour: "Sable point",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    readyOn: "2026-09-22",
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
