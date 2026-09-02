@@ -93,6 +93,13 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .edition p{color:var(--ink-soft)}
 .edition ul{margin:10px 0 4px 20px;color:var(--ink-soft)}
 .edition li{margin-bottom:8px}
+/* THE BRIEF FORM. Bold lead in full ink so a skim of the bold words alone
+   reads as the whole edition; a little more air between bullets than the
+   old prose lists had, because each one is a separate thought. */
+.edition.brief ul{margin:6px 0 0 20px}
+.edition.brief li{margin-bottom:11px;line-height:1.5}
+.edition.brief li b{color:var(--ink)}
+.edition.brief .newscta{margin-top:20px}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
 
@@ -138,7 +145,13 @@ h1,h2,h3{text-wrap:balance}
          and a page whose last entry is six weeks old reads as abandoned.
 
          VOICE RULES: William's first person, plain and concrete. No em dashes.
-         No lists of three. No balanced clever sentences. -->
+         No lists of three. No balanced clever sentences.
+
+         BRIEF, ALWAYS (2026-09-02, "nobody's gonna read all of that, make it
+         ADHD proof"): every entry from here on is the bullet form used by the
+         weekly edition -- bold lead, one idea, one or two short sentences, the
+         bold words alone tell the story. brieftest.js fails any entry dated
+         after 2026-09-02 that is not. -->
     <p class="lede">What is actually happening here. New litters, who is available, and
     anything about the rabbits that is worth telling you. I post when there is something
     to say rather than to a schedule.</p>
@@ -148,66 +161,45 @@ h1,h2,h3{text-wrap:balance}
 <main>
   <div class="wrap">
 
-    <!-- THE WEEKLY EDITION. Drafted from work/newslog.md, shown to William, posted
-         on his word; the page still promises no cadence, and none goes here. This
-         one covers 27 August to 2 September and went up the day it says. -->
-    <article class="edition">
-      <time datetime="2026-09-02">Wednesday, September 2, 2026</time>
-      <h2>This week at the rabbitry</h2>
-      <p>The August litter was six days old in the photo that went up this week: one white
-      and five fawn. A white kit among fawns is not a surprise. An all-white rabbit comes
-      from a gene that can hide in coloured parents and only shows when a kit gets a copy
-      from each side, so one only turns up when both parents carry it. Which kind of white
-      this one is, or whether it is a pale coat that will darken, I can't tell yet. The eyes
-      open at around ten days and that usually settles it. It goes in
-      <a class="xlink" href="litters.html#L2026-08-27">the litters record</a> with a dated
-      photo like everything else about them.</p>
-      <p>Of the July four, Sundae and Cloud, the two sable point bucks, are sold. Teddy is
-      reserved. Butterscotch, a fawn doe born 28 July, is the one still available, and
-      22 September is the date I expect her to be ready.</p>
-      <p>The biggest change is how the site talks about going home. It no longer names a set
-      age. Kits here go home when they're ready, and I decide that kit by kit. The test is
-      the same every time: off milk and eating hay and pellets on its own, eating and
-      drinking well for at least a week, holding or gaining weight when I weigh it, and
-      nothing wrong with it. Some get there at eight weeks and some sooner. Where a listing
-      shows a Ready date, that's the date I expect for that rabbit.</p>
-      <p>Each rabbit's card now shows how old it is today, worked out fresh every time you
-      look, in place of a countdown. The listing still gives the date I expect, next to
-      the day it was born.</p>
-      <p>The site shows a sale honestly too. A rabbit that is spoken for says Reserved with
-      the date it happened, and a rabbit that is paid for says Sold with its date. The
-      front page puts whoever is still available at the top, and sold rabbits stay in the
-      litters record for good, so you can always see what came out of a litter and how it
-      turned out.</p>
-      <p>Every rabbit has its own address now, arizonarabbits.com/r/butterscotch for
-      example. Text it to someone and they see her photo and a line about her before they
-      even tap. The address keeps working after she is sold, so a link you sent a friend
-      last week still opens the right rabbit.</p>
-      <p>Pair price, said plainly: take two together and the second one is 20% off. That
-      price also holds if you take one and reserve its littermate before the first one goes
-      home. A second rabbit bought later on is a single price. I would rather it be written
-      here than be a surprise at pickup.</p>
-      <p>One more thing on the litters page. Under the August litter's day-one photo there
-      is now a strip called As they grow. Each frame carries the date and how old they were
-      that day. Tap one to see it full size and step through the rest.</p>
+    <!-- THE WEEKLY EDITION, IN BRIEF. One <article class="edition brief"> a week.
+         FORMAT, William's rule 2026-09-02 ("nobody's gonna read all of that,
+         make it ADHD proof"), enforced by brieftest.js:
+           · the date line reads "Week of <Month> <D>, <YYYY>" and its datetime
+             is that week's MONDAY. It labels the week the edition is for, not
+             the day it was typed, so it is never a false posting date.
+           · at most 8 bullets; every bullet opens with a bold lead of a few
+             words, so the bold words alone tell the whole story; no bullet
+             over 28 words; the whole list under 160 words; the heading under
+             6 words. One idea per bullet, the one that matters most first.
+           · buyer-facing, William's first person, no em dashes, no list of
+             exactly three parallel items, never a departure date for a sold
+             rabbit, never a cadence promise.
+         Drafted from work/newslog.md by the Monday chain and posted Monday
+         morning; he vetoes after, like everything else on the site. The
+         six-days litter note that stood here as its own entry is the first
+         bullet of this one. -->
+    <article class="edition brief">
+      <time class="week" datetime="2026-08-31">Week of August 31, 2026</time>
+      <h2>This week, in short</h2>
+      <ul>
+        <li><b>One white kit.</b> The August six at six days: one white, five fawn.
+        <a class="xlink" href="litters.html#L2026-08-27">See the photos</a>.</li>
+        <li><b>Butterscotch is the one left.</b> Sundae and Cloud are sold, Teddy is
+        reserved. I expect her ready 22 September.</li>
+        <li><b>No set go-home age.</b> A kit leaves when it's weaned, eating well for a
+        week, holding weight and healthy. My call, kit by kit.</li>
+        <li><b>Pair price.</b> Take two together and the second is 20% off. Reserve a
+        littermate before the first goes home and it still counts.</li>
+        <li><b>Dates and ages everywhere.</b> Reserved and Sold show their dates, and
+        every card shows the rabbit's age today instead of a countdown.</li>
+        <li><b>Every rabbit has its own link.</b> arizonarabbits.com/r/butterscotch shows
+        her photo in a text, and keeps working after she's sold.</li>
+        <li><b>Litters grow up in photos.</b> Dated frames under the August litter. Tap
+        one to see it big.</li>
+      </ul>
       <p class="newscta">
         <a class="btn btn-primary" href="index.html#available">See who is available</a>
         <a class="btn btn-ghost" href="litters.html#L2026-08-27">See the August litter</a>
-      </p>
-    </article>
-
-    <article class="edition">
-      <time datetime="2026-09-02">Wednesday, September 2, 2026</time>
-      <h2>The August litter at six days: one white, five fawn</h2>
-      <p>First look at the six since the day they were born. At six days old one is white
-      and five are fawn. Coats can still shift a little as they come in, so the honest
-      read on colour comes at four weeks, when they get their names.</p>
-      <p>The photo is in <a class="xlink" href="litters.html#L2026-08-27">the litters record</a>,
-      with the date on it, next to the day-one picture. Every litter grows up there now,
-      one dated photo at a time, the same way each rabbit does on the front page.</p>
-      <p class="newscta">
-        <a class="btn btn-primary" href="index.html#waitlist">Get first word at four weeks</a>
-        <a class="btn btn-ghost" href="litters.html#L2026-08-27">See them at six days</a>
       </p>
     </article>
 
