@@ -482,27 +482,31 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .hero h1{font-size:clamp(31px,4.4vw,47px);letter-spacing:-.03em;margin-bottom:16px;max-width:19ch}
 .hero-sub{font-size:clamp(16.5px,1.7vw,18.5px);color:var(--ink-soft);max-width:48ch;margin-bottom:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
-/* Benefit stack. Label on line one, qualifier on line two — no commas, no flex-gap
-   artefacts, and the eye reads three fixed columns instead of parsing a run-on line. */
-.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:0 22px;
-  border-top:1px solid var(--line);margin-top:30px;padding-top:20px}
-/* Content-sized columns, and the claim never wraps. Three equal columns were
-   151px each at 1200px, and "You keep my number" is 152px in the real font: the
-   third label was already breaking onto two lines before the chevron, and the
-   chevron tipped the first. Measured 901-1440px: every label on one line,
-   nothing overflows, the qualifiers wrap where they must. */
-.facts b{white-space:nowrap}
-.facts a{display:block;color:inherit;text-decoration:none;border-radius:var(--r);cursor:pointer}
-.facts b{display:block;font-weight:600;font-size:15px;color:var(--ink);line-height:1.3}
-/* The chevron is the affordance: these three read as claims, and a claim that
-   can be tapped has to say so (NN/g: everything is either clearly a link or
-   clearly not). A chevron says "leads somewhere" without dressing a fact as a
-   button, which would compete with the two real buttons above it. */
-.facts b::after{content:"\00a0\203A";color:var(--brick-dk);font-weight:500}
+/* THE THREE FACTS ARE DOORWAYS, AND THEY WEAR THE SITE'S OWN CLOTHES.
+   They are rows, on every screen. Bold claim, muted specific, a hairline
+   under each, the chevron at the right edge: that is the Included list's
+   grammar plus the FAQ's caret (same 10px hairline square, ink-faint, brick
+   on hover), so a reader who has learned "that mark opens something" anywhere
+   on this page recognises it here. The three-up strip they replaced was the
+   one component on the site that looked like nothing else on it, and it
+   could not survive the hero column's range (465-530px on a wide screen):
+   "Second of a pair" wrapped, chevrons floated away from their claims, and on
+   phones the pills inherited space-between and scattered (his 2 Sept
+   screenshot). Rows cannot rag: the claim and the specific share one line on
+   a wide screen (widest row 380px, measured), and stack on a phone.
+   Never dressed as buttons: the two buttons above are the only buttons here. */
+.facts{border-top:1px solid var(--line);margin-top:26px}
+.facts a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;
+  padding:11px 2px 11px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none;cursor:pointer}
+.facts a span{display:flex;align-items:baseline;gap:10px;min-width:0}
+.facts b{font-weight:600;font-size:15px;color:var(--ink);line-height:1.3;white-space:nowrap;transition:color .15s}
+.facts small{font-size:14px;color:var(--ink-faint);line-height:1.45;white-space:nowrap;transition:color .15s}
+.facts .chev{flex:none;width:10px;height:10px;margin-right:4px;
+  border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
+  transform:rotate(-45deg);transition:border-color .15s,transform .15s}
 .facts a:hover b,.facts a:focus-visible b{color:var(--brick-dk)}
-.facts a:active{transform:scale(.97)}
-.facts small{display:block;font-size:13.5px;color:var(--ink-faint);margin-top:4px;line-height:1.45}
-@media(max-width:600px){.facts{grid-template-columns:1fr;gap:15px}}
+.facts a:hover small,.facts a:focus-visible small{color:var(--ink-soft)}
+.facts a:hover .chev,.facts a:focus-visible .chev{border-color:var(--brick-dk);transform:rotate(-45deg) translate(2px,2px)}
 /* The photo must FOLLOW the text column's height, never set its own. With the
    img in normal flow its intrinsic 4:5 ratio joins the row-height negotiation
    and wins, leaving a dead zone under the fact strip. Absolutely filling the
@@ -1415,17 +1419,17 @@ body.locked{overflow:hidden}
   .hero-cta{gap:9px}
   .hero-cta .btn{flex:1 1 auto;min-height:48px}
 
-  /* facts collapse to one scannable row of pills — the qualifiers are
-     desktop-only detail and cost ~130px of hero height on a phone */
-  .facts{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;padding-top:15px}
-  .facts small{display:none}
-  /* 44px tall, the site's tap-target standard (the nav pills are 44px; the
-     litter tiles' See-this-litter row is 44px). They were 28px as plain
-     labels; as doorways they have to be hittable with a thumb. */
-  .facts a{display:inline-flex;align-items:center;min-height:44px;background:var(--paper-2);
-    border-radius:100px;padding:0 13px 0 12px;border:1px solid transparent}
-  .facts a:hover,.facts a:focus-visible{border-color:var(--line)}
-  .facts b{font-size:12.5px;letter-spacing:-.01em}
+  /* THE FACT ROWS ON A PHONE: same rows, the specific drops under the claim
+     (the widest pair is 359px, a 350px column). Every row is a 44px+ tap
+     target, the site's standard; the press state tints the whole row so the
+     thumb sees that the row, not the word, is the target. */
+  .facts{margin-top:16px}
+  .facts a{gap:14px;min-height:54px;padding:10px 4px 10px 0}
+  .facts a span{display:block}
+  .facts b{display:block}
+  .facts small{display:block;margin-top:2px;font-size:13.5px}
+  .facts .chev{margin-right:3px}
+  .facts a:active{background:var(--paper-2);margin:0 -8px;padding-left:8px;padding-right:12px;border-radius:6px}
 
   /* rabbits 2-up: 1,334px of stacked cards becomes ~577px, and you can
      compare two at a glance instead of scrolling between them.
@@ -1663,9 +1667,9 @@ body.locked{overflow:hidden}
            resolves, the FAQ it opens is OPEN and on screen after the tap, and
            the target is tall enough. -->
       <div class="facts">
-        <a href="#faq-home"><b>Home when weaned</b><small>Not at a set age</small></a>
-        <a href="#faq-price"><b>20% off</b><small>Second of a pair</small></a>
-        <a href="#included"><b>You keep my number</b><small>For as long as you have them</small></a>
+        <a href="#faq-home"><span><b>Home when weaned</b><small>Not at a set age</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#faq-price"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="hero-media">
