@@ -66,8 +66,9 @@
         link to it), the <time>, the photo src, the count, the names.
      3. Copy a whole <a class="tile"> and paste it as the FIRST tile in
         the grid, pointing at the same id. Same photo, same date.
-     4. Delete one "Coming soon" tile so the grid stays full rather
-        than growing a tail of placeholders.
+     4. Nothing to delete. The grid holds real litters only; there are
+        no placeholder tiles any more (a promise without a date is not
+        information, and the build refuses one).
      5. The "Every rabbit from these litters" wall under the grid needs
         NOTHING from you. It builds itself from rabbits.js, and each of
         its tiles links to the rabbit AND back to the litter here.
@@ -194,20 +195,6 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile-sub{font-size:13px;color:var(--ink-faint);margin-top:2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* a placeholder, so the grid reads as an archive that keeps going
-   rather than a page with one thing on it */
-.tile.soon{background:var(--paper-2);border-style:dashed;cursor:default}
-.tile.soon:hover{border-color:var(--line);transform:none}
-.soon-art{width:100%;aspect-ratio:4/3;display:flex;align-items:center;
-  justify-content:center;color:#CBBBA8}
-.soon-art svg{width:30px;height:30px;stroke:currentColor;fill:none;
-  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-/* SAME TYPE AS A REAL TILE, only fainter. Giving the placeholder its own
-   smaller sans face made it a different height from a real tile, and a grid
-   where some squares are shorter than others is the exact complaint this page
-   was rebuilt to answer. Every tile carries both rows, so every tile matches. */
-.tile.soon .tile-date,.tile.soon .tile-sub{color:var(--ink-faint)}
 
 /* ─── ONE LITTER, OPENED ───────────────────────────────────────
    Hidden until the address bar ends in this litter's id. */
@@ -415,7 +402,7 @@ h1,h2,h3{text-wrap:balance}
                 <img src="photos/litter-2026-08-27-2026-09-02.jpg" width="1050" height="1400" loading="lazy"
                      alt="Six six-day-old kits on the floor beside the cage, one white and five fawn">
                 <figcaption><time datetime="2026-09-02">2 Sep 2026</time></figcaption>
-                <p>Six days old. One white and five fawn so far.</p>
+                <p>Six days old. One white and five fawn.</p>
               </figure>
             </div>
           </div>
@@ -516,37 +503,11 @@ h1,h2,h3{text-wrap:balance}
           </div>
         </a>
 
-        <!-- PLACEHOLDERS. Delete one each time you add a real litter, so the
-             grid stays full instead of growing a tail of empty squares. They
-             carry no date, because inventing a date for a litter that does not
-             exist is the one thing on this page that would cost you the trust
-             the dated photos are here to earn. -->
-        <div class="tile soon">
-          <div class="soon-art">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="6" width="18" height="14" rx="2"/>
-              <circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/>
-            </svg>
-          </div>
-          <div class="tile-body">
-            <div class="tile-date">Coming soon</div>
-            <div class="tile-sub">Photo on day one</div>
-          </div>
-        </div>
-
-        <div class="tile soon">
-          <div class="soon-art">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="6" width="18" height="14" rx="2"/>
-              <circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/>
-            </svg>
-          </div>
-          <div class="tile-body">
-            <div class="tile-date">Coming soon</div>
-            <div class="tile-sub">Photo on day one</div>
-          </div>
-        </div>
-
+        <!-- NO PLACEHOLDER TILES. Two "Coming soon / Photo on day one" squares
+             sat here to keep the grid full. William, 3 Sept 2026: no irrelevant
+             information anywhere on the site. A promise without a date is not
+             information, and sweep.py fails the build if one comes back. The
+             grid holds real litters only. -->
       </div>
 
       <!-- THE ARCHIVE WAS A DEAD END. Somebody arrives here from a shared link,
@@ -597,7 +558,7 @@ h1,h2,h3{text-wrap:balance}
   }
 })();
 </script>
-<script src="rabbits.js?v=865d2858"></script>
+<script src="rabbits.js?v=09a3807c"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
    Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html

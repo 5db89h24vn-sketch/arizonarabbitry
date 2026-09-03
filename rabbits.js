@@ -3,7 +3,7 @@
 
    This is the ONLY file you edit day to day. Never touch index.html.
 
-   These are your real rabbits, born 28 July 2026. Reservable now.
+   These are your real rabbits. Everything the site says about them comes from here.
 
    ── THE READY DATE ──
       ready: "22 Sept"  is the date you expect that rabbit to be ready.
@@ -197,7 +197,7 @@ const RABBITS = [
        will develop. Ear carriage in a young lop is not certain, and a buyer who is
        told it will happen and then finds it did not has been misled about the one
        feature the breed is named for. Say what is true today and what is usual. */
-    note:   "Solid fawn all over, like a little bear. Both ears still stand at the moment. Most lop over the coming weeks, though I can only tell you what they look like today."
+    note:   "Solid fawn all over, like a little bear. In the 23 August photo both ears stand up. Most lop over the following weeks, and I only ever describe what the dated photo shows."
   },
 
   {
@@ -221,7 +221,7 @@ const RABBITS = [
     photo:  "photos/butterscotch.jpg",
     feature: true,
     hero:   "img/hero-brick.jpg",
-    note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down this week, which is exactly how the lop starts."
+    note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts."
   },
 
   {

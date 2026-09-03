@@ -1929,7 +1929,7 @@ body.locked{overflow:hidden}
          The socials are the evidence for it, so they sit directly underneath. -->
     <div class="social-head rv">
       <h3>Watch them grow up</h3>
-      <p>Don't take my word for any of the above. Photos and video most days, including the
+      <p>Don't take my word for any of the above. Photos and video, including the
       unglamorous parts.</p>
       <div class="social">
         <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
@@ -1994,7 +1994,7 @@ body.locked{overflow:hidden}
         </ul>
         <div class="callout">
           <b>My own rabbits only</b>
-          <p>There is a rabbit virus going round Arizona's wild rabbits again this year, called
+          <p>Arizona's wild rabbits carry a virus called
           <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
              target="_blank" rel="noopener">RHDV2</a>, and it is usually fatal. Keeping the property closed to outside rabbits is how
           I keep everyone here safe, yours included.</p>
@@ -2084,7 +2084,7 @@ body.locked{overflow:hidden}
         <summary>How does this work?</summary>
         <div class="faq-body">
           <p>Send me a note or a text with a bit about your situation. I'll tell you honestly which
-          rabbit fits, including if the answer is none right now and you should wait for the next
+          rabbit fits, including if the answer is none of them and you should wait for the next
           litter. Then we set a time and you come and meet them, and that visit is free and there's no
           booking fee.</p>
           <p>If one's right for you, $100 holds them and comes off the price. Rabbits open for
@@ -2108,8 +2108,14 @@ body.locked{overflow:hidden}
           day it leaves, a health check you watch me do, two weeks of the food they're
           already eating, a written care sheet, and my phone number for as long as you have
           them. Prices differ between rabbits because colour and temperament differ, and rarer
-          colours cost more. Right now the two fawn does are the $375 ones and the
-          two sable point bucks are $350.</p>
+          colours cost more. <span data-fact="prices-now">Right now Butterscotch, a fawn doe, is $375.</span></p>
+          <!-- THE SENTENCE ABOVE IS GENERATED. sweep.py rewrites everything inside
+               data-fact="prices-now" from rabbits.js on every build, from the
+               AVAILABLE rabbits only, and the build fails if it is ever typed by
+               hand. It once said "the two sable point bucks are $350" for a week
+               after both bucks had sold: true about the roster, irrelevant to the
+               person reading it. A rabbit nobody can buy has no place in a
+               sentence about what you pay. -->
           <p>You can find a cheaper rabbit. You'll find plenty on classifieds for under a
           hundred. What you're paying the difference for is a rabbit that's already comfortable
           being picked up, and someone who answers the phone at month seven.</p>
@@ -2269,8 +2275,8 @@ body.locked{overflow:hidden}
           you're actually away and you can extend without renegotiating anything.</p>
           <p><b>Why only my own rabbits:</b> <a class="cite"
           href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-          target="_blank" rel="noopener">RHDV2</a> is circulating in Arizona's wild rabbit
-          population again this year. It <a class="cite"
+          target="_blank" rel="noopener">RHDV2</a> is in Arizona's wild rabbit
+          population. It <a class="cite"
           href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
           target="_blank" rel="noopener">survives months in the environment</a>, travels on shoes and
           clothing, and it's frequently fatal. Taking in outside rabbits would put every rabbit
@@ -2647,7 +2653,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=865d2858"></script>
+<script src="rabbits.js?v=09a3807c"></script>
 
 <script>
 (function(){
