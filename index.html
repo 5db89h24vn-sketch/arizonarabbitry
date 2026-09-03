@@ -484,9 +484,23 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
 /* Benefit stack. Label on line one, qualifier on line two — no commas, no flex-gap
    artefacts, and the eye reads three fixed columns instead of parsing a run-on line. */
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0 38px;
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:0 22px;
   border-top:1px solid var(--line);margin-top:30px;padding-top:20px}
+/* Content-sized columns, and the claim never wraps. Three equal columns were
+   151px each at 1200px, and "You keep my number" is 152px in the real font: the
+   third label was already breaking onto two lines before the chevron, and the
+   chevron tipped the first. Measured 901-1440px: every label on one line,
+   nothing overflows, the qualifiers wrap where they must. */
+.facts b{white-space:nowrap}
+.facts a{display:block;color:inherit;text-decoration:none;border-radius:var(--r);cursor:pointer}
 .facts b{display:block;font-weight:600;font-size:15px;color:var(--ink);line-height:1.3}
+/* The chevron is the affordance: these three read as claims, and a claim that
+   can be tapped has to say so (NN/g: everything is either clearly a link or
+   clearly not). A chevron says "leads somewhere" without dressing a fact as a
+   button, which would compete with the two real buttons above it. */
+.facts b::after{content:"\00a0\203A";color:var(--brick-dk);font-weight:500}
+.facts a:hover b,.facts a:focus-visible b{color:var(--brick-dk)}
+.facts a:active{transform:scale(.97)}
 .facts small{display:block;font-size:13.5px;color:var(--ink-faint);margin-top:4px;line-height:1.45}
 @media(max-width:600px){.facts{grid-template-columns:1fr;gap:15px}}
 /* The photo must FOLLOW the text column's height, never set its own. With the
@@ -1405,7 +1419,12 @@ body.locked{overflow:hidden}
      desktop-only detail and cost ~130px of hero height on a phone */
   .facts{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;padding-top:15px}
   .facts small{display:none}
-  .facts div{background:var(--paper-2);border-radius:100px;padding:5px 11px}
+  /* 44px tall, the site's tap-target standard (the nav pills are 44px; the
+     litter tiles' See-this-litter row is 44px). They were 28px as plain
+     labels; as doorways they have to be hittable with a thumb. */
+  .facts a{display:inline-flex;align-items:center;min-height:44px;background:var(--paper-2);
+    border-radius:100px;padding:0 13px 0 12px;border:1px solid transparent}
+  .facts a:hover,.facts a:focus-visible{border-color:var(--line)}
   .facts b{font-size:12.5px;letter-spacing:-.01em}
 
   /* rabbits 2-up: 1,334px of stacked cards becomes ~577px, and you can
@@ -1630,10 +1649,23 @@ body.locked{overflow:hidden}
            every time (weaned, per the readiness list in the Going home block and the
            FAQ) and says plainly that the age is not fixed. Do not put a number back
            here unless he states one. -->
+      <!-- EACH FACT IS A DOORWAY (William, 2 Sept 2026: "make it so people can
+           click on these bubbles... takes them to a place on the website that
+           details more information about it"). Decided on the evidence: a claim
+           next to its proof is the credibility pattern the whole page runs on
+           (the Born link, the stage link, the cited claims), a chip that answers
+           "says who?" in one tap costs nothing to the reader who does not tap,
+           and an in-page link with a clear label follows information scent. Two
+           conditions came with it: the chip must LOOK like it goes somewhere
+           (the chevron, hover and press states, a real <a>), and it must be a
+           real tap target (44px on a phone, the site's own standard, see the nav
+           pills). facttest.js walks every one of them in both engines: the link
+           resolves, the FAQ it opens is OPEN and on screen after the tap, and
+           the target is tall enough. -->
       <div class="facts">
-        <div><b>Home when weaned</b><small>Not at a set age</small></div>
-        <div><b>20% off</b><small>Second of a pair</small></div>
-        <div><b>You keep my number</b><small>For as long as you have them</small></div>
+        <a href="#faq-home"><b>Home when weaned</b><small>Not at a set age</small></a>
+        <a href="#faq-price"><b>20% off</b><small>Second of a pair</small></a>
+        <a href="#included"><b>You keep my number</b><small>For as long as you have them</small></a>
       </div>
     </div>
     <div class="hero-media">
@@ -2044,7 +2076,7 @@ body.locked{overflow:hidden}
   </div>
   <div class="wrap">
     <div class="faq rv" style="text-align:left">
-      <details open>
+      <details id="faq-how" open>
         <summary>How does this work?</summary>
         <div class="faq-body">
           <p>Send me a note or a text with a bit about your situation. I'll tell you honestly which
@@ -2057,7 +2089,7 @@ body.locked{overflow:hidden}
           leave with everything on the list above.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-price">
         <summary>Why do they cost what they cost?</summary>
         <div class="faq-body">
           <p>Every rabbit's price is listed on its own photo above, and that number is what you
@@ -2079,7 +2111,7 @@ body.locked{overflow:hidden}
           being picked up, and someone who answers the phone at month seven.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-deposit">
         <summary>Is there a deposit, and what happens to it?</summary>
         <div class="faq-body">
           <p><b>$100 holds a rabbit, and it comes straight off the price.</b> Once it's paid I take
@@ -2147,7 +2179,7 @@ body.locked{overflow:hidden}
           name, the amount, and the date, so you have it on record.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-home">
         <summary>When can I take one home?</summary>
         <div class="faq-body">
           <!-- EVIDENCE NOTE. This used to say enteritis "is almost always caused by
@@ -2191,7 +2223,7 @@ body.locked{overflow:hidden}
           I'll send photos and video the whole way through so the wait is easier.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-first">
         <summary>I've never had a rabbit. Is that a problem?</summary>
         <div class="faq-body">
           <p>No. First-timers are often who I enjoy working with most, because they actually read
@@ -2202,7 +2234,7 @@ body.locked{overflow:hidden}
           one of the best animals you can live with.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-grooming">
         <summary>How much grooming do they need?</summary>
         <div class="faq-body">
           <p>Not much. Holland Lops are short-coated, so a brush once a week is plenty most of the
@@ -2212,7 +2244,7 @@ body.locked{overflow:hidden}
           target="_blank" rel="noopener">genuinely dangerous</a>.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-indoors">
         <summary>Indoors or outdoors?</summary>
         <div class="faq-body">
           <p>Indoors, particularly here. Rabbits handle cold far better than heat, and <a class="cite"
@@ -2222,7 +2254,7 @@ body.locked{overflow:hidden}
           hutch. An indoor pen with daily supervised run-around time is what I recommend.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-boarding">
         <summary>Can you look after my rabbit while I'm away?</summary>
         <div class="faq-body">
           <p>Yes, for rabbits I've bred. <b>One rabbit is $20 a day, dropping to $15 a day after
@@ -2246,7 +2278,7 @@ body.locked{overflow:hidden}
         </div>
       </details>
 
-      <details>
+      <details id="faq-distance">
         <summary>I'm not in Tucson. Can you meet partway or come to me?</summary>
         <div class="faq-body">
           <p>Get in touch and we'll work it out together. Tell me roughly where you are and I'll
@@ -2258,7 +2290,7 @@ body.locked{overflow:hidden}
           I'll be firm about. If a journey isn't safe on the day, we move it, and I'll say so.</p>
         </div>
       </details>
-      <details>
+      <details id="faq-after">
         <summary>What if something goes wrong after pickup?</summary>
         <div class="faq-body">
           <!-- VET FIRST. This answer used to open "Call me" and later said "you call me
@@ -4089,6 +4121,31 @@ body.locked{overflow:hidden}
     openFromHash();
     window.addEventListener('hashchange',function(){
       if(/^#r-/.test(location.hash||'')) openFromHash();
+    });
+
+    /* ══════════════════════════════════════════════════════════════
+       AN ANSWER HAS AN ADDRESS. Every FAQ entry carries an id (#faq-home,
+       #faq-price, ...) so a claim anywhere on the site can point straight at
+       the answer that backs it: the three hero facts do, and the litters page
+       and the news may. A <details> reached by address must be OPEN when the
+       reader lands, or the link delivers them to a closed row and a question
+       they have to tap again; the browser will not open it by itself. So an
+       address that names a details opens it, on arrival and on every change.
+       The click handler covers the one case hashchange cannot: tapping the
+       same link twice, where the address does not change. With scripts off
+       the link still lands on the question, which is the honest degrade. */
+    function openAnswer(){
+      var m=/^#(faq-[a-z]+)$/.exec(location.hash||'');
+      var d=m&&document.getElementById(m[1]);
+      if(d&&d.tagName==='DETAILS') d.open=true;
+    }
+    openAnswer();
+    window.addEventListener('hashchange',openAnswer);
+    document.addEventListener('click',function(ev){
+      var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
+      if(!a) return;
+      var d=document.getElementById(a.getAttribute('href').slice(1));
+      if(d&&d.tagName==='DETAILS') d.open=true;
     });
 
     /* ══════════════════════════════════════════════════════════════
