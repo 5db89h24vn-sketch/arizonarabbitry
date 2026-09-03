@@ -780,6 +780,12 @@ header.nav.stuck{border-bottom-color:var(--line)}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 /* the viewer has room to breathe and its own longer wording, so it wraps */
 .viewer-grow .grow-txt{white-space:normal;overflow:visible}
+/* The stage name is one unit. The row may wrap in the photo view, but the
+   age string grows a character on some days ("5 weeks, 1 day" becomes
+   "5 weeks, 2 days") and at 430px that once pushed the last word of
+   "new people, new noise" onto a line of its own (orphantest, 2026-09-02).
+   Kept whole, the link either fits or moves down entire. */
+.viewer-grow .stagelink{white-space:nowrap}
 .grow-txt b{color:var(--ink-soft);font-weight:600}
 .viewer-grow{margin:0 0 2px}
 /* At 360px the bar and the text share a row and the text loses, wrapping and
