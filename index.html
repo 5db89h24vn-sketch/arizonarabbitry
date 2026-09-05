@@ -117,8 +117,36 @@
                            counts -- the small print a buyer squints at. #736A64 is the
                            same hue walked down until it clears on BOTH grounds
                            (4.99:1 and 4.54:1). Do not lighten it back. */ --line:#E3DACC; --line-soft:#EDE6DA;
-  --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8; --moss:#57694F;
-  --gold:#B08430; --serif:'Fraunces',ui-serif,Georgia,serif;
+  --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
+  /* ── COLOUR ROLES (5 Sept 2026) ──
+     One hue, one meaning, everywhere on the site. Colour on this page is never
+     decoration: a reader learns what a colour means once and it never lies.
+       brick          ACT. Buttons, links, the "Ask about" line, the citation
+                      underline, William's own emphasis. Nothing else is brick,
+                      so the eye finds the action (the isolation effect: a lone
+                      distinct colour is found first, and it is found less well
+                      the more places it appears).
+       moss           GROWING, CARED FOR. The routine's week rules, the growth
+                      bar on every card, the ticks on what is included. Green is
+                      the colour people pair with nature, calm and health in
+                      colour-emotion studies, and it is the one hue on this
+                      page a reader never has to act on.
+       open / hold / gone   A RABBIT'S STATE, green / amber / grey, always next
+                      to its word (never colour alone: about one man in twelve
+                      cannot tell red from green).
+       alert          ACT NOW. The same-day emergency signs in the FAQ and a
+                      form field that needs fixing. Warning research is clear
+                      that red plus a signal word is noticed first and read as
+                      the most serious; it keeps that power only if it is rare,
+                      so it appears exactly where an animal's life is at stake.
+       ink            everything that is only read.
+     Contrast on both grounds is checked by palettetest.js. */
+  --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9;
+  --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
+  --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6;
+  --gone:#6E6058; --gone-line:#DDD3C8;
+  --alert:#A32218;
+  --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --maxw:1140px; --r:8px;
 
@@ -590,9 +618,14 @@ header.nav.stuck{border-bottom-color:var(--line)}
   text-underline-offset:2px;text-decoration-color:var(--line);
   display:inline-block;padding:15px 4px;margin:-15px -4px}
 .avail-stamp a:hover{color:var(--brick-dk);text-decoration-color:var(--brick-dk)}
-.count{display:inline-flex;align-items:center;gap:9px;background:var(--brick-tint);
-  border:1px solid #E8D5C6;border-radius:100px;padding:7px 15px;font-size:14px;
-  font-weight:600;color:var(--brick-dk);white-space:nowrap}
+/* the count is a STATE, so it wears the state's colour (the same green as the
+   Available pill on the cards while anyone is available, the same amber as
+   Reserved when everyone is spoken for); with scripts off it is neutral */
+.count{display:inline-flex;align-items:center;gap:9px;background:var(--paper-2);
+  border:1px solid var(--line);border-radius:100px;padding:7px 15px;font-size:14px;
+  font-weight:600;color:var(--ink-soft);white-space:nowrap}
+.count.open{background:var(--open-tint);border-color:var(--open-line);color:var(--open)}
+.count.none{background:var(--hold-tint);border-color:var(--hold-line);color:var(--hold)}
 /* Horizontal rail. The section's height is now ONE card tall no matter how many
    rabbits you list, so adding stock never lengthens the page. A partial 4th card
    is always visible at the right edge, which is what tells people it scrolls. */
@@ -632,9 +665,9 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .bunny:hover .bunny-media img{transform:scale(1.03)}
 .status{position:absolute;top:11px;left:11px;z-index:2;padding:5px 11px;border-radius:4px;
   font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;background:#fff}
-.st-open{color:#2C6B41;border:1px solid #C3DECB}
-.st-hold{color:#8A5A08;border:1px solid #EBD9B6}
-.st-gone{color:#6E6058;border:1px solid #DDD3C8}
+.st-open{color:var(--open);border:1px solid var(--open-line)}
+.st-hold{color:var(--hold);border:1px solid var(--hold-line)}
+.st-gone{color:var(--gone);border:1px solid var(--gone-line)}
 .bunny-body{padding:16px 17px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
 .bunny-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .bunny-top h3{font-size:20px}
@@ -685,7 +718,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .wl-form input{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r);
   font:inherit;font-size:16px;background:#fff;min-width:0}
 .wl-form input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
-.wl-ok{display:none;font-size:15px;font-weight:600;color:#2C6B41}
+.wl-ok{display:none;font-size:15px;font-weight:600;color:var(--open)}
 .wl-ok.show{display:block}
 
 /* SERVICE BLOCK */
@@ -699,7 +732,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
   border-top:1px solid var(--line-soft)}
 .svc li{font-size:15.5px;color:var(--ink-soft);line-height:1.6;position:relative;padding-left:27px}
 .svc li::before{content:'';position:absolute;left:0;top:.34em;width:15px;height:15px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0522D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2357694F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
 .callout{margin-top:26px;background:var(--brick-tint);border:1px solid #EBD9C9;
   border-left:3px solid var(--brick);border-radius:0 var(--r) var(--r) 0;padding:16px 20px;max-width:56ch}
 .callout b{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;
@@ -733,17 +766,17 @@ header.nav.stuck{border-bottom-color:var(--line)}
 @media(max-width:900px){.stages{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.stages{grid-template-columns:1fr}}
 .stage-when{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--brick);display:block;margin-bottom:7px;padding-top:12px;border-top:2px solid var(--brick)}
+  color:var(--moss);display:block;margin-bottom:7px;padding-top:12px;border-top:2px solid var(--moss)}
 .stage h3{font-size:17px;margin-bottom:5px}
 /* ARRIVING FROM A LISTING. Sent to one of four near-identical blocks, a reader
    needs to know which one answered them. :target does it with no script, the
    same device the litter archive already runs on. It fades rather than flashes:
    the point is recognition, not alarm. */
 .stage:target .stage-when{border-top-width:4px}
-.stage:target h3{color:var(--brick-dk)}
+.stage:target h3{color:var(--moss-dk)}
 @media(prefers-reduced-motion:no-preference){
   .stage:target{animation:stageArrive 1.6s ease-out both}
-  @keyframes stageArrive{0%{background:var(--brick-tint)}100%{background:transparent}}
+  @keyframes stageArrive{0%{background:var(--moss-tint)}100%{background:transparent}}
 }
 .stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
 
@@ -766,8 +799,8 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .grow-bar{display:flex;gap:2px;flex:none}
 .grow-bar i{width:7px;height:4px;border-radius:1px;background:var(--line);
   transition:background .2s}
-.grow-bar i.on{background:var(--brick)}
-.grow-bar i.now{background:var(--brick-dk)}
+.grow-bar i.on{background:var(--moss)}
+.grow-bar i.now{background:var(--moss-dk)}
 @media(prefers-reduced-motion:no-preference){
   /* the only ambient movement on the page, and it moves slowly: this is a
      liveness signal, not an animation */
@@ -898,12 +931,16 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 /* THE BOLD LEAD IS THE ANSWER (voice.py). It is set in the full ink so a scanning
    eye lands on it; the reason after it stays in the softer ink. */
 .faq-body b{color:var(--ink);font-weight:600}
+/* THE ONE WARNING ON THE PAGE. Red with its signal word ("emergency") on the
+   same-day signs, and nowhere else, so it is noticed first and stays serious. */
+.faq-body p.alert{border-left:3px solid var(--alert);padding-left:14px}
+.faq-body p.alert b{color:var(--alert)}
 /* Refund terms are scanned, not read. A list lets someone find their own case
    in one pass instead of parsing a paragraph for it. */
 .faq-body ul{margin:11px 0 0;padding:0;list-style:none;display:grid;gap:9px}
 .faq-body li{position:relative;padding-left:19px}
 .faq-body li::before{content:'';position:absolute;left:2px;top:.62em;width:5px;height:5px;
-  border-radius:50%;background:var(--brick)}
+  border-radius:50%;background:var(--ink-faint)}
 
 /* FORM */
 .form-sec{background:var(--ink);color:#EFE8DE}
@@ -928,7 +965,7 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .askabout.on{display:block}
 .askabout:focus{outline:none}
 .askabout .ask-lead{font-size:15.5px;color:var(--ink-soft);margin:0 0 11px}
-.askabout .ask-lead b{color:var(--brick-dk);font-weight:600}
+.askabout .ask-lead b{color:var(--ink);font-weight:600}
 /* One chip per rabbit that's actually for sale, so wanting two is two taps
    rather than a sentence typed into a box. Built from the rendered cards, so
    it can never list a rabbit the page isn't showing. */
@@ -947,7 +984,7 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 /* Appears only when two or more are picked. The discount is real and already
    stated elsewhere; saying it at the moment they choose the second rabbit is
    where it actually changes a decision. */
-.pairnote{display:none;margin:11px 0 0;font-size:14.5px;color:var(--brick-dk)}
+.pairnote{display:none;margin:11px 0 0;font-size:14.5px;color:var(--ink)}
 .pairnote.on{display:block}
 .prog{display:flex;gap:6px;margin-bottom:8px}
 .prog i{height:3px;flex:1;border-radius:2px;background:var(--line);transition:background .3s}
@@ -987,7 +1024,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:40px;
 .opt b{display:block;font-size:15px;font-weight:500}
 .opt small{color:var(--ink-soft);font-size:13px;line-height:1.45;display:block}
 .opt:has(input:checked){border-color:var(--brick);background:var(--brick-tint)}
-.err{color:#A32218;font-size:13px;margin-top:5px;display:none}
+.err{color:var(--alert);font-size:13px;margin-top:5px;display:none}
 .err.show{display:block}
 .fnav{display:flex;gap:10px;margin-top:22px}
 .fnav .btn{flex:1}
@@ -2428,7 +2465,7 @@ body.locked{overflow:hidden}
                so any minute spent waiting on a breeder to pick up is a minute lost. The
                urgent path comes first and names the signs, because "seems off" is not
                something a first-time owner can act on. Do not reorder these paragraphs. -->
-          <p><b>Not eating, no droppings, hunched and quiet, breathing hard, or loose watery
+          <p class="alert"><b>Not eating, no droppings, hunched and quiet, breathing hard, or loose watery
           droppings: that's a same-day emergency.</b> Get to a rabbit-savvy vet. A rabbit that
           isn't eating can go from <a class="cite" href="https://rabbit.org/care/gi-stasis/"
           target="_blank" rel="noopener">off-colour to critical in hours</a>. Don't wait to
@@ -3793,6 +3830,7 @@ body.locked{overflow:hidden}
       countEl.textContent = open===0
         ? 'All reserved. Ask to see the next litter first, below.'
         : open+' of '+list.length+' still available';
+      countEl.className = 'count ' + (open===0 ? 'none' : 'open');
     }
 
     /* ── STRUCTURED DATA FOR THE LISTINGS ──────────────────────────
@@ -4517,7 +4555,7 @@ body.locked{overflow:hidden}
       if(f.type==='radio') return;
       var bad=!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.value.trim()));
       if(bad){ var er=step.querySelector('.err[data-for="'+f.name+'"]'); if(er) er.classList.add('show');
-        f.style.borderColor='#A32218'; ok=false; } else { f.style.borderColor=''; }
+        f.style.borderColor='var(--alert)'; ok=false; } else { f.style.borderColor=''; }
     });
     return ok;
   }
