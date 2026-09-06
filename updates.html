@@ -266,35 +266,6 @@ h1,h2,h3{text-wrap:balance}
 </footer>
 
 <script>
-/* NO ORPHANS. Same guarantee as the main page: the space between the last two
-   words becomes a non-breaking one, so a single word can never be stranded on a
-   line of its own. text-wrap:pretty asks for this; measuring found stranded
-   words surviving it in both engines, so the binding is what actually holds.
-   Written as an escape, never as a literal: an invisible character here is a
-   guarantee that can be switched off by accident and never noticed. */
-(function(){
-  var sel='p, li, summary, figcaption, blockquote, dd';
-  var els=document.querySelectorAll(sel);
-  for(var i=0;i<els.length;i++){
-    var el=els[i];
-    if(el.querySelector(sel)) continue;
-    if(el.textContent.trim().split(/\s+/).length<3) continue;
-    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
-    while((n=w.nextNode())){
-      if(!n.textContent.trim()) continue;
-      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
-      last=n;
-    }
-    if(!last) continue;
-    var t=last.textContent;
-    if(t.indexOf('\u00A0')>-1) continue;
-    var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
-    if(!m) continue;
-    last.textContent=m[1]+'\u00A0'+m[3];
-  }
-})();
-</script>
-<script>
 /* ══════════════════════════════════════════════════════════════
    NO ORPHANS, the same function index.html carries (orphantest.js checks the
    three copies are identical): the last two words of every block, and of

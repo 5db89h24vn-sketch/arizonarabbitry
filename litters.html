@@ -278,6 +278,8 @@ body.lbox-open{overflow:hidden}
    the litter's birth date, said once at the top of the card */
 .litter-set figcaption time{display:inline;background:none;border:0;padding:0;margin:0;
   font-size:inherit;color:inherit;white-space:normal;border-radius:0}
+/* the dot and the age wrap as one: "2 Sep 2026" over "· 6 days old" */
+.litter-set figcaption .age{white-space:nowrap}
 .litter-set figure p{padding:3px 11px 11px;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
 .litter p{color:var(--ink-soft)}
 .litter p + p{margin-top:10px}
@@ -540,35 +542,6 @@ h1,h2,h3{text-wrap:balance}
   </div>
 </footer>
 
-<script>
-/* NO ORPHANS. Same guarantee as the main page: the space between the last two
-   words becomes a non-breaking one, so a single word can never be stranded on a
-   line of its own. text-wrap:pretty asks for this; measuring found stranded
-   words surviving it in both engines, so the binding is what actually holds.
-   Written as an escape, never as a literal: an invisible character here is a
-   guarantee that can be switched off by accident and never noticed. */
-(function(){
-  var sel='p, li, summary, figcaption, blockquote, dd';
-  var els=document.querySelectorAll(sel);
-  for(var i=0;i<els.length;i++){
-    var el=els[i];
-    if(el.querySelector(sel)) continue;
-    if(el.textContent.trim().split(/\s+/).length<3) continue;
-    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
-    while((n=w.nextNode())){
-      if(!n.textContent.trim()) continue;
-      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
-      last=n;
-    }
-    if(!last) continue;
-    var t=last.textContent;
-    if(t.indexOf('\u00A0')>-1) continue;
-    var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
-    if(!m) continue;
-    last.textContent=m[1]+'\u00A0'+m[3];
-  }
-})();
-</script>
 <script src="rabbits.js?v=e1351d55"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
@@ -804,8 +777,14 @@ h1,h2,h3{text-wrap:balance}
           var when=tm?(tm.getAttribute('datetime')||''):'';
           set.push({src:im?im.getAttribute('src'):'', date:when,
                     note:nt?(nt.textContent||'').replace(/\s+/g,' ').trim():''});
-          /* the age that day, after the date, from the litter's own birth date */
-          if(tm&&when){ var age=ageAt(dob,when); if(age) tm.parentNode.appendChild(document.createTextNode(' \u00B7 '+age)); }
+          /* the age that day, after the date, from the litter's own birth date.
+             ONE UNIT: the dot and the age go in a span that cannot break inside
+             itself, so a narrow caption reads "2 Sep 2026" over "· 6 days old",
+             never "2 Sep 2026 · 6" over "days old" (William, 6 Sept 2026: no
+             hanging words, and the number belongs with its unit). */
+          if(tm&&when){ var age=ageAt(dob,when); if(age){
+            var sp=document.createElement('span'); sp.className='age'; sp.textContent='\u00B7 '+age;
+            tm.parentNode.appendChild(document.createTextNode(' ')); tm.parentNode.appendChild(sp); } }
           (function(idx,el){
             el.classList.add('opens'); el.setAttribute('role','button'); el.setAttribute('tabindex','0');
             el.setAttribute('aria-label','See this photo full size');
