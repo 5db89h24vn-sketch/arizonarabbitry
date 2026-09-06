@@ -825,5 +825,54 @@ h1,h2,h3{text-wrap:balance}
   }catch(e){}
 })();
 </script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   NO ORPHANS, the same function index.html carries (orphantest.js checks the
+   three copies are identical): the last two words of every block, and of
+   every bold lead inside one, wrap together, so no word is ever stranded on a
+   line of its own, at any width, in any engine.
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  /* THE BOLD LEADS TOO (6 Sept 2026). William's phone showed "I'm William, and
+     I came to rabbits through" on one line and "chinchillas." alone at the
+     start of the next, and his rule is no hanging word anywhere, a bold line
+     included. So the same binding is applied inside every <b> and <strong>
+     in a block: its last two words wrap together, so a bold lead can never
+     end with one word stranded on a new line. */
+  function tieLast(el, minWords){
+    if((el.textContent.trim().split(/\s+/)||[]).length<minWords) return;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
+    while((n=w.nextNode())){
+      if(!n.textContent.trim()) continue;
+      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+      last=n;
+    }
+    if(!last) return;
+    var t=last.textContent;
+    /* NB: written as an escape on purpose. A literal non-breaking space here
+       is invisible in an editor and one careless find-and-replace turns this
+       guarantee off without changing anything anybody can see. */
+    if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
+    /* the final run of whitespace that has a word on each side of it */
+    var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
+    if(!m) return;
+    last.textContent=m[1]+'\u00A0'+m[3];
+  }
+  function noOrphans(root){
+    if(!root) return;
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3';
+    var els=root.querySelectorAll(sel);
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.querySelector(sel)) continue;                 /* leaves only */
+      /* fewer than three words and there is nothing to strand */
+      tieLast(el, 3);
+      var bolds=el.querySelectorAll('b, strong');
+      for(var j=0;j<bolds.length;j++) tieLast(bolds[j], 2);
+    }
+  }
+  noOrphans(document.body);
+})();
+</script>
 </body>
 </html>
