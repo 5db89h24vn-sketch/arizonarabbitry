@@ -1442,6 +1442,41 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    every other viewer row, so the dialog stays one size for every rabbit. */
 .viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
 .viewer-born{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
+/* THE PARENTS ROW (6 Sept 2026). William: "whenever somebody clicks on a rabbit,
+   it will automatically show their mom and their dad ... as little friction as
+   possible ... our website cannot be a maze." So the parents are not a page,
+   a section or a name to look up: they are two small photographs in the
+   listing itself, under the birth date, and one tap on either opens that
+   parent in this same box with its photos and its kits. What the competition
+   does, checked 6 Sept 2026: the rabbitries found print "Dam: name, Sire:
+   name" with no picture, or keep the parents' photos on a separate herd page
+   and tell buyers to match the names up themselves. Breeder-site guidance
+   (Breedpost) names the better pattern: parents pictured and linked from the
+   litter itself. Two tiles side by side at every width: photo, role, breed,
+   in the card grammar the rest of the site uses (hairline, --r radius, brick
+   on hover). Labels never wrap (orphantest.js measures them). */
+.viewer-parents{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.viewer-parents[hidden]{display:none}
+.parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
+  border:1px solid var(--line);border-radius:var(--r);background:#fff;
+  color:inherit;text-decoration:none;cursor:pointer;transition:border-color .15s}
+.parent:hover,.parent:focus-visible{border-color:var(--brick)}
+.parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
+.parent span{display:block;min-width:0}
+.parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);line-height:1.3;white-space:nowrap}
+.parent b{display:block;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.3;white-space:nowrap}
+/* THEIR KITS, in a parent's view: every rabbit of theirs on the site, as the
+   same name chips the litter page uses, each opening that rabbit's listing. */
+.viewer-kits{margin-top:9px}
+.viewer-kits[hidden]{display:none}
+.viewer-kits small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:6px;white-space:nowrap}
+.kitrow{display:flex;flex-wrap:wrap;gap:7px}
+.kit{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:100px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13.5px;font-weight:500;
+  text-decoration:none;white-space:nowrap}
+.kit:hover,.kit:focus-visible{border-color:var(--brick);color:var(--brick-dk)}
 /* The birth date is the way through to the litter this rabbit came from. It opens
    in a NEW TAB on purpose: closing the photo view to go and read a different page
    would throw away the place of somebody who is mid-decision, which is the whole
@@ -1921,7 +1956,7 @@ body.locked{overflow:hidden}
          efficiently". The date is the freshness signal; nothing says "new". -->
     <div class="doors rv" aria-label="The news and the litters">
       <a href="updates.html"><span><b>Rabbitry news</b><small data-fact="news-row">Updated <time datetime="2026-09-06">6 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
-      <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 August. Photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 August. Three litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
     <!-- One-field capture for the majority who aren't buying today.
@@ -2044,25 +2079,26 @@ body.locked{overflow:hidden}
            lead says so and the plan sentence goes. Never type either one. -->
       <p class="lede"><b data-fact="breeds-now">The Holland Lop crosses are temporary.</b>
       <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
-      My foundation: a farmer sold me a Satin Angora, and a Holland Lop followed. Their
-      litters funded the purebred lines: Netherland Dwarfs are here, Holland Lops next, then
-      another Angora, kept separate.</p>
+      A farmer sold me a <a class="litterlink" href="#p-father" title="The father: his photos and his kits">Satin
+      Angora</a>, and a <a class="litterlink" href="#p-mother" title="The mother: her photos and her kits">Holland
+      Lop</a> followed. Their litters funded the purebred lines: Netherland Dwarfs are here,
+      Holland Lops next, then another Angora, kept separate.</p>
       <p class="lede"><b>Every dollar goes back into the rabbits.</b> Each line is bred
       to get better, so some rabbits never go up for sale: they stay to carry it forward. Every
       litter is on <a class="litterlink" href="litters.html">the litters page</a> from its first
-      day.</p>
+      day, <a class="litterlink" href="litters.html#L2026-06-28">back to the first one</a>, 28 June 2026.</p>
       <p class="lede"><b>Rabbits are prey animals, and hands have to be learned.</b> Kits handled
       briefly at feeding time in their first week <a class="cite"
       href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
       target="_blank" rel="noopener">come up to people at weaning, and still do as adults</a>.
       Kits nobody handled avoid the hand and grow up afraid of people.</p>
       <p class="lede"><b>Those weeks are long before you could meet them, so they're mine.</b> I keep
-      it going every day after, with other people too. A rabbit calm only with its breeder
+      it going every day after, with other people. A rabbit calm only with its breeder
       isn't socialized.</p>
       <p class="lede"><b>Handling doesn't make a rabbit love being lifted.</b> <a class="cite"
       href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
       target="_blank" rel="noopener">Most never do</a>. What it makes is a rabbit that comes to
-      you, holds still for the handling it needs, and doesn't panic in a stranger's hands. That's
+      you, holds still to be handled, and doesn't panic in a stranger's hands. That's
       what you're paying for.</p>
     </div>
   </div>
@@ -2889,6 +2925,14 @@ body.locked{overflow:hidden}
            listing, and breed + sex + colour + Born + Ready no longer fits one
            line on a phone. Same rule as the dated status row below it. -->
       <p class="viewer-born" id="viewerBornRow"></p>
+      <!-- THE PARENTS (6 Sept 2026). Two small photos under the birth date:
+           the mother and the father, from PARENTS in rabbits.js. One tap opens
+           the parent's own view in this same box (its photos, the other parent,
+           every kit of theirs on the site); Back returns to the rabbit. In a
+           parent's view this row holds the other parent, and the kits row
+           below it lists their kits. Built by script; empty without it. -->
+      <div class="viewer-parents" id="viewerParents" hidden></div>
+      <div class="viewer-kits" id="viewerKits" hidden></div>
       <p class="viewer-when" id="viewerWhen" hidden></p>
       <div id="viewerGrow"></div>
       <div class="viewer-said" id="viewerSaid">
@@ -2902,7 +2946,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=e1351d55"></script>
+<script src="rabbits.js?v=64f7ef5a"></script>
 
 <script>
 (function(){
@@ -4026,6 +4070,8 @@ body.locked{overflow:hidden}
         vStatus=document.getElementById('viewerStatus'),
         vBorn=document.getElementById('viewerBorn'),
         vGrow=document.getElementById('viewerGrow'),
+        vParents=document.getElementById('viewerParents'),
+        vKits=document.getElementById('viewerKits'),
         vBornText=document.getElementById('viewerBornText'),
         vBornWhat=document.getElementById('viewerBornWhat'),
         vPrev=document.getElementById('viewerPrev'),
@@ -4036,6 +4082,8 @@ body.locked{overflow:hidden}
     /* the rabbit currently on screen, so the share button never has to guess */
     var shown=null;
     var shots=[], at=0, lastFocus=null;
+    /* true while a PARENT is on screen rather than a rabbit (see openParent) */
+    var parentOpen=false, shareAble=false;
 
     function paint(i){
       if(i<0||i>=shots.length) return;
@@ -4087,6 +4135,91 @@ body.locked{overflow:hidden}
       return n<2;
     }
     oneBreed = function(){ return false; };   /* the breed shows in the photo view too (5 Sept 2026) */
+    /* ══════════════════════════════════════════════════════════════
+       THE PARENTS. PARENTS in rabbits.js, keyed by a handle; every rabbit
+       names its mother and father by handle. paintParents draws the two tiles
+       in a rabbit's listing; openParent turns the same box into the parent's
+       own view: its photos, the other parent, and every kit of theirs here.
+       Addresses: #p-mother and #p-father, so the About can point at them and
+       a tile is a plain link, which is what makes Back work without a line of
+       code: the browser wrote the history entry, the router reads it.
+       ══════════════════════════════════════════════════════════════ */
+    var HAVE_PARENTS=(typeof PARENTS!=='undefined'&&PARENTS&&typeof PARENTS==='object');
+    function parentKeyByRole(role){
+      if(!HAVE_PARENTS) return null;
+      for(var k in PARENTS) if(PARENTS[k]&&PARENTS[k].role===role) return k;
+      return null;
+    }
+    function roleWord(p){ return p.role==='mother'?'Mother':'Father'; }
+    function parentTile(key){
+      var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return '';
+      var photo=(p.photos&&p.photos[0]&&p.photos[0].src)||'';
+      var whose=p.role==='mother'?'her':'his';
+      return '<a class="parent" href="#p-'+esc(p.role)+'" data-parent="'+esc(key)+'"'+
+        ' aria-label="'+roleWord(p)+', '+esc(p.breed)+': see '+whose+' photos and kits">'+
+        (photo?'<img src="'+esc(photo)+'" alt="" loading="lazy">':'')+
+        '<span><small>'+roleWord(p)+'</small><b>'+esc(p.name||p.breed)+'</b></span></a>';
+    }
+    function paintParents(r){
+      if(!vParents) return;
+      vKits.hidden=true; vKits.innerHTML='';
+      var ok=HAVE_PARENTS&&r.mother&&r.father&&PARENTS[r.mother]&&PARENTS[r.father];
+      vParents.innerHTML=ok?(parentTile(r.mother)+parentTile(r.father)):'';
+      vParents.hidden=!ok;
+    }
+    function kitsOf(key){
+      var kits=RABBITS.filter(function(x){ return x.mother===key||x.father===key; });
+      kits.sort(function(a,b){ return String(a.dob||'').localeCompare(String(b.dob||''))||String(a.name).localeCompare(String(b.name)); });
+      return kits;
+    }
+    function openParent(key){
+      var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return false;
+      shots=(p.photos||[]).filter(function(x){return x&&x.src;}).map(function(x){return {src:x.src,note:x.note||''};});
+      if(!shots.length) return false;
+      lastFocus=document.activeElement;
+      parentOpen=true; shown=null;
+      var role=p.role==='mother'?'The mother':'The father';
+      vName.textContent=p.name||role;
+      vPrice.textContent='';
+      vMeta.textContent=p.breed+(p.name?(' \u00B7 '+role.toLowerCase()):'');
+      vBornRow.textContent='';
+      var a=document.createElement('a');
+      a.className='litterlink'; a.href='litters.html'; a.target='_blank'; a.rel='noopener';
+      a.title='Every litter, with the photo from the day it was born';
+      a.textContent='Every litter'; vBornRow.appendChild(a);
+      vWhen.textContent=''; vWhen.hidden=false;
+      vGrow.innerHTML='';
+      born='';
+      vNote.textContent=p.note||''; vNote.style.display=p.note?'':'none';
+      if(vStatus) vStatus.hidden=true;
+      /* the other parent, then their kits */
+      var other=null;
+      for(var k in PARENTS) if(k!==key&&PARENTS[k]&&PARENTS[k].role!==p.role){ other=k; break; }
+      vParents.innerHTML=other?parentTile(other):''; vParents.hidden=!other;
+      var kits=kitsOf(key);
+      vKits.innerHTML=kits.length?('<small>Their kits on this site</small><div class="kitrow">'+
+        kits.map(function(r){ return '<a class="kit" href="#r-'+esc(addrOf(r))+'">'+esc(r.name)+'</a>'; }).join('')+'</div>'):'';
+      vKits.hidden=!kits.length;
+      vCta.textContent='See who is available';
+      vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
+      vStrip.innerHTML=shots.map(function(x,n){
+        return '<button type="button" aria-label="Photo '+(n+1)+'"><img src="'+esc(x.src)+'" alt=""'+
+          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'"></button>';
+      }).join('');
+      vStrip.querySelectorAll('button').forEach(function(b,n){ b.addEventListener('click',function(){paint(n)}); });
+      vw.classList.toggle('solo', shots.length<2);
+      if(vShare){ vShare.hidden=true; }
+      if(history.replaceState){
+        var addr='#p-'+p.role;
+        if(location.hash!==addr) history.replaceState(null,'',location.pathname+location.search+addr);
+      }
+      vw.classList.add('open');
+      document.body.classList.add('locked');
+      fitBlocks();
+      paint(0);
+      vClose.focus();
+      return true;
+    }
     function paintMeta(r){
       vMeta.textContent='';
       vMeta.appendChild(document.createTextNode(
@@ -4248,9 +4381,12 @@ body.locked{overflow:hidden}
       if(!shots.length) shots=[{src:(r.photo||PLACEHOLDER)}];
       var cover=r.photo||shots[0].src;
       lastFocus=document.activeElement;
+      parentOpen=false;
       vName.textContent=r.name;
       vPrice.textContent='$'+r.price;
       paintMeta(r);
+      paintParents(r);
+      if(vShare) vShare.hidden=!shareAble;
       vGrow.innerHTML=growHTML(r,true);
       born=r.dob||'';
       vNote.textContent=r.note||'';
@@ -4341,8 +4477,9 @@ body.locked{overflow:hidden}
          the thing the reader just dismissed. replaceState rather than a new
          entry, so Back still leaves the page instead of stepping through
          every rabbit that was opened. */
-      if(/^#r-/.test(location.hash||'') && history.replaceState)
+      if(/^#[rp]-/.test(location.hash||'') && history.replaceState)
         history.replaceState(null,'',location.pathname+location.search);
+      parentOpen=false;
       if(lastFocus&&lastFocus.focus) lastFocus.focus();
     }
 
@@ -4416,7 +4553,18 @@ body.locked{overflow:hidden}
       pool.sort(function(a,b){ return String(a.dob||'').localeCompare(String(b.dob||'')); });
       return pool[0];
     }
+    function parentFromHash(){
+      var m=/^#p-(mother|father)$/.exec(location.hash||'');
+      return m?parentKeyByRole(m[1]):null;
+    }
     function openFromHash(){
+      /* #p-mother / #p-father: a parent's own view, from the About, a tile in
+         a listing, or a shared link */
+      var pk=parentFromHash();
+      if(pk){
+        if(vw.classList.contains('open')) shut();
+        return openParent(pk);
+      }
       var r=rabbitFromHash();
       /* AN #r- ADDRESS THAT NAMES NOBODY MUST CLOSE WHAT IS OPEN, not leave it.
          Going from #r-sundae to a mistyped or deleted name used to do nothing
@@ -4434,7 +4582,7 @@ body.locked{overflow:hidden}
     /* on arrival, and again if the address changes while the page is open */
     openFromHash();
     window.addEventListener('hashchange',function(){
-      if(/^#r-/.test(location.hash||'')) openFromHash();
+      if(/^#[rp]-/.test(location.hash||'')) openFromHash();
     });
 
     /* ══════════════════════════════════════════════════════════════
@@ -4504,8 +4652,9 @@ body.locked{overflow:hidden}
     }
     var canShare = !!(navigator.share),
         canCopy  = !!(navigator.clipboard && navigator.clipboard.writeText);
-    if (vShare && (canShare || canCopy)) {
-      vShare.hidden = false;
+    shareAble = canShare || canCopy;
+    if (vShare && shareAble) {
+      vShare.hidden = parentOpen;
       vShare.addEventListener('click', function(){
         if (!shown) return;
         var url = shareUrl(shown);

@@ -162,6 +162,23 @@
       rabbit is not as described, so a flattering photo is a refund you
       pay for later, plus a person who tells people about it.
 
+   ── THE PARENTS ──
+      Every rabbit names its mother and its father, and every listing shows
+      them: two small photos under the birth date, one tap opens the parent's
+      own view with its photos and every kit of theirs on the site, and
+      Back returns to the rabbit. The parents live in PARENTS below, keyed
+      by a short handle. To add a parent (a purebred line's doe or buck):
+
+        newdoe: { role: "mother", breed: "Netherland Dwarf",
+                  photos: [ { src: "photos/newdoe.jpg" } ] },
+
+      and on each of its kits:   mother: "newdoe",   father: "somebuck",
+      The build refuses a rabbit whose parents are not both here, and a
+      parent with no photo. Names are optional (name: "..."); without one
+      the site says "The mother" and "The father", which is what William
+      chose on 6 Sept 2026. Nothing about a parent is printed that is not
+      typed here: no colour, no age, no line about temperament.
+
    ── THE ONLY WAY TO BREAK THIS ──
       Every line inside a { } block ends with a comma, except the last.
       Every block ends with },
@@ -169,6 +186,29 @@
       If the rabbits disappear from your site, you deleted a bracket.
       Undo the change in GitHub and it comes straight back.
    ══════════════════════════════════════════════════════════════════════ */
+
+/* THE PARENTS of every litter so far: the same pair. The mother is the Holland
+   Lop, the father the Satin Angora (William, 6 Sept 2026). Their photos went
+   through polish.py first, like every other picture, and studio.py then cut
+   each rabbit out and set it on the site's plain backdrop: the rabbit is the
+   photograph's own; the room behind it is not (PHOTO-SYSTEM.md, "The studio"). */
+const PARENTS = {
+  lop: {
+    role:   "mother",
+    breed:  "Holland Lop",
+    photos: [
+      { src: "photos/mother.jpg" },
+      { src: "photos/mother-2.jpg" }
+    ]
+  },
+  angora: {
+    role:   "father",
+    breed:  "Satin Angora",
+    photos: [
+      { src: "photos/father.jpg" }
+    ]
+  }
+};
 
 const RABBITS = [
 
@@ -184,6 +224,8 @@ const RABBITS = [
     ],
     price:  375,
     breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
@@ -212,6 +254,8 @@ const RABBITS = [
     ],
     price:  375,
     breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
@@ -236,6 +280,8 @@ const RABBITS = [
     ],
     price:  350,
     breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",
@@ -260,6 +306,8 @@ const RABBITS = [
     ],
     price:  350,
     breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",

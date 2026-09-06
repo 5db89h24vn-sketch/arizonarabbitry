@@ -261,6 +261,19 @@ body.lbox-open{overflow:hidden}
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
+/* THE PARENTS STRIP (6 Sept 2026): the two tiles every listing on the front
+   page carries, under the litter's heading. Same grammar (hairline, --r radius,
+   brick on hover); each opens the parent's own view on the front page. */
+.parents{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:420px;margin:2px 0 14px}
+.parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
+  border:1px solid var(--line);border-radius:var(--r);background:#fff;
+  color:inherit;text-decoration:none;cursor:pointer;transition:border-color .15s}
+.parent:hover,.parent:focus-visible{border-color:var(--brick)}
+.parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
+.parent span{display:block;min-width:0}
+.parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);line-height:1.3;white-space:nowrap}
+.parent b{display:block;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.3;white-space:nowrap}
 /* AS THEY GROW: the dated progress photos, visible without any script. A
    strip of figures, each a photo, its date, and a one-line note; script adds
    the age that day after the date and makes each one open full size. */
@@ -387,6 +400,19 @@ h1,h2,h3{text-wrap:balance}
         <div class="litter-body">
           <time datetime="2026-08-27">Born 27 August 2026</time>
           <h2>Six born</h2>
+          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
+               front page carries, each opening that parent's own view there
+               (photos, the other parent, every kit of theirs). Typed here so the
+               page works with scripts off; parenttest.js checks these match
+               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          <div class="parents">
+            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Holland Lop: see her photos and kits">
+              <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
+            </a>
+            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
+              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+            </a>
+          </div>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
           <p>At six days old, one is white and five are fawn. Coats can still shift a
@@ -438,6 +464,19 @@ h1,h2,h3{text-wrap:balance}
         <div class="litter-body">
           <time datetime="2026-07-28">Born 28 July 2026</time>
           <h2>Six born, four raised</h2>
+          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
+               front page carries, each opening that parent's own view there
+               (photos, the other parent, every kit of theirs). Typed here so the
+               page works with scripts off; parenttest.js checks these match
+               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          <div class="parents">
+            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Holland Lop: see her photos and kits">
+              <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
+            </a>
+            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
+              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+            </a>
+          </div>
           <p>This is the photo from the day they arrived, before their eyes were open and
           before they had any fur. The fawn rabbit in the frame is from the litter before this
           one, about a month old here.</p>
@@ -481,6 +520,49 @@ h1,h2,h3{text-wrap:balance}
       </div>
     </article>
 
+    <!-- THE LITTER THAT STARTED IT ALL (added 6 Sept 2026, William's words):
+         born 28 June 2026, before this site existed. He had no nest box and
+         did not know she was pregnant. Five born, one did not make it, four
+         raised and sold before the site was made, so none is listed. The photo
+         is from the day they were born; the upload carried no date of its own,
+         so the stamp is the day he gave. No names, no whograph: nothing is
+         printed that he has not said. -->
+    <article class="litter" id="L2026-06-28">
+      <a class="allback" href="#all">&larr; All litters</a>
+      <div class="litter-card">
+        <div class="litter-media" data-note="One of the five on the day they were born, over the fur their mother pulled for a nest.">
+          <img src="photos/litter-2026-06-28.jpg?v=8eabab02" width="1400" height="1050"
+               alt="A newborn kit in William's hand above a metal tray lined with pulled fur, inside a green cage">
+        </div>
+        <div class="litter-body">
+          <time datetime="2026-06-28">Born 28 June 2026</time>
+          <h2>Five born, four raised</h2>
+          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
+               front page carries, each opening that parent's own view there
+               (photos, the other parent, every kit of theirs). Typed here so the
+               page works with scripts off; parenttest.js checks these match
+               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          <div class="parents">
+            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Holland Lop: see her photos and kits">
+              <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
+            </a>
+            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
+              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+            </a>
+          </div>
+          <p>The litter that started it all. I didn't have a nest box yet, and I didn't know
+          she was pregnant.</p>
+          <!-- data-kits="never-listed": this litter's kits were homed before the site
+               existed, so the relevance sweep must not ask for their names at four
+               weeks the way it does for every other litter (sweep.py, calendar). -->
+          <p data-kits="never-listed">Five were born. One didn't make it. The other four were raised and went to their
+          homes before this site existed, so they were never listed here.</p>
+          <p>The photo is from the day they were born: one of them in my hand, and the fur she
+          pulled for a nest in the tray.</p>
+        </div>
+      </div>
+    </article>
+
     <!-- ══════ THE GRID ══════ -->
     <div class="browse" id="all">
       <!-- VOICE RULES: William's first person, plain and concrete. No em dashes.
@@ -489,12 +571,13 @@ h1,h2,h3{text-wrap:balance}
            photograph gave it away: the fawn rabbit sitting in that nest box is a
            month-old kit from an earlier litter I raised before this page existed. An
            archive that claims to be complete and visibly isn't costs more than the
-           gap it was hiding, so the claim is now the true one. -->
+           gap it was hiding, so the claim became the true one. Since 6 Sept 2026
+           that first litter is here too, with its day-one photo, so the record
+           starts where the rabbitry did. -->
       <p class="lede">The photo I take the day a litter is born, kept here from then on. The
       date is on the picture itself, so you can see for yourself that these are mine. This
-      record starts in July 2026. There was a litter a month before it that I raised before
-      this page existed. Anything newer than the last litter here is in the
-      <a class="xlink" href="updates.html">rabbitry news</a>.</p>
+      record starts with the first litter, June 2026. Anything newer than the last litter
+      here is in the <a class="xlink" href="updates.html">rabbitry news</a>.</p>
 
       <div class="grid">
 
@@ -513,6 +596,15 @@ h1,h2,h3{text-wrap:balance}
           <div class="tile-body">
             <div class="tile-date">28 July 2026</div>
             <div class="tile-sub">Six born, four raised</div>
+          </div>
+        </a>
+
+        <a class="tile" href="#L2026-06-28">
+          <img src="photos/litter-2026-06-28.jpg?v=8eabab02" width="1400" height="1050" loading="lazy"
+               alt="A newborn kit in a hand above a tray lined with pulled fur">
+          <div class="tile-body">
+            <div class="tile-date">28 June 2026</div>
+            <div class="tile-sub">Five born, four raised</div>
           </div>
         </a>
 
@@ -542,7 +634,7 @@ h1,h2,h3{text-wrap:balance}
   </div>
 </footer>
 
-<script src="rabbits.js?v=e1351d55"></script>
+<script src="rabbits.js?v=64f7ef5a"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
    Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html
