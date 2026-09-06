@@ -1387,6 +1387,29 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    proximity costs nothing and does the work that a fourth font size was
    failing to do. */
 .viewer-body{padding:15px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+/* NOTHING IN THE BODY SHRINKS (6 Sept 2026, William's phone: the breed line and
+   the description of a listing cut off mid-letter). The body is a flex column,
+   and a flex item whose overflow is not visible has an automatic minimum size
+   of ZERO: the breed line and the description carry a reserved height with
+   overflow:hidden (fitBlocks), the thumbnail strip scrolls sideways, so when a
+   real Safari viewport (address bar and toolbar on screen: 390x664, 430x739,
+   375x553) leaves the body less room than its rows need, the flex algorithm
+   takes the difference out of exactly those rows before the body ever gets to
+   scroll. Measured: the breed line at 5px of its 19, the description at 29px
+   of its 96. Every test on this project ran 844 to 900px tall with no browser
+   chrome and never saw it; squeezetest.js now runs at the real heights. The
+   rows keep their size and the body scrolls, which is what overflow-y:auto was
+   for all along. */
+.viewer-body>*{flex-shrink:0}
+/* AND THE BUTTON STAYS UNDER THE THUMB while the text scrolls beneath it: the
+   primary action of a sheet stays reachable without scrolling (Apple's Human
+   Interface Guidelines on sheets; every iOS share sheet does the same). Sticky
+   costs no layout, so the box is still one size. The paper outline is invisible
+   at rest, where the paper is all around it anyway, and when the button is
+   stuck it is the shelf the scrolling text disappears under. Stuck, the button
+   sits at the foot of the box; at rest it sits above the body's own padding,
+   as it always did. */
+#viewerCta{position:sticky;bottom:0;outline:10px solid var(--paper);outline-offset:0}
 .viewer-said{margin-top:13px}
 .viewer-note{margin-top:13px}
 #viewerCta{margin-top:14px}
