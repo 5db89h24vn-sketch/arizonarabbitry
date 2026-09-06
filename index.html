@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Holland Lop Rabbits for Sale in Tucson | Arizona Rabbits</title>
-<meta name="description" content="Hand-raised Holland Lop rabbits for sale in Tucson, Arizona. Handled daily from birth, home once they are weaned, and lifetime support for every owner.">
+<title>Hand-raised Rabbits for Sale in Tucson | Arizona Rabbits</title>
+<meta name="description" content="Hand-raised rabbits for sale in Tucson, Arizona. Handled daily from birth, home once they are weaned, and lifetime support for every owner.">
 <!-- iOS Safari paints the status bar and toolbar with this colour, so on a phone it is
      the band sitting behind the Dynamic Island. It was --ink, the TEXT colour, where
      --paper, the background, belongs: a near-black bar hard against a cream page.
@@ -68,7 +68,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arizonarabbits.com/">
 <meta property="og:site_name" content="Arizona Rabbits">
-<meta property="og:title" content="Arizona Rabbits — Holland Lop Rabbits for Sale in Tucson">
+<meta property="og:title" content="Arizona Rabbits: hand-raised rabbits for sale in Tucson">
 <meta property="og:description" content="Hand-raised, handled daily from birth. Home once they are weaned, and you keep my number.">
 <!-- SHARE PREVIEW IMAGE. When a buyer texts this link to a spouse or posts it
      in a group chat, this picture IS the first impression; links with an image
@@ -80,15 +80,17 @@
      the card now exists in the world, and matching it beats an unbranded
      photo. This share image is for the FRONT PAGE only — each rabbit's own
      shareable address under /r/ carries that rabbit's photo instead.)
+     5 SEPT 2026: the sub-line was re-set from "Holland Lops | Tucson" to "in Tucson"
+     (the rabbits are Holland Lop crosses; see the About section) and ?v went to 4.
      TO SWAP LATER: replace img/og.jpg (keep 1200x630, under ~400 KB) AND bump
      the ?v= number below, or chat apps keep showing their cached old picture.
      build.py checks the file, the size, and these tags on every build. -->
 <!-- Absolute URL by design: share crawlers can't resolve relative paths.
      Goes live the moment the site is deployed at arizonarabbits.com. -->
-<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=3">
+<meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=4">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Arizona Rabbits — hand-raised Holland Lops in Tucson. A fawn Holland Lop lying on a brick ledge.">
+<meta property="og:image:alt" content="Arizona Rabbits, hand-raised rabbits in Tucson. A fawn Holland Lop cross lying on a brick ledge.">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -752,6 +754,20 @@ header.nav.stuck{border-bottom-color:var(--line)}
 
 /* SPLIT */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+/* ABOUT: three blocks. On a wide screen the heading and the story share the left
+   column and the photo fills the right, matched to their height. On a phone the
+   photo comes between them, so a reader gets a landmark after one paragraph
+   instead of after the whole story (the audit's measured point, 5 Sept 2026). */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;align-items:start}
+.about-head{grid-column:1;grid-row:1}
+.about-story{grid-column:1;grid-row:2;margin-top:14px}
+.about-story p+p,.about-head p+p{margin-top:14px}
+.about-media{grid-column:2;grid-row:1/3;align-self:stretch}
+.about-media img{border-radius:var(--r);object-fit:cover;object-position:50% 68%;width:100%;height:100%;min-height:340px}
+.lede b{color:var(--ink);font-weight:600}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:22px}
+  .about-head,.about-story,.about-media{grid-column:1;grid-row:auto}.about-story{margin-top:0}
+  .about-media img{height:auto;aspect-ratio:16/10;min-height:0}}
 /* same rule as the hero — image fills the row rather than dictating it */
 .split img{border-radius:var(--r);object-fit:cover;width:100%;height:100%;min-height:340px}
 @media(max-width:900px){.split{grid-template-columns:1fr;gap:26px}
@@ -1394,6 +1410,7 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    overflow. Height is reserved in fitBlocks across the whole list like
    every other viewer row, so the dialog stays one size for every rabbit. */
 .viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
+.viewer-born{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
 /* The birth date is the way through to the litter this rabbit came from. It opens
    in a NEW TAB on purpose: closing the photo view to go and read a different page
    would throw away the place of somebody who is mid-decision, which is the whole
@@ -1574,7 +1591,7 @@ body.locked{overflow:hidden}
   "@type":"LocalBusiness",
   "name":"Arizona Rabbits",
   "url":"https://arizonarabbits.com/",
-  "description":"Hand-raised Holland Lop rabbits for sale in Tucson, Arizona.",
+  "description":"Hand-raised rabbits for sale in Tucson, Arizona.",
   "telephone":"+1-520-270-2827",
   "email":"hello@arizonarabbits.com",
   "sameAs":[
@@ -1688,7 +1705,7 @@ body.locked{overflow:hidden}
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <h1>Hand-raised Holland Lops in Tucson.</h1>
+      <h1>Hand-raised rabbits in Tucson.</h1>
       <!-- "Yours arrives already comfortable being picked up, by anyone" promised an
            individual animal's future behaviour towards strangers. Handling is stressful for
            many rabbits and the response is the rabbit's, not the breeder's, to guarantee.
@@ -1756,7 +1773,7 @@ body.locked{overflow:hidden}
            NEW FILENAME ON PURPOSE: img/ is cached for a day, so replacing a picture under
            its old name would have left the collar photo on returning visitors' screens. -->
       <img class="hero-img" src="img/hero-brick.jpg"
-           alt="Butterscotch, a fawn Holland Lop kit, resting on a brick ledge with one ear lopped and one still upright" width="1600" height="1066" fetchpriority="high">
+           alt="Butterscotch, a fawn Holland Lop cross kit, resting on a brick ledge with one ear lopped and one still upright" width="1600" height="1066" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -1910,67 +1927,83 @@ body.locked{overflow:hidden}
 
 <!-- ══════════ WHY MINE ══════════ -->
 <section id="about" class="tinted">
-  <div class="wrap split">
-    <div class="rv">
+  <!-- THE ABOUT SECTION, rewritten 5 Sept 2026 against an outside audit William
+       brought in, every claim of which was checked against the primary research
+       before anything moved (the reasoning is in ABOUT-AUDIT.md in his folder).
+       What the evidence settled:
+
+       THE BREED. William confirmed (5 Sept 2026) that the rabbits listed descend
+       from his Satin Angora x Holland Lop pairing. So nothing on this site calls
+       them Holland Lops any more: they are Holland Lop crosses on every card, in
+       the photo view, on the litters page and in the share pages (rabbits.js
+       breed: "Holland Lop cross"), and the bold sentence below is GENERATED by
+       sweep.py from what is listed, so the day a purebred is listed it says so
+       by itself. Purebred Holland Lop and Netherland Dwarf lines are his stated
+       next step; the site prints that as a plan tied to a checkable record (the
+       litters page), never as a date he has not given.
+
+       THE SCIENCE, precisely. Kits handled briefly around nursing in their first
+       week approach a human hand at weaning and are still unafraid as adults,
+       while unhandled ones avoid the hand and grow up afraid of people (Pongracz
+       & Altbacker 1999, the cited PubMed record; Bilko & Altbacker 2000 puts the
+       sensitive period at the first week). The cite went to the primary study's
+       PubMed record on 6 Sept 2026 after the NIH review page (PMC3035402) began
+       answering automated checks with a robot test; the build now reads PubMed
+       through NIH's own E-utilities API, the same record. Handling later still
+       helps (Swennes et al. 2011: adults habituate over three weeks), so "the
+       door slams" is never said. What no study shows: that a rabbit's whole temperament is settled
+       early, or that handling makes a rabbit enjoy being lifted (PDSA, and the
+       Bradbury & Dickens 2016 review: being picked up is unpleasant for most
+       rabbits; freezing is not consent). So the headline promises comfort with
+       people, not temperament, and the last paragraph says plainly what handling
+       does not do. "Usually they picked one nobody spent time with" is gone: no
+       study puts a number on it, and fearfulness is partly inherited.
+
+       THE VOICE. Bold leads (voice.py now checks this section too), the money
+       line kept, the self-ranking ("best breeder in Tucson, then Arizona") cut:
+       objective language outperforms promotional language (Morkes & Nielsen 1997)
+       and a ranking nobody can check is the one kind of sentence this site does
+       not print. Mobile order: heading, one paragraph, the photo, then the story
+       (the photo used to come after 243 words on a phone).
+
+       Surname: William chose first name only (5 Sept 2026). Photo: he is sending
+       one of himself with a rabbit; swap img/about.jpg and its alt when it lands. -->
+  <div class="wrap about-grid">
+    <div class="rv about-head">
       <p class="kicker">About</p>
-      <!-- "decided" was the last absolute left standing on the page. Early handling
-             genuinely shifts how a rabbit responds to people, but genetics and the
-             months after collection both keep a vote, so a breeder cannot honestly
-             claim the matter is closed. "Mostly settled" keeps the whole point of the
-             sentence -- that the formative window happens HERE, before the buyer is
-             ever involved -- and stops promising an outcome no one can promise. -->
-        <h2>Temperament is mostly settled before you ever meet them.</h2>
-
-      <p class="lede" style="margin-bottom:14px">I'm William, and I came to rabbits through
-      chinchillas. They're remarkable animals, but a chinchilla doesn't want to be
-      held. That's their nature, not a shortcoming, and keeping them taught me what I was
-      actually after: an animal that comes to you.</p>
-
-      <p class="lede" style="margin-bottom:14px">Then a farmer sold me a Satin Angora, and that was
-      the animal I had been describing to myself. A Holland Lop followed, and when those two had
-      their first litter I stopped calling it a hobby.</p>
-
-      <p class="lede" style="margin-bottom:14px">Every dollar this makes goes straight back into
-      the rabbits. The plan is to be the best breeder in Tucson, then in Arizona, and I don't
-      intend to stop there.</p>
-
-      <p class="lede" style="margin-bottom:14px">None of that counts for anything if the rabbit
-      won't let you pick it up. So this next part is the one I care about most.</p>
-
-      <p class="lede">Rabbits are prey animals. Left alone, instinct fills in the gaps. By five
-      months you have one that flattens when a hand comes near. People assume they picked a shy
-      one. Usually they picked one nobody spent time with.</p>
-      <!-- EVIDENCE NOTE. This used to read "the window is roughly the first eight
-           weeks and it doesn't reopen." That was overstated. The reviewed welfare
-           literature puts the pre-weaning socialisation period much earlier and much
-           narrower: Bradbury & Dickens, "Appropriate handling of pet rabbits" (J Appl
-           Anim Welf Sci), names the sensitive periods around and after eye-opening,
-           "between days 10 and 20 postpartum". Nothing credible says the door slams
-           at eight weeks, and the evidence for fixing it later is thin either way.
-           So the claim now names the real window. It is also a BETTER argument: that
-           fortnight happens before any buyer could possibly be involved, which is
-           exactly why it has to be the breeder who spends it. Do not re-absolutise
-           this sentence. -->
-      <p class="lede" style="margin-top:14px">The part that decides it happens early, around the
-      time their eyes open in the second week. That's weeks before you'd ever meet them, so it
-      falls on me. I use it, and I keep handling them every day after, including by people who
-      aren't me. A rabbit that's calm only with its breeder isn't socialized. You find that out
-      the first time a friend tries to hold it.</p>
+      <h2>Comfort with people is built in the first weeks, long before you meet them.</h2>
+      <p class="lede"><b>I'm William, and I came to rabbits through chinchillas.</b> A chinchilla
+      doesn't want to be held. That's its nature. Keeping them taught me what I was after: an
+      animal that comes to you.</p>
     </div>
-    <div class="rv">
-      <!-- Real photo: William's rabbit loose on a café table beside his laptop — the
-           one-man shop and the socialized-rabbit claim in a single frame.
-           UPGRADE PATH: a photo with William's face in it would be stronger still — a face
-           beside a name is the one trust signal no competitor can copy. Swap when he has one. -->
+    <div class="rv about-media">
       <img src="img/about.jpg"
-           alt="A Holland Lop rabbit sitting calmly on a café table next to an open laptop and its travel carrier" width="800" height="800" loading="lazy">
+           alt="A rabbit sitting calmly on a café table next to an open laptop and its travel carrier" width="800" height="800" loading="lazy">
+    </div>
+    <div class="rv about-story">
+      <p class="lede"><b data-fact="breeds-now">The rabbits listed here are Holland Lop crosses, and every listing says so.</b>
+      A farmer sold me a Satin Angora. A Holland Lop followed, and their first litter is when I
+      stopped calling this a hobby. Purebred Holland Lops and Netherland Dwarfs are the next
+      step, and their first litter goes on <a class="litterlink" href="litters.html">the litters page</a>
+      the day it's born.</p>
+      <p class="lede"><b>Every dollar this makes goes back into the rabbits.</b> Every litter is on
+      record from the day it's born, with the date on the photo, and the routine is written down
+      week by week below.</p>
+      <p class="lede"><b>Rabbits are prey animals, and hands have to be learned.</b> Kits handled
+      briefly at feeding time in their first week <a class="cite"
+      href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
+      target="_blank" rel="noopener">come up to people at weaning, and still do as adults</a>.
+      Kits nobody handled avoid the hand and grow up afraid of people.</p>
+      <p class="lede"><b>Those weeks are long before you could meet them, so they're mine.</b> I keep
+      it going every day after, including with people who aren't me. A rabbit that's calm only
+      with its breeder isn't socialized.</p>
+      <p class="lede"><b>Handling doesn't make a rabbit love being lifted.</b> <a class="cite"
+      href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
+      target="_blank" rel="noopener">Most never do</a>. What it makes is a rabbit that comes to
+      you, holds still for the handling it needs, and doesn't panic in a stranger's hands. That's
+      what you're paying for.</p>
     </div>
   </div>
-  <!-- A three-point row lived here and was cut. Every claim in it already appeared
-       elsewhere: "good with everyone" restated the paragraph directly above it, "you keep
-       my number" duplicated the hero strip and the included list, and "20% off a second"
-       duplicated the hero strip and the FAQ. Repeating a claim within two screens doesn't
-       reinforce it, it just costs scroll. -->
 </section>
 
 <!-- ══════════ HOW THEY'RE RAISED ══════════ -->
@@ -2082,7 +2115,7 @@ body.locked{overflow:hidden}
       <!-- Real photo: three of William's lops in the travel carrier with pellets and hay —
            the actual animals and the actual gear, which is what this section promises. -->
       <img src="img/included.jpg"
-           alt="Three young Holland Lop rabbits inside a mesh travel carrier with a bowl of pellets and fresh hay" width="800" height="1200" loading="lazy">
+           alt="Three young rabbits inside a mesh travel carrier with a bowl of pellets and fresh hay" width="800" height="1200" loading="lazy">
     </div>
   </div>
 </section>
@@ -2248,8 +2281,8 @@ body.locked{overflow:hidden}
                rabbit only when two go home together, never carried to a rabbit
                bought later; and the litter-window compromise, the pair price holds
                when a littermate is reserved before the first one goes home. -->
-          <p><b>Yes. Take two together and the second one is 20% off.</b> Two from the same
-          litter or a Holland Lop and a Netherland Dwarf: the pair price is the same.</p>
+          <p><b>Yes. Take two together and the second one is 20% off.</b> Same litter or not,
+          the pair price is the same.</p>
           <p><b>It also holds if you reserve a littermate before the first one goes home.</b>
           A second rabbit bought later on is full price.</p>
           <!-- WILLIAM'S CLAIM, 5 Sept 2026: littermates sold as a pair "are already
@@ -2271,8 +2304,7 @@ body.locked{overflow:hidden}
           first, then short meetings on <a class="cite"
           href="https://rabbit.org/behavior/bonding-rabbits-faq/"
           target="_blank" rel="noopener">neutral ground</a>, a little longer each day.
-          Breed doesn't change the steps, and a Holland Lop and a Netherland Dwarf are close
-          in size. I'll walk you through it.</p>
+          Breed doesn't change the steps. I'll walk you through it.</p>
         </div>
       </details>
       <details id="faq-deposit">
@@ -2395,8 +2427,8 @@ body.locked{overflow:hidden}
       <details id="faq-grooming">
         <summary>How much grooming do they need?</summary>
         <div class="faq-body">
-          <p><b>Not much.</b> Holland Lops and Netherland Dwarfs are both short-coated. A brush
-          once a week is plenty, a little more when they moult. Nails every few weeks.</p>
+          <p><b>Not much for a short coat.</b> A brush once a week is plenty, a little more when
+          they moult. Nails every few weeks.</p>
           <p><b>No baths.</b> They keep themselves clean, and a bath is <a class="cite"
           href="https://rabbitwelfare.co.uk/welfare-need/bathing-rabbits/"
           target="_blank" rel="noopener">stressful and dangerous for a rabbit</a>.</p>
@@ -2606,7 +2638,7 @@ body.locked{overflow:hidden}
             <div class="field">
               <div class="opts" role="radiogroup" aria-label="What are you looking for">
                 <label class="opt"><input type="radio" name="interest" value="One rabbit" required>
-                  <span><b>One rabbit</b><small>A single Holland Lop.</small></span></label>
+                  <span><b>One rabbit</b><small>A single rabbit.</small></span></label>
                 <label class="opt"><input type="radio" name="interest" value="A pair">
                   <span><b>A pair</b><small>Two rabbits together, 20% off the second.</small></span></label>
                 <label class="opt"><input type="radio" name="interest" value="Not sure yet">
@@ -2694,7 +2726,7 @@ body.locked{overflow:hidden}
     <div class="foot">
       <div style="max-width:34ch">
         <span class="brand">Arizona Rabbits<small>Tucson</small></span>
-        <p style="line-height:1.65">A small home operation in Tucson raising Holland Lops. Handled
+        <p style="line-height:1.65">A small home operation in Tucson raising rabbits. Handled
         daily from the day they're born, and every owner keeps my number.</p>
       </div>
       <div>
@@ -2792,6 +2824,11 @@ body.locked{overflow:hidden}
     <div class="viewer-body">
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
+      <!-- BORN AND READY on their own row (5 Sept 2026): the breed joined the
+           meta line when the rabbits became "Holland Lop cross" on every
+           listing, and breed + sex + colour + Born + Ready no longer fits one
+           line on a phone. Same rule as the dated status row below it. -->
+      <p class="viewer-born" id="viewerBornRow"></p>
       <p class="viewer-when" id="viewerWhen" hidden></p>
       <div id="viewerGrow"></div>
       <div class="viewer-said" id="viewerSaid">
@@ -2805,7 +2842,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=09a3807c"></script>
+<script src="rabbits.js?v=e1351d55"></script>
 
 <script>
 (function(){
@@ -3723,9 +3760,12 @@ body.locked{overflow:hidden}
        Listing "Holland Lop" six times tells a reader nothing and costs a whole
        line on a phone-sized card. Keep breed in rabbits.js regardless: the moment
        you list a second breed, it starts showing again on its own. */
-    var breeds={}, breedCount=0;
-    list.forEach(function(r){ if(r.breed && !breeds[r.breed]){ breeds[r.breed]=1; breedCount++; } });
-    var showBreed = breedCount > 1;
+    /* SINCE 5 SEPT 2026 THE BREED IS ON EVERY CARD. The rabbits listed are Holland
+       Lop crosses (William confirmed the Satin Angora x Holland Lop pairing), and
+       a cross is the one thing a buyer must never have to ask about. The old rule
+       hid the breed while only one was listed; that was fine when the hero said
+       "Holland Lops" for the whole page, and the hero no longer does. */
+    var showBreed = true;
 
     railEl.innerHTML=list.map(function(r){
       var st=LABEL[r.status]||LABEL.available;
@@ -3863,7 +3903,7 @@ body.locked{overflow:hidden}
           '@type':'Product',
           'name':r.name,
           'description':r.note||'',
-          'category':(r.breed||'Holland Lop')+' rabbit',
+          'category':(r.breed?r.breed+' rabbit':'rabbit'),
           'offers':{
             '@type':'Offer',
             'price':String(r.price),
@@ -3887,7 +3927,7 @@ body.locked{overflow:hidden}
       s.textContent=JSON.stringify({
         '@context':'https://schema.org',
         '@type':'ItemList',
-        'name':'Holland Lop rabbits available in Tucson',
+        'name':'Rabbits available in Tucson',
         'itemListElement':items
       });
       document.head.appendChild(s);
@@ -3916,6 +3956,7 @@ body.locked{overflow:hidden}
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
+        vBornRow=document.getElementById('viewerBornRow'),
         vWhen=document.getElementById('viewerWhen'),
         vCap=document.getElementById('viewerCap'),
         vSaid=document.getElementById('viewerSaid'),
@@ -3985,22 +4026,24 @@ body.locked{overflow:hidden}
       }
       return n<2;
     }
+    oneBreed = function(){ return false; };   /* the breed shows in the photo view too (5 Sept 2026) */
     function paintMeta(r){
       vMeta.textContent='';
       vMeta.appendChild(document.createTextNode(
         [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')));
+      /* the born row: the doorway back to the litter, and the Ready date */
+      vBornRow.textContent='';
       if(r.dob){
-        vMeta.appendChild(document.createTextNode(' · '));
         var a=document.createElement('a');
         a.className='litterlink';
         a.href='litters.html#L'+r.dob;
         a.target='_blank'; a.rel='noopener';
         a.title='See the litter this rabbit came from';
         a.textContent='Born '+niceDate(r.dob);
-        vMeta.appendChild(a);
+        vBornRow.appendChild(a);
       }
       if(r.ready&&r.status==='available'){
-        vMeta.appendChild(document.createTextNode(' · Ready '+r.ready));
+        vBornRow.appendChild(document.createTextNode((r.dob?' · ':'')+'Ready '+r.ready));
       }
       /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail (7
          days after going home, or at once if a sold one has already left),
@@ -4034,10 +4077,12 @@ body.locked{overflow:hidden}
       if(r.status==='reserved'&&r.reservedOn) return 'Spoken for since '+niceDate(r.reservedOn);
       return '';
     }
+    function bornText(r){
+      return (r.dob?('Born '+niceDate(r.dob)):'')+
+        (r.ready&&r.status==='available'?((r.dob?' · ':'')+'Ready '+r.ready):'');
+    }
     function metaText(r){
-      return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')+
-        (r.dob?(' · Born '+niceDate(r.dob)):'')+
-        (r.ready&&r.status==='available'?(' · Ready '+r.ready):'');
+      return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ');
         /* NO STATUS AND NO DATE HERE ANY MORE. The chip says the status; the
            WHEN moved to its own .viewer-when row (whenText above), because as
            a suffix here it pushed this one-line row onto two at phone widths.
@@ -4103,9 +4148,10 @@ body.locked{overflow:hidden}
          the dialog is one geometry for every rabbit. While any rabbit carries
          a dated status the slot is reserved for all of them; when none does,
          whens are all empty and the row costs nothing. */
-      var whens=[];
-      for(var q=0;q<RABBITS.length;q++) whens.push(whenText(RABBITS[q]));
+      var whens=[], borns=[];
+      for(var q=0;q<RABBITS.length;q++){ whens.push(whenText(RABBITS[q])); borns.push(bornText(RABBITS[q])); }
       vWhen.style.minHeight=tallest(vWhen,'viewer-when',whens,w)+'px';
+      vBornRow.style.minHeight=tallest(vBornRow,'viewer-born',borns,w)+'px';
       vNote.style.height=tallest(vNote,'viewer-note',notes,w)+'px';
       /* A CAPTION SLOT NOBODY IS USING TAKES NO SPACE.
          Every real photograph carried "Out on the brick.", which described what

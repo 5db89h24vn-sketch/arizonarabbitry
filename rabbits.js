@@ -148,7 +148,7 @@
         2. Full body from the side, standing. Shape, proportion, coat.
         3. In someone's hands. Scale. "How big is this actually" is the
            question people are worst at answering from a photo alone.
-        4. Ears and head close up. For a Holland Lop this is the breed
+        4. Ears and head close up. For a lop this is the breed
            trait people are buying, and yours are still setting.
         5. Doing something ordinary -- eating, mid-hop, sitting in the
            run. Temperament reads from behaviour, never from a portrait.
@@ -183,7 +183,7 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  375,
-    breed:  "Holland Lop",
+    breed:  "Holland Lop cross",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
@@ -211,7 +211,7 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  375,
-    breed:  "Holland Lop",
+    breed:  "Holland Lop cross",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
@@ -235,7 +235,7 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    breed:  "Holland Lop",
+    breed:  "Holland Lop cross",
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",
@@ -259,7 +259,7 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    breed:  "Holland Lop",
+    breed:  "Holland Lop cross",
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",
