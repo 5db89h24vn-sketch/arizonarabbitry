@@ -960,6 +960,24 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 /* THE BOLD LEAD IS THE ANSWER (voice.py). It is set in the full ink so a scanning
    eye lands on it; the reason after it stays in the softer ink. */
 .faq-body b{color:var(--ink);font-weight:600}
+/* THE LEAD IS A LINE OF ITS OWN (6 Sept 2026). William, from his phone: no
+   double or triple hanging words either; "if you can make it a one liner, make
+   it a one liner, so it looks a lot more bold." Run in with the body, a bold
+   lead ended wherever the column happened to cut it, and its last two or three
+   words sat at the start of a line with the regular text running on after them.
+   So the lead stands as its own line above the body, the way a sub-heading
+   does (Nielsen's scanning studies: highlighted lead-ins and sub-headings are
+   what a scanning eye lands on, and a full-width bold line is a stronger
+   landing than a run-in). Where it must wrap, text-wrap:balance splits it into
+   even lines, so it never ends in a stub. Leads are kept to one phone line
+   where the fact survives the trim, and never more than two (orphantest.js
+   measures every one in the real typefaces). Older engines without balance
+   fall back to the NO ORPHANS binding at the foot of the page, which still
+   stops a single word hanging. Line height is tighter than the body's because
+   a two-line bold set at reading leading reads as two sentences, not one. */
+.faq-body p > b:first-child,.faq-body li > b:first-child,
+.about-story p > b:first-child,.about-head p > b:first-child{
+  display:block;text-wrap:balance;line-height:1.35;margin-bottom:3px}
 /* THE ONE WARNING ON THE PAGE. Red with its signal word ("emergency") on the
    same-day signs, and nowhere else, so it is noticed first and stays serious. */
 .faq-body p.alert{border-left:3px solid var(--alert);padding-left:14px}
@@ -2017,11 +2035,11 @@ body.locked{overflow:hidden}
            alt="A white Netherland Dwarf with black around its eyes sitting calmly on William's lap, his hand under it" width="1000" height="1000" loading="lazy">
     </div>
     <div class="rv about-story">
-      <p class="lede"><b data-fact="breeds-now">The Holland Lop crosses here are temporary: purebred Holland Lops and Netherland Dwarfs go on sale in October.</b>
+      <p class="lede"><b data-fact="breeds-now">The Holland Lop crosses are temporary: purebreds go on sale in October.</b>
       My foundation: a farmer sold me a Satin Angora, and a Holland Lop followed. Their
       litters funded the purebred lines: Netherland Dwarfs are here, Holland Lops next, then
       another Angora, kept separate.</p>
-      <p class="lede"><b>Every dollar this makes goes back into the rabbits.</b> Each line is bred
+      <p class="lede"><b>Every dollar goes back into the rabbits.</b> Each line is bred
       to get better, so some rabbits never go up for sale: they stay to carry it forward. Every
       litter is on <a class="litterlink" href="litters.html">the litters page</a> from its first
       day. Once the purebred lines are here, I'll show them.</p>
@@ -2282,9 +2300,9 @@ body.locked{overflow:hidden}
           wait for the next litter.</p>
           <p><b>Then come and meet them.</b> The visit is free and there's no booking fee.
           Nothing has to be decided on the day.</p>
-          <p><b>$50 holds the one you choose,</b> and it comes off the price. Rabbits open for
+          <p><b>$50 holds the one you choose.</b> It comes off the price. Rabbits open for
           reservation at four weeks old.</p>
-          <p><b>Pickup is when the rabbit is ready,</b> not at a set age. We go through the
+          <p><b>Pickup is when the rabbit is ready.</b> Not at a set age. We go through the
           care sheet together and you leave with everything on the list above.</p>
         </div>
       </details>
@@ -2296,8 +2314,7 @@ body.locked{overflow:hidden}
           <p><b>It covers more than the rabbit.</b> Daily handling from the day it's born, and a
           health check you watch me do. Two weeks of the food it's already eating, a written
           care sheet, and my number for as long as you have it.</p>
-          <p><b>Prices differ because colour and temperament differ,</b> and rarer colours cost
-          more. <span data-fact="prices-now">Right now Butterscotch, a fawn doe, is $375.</span></p>
+          <p><b>Colour and temperament set the price.</b> Rarer colours cost more. <span data-fact="prices-now">Right now Butterscotch, a fawn doe, is $375.</span></p>
           <!-- THE SENTENCE ABOVE IS GENERATED. sweep.py rewrites everything inside
                data-fact="prices-now" from rabbits.js on every build, from the
                AVAILABLE rabbits only, and the build fails if it is ever typed by
@@ -2317,7 +2334,7 @@ body.locked{overflow:hidden}
                rabbit only when two go home together, never carried to a rabbit
                bought later; and the litter-window compromise, the pair price holds
                when a littermate is reserved before the first one goes home. -->
-          <p><b>Yes. Take two together and the second one is 20% off.</b> Same litter or not,
+          <p><b>Yes. Two together: the second is 20% off.</b> Same litter or not,
           the pair price is the same.</p>
           <p><b>It also holds if you reserve a littermate before the first one goes home.</b>
           A second rabbit bought later on is full price.</p>
@@ -2348,11 +2365,11 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <!-- $50 SINCE 5 SEPT 2026, William's decision (it was $100). sweep.py
                checks the figure is stated the same everywhere it appears. -->
-          <p><b>$50 holds a rabbit, and it comes off the price.</b> Once it's paid, that rabbit
+          <p><b>$50 holds a rabbit and comes off the price.</b> Once it's paid, that rabbit
           is yours until pickup.</p>
           <p><b>Reservations open at four weeks old.</b> Before that, a kit's sex and colour are
           still a guess, and I won't take money for a guess.</p>
-          <p><b>Change your mind and the $50 moves with you.</b> It isn't refunded, because
+          <p><b>Change your mind: the $50 moves with you.</b> It isn't refunded, because
           holding a rabbit means turning other people away. It moves to another rabbit or to
           the next litter.</p>
           <!-- THE SWITCH RULE. Stated with the arithmetic done, because a policy
@@ -2361,10 +2378,10 @@ body.locked{overflow:hidden}
                appear so there is nothing to interpret. The reason follows the
                number: a fee with no reason reads as a penalty for changing your
                mind, which is the opposite of the transferable deposit above it. -->
-          <p><b>The first switch is free. After that each one is $25,</b> half the deposit.
+          <p><b>First switch free. After that, $25 each.</b> That's half the deposit.
           Changing your mind once is normal. Every switch after that puts a rabbit back on
           the list weeks late, and the fee is what that costs me.</p>
-          <p><b>Three things get the whole $50 back, no argument:</b></p>
+          <p><b>Three things get the $50 back, no argument:</b></p>
           <ul>
             <li>The rabbit gets ill or doesn't make it while still in my care.</li>
             <li>I'm the one who cancels, for any reason.</li>
@@ -2383,7 +2400,7 @@ body.locked{overflow:hidden}
                after a switch the cost is real and already explained above, so the amount is
                negotiated rather than promised. That vagueness is deliberate and is stated as
                vagueness, because a number printed here would have to hold in every case. -->
-          <p><b>Meet them on pickup day and change your mind? You get the whole $50 back.</b>
+          <p><b>Change your mind at pickup? Whole $50 back.</b>
           That holds for the first rabbit you reserve. After a switch, we settle on what it
           cost me, fair to both of us. I'd rather you said so than took home a rabbit you
           weren't sure about.</p>
@@ -2394,7 +2411,7 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit holds the rabbit. The balance is
           due at pickup, and cash is easiest for that.</p>
-          <p><b>Not sure about sending money to someone you haven't met?</b> Come and meet them
+          <p><b>Not sure about paying before you've met me?</b> Come and meet them
           first and pay the deposit in cash while you're here. Visits are free, so nothing is at
           stake until you've decided.</p>
           <p><b>If you're further away, you get it in writing.</b> I'll send confirmation the
@@ -2421,7 +2438,7 @@ body.locked{overflow:hidden}
                Nothing here may describe a kit that leaves early as finished; it
                describes the test every kit has to pass, whatever its age. Do not
                put a "no exceptions" back in. -->
-          <p><b>When it's ready, and there's no set age for that.</b> I decide kit by kit. Some
+          <p><b>When it's ready. There's no set age.</b> I decide kit by kit. Some
           are ready at eight weeks and some sooner.</p>
           <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
           own. Eating and drinking well for at least seven days. Holding or gaining weight
@@ -2431,9 +2448,9 @@ body.locked{overflow:hidden}
           target="_blank" rel="noopener">their gut is still learning the job</a>. A new house
           and new food on top of that is a lot to ask. So a kit that isn't there yet waits
           here, where nothing else is changing.</p>
-          <p><b>They go home eating exactly what they eat here,</b> with two weeks of that food
-          in the bag. Nothing changes on day one.</p>
-          <p><b>Where a listing shows a Ready date, that's the date I expect.</b> You'll get
+          <p><b>They go home eating what they eat here.</b> Two weeks of that food goes in the
+          bag. Nothing changes on day one.</p>
+          <p><b>A Ready date is the date I expect.</b> You'll get
           photos and video the whole way through, so the wait is easier.</p>
         </div>
       </details>
@@ -2477,19 +2494,19 @@ body.locked{overflow:hidden}
           href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
           target="_blank" rel="noopener">anything over the mid-80s for long is
           dangerous</a>. A Tucson summer isn't survivable in a hutch.</p>
-          <p><b>An indoor pen with daily run-around time</b> is what I recommend. Supervised,
+          <p><b>An indoor pen with daily run-around time.</b> That's what I recommend. Supervised,
           because rabbits chew cables.</p>
         </div>
       </details>
       <details id="faq-boarding">
         <summary>Can you look after my rabbit while I'm away?</summary>
         <div class="faq-body">
-          <p><b>Yes, for rabbits I've bred.</b> <b>One rabbit is $20 a day, dropping to $15 a day after
-          the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</b></p>
-          <p><b>Priced by the day on purpose,</b> so you only pay for the days you're away, and
-          you can extend without renegotiating anything.</p>
-          <p><b>Hay, pellets, clean bedding and the same daily handling they grew up with are
-          included,</b> and I'll send you photos while you're gone.</p>
+          <p><b>Yes, for rabbits I've bred.</b> One rabbit is $20 a day, dropping to $15 a day after
+          the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</p>
+          <p><b>Priced by the day on purpose.</b> You only pay for the days you're away, and you
+          can extend without renegotiating anything.</p>
+          <p><b>Food, bedding and handling are included.</b> Hay, pellets, clean bedding and the same
+          daily handling they grew up with, and photos while you're gone.</p>
           <p><b>Why only my own rabbits:</b> <a class="cite"
           href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
           target="_blank" rel="noopener">RHDV2</a> is in Arizona's wild rabbits. It <a class="cite"
@@ -2497,8 +2514,7 @@ body.locked{overflow:hidden}
           target="_blank" rel="noopener">survives for months in the environment</a> and travels
           on shoes and clothing, and it's often fatal. One outside rabbit could bring it to
           every rabbit here, including the babies waiting to go to their homes.</p>
-          <p><b>A closed property is also why I can promise your rabbit was healthy on pickup
-          day.</b></p>
+          <p><b>A closed property is also why I can promise a healthy rabbit at pickup.</b></p>
           <p><b>Rabbit from somewhere else?</b> Ask me anyway and I'll point you to a Tucson
           boarder or exotic vet who takes outside rabbits.</p>
         </div>
@@ -2533,8 +2549,8 @@ body.locked{overflow:hidden}
                so any minute spent waiting on a breeder to pick up is a minute lost. The
                urgent path comes first and names the signs, because "seems off" is not
                something a first-time owner can act on. Do not reorder these paragraphs. -->
-          <p class="alert"><b>Not eating, no droppings, hunched and quiet, breathing hard, or loose watery
-          droppings: that's a same-day emergency.</b> Get to a rabbit-savvy vet. A rabbit that
+          <p class="alert"><b>These signs are a same-day emergency:</b> Not eating, no droppings, hunched and quiet,
+          breathing hard, or loose watery droppings. Get to a rabbit-savvy vet. A rabbit that
           isn't eating can go from <a class="cite" href="https://rabbit.org/care/gi-stasis/"
           target="_blank" rel="noopener">off-colour to critical in hours</a>. Don't wait to
           reach me first. Text me on the way and I'll help with whatever I can.</p>
@@ -2546,8 +2562,8 @@ body.locked{overflow:hidden}
                he is right: each one is a small performance where a plain sentence would
                carry more weight. Facts stated plainly ARE the voice of this site. Vivid is
                fine ("A Tucson summer isn't survivable in a hutch"); clever is not. -->
-          <p><b>Every rabbit passes a health check before it leaves,</b> done together at pickup
-          with the rabbit in your hands: ears, teeth, eyes, weight and coat. If it doesn't
+          <p><b>A health check before every rabbit leaves.</b> We do it together at pickup with the
+          rabbit in your hands: ears, teeth, eyes, weight and coat. If it doesn't
           pass, it doesn't go home, and you get your deposit back in full.</p>
           <!-- AFTER PICKUP: ALL SALES FINAL. William's decision, and the reasoning he gave
                is real: the health check is done together at pickup with the rabbit in the
@@ -2569,7 +2585,7 @@ body.locked{overflow:hidden}
                The rehoming offer below is what keeps this from being a dead end. It gives a
                buyer who cannot keep a rabbit somewhere to go that is not a refund fight, which
                is better for the rabbit and cheaper for him than the alternative. -->
-          <p><b>Once a rabbit goes home with you, the sale is final.</b> I'd rather you read that
+          <p><b>Once a rabbit goes home, the sale is final.</b> I'd rather you read that
           here than find it out later. Nothing about the rabbit is hidden from you on the day,
           and you leave with everything on the list above.</p>
           <p><b>If it simply isn't working out, call me.</b> That isn't a refund, but it isn't
@@ -2578,8 +2594,8 @@ body.locked{overflow:hidden}
           <p><b>I'd rather promise what I can deliver than print a guarantee with fine
           print.</b> A rabbit that was healthy when you took it, and me reachable for the
           whole of its life.</p>
-          <p><b>The refunds in the deposit answer are separate.</b> All of those happen before
-          a rabbit ever leaves here.</p>
+          <p><b>The deposit refunds are separate.</b> All of those happen before a rabbit ever
+          leaves here. They're in the deposit answer.</p>
           <!-- A formal written health guarantee is still on the paperwork to-do list
                (sales agreement, standalone policy pages). The REFUND terms now exist and are
                stated above; the health guarantee is the part that does not. Until it does,

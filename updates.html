@@ -107,9 +107,21 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
    line's source, so it is set like a label, not like the article's pill
    above it, which the .edition time rule would otherwise make it. Small,
    muted, uppercase, and no pill, so the bold lead keeps the eye. */
-.edition.brief li time{display:inline;font-size:11.5px;font-weight:600;letter-spacing:.08em;
+.edition.brief li time{display:block;font-size:11.5px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-faint);background:none;border:0;border-radius:0;
-  padding:0;margin:0 7px 0 0;white-space:nowrap}
+  padding:0;margin:0 0 1px;white-space:nowrap;line-height:1.4}
+/* THE LEAD IS A LINE OF ITS OWN (6 Sept 2026). William, from his phone: no
+   double or triple hanging words either; "if you can make it a one liner,
+   make it a one liner, so it looks a lot more bold." Run in after the date
+   with the body following on the same line, a six-word lead broke inside
+   itself on every phone (a 360px phone gives a bullet about 250px), leaving
+   "are home." in bold at the start of a line with the text running on. So
+   each bullet is three tiers: the date as a small label, the bold lead as a
+   line of its own (one line on a phone for a lead under about thirty
+   characters, two balanced lines at most), then the body. Same grammar as
+   the FAQ and the About on the front page; orphantest.js measures every
+   lead in the real typefaces. */
+.edition.brief li b{display:block;text-wrap:balance;line-height:1.35;margin-bottom:2px}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
 
