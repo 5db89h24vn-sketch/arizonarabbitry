@@ -880,13 +880,26 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .grow-txt b{color:var(--ink-soft);font-weight:600}
 .viewer-grow{margin:0 0 2px}
 /* At 360px the bar and the text share a row and the text loses, wrapping and
-   stranding the last word. Stacking below 400px gives the sentence the whole
-   column instead of shortening it, so nothing is dropped to make it fit. */
-@media(max-width:400px){
+   stranding the last word. Stacking gives the sentence the whole column
+   instead of shortening it, so nothing is dropped to make it fit.
+   BELOW 480px, NOT 400 (6 Sept 2026). The breakpoint was 400px, set from
+   measurements taken in fallback type because this test bench cannot fetch
+   the site's fonts. Measured in Inter itself, the longest wording the row
+   can carry, "Now 11 weeks, 6 days old · new people, new noise", needs 323px
+   in Chromium (316 in WebKit); beside the bar a 430px phone gives it 306px,
+   so on an iPhone Pro Max it broke after the dot, and it did so only on days
+   the age ran to two digits and a remainder, which is how it was missed.
+   Stacked, 430px gives it 386px. 480 is the first width with room beside the
+   bar (356px); 390px stacked has 346px. */
+@media(max-width:480px){
   .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
   .viewer-grow .grow-bar{margin-top:0}
 }
 .viewer-grow .grow-txt{font-size:13px}
+/* The smallest phones (360px) give the stacked row 316px, 7px short of the
+   longest wording at 13px. At the card's own 12.5px it needs 311px and fits
+   with room to spare; nothing is shortened or dropped. */
+@media(max-width:375px){.viewer-grow .grow-txt{font-size:12.5px}}
 
 /* SOCIAL */
 .social-head{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
