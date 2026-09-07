@@ -2565,6 +2565,37 @@ body.locked{overflow:hidden}
           because rabbits chew cables.</p>
         </div>
       </details>
+      <!-- HOW LONG THEY LIVE (6 Sept 2026, William: the average lifespan of this
+           type of rabbit, on every litter). The litter archive's line "A rabbit
+           like these can live 8 to 12 years" links here, because a range on its
+           own would be the sales number and the measured averages are lower.
+           Three sources, each in its own words: the House Rabbit Society's range
+           for indoor rabbits with good care; the VetCompass study of 6,349
+           rabbits under primary care in England (O'Neill et al., Veterinary
+           Record 2020, PubMed 31594841: median age at death 4.3 years, lops a
+           quarter of the sample, flystrike the top recorded cause, anorexia
+           next); and the Tokyo clinic series of 898 rabbits (Shiga et al., Journal
+           of Exotic Pet Medicine 2022, via Clinician's Brief: median age at
+           death 7 years, 18 per cent past 9). -->
+      <details id="faq-life">
+        <summary>How long do they live?</summary>
+        <div class="faq-body">
+          <p><b>8 to 12 years indoors, with good care.</b> That is the <a class="cite"
+          href="https://rabbit.org/resources/how-long-do-rabbits-live/"
+          target="_blank" rel="noopener">House Rabbit Society's range</a>. Spayed or
+          neutered and kept indoors, about ten is typical.</p>
+          <p><b>Most pet rabbits don't get there.</b> A study of 6,349 rabbits under vet care
+          in England, a quarter of them lops, found the <a class="cite"
+          href="https://pubmed.ncbi.nlm.nih.gov/31594841/"
+          target="_blank" rel="noopener">typical one died at 4.3 years</a>. A Tokyo
+          clinic's 898 cases put it at <a class="cite"
+          href="https://www.cliniciansbrief.com/article/life-expectancy-pet-rabbits"
+          target="_blank" rel="noopener">7 years</a>, with nearly one in five past nine.</p>
+          <p><b>The gap is care, not luck.</b> Flystrike led the causes in England, with not
+          eating next. Not eating is on my same-day emergency list, and you keep my
+          number for life.</p>
+        </div>
+      </details>
       <details id="faq-boarding">
         <summary>Can you look after my rabbit while I'm away?</summary>
         <div class="faq-body">
@@ -3598,8 +3629,15 @@ body.locked{overflow:hidden}
       return w+' week'+(w===1?'':'s')+
              (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
     }
-    var m=Math.floor(d/30.44);
-    return m+(m===1?' month old':' months old');
+    /* months and years by the calendar, not by 30.44-day averages (6 Sept
+       2026): a rabbit on its first birthday is "1 year old", not "11 months",
+       and the archive keeps every litter for good and says how old each one
+       is today. Whole months to a year, then years with the months over. */
+    var A=new Date(a), B=new Date(b);
+    var mo=(B.getFullYear()-A.getFullYear())*12+(B.getMonth()-A.getMonth())-(B.getDate()<A.getDate()?1:0);
+    if(mo<12) return mo+(mo===1?' month old':' months old');
+    var y=Math.floor(mo/12), rm=mo%12;
+    return y+' year'+(y===1?'':'s')+(rm?(', '+rm+' month'+(rm===1?'':'s')):'')+' old';
   }
 
   /* The bar plus its wording. `full` adds the stage name and is used where

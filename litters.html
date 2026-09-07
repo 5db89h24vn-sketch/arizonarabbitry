@@ -272,10 +272,21 @@ body.lbox-open{overflow:hidden}
    litter's place in the archive (data-fact="litter-no:YYYY-MM-DD"), never
    typed: the June litter joined the record after July and August, and a typed
    "First litter" on July would have been wrong from that day. */
-.litter time,.litter .litter-no{display:inline-block;font-size:13.5px;font-weight:600;
+.litter time,.litter .litter-no,.litter .litter-age{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
 .litter .litter-no{margin-right:4px}
+/* HOW OLD THE LITTER IS TODAY (6 Sept 2026, William: "for each litter, let's
+   have their age on it as well, since they were all born on the same day"). A
+   third pill on the article and a line on the tile, written by script from
+   the birth date with the same ageAt() the photo stamps use, kept right at
+   midnight, and absent with scripts off: an age is a fact about today, and
+   the page never types one (RELEVANCE-SYSTEM.md). */
+.litter .litter-age{margin-left:4px}
+.litter .litter-age[hidden]{display:none}
+.tile-age{font-size:13px;color:var(--ink-faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile-age[hidden],.tile-age:empty{display:none}
+.litter-life{color:var(--ink-soft)}
 .tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
@@ -429,7 +440,7 @@ h1,h2,h3{text-wrap:balance}
                alt="Six newborn kits curled together in a wooden nest box lined with wood shavings and pulled fur">
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-08-27" class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time>
+          <span data-fact="litter-no:2026-08-27" class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time> <span class="litter-age" data-born="2026-08-27" hidden></span>
           <h2>Six born</h2>
           <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
                front page carries, each opening that parent's own view there
@@ -444,6 +455,13 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
+          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
+               type of rabbit" on every litter). The range is the House Rabbit
+               Society's for indoor rabbits with good care; the measured averages
+               are lower, and the FAQ answer this links to carries both with their
+               sources, so the number here is never alone. -->
+          <p class="litter-life">A rabbit like these can live
+          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
           <p>At six days old, one is white and five are fawn. Coats can still shift a
@@ -493,7 +511,7 @@ h1,h2,h3{text-wrap:balance}
                alt="Newborn kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-07-28" class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time>
+          <span data-fact="litter-no:2026-07-28" class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time> <span class="litter-age" data-born="2026-07-28" hidden></span>
           <h2>Six born, four raised</h2>
           <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
                front page carries, each opening that parent's own view there
@@ -508,6 +526,13 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
+          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
+               type of rabbit" on every litter). The range is the House Rabbit
+               Society's for indoor rabbits with good care; the measured averages
+               are lower, and the FAQ answer this links to carries both with their
+               sources, so the number here is never alone. -->
+          <p class="litter-life">A rabbit like these can live
+          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>This is the photo from the day they arrived, before their eyes were open and
           before they had any fur. The fawn rabbit in the frame is from the litter before this
           one, about a month old here.</p>
@@ -566,7 +591,7 @@ h1,h2,h3{text-wrap:balance}
                alt="A newborn kit in William's hand above a metal tray lined with pulled fur, inside a green cage">
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-06-28" class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time>
+          <span data-fact="litter-no:2026-06-28" class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time> <span class="litter-age" data-born="2026-06-28" hidden></span>
           <h2>Five born, four raised</h2>
           <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
                front page carries, each opening that parent's own view there
@@ -581,6 +606,13 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
+          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
+               type of rabbit" on every litter). The range is the House Rabbit
+               Society's for indoor rabbits with good care; the measured averages
+               are lower, and the FAQ answer this links to carries both with their
+               sources, so the number here is never alone. -->
+          <p class="litter-life">A rabbit like these can live
+          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>The litter that started it all: my first litter ever, and the first time I'd had
           baby rabbits. I didn't have a nest box yet, and I didn't know she was pregnant.</p>
           <!-- data-kits="never-listed": this litter's kits were homed before the site
@@ -625,6 +657,7 @@ h1,h2,h3{text-wrap:balance}
             <small data-fact="litter-no:2026-08-27" class="tile-no">Third litter</small>
             <div class="tile-date">27 August 2026</div>
             <div class="tile-sub">Six born</div>
+            <div class="tile-age" hidden></div>
           </div>
         </a>
 
@@ -635,6 +668,7 @@ h1,h2,h3{text-wrap:balance}
             <small data-fact="litter-no:2026-07-28" class="tile-no">Second litter</small>
             <div class="tile-date">28 July 2026</div>
             <div class="tile-sub">Six born, four raised</div>
+            <div class="tile-age" hidden></div>
           </div>
         </a>
 
@@ -645,6 +679,7 @@ h1,h2,h3{text-wrap:balance}
             <small data-fact="litter-no:2026-06-28" class="tile-no">First litter</small>
             <div class="tile-date">28 June 2026</div>
             <div class="tile-sub">Five born, four raised</div>
+            <div class="tile-age" hidden></div>
           </div>
         </a>
 
@@ -912,9 +947,51 @@ h1,h2,h3{text-wrap:balance}
         return w+' week'+(w===1?'':'s')+
                (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
       }
-      var m=Math.floor(d/30.44);
-      return m+(m===1?' month old':' months old');
+      /* months and years by the calendar, not by 30.44-day averages (6 Sept
+         2026): a rabbit on its first birthday is "1 year old", not "11 months",
+         and the archive keeps every litter for good and says how old each one
+         is today. Whole months to a year, then years with the months over. */
+      var A=new Date(a), B=new Date(b);
+      var mo=(B.getFullYear()-A.getFullYear())*12+(B.getMonth()-A.getMonth())-(B.getDate()<A.getDate()?1:0);
+      if(mo<12) return mo+(mo===1?' month old':' months old');
+      var y=Math.floor(mo/12), rm=mo%12;
+      return y+' year'+(y===1?'':'s')+(rm?(', '+rm+' month'+(rm===1?'':'s')):'')+' old';
     }
+    /* HOW OLD EACH LITTER IS TODAY (6 Sept 2026). The article's third pill
+       ("Now 5 weeks, 5 days old") and the tile's line ("5 weeks, 5 days old"),
+       from the birth date the article already carries, through the same
+       ageAt() as every photo stamp on the site, so the two can never disagree.
+       Computed on every load and again at midnight if the page is left open
+       (the front page's growth rows do the same). With scripts off the pill
+       and the line stay hidden: an age is a fact about today, and this page
+       never prints one it did not work out today. */
+    function todayISO(){
+      var n=new Date();
+      return n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);
+    }
+    function renderLitterAges(){
+      var today=todayISO();
+      document.querySelectorAll('.litter-age[data-born]').forEach(function(el){
+        var age=ageAt(el.getAttribute('data-born'),today);
+        if(!age){ el.hidden=true; return; }
+        el.textContent=(age==='the day it was born')?'Born today':('Now '+age);
+        el.hidden=false;
+      });
+      document.querySelectorAll('a.tile[href^="#L"]').forEach(function(t){
+        var line=t.querySelector('.tile-age'); if(!line) return;
+        var born=(t.getAttribute('href')||'').replace(/^#L/,'');
+        var age=ageAt(born,today);
+        if(!age){ line.hidden=true; line.textContent=''; return; }
+        line.textContent=(age==='the day it was born')?'Born today':age;
+        line.hidden=false;
+      });
+    }
+    function tickLitterAges(){
+      var n=new Date(), next=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1,0,0,2);
+      setTimeout(function(){ renderLitterAges(); tickLitterAges(); }, Math.max(1000, next-n));
+    }
+    renderLitterAges();
+    tickLitterAges();
     var CAM='<svg viewBox="0 0 24 24" aria-hidden="true">'+
             '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/></svg>';
     function badge(n){
