@@ -1386,7 +1386,11 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    the three margins below are the only places a new stratum starts. Grouping by
    proximity costs nothing and does the work that a fourth font size was
    failing to do. */
-.viewer-body{padding:15px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+/* --vx and --vb are the body's side and bottom padding. The bottom one is
+   carried by the footer (.viewer-foot below) rather than by the body, so
+   the padding is 0 at the bottom here; the phone rule sets the same two
+   numbers smaller. */
+.viewer-body{--vx:18px;--vb:18px;padding:15px var(--vx) 0;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
 /* NOTHING IN THE BODY SHRINKS (6 Sept 2026, William's phone: the breed line and
    the description of a listing cut off mid-letter). The body is a flex column,
    and a flex item whose overflow is not visible has an automatic minimum size
@@ -1404,15 +1408,40 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 /* AND THE BUTTON STAYS UNDER THE THUMB while the text scrolls beneath it: the
    primary action of a sheet stays reachable without scrolling (Apple's Human
    Interface Guidelines on sheets; every iOS share sheet does the same). Sticky
-   costs no layout, so the box is still one size. The paper outline is invisible
-   at rest, where the paper is all around it anyway, and when the button is
-   stuck it is the shelf the scrolling text disappears under. Stuck, the button
-   sits at the foot of the box; at rest it sits above the body's own padding,
-   as it always did. */
-#viewerCta{position:sticky;bottom:0;outline:10px solid var(--paper);outline-offset:0}
+   costs no layout, so the box is still one size.
+   THE FOOTER (7 Sept 2026, William, a screenshot of Butterscotch's listing on
+   his phone: "an unintentional buggy mess with overlap"). The button used to
+   be sticky by itself, masked by a 10px paper outline, and two things were
+   wrong with that on a real phone screen. One: both engines hold a stuck
+   element inside the scroll container's CONTENT box, so the button stopped
+   16px short of the foot of the box (the body's own bottom padding), the
+   outline covered 10 of those, and the tops of the scrolling letters showed
+   through the other 6 under the button: the overlap he saw. Two: above the
+   button the description stopped mid-line against a hard edge of paper (at
+   390x664 a line and a half of Butterscotch's three lines lay under it, the
+   cut running through the letters of the second), which reads as a defect,
+   not as a sheet with more below.
+   So the button now sits in a footer that is the sticky thing. The footer
+   spans the body edge to edge (negative side margins), carries the body's
+   bottom padding itself, and is paper all the way down, so stuck it reaches
+   the foot of the box and nothing can show beneath it; at rest, scrolled to
+   the end, its padding is the same gap under the button the body used to
+   have, so the box is the size it was. Above it, while there is more below,
+   a short fade of paper rises off the footer and the text dissolves into it
+   instead of ending at an edge, the way a list slides under the bar at the
+   foot of a phone screen. The fade exists only while there is something
+   beneath it: at the end the last line stands clear of the button with
+   nothing over it and the fade is gone. The script sets .more on the body
+   from the scroll position (moreBelow), so the fade never lies on a finished
+   text. 30px, solid for the last 8: about a line and a quarter of the
+   description. */
+.viewer-foot{position:sticky;bottom:0;margin:14px calc(-1*var(--vx)) 0;padding:0 var(--vx) var(--vb);background:var(--paper)}
+.viewer-foot::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:30px;
+  background:linear-gradient(to bottom,rgba(251,248,243,0),var(--paper) 72%);pointer-events:none;
+  opacity:0;transition:opacity .15s}
+.viewer-body.more .viewer-foot::before{opacity:1}
 .viewer-said{margin-top:13px}
 .viewer-note{margin-top:13px}
-#viewerCta{margin-top:14px}
 /* THE BOX IS ONE SIZE. A dialog that grows and shrinks as you step through the
    photos makes the whole thing feel unfinished, and it moves the Ask button out
    from under your thumb between taps. The picture is already fixed by its 4/3
@@ -1461,9 +1490,25 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    the sold state carried the same break latently: its meta plus a date was
    just as long, only never rendered on real data yet). The avail-stamp
    precedent applies: two statements get two lines by LAYOUT, not by
-   overflow. Height is reserved in fitBlocks across the whole list like
-   every other viewer row, so the dialog stays one size for every rabbit. */
-.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
+   overflow.
+   ROWS EXIST WHEN THEY HAVE SOMETHING TO SAY (6 Sept 2026, William, from
+   his phone: "the spacing seemed a little off ... make it look intentional
+   rather than an unintentional buggy mess"). Until then this row's height
+   was reserved across the whole list, so an available rabbit, the one for
+   sale, carried an empty line between its parents and its growth row where
+   a reserved one carried "Spoken for since". The reservation bought one
+   geometry for every rabbit; on a phone the box is at its full height for
+   every rabbit anyway, so it bought nothing there and cost a hole. Now the
+   row is hidden when it is empty, and the growth row takes the stratum's
+   margin when it stands first.
+   THE RHYTHM: rows inside a stratum sit on the body's gap; a new stratum
+   opens with 9px on top of it. Identity (name, breed, born); the parents;
+   the state (a dated status, then the growth row); the story; the button. */
+.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:9px 0 0}
+.viewer-when[hidden]{display:none}
+#viewerGrow{margin-top:9px}
+.viewer-when:not([hidden])+#viewerGrow{margin-top:0}
+#viewerGrow:empty{display:none}
 .viewer-born{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
 /* THE PARENTS ROW (6 Sept 2026). William: "whenever somebody clicks on a rabbit,
    it will automatically show their mom and their dad ... as little friction as
@@ -1540,15 +1585,18 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .stagelink{color:var(--ink-faint);text-decoration:none;
   border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
 .stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
-/* Height is set in script to the tallest description in the whole list, measured
-   at the width actually in use, so every rabbit's box is the same size as every
-   other rabbit's. Sundae's description runs a line longer than his siblings' and
-   that alone made his card 24px taller than theirs. */
-.viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6;overflow:hidden}
+/* Its own height (6 Sept 2026). It used to be set in script to the tallest
+   description in the whole list, so every rabbit's box was the same size as
+   every other rabbit's; the price was a blank line under every description
+   shorter than the longest, which on William's phone read as a mistake. The
+   rule that matters, and still holds, is that the box never changes size
+   between one rabbit's photographs: this text is the rabbit's, not the
+   frame's, so it cannot move between frames whatever its height. */
+.viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6}
 .viewer-box .btn{width:100%}
 @media(max-width:600px){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
-  .viewer-body{padding:13px 14px 16px;gap:10px}
+  .viewer-body{--vx:14px;--vb:16px;padding:13px var(--vx) 0;gap:10px}
   .viewer-strip button{flex:0 0 56px;height:47px}
 }
 /* count badge so people know there's more than one before they tap */
@@ -2994,7 +3042,10 @@ body.locked{overflow:hidden}
       </div>
       <div class="viewer-strip" id="viewerStrip"></div>
       <p class="viewer-note" id="viewerNote"></p>
-      <a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
+      <!-- THE FOOTER is the sticky thing, not the button (see .viewer-foot):
+           paper edge to edge and down to the foot of the box, so the text
+           scrolling under it never shows through, with the fade above it. -->
+      <div class="viewer-foot"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a></div>
     </div>
   </div>
 </div>
@@ -4145,6 +4196,22 @@ body.locked{overflow:hidden}
     var shots=[], at=0, lastFocus=null;
     /* true while a PARENT is on screen rather than a rabbit (see openParent) */
     var parentOpen=false, shareAble=false;
+    /* MORE BELOW (7 Sept 2026). The fade over the stuck footer (.viewer-foot::before
+       in the stylesheet) is shown only while the body has content under the
+       button, and taken away the moment the end is on screen, so it never lies
+       over a finished text. Read from the scroll position: on every scroll, on
+       every change of the body's size (a rotated phone, the address bar folding
+       away), and on every open, after the rows are fitted. */
+    var vBody=vw.querySelector('.viewer-body');
+    function moreBelow(){
+      if(!vBody) return;
+      vBody.classList.toggle('more', vBody.scrollHeight-vBody.clientHeight-vBody.scrollTop>1);
+    }
+    if(vBody){
+      vBody.addEventListener('scroll',moreBelow,{passive:true});
+      if(window.ResizeObserver) new ResizeObserver(moreBelow).observe(vBody);
+      window.addEventListener('resize',moreBelow);
+    }
 
     function paint(i){
       if(i<0||i>=shots.length) return;
@@ -4170,13 +4237,17 @@ body.locked{overflow:hidden}
       if(btns[at]&&btns[at].scrollIntoView) btns[at].scrollIntoView({block:'nearest',inline:'nearest'});
     }
 
-    /* ONE BOX, EVERY RABBIT.
-       Reserving a fixed number of lines would either clip the longest
-       description or leave dead space under the shortest, and the count that is
-       right at 430px is wrong at 360px. So measure instead: lay every
-       description out at the width in use, take the tallest, and give the
-       description slot that height for all of them. Cached per width, so it
-       costs one pass on first open and nothing after that. */
+    /* ONE BOX FOR ONE RABBIT (fitBlocks). The rows that change from frame to
+       frame, or that a rabbit's neighbours would set at another height, are
+       measured rather than guessed: lay every rabbit's version of the row out
+       at the width in use, take the tallest, and give the row that height for
+       all of them, so the box never moves under the thumb between taps. That
+       covers the breed line, the born row and the growth row. The description
+       used to be reserved the same way, to the tallest in the whole list; it
+       is its own height now (6 Sept 2026, see .viewer-note), because the blank
+       under a short one read as a mistake and a rabbit's own text cannot move
+       between its own photographs anyway. Cached per width, so it costs one
+       pass on first open and nothing after that. */
     var born='';
     /* One place, because fitBlocks has to lay out every rabbit's version of this
        line to reserve the right height. Adding the birth date pushed "Sable
@@ -4248,7 +4319,7 @@ body.locked{overflow:hidden}
       a.className='litterlink'; a.href='litters.html'; a.target='_blank'; a.rel='noopener';
       a.title='Every litter, with the photo from the day it was born';
       a.textContent='Every litter'; vBornRow.appendChild(a);
-      vWhen.textContent=''; vWhen.hidden=false;
+      vWhen.textContent=''; vWhen.hidden=true;
       vGrow.innerHTML='';
       born='';
       vNote.textContent=p.note||''; vNote.style.display=p.note?'':'none';
@@ -4278,6 +4349,10 @@ body.locked{overflow:hidden}
       document.body.classList.add('locked');
       fitBlocks();
       paint(0);
+      /* a new view starts at its top: this box is reused from the rabbit that
+         led here, and that one may have been scrolled */
+      if(vBody) vBody.scrollTop=0;
+      moreBelow();
       vClose.focus();
       return true;
     }
@@ -4317,13 +4392,10 @@ body.locked{overflow:hidden}
          measurer is exactly the bug the old version of this comment
          recorded. Only when the data carries the date; the site never
          invents one. */
-      /* not toggled per rabbit: the slot's height is reserved across the whole
-         list in fitBlocks (the caption rule — one geometry for every rabbit),
-         so an empty when simply leaves the reserved line blank, exactly the
-         way a short meta sits in the tallest meta's box. The hidden attribute
-         in the markup only keeps the empty row out of the scriptless page. */
+      /* shown only when there is a date to show (6 Sept 2026; see the
+         stylesheet note by .viewer-when): an empty row is a hole, not a slot */
       vWhen.textContent=whenText(r);
-      vWhen.hidden=false;
+      vWhen.hidden=!vWhen.textContent;
     }
     function whenText(r){
       if(r.status==='adopted'&&(r.wentHome||r.soldOn)) return 'Went home '+niceDate(r.wentHome||r.soldOn);
@@ -4367,9 +4439,8 @@ body.locked{overflow:hidden}
     function fitBlocks(){
       var w=vNote.clientWidth;
       if(!w||w===fittedAt) return;
-      var notes=[], caps=[], metas=[];
+      var caps=[], metas=[];
       for(var i=0;i<RABBITS.length;i++){
-        notes.push(RABBITS[i].note||'');
         metas.push(metaText(RABBITS[i]));
         var g=galleryFor(RABBITS[i]);
         for(var j=0;j<g.length;j++){
@@ -4398,15 +4469,16 @@ body.locked{overflow:hidden}
       }
       if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
-      /* the when-row follows the caption rule: sized across the WHOLE list so
-         the dialog is one geometry for every rabbit. While any rabbit carries
-         a dated status the slot is reserved for all of them; when none does,
-         whens are all empty and the row costs nothing. */
-      var whens=[], borns=[];
-      for(var q=0;q<RABBITS.length;q++){ whens.push(whenText(RABBITS[q])); borns.push(bornText(RABBITS[q])); }
-      vWhen.style.minHeight=tallest(vWhen,'viewer-when',whens,w)+'px';
+      /* the when-row and the description are NOT reserved across the list any
+         more (6 Sept 2026): the when-row is hidden when a rabbit has no dated
+         status, and the description is its own height. Both are the rabbit's,
+         not the frame's, so neither can move between one rabbit's photographs,
+         which is the rule this function exists to keep. The born row, the
+         meta and the growth row stay reserved: one line each, for every rabbit. */
+      var borns=[];
+      for(var q=0;q<RABBITS.length;q++){ borns.push(bornText(RABBITS[q])); }
       vBornRow.style.minHeight=tallest(vBornRow,'viewer-born',borns,w)+'px';
-      vNote.style.height=tallest(vNote,'viewer-note',notes,w)+'px';
+      vNote.style.height='';
       /* A CAPTION SLOT NOBODY IS USING TAKES NO SPACE.
          Every real photograph carried "Out on the brick.", which described what
          anyone could already see. The Guardian's own guidance on captions is that
@@ -4423,7 +4495,8 @@ body.locked{overflow:hidden}
          caption ("in my hands, so you can see how big she is"), the slot comes
          back for all of them on its own.
 
-         Same rule the date row already follows a few lines up. */
+         Same rule the born row, the breed line and the growth row follow a few
+         lines up. */
       var anyCap=false;
       for(var c=0;c<caps.length;c++) if(caps[c]){ anyCap=true; break; }
       if(vSaid) vSaid.style.display = anyCap ? '' : 'none';
@@ -4526,6 +4599,10 @@ body.locked{overflow:hidden}
       var start=0;
       for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
       paint(start);
+      /* at the top, whatever the last view was scrolled to (Back from a parent
+         reopens the rabbit through here) */
+      if(vBody) vBody.scrollTop=0;
+      moreBelow();
       vClose.focus();
       return true;
     }
