@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Waitlist | Arizona Rabbits</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#241F1D">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     WILLIAM'S WAITLIST PAGE (7 Sept 2026). Nobody links here; he
+     bookmarks it. It shows who is waiting on which litter, counts them
+     the way the public pages do, copies the addresses for an email, and
+     takes a paste of the addresses that signed up before the counter
+     existed. Everything it shows comes from /api/waitlist with his key
+     in the Authorization header; the key is typed here each time and
+     kept nowhere. The page is plain HTML, so with scripts off it says
+     so and nothing else.
+
+     Cloudflare serves this address with X-Robots-Tag: noindex and
+     Cache-Control: no-store (_headers), so it is never indexed and
+     never cached.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+:root{
+  color-scheme:light;
+  --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#736A64;
+  --line:#E3DACC; --line-soft:#EDE6DA; --brick:#A0522D; --brick-dk:#7C3E21;
+  --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
+  --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
+  --serif:'Fraunces',ui-serif,Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;padding:28px 18px 60px}
+main{max-width:40rem;margin:0 auto}
+h1{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:30px 0 8px}
+p{color:var(--ink-soft);margin-bottom:12px;text-wrap:pretty}
+p b{color:var(--ink)}
+a{color:var(--brick-dk)}
+.row{display:flex;gap:9px;flex-wrap:wrap}
+input,textarea{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:#fff;min-width:0}
+input:focus,textarea:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
+input[type=password]{flex:1}
+textarea{width:100%;min-height:120px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:var(--r);
+  font-weight:500;font-size:15.5px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
+.btn:hover{border-color:var(--brick);color:var(--brick-dk)}
+.btn.primary:hover{background:var(--brick-dk);color:#fff}
+.btn.sm{min-height:38px;padding:0 14px;font-size:14px}
+.note{font-size:14px;color:var(--ink-faint)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:12px}
+.card h3{font-size:17px;font-weight:600;margin-bottom:2px}
+.card .n{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.1;margin:6px 0 2px}
+.card ul{list-style:none;margin:10px 0 0;font-size:14.5px;color:var(--ink-soft);max-height:220px;overflow:auto;border-top:1px solid var(--line-soft);padding-top:8px}
+.card li{display:flex;justify-content:space-between;gap:12px;padding:2px 0}
+.card li time{color:var(--ink-faint);white-space:nowrap}
+.said{font-size:15px;font-weight:600;color:var(--open);margin-top:10px}
+.said.bad{color:var(--alert)}
+[hidden]{display:none!important}
+ol{margin:0 0 12px 22px;color:var(--ink-soft)}
+ol li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;background:var(--paper-2);padding:1px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Who is waiting</h1>
+  <p>Your key is the one you set in Cloudflare. It is typed here each time and kept nowhere.</p>
+  <form id="keyform" class="row" autocomplete="off">
+    <input type="password" id="key" placeholder="Your key" aria-label="Your key" autocomplete="off">
+    <button class="btn primary" type="submit">Show the list</button>
+  </form>
+  <p class="said" id="said" hidden></p>
+  <noscript><p class="said bad">This page needs scripts on to ask the site who is waiting.</p></noscript>
+
+  <div id="lists" hidden></div>
+
+  <section id="importbox" hidden>
+    <h2>Add the people from before</h2>
+    <p>Everyone who signed up before 7 September 2026 is only in Formspree. Open
+    <a href="https://formspree.io/forms/xppanonl/submissions" target="_blank" rel="noopener">the form's submissions</a>,
+    copy the addresses, paste them here one per line, and they join the every-litter list.
+    An address already on it is left as it is.</p>
+    <form id="importform">
+      <textarea id="paste" placeholder="one@example.com&#10;two@example.com" aria-label="Addresses, one per line"></textarea>
+      <div class="row" style="margin-top:9px"><button class="btn primary" type="submit">Add them to the every-litter list</button></div>
+    </form>
+    <p class="said" id="imported" hidden></p>
+  </section>
+
+  <section id="setup" hidden>
+    <h2>Not switched on yet</h2>
+    <p>The counter needs a few minutes in Cloudflare, once. Until then every signup still
+    lands in your inbox as before, and the pages show no number.</p>
+    <ol>
+      <li>Open <a href="https://dash.cloudflare.com/?to=/:account/workers/kv/namespaces" target="_blank" rel="noopener">Workers KV</a>,
+      press <b>Create instance</b>, name it <code>arizonarabbits-waitlist</code>, press <b>Create</b>.</li>
+      <li>Open <a href="https://dash.cloudflare.com/?to=/:account/workers-and-pages" target="_blank" rel="noopener">Workers &amp; Pages</a>,
+      open <b>arizonarabbitry</b>, then <b>Settings</b>, then <b>Bindings</b>, press <b>Add</b>, choose <b>KV namespace</b>,
+      type <code>WAITLIST</code> as the variable name, pick <code>arizonarabbits-waitlist</code>, press <b>Save</b>.</li>
+      <li>On the same Settings page open <b>Variables and Secrets</b>, press <b>Add</b>, choose type <b>Secret</b>,
+      name it <code>ADMIN_KEY</code>, type a passphrase only you know, press <b>Save</b>.</li>
+      <li>Open <b>Deployments</b>, press the three dots on the newest one, press <b>Retry deployment</b>. About a minute later this page works.</li>
+    </ol>
+  </section>
+</main>
+
+<script>
+(function(){
+  var API='/api/waitlist';
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var keyEl=document.getElementById('key'), said=document.getElementById('said'), lists=document.getElementById('lists');
+  var importBox=document.getElementById('importbox'), setup=document.getElementById('setup'), imported=document.getElementById('imported');
+  function say(t, bad){ said.textContent=t; said.hidden=!t; said.classList.toggle('bad',!!bad); }
+  function litterName(id){
+    var m=/^L(\d{4})-(\d{2})-(\d{2})$/.exec(id); if(!m) return id;
+    return 'The '+MONTHS[+m[2]-1]+' '+m[1]+' litter, born '+(+m[3])+' '+MONTHS[+m[2]-1];
+  }
+  function people(n){ return n===1?'1 person':n+' people'; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function copyBtn(label, emails){
+    var b=document.createElement('button'); b.type='button'; b.className='btn sm'; b.textContent=label;
+    b.addEventListener('click',function(){
+      var text=emails.join(', ');
+      var done=function(){ b.textContent='Copied'; setTimeout(function(){ b.textContent=label; },1600); };
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done,function(){ window.prompt('Copy these:', text); });
+      else window.prompt('Copy these:', text);
+    });
+    return b;
+  }
+  function card(title, count, sub, entries, copyLabel, union){
+    var c=document.createElement('div'); c.className='card';
+    c.innerHTML='<h3>'+esc(title)+'</h3><div class="n">'+esc(people(count))+'</div><p class="note">'+esc(sub)+'</p>';
+    var row=document.createElement('div'); row.className='row';
+    if(union.length) row.appendChild(copyBtn(copyLabel, union));
+    c.appendChild(row);
+    if(entries.length){
+      var ul=document.createElement('ul');
+      entries.slice().sort(function(a,b){ return (b.when||'').localeCompare(a.when||''); }).forEach(function(e){
+        var li=document.createElement('li'); li.innerHTML='<span>'+esc(e.email)+'</span><time>'+esc(e.when||'')+'</time>'; ul.appendChild(li);
+      });
+      c.appendChild(ul);
+    }
+    return c;
+  }
+  function render(d){
+    lists.innerHTML='';
+    var all=d.all||[], litters=d.litters||{}, counts=d.counts||{};
+    var allEmails=all.map(function(x){return x.email;});
+    var ids=Object.keys(counts).filter(function(k){return k!=='all';});
+    Object.keys(litters).forEach(function(k){ if(ids.indexOf(k)<0) ids.push(k); });
+    ids.sort().reverse();
+    if(!ids.length&&!all.length){ var p=document.createElement('p'); p.textContent='Nobody yet. The first signup shows here.'; lists.appendChild(p); }
+    ids.forEach(function(id){
+      var own=litters[id]||[], ownEmails=own.map(function(x){return x.email;});
+      var seen={}, union=[];
+      ownEmails.concat(allEmails).forEach(function(e){ if(!seen[e]){ seen[e]=1; union.push(e); } });
+      var both=ownEmails.filter(function(e){ return allEmails.indexOf(e)>=0; }).length;
+      var sub=people(own.length)+' asked for this litter by name'+(both?(', '+both+' of them also on the every-litter list':'')+'; '+people(all.length)+' want every litter. The site shows '+union.length+'.';
+      lists.appendChild(card(litterName(id), union.length, sub, own, 'Copy all '+union.length+' addresses for the email', union));
+    });
+    lists.appendChild(card('Every litter', all.length, 'These people asked to hear about every litter. They count on every litter above.', all, 'Copy the addresses', allEmails));
+    lists.hidden=false; importBox.hidden=false; setup.hidden=true;
+  }
+  function load(){
+    var key=keyEl.value.trim(); if(!key){ say('Type your key first.', true); return; }
+    say('Asking...');
+    fetch(API+'?list=1',{headers:{'Authorization':'Bearer '+key},cache:'no-store'}).then(function(r){
+      return r.json().then(function(d){ return {status:r.status, d:d}; });
+    }).then(function(x){
+      if(x.status===200&&x.d.ok){ say(''); render(x.d); return; }
+      if(x.status===401){ say('That key is not the one set in Cloudflare.', true); return; }
+      if(x.status===503){ say(''); lists.hidden=true; importBox.hidden=true; setup.hidden=false; return; }
+      say('The site answered '+x.status+': '+(x.d&&x.d.why||'unknown'), true);
+    }).catch(function(){ say('Could not reach the site. Try again in a minute.', true); });
+  }
+  document.getElementById('keyform').addEventListener('submit',function(ev){ ev.preventDefault(); load(); });
+  document.getElementById('importform').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var key=keyEl.value.trim(); if(!key){ say('Type your key first.', true); return; }
+    var addrs=document.getElementById('paste').value.split(/[\s,;]+/).map(function(s){return s.trim();}).filter(Boolean);
+    if(!addrs.length){ imported.textContent='Nothing pasted yet.'; imported.hidden=false; imported.classList.add('bad'); return; }
+    imported.textContent='Adding...'; imported.hidden=false; imported.classList.remove('bad');
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({import:addrs})}).then(function(r){
+      return r.json().then(function(d){ return {status:r.status, d:d}; });
+    }).then(function(x){
+      if(x.status!==200||!x.d.ok){ imported.textContent='Not added: '+(x.d&&x.d.why||x.status); imported.classList.add('bad'); return; }
+      imported.textContent='Added '+x.d.added+', already there '+x.d.already+', not an address '+x.d.skipped+'.';
+      document.getElementById('paste').value='';
+      load();
+    }).catch(function(){ imported.textContent='Could not reach the site.'; imported.classList.add('bad'); });
+  });
+})();
+</script>
+</body>
+</html>
