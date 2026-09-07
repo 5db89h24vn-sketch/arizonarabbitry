@@ -287,6 +287,9 @@ body.lbox-open{overflow:hidden}
 .tile-age{font-size:13px;color:var(--ink-faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile-age[hidden],.tile-age:empty{display:none}
 .litter-life{color:var(--ink-soft)}
+/* the range is one thing: "8 to 12 years" moves to the next line whole rather
+   than leaving "8" at the end of one line and "to 12 years" on the next */
+.litter-life a{white-space:nowrap}
 .tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
