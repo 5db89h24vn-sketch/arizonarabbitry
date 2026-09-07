@@ -704,9 +704,15 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .sold-dim:hover .bunny-media img{transform:none}
 
 /* WAITLIST */
+/* align-items:start, not center (7 Sept 2026): the count line under the form
+   arrives a moment after the page, and changes when a pill is chosen. With
+   the two columns centred against each other, every change re-centred the
+   form and moved the button a few pixels at exactly the moment a hand was
+   reaching for it (alerttest caught a click landing on nothing in WebKit).
+   Aligned to the top, a line growing under the button moves nothing above it. */
 .wl{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);
   padding:26px 28px;margin-top:26px;display:grid;grid-template-columns:1fr auto;
-  gap:22px;align-items:center}
+  gap:22px;align-items:start}
 @media(max-width:800px){.wl{grid-template-columns:1fr;gap:16px}}
 .wl h3{font-size:20px;margin-bottom:5px}
 /* the reservation-opening line: the one date in the box a reader can act on,
@@ -717,8 +723,12 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .wl p{font-size:15px;color:var(--ink-soft);max-width:52ch}
 /* the form's column: the litter pills, the field and button, the count, the
    thanks. One column so the four stack in that order at every width. */
-.wl-side{display:flex;flex-direction:column;gap:10px;min-width:340px}
-@media(max-width:800px){.wl-side{min-width:0;width:100%}}
+/* the column is capped (7 Sept 2026): the grid's auto column takes its
+   content's widest line, and four pills in a row would have taken the whole
+   box and squeezed the text to a sliver; at 400px the pills wrap into two
+   rows and the text keeps its column */
+.wl-side{display:flex;flex-direction:column;gap:10px;min-width:340px;max-width:400px}
+@media(max-width:800px){.wl-side{min-width:0;max-width:none;width:100%}}
 .wl-form{display:flex;flex-direction:column;gap:10px}
 .wl-row{display:flex;gap:9px}
 .wl-row input[type=email]{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r);
@@ -732,6 +742,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
    before them is the same small capitals the parent tiles use. The row is
    generated and hides itself when it is empty. */
 .wl-pick{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+/* four pills wrap into rows on a phone; each keeps to one line of its own */
 .wl-pick:empty{display:none}
 .wl-pick small{flex-basis:100%;font-size:12px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600;line-height:1.2}
 .wl-pick label{position:relative;cursor:pointer}
@@ -1351,6 +1362,32 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .viewer-share[hidden]{display:none}
 .viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:4/3;flex:none}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* A VIDEO FRAME (7 Sept 2026): the clip fills the stage exactly as a
+   photograph does. It can, because video.py has already cut it to the stage's
+   own 4:3 around the rabbit; cover rather than contain so a rounding
+   difference of a pixel never opens a black seam. The first version played
+   the phone clip whole and painted two thirds of the stage on ink, which
+   William called out the same day: "crop the video perfectly so that it fits
+   the entire frame while having what needs to be in focus in focus". The ink
+   stays as the ground under the player before the poster paints. The
+   browser's own controls sit along the foot, so the stamp steps up above
+   them on these frames. */
+.viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1A1613}
+.viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
+.viewer-stage.video .vborn{bottom:60px}
+.viewer-stage.video .viewer-nav{top:38%}
+/* the play badge: on a strip thumbnail, a parent tile and a card's count, one
+   glyph means "this one moves" everywhere it appears */
+.pv{position:absolute;display:grid;place-items:center;border-radius:50%;background:rgba(24,20,18,.72);
+  color:#fff;pointer-events:none;z-index:2}
+.pv::before{content:'';display:block;width:0;height:0;border-style:solid;border-color:transparent transparent transparent #fff;
+  border-width:5px 0 5px 8px;margin-left:2px}
+.viewer-strip button{position:relative}
+.viewer-strip .pv{width:22px;height:22px;left:50%;top:50%;transform:translate(-50%,-50%)}
+.parent .pv{width:18px;height:18px;left:29px;top:29px;transform:none}
+.parent .pv::before{border-width:4px 0 4px 6px;margin-left:1px}
+.shots .play{width:0;height:0;border-style:solid;border-color:transparent transparent transparent currentColor;
+  border-width:4.5px 0 4.5px 7px;margin-left:2px}
 /* BORN ON. Bottom left, the same spot on every frame of every rabbit.
    Position: the caption corner. Top left is the optical entry point and belongs
    to the subject of the photograph, not to metadata about it; the top right is
@@ -1394,6 +1431,11 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .vcam{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;
   stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .vborn.nocam .vcam{display:none}
+/* the film glyph on a video frame, the camera on a photograph */
+.vborn .vfilm{display:none}
+.vborn.film .vcam{display:none}
+.vborn.film .vfilm{display:block;width:14px;height:14px;flex:none;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 /* said aloud, never seen: the icon is decorative, the meaning is here */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -1553,6 +1595,8 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
   color:inherit;text-decoration:none;cursor:pointer;transition:border-color .15s}
 .parent:hover,.parent:focus-visible{border-color:var(--brick)}
+/* relative for the play badge a parent with a video carries on its portrait */
+.parent{position:relative}
 .parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
 .parent span{display:block;min-width:0}
 .parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
@@ -2081,14 +2125,16 @@ body.locked{overflow:hidden}
           <!-- WHICH LITTERS (7 Sept 2026). William: "have an option to be alerted
                for an individual litter that's coming up, just in case somebody
                doesn't want to be alerted for every litter and they just want to
-               be alerted for one." Two pills, GENERATED by sweep.py: "Every
-               litter" and "Just the <month> litter" for the litter that is born
-               and not yet open for reservation. While no litter is waiting the
-               region is empty, the row hides itself, and the form is the one
-               field it always was. The choice travels to Formspree as the field
-               "want" (all, or the litter's id), so the inbox copy says which,
-               and to /api/waitlist, which counts it. -->
-          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><label><input type="radio" name="want" value="all" checked><span>Every litter</span></label><label><input type="radio" name="want" value="L2026-08-27"><span>Just the August litter</span></label></div>
+               be alerted for one." Pills, GENERATED by sweep.py: "Every litter";
+               "Just the <month> litter" for the litter that is born and not yet
+               open for reservation; and one for each litter he is planning
+               (PLANNED in rabbits.js; his answer the same day: "add the two
+               purebred lines now"). While there is no litter to name the region
+               is empty, the row hides itself, and the form is the one field it
+               always was. The choice travels to Formspree as the field "want"
+               (all, the litter's article id, or P<key> for a planned one), so
+               the inbox copy says which, and to /api/waitlist, which counts it. -->
+          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><label data-label="every litter"><input type="radio" name="want" value="all" checked><span>Every litter</span></label><label data-label="the August litter"><input type="radio" name="want" value="L2026-08-27"><span>Just the August litter</span></label><label data-label="the first purebred Holland Lop litter"><input type="radio" name="want" value="Pholland-lop"><span>The first purebred Holland Lop litter</span></label><label data-label="the first Netherland Dwarf litter"><input type="radio" name="want" value="Pnetherland-dwarf"><span>The first Netherland Dwarf litter</span></label></div>
           <div class="wl-row">
             <input type="email" name="email" placeholder="you@email.com" aria-label="Your email address, to hear about the next litter" required>
             <input type="hidden" name="_subject" value="Waitlist signup">
@@ -3051,6 +3097,19 @@ body.locked{overflow:hidden}
     <span class="status vstatus" id="viewerStatus" hidden></span>
     <div class="viewer-stage">
       <img id="viewerImg" src="" alt="">
+      <!-- VIDEO (7 Sept 2026, William: "let's have video support for our website
+           now for more views on how our rabbits look"). A frame of a listing
+           can be a clip (rabbits.js, VIDEO). It shows its poster here and
+           plays when the visitor presses play, with the browser's own
+           controls, the sound on, inline on a phone (playsinline), never on
+           its own. Only the clip's header is fetched until then
+           (preload=metadata): a 7 MB file is not sent to someone who wanted a
+           look at the pictures. It fills the stage the way a photograph does:
+           video.py cut it to the stage's shape around the rabbit before it
+           shipped, so nothing here has to letterbox it. Script fills src and poster per
+           frame and empties them again when the frame changes or the view
+           closes, so a clip never keeps playing out of sight. -->
+      <video id="viewerVideo" playsinline preload="metadata" controls hidden></video>
       <button class="viewer-nav prev" type="button" id="viewerPrev" aria-label="Previous photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
@@ -3067,6 +3126,9 @@ body.locked{overflow:hidden}
           <rect x="3" y="7" width="18" height="13" rx="2.6"/>
           <path d="M8.6 7l1.3-2.3h4.2L15.4 7"/>
           <circle cx="12" cy="13.6" r="3.2"/>
+        </svg><svg class="vfilm" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2.6"/>
+          <path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor" stroke="none"/>
         </svg><span class="sr-only" id="viewerBornWhat"></span><span id="viewerBornText"></span>
       </span>
     </div>
@@ -3102,7 +3164,7 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
-<script src="rabbits.js?v=64f7ef5a"></script>
+<script src="rabbits.js?v=f17b8b09"></script>
 
 <script>
 (function(){
@@ -3643,15 +3705,25 @@ body.locked{overflow:hidden}
      placeholder is the photo still to take. Replace a coming-soon src with a real
      file and that frame appears on its own, badge and all. Nothing else to do. */
   function realPhoto(src){ return !!src && src.indexOf('coming-soon') < 0; }
-  function galleryFor(r){
+  /* A FRAME IS A PHOTO OR A VIDEO (7 Sept 2026). A video entry names its clip
+     and its poster; here it becomes a frame whose picture is the poster and
+     which carries the clip, so everything that lays frames out (the strip,
+     the count, the stamp) treats it as one more frame, and paint() alone
+     knows to put a player on the stage. A video with no poster is left out:
+     the page never shows a black box for a picture. */
+  function framesOf(list){
     var out=[];
-    if(Array.isArray(r.photos)){
-      r.photos.forEach(function(p){
-        if(!p) return;
-        if(typeof p==='string'){ if(realPhoto(p)) out.push({src:p,date:'',note:''}); }
-        else if(p.src && realPhoto(p.src)){ out.push({src:p.src,date:p.date||'',note:p.note||''}); }
-      });
-    }
+    (list||[]).forEach(function(p){
+      if(!p) return;
+      if(typeof p==='string'){ if(realPhoto(p)) out.push({src:p,date:'',note:''}); }
+      else if(p.video&&p.poster){ out.push({src:p.poster,video:p.video,date:p.date||'',note:p.note||''}); }
+      else if(p.src && realPhoto(p.src)){ out.push({src:p.src,date:p.date||'',note:p.note||''}); }
+    });
+    return out;
+  }
+  function hasVideo(list){ return framesOf(list).some(function(f){ return !!f.video; }); }
+  function galleryFor(r){
+    var out=Array.isArray(r.photos)?framesOf(r.photos):[];
     if(r.photo && !out.some(function(p){return p.src===r.photo;})) out.unshift({src:r.photo,date:'',note:''});
     /* Oldest first: the point of dating them is watching the rabbit grow up.
        Anything undated goes to the END rather than the front. Undated first
@@ -4083,10 +4155,12 @@ body.locked{overflow:hidden}
       var shots=galleryFor(r);
       var many=shots.length>1;
       var cover=(r.photo || (shots[0] && shots[0].src) || PLACEHOLDER);
+      /* the count, and the play glyph when one of the frames is a video */
+      var anyVideo=shots.some(function(f){ return !!f.video; });
       var badge=many
         ? '<span class="shots"><svg viewBox="0 0 24 24" aria-hidden="true">'+
           '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/>'+
-          '</svg>'+shots.length+'</span>'
+          '</svg>'+shots.length+(anyVideo?'<i class="play" aria-hidden="true"></i>':'')+'</span>'
         : '';
       /* THE PICTURE OPENS THE LISTING ON EVERY CARD, not only on cards that
          happen to have a second photograph. Those two things were one flag
@@ -4220,6 +4294,8 @@ body.locked{overflow:hidden}
   var vw=document.getElementById('viewer');
   if(vw && railEl && typeof RABBITS!=='undefined' && Array.isArray(RABBITS)){
     var vImg=document.getElementById('viewerImg'),
+        vVideo=document.getElementById('viewerVideo'),
+        vStage=document.querySelector('#viewer .viewer-stage'),
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
@@ -4264,11 +4340,36 @@ body.locked{overflow:hidden}
       window.addEventListener('resize',moreBelow);
     }
 
+    /* the player is emptied whenever it leaves the stage: a clip must not
+       keep playing, or keep downloading, behind a photograph or a closed view */
+    function stopVideo(){
+      if(!vVideo) return;
+      try{ vVideo.pause(); }catch(e){}
+      if(vVideo.getAttribute('src')){ vVideo.removeAttribute('src'); vVideo.removeAttribute('poster'); vVideo.load(); }
+      vVideo.hidden=true;
+      vImg.hidden=false;
+      vStage.classList.remove('video');
+    }
     function paint(i){
       if(i<0||i>=shots.length) return;
       at=i;
       var s=shots[at];
-      vImg.src=s.src; vImg.alt=(vName.textContent||'Rabbit')+', photo '+(at+1)+' of '+shots.length;
+      var who=(vName.textContent||'Rabbit');
+      if(s.video&&vVideo){
+        /* a video frame: the poster on the player, the clip named but not
+           fetched past its header, the picture element out of the way */
+        vImg.src=s.src; vImg.alt='';
+        vImg.hidden=true;
+        vVideo.setAttribute('poster', s.src);
+        vVideo.setAttribute('src', s.video);
+        vVideo.setAttribute('aria-label', who+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+niceDate(s.date)):''));
+        vVideo.hidden=false;
+        vVideo.load();
+        vStage.classList.add('video');
+      } else {
+        stopVideo();
+        vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
+      }
       /* One line, always, in the same corner. A dated frame says when it was
          taken and does the arithmetic; an undated one falls back to the birth
          date, so the stamp is never empty and never two different heights. */
@@ -4276,8 +4377,9 @@ body.locked{overflow:hidden}
       vBornText.textContent=s.date
         ? (niceDate(s.date)+(age?(' · '+age):''))
         : (born?('Born '+niceDate(born)):'');
-      vBornWhat.textContent=s.date?'Photo taken ':'';
+      vBornWhat.textContent=s.date?(s.video?'Filmed ':'Photo taken '):'';
       vBorn.classList.toggle('nocam',!s.date);
+      vBorn.classList.toggle('film',!!(s.date&&s.video));
       vBorn.style.display=vBornText.textContent?'':'none';
       /* .empty hides without removing the space -- see .viewer-said */
       vCap.textContent=s.note||'';
@@ -4336,11 +4438,13 @@ body.locked{overflow:hidden}
     function roleWord(p){ return p.role==='mother'?'Mother':'Father'; }
     function parentTile(key){
       var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return '';
-      var photo=(p.photos&&p.photos[0]&&p.photos[0].src)||'';
+      var frames=framesOf(p.photos), photo=(frames[0]&&frames[0].src)||'';
+      var video=frames.some(function(f){ return !!f.video; });
       var whose=p.role==='mother'?'her':'his';
       return '<a class="parent" href="#p-'+esc(p.role)+'" data-parent="'+esc(key)+'"'+
-        ' aria-label="'+roleWord(p)+', '+esc(p.breed)+': see '+whose+' photos and kits">'+
+        ' aria-label="'+roleWord(p)+', '+esc(p.breed)+': see '+whose+' photos'+(video?', '+whose+' video':'')+' and kits">'+
         (photo?'<img src="'+esc(photo)+'" alt="" loading="lazy">':'')+
+        (video?'<i class="pv" aria-hidden="true"></i>':'')+
         '<span><small>'+roleWord(p)+'</small><b>'+esc(p.name||p.breed)+'</b></span></a>';
     }
     function paintParents(r){
@@ -4357,7 +4461,9 @@ body.locked{overflow:hidden}
     }
     function openParent(key){
       var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return false;
-      shots=(p.photos||[]).filter(function(x){return x&&x.src;}).map(function(x){return {src:x.src,note:x.note||''};});
+      /* in the order typed, the portrait first: a parent's frames are views,
+         not a growing-up sequence, so they are not sorted by date */
+      shots=framesOf(p.photos);
       if(!shots.length) return false;
       lastFocus=document.activeElement;
       parentOpen=true; shown=null;
@@ -4386,8 +4492,8 @@ body.locked{overflow:hidden}
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       vStrip.innerHTML=shots.map(function(x,n){
-        return '<button type="button" aria-label="Photo '+(n+1)+'"><img src="'+esc(x.src)+'" alt=""'+
-          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'"></button>';
+        return '<button type="button" aria-label="'+(x.video?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'" alt=""'+
+          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(x.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
       vStrip.querySelectorAll('button').forEach(function(b,n){ b.addEventListener('click',function(){paint(n)}); });
       vw.classList.toggle('solo', shots.length<2);
@@ -4606,9 +4712,9 @@ body.locked{overflow:hidden}
       else vCta.removeAttribute('data-ask');
       /* thumbnails built here, so their images are requested on open too */
       vStrip.innerHTML=shots.map(function(s,n){
-        return '<button type="button" aria-label="Photo '+(n+1)+
+        return '<button type="button" aria-label="'+(s.video?'Video ':'Photo ')+(n+1)+
           (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'" alt=""'+
-          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'"></button>';
+          ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(s.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
       vStrip.querySelectorAll('button').forEach(function(b,n){
         b.addEventListener('click',function(){paint(n)});
@@ -4661,6 +4767,7 @@ body.locked{overflow:hidden}
     function shut(){
       vw.classList.remove('open');
       document.body.classList.remove('locked');
+      stopVideo();
       vImg.src='';
       /* Drop the #r- address once the listing is closed, or a refresh reopens
          the thing the reader just dismissed. replaceState rather than a new
@@ -4993,21 +5100,30 @@ body.locked{overflow:hidden}
   /* Waitlist */
   var wf=document.getElementById('wlform'), wok=document.getElementById('wlok'), wcount=document.getElementById('wlcount');
   if(wf){
-    /* the litter on the pill, if a litter is waiting: its id and its name */
-    var pill=wf.querySelector('input[name="want"][value^="L"]');
-    var pillLitter=pill?pill.value:'', pillLabel=pill?pill.parentNode.textContent.replace(/^\s*Just\s+/i,'').trim():'';
-    fetchWaiting(pillLitter, wcount, pillLabel);
+    /* THE PILLS: every litter, the litter waiting to open, and each litter he
+       is planning (PLANNED in rabbits.js), each with the words the line uses
+       in data-label. The count line follows the chosen pill; with "Every
+       litter" chosen it shows the first named litter, the nearest one. */
+    var pills=[].slice.call(wf.querySelectorAll('input[name="want"]'));
+    var labelOf=function(inp){ return (inp&&inp.parentNode.getAttribute('data-label'))||''; };
+    var firstNamed=pills.filter(function(i){ return i.value!=='all'; })[0]||null;
+    var shownPill=function(){ var c=wf.querySelector('input[name="want"]:checked'); return (c&&c.value!=='all')?c:firstNamed; };
+    var showFor=function(inp, mine){ if(inp) fetchWaiting(inp.value, wcount, labelOf(inp), mine); else showWaiting(wcount, null); };
+    showFor(shownPill());
+    for(var pi=0;pi<pills.length;pi++) pills[pi].addEventListener('change',function(){ showFor(shownPill()); });
     wf.addEventListener('submit',function(ev){
       ev.preventDefault();
       var a=wf.getAttribute('action')||'';
       var chosen=wf.querySelector('input[name="want"]:checked');
       var want=chosen?chosen.value:'all';
-      var forLitter=/^L/.test(want);
+      var forLitter=want!=='all';
+      var label=labelOf(chosen);
       var subj=wf.querySelector('input[name="_subject"]');
-      if(subj) subj.value='Waitlist signup: '+(forLitter?(pillLabel+' ('+want+')'):'every litter');
+      if(subj) subj.value='Waitlist signup: '+(forLitter?(label+' ('+want+')'):'every litter');
       var finish=function(){
         wf.style.display='none';
-        if(forLitter) wok.textContent='You’re on the list for '+pillLabel+'. You’ll hear from me before it opens.';
+        /* a born litter opens for reservation; a planned one is born first */
+        if(forLitter) wok.textContent='You’re on the list for '+label+'. You’ll hear from me '+(/^L/.test(want)?'before it opens.':'when it’s born.');
         wok.classList.add('show');
       };
       /* Unconfigured endpoint: tell the truth. This used to show the normal
@@ -5028,10 +5144,9 @@ body.locked{overflow:hidden}
           recordWaiting(email, want, function(n){
             /* the litter's number now includes this person, so the line says
                so: the answer carries it for a litter signup; an every-litter
-               signup counts on the litter too, so its number is asked again */
-            if(!pillLitter) return;
-            if(forLitter) showWaiting(wcount, n, pillLabel, true);
-            else fetchWaiting(pillLitter, wcount, pillLabel, true);
+               signup counts on every litter too, so the shown one is asked again */
+            if(forLitter) showWaiting(wcount, n, label, true);
+            else showFor(shownPill(), true);
           }); })
         .catch(function(){ alert('That didn\'t send. Text me at (520) 270-2827 instead.'); });
     });

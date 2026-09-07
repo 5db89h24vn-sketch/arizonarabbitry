@@ -179,6 +179,38 @@
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
       typed here: no colour, no age, no line about temperament.
 
+   ── VIDEO ──
+      A frame in any photos list can be a video instead of a photo:
+
+        { video: "videos/teddy-hop.mp4", poster: "photos/teddy-hop-video.jpg",
+          date: "2026-09-12", note: "First time out on the patio." },
+
+      Drop the clip from your phone into the videos/ folder under a short
+      name and push it. The build (video.py) does the rest. It steadies the
+      camera, measures where the rabbit is in every frame and cuts a window
+      of the viewer's own shape around it, so the clip fills the same frame
+      the photographs fill instead of sitting in a black box. It grades the
+      clip to the same numbers polish.py gives every photograph. It puts it
+      into the one form every browser plays (H.264, under 12 MB and under
+      2.5 Mbit a second, whatever the length; a clip over 25 MB cannot be
+      uploaded to Cloudflare at all). It keeps your original untouched in the
+      work folder, and cuts the poster from the best framed moment: the
+      poster name above is always the clip's name plus "-video.jpg" in
+      photos/, and you type it here so the page knows it before any script
+      runs.
+
+      FILMING. Turn the phone sideways. The frame on the site is 4:3, so a
+      clip held upright loses the top and the bottom of the picture to the
+      crop, and one held sideways keeps nearly all of it and ships sharper.
+      Get close, and keep the rabbit near the middle of the screen: the
+      window is chosen once for the whole clip and it never zooms in.
+
+      A video frame shows its poster in the listing with a play badge, and
+      plays when the visitor presses play, sound on, never on its own. The
+      date is the day it was filmed (the build reads it off the clip when the
+      phone kept it; otherwise the day it arrived). To replace a clip, give
+      the new file a NEW name: the old one is cached for a day.
+
    ── THE ONLY WAY TO BREAK THIS ──
       Every line inside a { } block ends with a comma, except the last.
       Every block ends with },
@@ -205,10 +237,40 @@ const PARENTS = {
     role:   "father",
     breed:  "Satin Angora",
     photos: [
-      { src: "photos/father.jpg" }
+      /* 7 Sept 2026: his portrait on the brick ledge, the same ledge the kits
+         are photographed on, sent with the words "This is the dad!"; the
+         studio frame from the day before stays as a second view */
+      { src: "photos/father-2.jpg" },
+      { src: "photos/father.jpg" },
+      /* the first video on the site (7 Sept 2026, William: "let's have video
+         support for our website now for more views on how our rabbits look").
+         The clip carried its own time stamp, 7 Sept 2026, 10:11 Tucson. */
+      { video: "videos/father.mp4", poster: "photos/father-video.jpg", date: "2026-09-07",
+        note: "Twenty seconds in a planter, nibbling." }
     ]
   }
 };
+
+/* THE LITTERS YOU ARE PLANNING (7 Sept 2026). William: "an option to be alerted
+   for an individual litter that's coming up", and, asked whether the two
+   purebred lines he is planning should be choices before they are born, "add
+   the two purebred lines now". Each entry becomes a pill on the front page's
+   waitlist ("The first purebred Holland Lop litter") and a list of its own
+   in the waitlist counter, so somebody can ask to hear about that one litter
+   and nothing else. No date is printed anywhere: the plan's window is his
+   own sentence on the About, and a pill promises only an email when the
+   litter is born.
+   TO REMOVE ONE: when that litter is born and its article is on the litters
+   page, delete its entry here. The people who asked for it stay on William's
+   waitlist page under the plan's name, ready to copy for the email.
+   key: letters, digits and hyphens only; it is the list's name in the counter
+   (P<key>) and must not change once people are on it.
+   name: the pill's words, lowercase first letter, as it reads in a sentence
+   ("... waiting on the first Netherland Dwarf litter"). */
+const PLANNED = [
+  { key: "holland-lop",      name: "the first purebred Holland Lop litter" },
+  { key: "netherland-dwarf", name: "the first Netherland Dwarf litter" }
+];
 
 const RABBITS = [
 
@@ -230,9 +292,9 @@ const RABBITS = [
     colour: "Fawn",
     dob:    "2026-07-28",
     ready:  "22 Sept",
-    status: "reserved",
+    status: "sold",
     reservedOn: "2026-08-28",
-    soldOn: "",
+    soldOn: "2026-09-07",
     photo:  "photos/teddy.jpg",
     /* EARS: DESCRIBE, DO NOT PROMISE. This said "They lop on their own over the
        next few weeks", which is a guarantee about how an individual animal's body

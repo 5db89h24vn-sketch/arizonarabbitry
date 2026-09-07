@@ -333,7 +333,17 @@ body.lbox-open{overflow:hidden}
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
   color:inherit;text-decoration:none;cursor:pointer;transition:border-color .15s}
 .parent:hover,.parent:focus-visible{border-color:var(--brick)}
+/* relative for the play badge a parent with a video carries on its portrait
+   (7 Sept 2026): the same badge the front page's tiles and strips use, so one
+   glyph means "this one moves" on every page */
+.parent{position:relative}
 .parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
+.pv{position:absolute;display:grid;place-items:center;border-radius:50%;background:rgba(24,20,18,.72);
+  color:#fff;pointer-events:none;z-index:2}
+.pv::before{content:'';display:block;width:0;height:0;border-style:solid;border-color:transparent transparent transparent #fff;
+  border-width:5px 0 5px 8px;margin-left:2px}
+.parent .pv{width:18px;height:18px;left:29px;top:29px}
+.parent .pv::before{border-width:4px 0 4px 6px;margin-left:1px}
 .parent span{display:block;min-width:0}
 .parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;white-space:nowrap}
@@ -487,7 +497,7 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
             </a>
             <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
-              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+              <img src="photos/father-2.jpg?v=2010e1a6" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
           <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
@@ -566,7 +576,7 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
             </a>
             <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
-              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+              <img src="photos/father-2.jpg?v=2010e1a6" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
           <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
@@ -648,7 +658,7 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Holland Lop</b></span>
             </a>
             <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Satin Angora: see his photos and kits">
-              <img src="photos/father.jpg?v=3a03c28a" alt="" loading="lazy"><span><small>Father</small><b>Satin Angora</b></span>
+              <img src="photos/father-2.jpg?v=2010e1a6" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Satin Angora</b></span>
             </a>
           </div>
           <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
@@ -756,7 +766,7 @@ h1,h2,h3{text-wrap:balance}
   </div>
 </footer>
 
-<script src="rabbits.js?v=64f7ef5a"></script>
+<script src="rabbits.js?v=f17b8b09"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
    Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html

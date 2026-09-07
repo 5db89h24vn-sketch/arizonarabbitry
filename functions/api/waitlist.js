@@ -31,7 +31,8 @@
 
    WHAT IS STORED, one small record per person per list:
      all:<hash>            asked to hear about every litter
-     l:<litter id>:<hash>  asked to hear about one litter only
+     l:<litter id>:<hash>  asked to hear about one litter only (a born litter's
+                           article id, or P<key> for a litter he is planning)
      n:<litter id>, n:all  the number currently shown, with when it was counted
    The hash is SHA-256 of the lowercased address, so a person is counted once
    however many times they sign up, and the key names carry no address. The
@@ -60,7 +61,9 @@
    they were not, and this site's rule is a fact or nothing. */
 
 const COUNT_TTL = 15 * 60 * 1000;
-const LITTER_ID = /^L\d{4}-\d{2}-\d{2}$/;
+/* a list's name: a born litter by its article id (L2026-08-27), or a litter
+   William is planning by its key in PLANNED, rabbits.js (Pholland-lop) */
+const LITTER_ID = /^(L\d{4}-\d{2}-\d{2}|P[a-z0-9-]{1,40})$/;
 const MAX_EMAIL = 254;
 const MAX_IMPORT = 500;
 
@@ -254,7 +257,7 @@ export async function onRequestGet(context) {
     return json({ ok: true, all: r.all, litters: r.litters, counts: r.counts, at: new Date(now).toISOString() });
   }
   const litter = wantOf(url.searchParams.get('litter'));
-  if (!litter) return json({ ok: false, why: 'litter must be all or L<YYYY-MM-DD>' }, 400);
+  if (!litter) return json({ ok: false, why: 'litter must be all, L<YYYY-MM-DD> or P<key>' }, 400);
   if (!kv) return json({ ok: true, litter, count: null, why: 'not switched on' });
   return json({ ok: true, litter, count: await currentCount(kv, litter, now) });
 }
@@ -285,7 +288,7 @@ export async function onRequestPost(context) {
   const email = cleanEmail(body.email);
   if (!email) return json({ ok: false, why: 'that is not an email address' }, 400);
   const want = wantOf(body.want);
-  if (!want) return json({ ok: false, why: 'want must be all or L<YYYY-MM-DD>' }, 400);
+  if (!want) return json({ ok: false, why: 'want must be all, L<YYYY-MM-DD> or P<key>' }, 400);
   if (body.dry === true || body.dry === 'true') return json({ ok: true, dry: true, want, on: !!kv });
   if (!kv) return json({ ok: true, fresh: null, count: null, why: 'not switched on' });
   const r = await record(kv, want, email, 'site', now);

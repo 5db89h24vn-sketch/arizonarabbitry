@@ -111,6 +111,9 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
   </section>
 </main>
 
+<!-- rabbits.js names the litters William is planning (PLANNED), so a planned
+     list shows here by its words rather than its key -->
+<script src="/rabbits.js"></script>
 <script>
 (function(){
   var API='/api/waitlist';
@@ -119,8 +122,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
   var importBox=document.getElementById('importbox'), setup=document.getElementById('setup'), imported=document.getElementById('imported');
   function say(t, bad){ said.textContent=t; said.hidden=!t; said.classList.toggle('bad',!!bad); }
   function litterName(id){
-    var m=/^L(\d{4})-(\d{2})-(\d{2})$/.exec(id); if(!m) return id;
-    return 'The '+MONTHS[+m[2]-1]+' '+m[1]+' litter, born '+(+m[3])+' '+MONTHS[+m[2]-1];
+    var m=/^L(\d{4})-(\d{2})-(\d{2})$/.exec(id);
+    if(m) return 'The '+MONTHS[+m[2]-1]+' '+m[1]+' litter, born '+(+m[3])+' '+MONTHS[+m[2]-1];
+    var q=/^P([a-z0-9-]+)$/.exec(id);
+    if(q){
+      var ps=(typeof PLANNED!=='undefined'&&PLANNED)||[], hit=null;
+      for(var i=0;i<ps.length;i++) if(ps[i].key===q[1]) hit=ps[i];
+      var nm=hit?hit.name:q[1];
+      return nm.charAt(0).toUpperCase()+nm.slice(1)+(hit?' (planned)':' (planned, no longer in rabbits.js)');
+    }
+    return id;
   }
   function people(n){ return n===1?'1 person':n+' people'; }
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
