@@ -223,11 +223,13 @@
       photos/, and you type it here so the page knows it before any script
       runs.
 
-      FILMING. Turn the phone sideways. The frame on the site is 4:3, so a
-      clip held upright loses the top and the bottom of the picture to the
-      crop, and one held sideways keeps nearly all of it and ships sharper.
-      Get close, and keep the rabbit near the middle of the screen: the
-      window is chosen once for the whole clip and it never zooms in.
+      FILMING. The frame on the site is a SQUARE (since 8 Sept 2026), so an
+      upright clip loses the top and the bottom of the picture to the crop and
+      a sideways one loses the sides. Either way, get close and keep the
+      rabbit in the middle of the screen: the window is chosen once for the
+      whole clip and it never zooms in. A photograph is never cropped there,
+      whatever shape you shoot; only a clip is, because a clip can be
+      recomposed and a photograph cannot.
 
       A video frame shows its poster in the listing with a play badge, and
       plays when the visitor presses play, sound on, never on its own. The
@@ -267,7 +269,9 @@ const PARENTS = {
          are photographed on, sent with the words "This is the dad!"; the
          studio frame from the day before stays as a second view */
       { src: "photos/father-2.jpg" },
-      { src: "photos/father.jpg" },
+      /* 8 Sept 2026: the studio cut-out of him came off ("remove that middle
+         picture where the background is cropped out"). The mother keeps hers
+         for now, as a placeholder until there is a real photograph of her. */
       /* the first video on the site (7 Sept 2026, William: "let's have video
          support for our website now for more views on how our rabbits look").
          The clip carried its own time stamp, 7 Sept 2026, 10:11 Tucson. */

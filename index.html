@@ -1369,19 +1369,41 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 /* Hidden until the script has confirmed the browser can actually share or copy.
    A share button that does nothing when tapped is worse than no share button. */
 .viewer-share[hidden]{display:none}
-.viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:4/3;flex:none}
-.viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* THE STAGE IS A SQUARE AND IT NEVER CROPS (8 Sept 2026). It was 4:3, filled
+   edge to edge, and William's photographs are both shapes: the kits are
+   landscape 4:3 and the parents are portrait 3:4 phone shots. A 4:3 window
+   keeps only the middle 56% of a portrait's height, and no placement of that
+   window can hold a rabbit who stands taller than it, which is why he came
+   back a second time: "I don't like how his picture just feels clipped ... if
+   you have to fix the aspect ratio of every picture on the website, then do
+   it", and, as a last resort, offering to let a model invent the background
+   out to 4:3.
+   No pixel had to be invented. A SQUARE sits exactly between his two shapes,
+   and `contain` shows the whole photograph inside it: a 4:3 picture keeps the
+   size it has today and gains a band of paper above and below, a 3:4 picture
+   keeps the same size and gains one at each side, and both are 12.5% — a mat,
+   not a letterbox. Nothing he photographs can ever be clipped here again,
+   whatever shape he shoots, and nothing on the page is a guess about what was
+   outside the frame. It is what Amazon, eBay and Etsy do with a product
+   picture for the same reason: cropping the thing being sold misrepresents
+   it. The CARDS keep their 4:3 crop, because a rail of thumbnails needs one
+   shape, and focus.py keeps the rabbit's head inside those.
+   The mat is paper-2, the stage's own tint, so it reads as the frame the
+   picture sits in rather than as space the page failed to fill. */
+.viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:1/1;flex:none}
+.viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 /* A VIDEO FRAME (7 Sept 2026): the clip fills the stage exactly as a
    photograph does. It can, because video.py has already cut it to the stage's
-   own 4:3 around the rabbit; cover rather than contain so a rounding
-   difference of a pixel never opens a black seam. The first version played
+   own square around the rabbit; contain rather than cover, the same as a
+   photograph, so a clip that is ever a shade off square is shown whole
+   instead of trimmed. The first version played
    the phone clip whole and painted two thirds of the stage on ink, which
    William called out the same day: "crop the video perfectly so that it fits
    the entire frame while having what needs to be in focus in focus". The ink
    stays as the ground under the player before the poster paints. The
    browser's own controls sit along the foot, so the stamp steps up above
    them on these frames. */
-.viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1A1613}
+.viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#1A1613}
 .viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
 .viewer-stage.video .vborn{bottom:60px}
 .viewer-stage.video .viewer-nav{top:38%}
@@ -3200,7 +3222,7 @@ body.locked{overflow:hidden}
      below hands it to every img as object-position. Measured at build time, so
      no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
 <script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
-<script src="rabbits.js?v=8a92e55f"></script>
+<script src="rabbits.js?v=666b4c0d"></script>
 
 <script>
 (function(){
