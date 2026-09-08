@@ -245,9 +245,26 @@
       upright clip loses the top and the bottom of the picture to the crop and
       a sideways one loses the sides. Either way, get close and keep the
       rabbit in the middle of the screen: the window is chosen once for the
-      whole clip and it never zooms in. A photograph is never cropped there,
-      whatever shape you shoot; only a clip is, because a clip can be
-      recomposed and a photograph cannot.
+      whole clip and it never zooms in.
+
+   ── PHOTOGRAPHING, SO THE FRAME FILLS ITSELF ──
+      A photograph is never cropped into the rabbit, whatever shape you shoot.
+      The site squares it up on its own: it finds the animal, scales the
+      picture until he is 86% of the frame with air all round, and where that
+      is enough to reach all four edges the square holds nothing but your
+      photograph. Where it is not — a sideways shot where he already fills the
+      width — the rest of the square is filled with a soft, blurred copy of
+      the same picture, so every listing is a full frame either way. Nothing is
+      ever painted in that the camera did not see.
+
+      TWO THINGS HELP, and neither is fussy:
+        LEAVE A LITTLE ROOM.  A shot with a hand's width of brick around the
+        rabbit gives the site something to zoom into, and it comes out sharp,
+        edge to edge. A shot cropped tight to his nose has nowhere to go.
+        UPRIGHT BEATS SIDEWAYS for one rabbit. Hold the phone as you hold it:
+        a tall photograph fills the square completely with real pixels, and a
+        wide one leaves a band the site has to soften. Sideways is still right
+        for a nest or a litter, where the width IS the picture.
 
       A video frame shows its poster in the listing with a play badge, and
       plays when the visitor presses play, sound on, never on its own. The

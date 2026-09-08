@@ -1401,8 +1401,87 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    shape, and focus.py keeps the rabbit's head inside those.
    The mat is paper-2, the stage's own tint, so it reads as the frame the
    picture sits in rather than as space the page failed to fill. */
-.viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:1/1;flex:none}
+/* ═══ THE SQUARE STAGE, FILLED (8 Sept 2026) ══════════════════════════════
+   William, on Frederick's listing: "We need consistency in how they fill the
+   frame. I want you to use AI to fill out the rest and maybe give him a little
+   zoom."
+
+   He is right about the problem. The stage became a square so a photograph is
+   never cropped, and the photographs are not square: a 4:3 kit photo sat in it
+   with a band of paper above and below, a 3:4 portrait with a band each side,
+   a cut-out placeholder on white with nothing at all. Three listings, three
+   different pictures of what a listing IS.
+
+   TWO THINGS FIX IT, and neither invents a pixel.
+
+   1. THE ZOOM, measured. focus.py already knows where the rabbit is in every
+      photograph (the ISNet matte). It now also works out how far that
+      photograph can be scaled up before the animal would touch an edge, and
+      scales it until the rabbit is 86% of the frame's long side with at least
+      5% air all round. What leaves the frame is only ever background. On a
+      portrait this does something better than a zoom: at 1.364x Frederick's
+      photograph reaches all four edges, so his square holds nothing but
+      photograph — a real crop, no band, no fill of any kind.
+   2. THE BAND, where a photograph cannot reach the edges without cutting the
+      rabbit — a 4:3 kit photo, where he already spans 90% of the width. There
+      the rest of the square is the PICTURE'S OWN PIXELS: the same file,
+      scaled to cover, blurred until nothing in it resolves, desaturated and
+      lifted toward the paper so it reads as a mat this photograph came with
+      rather than as a second photograph. Instagram, YouTube, Apple TV and
+      Spotify all fill a mismatched frame this way, for the same reason.
+
+   NOT A GENERATIVE FILL, and the difference is the whole point on a page
+   selling a live animal. Outpainting Frederick's brick and his water would put
+   invented surroundings around a rabbit somebody is paying $375 for without
+   meeting him, and 3:4 to 1:1 is not a touch-up: it is a quarter of the
+   finished picture guessed. The site's rule since the first photograph is that
+   what you see is what the camera recorded, and it is the reason the dated
+   photo stamp means anything. A blurred mat made of the photograph keeps that
+   rule and still fills the frame.
+
+   THE HONEST WAY TO GET MORE REAL PIXELS is to shoot a little wider, or square:
+   the wider the photograph, the more of the square is a real crop and the
+   smaller the band. rabbits.js says so under FILMING AND PHOTOGRAPHING. */
+.viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:1/1;flex:none;overflow:hidden}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+/* the picture's own transform, written per photograph by focus.py and set by
+   setFrame() below; `none` for anything the map does not name */
+/* NO will-change HERE. It was on this rule for a few minutes and videotest
+   caught what it cost: promoting the picture to its own compositing layer put
+   the box's opening animation on the compositor, and the stage then measured
+   357px — the animation's own 95.5% — where it should read 374. will-change is
+   for something that is about to move; this transform is set once per frame
+   and then sits still. */
+#viewerImg{transform:var(--frame,none);transform-origin:50% 50%}
+/* THE MAT. scale(1.16) because a blur samples past its own edges and would
+   otherwise leave a soft rim of nothing at the frame's border. Desaturated and
+   lifted rather than darkened: this page is cream, and a dark blurred panel
+   inside a paper card reads as a different website. */
+/* `fill`, NOT `cover`, and that is the whole trick. `cover` would crop the mat
+   to the square and its columns would no longer line up with the photograph in
+   front of it, so the join showed as a seam: blurred brick meeting sharp brick
+   half a course out. `fill` stretches the same picture across the whole square
+   instead, which leaves every column exactly where it is in the photograph and
+   only stretches the axis nobody can see once it is blurred. The mat then
+   continues the picture's own colour out to the edges and the join disappears. */
+/* TUNED BY LOOKING, four settings side by side on Butterscotch's listing. The
+   first try was a light, thin mat (26px blur at 62% opacity) and it was the
+   worst of them: washing the mat toward the cream while the photograph's top
+   edge is dark brick puts a tonal STEP exactly where the join is. The mat
+   wants to be as strong as the picture, only softened and a little desaturated:
+   then it carries the photograph's own colour right up to the join and the
+   join stops being visible. Blurred TOO far is the other failure — past about
+   40px on a phone the blur averages the whole picture into one flat wash and
+   the local continuity goes with it. 28px on a 362px square keeps the brick
+   courses reading as brick without any of it resolving; the laptop's larger
+   square gets 46px for the same effect at its own size. */
+.stage-fill{filter:blur(28px) saturate(.65);transform:scale(1.06);
+  object-fit:fill !important;pointer-events:none}
+@media(min-width:920px){.stage-fill{filter:blur(46px) saturate(.65)}}
+/* a viewer who has asked for less motion is not asking for less blur, but a
+   picture behind a picture is decoration either way: it goes when the browser
+   says the person prefers reduced data */
+@media(prefers-reduced-data:reduce){.stage-fill{display:none}}
 /* A VIDEO FRAME (7 Sept 2026): the clip fills the stage exactly as a
    photograph does. It can, because video.py has already cut it to the stage's
    own square around the rabbit; contain rather than cover, the same as a
@@ -3260,6 +3339,14 @@ body.locked{overflow:hidden}
          is the part that says "this is the state right now" rather than a label. -->
     <span class="status vstatus" id="viewerStatus" hidden></span>
     <div class="viewer-stage">
+      <!-- THE FRAME IS FILLED BY THE PHOTOGRAPH ITSELF. A 4:3 picture in a
+           square leaves a band top and bottom; this is that band, and it is
+           the same picture behind the same picture — scaled to cover, blurred
+           past the point of resolving into anything, and toned back into the
+           paper. Decorative and duplicated, so it is hidden from screen
+           readers. Empty (and hidden) whenever the photograph reaches all four
+           edges by itself, which is most portraits. -->
+      <img class="stage-fill" id="viewerFill" src="" alt="" aria-hidden="true" hidden>
       <img id="viewerImg" src="" alt="">
       <!-- VIDEO (7 Sept 2026, William: "let's have video support for our website
            now for more views on how our rabbits look"). A frame of a listing
@@ -3343,7 +3430,18 @@ body.locked{overflow:hidden}
      below hands it to every img as object-position. Measured at build time, so
      no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
 <script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
-<script src="rabbits.js?v=457ea7cf"></script>
+<!-- HOW EACH PICTURE FILLS THE SQUARE STAGE (8 Sept 2026). William, on
+     Frederick's listing: "We need consistency in how they fill the frame ...
+     fill out the rest and maybe give him a little zoom." Same measurement as
+     the map above, used differently: focus.py works out how far each
+     photograph can be scaled up before the RABBIT would touch an edge, and
+     writes the transform here. `c:1` means that scale reaches all four edges
+     on its own, so the square holds nothing but photograph; `c:0` means it
+     cannot without cutting the animal, and the rest of the square is filled
+     with the picture's own pixels, blurred (.stage-fill). Never hand-edit
+     this: run `python3 focus.py apply`. -->
+<script id="photoFrame" type="application/json">{"photos/butterscotch.jpg":{"c":0,"t":"translate(0%,0.15%) scale(1)"},"photos/cloud.jpg":{"c":0,"t":"translate(0%,0.6%) scale(1)"},"photos/father-2.jpg":{"c":1,"t":"translate(-1.14%,11.97%) scale(1.364)"},"photos/litter-2026-06-28.jpg":{"c":0,"t":"translate(0%,-1.54%) scale(1)"},"photos/litter-2026-07-28.jpg":{"c":1,"t":"translate(8.57%,0%) scale(1.5)"},"photos/litter-2026-08-27-2026-09-02.jpg":{"c":0,"t":""},"photos/litter-2026-08-27-2026-09-06.jpg":{"c":0,"t":"translate(-2.32%,-2.35%) scale(1.047)"},"photos/litter-2026-08-27.jpg":{"c":0,"t":""},"photos/mother-2.jpg":{"c":1,"t":"translate(0.05%,-1.67%) scale(1.48)"},"photos/mother.jpg":{"c":1,"t":"translate(-0.04%,-1.79%) scale(1.394)"},"photos/sundae.jpg":{"c":0,"t":"translate(0%,3.75%) scale(1)"},"photos/teddy.jpg":{"c":0,"t":"translate(0%,1.55%) scale(1)"}}</script>
+<script src="rabbits.js?v=34d349df"></script>
 
 <script>
 (function(){
@@ -3853,6 +3951,21 @@ body.locked{overflow:hidden}
     el.style.objectPosition=focusFor(src===undefined?(el.getAttribute('src')||''):src)||''; }
   function focusIn(root){ var l=(root||document).getElementsByTagName('img');
     for(var i=0;i<l.length;i++) setFocus(l[i]); }
+
+  /* HOW A PICTURE FILLS THE SQUARE STAGE. Same lookup as the focal points, and
+     the same reason for the two keys: a path here may or may not carry
+     stamp.py's ?v= fingerprint. Each entry is {t: the transform, c: 1 when
+     that transform reaches all four edges on its own}. A picture with no entry
+     is shown plain and centred, exactly as before. */
+  var PHOTO_FRAME=(function(){
+    try{ var el=document.getElementById('photoFrame');
+         return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+  })();
+  var FRAME={};
+  (function(){ for(var k in PHOTO_FRAME){ FRAME[k]=PHOTO_FRAME[k];
+    FRAME[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_FRAME[k]; } })();
+  function frameFor(src){ var s=String(src||'');
+    return FRAME[s]||FRAME[s.replace(/\?v=[0-9a-f]+/,'')]||null; }
   /* the pictures typed into the page rather than built by script; a picture
      with no entry has its inline position cleared, so the hero keeps the
      art-directed object-position its own rule gives it */
@@ -4512,6 +4625,7 @@ body.locked{overflow:hidden}
     var vImg=document.getElementById('viewerImg'),
         vVideo=document.getElementById('viewerVideo'),
         vStage=document.querySelector('#viewer .viewer-stage'),
+        vFill=document.getElementById('viewerFill'),
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
@@ -4565,6 +4679,19 @@ body.locked{overflow:hidden}
       vImg.hidden=false;
       vStage.classList.remove('video');
     }
+    /* THE STAGE'S TWO LAYERS. The picture takes the transform focus.py
+       measured for it; the mat behind it is the same file, and it is only
+       loaded and shown when the picture cannot reach the edges by itself — a
+       photograph that fills the square has nothing behind it to see, so
+       nothing is fetched, decoded or blurred for it. A picture the map does
+       not name is shown exactly as it was before any of this existed. */
+    function setFrame(src){
+      var f=frameFor(src), fills=!f||f.c===1;
+      vImg.style.setProperty('--frame',(f&&f.t)||'none');
+      if(!vFill) return;
+      if(fills){ vFill.hidden=true; vFill.removeAttribute('src'); }
+      else { if(vFill.getAttribute('src')!==src) vFill.setAttribute('src',src); vFill.hidden=false; }
+    }
     function paint(i){
       if(i<0||i>=shots.length) return;
       at=i;
@@ -4575,7 +4702,9 @@ body.locked{overflow:hidden}
            fetched past its header, the picture element out of the way */
         vImg.src=s.src; vImg.alt='';
         setFocus(vImg, s.src);
-        vImg.hidden=true;
+        /* a clip is already the stage's own square (video.py cut it there), so
+           it needs neither the transform nor a mat behind it */
+        setFrame(''); vImg.hidden=true;
         vVideo.setAttribute('poster', s.src);
         vVideo.setAttribute('src', s.video);
         vVideo.setAttribute('aria-label', who+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+niceDate(s.date)):''));
@@ -4586,6 +4715,7 @@ body.locked{overflow:hidden}
         stopVideo();
         vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
         setFocus(vImg, s.src);
+        setFrame(s.src);
       }
       /* One line, always, in the same corner. A dated frame says when it was
          taken and does the arithmetic; an undated one falls back to the birth
