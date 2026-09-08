@@ -682,8 +682,8 @@ header.nav.stuck{border-bottom-color:var(--line)}
    rule is structural: the line cannot wrap, at any width, for any content.
    Anything genuinely too long is cut with an ellipsis rather than allowed to
    push the card taller, and the full detail is in the photo view. */
-.meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
+.meta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* clamped to 2 lines so every card is the same height no matter how much
    you write. Uneven card heights are the main thing that makes a grid look untidy. */
 .bunny p.desc{font-size:15px;color:var(--ink-soft);line-height:1.55;flex:1;
@@ -913,7 +913,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
    Kept whole, the link either fits or moves down entire. */
 .viewer-grow .stagelink{white-space:nowrap}
 .grow-txt b{color:var(--ink-soft);font-weight:600}
-.viewer-grow{margin:0 0 2px}
+.viewer-grow{margin:0}
 /* At 360px the bar and the text share a row and the text loses, wrapping and
    stranding the last word. Stacking gives the sentence the whole column
    instead of shortening it, so nothing is dropped to make it fit.
@@ -930,7 +930,18 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
   .viewer-grow .grow-bar{margin-top:0}
 }
-.viewer-grow .grow-txt{font-size:13px}
+/* AN INTEGER LINE BOX (8 Sept 2026). 13px on the card's line-height of 1.3 is
+   16.9px, and a line box that ends on a fraction leaves the row's own height a
+   pixel or two short of the text inside it. That overflow used to be hidden by
+   a 2px bottom margin on .viewer-grow, which was carrying a bug rather than
+   doing a job: take the margin away for the spacing scale and squeezetest sees
+   the row as squeezed, correctly, because it always was. Set in pixels so the
+   box is exactly its lines, wrapped or not.
+   AND A PIXEL FOR THE UNDERLINE. The stage link inside this row is dotted, and
+   an inline border sits BELOW the line box: the paragraph was one pixel shorter
+   than its own ink, every day since the link shipped, and the 2px margin was
+   hiding that too. The row reserves the pixel instead. */
+.viewer-grow .grow-txt{font-size:13px;line-height:18px;padding-bottom:1px}
 /* The smallest phones (360px) give the stacked row 316px, 7px short of the
    longest wording at 13px. At the card's own 12.5px it needs 311px and fits
    with room to spare; nothing is shortened or dropped. */
@@ -1487,7 +1498,7 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    carried by the footer (.viewer-foot below) rather than by the body, so
    the padding is 0 at the bottom here; the phone rule sets the same two
    numbers smaller. */
-.viewer-body{--vx:18px;--vb:18px;padding:15px var(--vx) 0;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+.viewer-body{--vx:18px;--vb:18px;padding:15px var(--vx) 0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--sp)}
 /* NOTHING IN THE BODY SHRINKS (6 Sept 2026, William's phone: the breed line and
    the description of a listing cut off mid-letter). The body is a flex column,
    and a flex item whose overflow is not visible has an automatic minimum size
@@ -1537,8 +1548,8 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(251,248,243,0),var(--paper) 72%);pointer-events:none;
   opacity:0;transition:opacity .15s}
 .viewer-body.more .viewer-foot::before{opacity:1}
-.viewer-said{margin-top:13px}
-.viewer-note{margin-top:13px}
+.viewer-said{margin-top:var(--sp-open)}
+.viewer-note{margin-top:var(--sp-open)}
 /* THE BOX IS ONE SIZE. A dialog that grows and shrinks as you step through the
    photos makes the whole thing feel unfinished, and it moves the Ask button out
    from under your thumb between taps. The picture is already fixed by its 4/3
@@ -1569,60 +1580,126 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .viewer-head h3{font-size:21px}
 .viewer-head .price{font-size:18px}
-/* THREE SIZES, NOT NINE.
-   Measured, this box had ten pieces of text and NINE different combinations of
-   size, weight and colour: 12.5, 13.5, 14.5, 15, 16, 18, 19 and 21px stacked in
-   700 pixels. Nothing grouped, because nothing shared a treatment, so all of it
-   arrived at once. That is what "a lot of information" was describing: not the
-   57 words in here, which is nothing, but the number of levels they were said
-   in. NN/g's rule is no more than three sizes and at most two elements allowed
-   to be big; the name and the price are the two.
-   Secondary text is now one size and one colour, and the strata are separated
-   by space instead of by size. */
+/* ═══ THE LISTING'S DESIGN SYSTEM (8 Sept 2026) ═══════════════════════════
+   William, photographing Teddy's listing: "an instance of it feeling weird and
+   forced is how the sold and reserved goes biggest then to smallest ...
+   especially when it's on top of a menu item that takes over the length. And
+   there's many other instances too. Basically, we just kept adding and adding
+   to this to where we were focused on adding but not optimizing."
+
+   He is right, and it is measurable. Audited at 390px, this box carried SEVEN
+   type sizes (10.5, 12.5, 13, 15, 16, 18, 21), FIVE label treatments invented
+   one at a time — middot lists, a brick dotted link, small-caps MOTHER/FATHER,
+   bold sentence-case Reserved/Sold, a mixed-weight growth line — and SEVEN
+   vertical edges its text started from. Every one of them was reasonable the
+   day it shipped. Together they are what "weird and forced" describes: almost
+   nothing here shared a treatment with anything else, so a reader had to work
+   out the grammar of each row before they could read it.
+
+   THE CITATION THAT WAS WRONG. The comment that used to stand here said "NN/g's
+   rule is no more than three sizes and at most two elements allowed to be big".
+   Checked against the article it points at
+   (https://www.nngroup.com/articles/why-does-design-look-good/), NN/g says no
+   such thing: it caps font TREATMENTS IN A HEADLINE at two, fonts overall at
+   one or two, and on alignment says only that "any alignment inconsistencies
+   should be purposeful — define clear rules to guide you". A number invented
+   and then attributed is worse than no number at all. So the numbers below are
+   this project's own, they are written down, and carddrifttest.js fails the
+   build if the listing ever exceeds them — which is the actual answer to "we
+   kept adding but not optimizing".
+
+   THE RAMP — five steps, one job each. Nothing in this box is set at a size
+   that is not on this list:
+     21px    the name           the one thing that is big
+     18px    the price          the second, in the serif, so it reads as a figure
+     15px    the description    the only text in here anybody READS, not scans
+     13px    every fact         breed line, growth line, record values, parent
+                                names, kit chips: one size, one colour
+     10.5px  every label        MOTHER · FATHER · BORN · SOLD, one form (below)
+   The 12.5px parent names and the 13.5px kit chips are gone; they were a third
+   and a fourth flavour of "small text" doing the 13px facts' job.
+
+   THE SPACING — two numbers, and the same two on a phone and on a desktop:
+     --sp        6px   between rows that belong to the same thing
+     --sp-open   8px   added where a new thing starts, so 14px
+   Grouping by proximity is the work a fourth font size was failing to do
+   (Palmer, "Common region: a new principle of perceptual grouping", Cognitive
+   Psychology 24(3), 1992, https://pubmed.ncbi.nlm.nih.gov/1516361/ — things
+   inside one region are read as one thing, and that beats making them bigger).
+
+   THE STRATA, in the order a buyer asks the questions:
+     who, how much        the name and the price
+     what is it           breed · sex · colour
+     how old is it NOW    the growth bar and today's age      <- moved up here
+     where is it from     the two parent tiles
+     what happened to it  THE RECORD, in a region of its own
+     what is it like      the description
+     and then the button
+   The growth row used to sit UNDER the record, and that pairing is the one he
+   photographed: a ragged two-line block resting on a full-width bar. It is also
+   the wrong order. How old a rabbit is today is a live fact somebody decides
+   on; the record is provenance, and provenance reads after the animal. */
+.viewer-body{--sp:6px;--sp-open:8px}
 .viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
-/* THE DATED STATUS LINE — "Went home 20 Aug 2026" / "Spoken for since 28 Aug
-   2026" — is its own row, NOT a suffix on the meta. Appended to the meta it
-   pushed that one-line row onto two lines at phone widths and stranded the
-   date (orphantest caught it the day the first reservation date shipped, and
-   the sold state carried the same break latently: its meta plus a date was
-   just as long, only never rendered on real data yet). The avail-stamp
-   precedent applies: two statements get two lines by LAYOUT, not by
-   overflow.
-   ROWS EXIST WHEN THEY HAVE SOMETHING TO SAY (6 Sept 2026, William, from
-   his phone: "the spacing seemed a little off ... make it look intentional
-   rather than an unintentional buggy mess"). Until then this row's height
-   was reserved across the whole list, so an available rabbit, the one for
-   sale, carried an empty line between its parents and its growth row where
-   a reserved one carried "Spoken for since". The reservation bought one
-   geometry for every rabbit; on a phone the box is at its full height for
-   every rabbit anyway, so it bought nothing there and cost a hole. Now the
-   row is hidden when it is empty, and the growth row takes the stratum's
-   margin when it stands first.
-   THE RHYTHM: rows inside a stratum sit on the body's gap; a new stratum
-   opens with 9px on top of it. Identity (name, breed, born); the parents;
-   the state (a dated status, then the growth row); the story; the button. */
-/* THE DATED RECORD (8 Sept 2026). It used to print ONE date, whichever the
-   rabbit's current status carried, so Cloud's listing said "Sold 29 Aug 2026"
-   and the day he was reserved, 25 August, was in the data and nowhere on the
-   page. William, from his phone: "also make sure you have the sold date as
-   well ... I want this website to paint the full timeline, it's more help for
-   when we need to start making pedigrees." So every date the record holds is
-   printed, oldest first, each against its own word: reserved, sold, went
-   home. Born sits one row up with the link to the litter, so the whole life
-   reads down the box in order. A two-column grid because a record is read by
-   running an eye down the dates, not along a sentence; the dates never break
-   (they are <time> elements set nowrap), and a rabbit with nothing to record
-   still has no row at all. The site never invents one of these: a date is
-   here because William gave it. */
-.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:9px 0 0;
-  display:grid;grid-template-columns:max-content 1fr;column-gap:10px;row-gap:1px;justify-content:start}
-.viewer-when b{font-weight:600;color:var(--ink-soft)}
-.viewer-when time{white-space:nowrap}
-.viewer-when[hidden]{display:none}
-#viewerGrow{margin-top:9px}
-.viewer-when:not([hidden])+#viewerGrow{margin-top:0}
+#viewerGrow{margin-top:var(--sp-open)}
 #viewerGrow:empty{display:none}
-.viewer-born{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:1px 0 0}
+
+/* ONE LABEL FORM, AND NOWHERE TO PUT A SECOND. Three places in this box name a
+   value — the parent tiles, the kits row, and every line of the record — and
+   each had invented its own way of doing it. They now share one definition:
+   small caps, tracked, faint, so a label reads as a fixture of the page and the
+   value beside it reads as the rabbit's. This is the treatment that was already
+   the most deliberate thing on the card (MOTHER / FATHER). The bold
+   sentence-case one is what goes: at 13px and weight 600 the word "Reserved"
+   was competing with its own date, and two such words of different lengths
+   stacked is exactly the staircase he saw. */
+.parent small,.viewer-kits small,.viewer-when b{
+  display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);line-height:1.35;white-space:nowrap}
+/* THE RECORD (8 Sept 2026) — every dated fact of this rabbit's life and the two
+   fields a pedigree needs, in ONE region, in ONE grammar, in the order it
+   happened. Born, ready, reserved, sold, went home, ear number, weight.
+
+   It used to be two things in two places. "Born 28 Jul 2026" sat above the
+   parents as a brick dotted link with "Ready 22 Sept" hung off a middot;
+   "Reserved" and "Sold" sat below them as bold sentence-case words against a
+   date column. Three dates about one rabbit, set three ways, in two strata. It
+   is the same class of fact every time, so it is now one block:
+
+     BORN       28 Jul 2026     <- the date itself is the way to the litter
+     RESERVED   28 Aug 2026
+     SOLD        7 Sep 2026
+
+   The hairline is doing real work and is not decoration: a boundary makes the
+   rows inside it read as ONE object rather than as loose lines resting on the
+   growth bar (common region, Palmer 1992, cited above). That is the specific
+   thing he photographed.
+
+   THE GUTTER IS FIXED, not max-content. Sized to the longest label the site can
+   print, so the values start at the same x on every rabbit's listing and on
+   every visit — a record a person is going to read across four rabbits should
+   not move its column between them. minmax() rather than a flat number so a
+   longer label can never be clipped: it would widen the gutter instead, and
+   carddrifttest.js fails the build if that ever happens, so the number is
+   checked rather than hoped for.
+
+   Every row is optional and an absent one prints NOTHING — no gap, no
+   placeholder, no "unknown" — and a rabbit with nothing on record has no block
+   at all. The site never invents one of these: a date is here because William
+   gave it. William, 8 Sept 2026: "I want this website to paint the full
+   timeline, it's more help for when we need to start making pedigrees." */
+.viewer-when{--rec:88px;
+  margin:var(--sp-open) 0 0;padding-top:11px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:minmax(var(--rec),max-content) 1fr;
+  column-gap:12px;row-gap:5px;align-items:baseline;
+  font-size:13px;line-height:1.45;color:var(--ink-soft);
+  font-variant-numeric:tabular-nums;overflow:hidden}
+.viewer-when time{white-space:nowrap}
+/* justify-self so a linked value is only as wide as its own words: a grid item
+   fills its track, and the litter link's dotted underline ran the whole width
+   of the value column with 150px of it under nothing at all. */
+.viewer-when a{color:var(--brick-dk);justify-self:start}
+.viewer-when[hidden]{display:none}
 /* THE PARENTS ROW (6 Sept 2026). William: "whenever somebody clicks on a rabbit,
    it will automatically show their mom and their dad ... as little friction as
    possible ... our website cannot be a maze." So the parents are not a page,
@@ -1636,7 +1713,13 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    litter itself. Two tiles side by side at every width: photo, role, breed,
    in the card grammar the rest of the site uses (hairline, --r radius, brick
    on hover). Labels never wrap (orphantest.js measures them). */
-.viewer-parents{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+/* A ROW OF TILES, NOT A GRID OF TWO (8 Sept 2026). A kit has two parents, but a
+   PARENT's own listing shows one tile — the other parent — and in a two-column
+   grid that tile took the left half and left the right half empty, which reads
+   as a picture that failed to load. Flex, and each tile takes an equal share of
+   whatever is there: two split the row, one fills it. */
+.viewer-parents{display:flex;gap:8px;margin-top:var(--sp-open)}
+.parent{flex:1 1 0}
 .viewer-parents[hidden]{display:none}
 .parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
@@ -1648,16 +1731,15 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .parent span{display:block;min-width:0}
 .parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;white-space:nowrap}
-.parent b{display:block;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.3;white-space:nowrap}
+.parent b{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.35;white-space:nowrap}
 /* THEIR KITS, in a parent's view: every rabbit of theirs on the site, as the
    same name chips the litter page uses, each opening that rabbit's listing. */
-.viewer-kits{margin-top:9px}
+.viewer-kits{margin-top:var(--sp)}
 .viewer-kits[hidden]{display:none}
-.viewer-kits small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-faint);margin-bottom:6px;white-space:nowrap}
+.viewer-kits small{margin-bottom:6px}
 .kitrow{display:flex;flex-wrap:wrap;gap:7px}
 .kit{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:100px;
-  border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13.5px;font-weight:500;
+  border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13px;font-weight:600;
   text-decoration:none;white-space:nowrap}
 .kit:hover,.kit:focus-visible{border-color:var(--brick);color:var(--brick-dk)}
 /* The birth date is the way through to the litter this rabbit came from. It opens
@@ -1709,9 +1791,44 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    frame's, so it cannot move between frames whatever its height. */
 .viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6}
 .viewer-box .btn{width:100%}
+/* ═══ A DESKTOP READS ACROSS, NOT DOWN (8 Sept 2026) ══════════════════════
+   The stage became a square on 8 September so a photograph is never cropped,
+   and on a laptop that had a cost nobody had looked at: a 620px box on a
+   900px-tall screen spent 620 of it on the picture and left 250 for the
+   listing, so the record, the description, the thumbnails and the button all
+   lived below a scroll INSIDE a modal. The reader saw a photograph and a breed
+   line. A phone has no width to spare and is right to stack; a laptop has
+   nothing but width, and every product page that shows one object — Etsy,
+   Airbnb, an auction lot — puts the picture beside the facts for that reason.
+   So above 920px the box turns on its side: the square picture on the left at
+   56% of it, everything else in a column on the right, and the button held at
+   the foot of that column by an auto margin so a short listing does not leave
+   it floating mid-panel. The picture stays square and stays `contain`
+   (focustest.js holds both), the phone layout below is untouched, and nothing
+   about what is SAID changes — only where a wide screen puts it. */
+@media(min-width:920px) and (min-height:520px){
+  .viewer-box{flex-direction:row;width:min(1080px,calc(100vw - 48px))}
+  .viewer-stage{flex:0 0 56%;width:56%;align-self:flex-start}
+  .viewer-body{flex:1 1 0;min-width:0;--vx:22px;--vb:20px;padding:20px var(--vx) 0}
+  .viewer-foot{margin-top:auto}
+  /* Close and share are positioned against the BOX, and the moment the box
+     turned on its side that put them in the panel's top right corner — on top
+     of the price. They belong over the picture, where they are on a phone, so
+     they are pushed back across the panel: the stage ends 56% from the left,
+     which is 44% from the right, and they keep their own 9px and 57px from
+     that edge. The status chip is already at the box's top LEFT, which is over
+     the picture either way. */
+  .viewer-close{right:calc(44% + 9px)}
+  .viewer-share{right:calc(44% + 57px)}
+}
 @media(max-width:600px){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
-  .viewer-body{--vx:14px;--vb:16px;padding:13px var(--vx) 0;gap:10px}
+  /* THE SAME RHYTHM ON A PHONE (8 Sept 2026). The row gap here was 10px against
+     the desktop's 5, so the card's proportions changed with the screen and the
+     phone — the screen he actually looks at — was the loose one. One scale now,
+     both widths: --sp between rows, --sp-open on top of it where a stratum
+     starts. It also gives the phone box back about 20px of height. */
+  .viewer-body{--vx:14px;--vb:16px;padding:13px var(--vx) 0}
   .viewer-strip button{flex:0 0 56px;height:47px}
 }
 /* count badge so people know there's more than one before they tap */
@@ -3182,12 +3299,15 @@ body.locked{overflow:hidden}
     <div class="viewer-body">
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
-      <!-- BORN AND READY on their own row (5 Sept 2026): the breed joined the
-           meta line when the rabbits became "Holland Lop cross" on every
-           listing, and breed + sex + colour + Born + Ready no longer fits one
-           line on a phone. Same rule as the dated status row below it. -->
-      <p class="viewer-born" id="viewerBornRow"></p>
-      <!-- THE PARENTS (6 Sept 2026). Two small photos under the birth date:
+      <!-- HOW OLD IT IS TODAY, third (8 Sept 2026). This row used to sit under
+           the record, which put a live fact after an archival one and left the
+           record's short ragged lines resting on a full-width bar — the exact
+           pairing William photographed. Age is what somebody deciding on a
+           rabbit is reading for, so it reads with the name and the breed.
+           BORN AND READY are no longer a row of their own: they are the first
+           two lines of the record below, where every other date already was. -->
+      <div id="viewerGrow"></div>
+      <!-- THE PARENTS (6 Sept 2026). Two small photos under the age row:
            the mother and the father, from PARENTS in rabbits.js. One tap opens
            the parent's own view in this same box (its photos, the other parent,
            every kit of theirs on the site); Back returns to the rabbit. In a
@@ -3195,8 +3315,9 @@ body.locked{overflow:hidden}
            below it lists their kits. Built by script; empty without it. -->
       <div class="viewer-parents" id="viewerParents" hidden></div>
       <div class="viewer-kits" id="viewerKits" hidden></div>
+      <!-- THE RECORD: born, ready, reserved, sold, went home, ear number,
+           weight. One region, one grammar, oldest first (see .viewer-when). -->
       <p class="viewer-when" id="viewerWhen" hidden></p>
-      <div id="viewerGrow"></div>
       <div class="viewer-said" id="viewerSaid">
         <p class="viewer-cap" id="viewerCap"></p>
       </div>
@@ -3222,7 +3343,7 @@ body.locked{overflow:hidden}
      below hands it to every img as object-position. Measured at build time, so
      no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
 <script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
-<script src="rabbits.js?v=666b4c0d"></script>
+<script src="rabbits.js?v=457ea7cf"></script>
 
 <script>
 (function(){
@@ -4194,7 +4315,16 @@ body.locked{overflow:hidden}
     railEl.innerHTML=list.map(function(r){
       var st=LABEL[r.status]||LABEL.available;
       var dim=(r.status==='available')?'':' sold-dim';
-      var meta=[showBreed?r.breed:null,r.sex,r.colour].filter(Boolean).map(esc).join(' &middot; ');
+      /* TWO ROWS, NOT ONE ELLIPSIS (8 Sept 2026). Three facts on one nowrap
+         line inside a 170px card came out as "Holland Lop cross · D…" on every
+         phone: the reader got the breed and lost the sex and the colour, and a
+         word cut mid-letter reads as a fault. The site's own rule applies —
+         two statements get two lines by LAYOUT, not by overflow — so the breed
+         takes a row and the sex and colour take the row under it. Both are
+         still nowrap with an ellipsis, so a very long name cannot wrap either
+         row and the grid stays one shape (linetest measures both). */
+      var meta=(showBreed&&r.breed?'<span>'+esc(r.breed)+'</span>':'')+
+        '<span>'+[r.sex,r.colour].filter(Boolean).map(esc).join(' &middot; ')+'</span>';
       /* THE CARD SAYS HOW OLD, NOT WHEN. The growth row underneath carries the
          rabbit's age today (William's call 2026-09-02, replacing a countdown to
          a ready date he only expects). Printing a Ready date here as well put
@@ -4385,7 +4515,6 @@ body.locked{overflow:hidden}
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
         vMeta=document.getElementById('viewerMeta'),
-        vBornRow=document.getElementById('viewerBornRow'),
         vWhen=document.getElementById('viewerWhen'),
         vCap=document.getElementById('viewerCap'),
         vSaid=document.getElementById('viewerSaid'),
@@ -4559,13 +4688,17 @@ body.locked{overflow:hidden}
       var role=p.role==='mother'?'The mother':'The father';
       vName.textContent=p.name||role;
       vPrice.textContent='';
-      vMeta.textContent=p.breed+(p.name?(' \u00B7 '+role.toLowerCase()):'');
-      vBornRow.textContent='';
-      var a=document.createElement('a');
-      a.className='litterlink'; a.href='litters.html'; a.target='_blank'; a.rel='noopener';
-      a.title='Every litter, with the photo from the day it was born';
-      a.textContent='Every litter'; vBornRow.appendChild(a);
-      vWhen.textContent=''; vWhen.hidden=true;
+      /* "Satin Angora \u00B7 Father", not "Satin Angora \u00B7 the father" (8 Sept
+         2026). A kit's line reads "Holland Lop cross \u00B7 Doe \u00B7 Fawn": capitalised
+         terms separated by middots. A lower-case article in the same slot was a
+         sixth grammar for no gain, and this is the same box. */
+      vMeta.textContent=p.breed+(p.name?(' \u00B7 '+roleWord(p)):'');
+      /* A PARENT HAS A RECORD TOO, and it is the same block the kits use rather
+         than a link floating on a row of its own: one row, the way to every
+         litter they have had. */
+      paintRecord([{label:'Litters',text:'Every litter',href:'litters.html',
+        title:'Every litter, with the photo from the day it was born',
+        aria:'Every litter on the site'}]);
       vGrow.innerHTML='';
       born='';
       vNote.textContent=p.note||''; vNote.style.display=p.note?'':'none';
@@ -4608,20 +4741,6 @@ body.locked{overflow:hidden}
       vMeta.textContent='';
       vMeta.appendChild(document.createTextNode(
         [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ')));
-      /* the born row: the doorway back to the litter, and the Ready date */
-      vBornRow.textContent='';
-      if(r.dob){
-        var a=document.createElement('a');
-        a.className='litterlink';
-        a.href='litters.html#L'+r.dob;
-        a.target='_blank'; a.rel='noopener';
-        a.title='See the litter this rabbit came from';
-        a.textContent='Born '+niceDate(r.dob);
-        vBornRow.appendChild(a);
-      }
-      if(r.ready&&r.status==='available'){
-        vBornRow.appendChild(document.createTextNode((r.dob?' · ':'')+'Ready '+r.ready));
-      }
       /* THE ARCHIVE LINE. Once a rabbit is placed it drops off the rail (7
          days after going home, or at once if a sold one has already left),
          but its link from the litter page has to keep working
@@ -4642,22 +4761,43 @@ body.locked{overflow:hidden}
          invents one. */
       /* shown only when there is a date to show (6 Sept 2026; see the
          stylesheet note by .viewer-when): an empty row is a hole, not a slot */
+      paintRecord(recordRows(r));
+    }
+    /* ONE PAINTER FOR THE WHOLE RECORD, so a row cannot be set one way here
+       and another way somewhere else. Every row is a label cell and a value
+       cell of a two-column grid; the single spaces between them are text nodes
+       that the grid ignores (whitespace makes no anonymous grid item) and
+       textContent keeps, so the record still READS as "Born 28 Jul 2026" to a
+       screen reader and to the tests. */
+    function paintRecord(rec){
       vWhen.textContent='';
-      var rec=recordRows(r);
       rec.forEach(function(x,i){
         var b=document.createElement('b'); b.textContent=x.label;
         vWhen.appendChild(b);
         vWhen.appendChild(document.createTextNode(' '));
-        if(x.text){
-          var v=document.createElement('span'); v.textContent=x.text;
+        var v;
+        if(x.href){
+          /* THE DATE IS THE DOORWAY. It used to be the word "Born" that carried
+             the link to the litter; the date is the thing a reader is looking
+             at, and it keeps the record's one grammar (label, value) instead of
+             making this row a sentence. New tab on purpose: closing the photo
+             view to read a different page throws away the place of somebody
+             who is mid-decision. */
+          v=document.createElement('a');
+          v.className='litterlink'; v.href=x.href;
+          v.target='_blank'; v.rel='noopener';
+          v.title=x.title||''; if(x.aria) v.setAttribute('aria-label',x.aria);
+          if(x.iso) v.appendChild(timeEl(x.iso)); else v.textContent=x.text;
+        } else if(x.text){
+          v=document.createElement('span'); v.textContent=x.text;
           if(x.iso){
             v.appendChild(document.createTextNode(' · '));
             v.appendChild(timeEl(x.iso));
           }
-          vWhen.appendChild(v);
         } else {
-          vWhen.appendChild(timeEl(x.iso));
+          v=timeEl(x.iso);
         }
+        vWhen.appendChild(v);
         if(i<rec.length-1) vWhen.appendChild(document.createTextNode(' '));
       });
       vWhen.hidden=!rec.length;
@@ -4667,18 +4807,30 @@ body.locked{overflow:hidden}
       t.setAttribute('datetime',iso); t.textContent=niceDate(iso);
       return t;
     }
-    /* THE RECORD: what this rabbit IS, what happened to it, and what it
-       weighed. The ear number first because it is the one permanent name a
-       rabbit has, then the dated events in the order they happened, then the
-       last weight with the day it was taken. William asked for the pedigree
-       fields on 8 Sept 2026: a pedigree wants a name, an ear number, a variety
-       and a weight for every animal on it, and the site already held the name,
-       the variety and the birth date. Every one of these is optional and an
-       empty one prints nothing at all: no gap, no placeholder, no "unknown". */
+    /* THE RECORD: what happened to this rabbit, then what is written on it.
+       THE LIFE FIRST, oldest first — born, ready, reserved, sold, went home —
+       because that is the timeline William asked the site to paint and a
+       timeline is read down. THEN THE PAPERS: the ear number and the last
+       weight, the two fields a pedigree wants that the site did not already
+       hold (a pedigree needs a name, an ear number, a variety and a weight for
+       every animal on it; the name, the variety and the birth date were already
+       here). They close the block rather than open it because they are what is
+       true ABOUT the rabbit, not what happened TO it, and because the eye that
+       came for the dates should meet the dates first.
+       Every one of these is optional and an empty one prints nothing at all: no
+       gap, no placeholder, no "unknown". */
     function recordRows(r){
       var out=[];
-      if(r.ear) out.push({label:'Ear number',text:String(r.ear)});
+      if(r.dob) out.push({label:'Born',iso:r.dob,href:'litters.html#L'+r.dob,
+        title:'See the litter this rabbit came from',
+        aria:'Born '+niceDate(r.dob)+': see this rabbit\u2019s litter'});
+      /* READY is the one forward-looking line in here, and it is only ever
+         shown on a rabbit somebody can still buy: on a reserved or sold one it
+         would be answering a question nobody is asking. It is William's own
+         wording, carried through as he typed it. */
+      if(r.ready&&r.status==='available') out.push({label:'Ready',text:String(r.ready)});
       lifeRows(r).forEach(function(x){ out.push({label:x[0],iso:x[1]}); });
+      if(r.ear) out.push({label:'Ear number',text:String(r.ear)});
       var w=lastWeight(r);
       if(w) out.push({label:'Weight',text:weightText(w),iso:w.on||''});
       return out;
@@ -4708,10 +4860,6 @@ body.locked{overflow:hidden}
       if(r.soldOn&&(r.status==='sold'||(r.status==='adopted'&&r.wentHome))) out.push(['Sold',r.soldOn]);
       if(home) out.push(['Went home',home]);
       return out;
-    }
-    function bornText(r){
-      return (r.dob?('Born '+niceDate(r.dob)):'')+
-        (r.ready&&r.status==='available'?((r.dob?' · ':'')+'Ready '+r.ready):'');
     }
     function metaText(r){
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ');
@@ -4775,15 +4923,14 @@ body.locked{overflow:hidden}
       }
       if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
-      /* the when-row and the description are NOT reserved across the list any
-         more (6 Sept 2026): the when-row is hidden when a rabbit has no dated
-         status, and the description is its own height. Both are the rabbit's,
-         not the frame's, so neither can move between one rabbit's photographs,
-         which is the rule this function exists to keep. The born row, the
-         meta and the growth row stay reserved: one line each, for every rabbit. */
-      var borns=[];
-      for(var q=0;q<RABBITS.length;q++){ borns.push(bornText(RABBITS[q])); }
-      vBornRow.style.minHeight=tallest(vBornRow,'viewer-born',borns,w)+'px';
+      /* THE RECORD AND THE DESCRIPTION ARE NOT RESERVED across the list (6 Sept
+         2026, and more so since 8 Sept, when born and ready joined the record):
+         the record is as many rows as the rabbit has facts, and the description
+         is its own height. Both are the RABBIT'S, not the frame's, so neither
+         can move between one rabbit's own photographs — which is the rule this
+         function exists to keep. The meta and the growth row stay reserved at
+         one line each for every rabbit, so the picture and the age never shift
+         as you step through a list. */
       vNote.style.height='';
       /* A CAPTION SLOT NOBODY IS USING TAKES NO SPACE.
          Every real photograph carried "Out on the brick.", which described what

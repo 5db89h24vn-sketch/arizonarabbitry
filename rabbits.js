@@ -5,10 +5,28 @@
 
    These are your real rabbits. Everything the site says about them comes from here.
 
+   ── THE RECORD ON EVERY LISTING ──
+      8 Sept 2026. Everything dated about a rabbit is now printed as ONE
+      block in its listing, oldest first, each line against its own label:
+
+        BORN       28 Jul 2026      <- the date opens that litter's page
+        READY      22 Sept
+        RESERVED   28 Aug 2026
+        SOLD        7 Sep 2026
+        WENT HOME  14 Sep 2026
+        EAR NUMBER AR-24
+        WEIGHT     3 lb 4 oz · 8 Sep 2026
+
+      You do not build that block; it builds itself out of the fields
+      below. A field you leave out prints NOTHING — no gap, no blank
+      line, no "unknown" — and a rabbit with nothing on record shows no
+      block at all. Nothing in it is ever guessed: every date there is a
+      date you typed.
+
    ── THE READY DATE ──
       ready: "22 Sept"  is the date you expect that rabbit to be ready.
-      It is printed as typed, beside Born, in an AVAILABLE rabbit's
-      listing only. There is no fixed go-home age on the site (your
+      It is printed as typed, on the Ready line, in an AVAILABLE
+      rabbit's listing only. There is no fixed go-home age on the site (your
       call, kit by kit, some at eight weeks and some sooner), so leave
       it out for a rabbit you have not dated and the site says nothing.
       The card under each photo shows how old the rabbit is today,
@@ -18,9 +36,9 @@
       change   status: "available"
       to       status: "reserved"
       and set  reservedOn: "2026-08-28"  (today's date, YYYY-MM-DD)
-      The date shows beside Reserved on the litter tiles and in the
-      photo view — a dated record reads as a live one. Leave it out
-      and the site just says Reserved; it never guesses a date.
+      The date shows beside Reserved on the litter tiles and on the
+      Reserved line of the record — a dated record reads as a live one.
+      Leave it out and the site just says Reserved; it never guesses.
 
    ── TO MARK ONE SOLD (paid in full, still here) ──
       change   status: "reserved"  (or "available")
