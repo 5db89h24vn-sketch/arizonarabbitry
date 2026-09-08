@@ -3164,6 +3164,17 @@ body.locked{overflow:hidden}
 </div>
 
 <!-- Your rabbit list. This is the only file you edit day to day. -->
+<!-- WHERE TO LOOK IN EACH PICTURE (8 Sept 2026). Every picture slot on this
+     site is a fixed shape filled edge to edge, and `object-fit: cover` takes
+     its band from the middle of the FRAME. On a portrait photograph of a
+     rabbit sitting up that is the middle of the body, so the father's ear tips
+     were sliced off the top of the photo view (William, from his phone: "I
+     don't like how he clipped off in this picture"). focus.py finds the rabbit
+     in every photograph with the segmentation model studio.py already uses,
+     works out the point the crop must keep, and writes it here; the script
+     below hands it to every img as object-position. Measured at build time, so
+     no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
+<script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
 <script src="rabbits.js?v=f17b8b09"></script>
 
 <script>
@@ -3652,6 +3663,33 @@ body.locked{overflow:hidden}
      actually LEFT (wentHome; older records carried it in soldOn before
      "sold" became its own state, so that stays as the fallback). */
   var RETIRE_DAYS=7;
+  /* ── THE FOCAL POINT OF A PICTURE ──
+     PHOTO_FOCUS (written by focus.py into the JSON tag above the scripts) maps
+     a picture to the object-position its crop must use so the rabbit's head is
+     never the part that gets cut. Two keys are kept for every entry, with and
+     without the ?v= fingerprint stamp.py adds, because pictures named inside
+     rabbits.js are unstamped and pictures typed into the page are stamped, and
+     a lookup has to answer for both. In the preview builds every picture path
+     becomes a data URI, INCLUDING these keys, so the match still holds there.
+     A picture with no entry is centred, exactly as before. */
+  var PHOTO_FOCUS=(function(){
+    try{ var el=document.getElementById('photoFocus');
+         return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+  })();
+  var FOCUS={};
+  (function(){ for(var k in PHOTO_FOCUS){ FOCUS[k]=PHOTO_FOCUS[k];
+    FOCUS[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_FOCUS[k]; } })();
+  function focusFor(src){ var s=String(src||'');
+    return FOCUS[s]||FOCUS[s.replace(/\?v=[0-9a-f]+/,'')]||''; }
+  function setFocus(el,src){ if(!el) return;
+    el.style.objectPosition=focusFor(src===undefined?(el.getAttribute('src')||''):src)||''; }
+  function focusIn(root){ var l=(root||document).getElementsByTagName('img');
+    for(var i=0;i<l.length;i++) setFocus(l[i]); }
+  /* the pictures typed into the page rather than built by script; a picture
+     with no entry has its inline position cleared, so the hero keeps the
+     art-directed object-position its own rule gives it */
+  document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
+
   var LABEL={available:['st-open','Available'],
              reserved :['st-hold','Reserved'],
              /* SOLD IS ITS OWN STATE, added the day both sable points were
@@ -4205,6 +4243,7 @@ body.locked{overflow:hidden}
         '<p class="desc">'+esc(r.note)+'</p>'+
         '<span class="bunny-cta">'+cta+arrow+'</span></div></a>';
     }).join('');
+    focusIn(railEl);
 
     if(countEl){
       var open=list.filter(function(r){return r.status==='available'}).length;
@@ -4359,6 +4398,7 @@ body.locked{overflow:hidden}
         /* a video frame: the poster on the player, the clip named but not
            fetched past its header, the picture element out of the way */
         vImg.src=s.src; vImg.alt='';
+        setFocus(vImg, s.src);
         vImg.hidden=true;
         vVideo.setAttribute('poster', s.src);
         vVideo.setAttribute('src', s.video);
@@ -4369,6 +4409,7 @@ body.locked{overflow:hidden}
       } else {
         stopVideo();
         vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
+        setFocus(vImg, s.src);
       }
       /* One line, always, in the same corner. A dated frame says when it was
          taken and does the arithmetic; an undated one falls back to the birth
@@ -4452,6 +4493,7 @@ body.locked{overflow:hidden}
       vKits.hidden=true; vKits.innerHTML='';
       var ok=HAVE_PARENTS&&r.mother&&r.father&&PARENTS[r.mother]&&PARENTS[r.father];
       vParents.innerHTML=ok?(parentTile(r.mother)+parentTile(r.father)):'';
+      focusIn(vParents);
       vParents.hidden=!ok;
     }
     function kitsOf(key){
@@ -4485,6 +4527,7 @@ body.locked{overflow:hidden}
       var other=null;
       for(var k in PARENTS) if(k!==key&&PARENTS[k]&&PARENTS[k].role!==p.role){ other=k; break; }
       vParents.innerHTML=other?parentTile(other):''; vParents.hidden=!other;
+      focusIn(vParents);
       var kits=kitsOf(key);
       vKits.innerHTML=kits.length?('<small>Their kits on this site</small><div class="kitrow">'+
         kits.map(function(r){ return '<a class="kit" href="#r-'+esc(addrOf(r))+'">'+esc(r.name)+'</a>'; }).join('')+'</div>'):'';
@@ -4495,6 +4538,7 @@ body.locked{overflow:hidden}
         return '<button type="button" aria-label="'+(x.video?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'" alt=""'+
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(x.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
+      focusIn(vStrip);
       vStrip.querySelectorAll('button').forEach(function(b,n){ b.addEventListener('click',function(){paint(n)}); });
       vw.classList.toggle('solo', shots.length<2);
       if(vShare){ vShare.hidden=true; }
@@ -4716,6 +4760,7 @@ body.locked{overflow:hidden}
           (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'" alt=""'+
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(s.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
+      focusIn(vStrip);
       vStrip.querySelectorAll('button').forEach(function(b,n){
         b.addEventListener('click',function(){paint(n)});
       });

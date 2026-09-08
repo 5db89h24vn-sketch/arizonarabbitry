@@ -766,6 +766,40 @@ h1,h2,h3{text-wrap:balance}
   </div>
 </footer>
 
+<!-- WHERE TO LOOK IN EACH PICTURE (8 Sept 2026). Every picture slot on this
+     site is a fixed shape filled edge to edge, and `object-fit: cover` takes
+     its band from the middle of the FRAME. On a portrait photograph of a
+     rabbit sitting up that is the middle of the body, so the father's ear tips
+     were sliced off the top of the photo view (William, from his phone: "I
+     don't like how he clipped off in this picture"). focus.py finds the rabbit
+     in every photograph with the segmentation model studio.py already uses,
+     works out the point the crop must keep, and writes it here; the script
+     below hands it to every img as object-position. Measured at build time, so
+     no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
+<script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
+<script>
+/* ── THE FOCAL POINT OF A PICTURE (8 Sept 2026) ──
+   The same helper index.html carries, so a tile, a litter card and the wall
+   crop a photograph the way the photo view does: focus.py measured where the
+   rabbit is, and the crop keeps that point instead of the middle of the frame.
+   Two keys per entry, with and without stamp.py's ?v= fingerprint; in the
+   preview builds every path becomes a data URI, keys included, so the match
+   still holds. A picture with no entry is centred, exactly as before. */
+var PHOTO_FOCUS=(function(){
+  try{ var el=document.getElementById('photoFocus');
+       return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+})();
+var FOCUS={};
+(function(){ for(var k in PHOTO_FOCUS){ FOCUS[k]=PHOTO_FOCUS[k];
+  FOCUS[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_FOCUS[k]; } })();
+function focusFor(src){ var s=String(src||'');
+  return FOCUS[s]||FOCUS[s.replace(/\?v=[0-9a-f]+/,'')]||''; }
+function setFocus(el,src){ if(!el) return;
+  el.style.objectPosition=focusFor(src===undefined?(el.getAttribute('src')||''):src)||''; }
+function focusIn(root){ var l=(root||document).getElementsByTagName('img');
+  for(var i=0;i<l.length;i++) setFocus(l[i]); }
+document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
+</script>
 <script src="rabbits.js?v=f17b8b09"></script>
 <script>
 /* Fills each tile's status line from rabbits.js — the one file that knows.
@@ -841,6 +875,7 @@ h1,h2,h3{text-wrap:balance}
           var main=document.createElement('a');main.className='wt-main';
           main.href=BASE+r.addr;
           var im=document.createElement('img');im.src=r.photo;im.loading='lazy';
+          setFocus(im, r.photo);
           im.alt=r.name+', a '+String(r.colour||'').toLowerCase()+' '+(r.breed||'rabbit');
           var b=document.createElement('b');b.textContent=r.name;
           var sm=document.createElement('small');sm.innerHTML='&nbsp;';
