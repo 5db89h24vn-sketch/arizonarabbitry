@@ -1335,8 +1335,17 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    scale-and-rise that settles in a quarter second */
 @keyframes viewerIn{from{opacity:0;transform:scale(.955) translateY(10px)}to{opacity:1;transform:none}}
 .viewer.open .viewer-box{animation:viewerIn .24s cubic-bezier(.22,1,.36,1)}
+/* 24px of surround, not 40 (8 Sept 2026). The dated record turned one line
+   into two for a rabbit that was reserved and then sold, and on a 900px-tall
+   desktop screen that put the listing 5px past what the box could hold: a
+   scrollbar and a fade for five pixels, which reads as a fault rather than as
+   scrolling. There is more to say about a rabbit now, so the box gets the room
+   rather than the record getting squeezed. 16px off the surround at that
+   height is under two percent of the screen and decides the fit; the phone
+   rule below is untouched, because on a phone the box is at its full height
+   for every rabbit anyway and the body has always scrolled there. */
 .viewer-box{background:var(--paper);border-radius:var(--r);width:min(620px,calc(100vw - 28px));
-  max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);
+  max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);
   display:flex;flex-direction:column;overflow:hidden;position:relative}
 /* ONE RULE FOR BOTH ROUND CONTROLS. Share and close are the same object in two
    jobs, so they are declared together rather than as two rules that happen to
@@ -1570,7 +1579,23 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    THE RHYTHM: rows inside a stratum sit on the body's gap; a new stratum
    opens with 9px on top of it. Identity (name, breed, born); the parents;
    the state (a dated status, then the growth row); the story; the button. */
-.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:9px 0 0}
+/* THE DATED RECORD (8 Sept 2026). It used to print ONE date, whichever the
+   rabbit's current status carried, so Cloud's listing said "Sold 29 Aug 2026"
+   and the day he was reserved, 25 August, was in the data and nowhere on the
+   page. William, from his phone: "also make sure you have the sold date as
+   well ... I want this website to paint the full timeline, it's more help for
+   when we need to start making pedigrees." So every date the record holds is
+   printed, oldest first, each against its own word: reserved, sold, went
+   home. Born sits one row up with the link to the litter, so the whole life
+   reads down the box in order. A two-column grid because a record is read by
+   running an eye down the dates, not along a sentence; the dates never break
+   (they are <time> elements set nowrap), and a rabbit with nothing to record
+   still has no row at all. The site never invents one of these: a date is
+   here because William gave it. */
+.viewer-when{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden;margin:9px 0 0;
+  display:grid;grid-template-columns:max-content 1fr;column-gap:10px;row-gap:1px;justify-content:start}
+.viewer-when b{font-weight:600;color:var(--ink-soft)}
+.viewer-when time{white-space:nowrap}
 .viewer-when[hidden]{display:none}
 #viewerGrow{margin-top:9px}
 .viewer-when:not([hidden])+#viewerGrow{margin-top:0}
@@ -4588,21 +4613,40 @@ body.locked{overflow:hidden}
          shows, worded so it is not a second copy of the chip — and it lives
          on its OWN .viewer-when row, because as a suffix on the meta it
          pushed that one-line row onto two at phone widths (see the
-         stylesheet note). Renderer and measurer both call whenText(), so
+         stylesheet note). The record is built by lifeRows() below, so
          they cannot drift apart — the drift between a renderer and its
          measurer is exactly the bug the old version of this comment
          recorded. Only when the data carries the date; the site never
          invents one. */
       /* shown only when there is a date to show (6 Sept 2026; see the
          stylesheet note by .viewer-when): an empty row is a hole, not a slot */
-      vWhen.textContent=whenText(r);
-      vWhen.hidden=!vWhen.textContent;
+      vWhen.textContent='';
+      var life=lifeRows(r);
+      life.forEach(function(x,i){
+        var b=document.createElement('b'); b.textContent=x[0];
+        var t=document.createElement('time'); t.setAttribute('datetime',x[1]); t.textContent=niceDate(x[1]);
+        vWhen.appendChild(b);
+        vWhen.appendChild(document.createTextNode(' '));
+        vWhen.appendChild(t);
+        if(i<life.length-1) vWhen.appendChild(document.createTextNode(' '));
+      });
+      vWhen.hidden=!life.length;
     }
-    function whenText(r){
-      if(r.status==='adopted'&&(r.wentHome||r.soldOn)) return 'Went home '+niceDate(r.wentHome||r.soldOn);
-      if(r.status==='sold'&&r.soldOn)      return 'Sold '+niceDate(r.soldOn);
-      if(r.status==='reserved'&&r.reservedOn) return 'Spoken for since '+niceDate(r.reservedOn);
-      return '';
+    /* EVERY DATE ON RECORD, OLDEST FIRST. Only what actually happened on the
+       way to where this rabbit is now: an available rabbit prints nothing here
+       even if a reservation once fell through, because a reader would take a
+       "Reserved" line on a rabbit they can buy as a rabbit they cannot. The
+       order is the order it happened in, and the build already refuses a sold
+       date before a reservation or a went-home date before either, so listing
+       them in this order is listing them by date. An older record that carried
+       the leaving day in soldOn (before "sold" became its own state) prints one
+       row, "Went home", not two rows of the same day. */
+    function lifeRows(r){
+      var out=[], home=(r.status==='adopted')?(r.wentHome||r.soldOn||''):'';
+      if(r.reservedOn&&r.status!=='available') out.push(['Reserved',r.reservedOn]);
+      if(r.soldOn&&(r.status==='sold'||(r.status==='adopted'&&r.wentHome))) out.push(['Sold',r.soldOn]);
+      if(home) out.push(['Went home',home]);
+      return out;
     }
     function bornText(r){
       return (r.dob?('Born '+niceDate(r.dob)):'')+
@@ -4611,7 +4655,7 @@ body.locked{overflow:hidden}
     function metaText(r){
       return [oneBreed()?null:r.breed,r.sex,r.colour].filter(Boolean).join(' · ');
         /* NO STATUS AND NO DATE HERE ANY MORE. The chip says the status; the
-           WHEN moved to its own .viewer-when row (whenText above), because as
+           WHEN moved to its own .viewer-when record (lifeRows above), because as
            a suffix here it pushed this one-line row onto two at phone widths.
            This measurer now matches the renderer by construction: the meta is
            only what paint() puts in the meta. */
