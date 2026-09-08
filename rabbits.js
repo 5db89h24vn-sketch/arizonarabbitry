@@ -251,6 +251,7 @@
 const PARENTS = {
   lop: {
     role:   "mother",
+    name:   "Cinnamony",
     breed:  "Holland Lop",
     photos: [
       { src: "photos/mother.jpg" },
@@ -259,6 +260,7 @@ const PARENTS = {
   },
   angora: {
     role:   "father",
+    name:   "Frederick",
     breed:  "Satin Angora",
     photos: [
       /* 7 Sept 2026: his portrait on the brick ledge, the same ledge the kits
