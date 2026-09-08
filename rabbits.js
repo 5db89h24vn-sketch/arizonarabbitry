@@ -47,6 +47,30 @@
       reserved before four weeks, so an earlier date can only be a typo.
       It stays up as proof for 7 days, then disappears on its own.
 
+   ── THE PEDIGREE FIELDS: EAR NUMBER AND WEIGHT ──
+      8 Sept 2026, William: "I want this website to paint the full timeline,
+      it's more help for when we need to start making pedigrees." A pedigree
+      is three generations, and ARBA wants a NAME, an EAR NUMBER, a VARIETY
+      and a WEIGHT for every animal on it. The site already holds the name,
+      the variety (colour) and the birth date. These two are the rest:
+
+        ear: "AR-24",
+        weights: [ { on: "2026-09-08", lb: 3, oz: 4 } ],
+
+      ear      the tattoo in the left ear, exactly as it is written there.
+      weights  every time you weigh the rabbit, add a line: the date, and
+               the pounds and ounces off the scale. Oldest first. The
+               listing shows the latest one with the day you took it, and
+               the whole list is the record a pedigree draws on later.
+
+      Both are optional. Leave them out and nothing prints, no gap, no
+      placeholder. Start filling them in as you tattoo and weigh, and by
+      the time the purebred lines are here the habit is already in place.
+      One thing to know now: an ARBA pedigree needs every animal on it to
+      be the SAME BREED as the rabbit being registered, so the Holland Lop
+      crosses can never carry one. Their record here is still worth keeping,
+      and it is what a buyer is actually asking for.
+
    ── TO ADD A NEW RABBIT ──
       Copy any block between { and }, including the comma at the end,
       paste it in, and change the details.
@@ -295,6 +319,8 @@ const RABBITS = [
     status: "sold",
     reservedOn: "2026-08-28",
     soldOn: "2026-09-07",
+    ear:    "",
+    weights: [],
     photo:  "photos/teddy.jpg",
     /* EARS: DESCRIBE, DO NOT PROMISE. This said "They lop on their own over the
        next few weeks", which is a guarantee about how an individual animal's body
@@ -324,6 +350,8 @@ const RABBITS = [
     ready:  "22 Sept",
     status: "available",
     soldOn: "",
+    ear:    "",
+    weights: [],
     photo:  "photos/butterscotch.jpg",
     feature: true,
     hero:   "img/hero-brick.jpg",
@@ -351,6 +379,8 @@ const RABBITS = [
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
+    ear:    "",
+    weights: [],
     departed: true,
     photo:  "photos/sundae.jpg",
     note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
@@ -377,6 +407,8 @@ const RABBITS = [
     status: "sold",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
+    ear:    "",
+    weights: [],
     departed: true,
     photo:  "photos/cloud.jpg",
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."

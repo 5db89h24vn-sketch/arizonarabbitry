@@ -3200,7 +3200,7 @@ body.locked{overflow:hidden}
      below hands it to every img as object-position. Measured at build time, so
      no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
 <script id="photoFocus" type="application/json">{"photos/father-2.jpg":"50% 18.7%","photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%"}</script>
-<script src="rabbits.js?v=f17b8b09"></script>
+<script src="rabbits.js?v=8ba54c82"></script>
 
 <script>
 (function(){
@@ -4621,16 +4621,55 @@ body.locked{overflow:hidden}
       /* shown only when there is a date to show (6 Sept 2026; see the
          stylesheet note by .viewer-when): an empty row is a hole, not a slot */
       vWhen.textContent='';
-      var life=lifeRows(r);
-      life.forEach(function(x,i){
-        var b=document.createElement('b'); b.textContent=x[0];
-        var t=document.createElement('time'); t.setAttribute('datetime',x[1]); t.textContent=niceDate(x[1]);
+      var rec=recordRows(r);
+      rec.forEach(function(x,i){
+        var b=document.createElement('b'); b.textContent=x.label;
         vWhen.appendChild(b);
         vWhen.appendChild(document.createTextNode(' '));
-        vWhen.appendChild(t);
-        if(i<life.length-1) vWhen.appendChild(document.createTextNode(' '));
+        if(x.text){
+          var v=document.createElement('span'); v.textContent=x.text;
+          if(x.iso){
+            v.appendChild(document.createTextNode(' · '));
+            v.appendChild(timeEl(x.iso));
+          }
+          vWhen.appendChild(v);
+        } else {
+          vWhen.appendChild(timeEl(x.iso));
+        }
+        if(i<rec.length-1) vWhen.appendChild(document.createTextNode(' '));
       });
-      vWhen.hidden=!life.length;
+      vWhen.hidden=!rec.length;
+    }
+    function timeEl(iso){
+      var t=document.createElement('time');
+      t.setAttribute('datetime',iso); t.textContent=niceDate(iso);
+      return t;
+    }
+    /* THE RECORD: what this rabbit IS, what happened to it, and what it
+       weighed. The ear number first because it is the one permanent name a
+       rabbit has, then the dated events in the order they happened, then the
+       last weight with the day it was taken. William asked for the pedigree
+       fields on 8 Sept 2026: a pedigree wants a name, an ear number, a variety
+       and a weight for every animal on it, and the site already held the name,
+       the variety and the birth date. Every one of these is optional and an
+       empty one prints nothing at all: no gap, no placeholder, no "unknown". */
+    function recordRows(r){
+      var out=[];
+      if(r.ear) out.push({label:'Ear number',text:String(r.ear)});
+      lifeRows(r).forEach(function(x){ out.push({label:x[0],iso:x[1]}); });
+      var w=lastWeight(r);
+      if(w) out.push({label:'Weight',text:weightText(w),iso:w.on||''});
+      return out;
+    }
+    /* the newest weighing that carries a figure; the list is the record, the
+       listing shows where the rabbit has got to */
+    function lastWeight(r){
+      var ws=(r.weights||[]).filter(function(w){ return w&&((+w.lb)||(+w.oz)); });
+      return ws.length?ws[ws.length-1]:null;
+    }
+    function weightText(w){
+      var lb=+w.lb||0, oz=+w.oz||0;
+      return (lb?(lb+' lb'):'')+((lb&&oz)?' ':'')+(oz?(oz+' oz'):'');
     }
     /* EVERY DATE ON RECORD, OLDEST FIRST. Only what actually happened on the
        way to where this rabbit is now: an available rabbit prints nothing here
