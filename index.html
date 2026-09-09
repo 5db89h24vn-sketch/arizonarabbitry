@@ -912,7 +912,14 @@ header.nav.stuck{border-bottom-color:var(--line)}
    "new people, new noise" onto a line of its own (orphantest, 2026-09-02).
    Kept whole, the link either fits or moves down entire. */
 .viewer-grow .stagelink{white-space:nowrap}
+/* the card keeps the softer ink -- it is a 170px column and the age is the only
+   thing in the row, so nothing there is competing with it */
 .grow-txt b{color:var(--ink-soft);font-weight:600}
+/* THE RABBIT'S AGE TODAY, in the opened listing, is the strongest line in the
+   box after the name: darkest ink, weight 600, the whole phrase including
+   "Now". It is what changes daily and what a buyer is judging, and until 9 Sept
+   2026 it lost the page to a date burned into the photograph above it. */
+.viewer-grow .grow-txt b{color:var(--ink)}
 .viewer-grow{margin:0}
 /* At 360px the bar and the text share a row and the text loses, wrapping and
    stranding the last word. Stacking gives the sentence the whole column
@@ -4196,7 +4203,19 @@ body.locked{overflow:hidden}
       bar+='<i class="'+(i<wk?'on':i===wk?'on now':'')+'"></i>';
     var age=ageAt(r.dob, todayISO());
     if(age==='the day it was born') age='Born today';
-    var txt=(full&&age!=='Born today'?'Now ':'')+'<b>'+esc(age)+'</b>';
+    /* "NOW" IS PART OF THE STATEMENT, NOT A PREFIX TO IT (9 Sept 2026).
+       William, on Butterscotch: "make it so that people understand its true age
+       instead of reading the big contrasting letters and seeing that date and
+       assuming it's its actual age." Two ages are on that screen -- the one in
+       the photograph's stamp and the one the rabbit is today -- and the stamp
+       was winning, being white on near-black. The stamp now carries a PHOTO
+       TAKEN label; this is the other half. "Now" was faint text next to a bold
+       number, which reads as an aside; inside the bold it reads as the claim,
+       and the whole phrase goes to the darkest ink, making the rabbit's age
+       today the strongest line in the box after its name. No new type: 13px,
+       weight 600, --ink is the treatment a kit chip and a parent tile already
+       use (carddrifttest's list). */
+    var txt='<b>'+(full&&age!=='Born today'?'Now ':'')+esc(age)+'</b>';
     /* The stage name is a doorway. Somebody reading "carrying becomes normal"
        has just been told the phase this rabbit is in and has no way to find out
        what it means or what follows it; the whole routine is sitting further
