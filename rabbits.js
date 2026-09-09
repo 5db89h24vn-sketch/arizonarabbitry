@@ -284,8 +284,15 @@ const PARENTS = {
     name:   "Cinnamony",
     breed:  "Holland Lop",
     photos: [
-      { src: "photos/mother.jpg" },
-      { src: "photos/mother-2.jpg" }
+      /* DATED THE DAY THEY ARRIVED (9 Sept 2026). William, on Frederick's
+         listing: "so you have a date on the video, but not on this picture??"
+         The video carried its own time stamp and these two carried none -- a
+         phone photo sent through a chat has its metadata stripped, so there
+         was no capture time to read, and an undated frame prints no stamp.
+         Asked what date they should carry, he chose the day he sent them,
+         which is the rule the litter photos already follow. */
+      { src: "photos/mother.jpg", date: "2026-09-06" },
+      { src: "photos/mother-2.jpg", date: "2026-09-06" }
     ]
   },
   angora: {
@@ -296,7 +303,7 @@ const PARENTS = {
       /* 7 Sept 2026: his portrait on the brick ledge, the same ledge the kits
          are photographed on, sent with the words "This is the dad!"; the
          studio frame from the day before stays as a second view */
-      { src: "photos/father-2.jpg" },
+      { src: "photos/father-2.jpg", date: "2026-09-07" },
       /* 8 Sept 2026: the studio cut-out of him came off ("remove that middle
          picture where the background is cropped out"). The mother keeps hers
          for now, as a placeholder until there is a real photograph of her. */

@@ -3444,6 +3444,17 @@ body.locked{overflow:hidden}
      picture is, so there is never a band to fill: focus.py measures each file
      once and writes its aspect ratio here, and the box is the right size
      before the picture has loaded. Never hand-edit: run `python3 focus.py apply`. -->
+<!-- THE DATE IN THE PIXELS (9 Sept 2026). William, 8 Sept: "I want the dates on
+     the picture so that if people screenshot the rabbit, they don't clip off the
+     dates or any information", and on Frederick's listing the next day: "so you
+     have a date on the video, but not on this picture??"
+     A saved image loses an HTML stamp, so every dated photograph also has a copy
+     with the line burned in (datestamp.py). This maps the clean file to that copy.
+     THE COPY IS FOR THE BIG VIEW ONLY: the same photograph is a 44px round parent
+     tile and a card thumbnail, and a burned date in those is an unreadable smudge,
+     so everything small keeps the clean file. GENERATED -- never typed; --check
+     fails a stale map. -->
+<script id="photoDated" type="application/json">{"photos/butterscotch.jpg":"photos/butterscotch-dated.jpg","photos/cloud.jpg":"photos/cloud-dated.jpg","photos/father-2.jpg":"photos/father-2-dated.jpg","photos/mother-2.jpg":"photos/mother-2-dated.jpg","photos/mother.jpg":"photos/mother-dated.jpg","photos/sundae.jpg":"photos/sundae-dated.jpg","photos/teddy.jpg":"photos/teddy-dated.jpg"}</script>
 <script id="photoShape" type="application/json">{"photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1200/1600","photos/father-video.jpg":"960/1280","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-06.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-08.jpg":"1050/1400","photos/litter-2026-08-27.jpg":"1400/1050","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750"}</script>
 <!-- EVERY LITTER ON THE SITE (9 Sept 2026), newest first: its number, its date,
      how many were born and raised, which parents, and the kits of that litter
@@ -3452,7 +3463,7 @@ body.locked{overflow:hidden}
      a litter. A parent's own view builds its breeding record from this. Never
      hand-edit: run `python3 sweep.py`. -->
 <script id="litterIndex" type="application/json">[{"born":"2026-08-27","count":"Six born","kits":[],"never":false,"no":"Third litter","roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"never":false,"no":"Second litter","roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"never":true,"no":"First litter","roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=3a6608fa"></script>
+<script src="rabbits.js?v=f09366fc"></script>
 
 <script>
 (function(){
@@ -3978,6 +3989,21 @@ body.locked{overflow:hidden}
     SHAPE[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_SHAPE[k]; } })();
   function shapeFor(src){ var s=String(src||'');
     return SHAPE[s]||SHAPE[s.replace(/\?v=[0-9a-f]+/,'')]||''; }
+  /* THE COPY WITH THE DATE IN IT. Only the opened photo uses it -- the strip
+     thumbnails, the cards and the round parent tiles all keep the clean file,
+     because that stamp at 44px is a smudge. Everything else on the stage
+     (the focal point, the frame's shape) is still looked up by the CLEAN name:
+     the two copies are the same photograph, so one measurement serves both,
+     and datestamp.py never re-polishes or re-crops. */
+  var PHOTO_DATED=(function(){
+    try{ var el=document.getElementById('photoDated');
+         return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+  })();
+  var DATED={};
+  (function(){ for(var k in PHOTO_DATED){ DATED[k]=PHOTO_DATED[k];
+    DATED[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_DATED[k]; } })();
+  function datedFor(src){ var s=String(src||'');
+    return DATED[s]||DATED[s.replace(/\?v=[0-9a-f]+/,'')]||''; }
   /* the pictures typed into the page rather than built by script; a picture
      with no entry has its inline position cleared, so the hero keeps the
      art-directed object-position its own rule gives it */
@@ -4712,6 +4738,9 @@ body.locked{overflow:hidden}
       at=i;
       var s=shots[at];
       var who=(vName.textContent||'Rabbit');
+      /* the dated copy in use, if any: a video never has one (it carries the
+         line as the on-stage stamp instead), so this stays empty there */
+      var burned='';
       if(s.video&&vVideo){
         /* a video frame: the poster on the player, the clip named but not
            fetched past its header, the picture element out of the way */
@@ -4728,13 +4757,19 @@ body.locked{overflow:hidden}
         vStage.classList.add('video');
       } else {
         stopVideo();
-        vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
+        /* the dated copy if this photograph has one, the file itself if not;
+           the focal point and the frame are measured on the clean name */
+        burned=datedFor(s.src);
+        vImg.src=burned||s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
         setFocus(vImg, s.src);
         setFrame(s.src);
       }
-      /* One line, always, in the same corner. A dated frame says when it was
-         taken and does the arithmetic; an undated one falls back to the birth
-         date, so the stamp is never empty and never two different heights. */
+      /* One line, always, in the same corner -- EXCEPT where the picture is
+         already carrying it. A photograph with a burned-in stamp says the same
+         words in the same place, and printing them twice is the thing this box
+         was optimised to stop; the line stays for a video, which cannot carry
+         one, and for an undated frame, which falls back to the birth date so
+         the stamp is never empty and never two different heights. */
       var age=ageAt(born,s.date);
       vBornText.textContent=s.date
         ? (niceDate(s.date)+(age?(' · '+age):''))
@@ -4742,7 +4777,7 @@ body.locked{overflow:hidden}
       vBornWhat.textContent=s.date?(s.video?'Filmed ':'Photo taken '):'';
       vBorn.classList.toggle('nocam',!s.date);
       vBorn.classList.toggle('film',!!(s.date&&s.video));
-      vBorn.style.display=vBornText.textContent?'':'none';
+      vBorn.style.display=(vBornText.textContent&&!burned)?'':'none';
       /* .empty hides without removing the space -- see .viewer-said */
       vCap.textContent=s.note||'';
       vCap.classList.toggle('empty',!s.note);
