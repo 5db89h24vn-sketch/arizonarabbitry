@@ -1699,8 +1699,19 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    sentence-case one is what goes: at 13px and weight 600 the word "Reserved"
    was competing with its own date, and two such words of different lengths
    stacked is exactly the staircase he saw. */
+/* WEIGHT 500, NOT 600 (9 Sept 2026). William: "Is it meant to look that bold,
+   the UI? Maybe you can soften it a little bit while getting the same message?
+   I just don't want the space to feel claustrophobic or tight with UI
+   elements." Measured, he was right: 8 of the 18 text runs in an opened listing
+   were weight 600 -- 44%, against the 30% ceiling NN/g gives for emphasised
+   text, whose own warning is that bolding for tone "can slow down scanning and
+   cause confusion" (nngroup.com/articles/formatting-long-form-content).
+   A LABEL DOES NOT NEED WEIGHT TO BE A LABEL: small caps, 0.1em tracking, the
+   faintest ink and a fixed position in the gutter already make it one, and at
+   10.5px the step from 600 to 500 is close to invisible on its own while taking
+   five of those eight bolds out of the card. */
 .parent small,.viewer-when b,.litrec>small,.litrow small{
-  display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+  display:block;font-size:10.5px;font-weight:500;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-faint);line-height:1.35;white-space:nowrap}
 /* THE RECORD (8 Sept 2026) — every dated fact of this rabbit's life and the two
    fields a pedigree needs, in ONE region, in ONE grammar, in the order it
@@ -1775,9 +1786,21 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .parent{position:relative}
 .parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
 .parent span{display:block;min-width:0}
-.parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-faint);line-height:1.3;white-space:nowrap}
-.parent b{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.35;white-space:nowrap}
+/* (no .parent small here: it is the shared label declaration above, which is
+   the whole point of having one. A SECOND COPY LIVED HERE until 9 Sept 2026,
+   at line-height 1.3 against the shared 1.35, and it silently won by coming
+   later in the file -- so softening "the one label declaration" changed BORN
+   and READY and left MOTHER and FATHER at 600. The system said one form and the
+   stylesheet had two.) */
+/* THE TILE IS A DOORWAY, NOT A FACT (9 Sept 2026). This was 13px/600/--ink,
+   the identical treatment to "Now 6 weeks, 1 day old" -- so the rabbit's age
+   today, which took the darkest ink the day before precisely so it would be the
+   strongest line in the box, was sharing that distinction with two navigation
+   labels sitting right beneath it. Emphasis given to three things at once is
+   emphasis given to none. The names step back to 500 and the softer ink; the
+   age today keeps the weight and is now the only thing in the body that has
+   it. */
+.parent b{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);line-height:1.35;white-space:nowrap}
 /* NAME CHIPS: the same chips the litter page uses, each opening that rabbit's
    listing. On a parent's view they sit inside the litter they belong to. */
 /* ═══ WHAT A PARENT HAS UNDER THEIR BELT (9 Sept 2026) ════════════════════
@@ -1835,8 +1858,16 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .viewer-mate{font-size:13px;color:var(--ink-faint);line-height:1.5;margin:1px 0 0}
 .viewer-mate[hidden]{display:none}
 .kitrow{display:flex;flex-wrap:wrap;gap:7px}
+/* BOLD IS FOR FACTS, NOT FOR ANYTHING TAPPABLE (9 Sept 2026). A chip was
+   13px/600/--ink, and four of them on a parent's view put that record at 30%
+   emphasised on its own. A chip is a control: its border, its pill shape, its
+   36px target and its brick hover already say "tap me", and it takes the same
+   treatment as the parent tile beside it, which is the same kind of thing --
+   a rabbit's name you can tap. What keeps 600 in the box is what a reader
+   should NOTICE: the status chip, the rabbit's age today, the day a litter was
+   born on its row. */
 .kit{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:100px;
-  border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13px;font-weight:600;
+  border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-size:13px;font-weight:500;
   text-decoration:none;white-space:nowrap}
 .kit:hover,.kit:focus-visible{border-color:var(--brick);color:var(--brick-dk)}
 /* The birth date is the way through to the litter this rabbit came from. It opens
