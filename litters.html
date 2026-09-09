@@ -277,7 +277,13 @@ body.lbox-open{overflow:hidden}
    litter's place in the archive (data-fact="litter-no:YYYY-MM-DD"), never
    typed: the June litter joined the record after July and August, and a typed
    "First litter" on July would have been wrong from that day. */
-.litter time,.litter .litter-no,.litter .litter-age{display:inline-block;font-size:13.5px;font-weight:600;
+/* THE PILL IS THE HEADER ROW, NOT EVERY DATE (8 Sept 2026). This was
+   ".litter time", so ANY date anywhere inside the article became a pill --
+   including one inside a sentence, where it broke the line and read as a
+   control the reader could tap. The figcaption below already had to undo it
+   once. Scoped to the header row's own children instead, so the rule is true
+   where it fires and a date in prose is just a date. */
+.litter-body>time,.litter .litter-no,.litter .litter-age{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
 .litter .litter-no{margin-right:4px}
@@ -366,10 +372,12 @@ body.lbox-open{overflow:hidden}
 .litter-set figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
 .litter-set figcaption{padding:9px 11px 0;font-size:13px;font-weight:600;color:var(--brick-dk);
   line-height:1.35}
-/* the date inside a frame is plain text, not the litter's pill: the pill is
-   the litter's birth date, said once at the top of the card */
-.litter-set figcaption time{display:inline;background:none;border:0;padding:0;margin:0;
-  font-size:inherit;color:inherit;white-space:normal;border-radius:0}
+/* (the frame's date needs no reset now the pill is scoped to the header row:
+   the pill is the litter's birth date, said once at the top of the card) */
+/* A DATE IN A SENTENCE IS ONE WORD. Losing the pill also lost its nowrap, and
+   "on 8 / September" split across two lines the moment the paragraph was
+   narrow enough -- the same defect as a hanging word, in the middle of a line. */
+.litter-body p time{white-space:nowrap}
 /* the dot and the age wrap as one: "2 Sep 2026" over "· 6 days old" */
 .litter-set figcaption .age{white-space:nowrap}
 .litter-set figure p{padding:3px 11px 11px;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
@@ -514,9 +522,16 @@ h1,h2,h3{text-wrap:balance}
           <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
-          <p>At six days old, one is white and five are fawn. Coats can still shift a
-          little as they come in, so the honest read on colour is at four weeks, when I
-          name them. The dated photos below are them growing up; tap any of them to see
+          <!-- WHERE THIS LITTER IS NOW. Every milestone here is DATED and written
+               in the past tense, so it never goes stale and never has to be
+               rewritten: "their eyes started to open on 8 September" is true
+               forever, "they are twelve days old" is true for a day. The colour
+               reading stays because it is still provisional, and it now says WHEN
+               it was taken instead of standing in the present tense six days on. -->
+          <p>Their eyes started to open on <time datetime="2026-09-08">8 September</time>,
+          at twelve days old. At six days one was white and five were fawn; coats can
+          still shift as they come in, so the honest read on colour is at four weeks,
+          when I name them. The dated photos below are them growing up; tap any to see
           it full size.</p>
           <!-- AS THEY GROW: the litter's dated progress photos, oldest first, each
                with the date burned into the picture (litterprogress.py) and typed
