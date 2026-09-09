@@ -1692,7 +1692,7 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    sentence-case one is what goes: at 13px and weight 600 the word "Reserved"
    was competing with its own date, and two such words of different lengths
    stacked is exactly the staircase he saw. */
-.parent small,.viewer-kits small,.viewer-when b{
+.parent small,.viewer-when b,.litrec>small,.litrow small{
   display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-faint);line-height:1.35;white-space:nowrap}
 /* THE RECORD (8 Sept 2026) — every dated fact of this rabbit's life and the two
@@ -1771,11 +1771,62 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
 .parent small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;white-space:nowrap}
 .parent b{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.35;white-space:nowrap}
-/* THEIR KITS, in a parent's view: every rabbit of theirs on the site, as the
-   same name chips the litter page uses, each opening that rabbit's listing. */
-.viewer-kits{margin-top:var(--sp)}
-.viewer-kits[hidden]{display:none}
-.viewer-kits small{margin-bottom:6px}
+/* NAME CHIPS: the same chips the litter page uses, each opening that rabbit's
+   listing. On a parent's view they sit inside the litter they belong to. */
+/* ═══ WHAT A PARENT HAS UNDER THEIR BELT (9 Sept 2026) ════════════════════
+   William, on Cinnamony's own listing: "Why do you have this as her father
+   when it's clearly not? Maybe on the parents, instead of having that, you can
+   just have all the litters that they have under their belt ... The less
+   digging they have to do, the better, so let's give them a handfed experience
+   almost."
+
+   He caught a real ambiguity, not a typo. On a KIT's listing the tile
+   "FATHER · Frederick" means that kit's father, which is right; on HER listing
+   the identical tile reads as HER father, which is false — Frederick is her
+   mate. A label that is true in one place and false in another is not a fact,
+   so it is gone from the parent view. It stays on every kit's listing, where it
+   is the whole point.
+
+   WHAT REPLACES IT is her breeding record, which is what somebody standing in
+   front of her actually wants: every litter she has had, newest first, each
+   with its number, its date, how old it is today, and how many were born and
+   raised — and the kits of THAT litter as chips under it. Before this the kits
+   were one undifferentiated row of names with no way to tell which nest each
+   came from, and the litters were a link that made you go and look.
+
+   THE MATE IS SAID ONCE, not on every row. Every litter so far is the same
+   pair, so "Every litter with Frederick" sits under her breed line and the rows
+   stay clean; the moment a litter has a different mate the rows say "with
+   <name>" and the line at the top drops away by itself. State the rule once,
+   annotate the exception — William is running three separate purebred lines
+   next, so the exception is coming.
+
+   The litters come from litters.html, where they are typed, via the generated
+   litterIndex tag (sweep.py). Nothing about a litter is typed here. */
+.litrec{margin-top:var(--sp-open)}
+.litrec>small{margin-bottom:6px}
+.litrec[hidden]{display:none}
+.litrow{border:1px solid var(--line);border-radius:var(--r);background:#fff;
+  overflow:hidden;transition:border-color .15s}
+.litrow+.litrow{margin-top:7px}
+.litrow:hover,.litrow:focus-within{border-color:var(--brick)}
+.litrow-main{display:block;padding:9px 11px 8px;color:inherit;text-decoration:none}
+.litrow small{margin-bottom:2px}
+.litrow b{display:block;font-size:13px;font-weight:600;color:var(--ink);line-height:1.35}
+.litrow b time{white-space:nowrap}
+/* THE AGE RIDES WITH THE DATE. "Born 27 Aug 2026" and "13 days old" are one
+   fact -- when -- and were two lines, which made every row four lines deep for
+   two facts and gave the eye three stops instead of two. The date keeps the
+   weight; the age is the same size, unbolded, in the softer ink. Each half is
+   nowrap and the join between them is not, so a long age drops to its own line
+   rather than breaking inside "6 weeks, 1 day". */
+.litrow b span{font-weight:400;color:var(--ink-faint);white-space:nowrap}
+.litrow b span::before{content:" \00B7  "}
+.litrow-main>span{display:block;font-size:13px;color:var(--ink-faint);line-height:1.4}
+.litrec .kitrow{padding:0 11px 10px}
+/* THE MATE LINE, under the breed line: one statement, not one per litter */
+.viewer-mate{font-size:13px;color:var(--ink-faint);line-height:1.5;margin:1px 0 0}
+.viewer-mate[hidden]{display:none}
 .kitrow{display:flex;flex-wrap:wrap;gap:7px}
 .kit{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:100px;
   border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13px;font-weight:600;
@@ -2450,8 +2501,8 @@ body.locked{overflow:hidden}
            lead says so and the plan sentence goes. Never type either one. -->
       <p class="lede"><b data-fact="breeds-now">The Holland Lop crosses are temporary.</b>
       <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
-      A farmer sold me a <a class="litterlink" href="#p-father" title="The father: his photos and his kits">Satin
-      Angora</a>, and a <a class="litterlink" href="#p-mother" title="The mother: her photos and her kits">Holland
+      A farmer sold me a <a class="litterlink" href="#p-father" title="The father: his photos and his litters">Satin
+      Angora</a>, and a <a class="litterlink" href="#p-mother" title="The mother: her photos and her litters">Holland
       Lop</a> followed. Their litters funded the purebred lines: Netherland Dwarfs are here,
       Holland Lops next, then another Angora, kept separate.</p>
       <p class="lede"><b>Every dollar goes back into the rabbits.</b> Each line is bred
@@ -3338,6 +3389,9 @@ body.locked{overflow:hidden}
     <div class="viewer-body">
       <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
+      <!-- "Every litter with Frederick" on a parent's view: the mate, said once
+           (see .viewer-mate). Hidden everywhere else. -->
+      <p class="viewer-mate" id="viewerMate" hidden></p>
       <!-- HOW OLD IT IS TODAY, third (8 Sept 2026). This row used to sit under
            the record, which put a live fact after an archival one and left the
            record's short ragged lines resting on a full-width bar — the exact
@@ -3348,12 +3402,16 @@ body.locked{overflow:hidden}
       <div id="viewerGrow"></div>
       <!-- THE PARENTS (6 Sept 2026). Two small photos under the age row:
            the mother and the father, from PARENTS in rabbits.js. One tap opens
-           the parent's own view in this same box (its photos, the other parent,
-           every kit of theirs on the site); Back returns to the rabbit. In a
-           parent's view this row holds the other parent, and the kits row
-           below it lists their kits. Built by script; empty without it. -->
+           the parent's own view in this same box (its photos and its breeding
+           record); Back returns to the rabbit. THIS ROW IS EMPTY ON A PARENT'S
+           OWN VIEW: the tile reads MOTHER or FATHER, which on a kit's listing
+           means that kit's parent, and what it showed there was the mate.
+           Built by script; empty without it. -->
       <div class="viewer-parents" id="viewerParents" hidden></div>
-      <div class="viewer-kits" id="viewerKits" hidden></div>
+      <!-- EVERY LITTER THIS PARENT HAS HAD, newest first, with the kits of each
+           one under it. Built by script from the generated litterIndex tag;
+           empty and hidden on a kit's own listing. -->
+      <div class="litrec" id="viewerLitters" hidden></div>
       <!-- THE RECORD: born, ready, reserved, sold, went home, ear number,
            weight. One region, one grammar, oldest first (see .viewer-when). -->
       <p class="viewer-when" id="viewerWhen" hidden></p>
@@ -3387,6 +3445,13 @@ body.locked{overflow:hidden}
      once and writes its aspect ratio here, and the box is the right size
      before the picture has loaded. Never hand-edit: run `python3 focus.py apply`. -->
 <script id="photoShape" type="application/json">{"photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1200/1600","photos/father-video.jpg":"960/1280","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-06.jpg":"1050/1400","photos/litter-2026-08-27.jpg":"1400/1050","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750"}</script>
+<!-- EVERY LITTER ON THE SITE (9 Sept 2026), newest first: its number, its date,
+     how many were born and raised, which parents, and the kits of that litter
+     that are named here. Read out of litters.html — where they are typed — and
+     written here by sweep.py, so the front page never carries a second copy of
+     a litter. A parent's own view builds its breeding record from this. Never
+     hand-edit: run `python3 sweep.py`. -->
+<script id="litterIndex" type="application/json">[{"born":"2026-08-27","count":"Six born","kits":[],"never":false,"no":"Third litter","roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"never":false,"no":"Second litter","roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"never":true,"no":"First litter","roles":["father","mother"]}]</script>
 <script src="rabbits.js?v=3a6608fa"></script>
 
 <script>
@@ -4585,7 +4650,8 @@ body.locked{overflow:hidden}
         vBorn=document.getElementById('viewerBorn'),
         vGrow=document.getElementById('viewerGrow'),
         vParents=document.getElementById('viewerParents'),
-        vKits=document.getElementById('viewerKits'),
+        vLit=document.getElementById('viewerLitters'),
+        vMate=document.getElementById('viewerMate'),
         vBornText=document.getElementById('viewerBornText'),
         vBornWhat=document.getElementById('viewerBornWhat'),
         vPrev=document.getElementById('viewerPrev'),
@@ -4738,23 +4804,80 @@ body.locked{overflow:hidden}
       var video=frames.some(function(f){ return !!f.video; });
       var whose=p.role==='mother'?'her':'his';
       return '<a class="parent" href="#p-'+esc(p.role)+'" data-parent="'+esc(key)+'"'+
-        ' aria-label="'+roleWord(p)+', '+esc(p.name?(p.name+', '+p.breed):p.breed)+': see '+whose+' photos'+(video?', '+whose+' video':'')+' and kits">'+
+        ' aria-label="'+roleWord(p)+', '+esc(p.name?(p.name+', '+p.breed):p.breed)+': see '+whose+' photos'+(video?', '+whose+' video':'')+' and litters">'+
         (photo?'<img src="'+esc(photo)+'" alt="" loading="lazy">':'')+
         (video?'<i class="pv" aria-hidden="true"></i>':'')+
         '<span><small>'+roleWord(p)+'</small><b>'+esc(p.name||p.breed)+'</b></span></a>';
     }
     function paintParents(r){
       if(!vParents) return;
-      vKits.hidden=true; vKits.innerHTML='';
+      if(vLit){ vLit.hidden=true; vLit.innerHTML=''; }
+      if(vMate){ vMate.hidden=true; vMate.textContent=''; }
       var ok=HAVE_PARENTS&&r.mother&&r.father&&PARENTS[r.mother]&&PARENTS[r.father];
       vParents.innerHTML=ok?(parentTile(r.mother)+parentTile(r.father)):'';
       focusIn(vParents);
       vParents.hidden=!ok;
     }
-    function kitsOf(key){
-      var kits=RABBITS.filter(function(x){ return x.mother===key||x.father===key; });
-      kits.sort(function(a,b){ return String(a.dob||'').localeCompare(String(b.dob||''))||String(a.name).localeCompare(String(b.name)); });
-      return kits;
+    /* THE LITTERS THIS PARENT HAS HAD. Newest first, each one its own row: the
+       site's own number for it, the day it was born, how old it is today from
+       the same ageAt() every stamp uses, how many were born and raised as the
+       litters page states it, and the kits of that litter as chips under it. One
+       tap to the litter, one tap to any kit, nothing to go looking for.
+       THE MATE IS SAID ONCE. Every litter here is the same pair, so it goes
+       under the breed line and the rows stay clean; the day a litter has a
+       different mate the rows carry "with <name>" instead and the line at the
+       top drops away by itself. */
+    var LITTERS=(function(){
+      try{ var el=document.getElementById('litterIndex');
+           return el?(JSON.parse(el.textContent||'[]')||[]):[]; }catch(e){ return []; }
+    })();
+    function mateOf(l,role){
+      var other=(role==='mother')?'father':'mother';
+      if((l.roles||[]).indexOf(other)<0) return null;
+      var k=parentKeyByRole(other);
+      return k?{key:k,role:other,name:(PARENTS[k]||{}).name||(other==='mother'?'the mother':'the father')}:null;
+    }
+    function paintLitters(p){
+      if(!vLit) return;
+      var mine=LITTERS.filter(function(l){ return (l.roles||[]).indexOf(p.role)>-1; });
+      if(!mine.length){ vLit.hidden=true; vLit.innerHTML=''; if(vMate) vMate.hidden=true; return; }
+      var mates={}, one=null;
+      mine.forEach(function(l){ var m=mateOf(l,p.role); if(m){ mates[m.key]=m; one=m; } });
+      var same=Object.keys(mates).length===1&&mine.every(function(l){ return !!mateOf(l,p.role); });
+      if(vMate){
+        vMate.textContent='';
+        if(same&&one){
+          vMate.appendChild(document.createTextNode(
+            (mine.length===1?((p.role==='mother'?'Her':'His')+' litter with '):'Every litter with ')));
+          var a=document.createElement('a');
+          a.className='litterlink'; a.href='#p-'+one.role;
+          a.title='See '+one.name; a.textContent=one.name;
+          vMate.appendChild(a);
+          vMate.hidden=false;
+        } else { vMate.hidden=true; }
+      }
+      var whose=(p.role==='mother')?'Her':'His';
+      var html='<small>'+whose+' litters</small>';
+      mine.forEach(function(l){
+        var age=l.born?ageAt(l.born, todayISO()):'';
+        var m=(!same)?mateOf(l,p.role):null;
+        var line=[l.count||'', m?('with '+m.name):''].filter(Boolean).join(' \u00B7 ');
+        html+='<div class="litrow">'+
+          '<a class="litrow-main" href="litters.html#L'+esc(l.born)+'" target="_blank" rel="noopener"'+
+          ' title="See this litter, with the photo from the day it was born">'+
+          (l.no?('<small>'+esc(l.no)+'</small>'):'')+
+          '<b><time datetime="'+esc(l.born)+'">Born '+esc(niceDate(l.born))+'</time>'+
+            /* on the day itself the date says it; no "0 days old" */
+            (age&&age!=='the day it was born'?('<span>'+esc(age)+'</span>'):'')+'</b>'+
+          (line?('<span>'+esc(line)+'</span>'):'')+
+          (l.never?'<span>Homed before this site existed</span>':'')+
+          '</a>'+
+          (l.kits&&l.kits.length?('<div class="kitrow">'+l.kits.map(function(k){
+            return '<a class="kit" href="#r-'+esc(k.addr)+'">'+esc(k.name)+'</a>'; }).join('')+'</div>'):'')+
+          '</div>';
+      });
+      vLit.innerHTML=html;
+      vLit.hidden=false;
     }
     function openParent(key){
       var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return false;
@@ -4772,25 +4895,18 @@ body.locked{overflow:hidden}
          terms separated by middots. A lower-case article in the same slot was a
          sixth grammar for no gain, and this is the same box. */
       vMeta.textContent=p.breed+(p.name?(' \u00B7 '+roleWord(p)):'');
-      /* A PARENT HAS A RECORD TOO, and it is the same block the kits use rather
-         than a link floating on a row of its own: one row, the way to every
-         litter they have had. */
-      paintRecord([{label:'Litters',text:'Every litter',href:'litters.html',
-        title:'Every litter, with the photo from the day it was born',
-        aria:'Every litter on the site'}]);
+      /* the dated record belongs to a rabbit for sale; a parent's record is
+         its litters, built below */
+      paintRecord([]);
       vGrow.innerHTML='';
       born='';
       vNote.textContent=p.note||''; vNote.style.display=p.note?'':'none';
       if(vStatus) vStatus.hidden=true;
-      /* the other parent, then their kits */
-      var other=null;
-      for(var k in PARENTS) if(k!==key&&PARENTS[k]&&PARENTS[k].role!==p.role){ other=k; break; }
-      vParents.innerHTML=other?parentTile(other):''; vParents.hidden=!other;
-      focusIn(vParents);
-      var kits=kitsOf(key);
-      vKits.innerHTML=kits.length?('<small>Their kits on this site</small><div class="kitrow">'+
-        kits.map(function(r){ return '<a class="kit" href="#r-'+esc(addrOf(r))+'">'+esc(r.name)+'</a>'; }).join('')+'</div>'):'';
-      vKits.hidden=!kits.length;
+      /* NO PARENT TILE ON A PARENT'S OWN VIEW. The tile says MOTHER or FATHER,
+         which on a kit's listing means that kit's parent and on this one reads
+         as this rabbit's parent. It never was: it was the mate. */
+      vParents.innerHTML=''; vParents.hidden=true;
+      paintLitters(p);
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       vStrip.innerHTML=shots.map(function(x,n){
