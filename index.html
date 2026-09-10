@@ -6170,13 +6170,61 @@ body.locked{overflow:hidden}
     sync();
   }
 
+  /* ══════════════════════════════════════════════════════════════
+     THE REVEAL FINISHES BEFORE YOU CAN READ IT (10 September 2026)
+
+     William asked whether the site should get more motion driven by
+     scrolling. The research says no, and it says something worse: the
+     pattern he was asking for is already here, and it was costing him.
+
+     MEASURED, at 390px, on one unhurried pass down the page:
+
+       22 blocks carry .rv, covering 7,941px of a 10,708px page — 74% of
+       everything on it starts INVISIBLE
+       all 22 were on screen while still fading
+       5.75 SECONDS of content visible but not yet readable
+
+     NN/g's scroll-fading study names the mechanism: fading content in as
+     it arrives feeds the "illusion of completeness", where readers assume
+     there is nothing below the fold, and their recommendation for phones
+     — which is nearly all of this traffic — is to avoid it. William's own
+     rule the day before was "don't add more to where it adds to the amount
+     of time it takes for them to get to the information that they need."
+     5.75 seconds is that, and it was already spent.
+
+     THE TRIGGER WAS BACKWARDS. rootMargin's bottom value was NEGATIVE
+     (-25px) with a 0.05 threshold, so a block had to be 25px INSIDE the
+     screen, and 5% of itself showing, before the fade even began — the
+     reader watched it arrive. A POSITIVE bottom margin does the opposite:
+     the block is revealed three quarters of a screen BEFORE it gets there,
+     so the 300ms is spent off screen and every word is at full strength
+     the moment it can be read. 75% of the viewport is ~630px on a phone,
+     which is 300ms of lead at 2,100px/s — faster than a comfortable read
+     scroll and about as fast as a flick.
+
+     The animation is not gone. It still runs where it is an ENTRANCE
+     rather than a tax: on the way in, and on a jump from the nav or an
+     address. It has stopped running as a toll on the way down.
+
+     AND IT CAN NEVER LEAVE THE PAGE BLANK. Three quarters of this page
+     sits at opacity:0 until something says otherwise, and until now that
+     something was a single observer: no IntersectionObserver at all was
+     handled, but an observer that EXISTS and never fires — an embedded
+     viewer, a printing context, a browser that throttles it in a
+     background tab — was not, and would have left the site as a hero and
+     3,000px of blank paper. The timer is the floor under that. Two
+     seconds is past Nielsen's one-second "flow of thought" threshold, so
+     nothing a reader is waiting on turns on it.
+     ══════════════════════════════════════════════════════════════ */
   var rvs=document.querySelectorAll('.rv');
+  var showAll=function(){ rvs.forEach(function(el){el.classList.add('in')}); };
   if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });
-    },{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+    },{threshold:0,rootMargin:'0px 0px 75% 0px'});
     rvs.forEach(function(el){io.observe(el)});
-  } else { rvs.forEach(function(el){el.classList.add('in')}); }
+    setTimeout(showAll,2000);
+  } else { showAll(); }
 
   /* ══════════════════════════════════════════════════════════════
      THE WAITLIST: WHICH LITTER, AND HOW MANY ARE WAITING (7 Sept 2026).
