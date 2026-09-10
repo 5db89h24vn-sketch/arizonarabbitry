@@ -277,6 +277,12 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .lbox .close{top:12px;right:12px}
 .lbox .prev{left:12px;top:50%;transform:translateY(-50%)}
 .lbox .next{right:12px;top:50%;transform:translateY(-50%)}
+/* THE PRESS COMPOSES WITH THE CENTRING. These two are held on the midline by
+   transform:translateY(-50%); a bare scale() in :active replaces it and the
+   button jumps to the top of the frame under the thumb. */
+.lbox button{transition:background .15s,transform .12s ease-out}
+.lbox .close:active{transform:scale(.94)}
+.lbox .prev:active,.lbox .next:active{transform:translateY(-50%) scale(.94)}
 .lbox .counter{position:absolute;top:24px;left:16px;color:#fff;opacity:.7;font-size:13px;font-weight:600}
 body.lbox-open{overflow:hidden}
 .litter-body{padding:22px 24px 20px}
@@ -331,7 +337,9 @@ body.lbox-open{overflow:hidden}
 .alert-btn{display:inline-flex;align-items:center;justify-content:center;padding:0 18px;min-height:46px;
   border-radius:var(--r);border:1px solid var(--brick);background:var(--brick);color:#fff;font:inherit;
   font-weight:500;font-size:15px;cursor:pointer;white-space:nowrap;
-  box-shadow:var(--lift-brick);transition:background .15s,border-color .15s,box-shadow .15s}
+  box-shadow:var(--lift-brick);
+  transition:background .15s,border-color .15s,box-shadow .15s,transform .12s ease-out}
+.alert-btn:active{transform:scale(.96)}
 .alert-btn:hover{background:var(--brick-dk);border-color:var(--brick-dk)}
 .alert-btn:active{box-shadow:var(--lift-brick-press)}
 /* the honeypot: off the screen and out of the tab order; a person never
@@ -351,7 +359,7 @@ body.lbox-open{overflow:hidden}
 .parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
   color:inherit;text-decoration:none;cursor:pointer;box-shadow:var(--lift-1);
-  transition:border-color .15s,box-shadow .15s}
+  transition:border-color .15s,box-shadow .15s,transform .12s ease-out}
 .parent:hover,.parent:focus-visible{border-color:var(--brick)}
 /* relative for the play badge a parent with a video carries on its portrait
    (7 Sept 2026): the same badge the front page's tiles and strips use, so one
@@ -440,6 +448,7 @@ body.lbox-open{overflow:hidden}
 .wt-lit{display:flex;align-items:center;min-height:44px;padding:0 12px;
   border-top:1px solid var(--line-soft);font-size:12.5px;font-weight:500;
   color:var(--brick-dk);text-decoration:none}
+.wt-lit{transition:color .15s,background .15s}
 .wt-lit:hover{color:var(--brick)}
 .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .who a,.who span{display:inline-flex;align-items:center;min-height:38px;
@@ -456,6 +465,39 @@ body.lbox-open{overflow:hidden}
 
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
+
+/* ══════════════════════════════════════════════════════════════════
+   TAP FEEDBACK (10 September 2026)
+
+   This page had NONE. Not on a litter tile, not on a rabbit tile, not on
+   the "See this litter" row, not on a button -- nine kinds of control,
+   audited at 390px, every one of them dead under a thumb. Hover states
+   never fire on a phone, so on the screen nearly everyone uses, nothing
+   here answered a press at all.
+
+   The forms are the front page's, copied deliberately rather than chosen
+   again here (see the long note by the tap-feedback block in index.html):
+   a card or tile compresses 2.3%, a button or round control 4-6%, a pill
+   4%, and a row in a list tints instead of moving. Prose links -- .back,
+   .allback, .xlink, the wall headings -- get nothing on purpose: a word in
+   a sentence is not a control and a press state would dress it as one.
+
+   A TILE HERE IS TWO TARGETS, and now it says so. .wt holds the photo and
+   name in one link and "See this litter" in another, so the top half
+   compresses and the bottom row tints: press either and only the part you
+   actually hit responds, which is the truth about where your thumb landed.
+   ══════════════════════════════════════════════════════════════════ */
+@media(max-width:980px){
+  .tile:active{transform:scale(.977)}
+  .wt-main{transition:transform .12s ease-out}
+  .wt-main:active{transform:scale(.977)}
+  .wt-lit:active{background:var(--paper-2)}
+  .parent:active{transform:scale(.977)}
+  .who a{transition:border-color .15s,color .15s,transform .12s ease-out}
+  .who a:active{transform:scale(.96)}
+  .newscta .btn{transition:border-color .15s,color .15s,background .15s,transform .12s ease-out}
+  .newscta .btn:active{transform:scale(.96)}
+}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
