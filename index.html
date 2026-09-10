@@ -1473,14 +1473,72 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 /* Section reveals were a half-second drift; now a 300ms snap on a sharp
    decelerating curve. Same motion, but it arrives and STOPS, which is where
    the satisfying part lives — the settle, not the travel. */
-.rv{opacity:0;transform:translateY(14px);
-  transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1)}
-.rv.in{opacity:1;transform:none}
-/* cards inside a revealed group stagger by a beat, so a grid clicks into
-   place piece by piece instead of arriving as one slab */
-.rv.in .bunny:nth-child(2){transition-delay:.04s}
-.rv.in .bunny:nth-child(3){transition-delay:.08s}
-.rv.in .bunny:nth-child(4){transition-delay:.12s}
+/* ══════════════════════════════════════════════════════════════════
+   THE SETTLE (11 September 2026): OBJECTS LAND, TEXT NEVER HIDES
+
+   William: "whenever I scroll through the website, there's no cool
+   animations ... UI elements falling in place ... combat this with actual
+   evidence ... research the positive ... see if there's anyway where we
+   meet in the middle ... the right decision for our overall objective,
+   which is converting visitors into customers."
+
+   The day before, every section on this page faded in as it arrived -- 74%
+   of the page, 5.75 seconds of text on screen but not yet readable in one
+   pass -- and the fix made the fade finish off screen, which removed the
+   cost and the point together: 22 elements started invisible for nothing
+   anyone could see. He noticed. That was the worst of both.
+
+   WHAT THE EVIDENCE ACTUALLY SUPPORTS is a split, and two numbers draw it:
+
+     Fogg et al., Stanford, 2002, 2,684 people: "design look" was the
+     single most-cited basis for judging a site credible, at 46.1% --
+     nearly double the runner-up. "Looking good is often interpreted as
+     being good -- and being credible." Polish is not vanity on a page
+     whose job is to make a stranger trust a breeder.
+
+     NN/g eyetracking: more than 65% of viewing time above the fold sits
+     in the TOP HALF of the viewport. Reading happens up there. The bottom
+     of the screen is where content ARRIVES, and it is not being read yet.
+
+   So the rule: TEXT NEVER ANIMATES, and OBJECTS SETTLE WHERE THEY ARRIVE.
+   A heading, a paragraph, a row, a form -- instant, always, every one of
+   them. A photograph or a card lands with a 14px rise and a fade over
+   300ms, triggered as it enters the bottom of the screen, so the move is
+   over before it reaches the half where eyes are. That is NN/g's own
+   scroll-fading guidance followed to the letter -- 100-400ms, once only,
+   "one element type at a time" -- and it keeps every word of the page at
+   full strength the moment it is on screen. The reading cost is measured
+   at zero and held there by revealtest.js; the settle is also measured to
+   be VISIBLE, so it cannot quietly become dead code again.
+
+   HANDPICKED, four things on this page and nothing else: the rail of
+   cards (each on its own beat), William's own photograph, the carrier
+   photograph, and the three social tiles. The hero is above the fold and
+   stays instant, as does everything a buyer reads or fills in.
+
+   AN ANIMATION, NOT A TRANSITION, and no fill-mode forwards. The cards
+   already own transform for hover and press; a transition on the same
+   property would fight them, and a forwards fill would pin transform:none
+   over them forever. backwards holds the hidden state only through the
+   stagger delay, then the keyframes run and RELEASE, and the cascade --
+   hover, press -- is exactly as it was. Opacity and transform only, on the
+   compositor, so it costs no layout and cannot register as a layout shift
+   (web.dev: composited translate "can't impact other elements, and so
+   don't count toward CLS").
+   ══════════════════════════════════════════════════════════════════ */
+@keyframes settle{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* a standalone object: a photograph */
+.rv:not(.row):not(.in){opacity:0}
+.rv:not(.row).in{animation:settle .3s cubic-bezier(.22,1,.36,1) backwards}
+/* a row of objects: the row is the trigger and never hides itself; each
+   object lands on its own beat, so a grid clicks into place piece by piece
+   instead of arriving as one slab. 40ms apart: the fourth lands at 420ms,
+   still inside the band once its own 300 is counted from its own start. */
+.rv.row:not(.in)>*{opacity:0}
+.rv.row.in>*{animation:settle .3s cubic-bezier(.22,1,.36,1) backwards}
+.rv.row.in>:nth-child(2){animation-delay:.04s}
+.rv.row.in>:nth-child(3){animation-delay:.08s}
+.rv.row.in>:nth-child(n+4){animation-delay:.12s}
 /* ══════════════════════════════════════════════════════════════════
    TAP FEEDBACK, FOR EVERYTHING THAT IS A CONTROL (10 September 2026)
 
@@ -2443,12 +2501,12 @@ body.locked{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
-  .rv{opacity:1;transform:none}
+  .rv,.rv.row>*{opacity:1;transform:none;animation:none}
 }
 </style>
 
 <noscript><style>
-  .rv{opacity:1!important;transform:none!important}
+  .rv,.rv.row>*{opacity:1!important;transform:none!important;animation:none!important}
   .fstep{display:block!important;border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
   .fstep:first-of-type{border-top:0;padding-top:0;margin-top:0}
   .prog,.prog-label,[data-next],[data-back]{display:none!important}
@@ -2662,7 +2720,7 @@ body.locked{overflow:hidden}
 <!-- ══════════ AVAILABLE — deliberately placed first ══════════ -->
 <section id="available" style="padding-top:0">
   <div class="wrap">
-    <div class="avail-head rv">
+    <div class="avail-head">
       <div>
         <h2 style="margin-bottom:8px">Available now</h2>
         <p class="lede">Litters are small. The price you see is the whole price, and it covers
@@ -2730,11 +2788,11 @@ body.locked{overflow:hidden}
             works if both numbers are genuine, and the rarity must be STATED
             in the note or the premium looks arbitrary. -->
 
-    <div class="rail rv">
+    <div class="rail">
       <button class="rail-btn prev" type="button" aria-label="Scroll to previous rabbits" disabled>
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <div class="bunnies" id="rail"><!-- cards are built from rabbits.js -->
+      <div class="bunnies rv row" id="rail"><!-- cards are built from rabbits.js -->
         <!-- NOTHING PERISHABLE GOES IN HERE. This is the only part of the
              listing that is typed rather than derived, so it deliberately
              carries no name, no price and no count: those live in rabbits.js
@@ -2769,14 +2827,14 @@ body.locked{overflow:hidden}
          the proof."), which made the reader work out what it meant and left a
          hole after the date; William, 3 Sept: "direct them quickly and
          efficiently". The date is the freshness signal; nothing says "new". -->
-    <div class="doors rv" aria-label="The news and the litters">
+    <div class="doors" aria-label="The news and the litters">
       <a href="updates.html"><span><b>Rabbitry news</b><small data-fact="news-row">Updated <time datetime="2026-09-08">8 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 August. Three litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
     <!-- One-field capture for the majority who aren't buying today.
          Also the destination for reserved/adopted cards, which is why it needs an id. -->
-    <div class="wl rv" id="waitlist">
+    <div class="wl" id="waitlist">
       <div>
         <h3>Want to see the next litter first?</h3>
         <p>When a litter is born I send one email with photos of them, a few days before
@@ -2889,7 +2947,7 @@ body.locked{overflow:hidden}
        with no date and no result claimed; the six Dwarfs being home is the
        one thing stated as done, because it is. -->
   <div class="wrap about-grid">
-    <div class="rv about-head">
+    <div class="about-head">
       <p class="kicker">About</p>
       <h2>Comfort with people is built in the first weeks, long before you meet them.</h2>
       <p class="lede"><b>I'm William, and I came to rabbits through chinchillas.</b> A chinchilla
@@ -2913,7 +2971,7 @@ body.locked{overflow:hidden}
       <img src="img/about.jpg?v=3a9c523e"
            alt="A white Netherland Dwarf with black around its eyes sitting calmly on William's lap, his hand under it" width="1000" height="1000" loading="lazy">
     </div>
-    <div class="rv about-story">
+    <div class="about-story">
       <!-- BOTH SENTENCES ARE GENERATED (sweep.py, breeds_now and plan_now) from
            what is on the rail: the lead names the breed that is listed and says
            it is temporary; the sentence after it gives William's window and
@@ -2951,9 +3009,9 @@ body.locked{overflow:hidden}
 <!-- ══════════ HOW THEY'RE RAISED ══════════ -->
 <section id="raised">
   <div class="wrap">
-    <p class="kicker rv">The routine here</p>
-    <h2 class="rv">What happens before you meet them</h2>
-    <p class="lede rv">The whole routine, week by week. Every listing shows which week its
+    <p class="kicker">The routine here</p>
+    <h2>What happens before you meet them</h2>
+    <p class="lede">The whole routine, week by week. Every listing shows which week its
     rabbit is in. Ask me about any part of it.</p>
     <!-- WHICH LITTER IS IN IT TODAY. The routine used to read as a description;
          this line makes it a report. GENERATED by sweep.py as a birth date
@@ -2961,8 +3019,8 @@ body.locked{overflow:hidden}
          into "The August litter is 7 days old today: first handling", linked
          to that block, and keeps it right at midnight (tickAges). Gone by
          itself once the litter is past the eight weeks. -->
-    <p data-fact="routine-now" class="routine-now rv">The August litter was born <time datetime="2026-08-27">27 August</time>.</p>
-    <div class="stages rv">
+    <p data-fact="routine-now" class="routine-now">The August litter was born <time datetime="2026-08-27">27 August</time>.</p>
+    <div class="stages">
       <div class="stage">
         <span class="stage-when">Week 1–2</span>
         <h3>First handling</h3>
@@ -3012,11 +3070,11 @@ body.locked{overflow:hidden}
 
     <!-- Placed here deliberately: everything above is a claim about daily handling.
          The socials are the evidence for it, so they sit directly underneath. -->
-    <div class="social-head rv">
+    <div class="social-head">
       <h3>Watch them grow up</h3>
       <p>Don't take my word for any of the above. Photos and video, including the
       unglamorous parts.</p>
-      <div class="social">
+      <div class="social rv row">
         <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
           <b>Instagram</b>
@@ -3040,7 +3098,7 @@ body.locked{overflow:hidden}
 <!-- ══════════ INCLUDED ══════════ -->
 <section id="included" class="tinted">
   <div class="wrap split">
-    <div class="rv">
+    <div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
       <p class="lede">The first two weeks decide how the next ten years go, so nobody should be
@@ -3065,7 +3123,7 @@ body.locked{overflow:hidden}
 <!-- ══════════ BOARDING ══════════ -->
 <section id="boarding">
   <div class="wrap">
-    <div class="svc rv">
+    <div class="svc">
       <div class="svc-main">
         <p class="kicker">Also offered</p>
         <h2>Boarding, whenever you travel</h2>
@@ -3142,8 +3200,8 @@ body.locked{overflow:hidden}
      boarding and FAQ sections and repeat the <figure> per customer:
 
        <section id="homes"><div class="wrap">
-         <p class="kicker rv">Settled in</p>
-         <h2 class="rv">Where they ended up</h2>
+         <p class="kicker">Settled in</p>
+         <h2>Where they ended up</h2>
          <div class="homes rv">
            <figure class="home">
              <img src="photo.jpg" alt="Their rabbit at home" loading="lazy">
@@ -3159,12 +3217,12 @@ body.locked{overflow:hidden}
 <!-- ══════════ FAQ ══════════ -->
 <section id="faq" class="tinted">
   <div class="wrap center">
-    <p class="kicker rv">FAQ</p>
-    <h2 class="rv">Things people ask</h2>
-    <p class="lede rv">If yours isn't here, text me. There's no dumb rabbit question.</p>
+    <p class="kicker">FAQ</p>
+    <h2>Things people ask</h2>
+    <p class="lede">If yours isn't here, text me. There's no dumb rabbit question.</p>
   </div>
   <div class="wrap">
-    <div class="faq rv" style="text-align:left">
+    <div class="faq" style="text-align:left">
       <!-- HOW THESE ANSWERS ARE WRITTEN (5 Sept 2026, William's standard; the
            check is voice.py, run by every build): the bold words at the start
            of a paragraph ARE the answer, and the rest is the reason. A reader
@@ -3528,7 +3586,7 @@ body.locked{overflow:hidden}
 <!-- ══════════ CONTACT ══════════ -->
 <section class="form-sec" id="contact">
   <div class="wrap form-grid">
-    <div class="rv">
+    <div>
       <p class="kicker">Get in touch</p>
       <h2>Tell me a little about you</h2>
       <p class="lede">Three quick questions, under a minute. I read every one myself and reply
@@ -3568,7 +3626,7 @@ body.locked{overflow:hidden}
       </ul>
     </div>
 
-    <div class="rv">
+    <div>
       <div class="formcard">
         <!-- ═══ FORM SETUP — DONE ═══
              Both forms deliver through the Formspree account under
@@ -6330,11 +6388,38 @@ body.locked{overflow:hidden}
   var rvs=document.querySelectorAll('.rv');
   var showAll=function(){ rvs.forEach(function(el){el.classList.add('in')}); };
   if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    /* AT THE BOTTOM EDGE, with a tenth of a screen of lead: the object starts
+       to land just before it appears, so its first visible frame is already
+       in motion, and the 300ms is over while it is still in the bottom of the
+       screen -- the part NN/g's eyetracking says is not being read yet. The
+       75% lead of the day before is gone with the reason for it: nothing
+       that is READ carries this class any more, so there is nothing to hide
+       ahead of time. */
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });
-    },{threshold:0,rootMargin:'0px 0px 75% 0px'});
+    },{threshold:0,rootMargin:'0px 0px 10% 0px'});
     rvs.forEach(function(el){io.observe(el)});
-    setTimeout(showAll,2000);
+    /* THE BACKSTOP IS THE SCROLL ITSELF, not a timer. A two-second timer
+       revealed everything at once, which was fine while the reveal was
+       invisible and is fatal now: most readers spend longer than that on the
+       first screen, and every object below it would already be settled --
+       silently, dead code again. This instead answers the one real failure,
+       an observer that exists and never fires: on any scroll, anything that
+       has reached the screen and is still waiting is let in. Four elements,
+       one frame, and it never acts early because it only looks at what is
+       already there. */
+    var backstop=function(){
+      var lim=(window.innerHeight||0)*1.1;
+      rvs.forEach(function(el){
+        if(!el.classList.contains('in') && el.getBoundingClientRect().top<lim) el.classList.add('in');
+      });
+    };
+    var tick=false;
+    window.addEventListener('scroll',function(){
+      if(tick) return; tick=true;
+      requestAnimationFrame(function(){ tick=false; backstop(); });
+    },{passive:true});
+    requestAnimationFrame(backstop);
   } else { showAll(); }
 
   /* ══════════════════════════════════════════════════════════════
