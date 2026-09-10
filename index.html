@@ -1353,6 +1353,77 @@ body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
    scale-and-rise that settles in a quarter second */
 @keyframes viewerIn{from{opacity:0;transform:scale(.955) translateY(10px)}to{opacity:1;transform:none}}
 .viewer.open .viewer-box{animation:viewerIn .24s cubic-bezier(.22,1,.36,1)}
+
+/* ══════════════════════════════════════════════════════════════════
+   THE PHOTOGRAPH TRAVELS (9 September 2026)
+
+   William: "I feel like the overall design is a little dry ... my idea is we
+   make some UI elements have subtle animations/3-D effects ... basically turn
+   it from 1080P to 4K."
+
+   He is right that polish pays, and there is a real study behind it rather
+   than a taste argument: Kurosu and Kashimura, Hitachi Design Center, 1995 --
+   252 people rated 26 variants of an ATM interface, and how attractive a
+   design looked predicted how usable people THOUGHT it was more strongly than
+   how usable it actually was. NN/g's summary of that literature is blunt:
+   visual design "plays a critical role in how your users perceive your
+   product".
+
+   But NN/g's motion research splits animation into purposes that test well --
+   feedback, state change, spatial metaphor and navigation, signifier -- and
+   one that tests badly: decoration, "time-filling visual stimulations during
+   moments of transition (in fact, it's these down-time animations that often
+   frustrate participants in usability testing)". Tilt, depth-of-field and
+   dynamic shadow under a tile are decoration. THIS is the other kind, and it
+   is the highest-value one on this site.
+
+   WHAT IT DOES: tap a rabbit's photograph on the rail and that photograph
+   grows into the opened listing, in one continuous move. Before this, the
+   picture you tapped vanished and a box appeared over the top of it carrying a
+   different copy of the same picture. Now it is the same object the whole way,
+   which is NN/g's "motion for spatial metaphor and navigation": the reader
+   never loses where they are or what they touched. It is also the single thing
+   that makes a web page feel like an app rather than a document.
+
+   HOW: the View Transitions API -- 91.75% of browsers, Safari 18 and up, which
+   is where nearly all of this traffic arrives. Anything older gets exactly
+   what it had before, because the whole effect is wrapped in a capability
+   check. 300ms on the same decelerating curve as every other motion here,
+   inside NN/g's measured 100-400ms band, where they put 500ms as the point
+   animation "start[s] to feel like a real drag".
+
+   object-fit:cover on the pair, because the card's picture and the opened one
+   are the same rabbit at different crops -- without it the browser squashes
+   one into the other's shape instead of holding the frame.
+
+   The whole block sits inside prefers-reduced-motion:no-preference, so a
+   reader who has asked their phone for less movement gets the instant open.
+   That is WCAG 2.3.3: interaction-triggered motion has to be disableable
+   unless it is essential, and this is not essential -- it is grace.
+   ══════════════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:no-preference){
+  ::view-transition-group(rabbitphoto){
+    animation-duration:.3s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+  ::view-transition-old(rabbitphoto),::view-transition-new(rabbitphoto){
+    animation-duration:.3s;animation-timing-function:cubic-bezier(.22,1,.36,1);
+    height:100%;width:100%;object-fit:cover}
+  /* THE PAGE ITSELF IS NOT IN THE TRANSITION. By default the root is captured
+     too and the whole document cross-fades; opting it out means the dim behind
+     the photograph appears at once and exactly ONE thing travels -- the picture
+     the finger landed on. Fewer moving parts, and the eye has one thing to
+     follow rather than two.
+     (Written first as a fix for a 7,400px scroll jump, which it was not. That
+     was startViewTransition's callback running on a later frame while the click
+     handler had already returned "not handled", so preventDefault never fired
+     and the browser followed the card's own link. The cause is named where it
+     belongs, in morph(). This rule stayed because it is better, not because it
+     fixed anything.) */
+  :root{view-transition-name:none}
+}
+/* ONE MOVE, NOT TWO. The box has its own scale-and-rise for opening from an
+   address or a keyboard; during a travelling photograph that would run at the
+   same time and read as a stutter. */
+html.vt .viewer.open .viewer-box{animation:none}
 /* 24px of surround, not 40 (8 Sept 2026). The dated record turned one line
    into two for a rabbit that was reserved and then sold, and on a 900px-tall
    desktop screen that put the listing 5px past what the box could hold: a
@@ -4964,7 +5035,29 @@ body.locked{overflow:hidden}
       vLit.innerHTML=html;
       vLit.hidden=false;
     }
+    /* THE TILE'S FACE TRAVELS TOO. Tapping MOTHER opens her own view, and the
+       44px round photograph on the tile is the same object that lands on the
+       stage. Captured on the way IN rather than passed as an argument, because
+       the tile is an ordinary <a href="#p-mother"> and the browser's own
+       navigation is what gives Back something to return to -- intercepting the
+       click to pass the element would have taken that away, and Back returning
+       to the rabbit you came from is a checked behaviour (parenttest.js). */
+    var tileFrom=null;
+    if(vParents) vParents.addEventListener('click',function(ev){
+      var t=ev.target.closest&&ev.target.closest('.parent');
+      tileFrom=t?t.querySelector('img'):null;
+    });
     function openParent(key){
+      /* cleared every time, so arriving at #p-father from the address bar or a
+         litter page never travels from a tile that was tapped minutes ago */
+      var from=tileFrom; tileFrom=null;
+      return morph(from,function(){
+        /* inside the transition, not before it: see the note in openFromHash */
+        if(vw.classList.contains('open')) shut();
+        return openParentNow(key);
+      });
+    }
+    function openParentNow(key){
       var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return false;
       /* in the order typed, the portrait first: a parent's frames are views,
          not a growing-up sequence, so they are not sorted by date */
@@ -5014,7 +5107,66 @@ body.locked{overflow:hidden}
          led here, and that one may have been scrolled */
       if(vBody) vBody.scrollTop=0;
       moreBelow();
-      vClose.focus();
+      /* preventScroll, ALWAYS. Focusing a control inside a modal must never
+         move the page behind it, and until 9 Sept 2026 nothing noticed that it
+         could: the box appeared instantly, so the browser's "scroll the focused
+         element into view" had nothing to do. Inside a view transition the box
+         is mid-flight when this runs, the close button is not yet where it will
+         end up, and the browser scrolled the DOCUMENT to reach it -- 150px of
+         drift that stayed after the listing was closed (sharetest.js caught it:
+         "opening and closing moved the page from 963 to 8390"). */
+      focusNoScroll(vClose);
+      return true;
+    }
+    /* ══ THE PHOTOGRAPH TRAVELS ══════════════════════════════════════════
+       Runs `open` inside a view transition with the tapped picture and the
+       opened one carrying the same name, so the browser moves one object
+       instead of swapping two. See the CSS note by ::view-transition-group.
+
+       THE NAME IS ON ONE ELEMENT AT A TIME, always: two rendered elements
+       sharing a view-transition-name is an error and the browser abandons the
+       whole transition. So the card's picture wears it while the old frame is
+       captured, hands it over inside the callback, and neither keeps it once
+       the move is done -- including when the transition is interrupted, which
+       is what the skipped path is for. */
+    function focusNoScroll(el){
+      if(!el) return;
+      try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); }
+    }
+    var VT='rabbitphoto';
+    function reduced(){
+      try{ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+      catch(e){ return false; }
+    }
+    function morph(from,open){
+      /* every reason to just open it: no support (anything before Safari 18),
+         a reader who asked for less movement, no picture to travel, or a
+         picture not actually on screen */
+      if(!from||!vImg||reduced()||typeof document.startViewTransition!=='function'
+         ||!from.getClientRects().length){ return open(); }
+      var clear=function(){
+        document.documentElement.classList.remove('vt');
+        try{ from.style.viewTransitionName=''; }catch(e){}
+        try{ vImg.style.viewTransitionName=''; }catch(e){}
+      };
+      try{
+        from.style.viewTransitionName=VT;
+        document.documentElement.classList.add('vt');
+        var t=document.startViewTransition(function(){
+          from.style.viewTransitionName='';
+          if(open()!==false) vImg.style.viewTransitionName=VT;
+        });
+        t.finished.then(clear,clear);
+      }catch(e){ clear(); return open(); }
+      /* TRUE, NOT THE OPEN'S OWN ANSWER. startViewTransition runs its callback
+         on a later frame, so there is nothing to report yet -- the first version
+         returned a variable the callback had not written, which is to say false.
+         The caller reads that as "not handled", skips preventDefault, and the
+         browser follows the card's own link: the page smooth-scrolled 7,400px to
+         the bottom while the listing opened over the top of it, which is the
+         "opening and closing moved the page from 963 to 8390" sharetest.js
+         reported. What is true synchronously is that this click HAS been taken,
+         and that is what the caller is asking. */
       return true;
     }
     function paintMeta(r){
@@ -5337,7 +5489,15 @@ body.locked{overflow:hidden}
          reopens the rabbit through here) */
       if(vBody) vBody.scrollTop=0;
       moreBelow();
-      vClose.focus();
+      /* preventScroll, ALWAYS. Focusing a control inside a modal must never
+         move the page behind it, and until 9 Sept 2026 nothing noticed that it
+         could: the box appeared instantly, so the browser's "scroll the focused
+         element into view" had nothing to do. Inside a view transition the box
+         is mid-flight when this runs, the close button is not yet where it will
+         end up, and the browser scrolled the DOCUMENT to reach it -- 150px of
+         drift that stayed after the listing was closed (sharetest.js caught it:
+         "opening and closing moved the page from 963 to 8390"). */
+      focusNoScroll(vClose);
       return true;
     }
 
@@ -5353,7 +5513,9 @@ body.locked{overflow:hidden}
       if(/^#[rp]-/.test(location.hash||'') && history.replaceState)
         history.replaceState(null,'',location.pathname+location.search);
       parentOpen=false;
-      if(lastFocus&&lastFocus.focus) lastFocus.focus();
+      /* the card that opened this keeps its place on the page; putting focus
+         back must not scroll to find it either */
+      if(lastFocus&&lastFocus.focus) focusNoScroll(lastFocus);
     }
 
     /* Card taps. The PICTURE opens the full listing; the name, price and Ask
@@ -5377,7 +5539,11 @@ body.locked{overflow:hidden}
          which is the right default for a gallery and the wrong one here. What
          the tap is asking for is the LISTING, and a listing is worth opening
          for one photograph. */
-      if(r && openFor(r,true)) ev.preventDefault();
+      /* THE PICTURE THE FINGER LANDED ON is the one that travels -- read off
+         the card rather than looked up, so it can never be a different
+         rabbit's photograph than the one that was tapped */
+      var pic=ev.target.closest('.bunny-media').querySelector('img');
+      if(r && morph(pic,function(){ return openFor(r,true); })) ev.preventDefault();
     });
 
     /* ══════════════════════════════════════════════════════════════
@@ -5434,10 +5600,13 @@ body.locked{overflow:hidden}
       /* #p-mother / #p-father: a parent's own view, from the About, a tile in
          a listing, or a shared link */
       var pk=parentFromHash();
-      if(pk){
-        if(vw.classList.contains('open')) shut();
-        return openParent(pk);
-      }
+      /* THE SHUT MOVED INSIDE openParent (9 Sept 2026). It used to happen here,
+         one line early, and that one line was enough to break the travelling
+         tile: shut() takes .open off the box, the tile lives inside the box, and
+         a photograph with no rectangle on screen has nothing for the browser to
+         capture. morph() declined every time, correctly, and the effect simply
+         never appeared. */
+      if(pk) return openParent(pk);
       var r=rabbitFromHash();
       /* AN #r- ADDRESS THAT NAMES NOBODY MUST CLOSE WHAT IS OPEN, not leave it.
          Going from #r-sundae to a mistyped or deleted name used to do nothing
