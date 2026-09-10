@@ -167,6 +167,16 @@
   --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
+  /* THE SAME ELEVATION SCALE THE FRONT PAGE USES, copied deliberately rather
+     than invented here: two pages that share a look have to share the numbers
+     that make it, or they drift a shade apart every time one of them is
+     touched. See the long note by --lift-1 in index.html for what each step is
+     for and why the shadows are two layers and tinted brown. */
+  --lift-1:0 1px 2px rgba(36,31,29,.06),0 5px 14px rgba(36,31,29,.065);
+  --lift-2:0 2px 4px rgba(36,31,29,.06),0 10px 26px rgba(36,31,29,.085);
+  --lift-brick:0 1px 2px rgba(88,40,18,.22),0 6px 18px rgba(160,82,45,.26);
+  --lift-brick-press:0 1px 2px rgba(88,40,18,.26);
+  --lift-photo:0 1px 2px rgba(20,14,10,.18),0 4px 12px rgba(20,14,10,.20);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -199,8 +209,8 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
 .tile{display:block;border:1px solid var(--line);border-radius:var(--r);
   background:#fff;overflow:hidden;text-decoration:none;color:inherit;
-  transition:border-color .15s,transform .15s}
-.tile:hover{border-color:var(--brick);transform:translateY(-2px)}
+  box-shadow:var(--lift-1);transition:border-color .15s,transform .15s,box-shadow .15s}
+.tile:hover{border-color:var(--brick);transform:translateY(-2px);box-shadow:var(--lift-2)}
 .tile img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
 .tile-body{padding:11px 12px 12px}
 /* one line, always. A date that wraps makes one tile taller than the
@@ -223,7 +233,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   margin-bottom:10px}
 .allback:hover{text-decoration:underline}
 .litter-card{border:1px solid var(--line);border-radius:var(--r);background:#fff;
-  overflow:hidden;margin-bottom:18px}
+  overflow:hidden;margin-bottom:18px;box-shadow:var(--lift-1)}
 /* CAPPED ON PURPOSE. Left to itself the photo took the whole screen and
    pushed everything that explains it below the fold. 4:3 keeps the shape
    consistent with the tiles; the viewport cap keeps it from ever being
@@ -243,7 +253,8 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .tile{position:relative}
 .shots{position:absolute;bottom:9px;right:9px;z-index:2;display:inline-flex;align-items:center;
   gap:5px;padding:4px 9px;border-radius:100px;background:rgba(24,20,18,.72);color:#fff;
-  font-size:11.5px;font-weight:600;letter-spacing:.02em;pointer-events:none}
+  font-size:11.5px;font-weight:600;letter-spacing:.02em;pointer-events:none;
+  box-shadow:var(--lift-photo)}
 .shots svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
 .lbox{position:fixed;inset:0;z-index:50;background:rgba(24,20,18,.94);display:flex;
   flex-direction:column;align-items:center;justify-content:center;padding:56px 14px 22px}
@@ -319,8 +330,10 @@ body.lbox-open{overflow:hidden}
 .alert-row input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
 .alert-btn{display:inline-flex;align-items:center;justify-content:center;padding:0 18px;min-height:46px;
   border-radius:var(--r);border:1px solid var(--brick);background:var(--brick);color:#fff;font:inherit;
-  font-weight:500;font-size:15px;cursor:pointer;white-space:nowrap}
+  font-weight:500;font-size:15px;cursor:pointer;white-space:nowrap;
+  box-shadow:var(--lift-brick);transition:background .15s,border-color .15s,box-shadow .15s}
 .alert-btn:hover{background:var(--brick-dk);border-color:var(--brick-dk)}
+.alert-btn:active{box-shadow:var(--lift-brick-press)}
 /* the honeypot: off the screen and out of the tab order; a person never
    meets it, a form-filling script fills everything it finds */
 .gotcha{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
@@ -337,7 +350,8 @@ body.lbox-open{overflow:hidden}
 .parents{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:420px;margin:2px 0 14px}
 .parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
-  color:inherit;text-decoration:none;cursor:pointer;transition:border-color .15s}
+  color:inherit;text-decoration:none;cursor:pointer;box-shadow:var(--lift-1);
+  transition:border-color .15s,box-shadow .15s}
 .parent:hover,.parent:focus-visible{border-color:var(--brick)}
 /* relative for the play badge a parent with a video carries on its portrait
    (7 Sept 2026): the same badge the front page's tiles and strips use, so one
@@ -397,7 +411,7 @@ body.lbox-open{overflow:hidden}
 .whograph{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 @media(min-width:700px){.whograph{grid-template-columns:repeat(4,1fr)}}
 .wt{display:block;text-decoration:none;color:var(--ink);background:var(--paper);
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--lift-1)}
 .wt img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
 .wt b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;
   padding:9px 12px 1px}
