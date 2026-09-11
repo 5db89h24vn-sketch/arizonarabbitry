@@ -337,6 +337,45 @@ const PLANNED = [
   { key: "netherland-dwarf", name: "the first Netherland Dwarf litter" }
 ];
 
+/* WHERE THEY ENDED UP -- the homes the rabbits went to, in the owners' own
+   words (11 Sept 2026). This is the one thing the site could not say for
+   itself: somebody other than William confirming that a rabbit from here was
+   what he said it was. An outside critique put it plainly: "The copy asserts
+   it. Nobody else on the page confirms it." Nothing here is written by
+   William, and nothing is shown without the owner's permission.
+
+   THE RULES, and the page enforces the first two:
+     1. permission is REQUIRED. The day the owner said the site could use their
+        words (and photo, if any). A text saying "happy for you to put this on
+        the site" is enough; keep it. No permission date, nothing is shown.
+     2. said is THEIR words, unedited. Trimming for length is fine; rewriting
+        is not. Specific beats praise: "she flopped over on my lap the first
+        evening" is worth ten of "great breeder, highly recommend".
+     3. No stars, no ratings, no "5/5" anywhere. Not on this site.
+     4. A photo is optional and worth more than a paragraph: drop it in photos/
+        under a short name; it gets the same finish as every other picture.
+     5. who is a first name, or a first name and initial, as THEY want it.
+
+   The front page shows the newest three under the rabbits for sale, hidden
+   entirely while this list is empty -- an empty proof section is worse than
+   none. Fields:
+     who: "Maya"  where: "Tucson"  rabbit: "Teddy"  when: "2026-09"
+     said: "..."  photo: "photos/home-teddy.jpg" (or "")  permission: "2026-09-12"
+   when is the month they took the rabbit home (YYYY-MM). */
+const HOMES = [
+];
+
+/* CHECKED -- the last day William confirmed the listing without changing it
+   (11 Sept 2026). The "current as of" stamp under the rabbits is written by
+   sweep.py from the latest date anywhere in a rabbit's record: a status
+   change, a weighing, a dated photograph. When nothing has changed for a
+   fortnight the weekly calendar asks "is it still Teddy reserved, Butterscotch
+   available?", and a "yes" is itself a fact about the listing with no record
+   to carry it, so it goes here, as the day it was said (YYYY-MM-DD). The stamp
+   is then the later of this and the record. Never in the future, never typed
+   without William's yes, and blank means the record alone speaks. */
+const CHECKED = "";
+
 const RABBITS = [
 
   {

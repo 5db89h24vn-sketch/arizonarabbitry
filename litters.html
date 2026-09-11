@@ -7,17 +7,7 @@
 <meta name="description" content="The photo I take the day a litter is born, with the date on the picture itself.">
 <meta name="theme-color" content="#241F1D">
 <link rel="canonical" href="https://arizonarabbits.com/litters">
-<!-- SOCIAL AND CANONICAL METADATA. Both subpages had none, so a link to either
-     one pasted into a text message, Instagram DM or Facebook post arrived as a bare
-     grey URL while the homepage arrived with a photograph. The litter archive is the
-     single most shareable thing on this site -- it is the proof -- and it was the
-     page least equipped to travel.
 
-     CANONICAL POINTS AT THE CLEAN URL. Cloudflare Pages serves /litters and answers
-     /litters.html with a 308 to it, so a canonical naming the .html version pointed
-     search engines at a redirect. The internal links stay relative and keep their
-     .html, because that is what makes the whole page work from a local file during
-     testing, and one 308 costs a visitor nothing. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Every litter, with the photo taken the day they were born">
@@ -29,126 +19,9 @@
 <meta name="twitter:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson. The date is burned into each photograph so you can check it yourself.">
 <meta name="twitter:image" content="https://arizonarabbits.com/img/og.jpg?v=5">
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     LITTER ARCHIVE.
-
-     TWO VIEWS, ONE PAGE, NO JAVASCRIPT.
-
-       the GRID     every litter as a small dated tile
-       the LITTER   one litter opened up, with the day-0 photo
-
-     The grid is what you see first. Tapping a tile opens that litter.
-     Backing out returns to the grid. A link from a rabbit on the main
-     page (litters.html#L2026-07-28) lands straight in the opened
-     litter, and "All litters" from there shows the whole archive.
-
-     HOW IT WORKS, so you don't undo it by accident: the browser's own
-     :target rule does all of it. A litter is hidden until the address
-     bar ends in its id, and the grid hides itself whenever a litter is
-     open. That means the back button works, links can be shared, and
-     it all still works with scripts switched off. There is no
-     JavaScript holding this together and there doesn't need to be.
-
-     THE ORDER OF THE BLOCKS MATTERS. Every <article> must sit ABOVE
-     <div class="browse">, because the rule that hides the grid reads
-     forwards only. Paste new litters above the others but always
-     before the browse block.
-
-     ─── TO ADD A LITTER ───
-
-     1. Take the photo the day they are born and stamp the date into
-        the picture itself. That dated record going back through every
-        litter is the one thing a classified ad can never copy, so
-        take it on day one before anything else.
-     2. Copy a whole <article> block and paste it ABOVE the newest one.
-        Change: the id (id="L2026-07-28" is the date born, and rabbits
-        link to it), the <time>, the photo src, the count, the names,
-        and the date inside data-fact="litter-no:YYYY-MM-DD" (leave the
-        text of that pill EMPTY: the build writes "Fourth litter" into
-        it from the litter's place in the archive, and refuses to build
-        if the region is missing or names the wrong date), and the date
-        inside <div data-fact="alert:YYYY-MM-DD"></div> at the foot of
-        the article (leave it EMPTY too: while the litter is born and not
-        yet open for reservation the build writes the "Hear first about
-        this litter" signup into it, with the number of people waiting;
-        once it opens the region goes empty by itself).
-     3. Copy a whole <a class="tile"> and paste it as the FIRST tile in
-        the grid, pointing at the same id. Same photo, same date, and the
-        same data-fact="litter-no:YYYY-MM-DD" kicker, empty.
-        The "Find a litter" control above the grid builds itself from the
-        articles (by number and by month); nothing to add.
-     4. Nothing to delete. The grid holds real litters only; there are
-        no placeholder tiles any more (a promise without a date is not
-        information, and the build refuses one).
-     5. The "Every rabbit from these litters" wall under the grid needs
-        NOTHING from you. It builds itself from rabbits.js, and each of
-        its tiles links to the rabbit AND back to the litter here.
-     6. PROGRESS PHOTOS. As the litter grows, add one <figure> per photo
-        to the litter's <div class="litter-set"> ("As they grow"),
-        oldest first: the picture, a <time> with the date it was taken,
-        and a one-line note. The date is also burned into the picture
-        itself by litterprogress.py, the same stamp as the nest photo,
-        so the picture carries its own proof wherever it travels. The
-        strip is visible with no script at all; script adds the age that
-        day ("2 Sep 2026 · 6 days old"), the count badge on the card and
-        the tile, and the tap-to-open full-size view. Nothing else to
-        edit. A litter with no progress photos yet has no strip, no
-        badge and no tap: one photo is a photo, not a set.
-
-     EVERY NAME HERE IS A LINK TO THAT RABBIT'S LISTING.
-     index.html#r-teddy opens Teddy full screen: photos, birth date,
-     the lot. The name in the link is lowercased with spaces turned
-     into hyphens, so "Miss Marple" becomes #r-miss-marple.
-
-     THIS KEEPS WORKING AFTER THE RABBIT IS GONE, which is the whole
-     reason it is built this way. A sold rabbit stays on the front
-     page, growing under a dated Sold label, until it actually goes
-     home (there is no fixed go-home age on the site since 2026-09-02;
-     William decides kit by kit); an adopted (picked up) rabbit drops off the
-     front page after seven days, but its listing still opens from
-     here and reads "Went home 22 Sept" instead of a price. That
-     turns this page into a real archive rather than a list of dead
-     links.
-
-     FOR THAT TO HOLD, DO NOT DELETE RABBITS FROM rabbits.js.
-     Sold (paid, still here): status "sold" + soldOn. Picked up:
-     status "adopted" + wentHome: "YYYY-MM-DD" — only ever the real
-     day it left. The front page manages both on its own. Delete the
-     entry and this link breaks.
-
-     Use <span class="gone">Teddy</span> instead of a link only if you
-     have genuinely removed the rabbit from rabbits.js. The name stays
-     in the record either way, because the litter is a historical fact
-     and the names in it do not disappear when the rabbits do.
-
-     NOTHING HERE NAMES A RABBIT UNTIL IT IS FOUR WEEKS OLD. Most kit
-     losses happen in the first fortnight. The count can go up on day
-     one; the names wait.
-
-     RECORD BOTH NUMBERS. Born, and raised. Always both, every litter,
-     including the litters where they are the same. A page that only
-     ever reports whole litters surviving is a page nobody has any
-     reason to believe, and the day-0 photograph shows the nest, so a
-     count that quietly shrinks is a count a reader can catch. The
-     first entry here said "four kits, all four made it" and six were
-     born. That is the mistake this rule exists to stop.
-     ═══════════════════════════════════════════════════════════════ -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- THE FONT SHEET NO LONGER HOLDS UP THE FIRST PAINT.
-     Measured, not assumed: with this stylesheet render-blocking, nothing at all
-     appeared until the request to Google came back. Blocked outright, the page
-     was on screen in 95ms. Everything in between was a visitor looking at
-     white while another company's server was asked for a font.
-     media="print" makes the browser fetch it at low priority without waiting
-     for it, and the onload flips it to apply the moment it lands. The URL
-     already carries display=swap, so text draws immediately in the fallback
-     stack and swaps when Fraunces and Inter arrive. The <noscript> copy keeps
-     the fonts for anyone without scripts, where the old blocking behaviour is
-     the only option available and is fine.
-     Do not "tidy" the media="print" away. It is the whole mechanism. -->
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 
@@ -156,22 +29,14 @@
 :root{
   color-scheme:light;
   --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
-  --ink-faint:#736A64;  /* was #8B817A = 3.59:1 on paper, which fails WCAG AA.
-     Darkened on index.html and MISSED HERE for days: the four pages each carry
-     their own copy of the palette, so a fix to one silently leaves the others
-     behind. palettetest.js now fails the build when any token drifts between
-     pages. Do not lighten this back. */ --line:#E3DACC; --line-soft:#EDE6DA;
+  --ink-faint:#736A64;   --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
   --serif:'Fraunces',ui-serif,Georgia,serif;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
-  /* THE SAME ELEVATION SCALE THE FRONT PAGE USES, copied deliberately rather
-     than invented here: two pages that share a look have to share the numbers
-     that make it, or they drift a shade apart every time one of them is
-     touched. See the long note by --lift-1 in index.html for what each step is
-     for and why the shadows are two layers and tinted brown. */
+  
   --lift-1:0 1px 2px rgba(36,31,29,.06),0 5px 14px rgba(36,31,29,.065);
   --lift-2:0 2px 4px rgba(36,31,29,.06),0 10px 26px rgba(36,31,29,.085);
   --lift-brick:0 1px 2px rgba(88,40,18,.22),0 6px 18px rgba(160,82,45,.26);
@@ -182,29 +47,38 @@
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-/* height:auto IS LOAD-BEARING. A width/height pair on an <img> tag maps
-   straight onto the CSS height property, and CSS height beats aspect-ratio.
-   So <img width="1400" height="1050"> with width:100% rendered 1050px tall
-   whatever the stylesheet asked for, which is why one litter photo filled a
-   whole phone screen. The attributes stay, because they are what reserves the
-   right space while the picture loads; this is what stops them dictating the
-   size afterwards. */
+
 img{max-width:100%;display:block;height:auto}
 .wrap{max-width:940px;margin:0 auto;padding:0 22px}
-header{padding:26px 0 0}
-.back{display:inline-flex;align-items:center;gap:7px;min-height:44px;
+header{padding:16px 0 0}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+.brand{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.1;
+  text-decoration:none;color:inherit}
+.brand small{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+.topbar-right{display:flex;align-items:center;gap:14px}
+.tel{text-decoration:none;font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
+.tel:hover,.tel:active{color:var(--brick)}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;
+  border-radius:100px;background:var(--brick);color:#fff;text-decoration:none;font-weight:600;
+  font-size:14.5px;white-space:nowrap;transition:background .15s,transform .18s cubic-bezier(.34,1.56,.64,1)}
+.cta:hover{background:var(--brick-dk)}
+.cta:active{transform:scale(.96);transition-duration:.15s,.09s}
+@media(max-width:480px){.tel{display:none}}
+.back:active{color:var(--brick)}
+.foot-nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+.foot-nav a{color:var(--ink-soft);text-decoration:none;min-height:24px;display:inline-flex;align-items:center}
+.foot-nav a:hover,.foot-nav a:active{color:var(--brick)}
+
+.back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
 .lede{color:var(--ink-soft);max-width:52ch;margin-bottom:28px}
 
-/* ─── THE GRID ─────────────────────────────────────────────────
-   Dated tiles, as many to a screen as the width allows. One litter
-   used to fill a phone from top to bottom, which is fine with one
-   litter and unusable with twelve: the page became a scroll with no
-   way to see what was in it. A tile is a date and a picture, which
-   is all you need to decide whether to open it. */
 .grid{display:grid;gap:12px;margin-bottom:8px;
   grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
 .tile{display:block;border:1px solid var(--line);border-radius:var(--r);
@@ -213,19 +87,15 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .tile:hover{border-color:var(--brick);transform:translateY(-2px);box-shadow:var(--lift-2)}
 .tile img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
 .tile-body{padding:11px 12px 12px}
-/* one line, always. A date that wraps makes one tile taller than the
-   rest and the whole grid goes ragged. */
+
 .tile-date{font-family:var(--serif);font-weight:600;font-size:16px;
   letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile-sub{font-size:13px;color:var(--ink-faint);margin-top:2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* ─── ONE LITTER, OPENED ───────────────────────────────────────
-   Hidden until the address bar ends in this litter's id. */
 .litter{display:none}
 .litter:target{display:block}
-/* and when one is open, the grid steps aside. Reads forwards only,
-   which is why every article has to sit above the browse block. */
+
 .litter:target ~ .browse{display:none}
 
 .allback{display:inline-flex;align-items:center;gap:7px;min-height:44px;
@@ -234,20 +104,10 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .allback:hover{text-decoration:underline}
 .litter-card{border:1px solid var(--line);border-radius:var(--r);background:#fff;
   overflow:hidden;margin-bottom:18px;box-shadow:var(--lift-1)}
-/* CAPPED ON PURPOSE. Left to itself the photo took the whole screen and
-   pushed everything that explains it below the fold. 4:3 keeps the shape
-   consistent with the tiles; the viewport cap keeps it from ever being
-   the only thing you can see. */
+
 .litter-card img{width:100%;aspect-ratio:4/3;max-height:54vh;object-fit:cover;
   background:var(--paper-2)}
-/* THE LITTER'S PHOTO SET. The day-one nest photo is the card. The dated photos
-   that follow it open from that card in a photo view, one frame per date, each
-   stamped "2 Sep 2026 · 6 days old" in the same corner and the same words the
-   rabbit galleries use, so a litter growing up and a rabbit growing up read as
-   one record. The count badge is the rabbit card's badge, pixel for pixel.
-   Both appear only once a litter has two or more photos: one photo is a
-   photo, not a set (the rabbit cards draw the same line). With scripts off
-   the card is a plain photograph and nothing is lost but the extra frames. */
+
 .litter-media{position:relative;display:block}
 .litter-media.opens{cursor:pointer}
 .tile{position:relative}
@@ -261,8 +121,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .lbox[hidden]{display:none}
 .lbox img{max-width:100%;max-height:calc(100vh - 190px);border-radius:8px;background:#000;
   object-fit:contain}
-/* the stamp under the frame is the gallery stamp: date, then the age the
-   litter was that day, worked out from the litter's own <time> */
+
 .lbox-stamp{margin-top:12px;display:inline-flex;gap:6px;align-items:baseline;padding:6px 14px;
   border-radius:100px;background:rgba(255,255,255,.12);color:#fff;font-size:13.5px;font-weight:600;
   white-space:nowrap}
@@ -277,55 +136,27 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .lbox .close{top:12px;right:12px}
 .lbox .prev{left:12px;top:50%;transform:translateY(-50%)}
 .lbox .next{right:12px;top:50%;transform:translateY(-50%)}
-/* THE PRESS COMPOSES WITH THE CENTRING. These two are held on the midline by
-   transform:translateY(-50%); a bare scale() in :active replaces it and the
-   button jumps to the top of the frame under the thumb. */
+
 .lbox button{transition:background .15s,transform .12s ease-out}
 .lbox .close:active{transform:scale(.94)}
 .lbox .prev:active,.lbox .next:active{transform:translateY(-50%) scale(.94)}
 .lbox .counter{position:absolute;top:24px;left:16px;color:#fff;opacity:.7;font-size:13px;font-weight:600}
 body.lbox-open{overflow:hidden}
 .litter-body{padding:22px 24px 20px}
-/* THE LITTER'S NUMBER (6 Sept 2026, William: "organize all the litters and
-   have markings on them, first litter, second litter, third litter"). A pill
-   before the date pill on the article and a small kicker over the date on
-   the tile, both in ink: a number is a fact, not an action, so it does not
-   wear brick (COLOUR-SYSTEM.md). The text is GENERATED by sweep.py from the
-   litter's place in the archive (data-fact="litter-no:YYYY-MM-DD"), never
-   typed: the June litter joined the record after July and August, and a typed
-   "First litter" on July would have been wrong from that day. */
-/* THE PILL IS THE HEADER ROW, NOT EVERY DATE (8 Sept 2026). This was
-   ".litter time", so ANY date anywhere inside the article became a pill --
-   including one inside a sentence, where it broke the line and read as a
-   control the reader could tap. The figcaption below already had to undo it
-   once. Scoped to the header row's own children instead, so the rule is true
-   where it fires and a date in prose is just a date. */
+
 .litter-body>time,.litter .litter-no,.litter .litter-age{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
 .litter .litter-no{margin-right:4px}
-/* HOW OLD THE LITTER IS TODAY (6 Sept 2026, William: "for each litter, let's
-   have their age on it as well, since they were all born on the same day"). A
-   third pill on the article and a line on the tile, written by script from
-   the birth date with the same ageAt() the photo stamps use, kept right at
-   midnight, and absent with scripts off: an age is a fact about today, and
-   the page never types one (RELEVANCE-SYSTEM.md). */
+
 .litter .litter-age{margin-left:4px}
 .litter .litter-age[hidden]{display:none}
 .tile-age{font-size:13px;color:var(--ink-faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tile-age[hidden],.tile-age:empty{display:none}
 .litter-life{color:var(--ink-soft)}
-/* the range is one thing: "8 to 12 years" moves to the next line whole rather
-   than leaving "8" at the end of one line and "to 12 years" on the next */
+
 .litter-life a{white-space:nowrap}
-/* HEAR FIRST ABOUT THIS LITTER (7 Sept 2026, William: "an option to be alerted
-   for an individual litter that's coming up ... document how many people are
-   pending that litter, so it shows other people live interest"). Generated by
-   sweep.py into <div data-fact="alert:DATE"> for the litter waiting to open:
-   a lead, one field and one button, the number waiting (script, from
-   /api/waitlist, shown from one person up and never as a zero), and the
-   thanks. The same tinted card the front page's waitlist sits in, so the
-   two read as one thing. The button is brick because it acts. */
+
 .alert-form{margin-top:16px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2)}
 .alert-lead{font-size:15px;color:var(--ink-soft);margin:0 0 10px}
 .alert-lead b{color:var(--ink)}
@@ -342,8 +173,7 @@ body.lbox-open{overflow:hidden}
 .alert-btn:active{transform:scale(.96)}
 .alert-btn:hover{background:var(--brick-dk);border-color:var(--brick-dk)}
 .alert-btn:active{box-shadow:var(--lift-brick-press)}
-/* the honeypot: off the screen and out of the tab order; a person never
-   meets it, a form-filling script fills everything it finds */
+
 .gotcha{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .litter .alert-count{font-size:14.5px;color:var(--ink-soft);margin:10px 0 0}
 .litter .alert-count b{color:var(--ink)}
@@ -352,18 +182,14 @@ body.lbox-open{overflow:hidden}
 .tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .litter h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
-/* THE PARENTS STRIP (6 Sept 2026): the two tiles every listing on the front
-   page carries, under the litter's heading. Same grammar (hairline, --r radius,
-   brick on hover); each opens the parent's own view on the front page. */
+
 .parents{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:420px;margin:2px 0 14px}
 .parent{display:flex;align-items:center;gap:8px;min-height:54px;min-width:0;padding:5px 8px 5px 5px;
   border:1px solid var(--line);border-radius:var(--r);background:#fff;
   color:inherit;text-decoration:none;cursor:pointer;box-shadow:var(--lift-1);
   transition:border-color .15s,box-shadow .15s,transform .12s ease-out}
 .parent:hover,.parent:focus-visible{border-color:var(--brick)}
-/* relative for the play badge a parent with a video carries on its portrait
-   (7 Sept 2026): the same badge the front page's tiles and strips use, so one
-   glyph means "this one moves" on every page */
+
 .parent{position:relative}
 .parent img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;background:var(--paper-2)}
 .pv{position:absolute;display:grid;place-items:center;border-radius:50%;background:rgba(24,20,18,.72);
@@ -373,22 +199,11 @@ body.lbox-open{overflow:hidden}
 .parent .pv{width:18px;height:18px;left:29px;top:29px}
 .parent .pv::before{border-width:4px 0 4px 6px;margin-left:1px}
 .parent span{display:block;min-width:0}
-/* THE SAME LABEL FORM THE LISTING USES (8 Sept 2026): small caps, tracked,
-   faint, so the label is a fixture and the name beside it is the rabbit's. The
-   name is 13px here as it is there — it was 12.5, which was a size doing no job
-   the site's 13px facts were not already doing. See the design-system note in
-   index.html by .viewer-body. */
-/* THE SAME TILES AS THE LISTING, AND THE SAME WEIGHTS (9 Sept 2026, softened
-   with index.html: a label does not need weight to be a label, and a tile is a
-   doorway rather than a fact). Kept in step by hand because the archive is a
-   separate stylesheet; parenttest.js checks the tiles match PARENTS, and the
-   two files' tile CSS is meant to read identically. */
+
 .parent small{display:block;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.35;white-space:nowrap}
 .parent b{display:block;font-size:13px;font-weight:500;color:var(--ink-soft);line-height:1.35;white-space:nowrap}
-/* AS THEY GROW: the dated progress photos, visible without any script. A
-   strip of figures, each a photo, its date, and a one-line note; script adds
-   the age that day after the date and makes each one open full size. */
+
 .litter-set{margin:18px 0 6px}
 .litter-set h3{font-family:var(--serif);font-weight:600;font-size:17px;margin:0 0 10px}
 .litter-set .frames{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -399,23 +214,14 @@ body.lbox-open{overflow:hidden}
 .litter-set figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
 .litter-set figcaption{padding:9px 11px 0;font-size:13px;font-weight:600;color:var(--brick-dk);
   line-height:1.35}
-/* (the frame's date needs no reset now the pill is scoped to the header row:
-   the pill is the litter's birth date, said once at the top of the card) */
-/* A DATE IN A SENTENCE IS ONE WORD. Losing the pill also lost its nowrap, and
-   "on 8 / September" split across two lines the moment the paragraph was
-   narrow enough -- the same defect as a hanging word, in the middle of a line. */
+
 .litter-body p time{white-space:nowrap}
-/* the dot and the age wrap as one: "2 Sep 2026" over "· 6 days old" */
+
 .litter-set figcaption .age{white-space:nowrap}
 .litter-set figure p{padding:3px 11px 11px;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
 .litter p{color:var(--ink-soft)}
 .litter p + p{margin-top:10px}
-/* Rabbit tiles: same card DNA as the main rail — --r radius, --line border,
-   4/3 photo. Two across on a phone, four on a desktop. A placed rabbit's photo
-   is quieted exactly the way the rail's sold-dim does it, so full colour keeps
-   meaning "yours to have" everywhere on the site. The status line reserves its
-   height with a non-breaking space so tiles stay one height while script fills
-   them in. */
+
 .whograph{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 @media(min-width:700px){.whograph{grid-template-columns:repeat(4,1fr)}}
 .wt{display:block;text-decoration:none;color:var(--ink);background:var(--paper);
@@ -429,22 +235,13 @@ body.lbox-open{overflow:hidden}
 .wt .st-hold{color:var(--hold)}
 .wt-gone img{opacity:.82;filter:saturate(.75)}
 
-/* THE WALL: every rabbit from the recorded litters, in one place on the
-   browse view. Script builds it from rabbits.js at the foot of this file, so
-   it can never lag the data, and adding a litter adds its rabbits here with
-   no work at all. Without script the page is simply the litter grid above,
-   which stands on its own. A wall tile is a DIV holding two links, because
-   one tile now goes two places: photo and name to the rabbit's live listing,
-   and a "See this litter" row to the litter it came from, full screen. Links
-   cannot nest, so the tile itself stopped being one. */
 .wall{margin-top:44px}
 .wall h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:4px}
 .wallhead{font-family:var(--serif);font-weight:600;font-size:15.5px;margin-top:22px}
 .wallhead a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
 .wallhead a:hover{color:var(--brick-dk);border-color:var(--brick)}
 .wt-main{display:block;color:inherit;text-decoration:none}
-/* 44px to match .back and .allback: this is a tap target, not a caption.
-   brick-dk on paper is 7.72:1, brick (hover) 5.30:1 — both clear AA. */
+
 .wt-lit{display:flex;align-items:center;min-height:44px;padding:0 12px;
   border-top:1px solid var(--line-soft);font-size:12.5px;font-weight:500;
   color:var(--brick-dk);text-decoration:none}
@@ -456,37 +253,12 @@ body.lbox-open{overflow:hidden}
   border:1px solid var(--line);background:var(--paper);color:var(--ink);
   text-decoration:none;white-space:nowrap}
 .who a:hover{border-color:var(--brick);color:var(--brick-dk)}
-/* For a rabbit that has already been placed: <span class="gone">Teddy</span>
-   instead of a link, since there is nothing left to send a reader to. The audit
-   found this style with no markup using it, which made it dead weight. It is
-   kept rather than deleted because every litter reaches this state eventually,
-   and it is documented here so it is a feature rather than a puzzle. */
+
 .who .gone{color:var(--ink-faint)}
 
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
 
-/* ══════════════════════════════════════════════════════════════════
-   TAP FEEDBACK (10 September 2026)
-
-   This page had NONE. Not on a litter tile, not on a rabbit tile, not on
-   the "See this litter" row, not on a button -- nine kinds of control,
-   audited at 390px, every one of them dead under a thumb. Hover states
-   never fire on a phone, so on the screen nearly everyone uses, nothing
-   here answered a press at all.
-
-   The forms are the front page's, copied deliberately rather than chosen
-   again here (see the long note by the tap-feedback block in index.html):
-   a card or tile compresses 2.3%, a button or round control 4-6%, a pill
-   4%, and a row in a list tints instead of moving. Prose links -- .back,
-   .allback, .xlink, the wall headings -- get nothing on purpose: a word in
-   a sentence is not a control and a press state would dress it as one.
-
-   A TILE HERE IS TWO TARGETS, and now it says so. .wt holds the photo and
-   name in one link and "See this litter" in another, so the top half
-   compresses and the bottom row tints: press either and only the part you
-   actually hit responds, which is the truth about where your thumb landed.
-   ══════════════════════════════════════════════════════════════════ */
 @media(max-width:980px){
   .tile:active{transform:scale(.977)}
   .wt-main{transition:transform .12s ease-out}
@@ -503,10 +275,7 @@ footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px
   html{scroll-behavior:auto}
   *{transition-duration:.001ms!important}
 }
-/* see NO ORPHANS at the foot of this file: this asks, that guarantees */
-/* headings balance, body text avoids a stranded last word. Headings were
-   in BOTH lists and the balance rule below cancelled the pretty one, so
-   half of it never did anything. */
+
 p,li,small,summary,figcaption{text-wrap:pretty}
 h1,h2,h3{text-wrap:balance}
 .newscta{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 4px}
@@ -516,16 +285,11 @@ h1,h2,h3{text-wrap:balance}
 .newscta .btn-primary{background:var(--brick);border-color:var(--brick);color:#fff}
 .newscta .btn:hover{border-color:var(--brick);color:var(--brick-dk)}
 .newscta .btn-primary:hover{background:var(--brick-dk);color:#fff}
-/* Inline doorway between pages, the same treatment as the Born link inside a
-   listing: a dotted rule rather than a coloured word, so prose stays prose. */
+
 .xlink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .xlink:hover{border-bottom-style:solid}
-/* FIND A LITTER (6 Sept 2026): built by script above the grid, see the note
-   by the code. The select wears the site's input grammar (44px, hairline,
-   --r radius, brick focus ring like the forms); the caret is the FAQ's, in
-   ink-faint. hidden must win over .tile's display:block or a filtered tile
-   stays on screen. */
+
 .finder{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-6px 0 16px}
 .finder-label{font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap}
 .finder select{min-height:44px;max-width:100%;padding:0 38px 0 14px;border:1px solid var(--line);border-radius:var(--r);
@@ -540,6 +304,13 @@ h1,h2,h3{text-wrap:balance}
 
 <header>
   <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">Arizona Rabbits<small>Tucson</small></a>
+      <div class="topbar-right">
+        <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
+        <a class="cta" href="sms:+15202702827">Text William</a>
+      </div>
+    </div>
     <a class="back" href="index.html">&larr; Back to the rabbits</a>
     <h1>Litters</h1>
   </div>
@@ -547,9 +318,6 @@ h1,h2,h3{text-wrap:balance}
 
 <main>
   <div class="wrap">
-
-    <!-- ══════ ONE ARTICLE PER LITTER, NEWEST FIRST ══════
-         All of these must stay ABOVE the browse block below. -->
 
     <article class="litter" id="L2026-08-27">
       <a class="allback" href="#all">&larr; All litters</a>
@@ -561,11 +329,7 @@ h1,h2,h3{text-wrap:balance}
         <div class="litter-body">
           <span data-fact="litter-no:2026-08-27" class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time> <span class="litter-age" data-born="2026-08-27" hidden></span>
           <h2>Six born</h2>
-          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
-               front page carries, each opening that parent's own view there
-               (photos, the other parent, every kit of theirs). Typed here so the
-               page works with scripts off; parenttest.js checks these match
-               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          
           <div class="parents">
             <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
@@ -574,32 +338,18 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father-2.jpg?v=607c5d09" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
-          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
-               type of rabbit" on every litter). The range is the House Rabbit
-               Society's for indoor rabbits with good care; the measured averages
-               are lower, and the FAQ answer this links to carries both with their
-               sources, so the number here is never alone. -->
+          
           <p class="litter-life">A rabbit like these can live
           <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
-          <!-- WHERE THIS LITTER IS NOW. Every milestone here is DATED and written
-               in the past tense, so it never goes stale and never has to be
-               rewritten: "their eyes started to open on 8 September" is true
-               forever, "they are twelve days old" is true for a day. The colour
-               reading stays because it is still provisional, and it now says WHEN
-               it was taken instead of standing in the present tense six days on. -->
+          
           <p>Their eyes started to open on <time datetime="2026-09-08">8 September</time>,
           at twelve days old. At six days one was white and five were fawn; coats can
           still shift as they come in, so the honest read on colour is at four weeks,
           when I name them. The dated photos below are them growing up; tap any to see
           it full size.</p>
-          <!-- AS THEY GROW: the litter's dated progress photos, oldest first, each
-               with the date burned into the picture (litterprogress.py) and typed
-               here as well. The age that day ("6 days old") is added after the
-               date by script, from the litter's own <time> above; the count badge
-               and the tap-to-open view build themselves from these figures. With
-               scripts off this is still every photo, dated, in order. -->
+          
           <div class="litter-set">
             <h3>As they grow</h3>
             <div class="frames">
@@ -609,22 +359,14 @@ h1,h2,h3{text-wrap:balance}
                 <figcaption><time datetime="2026-09-02">2 Sep 2026</time></figcaption>
                 <p>Six days old. One white and five fawn.</p>
               </figure>
-              <!-- 6 Sept 2026: William's photo, sent that day with no date of its
-                   own (the upload carried no capture time), so it is dated the day
-                   it arrived. Polished and stamped by litterprogress.py. -->
+              
               <figure>
                 <img src="photos/litter-2026-08-27-2026-09-06.jpg?v=4439e3b5" width="1050" height="1400" loading="lazy"
                      alt="Six ten-day-old kits in the nest box, one white and five fawn, one held in a hand">
                 <figcaption><time datetime="2026-09-06">6 Sep 2026</time></figcaption>
                 <p>Ten days old. All six in the nest box, one in hand.</p>
               </figure>
-              <!-- 8 Sept 2026: William's photo, sent that evening with no capture
-                   time of its own, so it is dated the day it arrived, same as the
-                   6 Sept one. His words with it: "the babies are starting to open
-                   their eyes now". Polished and stamped by litterprogress.py.
-                   The caption says what is in the frame -- one kit -- because one
-                   kit is what he photographed; nothing is claimed about the other
-                   five, and nothing is claimed about how these ears will end up. -->
+              
               <figure>
                 <img src="photos/litter-2026-08-27-2026-09-08.jpg?v=5391d20d" width="1050" height="1400" loading="lazy"
                      alt="A twelve-day-old fawn kit lying on a grey towel in the cage, its eye open">
@@ -638,13 +380,7 @@ h1,h2,h3{text-wrap:balance}
           The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
           hears first.<span data-fact="opens:2026-08-27"> For this litter that is from <time datetime="2026-09-24">24 September</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
-          <!-- HEAR FIRST ABOUT THIS LITTER (7 Sept 2026). GENERATED by sweep.py
-               while this litter is born and not yet open for reservation: a
-               small signup for this litter alone (William: "an option to be
-               alerted for an individual litter that's coming up") and the
-               number of people waiting on it, from /api/waitlist. Empty by
-               itself once the litter opens. The front page's waitlist carries
-               the same choice as a pill. -->
+          
           <div data-fact="alert:2026-08-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-08-27" data-label="the August litter"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-08-27"><input type="hidden" name="_subject" value="Waitlist signup: the August litter (L2026-08-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p></form></div>
         </div>
       </div>
@@ -660,11 +396,7 @@ h1,h2,h3{text-wrap:balance}
         <div class="litter-body">
           <span data-fact="litter-no:2026-07-28" class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time> <span class="litter-age" data-born="2026-07-28" hidden></span>
           <h2>Six born, four raised</h2>
-          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
-               front page carries, each opening that parent's own view there
-               (photos, the other parent, every kit of theirs). Typed here so the
-               page works with scripts off; parenttest.js checks these match
-               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          
           <div class="parents">
             <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
@@ -673,11 +405,7 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father-2.jpg?v=607c5d09" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
-          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
-               type of rabbit" on every litter). The range is the House Rabbit
-               Society's for indoor rabbits with good care; the measured averages
-               are lower, and the FAQ answer this links to carries both with their
-               sources, so the number here is never alone. -->
+          
           <p class="litter-life">A rabbit like these can live
           <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>This is the photo from the day they arrived, before their eyes were open and
@@ -688,19 +416,7 @@ h1,h2,h3{text-wrap:balance}
           worth nothing to you if I only print the numbers that flatter me.</p>
           <p>The four went up on the site at four weeks old, once I could tell you their sex
           and colour honestly. Two fawn does and two sable point bucks.</p>
-          <!-- THE LITTER'S RABBITS, AS OUTCOMES. Photo, name, and what happened
-               to each one, under the day-one nest photo that proves the litter is
-               real. The status line is written by script from rabbits.js — the
-               same single source the whole site reads — so it can never go stale;
-               with scripts off the tile is still a photo and a name and the link
-               still lands on the live listing, which always knows.
-               "Went home <date>" rather than SOLD, on purpose: a date is a fact,
-               SOLD is pressure, and placed work already sells remaining work on
-               its own (Tian, Chen & Xu 2022). Price appears only while a rabbit
-               can actually be bought.
-               FUTURE LITTERS: data-rid is the rabbit's ADDRESS, not its name.
-               For a repeated name, use the dated form (teddy-20270315) that
-               index.html assigns, or the tile will land on the earlier rabbit. -->
+          
           <div class="whograph">
             <a class="wt" href="index.html#r-teddy" data-rid="teddy">
               <img src="photos/teddy.jpg?v=9068ff3a" alt="Teddy, a fawn Holland Lop cross" loading="lazy">
@@ -719,19 +435,12 @@ h1,h2,h3{text-wrap:balance}
               <b>Cloud</b><small>&nbsp;</small>
             </a>
           </div>
-          <!-- the alert region every article carries; empty for a litter that is open (sweep.py) -->
+          
           <div data-fact="alert:2026-07-28"></div>
         </div>
       </div>
     </article>
 
-    <!-- THE LITTER THAT STARTED IT ALL (added 6 Sept 2026, William's words):
-         born 28 June 2026, before this site existed. He had no nest box and
-         did not know she was pregnant. Five born, one did not make it, four
-         raised and sold before the site was made, so none is listed. The photo
-         is from the day they were born; the upload carried no date of its own,
-         so the stamp is the day he gave. No names, no whograph: nothing is
-         printed that he has not said. -->
     <article class="litter" id="L2026-06-28">
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
@@ -742,11 +451,7 @@ h1,h2,h3{text-wrap:balance}
         <div class="litter-body">
           <span data-fact="litter-no:2026-06-28" class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time> <span class="litter-age" data-born="2026-06-28" hidden></span>
           <h2>Five born, four raised</h2>
-          <!-- THE PARENTS (6 Sept 2026): the same two tiles every listing on the
-               front page carries, each opening that parent's own view there
-               (photos, the other parent, every kit of theirs). Typed here so the
-               page works with scripts off; parenttest.js checks these match
-               PARENTS in rabbits.js, breed for breed and photo for photo. -->
+          
           <div class="parents">
             <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
@@ -755,44 +460,24 @@ h1,h2,h3{text-wrap:balance}
               <img src="photos/father-2.jpg?v=607c5d09" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
-          <!-- HOW LONG THEY LIVE (6 Sept 2026, William: "the average lifespan of this
-               type of rabbit" on every litter). The range is the House Rabbit
-               Society's for indoor rabbits with good care; the measured averages
-               are lower, and the FAQ answer this links to carries both with their
-               sources, so the number here is never alone. -->
+          
           <p class="litter-life">A rabbit like these can live
           <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
           <p>The litter that started it all: my first litter ever, and the first time I'd had
           baby rabbits. I didn't have a nest box yet, and I didn't know she was pregnant.</p>
-          <!-- data-kits="never-listed": this litter's kits were homed before the site
-               existed, so the relevance sweep must not ask for their names at four
-               weeks the way it does for every other litter (sweep.py, calendar). -->
+          
           <p data-kits="never-listed">Five were born. One didn't make it. The other four were raised and went to their
           homes before this site existed, so they were never listed here.</p>
           <p>The photo is from the day they were born: one of them in my hand, and the fur she
           pulled for a nest in the tray.</p>
-          <!-- the alert region every article carries; empty for a litter that is open (sweep.py) -->
+          
           <div data-fact="alert:2026-06-28"></div>
         </div>
       </div>
     </article>
 
-    <!-- ══════ THE GRID ══════ -->
     <div class="browse" id="all">
-      <!-- VOICE RULES: William's first person, plain and concrete. No em dashes.
-           No lists of three. No balanced clever sentences. -->
-      <!-- IT USED TO SAY "Every litter I've raised". It wasn't, and the page's own
-           photograph gave it away: the fawn rabbit sitting in that nest box is a
-           month-old kit from an earlier litter I raised before this page existed. An
-           archive that claims to be complete and visibly isn't costs more than the
-           gap it was hiding, so the claim became the true one. Since 6 Sept 2026
-           that first litter is here too, with its day-one photo, so the record
-           starts where the rabbitry did. -->
-      <!-- 6 SEPT 2026, William: "make it known that every litter on my website is
-           100% transparency and the first litter is genuinely my first ever litter,
-           and it's my first time even having babies for that matter". Said as the
-           fact it is rather than as a claim about himself: the site never calls
-           itself honest, it shows the record and says nothing is missing from it. -->
+
       <p class="lede">The photo I take the day a litter is born, kept here from then on. The
       date is on the picture itself, so you can see for yourself that these are mine. Every
       litter I have ever had is here, nothing left out, starting with my first ever on
@@ -834,17 +519,8 @@ h1,h2,h3{text-wrap:balance}
           </div>
         </a>
 
-        <!-- NO PLACEHOLDER TILES. Two "Coming soon / Photo on day one" squares
-             sat here to keep the grid full. William, 3 Sept 2026: no irrelevant
-             information anywhere on the site. A promise without a date is not
-             information, and sweep.py fails the build if one comes back. The
-             grid holds real litters only. -->
       </div>
 
-      <!-- THE ARCHIVE WAS A DEAD END. Somebody arrives here from a shared link,
-           reads the proof this page exists to provide, and then the only way
-           onward was the browser's back button. The strongest moment to ask is
-           straight after the evidence lands. -->
       <p class="newscta">
         <a class="btn btn-primary" href="index.html#available">See who is available</a>
         <a class="btn btn-ghost" href="index.html#waitlist">Hear about the next litter</a>
@@ -855,30 +531,18 @@ h1,h2,h3{text-wrap:balance}
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between">
     <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
+    <nav class="foot-nav" aria-label="Pages">
+      <a href="index.html">Rabbits</a>
+      <a href="updates.html">News</a>
+      <a href="terms.html">Terms and privacy</a>
+    </nav>
   </div>
 </footer>
 
-<!-- WHERE TO LOOK IN EACH PICTURE (8 Sept 2026). Every picture slot on this
-     site is a fixed shape filled edge to edge, and `object-fit: cover` takes
-     its band from the middle of the FRAME. On a portrait photograph of a
-     rabbit sitting up that is the middle of the body, so the father's ear tips
-     were sliced off the top of the photo view (William, from his phone: "I
-     don't like how he clipped off in this picture"). focus.py finds the rabbit
-     in every photograph with the segmentation model studio.py already uses,
-     works out the point the crop must keep, and writes it here; the script
-     below hands it to every img as object-position. Measured at build time, so
-     no visitor waits for it. Never hand-edit this: run `python3 focus.py`. -->
 <script id="photoFocus" type="application/json">{"photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%","photos/litter-2026-08-27-2026-09-08.jpg":"50% 36.4%"}</script>
 <script>
-/* ── THE FOCAL POINT OF A PICTURE (8 Sept 2026) ──
-   The same helper index.html carries, so a tile, a litter card and the wall
-   crop a photograph the way the photo view does: focus.py measured where the
-   rabbit is, and the crop keeps that point instead of the middle of the frame.
-   Two keys per entry, with and without stamp.py's ?v= fingerprint; in the
-   preview builds every path becomes a data URI, keys included, so the match
-   still holds. A picture with no entry is centred, exactly as before. */
 var PHOTO_FOCUS=(function(){
   try{ var el=document.getElementById('photoFocus');
        return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
@@ -894,13 +558,8 @@ function focusIn(root){ var l=(root||document).getElementsByTagName('img');
   for(var i=0;i<l.length;i++) setFocus(l[i]); }
 document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 </script>
-<script src="rabbits.js?v=f09366fc"></script>
+<script src="rabbits.js?v=d3602115"></script>
 <script>
-/* Fills each tile's status line from rabbits.js — the one file that knows.
-   Matching is by ADDRESS (data-rid), the same collision-safe scheme index.html
-   uses, replicated exactly: slug of the name, earliest-born keeps the bare form,
-   later same-names get a dated suffix. If script or rabbits.js fails to load,
-   the lines stay blank and every tile still links to the live listing. */
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
   function rslug(t){return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
@@ -920,16 +579,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function nice(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
     return m?(+m[3])+' '+MON[+m[2]-1]+' '+m[1]:'';}
-  /* THE WALL. Every rabbit, grouped by birth date, newest first, inserted
-     before the newscta inside .browse so opening a litter hides it with the
-     grid. Two details that matter:
-     - the rabbit-link base is read off the first static tile, so in the
-       standalone viewing card (where those are rewritten to the live site)
-       the generated tiles follow along instead of pointing at a file that
-       is not there;
-     - the "See this litter" row is only added when the litter's own section
-       exists on this page, so a rabbit entered in rabbits.js ahead of its
-       litter write-up never carries a link to nothing. */
   try{
     var FM=['January','February','March','April','May','June','July','August',
             'September','October','November','December'];
@@ -951,9 +600,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
         var lid='L'+d, hasLitter=!!document.getElementById(lid);
         if(dobs.length>1){
           var head=document.createElement('p');head.className='wallhead';
-          /* the litter's number leads the heading ("Third litter · Born 27
-             August 2026"), read off the article's own generated pill so the
-             wall can never number a litter differently from its page */
           var noEl=hasLitter?document.querySelector('#'+lid+' .litter-no'):null;
           var lead=(noEl&&noEl.textContent.trim())?(noEl.textContent.trim()+' \u00B7 '):'';
           if(hasLitter){
@@ -987,22 +633,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       cta?browse.insertBefore(wall,cta):browse.appendChild(wall);
     }
   }catch(e){}
-  /* ══════ FIND A LITTER (6 Sept 2026) ══════
-     William: "a filter option to where people can search for the litter by
-     either the month and year or by the number". One control, built here so a
-     page without script never shows a control that does nothing: a select
-     with two groups, by number and by month, read from the articles on this
-     page (their ids are the birth dates; their number pills are generated by
-     sweep.py). Choosing one narrows the grid and the wall to the matching
-     litter(s) and says so in a line with a way back; "All litters" restores
-     everything. It never navigates: a filter that jumps somewhere is a
-     surprise, and a month can hold two litters. Nothing about it is stored in
-     the address, so a shared link always opens the whole archive.
-     Evidence for keeping it to one control: Baymard's filtering research
-     finds users abandon filter UIs that ask for several inputs before showing
-     anything, and NN/g's guidance is that a small set of items needs at most
-     one simple filter, or none. With three litters this is the smallest thing
-     that does what he asked; it scales to thirty without changing. */
   try{
     var FMN=['January','February','March','April','May','June','July','August',
              'September','October','November','December'];
@@ -1046,9 +676,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
           if(g&&g.classList.contains('whograph')) any=[].slice.call(g.children).some(function(t){return !t.hidden;});
           h.hidden=!any; if(g&&g.classList.contains('whograph')) g.hidden=!any;
         });
-        /* a litter whose rabbits are not in rabbits.js (the first fortnight, or
-           the first litter, homed before the site) leaves the wall empty: the
-           whole wall steps aside rather than a heading over nothing */
         var wallEl=document.querySelector('.wall');
         if(wallEl) wallEl.hidden=![].slice.call(wallEl.querySelectorAll('.wt')).some(function(t){return !t.hidden;});
         if(!ids){ fnote.hidden=true; fnote.textContent=''; return; }
@@ -1074,23 +701,10 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       el.textContent=left?('Went home '+nice(left)):'Found a home';
       tile.classList.add('wt-gone');
     } else if(r.status==='sold'){
-      /* sold and still here: dated like everything else, NOT dimmed — the
-         rabbit has not gone anywhere, and its staying and growing is the
-         story. Amber like Reserved: both are the hold family.
-         sold AND departed is the other sold: paid for and already gone.
-         Same true words ("Sold 29 Aug 2026"), photo dimmed like an adopted
-         tile, because the dim here means "not in the nursery any more" and
-         that is a fact. What it never gets is a Went home line — the site
-         prints no leaving date it wasn't given. */
       el.textContent=r.soldOn?('Sold '+nice(r.soldOn)):'Sold';
       el.className='st-hold';
       if(r.departed) tile.classList.add('wt-gone');
     } else if(r.status==='reserved'){
-      /* dated when the data knows the date — "Reserved 28 Aug 2026" is the
-         same vocabulary as "Went home 20 Aug 2026" one branch up: a fact
-         with a date on it reads as a record being kept, not a label left
-         behind. When reservedOn is absent the word stands alone; the site
-         never invents a date it wasn't given. */
       el.textContent=r.reservedOn?('Reserved '+nice(r.reservedOn)):'Reserved';
       el.className='st-hold';
     } else {
@@ -1098,25 +712,7 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
     }
   });
 
-  /* ══════════════════════════════════════════════════════════════
-     THE LITTER PHOTO VIEW. A litter grows up in dated pictures the
-     same way a rabbit does on the front page, and it is shown the
-     same way: tap the photo, step through the frames, read the date
-     and the age under each one. Built from each article's visible
-     "As they grow" figures, so William adds a figure and this does
-     the rest.
-
-     THREE RULES CARRIED OVER FROM THE RABBIT GALLERY, on purpose:
-       - ageAt() below is the front page's function, copied WORD FOR
-         WORD, and littergallerytest fails the build if the two ever
-         differ. "6 days old" must mean the same thing on both pages.
-       - one photo is a photo, not a set: no badge, no tap.
-       - the address bar is never touched. This page's navigation is
-         the browser's own :target rule, and a photo view that changed
-         the hash would close the litter underneath itself.
-     ══════════════════════════════════════════════════════════════ */
   try{
-    /* FROM index.html, VERBATIM. Do not edit here; edit there and copy. */
     function ageAt(dob,when){
       if(!dob||!when) return '';
       var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
@@ -1125,32 +721,16 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       if(d===0) return 'the day it was born';
       if(d<14)  return d+(d===1?' day old':' days old');
       if(d<84){
-        /* Say the remainder rather than pick a rounding rule. Flooring made a
-           27 day old rabbit "3 weeks", which loses most of a week at the age
-           where a week is most of the animal; rounding up would have claimed
-           days it had not lived. "3 weeks, 6 days" needs neither. */
         var w=Math.floor(d/7), rem=d%7;
         return w+' week'+(w===1?'':'s')+
                (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
       }
-      /* months and years by the calendar, not by 30.44-day averages (6 Sept
-         2026): a rabbit on its first birthday is "1 year old", not "11 months",
-         and the archive keeps every litter for good and says how old each one
-         is today. Whole months to a year, then years with the months over. */
       var A=new Date(a), B=new Date(b);
       var mo=(B.getFullYear()-A.getFullYear())*12+(B.getMonth()-A.getMonth())-(B.getDate()<A.getDate()?1:0);
       if(mo<12) return mo+(mo===1?' month old':' months old');
       var y=Math.floor(mo/12), rm=mo%12;
       return y+' year'+(y===1?'':'s')+(rm?(', '+rm+' month'+(rm===1?'':'s')):'')+' old';
     }
-    /* HOW OLD EACH LITTER IS TODAY (6 Sept 2026). The article's third pill
-       ("Now 5 weeks, 5 days old") and the tile's line ("5 weeks, 5 days old"),
-       from the birth date the article already carries, through the same
-       ageAt() as every photo stamp on the site, so the two can never disagree.
-       Computed on every load and again at midnight if the page is left open
-       (the front page's growth rows do the same). With scripts off the pill
-       and the line stay hidden: an age is a fact about today, and this page
-       never prints one it did not work out today. */
     function todayISO(){
       var n=new Date();
       return n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);
@@ -1185,7 +765,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       b.innerHTML=CAM+n; return b;
     }
 
-    /* one view for the whole page, built once, hidden until a tap */
     var box=document.createElement('div'); box.className='lbox'; box.hidden=true;
     box.setAttribute('role','dialog'); box.setAttribute('aria-label','Litter photos');
     box.innerHTML=
@@ -1207,9 +786,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       if(i<0||i>=shots.length) return;
       at=i; var s=shots[at];
       lbImg.src=s.src; lbImg.alt=label+', photo '+(at+1)+' of '+shots.length;
-      /* the same line the rabbit gallery writes: date, then the age that day;
-         an undated frame falls back to the birth date so the stamp is never
-         empty and never a different height */
       var age=ageAt(born,s.date);
       lbText.textContent=s.date?(nice(s.date)+(age?(' \u00B7 '+age):'')):(born?('Born '+nice(born)):'');
       lbWhat.textContent=s.date?'Photo taken ':'';
@@ -1237,9 +813,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
       else if(e.key==='ArrowRight') paint(at+1);
     });
 
-    /* wire every litter that has progress photos. The set is: the day-one
-       photo on the card (its note rides on data-note), then each figure in
-       "As they grow", in page order. */
     var arts=document.querySelectorAll('article.litter');
     for(var i=0;i<arts.length;i++){
       (function(art){
@@ -1254,11 +827,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
           var when=tm?(tm.getAttribute('datetime')||''):'';
           set.push({src:im?im.getAttribute('src'):'', date:when,
                     note:nt?(nt.textContent||'').replace(/\s+/g,' ').trim():''});
-          /* the age that day, after the date, from the litter's own birth date.
-             ONE UNIT: the dot and the age go in a span that cannot break inside
-             itself, so a narrow caption reads "2 Sep 2026" over "· 6 days old",
-             never "2 Sep 2026 · 6" over "days old" (William, 6 Sept 2026: no
-             hanging words, and the number belongs with its unit). */
           if(tm&&when){ var age=ageAt(dob,when); if(age){
             var sp=document.createElement('span'); sp.className='age'; sp.textContent='\u00B7 '+age;
             tm.parentNode.appendChild(document.createTextNode(' ')); tm.parentNode.appendChild(sp); } }
@@ -1281,8 +849,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
             if(e.key==='Enter'||e.key===' '){e.preventDefault();open(set,dob,name,0);}
           });
         }
-        /* the grid tile wears the same badge, so the count is visible before
-           the litter is even opened */
         var tile=document.querySelector('a.tile[href="#'+art.id+'"]');
         if(tile) tile.appendChild(badge(set.length));
       })(arts[i]);
@@ -1291,17 +857,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 })();
 </script>
 <script>
-/* ══════════════════════════════════════════════════════════════
-   HEAR FIRST ABOUT THIS LITTER, AND HOW MANY ARE WAITING (7 Sept 2026).
-   The signup that sweep.py generates into the litter waiting to open. Two
-   requests, in this order: Formspree first, exactly as the front page's
-   waitlist does, so the inbox copy sees every signup; only when Formspree
-   has accepted it does the page tell /api/waitlist, which records the
-   address on this litter's list and answers with the number now waiting.
-   The number is never invented: shown when the site answers with one, from
-   one person up, hidden otherwise. The four functions below are the front
-   page's, word for word (alerttest.js holds the two copies together).
-   ══════════════════════════════════════════════════════════════ */
 (function(){
   var ALERT_API='/api/waitlist';
   function tieLastWords(s){ return s.replace(/ (\S+)$/, '\u00A0$1'); }
@@ -1346,19 +901,7 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 })();
 </script>
 <script>
-/* ══════════════════════════════════════════════════════════════
-   NO ORPHANS, the same function index.html carries (orphantest.js checks the
-   three copies are identical): the last two words of every block, and of
-   every bold lead inside one, wrap together, so no word is ever stranded on a
-   line of its own, at any width, in any engine.
-   ══════════════════════════════════════════════════════════════ */
 (function(){
-  /* THE BOLD LEADS TOO (6 Sept 2026). William's phone showed "I'm William, and
-     I came to rabbits through" on one line and "chinchillas." alone at the
-     start of the next, and his rule is no hanging word anywhere, a bold line
-     included. So the same binding is applied inside every <b> and <strong>
-     in a block: its last two words wrap together, so a bold lead can never
-     end with one word stranded on a new line. */
   function tieLast(el, minWords){
     if((el.textContent.trim().split(/\s+/)||[]).length<minWords) return;
     var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
@@ -1369,11 +912,7 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
     }
     if(!last) return;
     var t=last.textContent;
-    /* NB: written as an escape on purpose. A literal non-breaking space here
-       is invisible in an editor and one careless find-and-replace turns this
-       guarantee off without changing anything anybody can see. */
     if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
-    /* the final run of whitespace that has a word on each side of it */
     var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
     if(!m) return;
     last.textContent=m[1]+'\u00A0'+m[3];
@@ -1385,7 +924,6 @@ document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
     for(var i=0;i<els.length;i++){
       var el=els[i];
       if(el.querySelector(sel)) continue;                 /* leaves only */
-      /* fewer than three words and there is nothing to strand */
       tieLast(el, 3);
       var bolds=el.querySelectorAll('b, strong');
       for(var j=0;j<bolds.length;j++) tieLast(bolds[j], 2);

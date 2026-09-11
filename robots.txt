@@ -1,0 +1,8 @@
+# Arizona Rabbits. Everything public may be indexed; the admin page is not
+# public and says so with its own header. The sitemap lists the four pages;
+# the per-rabbit share addresses under /r/ forward to the front page and are
+# left out on purpose.
+User-agent: *
+Allow: /
+Disallow: /admin/
+Sitemap: https://arizonarabbits.com/sitemap.xml

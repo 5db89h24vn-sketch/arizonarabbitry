@@ -7,26 +7,6 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#241F1D">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     WHY THIS FILE EXISTS.
-
-     Before it, arizonarabbits.com answered EVERY address with the
-     home page and an HTTP 200. A made-up URL like /not-a-real-page
-     came back as a success carrying the whole site. That is a soft
-     404, and it is bad in two directions: a search engine treats
-     every wrong address as a real, indexable duplicate of the home
-     page, and a visitor who mistypes a link sees the front page with
-     no idea anything went wrong.
-
-     Cloudflare Pages serves this file, with a real 404 status, for
-     any address that does not match a file.
-
-     IF THE SOFT 404 SURVIVES THIS FILE, the repo has a catch-all
-     redirect in it. Look for a file called `_redirects` and a line
-     like `/*  /index.html  200`. Delete that line. It is an SPA rule
-     and this is not an SPA.
-     ═══════════════════════════════════════════════════════════════ -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
@@ -35,11 +15,7 @@
 <style>
 :root{
   color-scheme:light;
-  --paper:#FBF8F3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#736A64;  /* was #8B817A = 3.59:1 on paper, which fails WCAG AA.
-     Darkened on index.html and MISSED HERE for days: the four pages each carry
-     their own copy of the palette, so a fix to one silently leaves the others
-     behind. palettetest.js now fails the build when any token drifts between
-     pages. Do not lighten this back. */
+  --paper:#FBF8F3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#736A64;  
   --line:#E3DACC; --brick:#A0522D; --brick-dk:#7C3E21;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
@@ -70,8 +46,7 @@ small{display:block;margin-top:22px;font-size:13.5px;color:var(--ink-faint)}
 <body>
 
 <div class="box">
-  <!-- the same house rabbit used as the photo placeholder, so a wrong
-       turn still looks like this site rather than a server error -->
+  
   <svg class="mark" viewBox="0 0 200 150" aria-hidden="true">
     <g fill="#CBBBA8">
       <ellipse cx="88" cy="108" rx="31" ry="25"/>

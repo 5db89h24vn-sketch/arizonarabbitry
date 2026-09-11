@@ -7,17 +7,7 @@
 <meta name="description" content="What is happening at Arizona Rabbits, a week at a time: new litters, who is available, and what changed on the site. Every line dated.">
 <meta name="theme-color" content="#241F1D">
 <link rel="canonical" href="https://arizonarabbits.com/updates">
-<!-- SOCIAL AND CANONICAL METADATA. Both subpages had none, so a link to either
-     one pasted into a text message, Instagram DM or Facebook post arrived as a bare
-     grey URL while the homepage arrived with a photograph. The litter archive is the
-     single most shareable thing on this site -- it is the proof -- and it was the
-     page least equipped to travel.
 
-     CANONICAL POINTS AT THE CLEAN URL. Cloudflare Pages serves /litters and answers
-     /litters.html with a 308 to it, so a canonical naming the .html version pointed
-     search engines at a redirect. The internal links stay relative and keep their
-     .html, because that is what makes the whole page work from a local file during
-     testing, and one 308 costs a visitor nothing. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Rabbitry news | Arizona Rabbits">
@@ -29,34 +19,9 @@
 <meta name="twitter:description" content="New litters, who is available, and anything about the rabbits worth telling you. Rabbits in Tucson.">
 <meta name="twitter:image" content="https://arizonarabbits.com/img/og.jpg?v=5">
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     RABBITRY NEWS — written for BUYERS, not a changelog. Website bug notes stay
-     private. ONE <article class="edition brief"> PER WEEK, newest week first,
-     each a list of dated bullets that grows through its week (see the rules in
-     the header below). NO PUBLISHING CADENCE IS PROMISED in the copy: a schedule
-     that slips costs more trust than having no schedule at all.
-     Entries are written for BUYERS: plain language, no dev jargon.
-     No date on this page is typed loosely. datetest.js checks every <time>
-     against its own datetime attribute and brieftest.js checks every article's
-     dates against each other: a date naming the wrong day is exactly the small
-     wrongness this page cannot afford.
-     ═══════════════════════════════════════════════════════════════ -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- THE FONT SHEET NO LONGER HOLDS UP THE FIRST PAINT.
-     Measured, not assumed: with this stylesheet render-blocking, nothing at all
-     appeared until the request to Google came back. Blocked outright, the page
-     was on screen in 95ms. Everything in between was a visitor looking at
-     white while another company's server was asked for a font.
-     media="print" makes the browser fetch it at low priority without waiting
-     for it, and the onload flips it to apply the moment it lands. The URL
-     already carries display=swap, so text draws immediately in the fallback
-     stack and swaps when Fraunces and Inter arrive. The <noscript> copy keeps
-     the fonts for anyone without scripts, where the old blocking behaviour is
-     the only option available and is fine.
-     Do not "tidy" the media="print" away. It is the whole mechanism. -->
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 
@@ -64,11 +29,7 @@
 :root{
   color-scheme:light;
   --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
-  --ink-faint:#736A64;  /* was #8B817A = 3.59:1 on paper, which fails WCAG AA.
-     Darkened on index.html and MISSED HERE for days: the four pages each carry
-     their own copy of the palette, so a fix to one silently leaves the others
-     behind. palettetest.js now fails the build when any token drifts between
-     pages. Do not lighten this back. */ --line:#E3DACC; --line-soft:#EDE6DA;
+  --ink-faint:#736A64;   --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
@@ -80,8 +41,29 @@
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:720px;margin:0 auto;padding:0 22px}
-header{padding:26px 0 0}
-.back{display:inline-flex;align-items:center;gap:7px;min-height:44px;
+header{padding:16px 0 0}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+.brand{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.1;
+  text-decoration:none;color:inherit}
+.brand small{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+.topbar-right{display:flex;align-items:center;gap:14px}
+.tel{text-decoration:none;font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
+.tel:hover,.tel:active{color:var(--brick)}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;
+  border-radius:100px;background:var(--brick);color:#fff;text-decoration:none;font-weight:600;
+  font-size:14.5px;white-space:nowrap;transition:background .15s,transform .18s cubic-bezier(.34,1.56,.64,1)}
+.cta:hover{background:var(--brick-dk)}
+.cta:active{transform:scale(.96);transition-duration:.15s,.09s}
+@media(max-width:480px){.tel{display:none}}
+.back:active{color:var(--brick)}
+.foot-nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+.foot-nav a{color:var(--ink-soft);text-decoration:none;min-height:24px;display:inline-flex;align-items:center}
+.foot-nav a:hover,.foot-nav a:active{color:var(--brick)}
+
+.back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
@@ -96,39 +78,20 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .edition p{color:var(--ink-soft)}
 .edition ul{margin:10px 0 4px 20px;color:var(--ink-soft)}
 .edition li{margin-bottom:8px}
-/* THE BRIEF FORM. Bold lead in full ink so a skim of the bold words alone
-   reads as the whole week; a little more air between bullets than the old
-   prose lists had, because each one is a separate thought. */
+
 .edition.brief ul{margin:6px 0 0 20px}
 .edition.brief li{margin-bottom:11px;line-height:1.5}
 .edition.brief li b{color:var(--ink)}
 .edition.brief .newscta{margin-top:20px}
-/* THE LINE'S DATE. Every bullet opens with the day it went up: it is the
-   line's source, so it is set like a label, not like the article's pill
-   above it, which the .edition time rule would otherwise make it. Small,
-   muted, uppercase, and no pill, so the bold lead keeps the eye. */
+
 .edition.brief li time{display:block;font-size:11.5px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-faint);background:none;border:0;border-radius:0;
   padding:0;margin:0 0 1px;white-space:nowrap;line-height:1.4}
-/* THE LEAD IS A LINE OF ITS OWN (6 Sept 2026). William, from his phone: no
-   double or triple hanging words either; "if you can make it a one liner,
-   make it a one liner, so it looks a lot more bold." Run in after the date
-   with the body following on the same line, a six-word lead broke inside
-   itself on every phone (a 360px phone gives a bullet about 250px), leaving
-   "are home." in bold at the start of a line with the text running on. So
-   each bullet is three tiers: the date as a small label, the bold lead as a
-   line of its own (one line on a phone for a lead under about thirty
-   characters, two balanced lines at most), then the body. Same grammar as
-   the FAQ and the About on the front page; orphantest.js measures every
-   lead in the real typefaces. */
+
 .edition.brief li b{display:block;text-wrap:balance;line-height:1.35;margin-bottom:2px}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
 
-/* see NO ORPHANS at the foot of this file: this asks, that guarantees */
-/* headings balance, body text avoids a stranded last word. Headings were
-   in BOTH lists and the balance rule below cancelled the pretty one, so
-   half of it never did anything. */
 p,li,small,summary,figcaption{text-wrap:pretty}
 h1,h2,h3{text-wrap:balance}
 .newscta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
@@ -138,8 +101,7 @@ h1,h2,h3{text-wrap:balance}
 .newscta .btn-primary{background:var(--brick);border-color:var(--brick);color:#fff}
 .newscta .btn:hover{border-color:var(--brick);color:var(--brick-dk)}
 .newscta .btn-primary:hover{background:var(--brick-dk);color:#fff}
-/* Inline doorway between pages, the same treatment as the Born link inside a
-   listing: a dotted rule rather than a coloured word, so prose stays prose. */
+
 .xlink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .xlink:hover{border-bottom-style:solid}
@@ -149,42 +111,16 @@ h1,h2,h3{text-wrap:balance}
 
 <header>
   <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="index.html">Arizona Rabbits<small>Tucson</small></a>
+      <div class="topbar-right">
+        <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
+        <a class="cta" href="sms:+15202702827">Text William</a>
+      </div>
+    </div>
     <a class="back" href="index.html">&larr; Back to the rabbits</a>
     <h1>Rabbitry news</h1>
-    <!-- WHAT THIS PAGE IS FOR, because it drifted once already.
-         It was a developer changelog: fixed the TikTok link, the progress bar
-         works in more places, the answer circles looked pre-selected in dark
-         mode. Every one of those was true and none of them was news to somebody
-         deciding whether to buy a rabbit. A buyer reading a list of site repairs
-         learns that the site was broken, which is the opposite of the point.
-
-         The test for a line: would it matter to someone who has never seen the
-         website before? Litters, availability, health milestones, what the
-         rabbits are doing, and site changes said as what they mean for a buyer.
-         If the answer is no, it belongs in a commit message.
-
-         ONE LIVING ARTICLE PER WEEK (William, 2026-09-02): the page holds only
-         weekly articles. Each week's article is created on its Monday and grows
-         through the week: whenever something buyer-worthy changes on the site,
-         a bullet is added to the current week's article IN THE SAME PUSH, dated
-         the day it went live. That date is the line's source. Next Monday a new
-         article starts and the old one stops changing. Nothing is ever backdated:
-         a bullet's date is the day it went up, the pill says the day the article
-         was last touched, and the heading names the week's Monday.
-
-         NO CADENCE PROMISE in the copy. The weekly article is a structure, not a
-         promise about content; a week with nothing to say still has its Monday
-         "who is here" line and nothing else.
-
-         VOICE RULES: William's first person, plain and concrete. No em dashes.
-         No lists of three. No balanced clever sentences.
-
-         BRIEF, ALWAYS ("nobody's gonna read all of that, make it ADHD proof"):
-         bullets only, newest first, each one "<time>D Mon</time> <b>bold lead</b>
-         one or two short sentences". The bold words alone tell the story.
-         brieftest.js fails the build on anything else: at most 10 bullets, none
-         over 28 words, list under 220, lead under 7 words, dates inside the
-         week, newest first, pill date equal to the newest bullet's date. -->
+    
     <p class="lede">What is actually happening here, a week at a time. New litters, who is
     available, and anything about the rabbits worth telling you. Each week's entry grows as
     things happen, and every line carries the day it went up.</p>
@@ -194,12 +130,6 @@ h1,h2,h3{text-wrap:balance}
 <main>
   <div class="wrap">
 
-    <!-- WEEKLY ARTICLES, newest week first, newest bullet first inside each.
-         Adding a line: put it at the TOP of the current week's list as
-           <li><time datetime="YYYY-MM-DD">D Mon</time> <b>Lead.</b> One or two short sentences.</li>
-         and move the pill's Updated date to the same day. brieftest.js checks
-         all of it. A new week's article starts on its Monday with the "Who is
-         here" line; the Monday chain writes that one. -->
         <article class="edition brief" data-week="2026-09-07">
       <time class="updated" datetime="2026-09-08">Updated 8 September 2026</time>
       <h2>Week of September 7</h2>
@@ -239,9 +169,6 @@ h1,h2,h3{text-wrap:balance}
       </p>
     </article>
 
-    <!-- The three August entries that stood here as prose (24, 26, 27 August)
-         became the lines of this week when the page went to one article per
-         week; every line keeps the day it originally went up. -->
     <article class="edition brief" data-week="2026-08-24">
       <time class="updated" datetime="2026-08-30">Updated 30 August 2026</time>
       <h2>Week of August 24</h2>
@@ -275,25 +202,18 @@ h1,h2,h3{text-wrap:balance}
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between">
     <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
+    <nav class="foot-nav" aria-label="Pages">
+      <a href="index.html">Rabbits</a>
+      <a href="litters.html">Litters</a>
+      <a href="terms.html">Terms and privacy</a>
+    </nav>
   </div>
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   NO ORPHANS, the same function index.html carries (orphantest.js checks the
-   three copies are identical): the last two words of every block, and of
-   every bold lead inside one, wrap together, so no word is ever stranded on a
-   line of its own, at any width, in any engine.
-   ══════════════════════════════════════════════════════════════ */
 (function(){
-  /* THE BOLD LEADS TOO (6 Sept 2026). William's phone showed "I'm William, and
-     I came to rabbits through" on one line and "chinchillas." alone at the
-     start of the next, and his rule is no hanging word anywhere, a bold line
-     included. So the same binding is applied inside every <b> and <strong>
-     in a block: its last two words wrap together, so a bold lead can never
-     end with one word stranded on a new line. */
   function tieLast(el, minWords){
     if((el.textContent.trim().split(/\s+/)||[]).length<minWords) return;
     var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), last=null, n;
@@ -304,11 +224,7 @@ h1,h2,h3{text-wrap:balance}
     }
     if(!last) return;
     var t=last.textContent;
-    /* NB: written as an escape on purpose. A literal non-breaking space here
-       is invisible in an editor and one careless find-and-replace turns this
-       guarantee off without changing anything anybody can see. */
     if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
-    /* the final run of whitespace that has a word on each side of it */
     var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
     if(!m) return;
     last.textContent=m[1]+'\u00A0'+m[3];
@@ -320,7 +236,6 @@ h1,h2,h3{text-wrap:balance}
     for(var i=0;i<els.length;i++){
       var el=els[i];
       if(el.querySelector(sel)) continue;                 /* leaves only */
-      /* fewer than three words and there is nothing to strand */
       tieLast(el, 3);
       var bolds=el.querySelectorAll('b, strong');
       for(var j=0;j<bolds.length;j++) tieLast(bolds[j], 2);
