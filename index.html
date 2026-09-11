@@ -1526,19 +1526,36 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
    (web.dev: composited translate "can't impact other elements, and so
    don't count toward CLS").
    ══════════════════════════════════════════════════════════════════ */
-@keyframes settle{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* IT HAS TO BE SEEN, AND THE FIRST CUT WAS NOT (11 Sept 2026, William from
+   his phone: "I'm not noticing a single animation ... and I'm actually trying
+   to look for it"). Measured in WebKit at the pace of someone looking, 150-
+   300px/s: 0 of 7 objects were ever seen settling -- every one FINISHED
+   before it appeared. Two reasons, both in these lines. The trigger fired a
+   tenth of a screen before the object was visible, so at a slow scroll the
+   whole move was spent off screen. And the site's snap curve, .22,1,.36,1,
+   puts 93% of its motion in the first 100ms: right for a press, where it is
+   felt, and a flash for an entrance, where it is meant to be watched.
+   So: the trigger is now the screen edge itself (see the observer), the
+   duration is 400ms -- the top of NN/g's band, every millisecond under it
+   being less to see -- the rise is 24px, which on a phone reads as landing
+   rather than flickering, and the curve is a gentler ease-out of the same
+   family, .33,1,.68,1, that spreads the motion across the whole 400 so
+   there is something to look at. Still decelerating, which is the right
+   shape for something arriving. The one curve everywhere else stays; this
+   is the one motion on the site built to be seen rather than felt, and it
+   says so here. */
+@keyframes settle{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 /* a standalone object: a photograph */
 .rv:not(.row):not(.in){opacity:0}
-.rv:not(.row).in{animation:settle .3s cubic-bezier(.22,1,.36,1) backwards}
+.rv:not(.row).in{animation:settle .4s cubic-bezier(.33,1,.68,1) backwards}
 /* a row of objects: the row is the trigger and never hides itself; each
    object lands on its own beat, so a grid clicks into place piece by piece
-   instead of arriving as one slab. 40ms apart: the fourth lands at 420ms,
-   still inside the band once its own 300 is counted from its own start. */
+   instead of arriving as one slab */
 .rv.row:not(.in)>*{opacity:0}
-.rv.row.in>*{animation:settle .3s cubic-bezier(.22,1,.36,1) backwards}
-.rv.row.in>:nth-child(2){animation-delay:.04s}
-.rv.row.in>:nth-child(3){animation-delay:.08s}
-.rv.row.in>:nth-child(n+4){animation-delay:.12s}
+.rv.row.in>*{animation:settle .4s cubic-bezier(.33,1,.68,1) backwards}
+.rv.row.in>:nth-child(2){animation-delay:.06s}
+.rv.row.in>:nth-child(3){animation-delay:.12s}
+.rv.row.in>:nth-child(n+4){animation-delay:.18s}
 /* ══════════════════════════════════════════════════════════════════
    TAP FEEDBACK, FOR EVERYTHING THAT IS A CONTROL (10 September 2026)
 
@@ -6388,16 +6405,17 @@ body.locked{overflow:hidden}
   var rvs=document.querySelectorAll('.rv');
   var showAll=function(){ rvs.forEach(function(el){el.classList.add('in')}); };
   if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    /* AT THE BOTTOM EDGE, with a tenth of a screen of lead: the object starts
-       to land just before it appears, so its first visible frame is already
-       in motion, and the 300ms is over while it is still in the bottom of the
-       screen -- the part NN/g's eyetracking says is not being read yet. The
-       75% lead of the day before is gone with the reason for it: nothing
-       that is READ carries this class any more, so there is nothing to hide
-       ahead of time. */
+    /* AT THE SCREEN EDGE, EXACTLY. No lead: the first cut started the move a
+       tenth of a screen early, and at the pace of someone looking for it the
+       whole 300ms was spent off screen -- 0 of 7 objects ever seen. The
+       object now begins to land the frame its top edge appears, so the
+       landing is on screen at every speed, and at a reading pace it is still
+       over by the time the object reaches the top half, which is where NN/g's
+       eyetracking puts the reading. Nothing that is READ carries this class,
+       so there is nothing to hide ahead of time. */
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} });
-    },{threshold:0,rootMargin:'0px 0px 10% 0px'});
+    },{threshold:0,rootMargin:'0px'});
     rvs.forEach(function(el){io.observe(el)});
     /* THE BACKSTOP IS THE SCROLL ITSELF, not a timer. A two-second timer
        revealed everything at once, which was fine while the reveal was
@@ -6409,7 +6427,7 @@ body.locked{overflow:hidden}
        one frame, and it never acts early because it only looks at what is
        already there. */
     var backstop=function(){
-      var lim=(window.innerHeight||0)*1.1;
+      var lim=(window.innerHeight||0);
       rvs.forEach(function(el){
         if(!el.classList.contains('in') && el.getBoundingClientRect().top<lim) el.classList.add('in');
       });
