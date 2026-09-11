@@ -178,6 +178,8 @@ body.lbox-open{overflow:hidden}
 .litter .alert-count{font-size:14.5px;color:var(--ink-soft);margin:10px 0 0}
 .litter .alert-count b{color:var(--ink)}
 .litter .alert-ok{font-size:15px;font-weight:600;color:var(--open);margin:10px 0 0}
+
+.litter .alert-privacy{font-size:12.5px;color:var(--ink-faint);margin:10px 0 0;line-height:1.5}
 .alert-count[hidden],.alert-ok[hidden]{display:none}
 .tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -381,7 +383,7 @@ h1,h2,h3{text-wrap:balance}
           hears first.<span data-fact="opens:2026-08-27"> For this litter that is from <time datetime="2026-09-24">24 September</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-08-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-08-27" data-label="the August litter"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-08-27"><input type="hidden" name="_subject" value="Waitlist signup: the August litter (L2026-08-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p></form></div>
+          <div data-fact="alert:2026-08-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-08-27" data-label="the August litter"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-08-27"><input type="hidden" name="_subject" value="Waitlist signup: the August litter (L2026-08-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="terms.html#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -558,7 +560,7 @@ function focusIn(root){ var l=(root||document).getElementsByTagName('img');
   for(var i=0;i<l.length;i++) setFocus(l[i]); }
 document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 </script>
-<script src="rabbits.js?v=d3602115"></script>
+<script src="rabbits.js?v=9b114434"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;

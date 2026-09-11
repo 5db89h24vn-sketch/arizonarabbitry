@@ -718,6 +718,8 @@ select{-webkit-appearance:none;appearance:none;padding-right:40px;
 .fnav .btn{flex:1}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .privacy{font-size:12.5px;color:var(--ink-faint);margin-top:14px;line-height:1.55}
+.privacy a{color:var(--brick-dk)}
+.privacy a:hover{color:var(--brick)}
 .done{display:none;padding:16px 0}
 .done.show{display:block}
 .done h3{margin-bottom:10px}
@@ -1260,6 +1262,8 @@ body.locked{overflow:hidden}
         <a href="#faq-home"><span><b>Home when weaned</b><small>Not at a set age</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
+        
+        <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="hero-media">
@@ -1303,7 +1307,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" aria-label="The news and the litters">
-      <a href="updates.html"><span><b>Rabbitry news</b><small data-fact="news-row">Updated <time datetime="2026-09-08">8 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-09-08">8 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 August. Three litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -1312,7 +1316,7 @@ body.locked{overflow:hidden}
         <h3>Want to see the next litter first?</h3>
         <p>When a litter is born I send one email with photos of them, a few days before
         they go up on the site. That is the only thing I use your address for, and you can
-        tell me to stop whenever you want.</p>
+        tell me to stop whenever you want. <a class="litterlink" href="terms.html#privacy">How I keep your details</a>.</p>
         
         <p data-fact="opens" class="wl-opens">The August litter opens for reservation from <time datetime="2026-09-24">24 September</time><span class="away"></span>.</p>
       </div>
@@ -1886,7 +1890,7 @@ body.locked{overflow:hidden}
               <button type="button" class="btn btn-ghost" data-back>Back</button>
               <button type="submit" class="btn btn-primary">Send</button>
             </div>
-            <p class="privacy">This comes to me and nowhere else. No mailing list you didn't ask for.</p>
+            <p class="privacy">This comes to me and nowhere else. No mailing list you didn't ask for. <a href="terms.html#privacy">How I keep your details</a>.</p>
           </div>
         </form>
 
@@ -2021,7 +2025,7 @@ body.locked{overflow:hidden}
 <script id="photoShape" type="application/json">{"photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1448/1086","photos/father-video.jpg":"960/720","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-06.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-08.jpg":"1050/1400","photos/litter-2026-08-27.jpg":"1400/1050","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750"}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-08-27","count":"Six born","kits":[],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=d3602115"></script>
+<script src="rabbits.js?v=9b114434"></script>
 
 <script>
 (function(){
@@ -2037,7 +2041,10 @@ body.locked{overflow:hidden}
 
   (function(){
     var el=document.getElementById('availStamp'); if(!el) return;
-    var s=el.getAttribute('datetime'), n=daysFromToday(s);
+    var s=el.getAttribute('datetime');
+    var c=(typeof CHECKED==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(CHECKED))?CHECKED:'';
+    if(c && c>s && daysFromToday(c)!==null && daysFromToday(c)<=0){ s=c; el.setAttribute('datetime',c); }
+    var n=daysFromToday(s);
     if(n===null) return;
     if(n>0){ el.hidden=true; return; }
     var d=-n;
@@ -3595,6 +3602,12 @@ body.locked{overflow:hidden}
   function syncAsk(){
     askField.value=picked.join(', ');
     askName.textContent=picked.length?joinNames(picked):'no one in particular yet';
+    var textRow=document.querySelector('.reach a[href^="sms:"]');
+    if(textRow){
+      textRow.setAttribute('href', picked.length
+        ? 'sms:+15202702827?&body='+encodeURIComponent("Hi William, I'm asking about "+joinNames(picked)+'.')
+        : 'sms:+15202702827');
+    }
     askPair.classList.toggle('on',picked.length>1);
     setInterest(picked.length>1?'A pair':picked.length===1?'One rabbit':'Not sure yet');
     askPick.querySelectorAll('button').forEach(function(b){

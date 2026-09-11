@@ -122,9 +122,17 @@
         When you have a real photo, put the file next to index.html and
         write  photo:  "photos/clover.jpg"
 
-   ── REPLACING A "COMING SOON" SLOT ──
-      Every rabbit currently lists five placeholder frames after its real
-      photo, so the card opens a photo view with the shots still to come.
+   ── THE "COMING SOON" LINES ARE YOUR SHOT LIST, NOT PICTURES ──
+      Each rabbit's photos list ends with five coming-soon lines, one per
+      photo still to take, with the shot described in its note. NOBODY SEES
+      THEM: the page filters every coming-soon frame out of the card, the
+      badge, the photo view and the share page, so a rabbit with one real
+      photo shows one photo and no badge. (Early on the badge counted them,
+      said 6, and a tap found five apologies; that was fixed, and this note
+      went on saying the opposite, which is how an outside review on 11 Sept
+      2026 came to report placeholders that no visitor can reach.)
+      The weekly calendar reads these lines to ask you for the photos.
+
       When you take one, do two things:
 
         1. Put the file next to index.html in the photos folder, named
@@ -137,16 +145,8 @@
              { src: "photos/teddy-hands.jpg", date: "2026-09-02",
                note: "In my hands, so you can see how big she really is." }
 
-      Dated photos sort oldest first and the undated placeholders drop to
-      the end by themselves, so the set always reads as the rabbit growing
-      up with the gaps trailing behind. When the last placeholder is gone,
-      delete nothing else. It just works.
-
-      A NOTE ON THE COUNTER: the little badge on each card counts frames,
-      so today it says 6 when only one is a real photograph. Anyone who
-      taps it finds five Coming soon cards. That is a promise the page is
-      making on your behalf, so the sooner those slots are filled the
-      better. Five photos of four rabbits is about twenty minutes.
+      Dated photos sort oldest first. When the last placeholder line is
+      gone, delete nothing else. It just works.
 
    ── ADDING MORE THAN ONE PHOTO ──
       Add a photos: [ ] list and the card becomes tappable: it opens a
@@ -373,7 +373,11 @@ const HOMES = [
    available?", and a "yes" is itself a fact about the listing with no record
    to carry it, so it goes here, as the day it was said (YYYY-MM-DD). The stamp
    is then the later of this and the record. Never in the future, never typed
-   without William's yes, and blank means the record alone speaks. */
+   without William's yes, and blank means the record alone speaks.
+   FROM YOUR PHONE: this is the one line to edit after you have looked at the
+   pens and nothing has changed. Set it to today's date, commit, and the
+   stamp on the live site moves within a minute -- the page reads it, no
+   build needed. (Since 11 Sept 2026; the weekly calendar asks after 7 days.) */
 const CHECKED = "";
 
 const RABBITS = [
