@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Litters | Arizona Rabbits</title>
-<meta name="description" content="The photo I take the day a litter is born, with the date on the picture itself.">
+<meta name="description" content="The photo I take the day a litter is born, kept from then on with the date I took it.">
 <meta name="theme-color" content="#241F1D">
 <link rel="canonical" href="https://arizonarabbits.com/litters">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Every litter, with the photo taken the day they were born">
-<meta property="og:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson. The date is burned into each photograph so you can check it yourself.">
+<meta property="og:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson: the photo from the day each one was born, and the ones after as they grow, each with the date it was taken.">
 <meta property="og:url" content="https://arizonarabbits.com/litters">
 <meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=6">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Every litter, with the photo taken the day they were born">
-<meta name="twitter:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson. The date is burned into each photograph so you can check it yourself.">
+<meta name="twitter:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson: the photo from the day each one was born, and the ones after as they grow, each with the date it was taken.">
 <meta name="twitter:image" content="https://arizonarabbits.com/img/og.jpg?v=6">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,18 +125,41 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   font-size:11.5px;font-weight:600;letter-spacing:.02em;pointer-events:none;
   box-shadow:var(--lift-photo)}
 .shots svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
-.lbox{position:fixed;inset:0;z-index:50;background:rgba(24,20,18,.94);display:flex;
-  flex-direction:column;align-items:center;justify-content:center;padding:56px 14px 22px}
-.lbox[hidden]{display:none}
-.lbox img{max-width:100%;max-height:calc(100vh - 190px);border-radius:8px;background:#000;
-  object-fit:contain}
 
-.lbox-stamp{margin-top:12px;display:inline-flex;gap:6px;align-items:baseline;padding:6px 14px;
-  border-radius:100px;background:rgba(255,255,255,.12);color:#fff;font-size:13.5px;font-weight:600;
-  white-space:nowrap}
-.lbox-stamp small{font-weight:500;opacity:.75;font-size:12.5px}
+.lbox{position:fixed;inset:0;z-index:50;background:rgba(24,20,18,.94);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;padding:56px 8px 22px}
+.lbox[hidden]{display:none}
+.lbox-stage{position:relative;width:100%;aspect-ratio:var(--stage-ar,4/3);
+  max-width:calc((100vh - 190px) * var(--stage-ar,4/3));
+  border-radius:8px;overflow:hidden;background:#000;box-shadow:var(--lift-photo);flex:none}
+.lbox-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0}
+.lbox-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#1A1613}
+.lbox-stage.video .vborn{bottom:60px}
+
+@media(min-width:920px){
+  .lbox-stage{width:min(100%,56vw,605px)}
+}
+
+.vborn{position:absolute;left:12px;bottom:12px;z-index:2;
+  display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 24px);
+  padding:6px 12px;border-radius:100px;
+  background:rgba(24,20,18,.62);color:#fff;
+  font-size:12.5px;font-weight:600;letter-spacing:.03em;line-height:1.25;
+  -webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
+@media(prefers-reduced-transparency:reduce){
+  .vborn{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+.vcam{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.vborn.nocam .vcam{display:none}
+.vborn .vfilm{display:none}
+.vborn.film .vcam{display:none}
+.vborn.film .vfilm{display:block;width:14px;height:14px;flex:none;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .lbox-cap{color:#fff;opacity:.85;font-size:15px;line-height:1.45;text-align:center;
-  max-width:560px;margin:10px 0 0;min-height:1.45em}
+  max-width:560px;margin:12px 0 0;min-height:1.45em}
 .lbox button{position:absolute;border:0;border-radius:100px;background:rgba(255,255,255,.22);box-shadow:0 1px 6px rgba(0,0,0,.35);
   color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;width:44px;height:44px;
   display:flex;align-items:center;justify-content:center;line-height:1}
@@ -234,7 +257,6 @@ body.lbox-open{overflow:hidden}
 .litter-set figure .clip{position:relative;display:block}
 .litter-set figure .pv{width:44px;height:44px;left:50%;top:50%;transform:translate(-50%,-50%)}
 .litter-set figure .pv::before{border-width:8px 0 8px 13px;margin-left:3px}
-.lbox video{max-width:100%;max-height:calc(100vh - 190px);border-radius:8px;background:#000;display:block}
 .lbox img[hidden],.lbox video[hidden]{display:none}
 .litter p{color:var(--ink-soft)}
 .litter p + p{margin-top:10px}
@@ -348,7 +370,7 @@ h1,h2,h3{text-wrap:balance}
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
         <div class="litter-media" data-note="Six of them, in a nest of shavings and the fur their mother pulled to line it.">
-          <img src="photos/litter-2026-08-27.jpg?v=a335df58" srcset="photos/litter-2026-08-27.160.a335df58.jpg 160w, photos/litter-2026-08-27.320.a335df58.jpg 320w, photos/litter-2026-08-27.640.a335df58.jpg 640w, photos/litter-2026-08-27.960.a335df58.jpg 960w, photos/litter-2026-08-27.jpg?v=a335df58 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
+          <img src="photos/litter-2026-08-27.jpg?v=bcb889d9" srcset="photos/litter-2026-08-27.160.bcb889d9.jpg 160w, photos/litter-2026-08-27.320.bcb889d9.jpg 320w, photos/litter-2026-08-27.640.bcb889d9.jpg 640w, photos/litter-2026-08-27.960.bcb889d9.jpg 960w, photos/litter-2026-08-27.jpg?v=bcb889d9 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
                alt="Six newborn kits curled together in a wooden nest box lined with wood shavings and pulled fur">
         </div>
         <div class="litter-body">
@@ -379,21 +401,21 @@ h1,h2,h3{text-wrap:balance}
             <h3>As they grow</h3>
             <div class="frames">
               <figure>
-                <img src="photos/litter-2026-08-27-2026-09-02.jpg?v=41251654" srcset="photos/litter-2026-08-27-2026-09-02.160.41251654.jpg 160w, photos/litter-2026-08-27-2026-09-02.320.41251654.jpg 320w, photos/litter-2026-08-27-2026-09-02.640.41251654.jpg 640w, photos/litter-2026-08-27-2026-09-02.960.41251654.jpg 960w, photos/litter-2026-08-27-2026-09-02.jpg?v=41251654 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
+                <img src="photos/litter-2026-08-27-2026-09-02.jpg?v=84f3e84e" srcset="photos/litter-2026-08-27-2026-09-02.160.84f3e84e.jpg 160w, photos/litter-2026-08-27-2026-09-02.320.84f3e84e.jpg 320w, photos/litter-2026-08-27-2026-09-02.640.84f3e84e.jpg 640w, photos/litter-2026-08-27-2026-09-02.960.84f3e84e.jpg 960w, photos/litter-2026-08-27-2026-09-02.jpg?v=84f3e84e 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
                      alt="Six six-day-old kits on the floor beside the cage, one white and five fawn">
                 <figcaption><time datetime="2026-09-02">2 Sep 2026</time></figcaption>
                 <p>Six days old. One white and five fawn.</p>
               </figure>
               
               <figure>
-                <img src="photos/litter-2026-08-27-2026-09-06.jpg?v=4439e3b5" srcset="photos/litter-2026-08-27-2026-09-06.160.4439e3b5.jpg 160w, photos/litter-2026-08-27-2026-09-06.320.4439e3b5.jpg 320w, photos/litter-2026-08-27-2026-09-06.640.4439e3b5.jpg 640w, photos/litter-2026-08-27-2026-09-06.960.4439e3b5.jpg 960w, photos/litter-2026-08-27-2026-09-06.jpg?v=4439e3b5 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
+                <img src="photos/litter-2026-08-27-2026-09-06.jpg?v=a2394528" srcset="photos/litter-2026-08-27-2026-09-06.160.a2394528.jpg 160w, photos/litter-2026-08-27-2026-09-06.320.a2394528.jpg 320w, photos/litter-2026-08-27-2026-09-06.640.a2394528.jpg 640w, photos/litter-2026-08-27-2026-09-06.960.a2394528.jpg 960w, photos/litter-2026-08-27-2026-09-06.jpg?v=a2394528 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
                      alt="Six ten-day-old kits in the nest box, one white and five fawn, one held in a hand">
                 <figcaption><time datetime="2026-09-06">6 Sep 2026</time></figcaption>
                 <p>Ten days old. All six in the nest box, one in hand.</p>
               </figure>
               
               <figure>
-                <img src="photos/litter-2026-08-27-2026-09-08.jpg?v=5391d20d" srcset="photos/litter-2026-08-27-2026-09-08.160.5391d20d.jpg 160w, photos/litter-2026-08-27-2026-09-08.320.5391d20d.jpg 320w, photos/litter-2026-08-27-2026-09-08.640.5391d20d.jpg 640w, photos/litter-2026-08-27-2026-09-08.960.5391d20d.jpg 960w, photos/litter-2026-08-27-2026-09-08.jpg?v=5391d20d 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
+                <img src="photos/litter-2026-08-27-2026-09-08.jpg?v=4c19393d" srcset="photos/litter-2026-08-27-2026-09-08.160.4c19393d.jpg 160w, photos/litter-2026-08-27-2026-09-08.320.4c19393d.jpg 320w, photos/litter-2026-08-27-2026-09-08.640.4c19393d.jpg 640w, photos/litter-2026-08-27-2026-09-08.960.4c19393d.jpg 960w, photos/litter-2026-08-27-2026-09-08.jpg?v=4c19393d 1050w" sizes="(min-width:700px) 275px, 36vw" width="1050" height="1400" loading="lazy"
                      alt="A twelve-day-old fawn kit lying on a grey towel in the cage, its eye open">
                 <figcaption><time datetime="2026-09-08">8 Sep 2026</time></figcaption>
                 <p>Twelve days old. Their eyes are starting to open.</p>
@@ -425,7 +447,7 @@ h1,h2,h3{text-wrap:balance}
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
         <div class="litter-media" data-note="The day they arrived, before their eyes were open.">
-          <img src="photos/litter-2026-07-28.jpg?v=5d9e67b0" srcset="photos/litter-2026-07-28.160.5d9e67b0.jpg 160w, photos/litter-2026-07-28.320.5d9e67b0.jpg 320w, photos/litter-2026-07-28.640.5d9e67b0.jpg 640w, photos/litter-2026-07-28.960.5d9e67b0.jpg 960w, photos/litter-2026-07-28.jpg?v=5d9e67b0 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
+          <img src="photos/litter-2026-07-28.jpg?v=36389c88" srcset="photos/litter-2026-07-28.160.36389c88.jpg 160w, photos/litter-2026-07-28.320.36389c88.jpg 320w, photos/litter-2026-07-28.640.36389c88.jpg 640w, photos/litter-2026-07-28.960.36389c88.jpg 960w, photos/litter-2026-07-28.jpg?v=36389c88 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
                alt="Newborn kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
         </div>
         <div class="litter-body">
@@ -480,7 +502,7 @@ h1,h2,h3{text-wrap:balance}
       <a class="allback" href="#all">&larr; All litters</a>
       <div class="litter-card">
         <div class="litter-media" data-note="One of the five on the day they were born, over the fur their mother pulled for a nest.">
-          <img src="photos/litter-2026-06-28.jpg?v=8eabab02" srcset="photos/litter-2026-06-28.160.8eabab02.jpg 160w, photos/litter-2026-06-28.320.8eabab02.jpg 320w, photos/litter-2026-06-28.640.8eabab02.jpg 640w, photos/litter-2026-06-28.960.8eabab02.jpg 960w, photos/litter-2026-06-28.jpg?v=8eabab02 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
+          <img src="photos/litter-2026-06-28.jpg?v=5816cb81" srcset="photos/litter-2026-06-28.160.5816cb81.jpg 160w, photos/litter-2026-06-28.320.5816cb81.jpg 320w, photos/litter-2026-06-28.640.5816cb81.jpg 640w, photos/litter-2026-06-28.960.5816cb81.jpg 960w, photos/litter-2026-06-28.jpg?v=5816cb81 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
                alt="A newborn kit in William's hand above a metal tray lined with pulled fur, inside a green cage">
         </div>
         <div class="litter-body">
@@ -513,16 +535,15 @@ h1,h2,h3{text-wrap:balance}
 
     <div class="browse" id="all">
 
-      <p class="lede">The photo I take the day a litter is born, kept here from then on. The
-      date is on the picture itself, so you can see for yourself that these are mine. Every
-      litter I have ever had is here, nothing left out, starting with my first ever on
-      28 June 2026. Anything newer than the last litter here is in the
+      <p class="lede">The photo I take the day a litter is born, kept here from then on with
+      the date I took it. Every litter I have ever had is here, nothing left out, starting
+      with my first ever on 28 June 2026. Anything newer than the last litter here is in the
       <a class="xlink" href="updates.html">news</a>.</p>
 
       <div class="grid">
 
         <a class="tile" href="#L2026-08-27">
-          <img src="photos/litter-2026-08-27.jpg?v=a335df58" srcset="photos/litter-2026-08-27.160.a335df58.jpg 160w, photos/litter-2026-08-27.320.a335df58.jpg 320w, photos/litter-2026-08-27.640.a335df58.jpg 640w, photos/litter-2026-08-27.960.a335df58.jpg 960w, photos/litter-2026-08-27.jpg?v=a335df58 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
+          <img src="photos/litter-2026-08-27.jpg?v=bcb889d9" srcset="photos/litter-2026-08-27.160.bcb889d9.jpg 160w, photos/litter-2026-08-27.320.bcb889d9.jpg 320w, photos/litter-2026-08-27.640.bcb889d9.jpg 640w, photos/litter-2026-08-27.960.bcb889d9.jpg 960w, photos/litter-2026-08-27.jpg?v=bcb889d9 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Six newborn kits in a nest of wood shavings and pulled fur">
           <div class="tile-body">
             <small data-fact="litter-no:2026-08-27" class="tile-no">Third litter</small>
@@ -533,7 +554,7 @@ h1,h2,h3{text-wrap:balance}
         </a>
 
         <a class="tile" href="#L2026-07-28">
-          <img src="photos/litter-2026-07-28.jpg?v=5d9e67b0" srcset="photos/litter-2026-07-28.160.5d9e67b0.jpg 160w, photos/litter-2026-07-28.320.5d9e67b0.jpg 320w, photos/litter-2026-07-28.640.5d9e67b0.jpg 640w, photos/litter-2026-07-28.960.5d9e67b0.jpg 960w, photos/litter-2026-07-28.jpg?v=5d9e67b0 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
+          <img src="photos/litter-2026-07-28.jpg?v=36389c88" srcset="photos/litter-2026-07-28.160.36389c88.jpg 160w, photos/litter-2026-07-28.320.36389c88.jpg 320w, photos/litter-2026-07-28.640.36389c88.jpg 640w, photos/litter-2026-07-28.960.36389c88.jpg 960w, photos/litter-2026-07-28.jpg?v=36389c88 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Newborn kits curled together in a hay and fur nest box">
           <div class="tile-body">
             <small data-fact="litter-no:2026-07-28" class="tile-no">Second litter</small>
@@ -544,7 +565,7 @@ h1,h2,h3{text-wrap:balance}
         </a>
 
         <a class="tile" href="#L2026-06-28">
-          <img src="photos/litter-2026-06-28.jpg?v=8eabab02" srcset="photos/litter-2026-06-28.160.8eabab02.jpg 160w, photos/litter-2026-06-28.320.8eabab02.jpg 320w, photos/litter-2026-06-28.640.8eabab02.jpg 640w, photos/litter-2026-06-28.960.8eabab02.jpg 960w, photos/litter-2026-06-28.jpg?v=8eabab02 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
+          <img src="photos/litter-2026-06-28.jpg?v=5816cb81" srcset="photos/litter-2026-06-28.160.5816cb81.jpg 160w, photos/litter-2026-06-28.320.5816cb81.jpg 320w, photos/litter-2026-06-28.640.5816cb81.jpg 640w, photos/litter-2026-06-28.960.5816cb81.jpg 960w, photos/litter-2026-06-28.jpg?v=5816cb81 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="A newborn kit in a hand above a tray lined with pulled fur">
           <div class="tile-body">
             <small data-fact="litter-no:2026-06-28" class="tile-no">First litter</small>
@@ -576,8 +597,8 @@ h1,h2,h3{text-wrap:balance}
   </div>
 </footer>
 
-<script id="photoFocus" type="application/json">{"photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.4%","photos/litter-2026-08-27-2026-09-08.jpg":"50% 36.4%","photos/litter-2026-08-27-2026-09-11-video.jpg":"0% 50%"}</script>
-<script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.8eabab02.jpg"],[320,"photos/litter-2026-06-28.320.8eabab02.jpg"],[640,"photos/litter-2026-06-28.640.8eabab02.jpg"],[960,"photos/litter-2026-06-28.960.8eabab02.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.5d9e67b0.jpg"],[320,"photos/litter-2026-07-28.320.5d9e67b0.jpg"],[640,"photos/litter-2026-07-28.640.5d9e67b0.jpg"],[960,"photos/litter-2026-07-28.960.5d9e67b0.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.41251654.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.41251654.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.41251654.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.41251654.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.4439e3b5.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.4439e3b5.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.4439e3b5.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.4439e3b5.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.5391d20d.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.5391d20d.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.5391d20d.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.5391d20d.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg"]],"w":1289},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.a335df58.jpg"],[320,"photos/litter-2026-08-27.320.a335df58.jpg"],[640,"photos/litter-2026-08-27.640.a335df58.jpg"],[960,"photos/litter-2026-08-27.960.a335df58.jpg"]],"w":1400},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000}}</script>
+<script id="photoFocus" type="application/json">{"photos/litter-2026-08-27-2026-09-06.jpg":"50% 37.6%","photos/litter-2026-08-27-2026-09-08.jpg":"50% 36.5%","photos/litter-2026-08-27-2026-09-11-video.jpg":"0% 50%"}</script>
+<script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.84f3e84e.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.84f3e84e.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.84f3e84e.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.84f3e84e.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.a2394528.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.a2394528.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.a2394528.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.a2394528.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.4c19393d.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.4c19393d.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.4c19393d.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.4c19393d.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg"]],"w":1289},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000}}</script>
 <script>
 var PHOTO_FOCUS=(function(){
   try{ var el=document.getElementById('photoFocus');
@@ -597,7 +618,9 @@ var PHOTO_SIZES=(function(){
   try{ var el=document.getElementById('photoSizes');
        return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
 })();
+var STAGE_SIZES='(min-width:1128px) 605px, (min-width:920px) 56vw, 100vw';   /* the listing's stage, index.html */
 function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,''), e=PHOTO_SIZES[s];
+  im.removeAttribute('srcset'); im.removeAttribute('sizes');   /* a reused element never keeps the last picture's list */
   if(!e||!e.v||!e.v.length) return;
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
@@ -816,41 +839,65 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     box.innerHTML=
       '<span class="counter" id="lbCount"></span>'+
       '<button type="button" class="close" aria-label="Close">\u2715</button>'+
-      '<img id="lbImg" alt="">'+
-      '<video id="lbVideo" playsinline preload="metadata" controls hidden></video>'+
-      '<div class="lbox-stamp"><small id="lbWhat"></small><span id="lbText"></span></div>'+
+      '<div class="lbox-stage" id="lbStage">'+
+        '<img id="lbImg" alt="">'+
+        '<video id="lbVideo" playsinline preload="metadata" controls hidden></video>'+
+        '<span class="vborn" id="lbBorn">'+
+          '<svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">'+
+            '<rect x="3" y="7" width="18" height="13" rx="2.6"/>'+
+            '<path d="M8.6 7l1.3-2.3h4.2L15.4 7"/>'+
+            '<circle cx="12" cy="13.6" r="3.2"/>'+
+          '</svg><svg class="vfilm" viewBox="0 0 24 24" aria-hidden="true">'+
+            '<rect x="3" y="5" width="18" height="14" rx="2.6"/>'+
+            '<path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor" stroke="none"/>'+
+          '</svg><span class="sr-only" id="lbWhat"></span><span id="lbText"></span>'+
+        '</span>'+
+      '</div>'+
       '<p class="lbox-cap" id="lbCap"></p>'+
       '<button type="button" class="prev" aria-label="Previous photo">\u2039</button>'+
       '<button type="button" class="next" aria-label="Next photo">\u203A</button>';
     document.body.appendChild(box);
-    var lbImg=box.querySelector('#lbImg'), lbVideo=box.querySelector('#lbVideo'), lbWhat=box.querySelector('#lbWhat'),
+    var lbStage=box.querySelector('#lbStage'), lbBorn=box.querySelector('#lbBorn'),
+        lbImg=box.querySelector('#lbImg'), lbVideo=box.querySelector('#lbVideo'), lbWhat=box.querySelector('#lbWhat'),
         lbText=box.querySelector('#lbText'), lbCap=box.querySelector('#lbCap'),
         lbCount=box.querySelector('#lbCount'),
         bClose=box.querySelector('.close'), bPrev=box.querySelector('.prev'), bNext=box.querySelector('.next');
     var shots=[], born='', at=0, lastFocus=null, label='';
 
+    function setFrame(s){
+      if(s.w&&s.h) lbStage.style.setProperty('--stage-ar', s.w+'/'+s.h);
+      else if(lbImg.naturalWidth) lbStage.style.setProperty('--stage-ar', lbImg.naturalWidth+'/'+lbImg.naturalHeight);
+    }
+    lbImg.addEventListener('load',function(){
+      var s=shots[at]; if(s&&!(s.w&&s.h)&&lbImg.naturalWidth) lbStage.style.setProperty('--stage-ar', lbImg.naturalWidth+'/'+lbImg.naturalHeight);
+    });
     function stopVideo(){
       if(!lbVideo) return;
       try{ lbVideo.pause(); }catch(e){}
       if(lbVideo.getAttribute('src')){ lbVideo.removeAttribute('src'); lbVideo.removeAttribute('poster'); lbVideo.load(); }
-      lbVideo.hidden=true; lbImg.hidden=false;
+      lbVideo.hidden=true; lbImg.hidden=false; lbStage.classList.remove('video');
     }
     function paint(i){
       if(i<0||i>=shots.length) return;
       at=i; var s=shots[at];
+      setFrame(s);
       if(s.video&&lbVideo){
         lbImg.removeAttribute('src'); lbImg.alt=''; lbImg.hidden=true;
         lbVideo.setAttribute('poster', s.src);
         lbVideo.setAttribute('src', s.video);
         lbVideo.setAttribute('aria-label', label+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+nice(s.date)):''));
-        lbVideo.hidden=false; lbVideo.load();
+        lbVideo.hidden=false; lbVideo.load(); lbStage.classList.add('video');
       } else {
         stopVideo();
+        setSizes(lbImg, s.src, STAGE_SIZES);
         lbImg.src=s.src; lbImg.alt=label+', photo '+(at+1)+' of '+shots.length;
       }
       var age=ageAt(born,s.date);
       lbText.textContent=s.date?(nice(s.date)+(age?(' \u00B7 '+age):'')):(born?('Born '+nice(born)):'');
       lbWhat.textContent=s.date?(s.video?'Filmed ':'Photo taken '):'';
+      lbBorn.classList.toggle('nocam',!s.date);
+      lbBorn.classList.toggle('film',!!(s.date&&s.video));
+      lbBorn.style.display=lbText.textContent?'':'none';
       lbCap.textContent=s.note||'';
       lbCount.textContent=(at+1)+' of '+shots.length;
       bPrev.disabled=(at===0); bNext.disabled=(at===shots.length-1);
@@ -884,13 +931,14 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         var t=art.querySelector('time'); var dob=t?(t.getAttribute('datetime')||''):'';
         var h=art.querySelector('h2'); var name=(h?h.textContent:'')||'Litter';
         var set=[];
-        if(mimg) set.push({src:mimg.getAttribute('src'), date:dob, note:media.getAttribute('data-note')||''});
+        var shaped=function(o,el){ var w=el?+el.getAttribute('width'):0, h=el?+el.getAttribute('height'):0; if(w>0&&h>0){ o.w=w; o.h=h; } return o; };
+        if(mimg) set.push(shaped({src:mimg.getAttribute('src'), date:dob, note:media.getAttribute('data-note')||''}, mimg));
         for(var k=0;k<figs.length;k++){
           var fg=figs[k], im=fg.querySelector('img'), tm=fg.querySelector('time'), nt=fg.querySelector('p');
           var when=tm?(tm.getAttribute('datetime')||''):'';
           var clip=fg.getAttribute('data-video')||'';
-          set.push({src:im?im.getAttribute('src'):'', date:when, video:clip,
-                    note:nt?(nt.textContent||'').replace(/\s+/g,' ').trim():''});
+          set.push(shaped({src:im?im.getAttribute('src'):'', date:when, video:clip,
+                    note:nt?(nt.textContent||'').replace(/\s+/g,' ').trim():''}, im));
           if(tm&&when){ var age=ageAt(dob,when); if(age){
             var sp=document.createElement('span'); sp.className='age'; sp.textContent='\u00B7 '+age;
             tm.parentNode.appendChild(document.createTextNode(' ')); tm.parentNode.appendChild(sp); } }
