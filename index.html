@@ -35,6 +35,8 @@
   --ink-faint:#736A64;   --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   
+  --faint-on-ink:rgba(239,232,222,.55);
+  
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9;
   --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6;
@@ -144,6 +146,8 @@ header.nav.stuck{border-bottom-color:var(--line)}
 }
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:66px}
 .brand{text-decoration:none;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.1}
+
+header .brand{display:inline-block;padding:2px 0;margin:-2px 0}
 .brand small,.brandsub{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
 .brandbox{display:flex;flex-direction:column;justify-content:center}
@@ -154,7 +158,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .brandtel{display:inline;color:var(--brick-dk);font-weight:700;font-size:12px;
     letter-spacing:.02em;text-decoration:none;
     
-    padding:7px 2px;margin:-7px 0}
+    padding:1px 4px 9px;margin:-1px 0 -9px}
   .brandtel::before{content:'·';margin:0 6px;color:var(--ink-faint);font-weight:500}
 }
 .nav-links{display:flex;gap:24px;align-items:center}
@@ -330,6 +334,9 @@ header.nav.stuck{border-bottom-color:var(--line)}
   scrollbar-width:none;-ms-overflow-style:none}
 .bunnies::-webkit-scrollbar{display:none}
 .bunny{flex:0 0 300px;scroll-snap-align:start}
+
+@media(min-width:761px){.bunnies.few .bunny{flex:1 1 300px;max-width:calc((100% - 18px) / 2)}}
+
 .rail-btn{position:absolute;top:38%;width:40px;height:40px;border-radius:50%;
   background:#fff;border:1px solid var(--line);display:grid;place-items:center;
   cursor:pointer;z-index:5;box-shadow:0 3px 12px rgba(36,31,29,.10);
@@ -528,7 +535,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
 .grow-bar i.now{background:var(--moss-dk)}
 @media(prefers-reduced-motion:no-preference){
   
-  .grow-bar i.now{animation:growPulse 2.6s ease-in-out infinite}
+  .grow-bar i.now{animation:growPulse 2.4s ease-in-out 2}
   @keyframes growPulse{0%,100%{opacity:1}50%{opacity:.45}}
 
   .viewer-grow .grow-bar i.on{animation:growCount .3s ease-out both}
@@ -544,7 +551,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
                         to{opacity:1;transform:scaleY(1)}}
   
   .viewer-grow .grow-bar i.now{
-    animation:growCount .3s ease-out both, growPulse 2.6s ease-in-out .75s infinite}
+    animation:growCount .3s ease-out both, growPulse 2.4s ease-in-out .75s 2}
 }
 .grow-txt{font-size:12.5px;color:var(--ink-faint);line-height:1.3;
   font-variant-numeric:tabular-nums;
@@ -648,7 +655,7 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 @media(max-width:940px){.form-grid{grid-template-columns:1fr;gap:30px}}
 .form-sec h2{color:#fff}
 .form-sec .lede{color:rgba(239,232,222,.74)}
-.form-sec .kicker{color:rgba(239,232,222,.5)}
+.form-sec .kicker{color:var(--faint-on-ink)}
 .reach{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid rgba(255,255,255,.12)}
 .reach li{border-bottom:1px solid rgba(255,255,255,.12)}
 .reach a{display:block;text-decoration:none;padding:15px 0;
@@ -658,7 +665,7 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .reach a:active{padding-left:16px;padding-right:8px;margin:0 -8px;
   background:rgba(255,255,255,.07);border-radius:6px}
 .reach b{display:block;font-size:15.5px;color:#fff;font-weight:500}
-.reach small{color:rgba(239,232,222,.55);font-size:13px}
+.reach small{color:var(--faint-on-ink);font-size:13px}
 .formcard{background:var(--paper);border-radius:var(--r);padding:30px;color:var(--ink)}
 @media(max-width:560px){.formcard{padding:24px 20px}}
 
@@ -693,8 +700,12 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .fstep h3{font-size:20px;margin-bottom:5px}
 .fstep>p.hint{font-size:14.5px;color:var(--ink-faint);margin-bottom:19px}
 .field{margin-bottom:16px}
-label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+label,.flabel{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
 label .req{color:var(--brick)}
+label .opt-note{color:var(--ink-faint);font-weight:400}
+label .opt-note[hidden],label .req[hidden]{display:none}
+
+.reply-pick{margin-top:2px}
 input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;padding:13px 15px;
   border:1px solid var(--line);border-radius:var(--r);font:inherit;font-size:16px;
   background:#fff;color:var(--ink);transition:border-color .15s,box-shadow .15s}
@@ -741,9 +752,9 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .foot a{color:rgba(239,232,222,.58);text-decoration:none}
 .foot a:hover{color:#fff}
 .foot .brand{color:#fff;display:block;margin-bottom:12px}
-.foot .brand small{color:rgba(239,232,222,.45)}
+.foot .brand small{color:var(--faint-on-ink)}
 .foot h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(239,232,222,.45);font-family:var(--sans);font-weight:600;margin-bottom:12px}
+  color:var(--faint-on-ink);font-family:var(--sans);font-weight:600;margin-bottom:12px}
 .foot-links{display:flex;flex-direction:column;gap:8px}
 
 @media(max-width:980px){
@@ -758,7 +769,7 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
   .nav-tel{display:inline-flex;align-items:center;min-height:44px}
 }
 .foot-legal{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;font-size:13px;
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:rgba(239,232,222,.42)}
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--faint-on-ink)}
 
 .mbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:8px;
   padding:5px max(10px,env(safe-area-inset-left))
@@ -1371,19 +1382,20 @@ body.locked{overflow:hidden}
     </div>
     <div class="rv about-media">
       
-      <img src="img/about.jpg?v=3a9c523e"
+      <img src="img/about.jpg?v=3a9c523e" srcset="img/about.160.3a9c523e.jpg 160w, img/about.320.3a9c523e.jpg 320w, img/about.640.3a9c523e.jpg 640w, img/about.960.3a9c523e.jpg 960w, img/about.jpg?v=3a9c523e 1000w" sizes="(min-width:921px) 520px, 100vw"
            alt="A white Netherland Dwarf with black around its eyes sitting calmly on William's lap, his hand under it" width="1000" height="1000" loading="lazy">
     </div>
     <div class="about-story">
       
-      <p class="lede"><b data-fact="breeds-now">The Holland Lop crosses are temporary.</b>
+      <p class="lede"><b data-fact="breeds-now">These litters are Holland Lop crosses.</b>
       <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
       A farmer sold me a <a class="litterlink" href="#p-father" title="The father: his photos and his litters">Satin
       Angora</a>, and a <a class="litterlink" href="#p-mother" title="The mother: her photos and her litters">Holland
-      Lop</a> followed. Their litters funded the purebred lines: Netherland Dwarfs are here,
+      Lop</a> followed. The purebred lines come next: Netherland Dwarfs are here,
       Holland Lops next, then another Angora, kept separate.</p>
-      <p class="lede"><b>Every dollar goes back into the rabbits.</b> Each line is bred
-      to get better, so some rabbits never go up for sale: they stay to carry it forward. Every
+      
+      <p class="lede"><b>Some rabbits never go up for sale.</b> Each line is bred
+      to get better, and the ones that carry it forward stay. Every
       litter is on <a class="litterlink" href="litters.html">the litters page</a> from its first
       day, <a class="litterlink" href="litters.html#L2026-06-28">back to the first one</a>, 28 June 2026.</p>
       <p class="lede"><b>Rabbits are prey animals, and hands have to be learned.</b> Kits handled
@@ -1473,7 +1485,8 @@ body.locked{overflow:hidden}
     <div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
-      <p class="lede">The first two weeks decide how the next ten years go, so nobody should be
+      
+      <p class="lede">The first two weeks at home are the risky stretch, so nobody should be
       guessing through them.</p>
       <ul class="incl">
         <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
@@ -1485,7 +1498,7 @@ body.locked{overflow:hidden}
     </div>
     <div class="rv">
       
-      <img src="img/included.jpg?v=a2a15768"
+      <img src="img/included.jpg?v=a2a15768" srcset="img/included.160.a2a15768.jpg 160w, img/included.320.a2a15768.jpg 320w, img/included.640.a2a15768.jpg 640w, img/included.jpg?v=a2a15768 800w" sizes="(min-width:921px) 520px, 100vw"
            alt="Three young rabbits inside a mesh travel carrier with a bowl of pellets and fresh hay" width="800" height="1200" loading="lazy">
     </div>
   </div>
@@ -1817,7 +1830,7 @@ body.locked{overflow:hidden}
     <div>
       <p class="kicker">Get in touch</p>
       <h2>Tell me a little about you</h2>
-      <p class="lede">Three quick questions, under a minute. I read every one myself and reply
+      <p class="lede">Three short steps, about a minute. I read every one myself and reply
       personally, almost always the same day. If a rabbit isn't right for your situation, I'll
       say so.</p>
       
@@ -1905,22 +1918,31 @@ body.locked{overflow:hidden}
             <h3>Where should I reply?</h3>
             <p class="hint">I'll get back to you myself, usually the same day.</p>
             <div class="field">
+              <span class="flabel" id="replyLabel">How should I reply?</span>
+              <div class="wl-pick reply-pick" role="radiogroup" aria-labelledby="replyLabel">
+                <label><input type="radio" name="reply" value="Text" checked><span>Text me</span></label>
+                <label><input type="radio" name="reply" value="Call"><span>Call me</span></label>
+                <label><input type="radio" name="reply" value="Email"><span>Email me</span></label>
+              </div>
+            </div>
+            <div class="field">
               <label for="name">Your name <span class="req">*</span></label>
               <input type="text" id="name" name="name" autocomplete="name" required>
               <p class="err" data-for="name">I'd like to know who I'm talking to.</p>
             </div>
             <div class="field">
-              <label for="email">Email <span class="req">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" required>
-              <p class="err" data-for="email">Give that address another look for me.</p>
+              <label for="phone">Phone <span class="req" data-need="phone">*</span><span class="opt-note" data-optional="phone" hidden>(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(520) 555-0142" required>
+              <p class="err" data-for="phone">Give that number another look for me.</p>
             </div>
             <div class="field">
-              <label for="phone">Phone <span style="color:var(--ink-faint);font-weight:400">(optional, but quickest)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(520) 555-0142">
+              <label for="email">Email <span class="req" data-need="email" hidden>*</span><span class="opt-note" data-optional="email">(optional)</span></label>
+              <input type="email" id="email" name="email" autocomplete="email">
+              <p class="err" data-for="email">Give that address another look for me.</p>
             </div>
             <div class="fnav">
               <button type="button" class="btn btn-ghost" data-back>Back</button>
-              <button type="submit" class="btn btn-primary">Send</button>
+              <button type="submit" class="btn btn-primary" id="askSend">Send</button>
             </div>
             <p class="privacy">This comes to me and nowhere else. No mailing list you didn't ask for. <a href="terms.html#privacy">How I keep your details</a>.</p>
           </div>
@@ -1943,10 +1965,10 @@ body.locked{overflow:hidden}
     <div class="foot">
       <div style="max-width:34ch">
         <span class="brand">Arizona Rabbits<small>Tucson</small></span>
-        
-        <p style="line-height:1.65">A small home operation in Tucson raising rabbits since
-        June 2026. Handled daily from the day they're born, every litter photographed from
-        its first day, and every owner keeps my number.</p>
+
+        <p style="line-height:1.65">A small home rabbitry in Tucson. Handled daily from the day
+        they're born, every litter photographed from its first day, and every owner keeps
+        my number.</p>
       </div>
       <div>
         <h4>Pages</h4>
@@ -2055,6 +2077,7 @@ body.locked{overflow:hidden}
 
 <script id="photoDated" type="application/json">{"photos/butterscotch.jpg":"photos/butterscotch-dated.jpg?v=eb22415b","photos/cloud.jpg":"photos/cloud-dated.jpg?v=86e38b70","photos/father-2.jpg":"photos/father-2-dated.jpg?v=73c0c1a2","photos/mother-2.jpg":"photos/mother-2-dated.jpg?v=22ef2fe2","photos/mother.jpg":"photos/mother-dated.jpg?v=d7c74bed","photos/sundae.jpg":"photos/sundae-dated.jpg?v=965792a4","photos/teddy.jpg":"photos/teddy-dated.jpg?v=3b128fed"}</script>
 <script id="photoShape" type="application/json">{"photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1448/1086","photos/father-video.jpg":"960/720","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-06.jpg":"1050/1400","photos/litter-2026-08-27-2026-09-08.jpg":"1050/1400","photos/litter-2026-08-27.jpg":"1400/1050","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750"}</script>
+<script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.8eabab02.jpg"],[320,"photos/litter-2026-06-28.320.8eabab02.jpg"],[640,"photos/litter-2026-06-28.640.8eabab02.jpg"],[960,"photos/litter-2026-06-28.960.8eabab02.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.5d9e67b0.jpg"],[320,"photos/litter-2026-07-28.320.5d9e67b0.jpg"],[640,"photos/litter-2026-07-28.640.5d9e67b0.jpg"],[960,"photos/litter-2026-07-28.960.5d9e67b0.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.41251654.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.41251654.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.41251654.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.41251654.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.4439e3b5.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.4439e3b5.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.4439e3b5.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.4439e3b5.jpg"]],"w":1050},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.5391d20d.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.5391d20d.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.5391d20d.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.5391d20d.jpg"]],"w":1050},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.a335df58.jpg"],[320,"photos/litter-2026-08-27.320.a335df58.jpg"],[640,"photos/litter-2026-08-27.640.a335df58.jpg"],[960,"photos/litter-2026-08-27.960.a335df58.jpg"]],"w":1400},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-08-27","count":"Six born","kits":[],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 <script src="rabbits.js?v=9b114434"></script>
@@ -2427,6 +2450,14 @@ body.locked{overflow:hidden}
     DATED[k.replace(/\?v=[0-9a-f]+/,'')]=PHOTO_DATED[k]; } })();
   function datedFor(src){ var s=String(src||'');
     return DATED[s]||DATED[s.replace(/\?v=[0-9a-f]+/,'')]||''; }
+  var PHOTO_SIZES=(function(){
+    try{ var el=document.getElementById('photoSizes');
+         return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+  })();
+  function sizedAttrs(src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,''), e=PHOTO_SIZES[s];
+    if(!e||!e.v||!e.v.length) return '';
+    var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
+    return ' srcset="'+parts.join(', ')+'" sizes="'+sizes+'"'; }
   document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 
   var LABEL={available:['st-open','Available'],
@@ -2738,6 +2769,7 @@ body.locked{overflow:hidden}
 
     var showBreed = true;
 
+    var cardSizes='(max-width:359px) 92vw, (max-width:760px) 47vw, '+(list.length<=2?'535px':'300px');
     railEl.innerHTML=list.map(function(r){
       var st=LABEL[r.status]||LABEL.available;
       var dim=(r.status==='available')?'':' sold-dim';
@@ -2772,7 +2804,7 @@ body.locked{overflow:hidden}
       else if(r.status==='adopted'&&(r.wentHome||r.soldOn)) stLabel='Went home '+dayMon(r.wentHome||r.soldOn);
       return '<a class="bunny'+dim+'"'+attrs+'>'+
         '<div class="bunny-media"><span class="status '+st[0]+'">'+stLabel+'</span>'+
-        '<img src="'+esc(cover)+'" alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
+        '<img src="'+esc(cover)+'"'+sizedAttrs(cover,cardSizes)+' alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
         ' loading="lazy" onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
@@ -2781,6 +2813,7 @@ body.locked{overflow:hidden}
         '<p class="desc">'+esc(r.note)+'</p>'+
         '<span class="bunny-cta">'+cta+arrow+'</span></div></a>';
     }).join('');
+    railEl.classList.toggle('few', list.length<=2);
     focusIn(railEl);
 
     if(countEl){
@@ -2851,7 +2884,7 @@ body.locked{overflow:hidden}
       if(h.rabbit) bits.push('took home '+esc(h.rabbit));
       var when=monthYear(h.when); if(when) bits.push(when);
       return '<figure class="home">'+
-        (h.photo?'<img src="'+esc(h.photo)+'" alt="'+esc(h.rabbit?h.rabbit+' at home':'Their rabbit at home')+'" loading="lazy" width="800" height="600">':'')+
+        (h.photo?'<img src="'+esc(h.photo)+'"'+sizedAttrs(h.photo,'(min-width:700px) 340px, 100vw')+' alt="'+esc(h.rabbit?h.rabbit+' at home':'Their rabbit at home')+'" loading="lazy" width="800" height="600">':'')+
         '<figcaption><p>\u201c'+esc(String(h.said).trim())+'\u201d</p>'+
         '<cite><b>'+esc(h.who)+'</b>'+(bits.length?' \u00b7 '+bits.join(' \u00b7 '):'')+'</cite></figcaption></figure>';
     }).join('');
@@ -2979,7 +3012,7 @@ body.locked{overflow:hidden}
       var whose=p.role==='mother'?'her':'his';
       return '<a class="parent" href="#p-'+esc(p.role)+'" data-parent="'+esc(key)+'"'+
         ' aria-label="'+roleWord(p)+', '+esc(p.name?(p.name+', '+p.breed):p.breed)+': see '+whose+' photos'+(video?', '+whose+' video':'')+' and litters">'+
-        (photo?'<img src="'+esc(photo)+'" alt="" loading="lazy">':'')+
+        (photo?'<img src="'+esc(photo)+'"'+sizedAttrs(photo,'44px')+' alt="" loading="lazy">':'')+
         (video?'<i class="pv" aria-hidden="true"></i>':'')+
         '<span><small>'+roleWord(p)+'</small><b>'+esc(p.name||p.breed)+'</b></span></a>';
     }
@@ -3076,7 +3109,7 @@ body.locked{overflow:hidden}
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       if(vTerms) vTerms.hidden=true;
       vStrip.innerHTML=shots.map(function(x,n){
-        return '<button type="button" aria-label="'+(x.video?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'" alt=""'+
+        return '<button type="button" aria-label="'+(x.video?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'"'+sizedAttrs(x.src,'64px')+' alt=""'+
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(x.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
       focusIn(vStrip);
@@ -3267,7 +3300,7 @@ body.locked{overflow:hidden}
       if(vTerms) vTerms.hidden=!openNow;
       vStrip.innerHTML=shots.map(function(s,n){
         return '<button type="button" aria-label="'+(s.video?'Video ':'Photo ')+(n+1)+
-          (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'" alt=""'+
+          (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'"'+sizedAttrs(s.src,'64px')+' alt=""'+
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+(s.video?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
       focusIn(vStrip);
@@ -3594,6 +3627,10 @@ body.locked{overflow:hidden}
     label.textContent='Step '+(cur+1)+' of '+steps.length;
     var f=steps[cur].querySelector('input, select, textarea');
     if(f&&cur>0){ try{f.focus({preventScroll:true})}catch(e){} }
+    var top=steps[cur].getBoundingClientRect().top;
+    var nav=document.querySelector('.dock')||document.querySelector('header.nav');
+    var navB=nav?nav.getBoundingClientRect().bottom:0;
+    if(cur>0 && top<navB){ try{steps[cur].scrollIntoView({block:'start'})}catch(e){} }
   }
 
   function validate(step){
@@ -3606,9 +3643,12 @@ body.locked{overflow:hidden}
         var e=step.querySelector('.err[data-for="'+nm+'"]'); if(e) e.classList.add('show'); ok=false;
       }
     }
-    step.querySelectorAll('input[required], select[required], textarea[required]').forEach(function(f){
+    step.querySelectorAll('input[required], select[required], textarea[required], input[type=email], input[type=tel]').forEach(function(f){
       if(f.type==='radio') return;
-      var bad=!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.value.trim()));
+      var v=f.value.trim();
+      if(!f.required && !v){ f.style.borderColor=''; return; }
+      var bad=!v||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
+               ||(f.type==='tel'&&v.replace(/\D/g,'').length<10);
       if(bad){ var er=step.querySelector('.err[data-for="'+f.name+'"]'); if(er) er.classList.add('show');
         f.style.borderColor='var(--alert)'; ok=false; } else { f.style.borderColor=''; }
     });
@@ -3631,8 +3671,26 @@ body.locked{overflow:hidden}
     form.querySelectorAll('input[name="interest"]').forEach(function(x){x.checked=false});
     if(r) r.checked=true;
   }
+  var replyRadios=form.querySelectorAll('input[name="reply"]');
+  var phoneF=document.getElementById('phone'), emailF=document.getElementById('email');
+  function setReply(){
+    var v=(form.querySelector('input[name="reply"]:checked')||{}).value||'Text';
+    var needPhone=(v!=='Email');
+    if(phoneF) phoneF.required=needPhone;
+    if(emailF) emailF.required=!needPhone;
+    form.querySelectorAll('[data-need="phone"]').forEach(function(e){e.hidden=!needPhone;});
+    form.querySelectorAll('[data-optional="phone"]').forEach(function(e){e.hidden=needPhone;});
+    form.querySelectorAll('[data-need="email"]').forEach(function(e){e.hidden=needPhone;});
+    form.querySelectorAll('[data-optional="email"]').forEach(function(e){e.hidden=!needPhone;});
+    [phoneF,emailF].forEach(function(f){ if(f&&!f.required){ f.style.borderColor=''; var er=form.querySelector('.err[data-for="'+f.name+'"]'); if(er) er.classList.remove('show'); } });
+  }
+  replyRadios.forEach(function(r){ r.addEventListener('change',setReply); });
+  setReply();
+  var sendBtn=document.getElementById('askSend');
+  function syncSend(){ if(sendBtn && !sendBtn.disabled) sendBtn.textContent=picked.length?'Ask about '+joinNames(picked):'Send'; }
   function syncAsk(){
     askField.value=picked.join(', ');
+    syncSend();
     askName.textContent=picked.length?joinNames(picked):'no one in particular yet';
     var textRow=document.querySelector('.reach a[href^="sms:"]');
     if(textRow){
@@ -3723,7 +3781,7 @@ body.locked{overflow:hidden}
       console.warn('Form endpoint not set — replace [[FORM_ENDPOINT]].'); return;
     }
     var btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
-    btn.textContent='Sending…'; btn.disabled=true;
+    btn.disabled=true; btn.textContent='Sending…';
     fetch(action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
       .then(function(r){ if(!r.ok) throw 0;
         form.style.display='none'; doneEl.classList.add('show');
