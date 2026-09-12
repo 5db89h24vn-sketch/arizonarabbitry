@@ -361,7 +361,12 @@ const PLANNED = [
    none. Fields:
      who: "Maya"  where: "Tucson"  rabbit: "Teddy"  when: "2026-09"
      said: "..."  photo: "photos/home-teddy.jpg" (or "")  permission: "2026-09-12"
-   when is the month they took the rabbit home (YYYY-MM). */
+     gift: ""  -- if you gave them ANYTHING for the note (hay, a discount, a
+               treat), name it here and the page says so beside their words.
+               The FTC's reviews rule requires it, and it must never depend on
+               what they wrote. Blank when nothing was given, which is the norm.
+   when is the month they took the rabbit home (YYYY-MM). The rabbit's name
+   becomes a link to its listing when it matches a rabbit on this list. */
 const HOMES = [
 ];
 
