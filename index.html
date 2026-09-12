@@ -8,7 +8,7 @@
 
 <meta name="theme-color" content="#FBF8F3">
 
-<link rel="preload" as="image" data-fact="hero-preload" href="img/hero-brick.1200.9773604a.jpg?v=9852c297" imagesrcset="img/hero-brick.800.9773604a.jpg 800w, img/hero-brick.1200.9773604a.jpg 1200w" imagesizes="(max-width:920px) 100vw, 45vw" fetchpriority="high">
+<link rel="preload" as="image" data-fact="hero-preload" href="img/hero-brick.1200.9773604a.avif" imagesrcset="img/hero-brick.800.9773604a.avif 800w, img/hero-brick.1200.9773604a.avif 1200w" imagesizes="(max-width:920px) 100vw, 45vw" type="image/avif" fetchpriority="high">
 
 <link rel="canonical" href="https://arizonarabbits.com/">
 <meta property="og:type" content="website">
@@ -284,6 +284,8 @@ header .brand{display:inline-block;padding:2px 0;margin:-2px 0}
 @media(max-width:800px){.doors{grid-template-columns:1fr;margin-top:20px}.doors a+a{border-top:0}}
 
 .hero-media{position:relative}
+
+.hero-pic{display:block}
 
 .hero-img{position:absolute;inset:0;border-radius:var(--r);object-fit:cover;
   box-shadow:var(--lift-2);
@@ -1280,7 +1282,8 @@ body.locked{overflow:hidden}
       </div>
 
       <div class="facts">
-        <a href="#faq-home"><span><b>Home when weaned</b><small>Not at a set age</small></span><i class="chev" aria-hidden="true"></i></a>
+        
+        <a href="#faq-home"><span><b>Home when weaned</b><small>The test every kit passes</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
         
@@ -1289,8 +1292,11 @@ body.locked{overflow:hidden}
     </div>
     <div class="hero-media">
       
+      <picture class="hero-pic">
+      <source type="image/avif" srcset="img/hero-brick.800.9773604a.avif 800w, img/hero-brick.1200.9773604a.avif 1200w" sizes="(max-width:920px) 100vw, 45vw">
       <img class="hero-img" src="img/hero-brick.1200.9773604a.jpg?v=9852c297" srcset="img/hero-brick.800.9773604a.jpg 800w, img/hero-brick.1200.9773604a.jpg 1200w" sizes="(max-width:920px) 100vw, 45vw"
            alt="Butterscotch, a fawn Holland Lop cross" width="1200" height="800" fetchpriority="high" data-hero="img/hero-brick.jpg">
+      </picture>
     </div>
   </div>
 </section>
@@ -1406,11 +1412,12 @@ body.locked{overflow:hidden}
       <p class="lede"><b>Those weeks are long before you could meet them, so they're mine.</b> I keep
       it going every day after, with other people. A rabbit calm only with its breeder
       isn't socialized.</p>
+      
       <p class="lede"><b>Handling doesn't make a rabbit love being lifted.</b> <a class="cite"
       href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
-      target="_blank" rel="noopener">Most never do</a>. What it makes is a rabbit that comes to
-      you, holds still to be handled, and doesn't panic in a stranger's hands. That's
-      what you're paying for.</p>
+      target="_blank" rel="noopener">Most never do</a>. What it does is make a rabbit that comes
+      to a person and stays calmer in hands it doesn't know. Each one is still its own animal.
+      That's what you're paying for.</p>
     </div>
   </div>
 </section>
@@ -1486,12 +1493,12 @@ body.locked{overflow:hidden}
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
       
-      <p class="lede">The first two weeks at home are the risky stretch, so nobody should be
-      guessing through them.</p>
+      <p class="lede">The first two weeks at home are <a class="litterlink" href="#faq-home">the risky
+      stretch</a>, so nobody should be guessing through them.</p>
       <ul class="incl">
         <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
         <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
-        <li><b>A health check you watch</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
+        <li><b>My health check, done with you</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
         <li><b>Tucson exotic vet recommendations</b><small>Not every clinic here treats rabbits. <a class="litterlink" href="#faq-vet">The one I use</a>, and why.</small></li>
         <li><b>My phone number, kept</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
       </ul>
@@ -1803,7 +1810,7 @@ body.locked{overflow:hidden}
           <p><b>For anything that isn't urgent, call me.</b> Whether you've had the rabbit three
           days or three years, I'd rather hear early than after it's serious.</p>
           
-          <p><b>A health check before every rabbit leaves.</b> We do it together at pickup with the
+          <p><b>My health check before every rabbit leaves.</b> We do it together at pickup with the
           rabbit in your hands: ears, teeth, eyes, weight and coat. If it doesn't
           pass, it doesn't go home, and you get your deposit back in full.</p>
           
@@ -1849,7 +1856,8 @@ body.locked{overflow:hidden}
         
         <form id="lead" action="https://formspree.io/f/xppanonl" method="POST" novalidate>
           <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-          <span class="prog-label" id="plabel">Step 1 of 3</span>
+          
+          <span class="prog-label" id="plabel" aria-live="polite">Step 1 of 3</span>
           
           <div class="hp" aria-hidden="true"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 
@@ -2710,6 +2718,7 @@ body.locked{overflow:hidden}
       var avail=RABBITS.filter(function(r){
         return r.status==='available' && realPhoto(r.hero||r.photo);
       });
+      var pic=img.closest?img.closest('picture'):null, box=pic||img;
       if(!avail.length){
         var wl=document.getElementById('waitlist');
         if(!wl) return;
@@ -2717,8 +2726,8 @@ body.locked{overflow:hidden}
         aw.className='hero-go';
         aw.href='#waitlist';
         aw.setAttribute('aria-label','Join the waitlist for the next litter');
-        img.parentNode.replaceChild(aw,img);
-        aw.appendChild(img);
+        box.parentNode.replaceChild(aw,box);
+        aw.appendChild(box);
         var chw=document.createElement('span'); chw.className='hero-chip';
         var sw=document.createElement('small'); sw.textContent='Next litter';
         var bw=document.createElement('b'); bw.textContent='Join the waitlist';
@@ -2731,15 +2740,17 @@ body.locked{overflow:hidden}
       pick=pick||avail[0];
       var src=pick.hero||pick.photo;
       var cur=(img.getAttribute('data-hero')||img.getAttribute('src')||'').split('?')[0];
-      if(cur!==src){ img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.setAttribute('src',src); img.setAttribute('data-hero',src); }
+      if(cur!==src){
+        if(pic){ [].slice.call(pic.querySelectorAll('source')).forEach(function(x){ x.parentNode.removeChild(x); }); }
+        img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.setAttribute('src',src); img.setAttribute('data-hero',src); }
       if(pick.heroPos) img.style.objectPosition=pick.heroPos;
       img.alt=pick.name+', a '+String(pick.colour||'').toLowerCase()+' '+(pick.breed||'rabbit');
       var a=document.createElement('a');
       a.className='hero-go';
       a.href='#r-'+addrOf(pick);
       a.setAttribute('aria-label','See '+pick.name+"'s listing");
-      img.parentNode.replaceChild(a,img);
-      a.appendChild(img);
+      box.parentNode.replaceChild(a,box);
+      a.appendChild(box);
       var chip=document.createElement('span'); chip.className='hero-chip';
       var s=document.createElement('small'); s.textContent='Meet';
       var b=document.createElement('b'); b.textContent=pick.name;

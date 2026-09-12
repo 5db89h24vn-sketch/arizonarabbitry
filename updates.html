@@ -68,6 +68,13 @@ header{padding:16px 0 0}
 .back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
+
+.subnav{display:flex;flex-wrap:wrap;gap:0 18px;margin:-4px 0 6px}
+.subnav a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;
+  color:var(--ink-soft);text-decoration:none;white-space:nowrap}
+.subnav a:hover,.subnav a:active{color:var(--brick)}
+.subnav a::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--ink-faint);margin-right:8px}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
 .lede{color:var(--ink-soft);max-width:52ch;margin-bottom:34px}
@@ -121,6 +128,12 @@ h1,h2,h3{text-wrap:balance}
       </div>
     </div>
     <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <nav class="subnav" aria-label="On the main page">
+      <a href="index.html#available">Available now</a>
+      <a href="index.html#raised">How they're raised</a>
+      <a href="index.html#boarding">Boarding</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
     <h1>News</h1>
     
     <p class="lede">What is actually happening here, a week at a time. New litters, who is

@@ -62,6 +62,13 @@ header{padding:16px 0 0}
 .back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
+
+.subnav{display:flex;flex-wrap:wrap;gap:0 18px;margin:-4px 0 6px}
+.subnav a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;
+  color:var(--ink-soft);text-decoration:none;white-space:nowrap}
+.subnav a:hover,.subnav a:active{color:var(--brick)}
+.subnav a::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--ink-faint);margin-right:8px}
 .back:active{color:var(--brick)}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
@@ -100,6 +107,12 @@ h1,h2,h3{text-wrap:balance}
       </div>
     </div>
     <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <nav class="subnav" aria-label="On the main page">
+      <a href="index.html#available">Available now</a>
+      <a href="index.html#raised">How they're raised</a>
+      <a href="index.html#boarding">Boarding</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
     <h1>The terms, on one sheet</h1>
     <p class="lede">Everything about the money and your details in one place, in plain words.
     All of it is on the front page too. This is the short version.</p>
@@ -143,9 +156,12 @@ h1,h2,h3{text-wrap:balance}
   <a class="xlink" href="index.html#faq">questions on the front page</a>.</p>
 
   <h2 id="privacy">Your details</h2>
+  
   <p><b>What I get is what you type.</b> Your name, an email address, a phone number if you
-  give one, and your message. If you text or call, your number. Nothing else is collected.
-  No account, no cookies from me, no tracking script anywhere on this site.</p>
+  give one, and your message. If you text or call, your number. No account, and no cookies
+  from me. Cloudflare, which hosts the site, counts visits with a script of its own, Cloudflare
+  Web Analytics; by <a class="xlink" href="https://www.cloudflare.com/web-analytics/">Cloudflare's
+  own description</a> it sets no cookie and does not follow you to other sites.</p>
   <p><b>The form and the waitlist go through Formspree to my email.</b> Formspree
   (formspree.io) delivers them to me. The waitlist also keeps your address on the site's
   host, Cloudflare, so you are counted once and I can email you when a litter is born.</p>
