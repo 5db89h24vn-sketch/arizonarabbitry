@@ -594,6 +594,23 @@ header .brand{display:inline-block;padding:2px 0;margin:-2px 0}
 .social svg{width:25px;height:25px;fill:var(--ink);transition:fill .15s;flex:none}
 .social a:hover svg{fill:var(--brick)}
 .social b{font-size:15px;font-weight:600;line-height:1.2}
+
+.social small .vfd{width:12px;height:12px;vertical-align:-2px;margin-left:1px;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block}
+
+.reel{margin:18px 0 0;max-width:420px}
+.reel:empty{display:none}
+.reel-play{position:relative;display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background:#000;box-shadow:var(--lift-photo);transition:border-color .15s,transform .12s ease-out}
+.reel-play:hover{border-color:var(--brick)}
+.reel-play:active{transform:scale(.977)}
+.reel-play img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-2)}
+.reel .pv{width:44px;height:44px;left:50%;top:50%;transform:translate(-50%,-50%)}
+.reel .pv::before{border-width:8px 0 8px 13px;margin-left:3px}
+.reel video{display:block;width:100%;aspect-ratio:4/3;background:#1A1613;border:1px solid var(--line);border-radius:var(--r)}
+.reel figcaption{font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin-top:8px;text-wrap:pretty}
+.reel figcaption b{display:block;color:var(--ink);font-weight:600}
+.reel figcaption time{white-space:nowrap}
 .social small{font-size:12.5px;color:var(--ink-faint);line-height:1.3;text-align:center;
   word-break:break-word}
 
@@ -1477,11 +1494,14 @@ body.locked{overflow:hidden}
       <h3>Watch them grow up</h3>
       <p>Don't take my word for any of the above. Photos and video, including the
       unglamorous parts.</p>
+      
+      <figure data-fact="reel" class="reel"><a class="reel-play rv" href="videos/litter-2026-08-27-2026-09-11.mp4" aria-label="Play the newest clip: Two weeks and a day old. Out of the nest box, on a chair, and handled."><img src="photos/litter-2026-08-27-2026-09-11-video.jpg?v=132b6984" srcset="photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg 160w, photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg 320w, photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg 640w, photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg 960w, photos/litter-2026-08-27-2026-09-11-video.jpg?v=132b6984 1289w" sizes="(min-width:761px) 420px, 100vw" width="1289" height="966" loading="lazy" alt="A fifteen-day-old fawn kit held up in a hand, its littermates on the black chair behind"><i class="pv" aria-hidden="true"></i></a><figcaption><b>One clip before you go.</b> Filmed <time datetime="2026-09-11">11 Sep</time>. Two weeks and a day old. Out of the nest box, on a chair, and handled. More like it on Instagram and TikTok.</figcaption></figure>
       <div class="social rv row">
         <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
           <b>Instagram</b>
-          <small>@arizonarabbits</small>
+          
+          <small>@arizonarabbits <svg class="vfd" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><span class="sr-only">verified</span></small>
         </a>
         <a href="https://www.tiktok.com/@arizona.rabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
@@ -1597,6 +1617,8 @@ body.locked{overflow:hidden}
           care sheet, and my number for as long as you have it.</p>
           <p><b>Colour and temperament set the price.</b> Rarer colours cost more. <span data-fact="prices-now">Right now Butterscotch, a fawn doe, is $375.</span></p>
           
+          <p><b>10% off if you serve.</b> Military, police, firefighters and other first
+          responders. Say so when you get in touch.</p>
           <p><b>You can find a cheaper rabbit.</b> Classifieds are full of them under a hundred.
           What you pay for here is a rabbit that's already used to being picked up, and
           someone who still answers the phone at month seven.</p>
@@ -2087,7 +2109,7 @@ body.locked{overflow:hidden}
       <div class="viewer-foot"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
         
         <p class="viewer-terms" id="viewerTerms">$50 holds a rabbit and comes off the price.
-          The sale is final after pickup. <a href="terms.html">The terms</a></p></div>
+          The sale is final after pickup. 10% off if you serve. <a href="terms.html">The terms</a></p></div>
     </div>
   </div>
 </div>
@@ -3875,6 +3897,21 @@ body.locked{overflow:hidden}
     if(meta.getAttribute('content') !== want) meta.setAttribute('content', want);
   }, { rootMargin: '0px 0px -99% 0px', threshold: 0 });
   dark.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+(function(){
+  var a=document.querySelector('.reel-play'); if(!a) return;
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var im=a.querySelector('img'), v=document.createElement('video');
+    v.setAttribute('playsinline',''); v.controls=true; v.preload='metadata';
+    if(im) v.poster=im.currentSrc||im.src;
+    v.src=a.getAttribute('href');
+    v.setAttribute('aria-label', a.getAttribute('aria-label')||'');
+    a.parentNode.replaceChild(v, a);
+    var p=v.play(); if(p&&p.catch) p.catch(function(){});
+  });
 })();
 </script>
 
