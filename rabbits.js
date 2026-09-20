@@ -479,13 +479,14 @@ const RABBITS = [
        and delete dealTo / dealWhen / dealLink / dealLinkText; the same lines
        then print "$375" struck beside "$300" and the reason. No end date was
        given, so none is printed. Earlier that evening she had been moved
-       from $375 to $350 for an hour ("bring butterscotch down to $350"). */
-    price:  375,
-    dealTo:   300,
-    dealWhen: "Instagram hits 100 followers",       /* the listing: "Drops to $300 the day Instagram hits 100 followers." */
-    dealTag:  "$300 | at 100 followers",             /* the card, in two short units (the | is where they split on a phone; the listing says Instagram) */
-    dealLink: "https://www.instagram.com/arizonarabbits",
-    dealLinkText: "Follow @arizonarabbits",
+       from $375 to $350 for an hour ("bring butterscotch down to $350").
+       IT HIT 100 the same night (William: "My Instagram account already hit
+       100 followers, so give that butterscotch rabbit the discount!!";
+       read on the public profile at 22:05 Tucson: 100), so the drop is live. */
+    price:  300,
+    wasPrice: 375,
+    dealNote: "Instagram hit 100 followers",   /* the listing: "Instagram hit 100 followers, so $75 off." */
+    dealTag:  "Instagram hit 100",             /* the card's line under the meta rows */
     dealOn:   "2026-09-19",
     breed:  "Holland Lop cross",
     mother: "lop",
