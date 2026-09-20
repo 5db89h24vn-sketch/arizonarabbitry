@@ -32,6 +32,27 @@
       The card under each photo shows how old the rabbit is today,
       worked out from dob on every visit, so it is never stale.
 
+   ── TO RUN A PRICE DROP THAT PEOPLE CAN SEE (19 Sept 2026) ──
+      set      price:    300          (what they pay now)
+      add      wasPrice: 375          (what it was: struck through beside
+                                       the price on the card and the listing)
+      add      dealNote: "Instagram hit 100 followers"   (why, in your words:
+                                       the listing prints it with the saving,
+                                       "Instagram hit 100 followers, so $75 off.")
+      add      dealTag:  "Instagram hit 100"   (a few words for the card's
+                                       one line; optional)
+      add      dealOn:   "2026-09-19"  (the day it began, for the record)
+      Only an AVAILABLE rabbit shows a drop. To end it: delete wasPrice
+      (and the three lines with it) and set price back, or leave price
+      where it is; the site never prints an end date you did not give.
+      A DROP THAT IS STILL COMING (a milestone not yet reached) is written
+      the other way round, and the site prints it as a promise: keep price
+      where it is and add dealTo (the price it will drop to), dealWhen
+      (the condition, in words that finish "the day ..."), dealTag (the
+      card's short form, a | where it may split) and, if you like,
+      dealLink + dealLinkText (one tap to the place the reader can help).
+      Never write a milestone as reached before it is: the site is checked.
+
    ── TO MARK ONE RESERVED ──
       change   status: "available"
       to       status: "reserved"
@@ -44,8 +65,11 @@
       change   status: "reserved"  (or "available")
       to       status: "sold"
       and set  soldOn: "2026-08-29"      (the day it was paid for)
-      The rabbit STAYS on the site, growing week by week under a
-      dated Sold label, until the day it actually goes home.
+      The rabbit stays on the rail under a dated Sold label for THREE
+      DAYS after that date (19 Sept 2026, your rule: "disappear into the
+      archive after X amount of time after it's sold, like three days"),
+      then leaves the front page on its own. Its litter tile, its archive
+      entry and its link (index.html#r-<name>) keep the dated record.
 
    ── IF A SOLD RABBIT IS NO LONGER HERE ──
       add      departed: true
@@ -63,7 +87,8 @@
       Only ever the REAL day it left. The build refuses a went-home
       date before the rabbit was four weeks old, because nothing is
       reserved before four weeks, so an earlier date can only be a typo.
-      It stays up as proof for 7 days, then disappears on its own.
+      It leaves the rail three days after the sold date (or after this
+      date, when there was no sold date), the same rule as Sold.
 
    ── THE PEDIGREE FIELDS: EAR NUMBER AND WEIGHT ──
       8 Sept 2026, William: "I want this website to paint the full timeline,
@@ -429,7 +454,28 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,   /* $375 until 20 Sept 2026 (William: "bring butterscotch down to $350") */
+    /* THE PRICE DROP THAT IS COMING (19 Sept 2026, William: "make butterscotch
+       $375. and make it run as a discount to $300 for my Instagram account
+       hitting 100 followers! ... make the discount visible, so people can
+       clearly see that it dropped from $375 to $300"). Measured before it was
+       printed: the public profile read 98 followers that night, so the site
+       prints the drop as the promise it is, "$300 the day Instagram hits 100
+       followers", and not as a drop that happened. THE DAY IT HITS 100: set
+         price:    300,
+         wasPrice: 375,
+         dealNote: "Instagram hit 100 followers",
+         dealTag:  "Instagram hit 100",
+       and delete dealTo / dealWhen / dealLink / dealLinkText; the same lines
+       then print "$375" struck beside "$300" and the reason. No end date was
+       given, so none is printed. Earlier that evening she had been moved
+       from $375 to $350 for an hour ("bring butterscotch down to $350"). */
+    price:  375,
+    dealTo:   300,
+    dealWhen: "Instagram hits 100 followers",       /* the listing: "Drops to $300 the day Instagram hits 100 followers." */
+    dealTag:  "$300 | at 100 followers",             /* the card, in two short units (the | is where they split on a phone; the listing says Instagram) */
+    dealLink: "https://www.instagram.com/arizonarabbits",
+    dealLinkText: "Follow @arizonarabbits",
+    dealOn:   "2026-09-19",
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -510,14 +556,15 @@ const RABBITS = [
      Claude's at his request, the sexes are not stated yet (sex: "" prints
      nothing and the pronoun is "its"), and the FAQ's four-week rule stands:
      the listing prints "Reserve from 24 Sep 2026" until that day. Photographed
-     on a brick wall the day they were sent, 19 September, Tucson time (no
-     capture date travels through a chat, so the photo's date is the day it
-     arrived, the site's rule since 6 Sept; the site's day is Tucson's, never
-     the builder's UTC clock, which had already turned). */
+     on a brick wall on 18 September, his word ("the photos for these new
+     rabbits were taken yesterday so that would be the 18th", said on the
+     19th); sent and listed on the 19th. No capture date travels through a
+     chat, so a photo's date is the day he says, else the day it arrived;
+     the site's day is Tucson's, never the builder's UTC clock. */
   {
     name:   "Honey",
     photos: [
-      { src: "photos/honey.jpg", date: "2026-09-19" },
+      { src: "photos/honey.jpg", date: "2026-09-18" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -537,12 +584,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
-    note:   "The one under my hand in the 19 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
+    note:   "The one under my hand in the 18 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
   },
   {
     name:   "Biscuit",
     photos: [
-      { src: "photos/biscuit.jpg", date: "2026-09-19" },
+      { src: "photos/biscuit.jpg", date: "2026-09-18" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -562,12 +609,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/biscuit.jpg",
-    note:   "The fluffiest coat of the five, already wavy at three weeks. Sat up on the brick for the 19 September photo with both ears up."
+    note:   "The fluffiest coat of the five, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up."
   },
   {
     name:   "Toffee",
     photos: [
-      { src: "photos/toffee.jpg", date: "2026-09-19" },
+      { src: "photos/toffee.jpg", date: "2026-09-18" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -587,12 +634,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/toffee.jpg",
-    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 19 September photo, ears up and back."
+    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 18 September photo, ears up and back."
   },
   {
     name:   "Maple",
     photos: [
-      { src: "photos/maple.jpg", date: "2026-09-19" },
+      { src: "photos/maple.jpg", date: "2026-09-18" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -612,12 +659,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/maple.jpg",
-    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 19 September photo."
+    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 18 September photo."
   },
   {
     name:   "Pecan",
     photos: [
-      { src: "photos/pecan.jpg", date: "2026-09-19" },
+      { src: "photos/pecan.jpg", date: "2026-09-18" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -637,7 +684,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
-    note:   "Long wavy coat, the woolliest of the five. Ears up and forward in the 19 September photo, chin down on the brick."
+    note:   "Long wavy coat, the woolliest of the five. Ears up and forward in the 18 September photo, chin down on the brick."
   },
 
   /* MARSHMALLOW, the sixth (19 Sept 2026, an hour after the five: "Also add
@@ -647,8 +694,8 @@ const RABBITS = [
   {
     name:   "Marshmallow",
     photos: [
-      { src: "photos/marshmallow.jpg", date: "2026-09-19" },
-      { src: "photos/marshmallow-2.jpg", date: "2026-09-19", note: "Flat out on the brick, eyes shut." },
+      { src: "photos/marshmallow.jpg", date: "2026-09-18" },
+      { src: "photos/marshmallow-2.jpg", date: "2026-09-18", note: "Flat out on the brick, eyes shut." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -667,7 +714,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/marshmallow.jpg",
-    note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 19 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
+    note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
   }
 
 ];
