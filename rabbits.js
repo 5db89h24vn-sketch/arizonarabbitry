@@ -510,13 +510,14 @@ const RABBITS = [
      Claude's at his request, the sexes are not stated yet (sex: "" prints
      nothing and the pronoun is "its"), and the FAQ's four-week rule stands:
      the listing prints "Reserve from 24 Sep 2026" until that day. Photographed
-     on a brick wall the day they were sent, 20 September (no capture date
-     travels through a chat, so the photo's date is the day it arrived, the
-     site's rule since 6 Sept). */
+     on a brick wall the day they were sent, 19 September, Tucson time (no
+     capture date travels through a chat, so the photo's date is the day it
+     arrived, the site's rule since 6 Sept; the site's day is Tucson's, never
+     the builder's UTC clock, which had already turned). */
   {
     name:   "Honey",
     photos: [
-      { src: "photos/honey.jpg", date: "2026-09-20" },
+      { src: "photos/honey.jpg", date: "2026-09-19" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -536,12 +537,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
-    note:   "The one under my hand in the 20 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
+    note:   "The one under my hand in the 19 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
   },
   {
     name:   "Biscuit",
     photos: [
-      { src: "photos/biscuit.jpg", date: "2026-09-20" },
+      { src: "photos/biscuit.jpg", date: "2026-09-19" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -561,12 +562,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/biscuit.jpg",
-    note:   "The fluffiest coat of the five, already wavy at three weeks. Sat up on the brick for the 20 September photo with both ears up."
+    note:   "The fluffiest coat of the five, already wavy at three weeks. Sat up on the brick for the 19 September photo with both ears up."
   },
   {
     name:   "Toffee",
     photos: [
-      { src: "photos/toffee.jpg", date: "2026-09-20" },
+      { src: "photos/toffee.jpg", date: "2026-09-19" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -586,12 +587,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/toffee.jpg",
-    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 20 September photo, ears up and back."
+    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 19 September photo, ears up and back."
   },
   {
     name:   "Maple",
     photos: [
-      { src: "photos/maple.jpg", date: "2026-09-20" },
+      { src: "photos/maple.jpg", date: "2026-09-19" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -611,12 +612,12 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/maple.jpg",
-    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 20 September photo."
+    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 19 September photo."
   },
   {
     name:   "Pecan",
     photos: [
-      { src: "photos/pecan.jpg", date: "2026-09-20" },
+      { src: "photos/pecan.jpg", date: "2026-09-19" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -636,7 +637,37 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
-    note:   "Long wavy coat, the woolliest of the five. Ears up and forward in the 20 September photo, chin down on the brick."
+    note:   "Long wavy coat, the woolliest of the five. Ears up and forward in the 19 September photo, chin down on the brick."
+  },
+
+  /* MARSHMALLOW, the sixth (19 Sept 2026, an hour after the five: "Also add
+     this white rabbit as well, and it will be for $400"). Two photographs from
+     the same wall, same day; the sitting one is the card. "White" is his word;
+     the eyes and nose are described as the photographs show them. */
+  {
+    name:   "Marshmallow",
+    photos: [
+      { src: "photos/marshmallow.jpg", date: "2026-09-19" },
+      { src: "photos/marshmallow-2.jpg", date: "2026-09-19", note: "Flat out on the brick, eyes shut." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  400,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "White",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/marshmallow.jpg",
+    note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 19 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
   }
 
 ];
