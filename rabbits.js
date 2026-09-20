@@ -53,6 +53,16 @@
       dealLink + dealLinkText (one tap to the place the reader can help).
       Never write a milestone as reached before it is: the site is checked.
 
+   ── NEW, FOR THREE DAYS (19 Sept 2026) ──
+      listedOn: "2026-09-19"   is the day the rabbit went up on the site.
+      For three days from it an available rabbit's card and listing wear a
+      NEW mark on the photograph ("whenever we have a new posting on our
+      website, I want you to have a (new) marking on it for three days").
+      The build writes it the first time it sees a record without one (the
+      day it builds), so type it yourself when you add a rabbit by phone
+      and want the three days to start that day. Never on a reserved or
+      sold rabbit.
+
    ── TO MARK ONE RESERVED ──
       change   status: "available"
       to       status: "reserved"
@@ -429,6 +439,7 @@ const RABBITS = [
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
+    listedOn: "2026-08-24",
     ready:  "22 Sept",
     status: "sold",
     reservedOn: "2026-08-28",
@@ -482,6 +493,7 @@ const RABBITS = [
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
+    listedOn: "2026-08-24",
     ready:  "22 Sept",
     status: "available",
     soldOn: "",
@@ -510,6 +522,7 @@ const RABBITS = [
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",
+    listedOn: "2026-08-24",
     ready:  "22 Sept",
     status: "sold",
     reservedOn: "2026-08-25",
@@ -538,6 +551,7 @@ const RABBITS = [
     sex:    "Buck",
     colour: "Sable point",
     dob:    "2026-07-28",
+    listedOn: "2026-08-24",
     ready:  "22 Sept",
     status: "sold",
     reservedOn: "2026-08-25",
@@ -578,6 +592,7 @@ const RABBITS = [
     sex:    "",
     colour: "Fawn",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
@@ -603,6 +618,7 @@ const RABBITS = [
     sex:    "",
     colour: "Fawn",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
@@ -628,6 +644,7 @@ const RABBITS = [
     sex:    "",
     colour: "Fawn",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
@@ -653,6 +670,7 @@ const RABBITS = [
     sex:    "",
     colour: "Fawn",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
@@ -678,6 +696,7 @@ const RABBITS = [
     sex:    "",
     colour: "Fawn",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
@@ -708,6 +727,7 @@ const RABBITS = [
     sex:    "",
     colour: "White",
     dob:    "2026-08-27",
+    listedOn: "2026-09-19",
     ready:  "",
     status: "available",
     soldOn: "",
