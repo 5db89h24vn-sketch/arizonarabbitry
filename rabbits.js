@@ -429,7 +429,7 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  375,
+    price:  350,   /* $375 until 20 Sept 2026 (William: "bring butterscotch down to $350") */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -501,6 +501,142 @@ const RABBITS = [
     departed: true,
     photo:  "photos/cloud.jpg",
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
+  },
+
+  /* THE AUGUST FIVE (20 Sept 2026, William: "Add these five brown rabbits to my
+     website. Give them all a unique name and a cute description. Also list them
+     for $375 ... These are from the litter that we've been tracking."). Born 27
+     August 2026, the third litter; five of the six, all fawn; the names are
+     Claude's at his request, the sexes are not stated yet (sex: "" prints
+     nothing and the pronoun is "its"), and the FAQ's four-week rule stands:
+     the listing prints "Reserve from 24 Sep 2026" until that day. Photographed
+     on a brick wall the day they were sent, 20 September (no capture date
+     travels through a chat, so the photo's date is the day it arrived, the
+     site's rule since 6 Sept). */
+  {
+    name:   "Honey",
+    photos: [
+      { src: "photos/honey.jpg", date: "2026-09-20" },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "Fawn",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/honey.jpg",
+    note:   "The one under my hand in the 20 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
+  },
+  {
+    name:   "Biscuit",
+    photos: [
+      { src: "photos/biscuit.jpg", date: "2026-09-20" },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "Fawn",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/biscuit.jpg",
+    note:   "The fluffiest coat of the five, already wavy at three weeks. Sat up on the brick for the 20 September photo with both ears up."
+  },
+  {
+    name:   "Toffee",
+    photos: [
+      { src: "photos/toffee.jpg", date: "2026-09-20" },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "Fawn",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/toffee.jpg",
+    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 20 September photo, ears up and back."
+  },
+  {
+    name:   "Maple",
+    photos: [
+      { src: "photos/maple.jpg", date: "2026-09-20" },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "Fawn",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/maple.jpg",
+    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 20 September photo."
+  },
+  {
+    name:   "Pecan",
+    photos: [
+      { src: "photos/pecan.jpg", date: "2026-09-20" },
+      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "Fawn",
+    dob:    "2026-08-27",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/pecan.jpg",
+    note:   "Long wavy coat, the woolliest of the five. Ears up and forward in the 20 September photo, chin down on the brick."
   }
 
 ];
