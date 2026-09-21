@@ -550,11 +550,10 @@ html:not(.js) .ages-note{display:none}
 .stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
 
 .grow{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:10px}
+.bunny .grow-txt{white-space:normal;overflow:visible;text-overflow:clip}
 
-.grow-top{display:flex;align-items:center;gap:8px;line-height:17px}
-.grow-now{font-size:13px;font-weight:600;color:var(--ink);line-height:17px}
-.bunny .grow{gap:1px}
-@media(max-width:375px){.grow-top{line-height:16px}.grow-now{font-size:12.5px;line-height:16px}}
+.bunny .grow-txt b{display:block}
+.grow-txt .u{white-space:nowrap}
 
 .viewer-grow{flex-direction:row;align-items:flex-start;gap:10px}
 .viewer-grow .grow-bar{margin-top:7px}
@@ -567,9 +566,6 @@ html:not(.js) .ages-note{display:none}
   
   .grow-bar i.now{animation:growPulse 2.4s ease-in-out 2}
   @keyframes growPulse{0%,100%{opacity:1}50%{opacity:.45}}
-  
-  .bunny .grow-bar i.now{animation:none}
-  .bunny.in .grow-bar i.now,.in .bunny .grow-bar i.now{animation:growPulse 2.4s ease-in-out 2}
 
   .viewer-grow .grow-bar i.on{animation:growCount .3s ease-out both}
   .viewer-grow .grow-bar i.on:nth-child(1){animation-delay:.02s}
@@ -2715,19 +2711,20 @@ body.locked{overflow:hidden}
     var age=ageAt(r.dob, todayISO());
     if(age==='the day it was born') age='Born today';
     var isNow=(age!=='Born today');
+    var units=esc(age).split(', ');
+    var cardTxt='<b>'+units.map(function(u,i){
+      return '<span class="u">'+(i===0&&isNow?'Now ':'')+u+(i<units.length-1?',':'')+'</span>';
+    }).join(' ')+'</b>';
     var txt='<b>'+(full&&isNow?'<a class="nowlink" href="#faq-ages">Now</a> ':'')+esc(age)+'</b>';
     if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
-    var spoken=(isNow?'Now ':'')+esc(age)+', week '+wk+' of '+LAST_WEEK+(st?', '+esc(st.label):'');
     if(full)
       return '<div class="grow viewer-grow" data-dob="'+esc(r.dob||'')+'">'+
         '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
         '<span class="sr-only">Week '+wk+' of '+LAST_WEEK+'. </span>'+
         '<span class="grow-txt">'+txt+'</span></div>';
-    return '<div class="grow" data-dob="'+esc(r.dob||'')+'" role="img" aria-label="'+spoken+'">'+
-      '<span class="grow-top"><span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
-      (isNow?'<b class="grow-now">Now</b>':'')+'</span>'+
-      '<span class="grow-txt">'+txt+'</span></div>';
+    return '<div class="grow" data-dob="'+esc(r.dob||'')+'">'+
+      '<span class="grow-txt">'+cardTxt+'</span></div>';
   }
   function renderToday(){
     var op=document.querySelector('[data-fact="opens"]');
