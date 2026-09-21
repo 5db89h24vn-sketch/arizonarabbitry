@@ -551,6 +551,11 @@ html:not(.js) .ages-note{display:none}
 
 .grow{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:10px}
 
+.grow-top{display:flex;align-items:center;gap:8px;line-height:17px}
+.grow-now{font-size:13px;font-weight:600;color:var(--ink);line-height:17px}
+.bunny .grow{gap:1px}
+@media(max-width:375px){.grow-top{line-height:16px}.grow-now{font-size:12.5px;line-height:16px}}
+
 .viewer-grow{flex-direction:row;align-items:flex-start;gap:10px}
 .viewer-grow .grow-bar{margin-top:7px}
 .grow-bar{display:flex;gap:2px;flex:none}
@@ -562,6 +567,9 @@ html:not(.js) .ages-note{display:none}
   
   .grow-bar i.now{animation:growPulse 2.4s ease-in-out 2}
   @keyframes growPulse{0%,100%{opacity:1}50%{opacity:.45}}
+  
+  .bunny .grow-bar i.now{animation:none}
+  .bunny.in .grow-bar i.now,.in .bunny .grow-bar i.now{animation:growPulse 2.4s ease-in-out 2}
 
   .viewer-grow .grow-bar i.on{animation:growCount .3s ease-out both}
   .viewer-grow .grow-bar i.on:nth-child(1){animation-delay:.02s}
@@ -1133,6 +1141,10 @@ html.vtout::view-transition-new(rabbitphoto){
   border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
 .stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
 
+.nowlink{color:inherit;text-decoration:none;
+  border-bottom:1px dotted rgba(36,31,29,.45);padding-bottom:1px}
+.nowlink:hover{color:var(--brick-dk);border-bottom-style:solid}
+
 .viewer-note{font-size:15px;color:var(--ink-soft);line-height:1.6}
 .viewer-box .btn{width:100%}
 
@@ -1363,7 +1375,7 @@ body.locked{overflow:hidden}
 
         <p class="avail-stamp">Availability
           <span data-fact="stamp"><time id="availStamp" datetime="2026-09-19">current as of September 19, 2026</time></span>
-          <span class="ages-note">Ages are counted from each birth date, so they're right today.</span></p>
+          <span class="ages-note">Ages are counted from each birth date, so they're right today. <a href="#faq-ages">How that works</a></span></p>
       </div>
       
       <span class="count" id="count">Call or text for current litters</span>
@@ -1737,6 +1749,20 @@ body.locked{overflow:hidden}
           bag. Nothing changes on day one.</p>
           <p><b>A Ready date is the date I expect.</b> You'll get
           photos and video the whole way through, so the wait is easier.</p>
+        </div>
+      </details>
+      
+      <details id="faq-ages">
+        <summary>How current is what I'm seeing?</summary>
+        <div class="faq-body">
+          <p><b>The ages are counted on the day you look.</b> Every rabbit's birth date is
+          in its record, and the page counts from it each time it opens, and again at
+          midnight if you leave it open. No age here was typed in once and left.</p>
+          <p><b>Every photo carries its own day.</b> Open one and the date it was taken is on
+          the picture, bottom left, with how old the rabbit was that day. A photo is a
+          moment. The line under it is now.</p>
+          <p><b>Availability is me looking at the pens.</b> The line above the rabbits says
+          when I last did.</p>
         </div>
       </details>
       <details id="faq-first">
@@ -2688,13 +2714,19 @@ body.locked{overflow:hidden}
       bar+='<i class="'+(i<wk?'on':i===wk?'on now':'')+'"></i>';
     var age=ageAt(r.dob, todayISO());
     if(age==='the day it was born') age='Born today';
-    var txt='<b>'+(full&&age!=='Born today'?'Now ':'')+esc(age)+'</b>';
+    var isNow=(age!=='Born today');
+    var txt='<b>'+(full&&isNow?'<a class="nowlink" href="#faq-ages">Now</a> ':'')+esc(age)+'</b>';
     if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
-    return '<div class="grow'+(full?' viewer-grow':'')+'" data-dob="'+esc(r.dob||'')+
-      '" role="img" aria-label="'+(full?'Now ':'')+esc(age)+(full||age==='Born today'?'':' today')+', week '+wk+
-      ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
-      '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
+    var spoken=(isNow?'Now ':'')+esc(age)+', week '+wk+' of '+LAST_WEEK+(st?', '+esc(st.label):'');
+    if(full)
+      return '<div class="grow viewer-grow" data-dob="'+esc(r.dob||'')+'">'+
+        '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
+        '<span class="sr-only">Week '+wk+' of '+LAST_WEEK+'. </span>'+
+        '<span class="grow-txt">'+txt+'</span></div>';
+    return '<div class="grow" data-dob="'+esc(r.dob||'')+'" role="img" aria-label="'+spoken+'">'+
+      '<span class="grow-top"><span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
+      (isNow?'<b class="grow-now">Now</b>':'')+'</span>'+
       '<span class="grow-txt">'+txt+'</span></div>';
   }
   function renderToday(){
@@ -3627,7 +3659,7 @@ body.locked{overflow:hidden}
     }
 
     if(vGrow) vGrow.addEventListener('click',function(ev){
-      var a=ev.target.closest&&ev.target.closest('.stagelink');
+      var a=ev.target.closest&&ev.target.closest('.stagelink, .nowlink');
       if(!a) return;
       ev.preventDefault();
       var to=a.getAttribute('href');
