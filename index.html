@@ -313,6 +313,9 @@ header .brand{display:inline-block;padding:2px 0;margin:-2px 0}
 .avail-stamp time{white-space:nowrap}
 .avail-stamp a{white-space:nowrap}
 
+.ages-note{display:block;margin-top:2px}
+html:not(.js) .ages-note{display:none}
+
 @media(max-width:430px){
   .avail-stamp a{display:block;width:max-content;margin:-13px -4px -15px}
 }
@@ -1359,7 +1362,8 @@ body.locked{overflow:hidden}
         daily handling from the day they're born to the day they leave.</p>
 
         <p class="avail-stamp">Availability
-          <span data-fact="stamp"><time id="availStamp" datetime="2026-09-19">current as of September 19, 2026</time></span></p>
+          <span data-fact="stamp"><time id="availStamp" datetime="2026-09-19">current as of September 19, 2026</time></span>
+          <span class="ages-note">Ages are counted from each birth date, so they're right today.</span></p>
       </div>
       
       <span class="count" id="count">Call or text for current litters</span>
@@ -2688,7 +2692,7 @@ body.locked{overflow:hidden}
     if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
     return '<div class="grow'+(full?' viewer-grow':'')+'" data-dob="'+esc(r.dob||'')+
-      '" role="img" aria-label="'+(full?'Now ':'')+esc(age)+', week '+wk+
+      '" role="img" aria-label="'+(full?'Now ':'')+esc(age)+(full||age==='Born today'?'':' today')+', week '+wk+
       ' of '+LAST_WEEK+(st?', '+esc(st.label):'')+'">'+
       '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
       '<span class="grow-txt">'+txt+'</span></div>';
