@@ -555,8 +555,14 @@ html:not(.js) .ages-note{display:none}
 .bunny .grow-txt b{display:block}
 .grow-txt .u{white-space:nowrap}
 
-.viewer-grow{flex-direction:row;align-items:flex-start;gap:10px}
-.viewer-grow .grow-bar{margin-top:7px}
+.viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
+.viewer-grow .grow-top{display:flex;align-items:center;gap:8px;line-height:18px;height:18px}
+.viewer-grow .grow-bar{margin-top:0}
+.grow-label{font-size:12.5px;color:var(--ink-faint);text-decoration:none;white-space:nowrap;
+  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
+.grow-label:hover{color:var(--brick-dk);border-bottom-style:solid}
+.viewer-grow.eight .grow-bar i{background:var(--moss-dk)}
+.viewer-grow.eight .grow-label{color:var(--ink);font-weight:600;border-bottom-color:rgba(36,31,29,.45)}
 .grow-bar{display:flex;gap:2px;flex:none}
 .grow-bar i{width:7px;height:4px;border-radius:1px;background:var(--line);
   transition:background .2s}
@@ -581,6 +587,8 @@ html:not(.js) .ages-note{display:none}
   
   .viewer-grow .grow-bar i.now{
     animation:growCount .3s ease-out both, growPulse 2.4s ease-in-out .75s 2}
+  
+  .viewer-grow.eight .grow-bar i.now{animation:growCount .3s ease-out both}
 }
 
 .grow-txt{font-size:13px;color:var(--ink-faint);line-height:17px;
@@ -594,11 +602,6 @@ html:not(.js) .ages-note{display:none}
 
 .grow-txt b{color:var(--ink);font-weight:600}
 .viewer-grow{margin:0}
-
-@media(max-width:480px){
-  .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
-  .viewer-grow .grow-bar{margin-top:0}
-}
 
 .viewer-grow .grow-txt{font-size:13px;line-height:18px;padding-bottom:1px}
 
@@ -1395,7 +1398,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" aria-label="The news and the litters">
-      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-09-21">21 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-09-22">22 Sep</time>. New litters and who's available.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 August. Three litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -1516,10 +1519,10 @@ body.locked{overflow:hidden}
         
         <span class="stage-when">Going home</span>
         <h3>When they're ready</h3>
-        <p>There's no set age for it. A kit goes home once it's off milk and eating hay and
-        pellets on its own, and has been eating and drinking well for at least a week. I
-        weigh it, and it has to be holding or gaining, with nothing wrong with it. Some get
-        there at eight weeks and some sooner. One that isn't there yet waits.</p>
+        <p>Eight weeks is what I aim for. A kit goes home once it's off milk and eating hay
+        and pellets on its own, and has been eating and drinking well for at least a week.
+        I weigh it, and it has to be holding or gaining, with nothing wrong with it. One
+        that isn't there yet waits, whatever its age.</p>
       </div>
     </div>
 
@@ -1636,8 +1639,9 @@ body.locked{overflow:hidden}
           Nothing has to be decided on the day.</p>
           <p><b>$50 holds the one you choose.</b> It comes off the price. Rabbits open for
           reservation at four weeks old.</p>
-          <p><b>Pickup is when the rabbit is ready.</b> Not at a set age. We go through the
-          care sheet together and you leave with everything on the list above.</p>
+          
+          <p><b>Pickup is when the rabbit is ready.</b> Eight weeks is what I aim for. We go
+          through the care sheet together and you leave with everything on the list above.</p>
         </div>
       </details>
       <details id="faq-price">
@@ -1731,16 +1735,29 @@ body.locked{overflow:hidden}
         <summary>When can I take one home?</summary>
         <div class="faq-body">
           
-          <p><b>When it's ready. There's no set age.</b> I decide kit by kit. Some
-          are ready at eight weeks and some sooner.</p>
+          <p><b>Eight weeks is what I aim for.</b> The bar on every listing is those
+          eight weeks, filled to the week the rabbit is in today. It goes dark green
+          the day the rabbit gets there.</p>
           <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
-          own. Eating and drinking well for at least seven days. Holding or gaining weight
-          when I weigh it, with nothing wrong with it.</p>
-          <p><b>The reason is the changeover.</b> Coming off milk is the stretch where <a class="cite"
+          own. Eating and drinking well, on the same food, for at least seven days. Holding
+          or gaining weight when I weigh it, with nothing wrong with it that I can find. One
+          that isn't there yet waits, whatever its age.</p>
+          <p><b>Eight weeks is when the changeover is done.</b> Kits wean at four to six
+          weeks and lose the protection of their mother's milk while their gut is still
+          learning solid food. The House Rabbit Society says <a class="cite"
           href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
-          target="_blank" rel="noopener">their gut is still learning the job</a>. A new house
-          and new food on top of that is a lot to ask. So a kit that isn't there yet waits
-          here, where nothing else is changing.</p>
+          target="_blank" rel="noopener">not to take them away “until they are a full
+          eight weeks of age”</a>. The <a class="cite"
+          href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
+          target="_blank" rel="noopener">RSPCA agrees</a>: eight weeks, “fully weaned
+          and independent”.</p>
+          <p><b>The risk is in those weeks, and it's rare.</b> The <a class="cite"
+          href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits"
+          target="_blank" rel="noopener">Merck Veterinary Manual</a> puts enterotoxaemia, a
+          severe gut disease, “primarily” in rabbits “4–8 weeks
+          old”, and names diet and the stress of weaning. A new house and new food
+          land in that same window. So the younger a kit goes, the more room there is for
+          something to go wrong.</p>
           <p><b>They go home eating what they eat here.</b> Two weeks of that food goes in the
           bag. Nothing changes on day one.</p>
           <p><b>A Ready date is the date I expect.</b> You'll get
@@ -1810,11 +1827,10 @@ body.locked{overflow:hidden}
           <p><b>A nursing doe needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
           href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
           target="_blank" rel="noopener">once or twice a day, and only when she feels safe</a>.
-          The box has to be where she left it, quiet, with nobody else in it. Breeders house
-          a doe and her litter on their own for that reason. It is how <a class="cite"
+          The box has to be where she left it, quiet, with nobody else in it. So a doe and
+          her litter are housed on their own, as <a class="cite"
           href="https://extension.psu.edu/rabbit-production"
-          target="_blank" rel="noopener">the university guide to raising rabbits</a> says to
-          do it.</p>
+          target="_blank" rel="noopener">the university guide to raising rabbits</a> says.</p>
           <p><b>Keeping them apart is how a pedigree stays true.</b> Nothing breeds by accident
           here, so I know every kit's mother and father. That is what lets me tell you
           exactly what you are buying.</p>
@@ -2192,7 +2208,7 @@ body.locked{overflow:hidden}
 <script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"]],"w":1600},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg"]],"w":1289},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/maple.jpg":{"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=c044fdb4"></script>
+<script src="rabbits.js?v=4917752d"></script>
 
 <script>
 (function(){
@@ -2741,10 +2757,12 @@ body.locked{overflow:hidden}
     var txt='<b>'+(full&&isNow?'<a class="nowlink" href="#faq-ages">Now</a> ':'')+esc(age)+'</b>';
     if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
+    var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
+    var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('Week '+wk+' of '+LAST_WEEK);
     if(full)
-      return '<div class="grow viewer-grow" data-dob="'+esc(r.dob||'')+'">'+
-        '<span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
-        '<span class="sr-only">Week '+wk+' of '+LAST_WEEK+'. </span>'+
+      return '<div class="grow viewer-grow'+(eight?' eight':'')+'" data-dob="'+esc(r.dob||'')+'">'+
+        '<span class="grow-top"><span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
+        '<a class="grow-label" href="#faq-home">'+label+'</a></span>'+
         '<span class="grow-txt">'+txt+'</span></div>';
     return '<div class="grow" data-dob="'+esc(r.dob||'')+'">'+
       '<span class="grow-txt">'+cardTxt+'</span></div>';
@@ -3474,7 +3492,7 @@ body.locked{overflow:hidden}
           .replace(/&middot;/g,'·')
           .replace(/\s+/g,' ').trim());
       }
-      if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w)+'px';
+      if(grows.length) vGrow.style.minHeight=(tallest(vGrow,'grow-txt',grows,w)+24)+'px';   /* + the bar's own line (18px) and the gap (6px), 22 Sept 2026 */
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
       vNote.style.height='';
       var anyCap=false;
@@ -3679,7 +3697,7 @@ body.locked{overflow:hidden}
     }
 
     if(vGrow) vGrow.addEventListener('click',function(ev){
-      var a=ev.target.closest&&ev.target.closest('.stagelink, .nowlink');
+      var a=ev.target.closest&&ev.target.closest('.stagelink, .nowlink, .grow-label');
       if(!a) return;
       ev.preventDefault();
       var to=a.getAttribute('href');

@@ -26,9 +26,10 @@
    ── THE READY DATE ──
       ready: "22 Sept"  is the date you expect that rabbit to be ready.
       It is printed as typed, on the Ready line, in an AVAILABLE
-      rabbit's listing only. There is no fixed go-home age on the site (your
-      call, kit by kit, some at eight weeks and some sooner), so leave
-      it out for a rabbit you have not dated and the site says nothing.
+      rabbit's listing only. The site says eight weeks is what you AIM
+      for (your words, 22 Sept 2026) and that the readiness test decides,
+      kit by kit; it promises no age, so leave the date out for a rabbit
+      you have not dated and the site says nothing.
       The card under each photo shows how old the rabbit is today,
       worked out from dob on every visit, so it is never stale.
 
