@@ -14,7 +14,6 @@
         RESERVED   28 Aug 2026
         SOLD        7 Sep 2026
         WENT HOME  14 Sep 2026
-        INSTAGRAM  12 Sep 2026 · First time on the brick   <- opens the reel
         EAR NUMBER AR-24
         WEIGHT     3 lb 4 oz · 8 Sep 2026
 
@@ -258,36 +257,41 @@
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
       typed here: no colour, no age, no line about temperament.
 
-   ── ON INSTAGRAM: EACH RABBIT'S OWN REELS (23 Sept 2026) ──
-      Every reel you post of a rabbit can sit in that rabbit's record, so a
-      buyer who opens a listing sees its reels in date order and taps one to
-      watch it on Instagram, likes and views included ("each bunny has their
-      own Instagram portfolio"). Add to the rabbit:
+   ── A REEL IS A FRAME (23 Sept 2026) ──
+      Every reel you post of a rabbit belongs in that rabbit's photos list,
+      as a video frame: its poster in the strip with the play badge, the
+      clip playing in place when somebody presses play, "Filmed <date> ·
+      <age that day>" in the corner, and one small doorway under it to the
+      reel on Instagram, where the likes and comments are live. Five reels
+      are five thumbnails in the strip, in date order with the photographs,
+      which is the timeline. Two facts from you per reel: the clip file and
+      the link.
 
-        insta: [
-          { url: "https://www.instagram.com/reel/Ddm45DLPAhr/",
-            what: "The bumble bunny" }
-        ],
+        { video: "videos/butterscotch-bumble.mp4",
+          poster: "photos/butterscotch-bumble-video.jpg",
+          insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
+          note: "The bumble bunny" },
 
-      url    the reel's link: open the reel, tap the three dots, Copy link.
-             A reel or a post (instagram.com/reel/... or instagram.com/p/...),
-             nothing else; the build refuses any other address.
-      what   a few words on what the reel shows (up to 40 characters); the
-             reader sees "22 Sep 2026 · The bumble bunny". Under about 20
-             characters it stays on one line on a phone; longer drops whole
-             under the date.
-      on     OPTIONAL. The day it went up is inside every Instagram link
-             (the letters after /reel/ spell the post's ID, and the ID
-             carries the moment it was created), so the build reads it and
-             writes  on: "2026-09-22"  in here with a note. Type your own
-             on: only to say a different day, such as the day it was filmed.
+      video   the clip you posted (the original from your phone), dropped
+              into videos/ under a short name, exactly as the VIDEO section
+              below says; the build frames it and cuts the poster.
+      poster  always the clip's name plus "-video.jpg" in photos/.
+      insta   the reel's link: open the reel, tap the three dots, Copy link.
+      note    a few words on what it shows (optional).
+      date    OPTIONAL. The day the reel went up is inside every Instagram
+              link (the letters after /reel/ spell the post's ID, and the ID
+              carries the moment it was created), so the build reads it and
+              writes  date: "2026-09-22"  in here with a note. Type your own
+              date: only to say a different day, such as the day you filmed.
 
-      A reel of two rabbits goes on both. Oldest first is automatic. Nothing
-      is embedded on the page (Instagram's player would put its own cookies
-      on every visitor, and the terms sheet says the only outside script here
-      is Cloudflare's), and no like or view count is printed: a count typed
-      here is stale within the hour, and the reel itself is one tap away with
-      the live numbers on it.
+      UNTIL THE CLIP FILE IS HERE, the line can carry just the link and the
+      note. It prints nothing (a frame with no picture is dropped), and the
+      weekly calendar asks you for the file. Nothing on the site is ever a
+      picture that is not the reel, and nothing is embedded from Instagram
+      (its player would put Meta's cookies on every visitor; the terms sheet
+      says the only outside script here is Cloudflare's). No like or view
+      count is printed either: a count typed here is stale within the hour,
+      and the doorway shows the live one.
 
    ── VIDEO ──
       A frame in any photos list can be a video instead of a photo:
@@ -492,6 +496,13 @@ const RABBITS = [
     name:   "Butterscotch",
     photos: [
       { src: "photos/butterscotch.jpg", date: "2026-08-23" },
+      /* HER REEL (23 Sept 2026, William: "the bumble bunny is butterscotch").
+         The link and the day it went up, read from the link; the clip file is
+         still to come from his phone, so this frame prints nothing until
+         video: and poster: are added (the calendar asks him for it). */
+      { insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
+        date: "2026-09-22",   /* the day it went up, read from the reel's own link by the build; type your own to say a different day */
+        note: "The bumble bunny" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
@@ -533,13 +544,6 @@ const RABBITS = [
     soldOn: "",
     ear:    "",
     weights: [],
-    /* HER REELS (23 Sept 2026, William: "the bumble bunny is butterscotch"):
-       the first reel on the site, in his words for it. */
-    insta: [
-      { url: "https://www.instagram.com/reel/Ddm45DLPAhr/",
-        on: "2026-09-22",   /* read from the reel's own link by the build; type your own to say a different day */
-        what: "The bumble bunny" }
-    ],
     photo:  "photos/butterscotch.jpg",
     feature: true,
     hero:   "img/hero-brick.jpg",
