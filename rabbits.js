@@ -14,6 +14,7 @@
         RESERVED   28 Aug 2026
         SOLD        7 Sep 2026
         WENT HOME  14 Sep 2026
+        INSTAGRAM  12 Sep 2026 · First time on the brick   <- opens the reel
         EAR NUMBER AR-24
         WEIGHT     3 lb 4 oz · 8 Sep 2026
 
@@ -256,6 +257,33 @@
       the site says "The mother" and "The father", which is what William
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
       typed here: no colour, no age, no line about temperament.
+
+   ── ON INSTAGRAM: EACH RABBIT'S OWN REELS (23 Sept 2026) ──
+      Every reel you post of a rabbit can sit in that rabbit's record, so a
+      buyer who opens a listing sees its reels in date order and taps one to
+      watch it on Instagram, likes and views included ("each bunny has their
+      own Instagram portfolio"). Add to the rabbit:
+
+        insta: [
+          { url: "https://www.instagram.com/reel/Ddm45DLPAhr/",
+            on: "YYYY-MM-DD", what: "First time out on the brick" }
+        ],
+
+      url    the reel's link: open the reel, tap the three dots, Copy link.
+             A reel or a post (instagram.com/reel/... or instagram.com/p/...),
+             nothing else; the build refuses any other address.
+      on     the day you POSTED it, as YYYY-MM-DD. The site cannot read a
+             date off Instagram, so you type it; a line without a date does
+             not print, because a record with no day on it is not a record.
+      what   a few words on what the reel shows (up to 40 characters); the
+             reader sees "22 Sep 2026 · First time out on the brick".
+
+      A reel of two rabbits goes on both. Oldest first is automatic. Nothing
+      is embedded on the page (Instagram's player would put its own cookies
+      on every visitor, and the terms sheet says the only outside script here
+      is Cloudflare's), and no like or view count is printed: a count typed
+      here is stale within the hour, and the reel itself is one tap away with
+      the live numbers on it.
 
    ── VIDEO ──
       A frame in any photos list can be a video instead of a photo:
