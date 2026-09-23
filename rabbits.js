@@ -266,17 +266,21 @@
 
         insta: [
           { url: "https://www.instagram.com/reel/Ddm45DLPAhr/",
-            on: "YYYY-MM-DD", what: "First time out on the brick" }
+            what: "The bumble bunny" }
         ],
 
       url    the reel's link: open the reel, tap the three dots, Copy link.
              A reel or a post (instagram.com/reel/... or instagram.com/p/...),
              nothing else; the build refuses any other address.
-      on     the day you POSTED it, as YYYY-MM-DD. The site cannot read a
-             date off Instagram, so you type it; a line without a date does
-             not print, because a record with no day on it is not a record.
       what   a few words on what the reel shows (up to 40 characters); the
-             reader sees "22 Sep 2026 · First time out on the brick".
+             reader sees "22 Sep 2026 · The bumble bunny". Under about 20
+             characters it stays on one line on a phone; longer drops whole
+             under the date.
+      on     OPTIONAL. The day it went up is inside every Instagram link
+             (the letters after /reel/ spell the post's ID, and the ID
+             carries the moment it was created), so the build reads it and
+             writes  on: "2026-09-22"  in here with a note. Type your own
+             on: only to say a different day, such as the day it was filmed.
 
       A reel of two rabbits goes on both. Oldest first is automatic. Nothing
       is embedded on the page (Instagram's player would put its own cookies
@@ -529,6 +533,13 @@ const RABBITS = [
     soldOn: "",
     ear:    "",
     weights: [],
+    /* HER REELS (23 Sept 2026, William: "the bumble bunny is butterscotch"):
+       the first reel on the site, in his words for it. */
+    insta: [
+      { url: "https://www.instagram.com/reel/Ddm45DLPAhr/",
+        on: "2026-09-22",   /* read from the reel's own link by the build; type your own to say a different day */
+        what: "The bumble bunny" }
+    ],
     photo:  "photos/butterscotch.jpg",
     feature: true,
     hero:   "img/hero-brick.jpg",
