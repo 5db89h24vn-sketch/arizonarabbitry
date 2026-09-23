@@ -257,25 +257,24 @@
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
       typed here: no colour, no age, no line about temperament.
 
-   ── A REEL IS A FRAME (23 Sept 2026) ──
-      Every reel you post of a rabbit belongs in that rabbit's photos list,
-      as a video frame: its poster in the strip with the play badge, the
-      clip playing in place when somebody presses play, "Filmed <date> ·
-      <age that day>" in the corner, and one small doorway under it to the
-      reel on Instagram, where the likes and comments are live. Five reels
-      are five thumbnails in the strip, in date order with the photographs,
-      which is the timeline. Two facts from you per reel: the clip file and
-      the link.
+   ── A REEL IS A FRAME THAT OPENS INSTAGRAM (23 Sept 2026) ──
+      Every reel you post of a rabbit belongs in that rabbit's photos list
+      as a frame: a still from the reel in the strip with the play badge, the
+      "Filmed <date> · <age that day>" pill in the corner, and over the
+      picture the one button, "Watch on Instagram", which opens the reel
+      itself (your words: "I much rather it just be a direct link to
+      Instagram, because I'm never going to delete any of my videos"). The
+      site hosts no copy of the reel and embeds nothing from Instagram. Five
+      reels are five thumbnails in date order with the photographs, which is
+      the timeline. Two facts from you per reel: a still and the link.
 
-        { video: "videos/butterscotch-bumble.mp4",
-          poster: "photos/butterscotch-bumble-video.jpg",
+        { src: "photos/butterscotch-bumble.jpg",
           insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
-          note: "The bumble bunny" },
+          note: "Meet the bumblebunny" },
 
-      video   the clip you posted (the original from your phone), dropped
-              into videos/ under a short name, exactly as the VIDEO section
-              below says; the build frames it and cuts the poster.
-      poster  always the clip's name plus "-video.jpg" in photos/.
+      src     a still from the reel: a screenshot of it playing (the build
+              cuts it to the listing's shape), or a photo from the same day.
+              Named after the rabbit and the reel, in photos/.
       insta   the reel's link: open the reel, tap the three dots, Copy link.
       note    a few words on what it shows (optional).
       date    OPTIONAL. The day the reel went up is inside every Instagram
@@ -284,14 +283,12 @@
               writes  date: "2026-09-22"  in here with a note. Type your own
               date: only to say a different day, such as the day you filmed.
 
-      UNTIL THE CLIP FILE IS HERE, the line can carry just the link and the
-      note. It prints nothing (a frame with no picture is dropped), and the
-      weekly calendar asks you for the file. Nothing on the site is ever a
-      picture that is not the reel, and nothing is embedded from Instagram
-      (its player would put Meta's cookies on every visitor; the terms sheet
-      says the only outside script here is Cloudflare's). No like or view
-      count is printed either: a count typed here is stale within the hour,
-      and the doorway shows the live one.
+      A line with the link and no still yet prints nothing (a frame with no
+      picture is dropped), and the weekly calendar asks you for the still.
+      A clip of your own that is ALSO a reel keeps the VIDEO form below
+      (video: + poster:) and adds insta: — it plays here and the caption
+      gains "On Instagram". No like or view count is printed: a count typed
+      here is stale within the hour, and the reel itself has the live one.
 
    ── VIDEO ──
       A frame in any photos list can be a video instead of a photo:
@@ -496,13 +493,15 @@ const RABBITS = [
     name:   "Butterscotch",
     photos: [
       { src: "photos/butterscotch.jpg", date: "2026-08-23" },
-      /* HER REEL (23 Sept 2026, William: "the bumble bunny is butterscotch").
-         The link and the day it went up, read from the link; the clip file is
-         still to come from his phone, so this frame prints nothing until
-         video: and poster: are added (the calendar asks him for it). */
-      { insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
+      /* HER REEL (23 Sept 2026, William: "the bumble bunny is butterscotch";
+         then "I much rather it just be a direct link to Instagram"). A still
+         from the reel (his screenshot, cut to 4:3 around her and the reel's
+         own caption), the day it went up read from the link, and the link:
+         the frame's tap opens the reel on Instagram. */
+      { src: "photos/butterscotch-bumble.jpg",
+        insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
         date: "2026-09-22",   /* the day it went up, read from the reel's own link by the build; type your own to say a different day */
-        note: "The bumble bunny" },
+        note: "Meet the bumblebunny" },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
