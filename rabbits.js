@@ -53,8 +53,11 @@
       The card says "$250 until Monday", the listing "$50 off until Monday
       28 September" with three numbered steps under it (message me before
       Monday; $50 holds her at $250; the rest at pickup) and the pair
-      price, and the hero chip says the reason and the price. All of it
-      is worked out from the date, so nothing typed can go stale. The
+      price, the hero chip says the reason and the price, and the SALE
+      mark on the hero and in the listing counts the time left ("SALE ·
+      3 DAYS, 14 HOURS LEFT", then hours and minutes on the last day;
+      never seconds). All of it is worked out from the date, so nothing
+      typed can go stale. The
       morning of that day the page puts wasPrice back as the price, with
       no strike, by itself; the next build writes that into this file
       (price: wasPrice, the drop lines gone, a comment left) and the

@@ -22,8 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap"></noscript>
 
 <style>
 :root{
@@ -40,6 +40,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 :focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+
+html{font-synthesis:none}
+b,strong{font-weight:600}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:720px;margin:0 auto;padding:0 22px}
@@ -75,7 +78,7 @@ header{padding:16px 0 0}
 .subnav a:hover,.subnav a:active{color:var(--brick)}
 .subnav a::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
   background:var(--ink-faint);margin-right:8px}
-h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
 .lede{color:var(--ink-soft);max-width:52ch;margin-bottom:34px}
 .edition{border:1px solid var(--line);border-radius:var(--r);background:#fff;
@@ -83,7 +86,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,40px);
 .edition time{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:14px}
-.edition h2{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:8px}
+.edition h2{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:8px}
 .edition p{color:var(--ink-soft)}
 .edition ul{margin:10px 0 4px 20px;color:var(--ink-soft)}
 .edition li{margin-bottom:8px}
