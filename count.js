@@ -43,6 +43,7 @@
     if(href.indexOf('sms:')===0) return 'text';
     if(href.indexOf('tel:')===0) return 'call';
     if(href.indexOf('mailto:')===0) return 'email';
+    if(/ig\.me\/m\//.test(href)) return 'instagram';   /* a message to him on Instagram (24 Sept 2026), from the listing's steps or the contact rows */
     if(a.classList.contains('bunny')) return 'listing';
     if(a.classList.contains('hero-go')) return 'see-rabbits';
     if(a.classList.contains('parent')) return 'parent';

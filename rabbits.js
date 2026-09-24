@@ -52,8 +52,9 @@
                                        on Monday ... reserve before Monday")
       The card says "$250 until Monday", the listing "$50 off until Monday
       28 September" with three numbered steps under it (message me before
-      Monday, and a tap on "Message me" opens two pills, Text and Email,
-      each opening the reader's own app with the message written; $50
+      Monday, and a tap on "Message me" opens three pills, Instagram
+      first (your preference, said under them), Text and Email, the last
+      two opening the reader's own app with the message written; $50
       holds her at $250; the rest at pickup) and the pair
       price, the hero chip says the reason and the price, the SALE mark
       wears a flame, and the time left is counted on the hero's mark
