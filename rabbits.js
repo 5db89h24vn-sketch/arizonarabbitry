@@ -55,11 +55,12 @@
       Monday, and a tap on "Message me" opens two pills, Text and Email,
       each opening the reader's own app with the message written; $50
       holds her at $250; the rest at pickup) and the pair
-      price, the hero chip says the reason and the price, and the SALE
-      mark on the hero and in the listing counts the time left ("SALE ·
-      3 DAYS, 14 HOURS LEFT", then hours and minutes on the last day;
-      never seconds). All of it is worked out from the date, so nothing
-      typed can go stale. The
+      price, the hero chip says the reason and the price, the SALE mark
+      wears a flame, and the time left is counted on the hero's mark
+      ("SALE · 3 DAYS, 14 HOURS LEFT") and as the first line of the
+      listing's steps box ("3 days, 14 hours, 27 minutes left"; never
+      seconds). All of it is worked out from the date, so nothing typed
+      can go stale. The
       morning of that day the page puts wasPrice back as the price, with
       no strike, by itself; the next build writes that into this file
       (price: wasPrice, the drop lines gone, a comment left) and the
