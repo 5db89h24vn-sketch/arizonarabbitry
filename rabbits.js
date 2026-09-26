@@ -55,8 +55,8 @@
       Monday, and a tap on "Message me" opens three pills, Instagram
       first (your preference, said under them), Text and Email, the last
       two opening the reader's own app with the message written; $50
-      holds her at $250; the rest at pickup) and the pair
-      price, the hero chip says the reason and the price, the SALE mark
+      holds her at $250; the rest at pickup), the hero chip says the
+      reason and the price, the SALE mark
       wears a flame, and the time left is counted on the hero's mark
       ("SALE · 3 DAYS, 14 HOURS LEFT") and as the first line of the
       listing's steps box ("3 days, 14 hours, 27 minutes left"; never
@@ -76,6 +76,17 @@
       asks after two weeks whether to take the strike down (delete
       wasPrice and the deal lines: $350 then simply stands). Never both
       dealEnds and dealStays on one rabbit: the build refuses it.
+      A PAIR, ON EVERY LISTING (26 Sept 2026): nothing to add here. Every
+      AVAILABLE rabbit's listing shows a pair box by itself: its available
+      littermates (the same dob) as chips with their prices, or, when it
+      has none, the other rabbits available; the saving, 20% of the
+      cheaper of the two; your 48-hour rule (a second bought, or $50 put
+      on it, within 48 hours of the first going home, keeps the 20%); and
+      the RSPCA's words on company, linked. The hold rules (a $50 hold
+      keeps the pair price for a month, another $50 renews it, every $50
+      comes off the price, one switch free and a switch does not extend
+      the month) live in the FAQ's pair answer and on the terms sheet. A
+      sold or reserved rabbit shows no box.
       A DROP THAT IS STILL COMING (a milestone not yet reached) is written
       the other way round, and the site prints it as a promise: keep price
       where it is and add dealTo (the price it will drop to), dealWhen
