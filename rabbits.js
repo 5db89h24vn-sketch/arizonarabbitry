@@ -582,12 +582,12 @@ const RABBITS = [
        1998). Monday 28 September is the day it is over, his words, so
        the site says "until Monday 28 September" and, that morning, puts
        $300 back by itself. */
+    /* SOLD 27 SEPT 2026 at $250, inside the 250-followers drop (24 to 28 Sept,
+       $300 struck beside $250). The drop lines (wasPrice, dealNote, dealTag,
+       dealOn, dealEnds) came off with the sale, so the record keeps the price
+       she actually sold at and the morning of the 28th cannot put $300 back
+       on a rabbit that is no longer for sale. */
     price:  250,
-    wasPrice: 300,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $50 off until Monday 28 September." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · $250 until Monday" */
-    dealOn:   "2026-09-24",
-    dealEnds: "2026-09-28",                    /* the day the drop is over: "ending on Monday" */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -596,13 +596,12 @@ const RABBITS = [
     dob:    "2026-07-28",
     listedOn: "2026-08-24",
     ready:  "22 Sept",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* William, 27 Sept 2026: "mark butterscotch as sold as well" (said with Maple's "sold today"; the day she was reserved was not given) */
+    soldOn: "2026-09-27",
     ear:    "",
     weights: [],
     photo:  "photos/butterscotch.jpg",
-    feature: true,
-    hero:   "img/hero-brick.jpg",
+    hero:   "img/hero-brick.jpg",              /* the brick shot that led the site from June to 27 Sept 2026; feature: true moved to Marshmallow with the sale */
     note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts."
   },
 
@@ -875,6 +874,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/marshmallow.jpg",
+    feature: true,                             /* the hero since 27 Sept 2026, when Butterscotch sold: the dearest rabbit available, first on the rail, settled on the brick with nothing holding her */
     note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
   }
 
