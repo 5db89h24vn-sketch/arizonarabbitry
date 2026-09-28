@@ -784,6 +784,8 @@ label .opt-note{color:var(--ink-faint);font-weight:400}
 label .opt-note[hidden],label .req[hidden]{display:none}
 
 .reply-pick{margin-top:2px}
+
+.reply-note{margin:9px 0 0;font-size:13.5px;line-height:1.45;color:var(--ink-faint)}
 input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;padding:13px 15px;
   border:1px solid var(--line);border-radius:var(--r);font:inherit;font-size:16px;
   background:#fff;color:var(--ink);transition:border-color .15s,box-shadow .15s}
@@ -2205,6 +2207,8 @@ body.locked{overflow:hidden}
                 <label><input type="radio" name="reply" value="Call"><span>Call me</span></label>
                 <label><input type="radio" name="reply" value="Email"><span>Email me</span></label>
               </div>
+              
+              <p class="reply-note" id="replyNote">Text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I'll call once, then leave you&nbsp;be.</p>
             </div>
             <div class="field">
               <label for="name">Your name <span class="req">*</span></label>
@@ -4258,9 +4262,16 @@ body.locked{overflow:hidden}
   }
   var replyRadios=form.querySelectorAll('input[name="reply"]');
   var phoneF=document.getElementById('phone'), emailF=document.getElementById('email');
+  var replyNote=document.getElementById('replyNote');
+  var REPLY_NOTE={
+    Text:'Text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I\'ll call once, then leave you\u00a0be.',
+    Call:'Text is what I reach for first, but pick what suits you. If I call and can\'t reach you, I\'ll text once after two days, then leave you\u00a0be.',
+    Email:'Text is what I reach for first, but pick what suits you. If I email you and hear nothing for two days, I\'ll text once if you gave me a number, then leave you\u00a0be.'
+  };
   function setReply(){
     var v=(form.querySelector('input[name="reply"]:checked')||{}).value||'Text';
     var needPhone=(v!=='Email');
+    if(replyNote) replyNote.textContent=REPLY_NOTE[v]||REPLY_NOTE.Text;
     if(phoneF) phoneF.required=needPhone;
     if(emailF) emailF.required=!needPhone;
     form.querySelectorAll('[data-need="phone"]').forEach(function(e){e.hidden=!needPhone;});
@@ -4374,7 +4385,8 @@ body.locked{overflow:hidden}
     if(when) fd.append('hoping to bring one home', when);
     if(msg) fd.append('their message', msg);
     var step=reply==='Call'?'Call them today.':reply==='Email'?'Reply to this email today.':'Text them today, at the number above.';
-    fd.append('next step', step+' The site says you usually reply the same day.');
+    var second=reply==='Call'?'text them once':reply==='Email'?(nicePhone?'text them once':''):'call them once';
+    fd.append('next step', step+' The site says you usually reply the same day. Nothing back in two days: '+(second?second+', then let it go.':'let it go.'));
     var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
     return fd;
   }
