@@ -1072,6 +1072,24 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 <script>
 (function(){
   var ALERT_API='/api/waitlist';
+  function waitFields(form, email, want, label){
+    var fd=new FormData(), forL=/^L\d{4}-\d{2}-\d{2}$/.test(want), forP=/^P/.test(want);
+    var when;
+    if(forL){
+      var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
+      var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+      when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
+    } else if(forP){ when=label+' is born'; }
+    else { when='the next litter opens for reservation'; }
+    var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
+    fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
+    fd.append('this is', 'Someone joined the waitlist on arizonarabbits.com.');
+    fd.append('they want to hear about', whatFor);
+    fd.append('email', email);
+    fd.append('next step', 'Nothing to send yet. They hear from you when '+when+'. The site promises the waitlist hears first, so that day is the day.');
+    var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
+    return fd;
+  }
   function tieLastWords(s){ return s.replace(/ (\S+)$/, '\u00A0$1'); }
   function waitingText(n, label){
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
@@ -1104,7 +1122,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     f.addEventListener('submit',function(ev){
       ev.preventDefault();
       var email=(f.querySelector('input[name="email"]')||{}).value||'';
-      fetch(f.getAttribute('action'),{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      fetch(f.getAttribute('action'),{method:'POST',body:waitFields(f, email, want, label),headers:{'Accept':'application/json'}})
         .then(function(r){ if(!r.ok) throw 0;
           if(row) row.hidden=true; if(lead) lead.hidden=true; if(okEl) okEl.hidden=false;
           recordWaiting(email, want, function(n){ showWaiting(count, n, label, true); }); })

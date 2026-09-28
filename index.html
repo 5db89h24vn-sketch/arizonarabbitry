@@ -4119,6 +4119,24 @@ body.locked{overflow:hidden}
   } else { showAll(); }
 
   var ALERT_API='/api/waitlist';
+  function waitFields(form, email, want, label){
+    var fd=new FormData(), forL=/^L\d{4}-\d{2}-\d{2}$/.test(want), forP=/^P/.test(want);
+    var when;
+    if(forL){
+      var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
+      var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+      when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
+    } else if(forP){ when=label+' is born'; }
+    else { when='the next litter opens for reservation'; }
+    var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
+    fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
+    fd.append('this is', 'Someone joined the waitlist on arizonarabbits.com.');
+    fd.append('they want to hear about', whatFor);
+    fd.append('email', email);
+    fd.append('next step', 'Nothing to send yet. They hear from you when '+when+'. The site promises the waitlist hears first, so that day is the day.');
+    var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
+    return fd;
+  }
   function tieLastWords(s){ return s.replace(/ (\S+)$/, '\u00A0$1'); }
   function waitingText(n, label){
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
@@ -4174,7 +4192,7 @@ body.locked{overflow:hidden}
         return;
       }
       var email=(wf.querySelector('input[name="email"]')||{}).value||'';
-      fetch(a,{method:'POST',body:new FormData(wf),headers:{'Accept':'application/json'}})
+      fetch(a,{method:'POST',body:waitFields(wf, email, want, forLitter?label:''),headers:{'Accept':'application/json'}})
         .then(function(r){ if(!r.ok) throw 0; finish();
           recordWaiting(email, want, function(n){
             if(forLitter) showWaiting(wcount, n, label, true);
@@ -4333,6 +4351,33 @@ body.locked{overflow:hidden}
   form.addEventListener('input',function(e){clr(e.target)});
   form.addEventListener('change',function(e){clr(e.target)});
 
+  function askFields(form){
+    var fd=new FormData();
+    var val=function(n){ var el=form.querySelector('[name="'+n+'"]:checked')||form.querySelector('[name="'+n+'"]'); return el?String(el.value||'').trim():''; };
+    var name=val('name'), phone=val('phone'), email=val('email'), reply=val('reply')||'Text';
+    var rabbit=val('rabbit'), interest=val('interest'), exp=val('experience'), when=val('timeline'), msg=val('message');
+    var digits=phone.replace(/\D/g,''); if(digits.length===11&&digits.charAt(0)==='1') digits=digits.slice(1);
+    var nicePhone=digits.length===10?('('+digits.slice(0,3)+') '+digits.slice(3,6)+'-'+digits.slice(6)):phone;
+    var how=reply==='Call'?'a call':reply==='Email'?'an email':'a text';
+    var names=rabbit?rabbit.split(/,\s*/).filter(Boolean):[];
+    var said=names.length>1?(names.slice(0,-1).join(', ')+' and '+names[names.length-1]):(names[0]||'');
+    var about=said?('about '+said):(interest?(interest==='Not sure yet'?'not sure yet':'looking for '+interest.toLowerCase()):'asking');
+    fd.append('_subject', (name||'Someone')+', '+about+', wants '+how);
+    fd.append('this is', 'An enquiry from the Ask form on arizonarabbits.com.');
+    fd.append('name', name);
+    fd.append('reply by', reply==='Call'?'Call them':reply==='Email'?'Email them':'Text them');
+    if(nicePhone) fd.append('phone', nicePhone);
+    if(email) fd.append('email', email);
+    fd.append('asking about', said||'No rabbit in particular');
+    if(interest) fd.append('looking for', interest);
+    if(exp) fd.append('had a rabbit before', exp);
+    if(when) fd.append('hoping to bring one home', when);
+    if(msg) fd.append('their message', msg);
+    var step=reply==='Call'?'Call them today.':reply==='Email'?'Reply to this email today.':'Text them today, at the number above.';
+    fd.append('next step', step+' The site says you usually reply the same day.');
+    var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
+    return fd;
+  }
   form.addEventListener('submit',function(ev){
     if(!validate(steps[cur])){ ev.preventDefault(); return; }
     ev.preventDefault();
@@ -4349,7 +4394,7 @@ body.locked{overflow:hidden}
     }
     var btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
     btn.disabled=true; btn.textContent='Sending…';
-    fetch(action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    fetch(action,{method:'POST',body:askFields(form),headers:{'Accept':'application/json'}})
       .then(function(r){ if(!r.ok) throw 0;
         form.style.display='none'; doneEl.classList.add('show');
         doneEl.scrollIntoView({block:'center',behavior:'smooth'}); })
