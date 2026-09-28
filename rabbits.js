@@ -583,21 +583,29 @@ const RABBITS = [
        the site says "until Monday 28 September" and, that morning, puts
        $300 back by itself. */
     /* SOLD 27 SEPT 2026 at $250, inside the 250-followers drop (24 to 28 Sept,
-       $300 struck beside $250). The drop lines (wasPrice, dealNote, dealTag,
-       dealOn, dealEnds) came off with the sale, so the record keeps the price
-       she actually sold at and the morning of the 28th cannot put $300 back
-       on a rabbit that is no longer for sale. */
-    price:  250,
+       $300 struck beside $250); the drop lines came off with the sale.
+       BACK 28 SEPT 2026 (William: "Butterscotch got sold, but the buyer
+       basically backed out ... some things have happened to them ... I was
+       understanding and didn't penalize them ... make a little announcement
+       that Butterscotch is back and put it on the website again"). The sale
+       fell through before she went home, so status is available again with no
+       dates on her record (an available rabbit prints none; the sale that fell
+       through is history, kept here, not on the page). Her price is $300, the
+       price the drop was always going back to on Monday the 28th, his day for
+       it, printed plain with nothing struck. Nothing about the buyer is
+       written anywhere. */
+    price:  300,
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
-    listedOn: "2026-08-24",
-    ready:  "22 Sept",
-    status: "sold",                            /* William, 27 Sept 2026: "mark butterscotch as sold as well" (said with Maple's "sold today"; the day she was reserved was not given) */
-    soldOn: "2026-09-27",
+    listedOn: "2026-09-28",                    /* relisted the day she came back (first listed 24 Aug 2026); the NEW mark says she is a fresh posting for three days */
+    /* ready: "22 Sept" came off on relisting: the day he expected has passed and
+       she is past eight weeks, so the growth row says her age and the record
+       says no date. His to give again if he wants one printed. */
+    status: "available",
     ear:    "",
     weights: [],
     photo:  "photos/butterscotch.jpg",
