@@ -1117,6 +1117,14 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-head h3{font-size:21px}
 .viewer-head .price{font-size:18px}
 
+.viewer-head .vprice{display:block;flex:none;text-align:right}
+.viewer-head .vprice .price{display:block}
+.pricelink{display:inline-block;margin-top:2px;font-size:13px;line-height:1.35;white-space:nowrap;
+  color:var(--ink-faint);text-decoration:none;
+  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
+.pricelink:hover{color:var(--brick-dk);border-bottom-style:solid}
+.pricelink[hidden]{display:none}
+
 .viewer-body{--sp:6px;--sp-open:8px}
 .viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
 
@@ -1487,7 +1495,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" aria-label="The news and the litters">
-      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-09-28">28 Sep</time>. Butterscotch is back. Frederick again.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-02">2 Oct</time>. The rabbit is the smallest part.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 September. Four litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -1757,6 +1765,11 @@ body.locked{overflow:hidden}
           What you pay for here is a rabbit that's already used to being picked up, and
           someone who still answers the phone at month seven. <a class="litterlink"
           href="#faq-why">The whole list of what the extra buys</a>.</p>
+          
+          <p><b>The rabbit is the smallest part of what it costs.</b> A year of keeping one
+          comes to <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
+          target="_blank" rel="noopener">$1,672&nbsp;to&nbsp;$3,354</a> on Chewy's vet-reviewed figures,
+          and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
         </div>
       </details>
       
@@ -2343,7 +2356,8 @@ body.locked{overflow:hidden}
       </span>
     </div>
     <div class="viewer-body">
-      <div class="viewer-head"><h3 id="viewer-name"></h3><span class="price" id="viewerPrice"></span></div>
+      
+      <div class="viewer-head"><h3 id="viewer-name"></h3><span class="vprice"><span class="price" id="viewerPrice"></span><a class="pricelink" id="viewerWhy" href="#faq-price" hidden>What you pay for</a></span></div>
       <p class="viewer-meta" id="viewerMeta"></p>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>
@@ -3429,6 +3443,7 @@ body.locked{overflow:hidden}
         vPlay=null,   /* the "Watch on Instagram" control, made on the first reel frame */
         vName=document.getElementById('viewer-name'),
         vPrice=document.getElementById('viewerPrice'),
+        vWhy=document.getElementById('viewerWhy'),
         vDeal=document.getElementById('viewerDeal'),
         vPath=document.getElementById('viewerPath'),
         vPair=document.getElementById('viewerPair'),
@@ -3650,6 +3665,7 @@ body.locked{overflow:hidden}
       var role=p.role==='mother'?'The mother':'The father';
       vName.textContent=p.name||role;
       vPrice.textContent='';
+      if(vWhy) vWhy.hidden=true;   /* a parent has no price to answer for */
       vMeta.textContent=p.breed+(p.name?(' \u00B7 '+roleWord(p)):'');
       paintRecord([]);
       vGrow.innerHTML='';
@@ -3847,6 +3863,7 @@ body.locked{overflow:hidden}
       parentOpen=false;
       vName.textContent=r.name;
       vPrice.innerHTML=priceHTML(r);
+      if(vWhy) vWhy.hidden=!(r.status==='available' && priceOf(r));
       if(vDeal){ vDeal.innerHTML=dealHTML(r,true); vDeal.hidden=!vDeal.innerHTML; }
       if(vPath){ vPath.innerHTML=pathHTML(r); vPath.hidden=!vPath.innerHTML; }
       if(vPair){ vPair.innerHTML=pairHTML(r); vPair.hidden=!vPair.innerHTML; }
@@ -4041,6 +4058,18 @@ body.locked{overflow:hidden}
       var to=a.getAttribute('href');
       shut();
       requestAnimationFrame(function(){ location.hash=to; });
+    });
+
+    if(vWhy) vWhy.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var to=vWhy.getAttribute('href');
+      shut();
+      requestAnimationFrame(function(){
+        if(location.hash===to){
+          var d=document.getElementById(to.slice(1));
+          if(d){ d.open=true; d.scrollIntoView({block:'start'}); }
+        } else location.hash=to;
+      });
     });
 
     vClose.addEventListener('click',shutSmooth);
