@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Litters | Arizona Rabbits</title>
 <meta name="description" content="The photo I take the day a litter is born, kept from then on with the date I took it.">
 <meta name="theme-color" content="#241F1D">
@@ -62,6 +65,12 @@ header{padding:16px 0 0}
   text-decoration:none;color:inherit}
 .brand small{display:block;font-family:var(--sans);font-size:10px;font-weight:500;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+
+:root{--logo:#4B2912}
+.topbar .brand{color:var(--logo)}
+.brand-na{position:relative}
+.brand-rabbit{position:absolute;left:50%;bottom:.76em;width:1.1725em;height:1.066em;
+  margin-left:-.586em;overflow:visible}
 .topbar-right{display:flex;align-items:center;gap:14px}
 .tel{text-decoration:none;font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
 .tel:hover,.tel:active{color:var(--brick)}
@@ -356,7 +365,7 @@ h1,h2,h3{text-wrap:balance}
 <header>
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="index.html">Arizona Rabbits<small>Tucson</small></a>
+      <a class="brand" href="index.html">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
       <div class="topbar-right">
         <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
         <a class="cta" href="sms:+15202702827">Text William</a>

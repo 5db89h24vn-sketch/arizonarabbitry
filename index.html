@@ -155,6 +155,14 @@ header .brand{display:inline-block;padding:2px 0;margin:-2px 0}
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
 .brandbox{display:flex;flex-direction:column;justify-content:center}
 
+:root{--logo:#4B2912}
+header .brand{color:var(--logo)}
+.brand-na{position:relative}
+.brand-rabbit{position:absolute;left:50%;bottom:.76em;width:1.1725em;height:1.066em;
+  margin-left:-.586em;overflow:visible}
+
+header .brandbox{padding-top:15px}
+
 .brandtel{display:none}
 @media(max-width:600px){
   .brandsub{font-size:10.5px;white-space:nowrap}
@@ -1329,7 +1337,9 @@ body.locked{overflow:hidden}
   .prog,.prog-label,[data-next],[data-back]{display:none!important}
 </style></noscript>
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23A0522D'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' fill='%23FBF8F3' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <script type="application/ld+json">
 {
@@ -1359,7 +1369,7 @@ body.locked{overflow:hidden}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <div class="brandbox">
-      <a href="#top" class="brand">Arizona Rabbits</a>
+      <a href="#top" class="brand">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits</a>
       <small class="brandsub">Tucson<a href="tel:+15202702827" class="brandtel">(520) 270-2827</a></small>
     </div>
     <nav class="nav-links" aria-label="Main">
