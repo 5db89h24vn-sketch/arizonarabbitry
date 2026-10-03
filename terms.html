@@ -75,12 +75,12 @@ header{padding:16px 0 0}
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
 
-.subnav{display:flex;flex-wrap:wrap;gap:0 18px;margin:-4px 0 6px}
-.subnav a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;
+.subnav{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
+
+.subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);
+  border-radius:100px;background:#fff;font-size:14px;font-weight:500;
   color:var(--ink-soft);text-decoration:none;white-space:nowrap}
-.subnav a:hover,.subnav a:active{color:var(--brick)}
-.subnav a::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:var(--ink-faint);margin-right:8px}
+.subnav a:hover,.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
 .back:active{color:var(--brick)}
 h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
@@ -88,7 +88,7 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
 h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;letter-spacing:-.01em;
   scroll-margin-top:16px}
 .sheet p{color:var(--ink-soft);max-width:62ch;line-height:1.7}
-.sheet p+p{margin-top:12px}
+.sheet p+p,.sheet ul+p{margin-top:12px}
 
 .sheet b{color:var(--ink);font-weight:600;display:block;text-wrap:balance;line-height:1.4;margin-bottom:2px}
 .sheet ul{margin:8px 0 0 20px;color:var(--ink-soft)}
@@ -135,7 +135,7 @@ h1,h2,h3{text-wrap:balance}
   <h2 id="terms">Buying a rabbit</h2>
   <p><b>$50 holds a rabbit and comes off the price.</b> Reservations open at four weeks old.
   Before that, a kit's sex and colour are still a guess, and I won't take money for a guess.</p>
-  <p><b>Change your mind: the $50 moves with you.</b> It isn't refunded, because holding a
+  <p><b>Change your mind before pickup: the $50 moves with you.</b> It isn't refunded, because holding a
   rabbit means turning other people away. It moves to another rabbit or to the next litter.
   First switch free. After that, $25 each.</p>
   <p><b>Three things get the $50 back, no argument.</b></p>

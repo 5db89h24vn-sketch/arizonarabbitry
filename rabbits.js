@@ -177,7 +177,7 @@
       • Cards sort themselves: available rabbits first, then reserved,
         then sold, most expensive first within each group. Don't
         reorder them yourself; the order in this file doesn't matter.
-      • The "X of Y still available" counter updates itself.
+      • The "6 available · 4 sold since August" counter updates itself.
       • Sold rabbits with departed: true never show on the front page.
       • Adopted rabbits vanish 7 days after the day they went home.
 
@@ -610,7 +610,7 @@ const RABBITS = [
     weights: [],
     photo:  "photos/butterscotch.jpg",
     hero:   "img/hero-brick.jpg",              /* the brick shot that led the site from June to 27 Sept 2026; feature: true moved to Marshmallow with the sale */
-    note:   "Same fawn as her sister but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts."
+    note:   "Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts."
   },
 
   {
@@ -691,7 +691,16 @@ const RABBITS = [
      card, and the listing says in words that it is the price now and not a
      sale (dealStays); the calendar asks after two weeks whether the struck
      price should come down, since a "was" price that never leaves is the
-     perpetual sale the site does not run. */
+     perpetual sale the site does not run.
+     THE STRIKE CAME DOWN EARLY (2 Oct 2026), the prices unchanged. The six
+     were listed 19 Sept at $375/$400 with reservations opening 24 Sept, the
+     same day as the drop, so nobody could ever reserve at the struck price:
+     a former price has to be one the thing was actually offered at for a
+     reasonably substantial time (FTC, 16 CFR 233.1), and an outside review
+     the same day read the struck prices as the evidence a "scam" accuser
+     needs. The reason line under each price ("Instagram hit 250") went with
+     it, which also ends a follower count on every card. The News keeps the
+     24 Sept line: it is the dated record of what happened. */
   {
     name:   "Honey",
     photos: [
@@ -703,11 +712,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    wasPrice: 375,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -734,11 +738,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    wasPrice: 375,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -765,11 +764,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    wasPrice: 375,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -796,11 +790,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    wasPrice: 375,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -828,11 +817,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  350,
-    wasPrice: 375,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -864,11 +848,6 @@ const RABBITS = [
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
     price:  375,
-    wasPrice: 400,
-    dealNote: "Instagram hit 250 followers",   /* the listing: "Instagram hit 250 followers, so $25 off. That’s the new price for this line, not a sale." */
-    dealTag:  "Instagram hit 250",             /* the card: "Instagram hit 250 · the new price" */
-    dealOn:   "2026-09-24",
-    dealStays: true,                           /* the price from here on, not a sale: no SALE mark */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",

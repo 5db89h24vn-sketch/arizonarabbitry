@@ -278,6 +278,8 @@ header .brandbox{padding-top:15px}
 .facts a span{display:flex;align-items:baseline;gap:10px;min-width:0}
 .facts b{font-weight:600;font-size:15px;color:var(--ink);line-height:1.3;white-space:nowrap;transition:color .15s}
 .facts small{font-size:14px;color:var(--ink-faint);line-height:1.45;white-space:nowrap;transition:color .15s}
+.stage-lit small .age{display:block}
+.stage-lit small .age .dot{display:none}
 .facts .chev,.doors .chev,.stage-lit .chev{flex:none;width:10px;height:10px;margin-right:4px;
   border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
   transform:rotate(-45deg);transition:border-color .15s,transform .15s}
@@ -375,8 +377,17 @@ html:not(.js) .ages-note{display:none}
 
 .bunny{background:#fff;border:1px solid var(--line);border-radius:var(--r);
   overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;
-  box-shadow:var(--lift-1);
+  box-shadow:var(--lift-1);position:relative;
   transition:border-color .15s,transform .15s,box-shadow .15s}
+
+.bunny-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
+.bunny-link:focus-visible{outline:none}
+.bunny:has(> .bunny-link:focus-visible){outline:2px solid var(--brick-dk);outline-offset:3px}
+@supports not selector(:has(*)){ .bunny-link:focus-visible{outline:2px solid var(--brick-dk);outline-offset:-4px} }
+.bunny .status,.bunny .newmark,.bunny .shots{pointer-events:none}
+a.bunny-cta{position:relative;z-index:2;text-decoration:none;align-self:flex-start}
+
+a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .bunny:hover{border-color:var(--brick);transform:translateY(-3px);
   box-shadow:var(--lift-2)}
 
@@ -512,11 +523,14 @@ html:not(.js) .ages-note{display:none}
 .about-head{grid-column:1;grid-row:1}
 .about-story{grid-column:1;grid-row:2;margin-top:14px}
 .about-story p+p,.about-head p+p{margin-top:14px}
-.about-media{grid-column:2;grid-row:1/3;align-self:stretch}
-.about-media img{border-radius:var(--r);object-fit:cover;object-position:40% 75%;width:100%;height:100%;min-height:340px}
+
+.about-media{grid-column:2;grid-row:1/3;align-self:start;position:sticky;top:96px}
+
+.about-media img{border-radius:var(--r);object-fit:cover;object-position:40% 74%;width:100%;aspect-ratio:4/3;height:auto}
 .lede b{color:var(--ink);font-weight:600}
 @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:22px}
   .about-head,.about-story,.about-media{grid-column:1;grid-row:auto}.about-story{margin-top:0}
+  .about-media{position:static}
   .about-media img{height:auto;aspect-ratio:16/10;min-height:0}}
 
 .split img{border-radius:var(--r);object-fit:cover;width:100%;height:100%;min-height:340px}
@@ -586,8 +600,8 @@ html:not(.js) .ages-note{display:none}
 .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
 .viewer-grow .grow-top{display:flex;align-items:center;gap:8px;line-height:18px;height:18px}
 .viewer-grow .grow-bar{margin-top:0}
-.grow-label{font-size:12.5px;color:var(--ink-faint);text-decoration:none;white-space:nowrap;
-  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
+.grow-label{font-size:12.5px;color:var(--brick-dk);text-decoration:none;white-space:nowrap;
+  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .grow-label:hover{color:var(--brick-dk);border-bottom-style:solid}
 .viewer-grow.eight .grow-bar i{background:var(--moss-dk)}
 .viewer-grow.eight .grow-label{color:var(--ink);font-weight:600;border-bottom-color:rgba(36,31,29,.45)}
@@ -638,6 +652,13 @@ html:not(.js) .ages-note{display:none}
 .social-head{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
 .social-head h3{font-size:20px;margin-bottom:6px}
 .social-head p{font-size:15.5px;color:var(--ink-soft);max-width:52ch}
+
+.social-head .owners-lead{margin-top:16px;color:var(--ink)}
+.social-head .owners-lead b{font-weight:600}
+.owners{list-style:none;margin:8px 0 0;padding:0;max-width:52ch;border-top:1px solid var(--line)}
+.owners li{padding:11px 0;border-bottom:1px solid var(--line)}
+.owners b{display:block;font-weight:600;font-size:15.5px;color:var(--ink);margin-bottom:2px}
+.owners small{display:block;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
 .social{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
 .social a{display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;
   background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 12px;
@@ -653,6 +674,13 @@ html:not(.js) .ages-note{display:none}
   stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block}
 
 .reel{margin:18px 0 0;max-width:420px}
+
+@media(min-width:1000px){
+  .social-head{display:grid;grid-template-columns:minmax(0,1fr) 420px;grid-template-rows:auto auto auto 1fr;column-gap:56px;align-items:start}
+  .social-head > *{grid-column:1}
+  .social-head > .reel{grid-column:2;grid-row:1 / span 4;margin-top:4px}
+  .social-head > .social{grid-column:1 / -1}
+}
 .reel:empty{display:none}
 .reel-play{position:relative;display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
   background:#000;box-shadow:var(--lift-photo);transition:border-color .15s,transform .12s ease-out}
@@ -708,7 +736,7 @@ summary::after{content:'';position:absolute;right:6px;top:50%;width:10px;height:
   transform:translateY(-70%) rotate(45deg);transition:transform .2s}
 details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .faq-body{padding:0 0 20px;color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:62ch}
-.faq-body p+p{margin-top:14px}
+.faq-body p+p,.faq-body ul+p{margin-top:14px}   
 
 .faq-body b{color:var(--ink);font-weight:600}
 
@@ -744,7 +772,8 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .reach .rt{min-width:0}
 
 .reach li.first a{background:rgba(255,255,255,.06);box-shadow:inset 3px 0 0 var(--brick)}
-.reach .tag{display:inline-block;vertical-align:2px;margin-left:8px;padding:3px 8px;border-radius:100px;
+
+.reach .tag{display:inline-block;margin:0 0 6px;padding:3px 8px;border-radius:100px;
   font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
   color:#EFE8DE;background:rgba(239,232,222,.14);white-space:nowrap}
 @media(hover:hover){.reach a:hover{background:rgba(255,255,255,.07)} .reach li.first a:hover{background:rgba(255,255,255,.1)}}
@@ -787,8 +816,11 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .fstep>p.hint{font-size:14.5px;color:var(--ink-faint);margin-bottom:19px}
 .field{margin-bottom:16px}
 label,.flabel{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
-label .req{color:var(--brick)}
+
+label .req{color:var(--ink-soft)}
 label .opt-note{color:var(--ink-faint);font-weight:400}
+
+input::placeholder,textarea::placeholder{color:var(--ink-faint);opacity:1}
 label .opt-note[hidden],label .req[hidden]{display:none}
 
 .reply-pick{margin-top:2px}
@@ -989,6 +1021,20 @@ html.vtout::view-transition-new(rabbitphoto){
 .rail-btn:active{transform:scale(.94)}
 .viewer-close{right:9px}
 
+.viewer-ctl{display:contents}
+
+@media(max-width:600px){
+  .viewer .viewer-box{overflow-y:auto;overscroll-behavior:contain;scroll-padding-top:58px;scroll-padding-bottom:150px}
+  .viewer .viewer-body{overflow:visible;flex:none}
+  .viewer .viewer-ctl{display:block;position:sticky;top:0;height:0;z-index:5}
+  
+  .viewer.navunder .viewer-nav{opacity:0;pointer-events:none}
+  .viewer.ctlbar .viewer-ctl::before{content:attr(data-name);position:absolute;left:0;right:0;top:0;height:58px;
+    box-sizing:border-box;padding:0 112px 0 16px;background:var(--paper);box-shadow:0 1px 0 var(--line);
+    font-family:var(--serif);font-weight:500;font-size:18px;line-height:58px;color:var(--ink);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
 .viewer-share{right:57px}
 .viewer-close:hover,.viewer-share:hover{border-color:var(--brick);color:var(--brick)}
 .viewer-share svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
@@ -1002,6 +1048,8 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-share[hidden]{display:none}
 
 .viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:var(--stage-ar,4/3);flex:none}
+
+.viewer-frame{position:absolute;inset:0}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1A1613}
 .viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
@@ -1048,7 +1096,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .vborn{position:absolute;left:12px;bottom:12px;z-index:2;
   display:inline-flex;align-items:center;gap:5px;max-width:calc(100% - 24px);
   padding:3px 8px;border-radius:100px;
-  background:rgba(24,20,18,.62);color:#fff;
+  background:rgba(24,20,18,.7);color:#fff;
   font-size:11px;font-weight:600;letter-spacing:.02em;line-height:1.25;
   -webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
 @media(prefers-reduced-transparency:reduce){
@@ -1078,6 +1126,9 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-nav.prev{left:10px}
 .viewer-nav.next{right:10px}
 .viewer-nav[disabled]{opacity:.32;pointer-events:none}
+
+.viewer-close:focus-visible,.viewer-share:focus-visible,.viewer-nav:focus-visible,.ig-play:focus-visible{
+  outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px #fff}
 
 .viewer-body{--vx:18px;--vb:18px;padding:15px var(--vx) 0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--sp);
   
@@ -1120,10 +1171,28 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-head .vprice{display:block;flex:none;text-align:right}
 .viewer-head .vprice .price{display:block}
 .pricelink{display:inline-block;margin-top:2px;font-size:13px;line-height:1.35;white-space:nowrap;
-  color:var(--ink-faint);text-decoration:none;
-  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
-.pricelink:hover{color:var(--brick-dk);border-bottom-style:solid}
+  color:var(--brick-dk);text-decoration:none;
+  border:0;border-bottom:1px dotted rgba(124,62,33,.5);padding:0 0 1px;border-radius:0;
+  background:none;font-family:inherit;font-weight:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}
+.pricelink:hover,.pricelink[aria-expanded="true"]{color:var(--brick-dk);border-bottom-style:solid}
 .pricelink[hidden]{display:none}
+
+.whypanel{margin-top:var(--sp,8px);padding:10px 12px 11px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.whypanel[hidden]{display:none}
+.whypanel ul{list-style:none;margin:0;padding:0}
+.whypanel li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding:2px 0}
+.whypanel li b{color:var(--ink);font-weight:600}
+.whypanel p{font-size:13.5px;line-height:1.5;color:var(--ink-soft);margin-top:7px;padding-top:7px;border-top:1px solid var(--line-soft)}
+
+@media(max-width:360px){
+  .whypanel{padding:8px 10px 9px}
+  .whypanel li{font-size:13.5px;line-height:1.45;padding:1px 0}
+  .whypanel p{font-size:13px;line-height:1.45;margin-top:6px;padding-top:6px}
+}
+
+.pricelink,.grow-label,.stagelink,.nowlink,.viewer-when .litterlink,.whypanel .litterlink{position:relative}
+.pricelink::after,.grow-label::after,.stagelink::after,.nowlink::after,.viewer-when .litterlink::after,.whypanel .litterlink::after{
+  content:'';position:absolute;left:-2px;right:-2px;top:-4px;bottom:-4px}
 
 .viewer-body{--sp:6px;--sp-open:8px}
 .viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
@@ -1231,8 +1300,8 @@ html.vtout::view-transition-new(rabbitphoto){
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .cite:hover{border-bottom-style:solid;color:var(--brick)}
 
-.stagelink{color:var(--ink-faint);text-decoration:none;
-  border-bottom:1px dotted rgba(115,106,100,.55);padding-bottom:1px}
+.stagelink{color:var(--brick-dk);text-decoration:none;
+  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
 
 .nowlink{color:inherit;text-decoration:none;
@@ -1243,14 +1312,16 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-box .btn{width:100%}
 
 @media(min-width:920px) and (min-height:520px){
-  .viewer-box{flex-direction:row;width:min(1080px,calc(100vw - 48px))}
   
-  .viewer-stage{flex:0 0 56%;width:56%;align-self:stretch}
+  .viewer-box{flex-direction:row;width:min(1240px,calc(100vw - 48px))}
+
+  .viewer-stage{flex:0 0 58%;width:58%;align-self:stretch;display:flex;align-items:center;background:#1A1613}
+  .viewer-frame{position:relative;inset:auto;flex:none;width:100%;aspect-ratio:var(--stage-ar,4/3)}
   .viewer-body{flex:1 1 0;min-width:0;--vx:22px;--vb:20px;padding:20px var(--vx) 0}
   .viewer-foot{margin-top:auto}
   
-  .viewer-close{right:calc(44% + 9px)}
-  .viewer-share{right:calc(44% + 57px)}
+  .viewer-close{right:calc(42% + 9px)}
+  .viewer-share{right:calc(42% + 57px)}
 }
 @media(max-width:600px){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
@@ -1275,6 +1346,8 @@ body.locked{overflow:hidden}
   .hero-media{order:-1}
   .hero-grid{gap:18px}
   .hero-img{aspect-ratio:3/2;border-radius:var(--r)}
+  
+  @media(max-height:700px){ .hero-img{aspect-ratio:16/9} }
   
   .hero h1{font-size:clamp(26px,8.5vw,32px);letter-spacing:-.022em;max-width:none;margin-bottom:12px}
   .hero-sub{font-size:16.5px;margin-bottom:16px}
@@ -1442,8 +1515,8 @@ body.locked{overflow:hidden}
       </div>
 
       <div class="facts">
-        
-        <a href="#faq-home"><span><b>Home when weaned</b><small>The test every kit passes</small></span><i class="chev" aria-hidden="true"></i></a>
+
+        <a href="#faq-home"><span><b>Home when ready</b><small>Eight weeks is the aim</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
         
@@ -1467,7 +1540,7 @@ body.locked{overflow:hidden}
       <div>
         <h2 style="margin-bottom:8px">Available now</h2>
         <p class="lede">Litters are small. The price you see is the whole price, and it covers
-        daily handling from the day they're born to the day they leave.</p>
+        daily handling from their first week to the day they leave.</p>
 
         <p class="avail-stamp">Availability
           <span data-fact="stamp"><time id="availStamp" datetime="2026-09-28">current as of September 28, 2026</time></span>
@@ -1615,7 +1688,7 @@ body.locked{overflow:hidden}
         it stops being a trap. Ordinary life at their own pace, with somewhere to retreat
         to whenever they want it.</p>
       </div>
-      <div class="stage">
+      <div class="stage" id="stage-home">
         
         <span class="stage-when">Going home</span>
         <h3>When they're ready</h3>
@@ -1630,12 +1703,19 @@ body.locked{overflow:hidden}
       <h3>Watch them grow up</h3>
       <p>Don't take my word for any of the above. Photos and video, including the
       unglamorous parts.</p>
+
+      <p class="owners-lead" id="owners"><b>Bought one here? I'll help it get seen.</b></p>
+      <ul class="owners">
+        <li><b>Start its account the day it comes home.</b><small>Its whole life on camera,
+        from the first day.</small></li>
+        <li><b>Send me your clips.</b><small>I'll help you make them, and tell you what would
+        make the next one better.</small></li>
+        <li><b>The good ones go on my story when there's room.</b><small>My <a class="cite"
+        href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener">top
+        reel</a> reached half a million views.</small></li>
+      </ul>
       
-      <p>Owners' accounts get a turn too. Start one for your rabbit and send me the
-      clips. The ones that are ready go on my story when there's room, and I'll say
-      what would make the next one better.</p>
-      
-      <figure data-fact="reel" class="reel"><a class="reel-play rv" href="videos/litter-2026-08-27-2026-09-11.mp4" aria-label="Play the newest clip: Two weeks and a day old. Out of the nest box, on a chair, and handled."><img src="photos/litter-2026-08-27-2026-09-11-video.jpg?v=132b6984" srcset="photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg 160w, photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg 320w, photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg 640w, photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg 960w, photos/litter-2026-08-27-2026-09-11-video.jpg?v=132b6984 1289w" sizes="(min-width:761px) 420px, 100vw" width="1289" height="966" loading="lazy" alt="A fifteen-day-old fawn kit held up in a hand, its littermates on the black chair behind"><i class="pv" aria-hidden="true"></i></a><figcaption><b>One clip before you go.</b> Filmed <time datetime="2026-09-11">11 Sep</time>. Two weeks and a day old. Out of the nest box, on a chair, and handled. More like it on Instagram and TikTok.</figcaption></figure>
+      <figure data-fact="reel" class="reel"><a class="reel-play rv" href="videos/litter-2026-08-27-2026-09-11.mp4" aria-label="Play the newest clip: Out of the nest box, on a chair, and handled."><img src="photos/litter-2026-08-27-2026-09-11-video.jpg?v=cd43108f" srcset="photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg 160w, photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg 320w, photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg 640w, photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg 960w, photos/litter-2026-08-27-2026-09-11-video.jpg?v=cd43108f 1280w" sizes="(min-width:761px) 420px, 100vw" width="1280" height="960" loading="lazy" alt="Fifteen-day-old kits, fawn and white, curled up together on a black chair"><i class="pv" aria-hidden="true"></i></a><figcaption><b>One clip before you go.</b> Filmed <time datetime="2026-09-11">11 Sep</time> · 2 weeks, 1 day old. Out of the nest box, on a chair, and handled. More like it on Instagram and TikTok.</figcaption></figure>
       <div class="social rv row">
         <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
@@ -1672,6 +1752,8 @@ body.locked{overflow:hidden}
         <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
         <li><b>My health check, done with you</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
         <li><b>Tucson exotic vet recommendations</b><small>Not every clinic here treats rabbits. <a class="litterlink" href="#faq-vet">The one I use</a>, and why.</small></li>
+        
+        <li><b>Help getting it seen</b><small>Its own account from the day it comes home, my help with the clips, and the good ones on my story. <a class="litterlink" href="#owners">How that works</a>.</small></li>
         <li><b>My phone number, kept</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
       </ul>
     </div>
@@ -1690,7 +1772,7 @@ body.locked{overflow:hidden}
         <p class="kicker">Also offered</p>
         <h2>Boarding, whenever you travel</h2>
         <p class="svc-lede">Most kennels aren't set up for rabbits, and one left with a stranger
-        spends the whole week stressed. Yours comes back to the same routine, the same food, and
+        spends the whole week stressed. Yours comes back to the food it knows and
         the same hands that raised it.</p>
         <ul>
           <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
@@ -1754,10 +1836,11 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>The price on the photo is the price you pay.</b> No appointment fee, no no-show
           fee, no charge to visit, nothing added at pickup.</p>
-          <p><b>It covers more than the rabbit.</b> Daily handling from the day it's born, and a
+          <p><b>It covers more than the rabbit.</b> Daily handling from its first week, and a
           health check you watch me do. Two weeks of the food it's already eating, a written
-          care sheet, and my number for as long as you have it.</p>
-          <p><b>Colour and temperament set the price.</b> Rarer colours cost more. <span data-fact="prices-now">Right now Marshmallow, a white kit, is $375, down from $400, and Honey, Biscuit, Toffee and Pecan, all fawn kits, are $350, down from $375, and Butterscotch, a fawn doe, is $300.</span></p>
+          care sheet, my number for as long as you have it, and <a class="litterlink"
+          href="#owners">help getting it seen</a> on Instagram.</p>
+          <p><b>Each rabbit has its own price.</b> <span data-fact="prices-now">Right now Marshmallow, a white kit, is $375, and Honey, Biscuit, Toffee and Pecan, all fawn kits, are $350, and Butterscotch, a fawn doe, is $300.</span></p>
           
           <p><b>10% off if you serve.</b> Military, police, firefighters and other first
           responders. Say so when you get in touch.</p>
@@ -1780,8 +1863,8 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>You can pay less.</b> A rabbit in Tucson can be had for under a hundred. What
           the extra buys here is below, so you can decide with your eyes open.</p>
-          <p><b>Eight weeks of handling before you meet it.</b> Every kit here is picked up every
-          day from the day it's born. Handled early, a rabbit <a class="cite"
+          <p><b>Handled every day until it goes home.</b> Every kit here is picked up every
+          day from its first week. Handled early, a rabbit <a class="cite"
           href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
           target="_blank" rel="noopener">comes to people instead of running from them</a>,
           and it still does as an adult. The routine is what you're paying for.</p>
@@ -1795,6 +1878,11 @@ body.locked{overflow:hidden}
           sheet with the signs that mean call a vet today. <a class="litterlink"
           href="#faq-vet">The Tucson vets who treat rabbits</a>, and my number for as long as
           you have it.</p>
+          
+          <p><b>Help getting it seen.</b> Start its account the day it comes home: I'll help with
+          the clips, and the good ones go on my story when there's room. My <a class="cite"
+          href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener">top
+          reel</a> reached half a million views.</p>
           <p><b>And if it isn't working out, you call me.</b> The sale is final, but I'd rather
           help you find it the right home than have it stay somewhere it isn't wanted.</p>
           <p><b>Ask any seller the same questions.</b> <a class="litterlink"
@@ -1812,8 +1900,8 @@ body.locked{overflow:hidden}
           <p><b>Can I see its litter and its parents?</b> <a class="litterlink"
           href="litters.html">Every litter</a> from its first day, and the mother and father
           on every listing.</p>
-          <p><b>Who handles it, and since when?</b> Me, every day, <a class="litterlink"
-          href="#about">from the day it's born</a>.</p>
+          <p><b>Who handles it, and since when?</b> Me and other people, every day, <a class="litterlink"
+          href="#about">from its first week</a>.</p>
           <p><b>When can it go home, and what decides that?</b> <a class="litterlink"
           href="#faq-home">Eight weeks is what I aim for</a>, and a test every kit passes
           first.</p>
@@ -1851,7 +1939,9 @@ body.locked{overflow:hidden}
           <p><b>To keep it that way, both need neutering.</b> Rabbits hit puberty at <a class="cite"
           href="https://rabbit.org/care/debunking-common-myths-about-baby-rabbits-part-ii/"
           target="_blank" rel="noopener">about three to four months</a>, and that's when
-          siblings start to fight. Neuter both before then and they can stay together. We'll talk it through before you take a pair.</p>
+          siblings start to fight. The usual way through is to separate them then, neuter both,
+          and reunite them a month after surgery; bonding again isn't guaranteed. We'll talk it
+          through before you take a pair.</p>
           <p><b>Two that didn't grow up together need a proper introduction.</b> Both neutered
           first, then short meetings on <a class="cite"
           href="https://rabbit.org/behavior/bonding-rabbits-faq/"
@@ -1869,7 +1959,8 @@ body.locked{overflow:hidden}
           href="#faq-pair">it's in the pair answer</a>.</p>
           <p><b>Reservations open at four weeks old.</b> Before that, a kit's sex and colour are
           still a guess, and I won't take money for a guess.</p>
-          <p><b>Change your mind: the $50 moves with you.</b> It isn't refunded, because
+          
+          <p><b>Change your mind before pickup: the $50 moves with you.</b> It isn't refunded, because
           holding a rabbit means turning other people away. It moves to another rabbit or to
           the next litter.</p>
           
@@ -1897,6 +1988,9 @@ body.locked{overflow:hidden}
       <details id="faq-pay">
         <summary>How do I pay?</summary>
         <div class="faq-body">
+          
+          <p><b>Meet them first, then pay.</b> Visits are free. Come and see them and pay the
+          deposit in cash while you're here, so nothing is at stake until you've decided.</p>
           <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit holds the rabbit. The balance is
           due at pickup, and cash is easiest for that.</p>
           
@@ -1909,9 +2003,6 @@ body.locked{overflow:hidden}
           
           <p><b>Once a rabbit goes home, the sale is final.</b> <a class="litterlink"
           href="terms.html">The terms page</a> has all of this on one sheet.</p>
-          <p><b>Not sure about paying before you've met me?</b> Come and meet them
-          first and pay the deposit in cash while you're here. Visits are free, so nothing is at
-          stake until you've decided.</p>
         </div>
       </details>
       <details id="faq-home">
@@ -1919,8 +2010,8 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           
           <p><b>Eight weeks is what I aim for.</b> The bar on every listing is those
-          eight weeks, filled to the week the rabbit is in today. It goes dark green
-          the day the rabbit gets there.</p>
+          eight weeks, filled to the week the rabbit is in today. The day it gets there,
+          every square fills and the label reads "All eight weeks".</p>
           <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
           own. Eating and drinking well, on the same food, for at least seven days. Holding
           or gaining weight when I weigh it, with nothing wrong with it that I can find. One
@@ -2146,7 +2237,7 @@ body.locked{overflow:hidden}
       <p class="reach-head">Four ways, most active first</p>
       <ul class="reach">
         
-        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><b>Message me on Instagram <span class="tag">Most active</span></b><small>The way I'd rather hear from you: I can put a name to a face, and the whole conversation stays in one place.</small></span></a></li>
+        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">Most active</span><b>Message me on Instagram</b><small>The way I'd rather hear from you: I can put a name to a face, and the whole conversation stays in one place.</small></span></a></li>
         
         <li><a href="sms:+15202702827"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text (520) 270-2827</b><small>The fastest way to reach me, and completely fine for a first message.</small></span></a></li>
         
@@ -2238,7 +2329,7 @@ body.locked{overflow:hidden}
                 <label><input type="radio" name="reply" value="Email"><span>Email me</span></label>
               </div>
               
-              <p class="reply-note" id="replyNote">Text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I'll call once, then leave you&nbsp;be.</p>
+              <p class="reply-note" id="replyNote">Of these three, text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I'll call once, then leave you&nbsp;be.</p>
             </div>
             <div class="field">
               <label for="name">Your name <span class="req">*</span></label>
@@ -2281,9 +2372,8 @@ body.locked{overflow:hidden}
       <div style="max-width:34ch">
         <span class="brand">Arizona Rabbits<small>Tucson</small></span>
 
-        <p style="line-height:1.65">A small home rabbitry in Tucson. Handled daily from the day
-        they're born, every litter photographed from its first day, and every owner keeps
-        my number.</p>
+        <p style="line-height:1.65">A small home rabbitry in Tucson. Every kit is handled daily
+        from its first week, and every owner keeps my number.</p>
       </div>
       <div>
         <h4>Pages</h4>
@@ -2327,7 +2417,8 @@ body.locked{overflow:hidden}
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-name">
   <div class="viewer-box">
-    
+
+    <div class="viewer-ctl">
     <button class="viewer-share" type="button" id="viewerShare" hidden>
       <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 15.5V4"/><path d="M8.2 7.4L12 3.6l3.8 3.8"/>
@@ -2337,33 +2428,51 @@ body.locked{overflow:hidden}
       <span class="sr-only" id="viewerShareSaid" role="status"></span>
     </button>
     <button class="viewer-close" type="button" id="viewerClose" aria-label="Close photos">&#215;</button>
+    </div>
     
     <span class="vtags"><span class="status vstatus" id="viewerStatus" hidden></span><span class="newmark vnew" id="viewerNew" hidden>New</span><span class="newmark salemark vnew" id="viewerSale" hidden>Sale</span></span>
     <div class="viewer-stage">
-      <img id="viewerImg" src="" alt="">
       
-      <video id="viewerVideo" playsinline preload="metadata" controls hidden></video>
+      <div class="viewer-frame">
+        <img id="viewerImg" src="" alt="">
+        
+        <video id="viewerVideo" playsinline preload="metadata" controls hidden></video>
+        
+        <span class="vborn" id="viewerBorn">
+          <svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="7" width="18" height="13" rx="2.6"/>
+            <path d="M8.6 7l1.3-2.3h4.2L15.4 7"/>
+            <circle cx="12" cy="13.6" r="3.2"/>
+          </svg><svg class="vfilm" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2.6"/>
+            <path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor" stroke="none"/>
+          </svg><span class="vline"><span class="vwhat" id="viewerBornWhat"></span><span id="viewerBornText"></span></span>
+        </span>
+      </div>
       <button class="viewer-nav prev" type="button" id="viewerPrev" aria-label="Previous photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       <button class="viewer-nav next" type="button" id="viewerNext" aria-label="Next photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
-      
-      <span class="vborn" id="viewerBorn">
-        <svg class="vcam" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="7" width="18" height="13" rx="2.6"/>
-          <path d="M8.6 7l1.3-2.3h4.2L15.4 7"/>
-          <circle cx="12" cy="13.6" r="3.2"/>
-        </svg><svg class="vfilm" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2.6"/>
-          <path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor" stroke="none"/>
-        </svg><span class="vline"><span class="vwhat" id="viewerBornWhat"></span><span id="viewerBornText"></span></span>
-      </span>
     </div>
     <div class="viewer-body">
       
-      <div class="viewer-head"><h3 id="viewer-name"></h3><span class="vprice"><span class="price" id="viewerPrice"></span><a class="pricelink" id="viewerWhy" href="#faq-price" hidden>What you pay for</a></span></div>
+      <div class="viewer-head"><h3 id="viewer-name"></h3><span class="vprice"><span class="price" id="viewerPrice"></span><button type="button" class="pricelink" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button></span></div>
+      
+      <div class="whypanel" id="viewerWhyPanel" hidden>
+        <ul>
+          <li><b>The whole price.</b> Nothing added at pickup.</li>
+          <li><b>Handled every day</b> from its first week.</li>
+          <li><b>A health check with you</b> at pickup.</li>
+          <li><b>Two weeks of its food</b> and a care sheet.</li>
+          <li><b>My number</b> for as long as you have it.</li>
+          <li><b>Help getting it seen</b> on Instagram.</li>
+        </ul>
+        <p>The rabbit is the smallest part: a year of keeping one runs <a class="cite"
+        href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost" target="_blank"
+        rel="noopener">$1,672 to $3,354</a>. <a class="litterlink" id="viewerWhyMore" href="#faq-price">The whole answer</a></p>
+      </div>
       <p class="viewer-meta" id="viewerMeta"></p>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>
@@ -2397,11 +2506,11 @@ body.locked{overflow:hidden}
 
 <script id="photoFocus" type="application/json">{"photos/litter-2026-08-27-2026-09-11-video.jpg":"0% 50%"}</script>
 
-<script id="photoShape" type="application/json">{"photos/biscuit.jpg":"1600/1200","photos/butterscotch-bumble.jpg":"1186/889","photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1448/1086","photos/father-video.jpg":"960/720","photos/honey.jpg":"1600/1200","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-06.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-08.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-11-video.jpg":"1289/966","photos/litter-2026-08-27.jpg":"1400/1050","photos/litter-2026-09-27-2026-09-27-nest.jpg":"1400/1050","photos/litter-2026-09-27.jpg":"1400/1050","photos/maple.jpg":"1600/1200","photos/marshmallow-2.jpg":"1600/1200","photos/marshmallow.jpg":"1600/1200","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/pecan.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750","photos/toffee.jpg":"1600/1200"}</script>
-<script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.132b6984.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.132b6984.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.132b6984.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.132b6984.jpg"]],"w":1289},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"]],"w":1400},"photos/maple.jpg":{"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"]],"w":1600}}</script>
+<script id="photoShape" type="application/json">{"photos/biscuit.jpg":"1600/1200","photos/butterscotch-bumble.jpg":"1186/889","photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1448/1086","photos/father-video.jpg":"960/720","photos/honey.jpg":"1600/1200","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-06.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-08.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-11-video.jpg":"1280/960","photos/litter-2026-08-27.jpg":"1400/1050","photos/litter-2026-09-27-2026-09-27-nest.jpg":"1400/1050","photos/litter-2026-09-27.jpg":"1400/1050","photos/maple.jpg":"1600/1200","photos/marshmallow-2.jpg":"1600/1200","photos/marshmallow.jpg":"1600/1200","photos/mother-2.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/pecan.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750","photos/toffee.jpg":"1600/1200"}</script>
+<script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg"]],"w":1280},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"]],"w":1400},"photos/maple.jpg":{"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-09-27","count":"Seven born","kits":[],"line":"Holland Lop cross","never":false,"no":"Fourth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=bfc0d936"></script>
+<script src="rabbits.js?v=eeef0335"></script>
 
 <script>
 (function(){
@@ -2731,11 +2840,13 @@ body.locked{overflow:hidden}
 
   var mbar=document.querySelector('.mbar');
   var heroCta=document.querySelector('.hero-cta');
+  var contactSec=document.getElementById('contact');
   if(mbar && heroCta && 'IntersectionObserver' in window){
     document.body.classList.add('js-mbar');
-    new IntersectionObserver(function(es){
-      mbar.classList.toggle('show', !es[0].isIntersecting);
-    },{threshold:0}).observe(heroCta);
+    var heroOn=true, contactOn=false;
+    var setBar=function(){ mbar.classList.toggle('show', !heroOn && !contactOn); };
+    new IntersectionObserver(function(es){ heroOn=es[0].isIntersecting; setBar(); },{threshold:0}).observe(heroCta);
+    if(contactSec) new IntersectionObserver(function(es){ contactOn=es[0].isIntersecting; setBar(); },{threshold:0}).observe(contactSec);
   }
 
   var SOLD_DAYS=3;
@@ -2789,7 +2900,7 @@ body.locked{overflow:hidden}
     if(!e||!e.v||!e.v.length) return;
     var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
     im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
-  var STAGE_SIZES='(min-width:1128px) 605px, (min-width:920px) 56vw, 100vw';
+  var STAGE_SIZES='(min-width:1288px) 719px, (min-width:920px) calc(58vw - 28px), 100vw';
   document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 
   var LABEL={available:['st-open','Available'],
@@ -2797,6 +2908,10 @@ body.locked{overflow:hidden}
              sold     :['st-hold','Sold'],
              adopted  :['st-gone','Found a home']};
   function homeMark(r){ return (r.status==='sold'||r.status==='adopted')?' homemark':''; }
+  function stateOf(r){
+    if(r.status==='sold'&&r.departed) return ['st-gone','Sold'];
+    return LABEL[r.status]||LABEL.available;
+  }
 
   var PLACEHOLDER="data:image/svg+xml,"+encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">'+
@@ -3048,6 +3163,17 @@ body.locked{overflow:hidden}
       '<p><b>Better for them, too.</b> Rabbits are a highly social species, and one kept alone can suffer: '+
         '<a class="cite" href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company" target="_blank" rel="noopener">the RSPCA\u2019s words</a>.</p>';
   }
+  function stillHTML(r){
+    if(r.status==='available') return '';
+    var m=pairMates(r); if(!m.list.length) return '';
+    var chips=m.list.map(function(x){
+      return '<a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+priceOf(x)+'</span></a>';
+    }).join('');
+    var lead=(m.kind==='litter')
+      ? (m.list.length===1?'One from '+pronoun(r)+' litter is still available.':'From '+pronoun(r)+' litter, still available.')
+      : 'Still available.';
+    return '<small>Still here</small><p><b>'+lead+'</b></p><div class="kitrow">'+chips+'</div>';
+  }
   function growHTML(r, full){
     var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
     var st=stageOf(wk), bar='';
@@ -3061,7 +3187,10 @@ body.locked{overflow:hidden}
       return '<span class="u">'+(i===0&&isNow?'Now ':'')+u+(i<units.length-1?',':'')+'</span>';
     }).join(' ')+'</b>';
     var txt='<b>'+(full&&isNow?'<a class="nowlink" href="#faq-ages">Now</a> ':'')+esc(age)+'</b>';
-    if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
+    var pastEight=(daysOld(r.dob)!==null&&daysOld(r.dob)>=LAST_WEEK*7);
+    if(full&&st&&pastEight&&document.getElementById('stage-home'))
+      txt+=' &middot; <a class="stagelink" href="#stage-home">going-home age</a>';
+    else if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
     var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
     var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('Week '+wk+' of '+LAST_WEEK);
@@ -3121,7 +3250,8 @@ body.locked{overflow:hidden}
           var s=document.createElement('small');
           if(l.line){ s.appendChild(document.createTextNode(l.line+' ')); }
           var ag=document.createElement('span'); ag.className='age';
-          ag.textContent=(l.line?'\u00B7 ':'')+l.age; s.appendChild(ag);
+          if(l.line){ var dt=document.createElement('span'); dt.className='dot'; dt.textContent='\u00B7 '; ag.appendChild(dt); }
+          ag.appendChild(document.createTextNode(l.age)); s.appendChild(ag);
           var tx=document.createElement('span'); tx.appendChild(b); tx.appendChild(s);
           var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
           a.appendChild(tx); a.appendChild(ch);
@@ -3316,7 +3446,7 @@ body.locked{overflow:hidden}
 
     var cardSizes='(max-width:359px) 92vw, (max-width:760px) 47vw, '+(list.length<=2?'535px':'300px');
     railEl.innerHTML=list.map(function(r){
-      var st=LABEL[r.status]||LABEL.available;
+      var st=stateOf(r);
       var dim=(r.status==='available')?'':' sold-dim';
       var meta=(showBreed&&r.breed?'<span>'+esc(r.breed)+'</span>':'')+
         '<span>'+esc(sexColour(r))+'</span>';
@@ -3341,13 +3471,13 @@ body.locked{overflow:hidden}
         : '';
       var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
               (r.status==='available'?' data-avail="1"':'');
-      var attrs=' href="'+href+'"'+ask+' data-shots="'+esc(r.name)+'"'+
-                ' data-rid="'+esc(addrOf(r))+'"';
+
       var stLabel=st[1];
       if(r.status==='reserved'&&r.reservedOn) stLabel='Reserved '+dayMon(r.reservedOn);
       else if(r.status==='sold'&&r.soldOn) stLabel='Sold '+dayMon(r.soldOn);
       else if(r.status==='adopted'&&(r.wentHome||r.soldOn)) stLabel='Went home '+dayMon(r.wentHome||r.soldOn);
-      return '<a class="bunny'+dim+'"'+attrs+'>'+
+      return '<div class="bunny'+dim+'"'+ask+' data-shots="'+esc(r.name)+'" data-rid="'+esc(addrOf(r))+'">'+
+        '<a class="bunny-link" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name)+': photos and details"></a>'+
         '<div class="bunny-media"><span class="status '+st[0]+homeMark(r)+'">'+stLabel+'</span>'+newHTML(r)+
         '<img src="'+esc(cover)+'"'+sizedAttrs(cover,cardSizes)+' alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
         ' loading="lazy" onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
@@ -3356,16 +3486,19 @@ body.locked{overflow:hidden}
         '<span class="price">'+priceHTML(r)+'</span></div>'+
         '<p class="meta">'+meta+'</p>'+dealHTML(r,false)+growHTML(r,false)+
         '<p class="desc">'+esc(r.note)+'</p>'+
-        '<span class="bunny-cta">'+cta+arrow+'</span></div></a>';
+        '<a class="bunny-cta" href="'+href+'">'+cta+arrow+'</a></div></div>';
     }).join('');
     railEl.classList.toggle('few', list.length<=2);
     focusIn(railEl);
 
     if(countEl){
       var open=list.filter(function(r){return r.status==='available'}).length;
+      var gone=RABBITS.filter(function(r){return (r.status==='sold'||r.status==='adopted')&&(r.soldOn||r.wentHome);});
+      var since=gone.map(function(r){return String(r.soldOn||r.wentHome);}).sort()[0]||'';
+      var monthName=since?(typeof MONTHS_LONG!=='undefined'?MONTHS_LONG:['January','February','March','April','May','June','July','August','September','October','November','December'])[(+since.slice(5,7))-1]:'';
       countEl.textContent = open===0
         ? 'All reserved. Ask to see the next litter first, below.'
-        : open+' of '+list.length+' still available';
+        : open+' available'+(gone.length&&monthName?' \u00B7 '+gone.length+' sold since '+monthName:'');
       countEl.className = 'count ' + (open===0 ? 'none' : 'open');
     }
 
@@ -3479,15 +3612,30 @@ body.locked{overflow:hidden}
     var shown=null;
     var shots=[], at=0, lastFocus=null;
     var parentOpen=false, shareAble=false;
-    var vBody=vw.querySelector('.viewer-body');
+    var vBody=vw.querySelector('.viewer-body'), vBoxEl=vw.querySelector('.viewer-box');
+    function vScroller(){
+      if(vBoxEl){ var o=getComputedStyle(vBoxEl).overflowY; if(o==='auto'||o==='scroll') return vBoxEl; }
+      return vBody;
+    }
+    var vCtl=vw.querySelector('.viewer-ctl');
     function moreBelow(){
       if(!vBody) return;
-      vBody.classList.toggle('more', vBody.scrollHeight-vBody.clientHeight-vBody.scrollTop>1);
+      var sc=vScroller()||vBody;
+      vBody.classList.toggle('more', sc.scrollHeight-sc.clientHeight-sc.scrollTop>1);
+      vw.classList.toggle('ctlbar', sc===vBoxEl && !!vStage && vBoxEl.scrollTop>vStage.offsetHeight-58);
+      vw.classList.toggle('navunder', sc===vBoxEl && !!vStage && vStage.offsetHeight/2-vBoxEl.scrollTop<70);
     }
+    function toTop(){ if(vBody) vBody.scrollTop=0; if(vBoxEl) vBoxEl.scrollTop=0; }
     if(vBody){
       vBody.addEventListener('scroll',moreBelow,{passive:true});
+      if(vBoxEl) vBoxEl.addEventListener('scroll',moreBelow,{passive:true});
       if(window.ResizeObserver) new ResizeObserver(moreBelow).observe(vBody);
       window.addEventListener('resize',moreBelow);
+    }
+    function showStage(){
+      if(vScroller()!==vBoxEl||!vBoxEl||vBoxEl.scrollTop<4) return;
+      try{ vBoxEl.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
+      catch(e){ vBoxEl.scrollTop=0; }
     }
 
     function stopVideo(){
@@ -3539,7 +3687,7 @@ body.locked{overflow:hidden}
       if(!vPlay){
         vPlay=document.createElement('a'); vPlay.className='ig-play'; vPlay.target='_blank'; vPlay.rel='noopener';
         vPlay.innerHTML='<i aria-hidden="true"></i><span></span>';
-        vStage.appendChild(vPlay);
+        (vStage.querySelector('.viewer-frame')||vStage).appendChild(vPlay);
       }
       if(s.insta&&!s.video){
         vPlay.href=s.insta; vPlay.hidden=false;
@@ -3560,7 +3708,12 @@ body.locked{overflow:hidden}
       vPrev.disabled=(at===0); vNext.disabled=(at===shots.length-1);
       var btns=vStrip.querySelectorAll('button');
       for(var n=0;n<btns.length;n++) btns[n].classList.toggle('on',n===at);
-      if(btns[at]&&btns[at].scrollIntoView) btns[at].scrollIntoView({block:'nearest',inline:'nearest'});
+      var tb=btns[at];
+      if(tb){
+        var sr=vStrip.getBoundingClientRect(), br=tb.getBoundingClientRect();
+        if(br.left<sr.left) vStrip.scrollLeft-=(sr.left-br.left)+8;
+        else if(br.right>sr.right) vStrip.scrollLeft+=(br.right-sr.right)+8;
+      }
     }
 
     var born='';
@@ -3670,8 +3823,10 @@ body.locked{overflow:hidden}
       parentOpen=true; shown=null;
       var role=p.role==='mother'?'The mother':'The father';
       vName.textContent=p.name||role;
+      if(vCtl) vCtl.setAttribute('data-name',vName.textContent);
       vPrice.textContent='';
       if(vWhy) vWhy.hidden=true;   /* a parent has no price to answer for */
+      whyShut();
       vMeta.textContent=p.breed+(p.name?(' \u00B7 '+roleWord(p)):'');
       paintRecord([]);
       vGrow.innerHTML='';
@@ -3693,7 +3848,7 @@ body.locked{overflow:hidden}
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+((x.video||x.reel)?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
       }).join('');
       focusIn(vStrip);
-      vStrip.querySelectorAll('button').forEach(function(b,n){ b.addEventListener('click',function(){paint(n)}); });
+      vStrip.querySelectorAll('button').forEach(function(b,n){ b.addEventListener('click',function(){paint(n); showStage();}); });
       vw.classList.toggle('solo', shots.length<2);
       if(vShare){ vShare.hidden=true; }
       if(history.replaceState){
@@ -3703,8 +3858,9 @@ body.locked{overflow:hidden}
       vw.classList.add('open');
       document.body.classList.add('locked');
       fitBlocks();
+      fitCaption();
       paint(0);
-      if(vBody) vBody.scrollTop=0;
+      toTop();
       moreBelow();
       focusNoScroll(vClose);
       return true;
@@ -3833,14 +3989,8 @@ body.locked{overflow:hidden}
     function fitBlocks(){
       var w=vNote.clientWidth;
       if(!w||w===fittedAt) return;
-      var caps=[], metas=[];
-      for(var i=0;i<RABBITS.length;i++){
-        metas.push(metaText(RABBITS[i]));
-        var g=galleryFor(RABBITS[i]);
-        for(var j=0;j<g.length;j++){
-          caps.push((g[j].note||'')+((g[j].insta&&g[j].video)?((g[j].note?' \u00b7 ':'')+'On Instagram'):''));
-        }
-      }
+      var metas=[];
+      for(var i=0;i<RABBITS.length;i++) metas.push(metaText(RABBITS[i]));
       var grows=[];
       for(var g=0;g<RABBITS.length;g++){
         if(weekOf(RABBITS[g].dob)===null) continue;
@@ -3853,11 +4003,20 @@ body.locked{overflow:hidden}
       if(grows.length) vGrow.style.minHeight=(tallest(vGrow,'grow-txt',grows,w)+24)+'px';   /* + the bar's own line (18px) and the gap (6px), 22 Sept 2026 */
       vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
       vNote.style.height='';
-      var anyCap=false;
-      for(var c=0;c<caps.length;c++) if(caps[c]){ anyCap=true; break; }
-      if(vSaid) vSaid.style.display = anyCap ? '' : 'none';
-      if(anyCap) vCap.style.height = tallest(vCap,'viewer-cap',caps,w)+'px';
       fittedAt=w;
+    }
+
+    function capOf(g){
+      return (g.note||'')+((g.insta&&g.video)?((g.note?' \u00b7 ':'')+'On Instagram'):'');
+    }
+    function fitCaption(){
+      if(!vSaid||!vCap) return;
+      var caps=shots.map(capOf), any=false;
+      for(var c=0;c<caps.length;c++) if(caps[c]){ any=true; break; }
+      vSaid.style.display='';
+      var w=vSaid.clientWidth;
+      if(any&&w) vCap.style.height=tallest(vCap,'viewer-cap',caps,w)+'px';
+      vSaid.style.display=any?'':'none';
     }
 
     function openFor(r, force){
@@ -3868,11 +4027,13 @@ body.locked{overflow:hidden}
       lastFocus=document.activeElement;
       parentOpen=false;
       vName.textContent=r.name;
+      if(vCtl) vCtl.setAttribute('data-name',r.name);
       vPrice.innerHTML=priceHTML(r);
       if(vWhy) vWhy.hidden=!(r.status==='available' && priceOf(r));
+      whyShut();
       if(vDeal){ vDeal.innerHTML=dealHTML(r,true); vDeal.hidden=!vDeal.innerHTML; }
       if(vPath){ vPath.innerHTML=pathHTML(r); vPath.hidden=!vPath.innerHTML; }
-      if(vPair){ vPair.innerHTML=pairHTML(r); vPair.hidden=!vPair.innerHTML; }
+      if(vPair){ vPair.innerHTML=pairHTML(r)||stillHTML(r); vPair.hidden=!vPair.innerHTML; }
       paintMeta(r);
       paintParents(r);
       if(vShare) vShare.hidden=!shareAble;
@@ -3880,7 +4041,7 @@ body.locked{overflow:hidden}
       born=r.dob||'';
       vNote.textContent=r.note||'';
       vNote.style.display=r.note?'':'none';
-      var st=LABEL[r.status]||LABEL.available;
+      var st=stateOf(r);
       if(vStatus){
         vStatus.textContent=st[1];
         vStatus.className='status vstatus '+st[0]+homeMark(r);
@@ -3901,7 +4062,7 @@ body.locked{overflow:hidden}
       }).join('');
       focusIn(vStrip);
       vStrip.querySelectorAll('button').forEach(function(b,n){
-        b.addEventListener('click',function(){paint(n)});
+        b.addEventListener('click',function(){paint(n); showStage();});
       });
       vw.classList.toggle('solo', shots.length < 2);
       shown = r;
@@ -3914,21 +4075,22 @@ body.locked{overflow:hidden}
       vw.classList.add('open');
       document.body.classList.add('locked');
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
+      fitCaption();
       var start=0;
       for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
       paint(start);
-      if(vBody) vBody.scrollTop=0;
+      toTop();
       moreBelow();
       focusNoScroll(vClose);
       return true;
     }
 
-    function shut(){
+    function shut(keepAddr){
       vw.classList.remove('open');
       document.body.classList.remove('locked');
       stopVideo();
       vImg.src='';
-      if(/^#[rp]-/.test(location.hash||'') && history.replaceState)
+      if(!keepAddr && /^#[rp]-/.test(location.hash||'') && history.replaceState)
         history.replaceState(null,'',location.pathname+location.search);
       parentOpen=false;
       if(lastFocus&&lastFocus.focus) focusNoScroll(lastFocus);
@@ -3965,10 +4127,10 @@ body.locked{overflow:hidden}
 
     railEl.addEventListener('click',function(ev){
       var card=ev.target.closest('.bunny[data-shots]'); if(!card) return;
-      if(!ev.target.closest('.bunny-media')) return;
+      if(ev.target.closest('.bunny-cta')) return;     /* Ask goes to the form */
       var rid=card.getAttribute('data-rid');
       var r=RABBITS.filter(function(x){return addrOf(x)===rid;})[0];
-      var pic=ev.target.closest('.bunny-media').querySelector('img');
+      var pic=card.querySelector('.bunny-media img');
       if(r && morph(pic,function(){ return openFor(r,true); })) ev.preventDefault();
     });
 
@@ -4062,14 +4224,28 @@ body.locked{overflow:hidden}
       if(!a) return;
       ev.preventDefault();
       var to=a.getAttribute('href');
-      shut();
+      shut(true);
       requestAnimationFrame(function(){ location.hash=to; });
     });
 
-    if(vWhy) vWhy.addEventListener('click',function(ev){
+    var vWhyPanel=document.getElementById('viewerWhyPanel'), vWhyMore=document.getElementById('viewerWhyMore');
+    function whyShut(){ if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
+    if(vWhy&&vWhyPanel) vWhy.addEventListener('click',function(ev){
       ev.preventDefault();
-      var to=vWhy.getAttribute('href');
-      shut();
+      var opening=vWhyPanel.hidden;
+      vWhyPanel.hidden=!opening;
+      vWhy.setAttribute('aria-expanded',opening?'true':'false');
+      if(opening){
+        var sc=vScroller(), pr=vWhyPanel.getBoundingClientRect(), foot=vw.querySelector('.viewer-foot');
+        var limit=foot?foot.getBoundingClientRect().top:innerHeight;
+        if(sc&&pr.bottom>limit) sc.scrollTop+=Math.min(pr.bottom-limit+8, pr.top-sc.getBoundingClientRect().top-62);
+        moreBelow();
+      }
+    });
+    if(vWhyMore) vWhyMore.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var to=vWhyMore.getAttribute('href');
+      shut(true);
       requestAnimationFrame(function(){
         if(location.hash===to){
           var d=document.getElementById(to.slice(1));
@@ -4248,7 +4424,13 @@ body.locked{overflow:hidden}
             if(forLitter) showWaiting(wcount, n, label, true);
             else showFor(shownPill(), true);
           }); })
-        .catch(function(){ alert('That didn\'t send. Text me at (520) 270-2827 instead.'); });
+        .catch(function(){
+          var p=document.getElementById('wlErr');
+          if(!p){ p=document.createElement('p'); p.id='wlErr'; p.className='err show'; p.setAttribute('role','alert');
+            wf.appendChild(p); }
+          p.innerHTML='That didn\u2019t send. <a href="sms:+15202702827">Text me</a> and I\u2019ll add you myself, or try again.';
+          p.classList.add('show');
+        });
     });
   }
 
@@ -4268,25 +4450,49 @@ body.locked{overflow:hidden}
     if(cur>0 && top<navB){ try{steps[cur].scrollIntoView({block:'start'})}catch(e){} }
   }
 
+  function errOf(step,name){
+    var er=step.querySelector('.err[data-for="'+name+'"]');
+    if(er&&!er.id) er.id='err-'+name;
+    return er;
+  }
+  function markBad(el,er){
+    if(!el) return;
+    el.setAttribute('aria-invalid','true');
+    if(er) el.setAttribute('aria-describedby',er.id);
+  }
+  function markOk(el){
+    if(!el) return;
+    el.removeAttribute('aria-invalid'); el.removeAttribute('aria-describedby');
+  }
+  function bringUp(el){
+    if(!el) return;
+    var box=el.closest('.field')||el;
+    var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try{ box.scrollIntoView({block:'center',behavior:still?'auto':'smooth'}); }catch(e){ box.scrollIntoView(); }
+    try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); }
+  }
   function validate(step){
     step.querySelectorAll('.err').forEach(function(e){e.classList.remove('show')});
-    var ok=true;
+    var ok=true, first=null;
     var radios=step.querySelectorAll('input[type=radio][required]');
     if(radios.length){
-      var nm=radios[0].name;
+      var nm=radios[0].name, group=radios[0].closest('[role=radiogroup]');
+      var e=errOf(step,nm);
       if(!step.querySelector('input[name="'+nm+'"]:checked')){
-        var e=step.querySelector('.err[data-for="'+nm+'"]'); if(e) e.classList.add('show'); ok=false;
-      }
+        if(e) e.classList.add('show'); ok=false; markBad(group,e); first=first||radios[0];
+      } else markOk(group);
     }
     step.querySelectorAll('input[required], select[required], textarea[required], input[type=email], input[type=tel]').forEach(function(f){
       if(f.type==='radio') return;
       var v=f.value.trim();
-      if(!f.required && !v){ f.style.borderColor=''; return; }
+      if(!f.required && !v){ f.style.borderColor=''; markOk(f); return; }
       var bad=!v||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
                ||(f.type==='tel'&&v.replace(/\D/g,'').length<10);
-      if(bad){ var er=step.querySelector('.err[data-for="'+f.name+'"]'); if(er) er.classList.add('show');
-        f.style.borderColor='var(--alert)'; ok=false; } else { f.style.borderColor=''; }
+      if(bad){ var er=errOf(step,f.name); if(er) er.classList.add('show');
+        f.style.borderColor='var(--alert)'; ok=false; markBad(f,er); first=first||f; }
+      else { f.style.borderColor=''; markOk(f); }
     });
+    if(!ok) bringUp(first);
     return ok;
   }
 
@@ -4310,9 +4516,9 @@ body.locked{overflow:hidden}
   var phoneF=document.getElementById('phone'), emailF=document.getElementById('email');
   var replyNote=document.getElementById('replyNote');
   var REPLY_NOTE={
-    Text:'Text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I\'ll call once, then leave you\u00a0be.',
-    Call:'Text is what I reach for first, but pick what suits you. If I call and can\'t reach you, I\'ll text once after two days, then leave you\u00a0be.',
-    Email:'Text is what I reach for first, but pick what suits you. If I email you and hear nothing for two days, I\'ll text once if you gave me a number, then leave you\u00a0be.'
+    Text:'Of these three, text is what I reach for first, but pick what suits you. If I text you and hear nothing for two days, I\'ll call once, then leave you\u00a0be.',
+    Call:'Of these three, text is what I reach for first, but pick what suits you. If I call and can\'t reach you, I\'ll text once after two days, then leave you\u00a0be.',
+    Email:'Of these three, text is what I reach for first, but pick what suits you. If I email you and hear nothing for two days, I\'ll text once if you gave me a number, then leave you\u00a0be.'
   };
   function setReply(){
     var v=(form.querySelector('input[name="reply"]:checked')||{}).value||'Text';
@@ -4384,9 +4590,9 @@ body.locked{overflow:hidden}
   }
 
   document.addEventListener('click',function(ev){
-    var card=ev.target.closest && ev.target.closest('.bunny[data-ask]');
+    var cta=ev.target.closest && ev.target.closest('.bunny-cta');
+    var card=cta && cta.closest('.bunny[data-ask]');
     if(!card) return;
-    if(card.hasAttribute('data-shots') && ev.target.closest('.bunny-media')) return;
     askAbout(card.getAttribute('data-ask'));
     ev.preventDefault();     /* the anchor's own jump would land in the wrong place */
     bringToForm();
@@ -4404,7 +4610,8 @@ body.locked{overflow:hidden}
   });
   function clr(t){ if(!t||!t.name) return;
     var e=steps[cur].querySelector('.err[data-for="'+t.name+'"]'); if(e) e.classList.remove('show');
-    t.style.borderColor=''; }
+    t.style.borderColor=''; markOk(t);
+    if(t.type==='radio') markOk(t.closest('[role=radiogroup]')); }
   form.addEventListener('input',function(e){clr(e.target)});
   form.addEventListener('change',function(e){clr(e.target)});
 
@@ -4456,9 +4663,18 @@ body.locked{overflow:hidden}
       .then(function(r){ if(!r.ok) throw 0;
         form.style.display='none'; doneEl.classList.add('show');
         doneEl.scrollIntoView({block:'center',behavior:'smooth'}); })
-      .catch(function(){ btn.textContent=orig; btn.disabled=false;
-        alert('That didn\'t send. Please text me at (520) 270-2827 instead.'); });
+      .catch(function(){ btn.textContent=orig; btn.disabled=false; sendFailed(btn); });
   });
+  function sendFailed(btn){
+    var nav=btn.closest('.fnav'); if(!nav) return;
+    var p=document.getElementById('sendErr');
+    if(!p){ p=document.createElement('p'); p.id='sendErr'; p.className='err show'; p.setAttribute('role','alert');
+      nav.parentNode.insertBefore(p,nav.nextSibling); }
+    var msg=((form.querySelector('[name="message"]')||{}).value||'').trim();
+    p.innerHTML='That didn\u2019t send. <a href="sms:+15202702827'+(msg?('?&body='+encodeURIComponent(msg)):'')+
+      '">Text it to me instead</a>, or press Send again.';
+    p.classList.add('show');
+  }
 
   function tieLast(el, minWords){
     if((el.textContent.trim().split(/\s+/)||[]).length<minWords) return;

@@ -81,12 +81,18 @@ header{padding:16px 0 0}
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
 .back:hover{text-decoration:underline}
 
-.subnav{display:flex;flex-wrap:wrap;gap:0 18px;margin:-4px 0 6px}
-.subnav a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;
+.subnav{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
+
+.earlier{display:inline-flex;align-items:center;justify-content:center;margin:6px 0 34px;
+  min-height:46px;padding:0 20px;border-radius:100px;font-family:inherit;font-weight:600;font-size:15px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.earlier:hover{border-color:var(--brick);color:var(--brick-dk)}
+.earlier[hidden]{display:none}
+
+.subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);
+  border-radius:100px;background:#fff;font-size:14px;font-weight:500;
   color:var(--ink-soft);text-decoration:none;white-space:nowrap}
-.subnav a:hover,.subnav a:active{color:var(--brick)}
-.subnav a::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:var(--ink-faint);margin-right:8px}
+.subnav a:hover,.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
 h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
 .lede{color:var(--ink-soft);max-width:52ch;margin-bottom:34px}
@@ -177,6 +183,7 @@ h1,h2,h3{text-wrap:balance}
       <time class="updated" datetime="2026-09-27">Updated 27 September 2026</time>
       <h2>Week of September 21</h2>
       <ul>
+        <li><time datetime="2026-09-27">27 Sep</time> <b>Where things stand.</b> Available: Marshmallow $375; Honey, Biscuit, Toffee and Pecan $350 each. Sold: Teddy, Butterscotch, Sundae, Cloud and Maple.</li>
         <li><time datetime="2026-09-27">27 Sep</time> <b>Seven born.</b> A new litter from the same mother, photographed the day they were born. <a class="xlink" href="litters.html#L2026-09-27">Their page</a>.</li>
         <li><time datetime="2026-09-26">26 Sep</time> <b>A receipt for every payment.</b> Written confirmation of what you paid, every time. <a class="xlink" href="index.html#faq-pay">How to pay</a>.</li>
         <li><time datetime="2026-09-26">26 Sep</time> <b>48 hours for a second.</b> Take one home and the 20% off a second holds for 48 hours, bought or held with $50. <a class="xlink" href="index.html#faq-pair">The pair answer</a>.</li>
@@ -185,7 +192,6 @@ h1,h2,h3{text-wrap:balance}
         <li><time datetime="2026-09-23">23 Sep</time> <b>Her reel, on her listing.</b> Tap the second picture in Butterscotch's listing and the bumblebunny reel opens on Instagram. Every rabbit's reels will sit there. <a class="xlink" href="index.html#r-butterscotch">See her</a>.</li>
         <li><time datetime="2026-09-22">22 Sep</time> <b>Two questions, answered.</b> Why pay more than the cheapest listing, and what to ask any breeder before you pay. <a class="xlink" href="index.html#faq-why">Read both</a>.</li>
         <li><time datetime="2026-09-22">22 Sep</time> <b>Why eight weeks.</b> Butterscotch turned eight weeks today. Every listing now says which week it is on. <a class="xlink" href="index.html#faq-home">Why I aim for eight</a>.</li>
-        <li><time datetime="2026-09-21">21 Sep</time> <b>Where things stand.</b> Available: Marshmallow $375; Honey, Biscuit, Toffee and Pecan $350 each. Sold: Teddy, Butterscotch, Sundae, Cloud and Maple.</li>
       </ul>
       <p class="newscta">
         <a class="btn btn-primary" href="index.html#available">See who is available</a>
@@ -324,6 +330,28 @@ h1,h2,h3{text-wrap:balance}
     }
   }
   noOrphans(document.body);
+})();
+</script>
+<script>
+(function(){
+  var eds=[].slice.call(document.querySelectorAll('article.edition'));
+  var keep=(eds.length&&eds[0].querySelectorAll('li').length<3)?2:1;
+  if(eds.length<=keep) return;
+  var older=eds.slice(keep);
+  var btn=document.createElement('button');
+  btn.type='button'; btn.className='btn btn-ghost earlier';
+  btn.setAttribute('aria-expanded','false');
+  btn.textContent='Earlier weeks ('+older.length+')';
+  older[0].parentNode.insertBefore(btn,older[0]);
+  older.forEach(function(e){ e.hidden=true; });
+  function openAll(focus){
+    older.forEach(function(e){ e.hidden=false; });
+    btn.setAttribute('aria-expanded','true'); btn.hidden=true;
+    if(focus){ var h=older[0].querySelector('h2'); if(h){ h.setAttribute('tabindex','-1'); try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
+  }
+  btn.addEventListener('click',function(){ openAll(true); });
+  var t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if(t&&older.some(function(e){ return e.contains(t); })) openAll(false);
 })();
 </script>
 
