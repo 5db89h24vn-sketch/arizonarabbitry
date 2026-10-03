@@ -1204,6 +1204,17 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   noOrphans(document.body);
 })();
 </script>
+<script>
+(function(){
+  function promote(){
+    var m=/^#(L\d{4}-\d{2}-\d{2})$/.exec(location.hash||''); if(!m) return;
+    var a=document.getElementById(m[1]); if(!a) return;
+    var im=a.querySelector('.litter-media img'); if(!im) return;
+    im.setAttribute('loading','eager'); im.setAttribute('fetchpriority','high');
+  }
+  promote(); window.addEventListener('hashchange',promote);
+})();
+</script>
 
 <script src="count.js?v=b57252cf" defer></script>
 </body>
