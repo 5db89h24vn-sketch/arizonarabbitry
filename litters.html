@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Litters | Arizona Rabbits</title>
 <meta name="description" content="The photo I take the day a litter is born, kept from then on with the date I took it.">
-<meta name="theme-color" content="#241F1D">
+<meta name="theme-color" content="#FBF8F3">
 <link rel="canonical" href="https://arizonarabbits.com/litters">
 
 <meta property="og:type" content="website">
@@ -17,6 +17,9 @@
 <meta property="og:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson: the photo from the day each one was born, and the ones after as they grow, each with the date it was taken.">
 <meta property="og:url" content="https://arizonarabbits.com/litters">
 <meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Arizona Rabbits, hand-raised in Tucson, temperament first. Butterscotch, a fawn Holland Lop cross kit, lying on a pale stone floor with desert plants behind her, beside the name.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Every litter, with the photo taken the day they were born">
 <meta name="twitter:description" content="A dated record of every litter raised at Arizona Rabbits in Tucson: the photo from the day each one was born, and the ones after as they grow, each with the date it was taken.">
@@ -279,6 +282,7 @@ body.lbox-open{overflow:hidden}
 .litter p + p{margin-top:10px}
 
 .whograph{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.whograph+p{margin-top:18px}
 @media(min-width:700px){.whograph{grid-template-columns:repeat(4,1fr)}}
 .wt{display:block;text-decoration:none;color:var(--ink);background:var(--paper);
   border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--lift-1)}
@@ -288,6 +292,7 @@ body.lbox-open{overflow:hidden}
 .wt small{display:block;font-size:12.5px;color:var(--ink-faint);padding:0 12px 10px;
   line-height:1.4;min-height:28px}
 .wt .st-open{color:var(--open)}
+.wt .tprice{color:var(--ink-soft)}
 .wt .st-hold{color:var(--hold)}
 .wt .st-gone{color:var(--gone)}
 .wt-gone img{opacity:.82;filter:saturate(.75)}
@@ -358,7 +363,7 @@ h1,h2,h3{text-wrap:balance}
 .finder-label{font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap}
 .finder select{min-height:44px;max-width:100%;padding:0 38px 0 14px;border:1px solid var(--line);border-radius:var(--r);
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23736A64' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center/12px;
-  font:inherit;font-size:15px;font-weight:500;color:var(--ink);-webkit-appearance:none;appearance:none;cursor:pointer}
+  font:inherit;font-size:16px;font-weight:500;color:var(--ink);-webkit-appearance:none;appearance:none;cursor:pointer}
 .finder select:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
 .finder-note{font-size:14px;color:var(--ink-soft);margin:-6px 0 16px}
 .finder-note[hidden],.tile[hidden],.wt[hidden],.wallhead[hidden],.whograph[hidden],.wall[hidden]{display:none}
@@ -394,7 +399,7 @@ h1,h2,h3{text-wrap:balance}
       <div class="litter-card">
         <div class="litter-media" data-note="Seven of them, in the nest box, in the hay and the fur she pulled.">
           <img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
-               alt="Seven newborn kits curled together in a metal nest box on hay, with pulled fur around them">
+               loading="lazy" alt="Seven newborn kits curled together in a metal nest box on hay, with pulled fur around them">
         </div>
         <div class="litter-body">
           <span data-fact="litter-no:2026-09-27" class="litter-no">Fourth litter</span> <time datetime="2026-09-27">Born 27 September 2026</time> <span class="litter-age" data-born="2026-09-27" hidden></span>
@@ -424,13 +429,12 @@ h1,h2,h3{text-wrap:balance}
               </figure>
             </div>
           </div>
-          <p>The first two weeks decide everything, so I don't take reservations until four
-          weeks, once I can tell you sex honestly.
+          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
           The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
           hears first.<span data-fact="opens:2026-09-27"> For this litter that is from <time datetime="2026-10-25">25 October</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the September litter"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the September litter (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="terms.html#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="terms.html#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -440,7 +444,7 @@ h1,h2,h3{text-wrap:balance}
       <div class="litter-card">
         <div class="litter-media" data-note="Six of them, in a nest of shavings and the fur their mother pulled to line it.">
           <img src="photos/litter-2026-08-27.jpg?v=bcb889d9" srcset="photos/litter-2026-08-27.160.bcb889d9.jpg 160w, photos/litter-2026-08-27.320.bcb889d9.jpg 320w, photos/litter-2026-08-27.640.bcb889d9.jpg 640w, photos/litter-2026-08-27.960.bcb889d9.jpg 960w, photos/litter-2026-08-27.jpg?v=bcb889d9 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
-               alt="Six newborn kits curled together in a wooden nest box lined with wood shavings and pulled fur">
+               loading="lazy" alt="Six newborn kits curled together in a wooden nest box lined with wood shavings and pulled fur">
         </div>
         <div class="litter-body">
           <span data-fact="litter-no:2026-08-27" class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time> <span class="litter-age" data-born="2026-08-27" hidden></span>
@@ -530,8 +534,7 @@ h1,h2,h3{text-wrap:balance}
               <b>Marshmallow</b><small>&nbsp;</small>
             </a>
           </div>
-          <p>The first two weeks decide everything, so I don't take reservations until four
-          weeks, once I can tell you sex honestly.
+          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
           The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
           hears first.<span data-fact="opens:2026-08-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
@@ -546,7 +549,7 @@ h1,h2,h3{text-wrap:balance}
       <div class="litter-card">
         <div class="litter-media" data-note="The day they arrived, before their eyes were open.">
           <img src="photos/litter-2026-07-28.jpg?v=36389c88" srcset="photos/litter-2026-07-28.160.36389c88.jpg 160w, photos/litter-2026-07-28.320.36389c88.jpg 320w, photos/litter-2026-07-28.640.36389c88.jpg 640w, photos/litter-2026-07-28.960.36389c88.jpg 960w, photos/litter-2026-07-28.jpg?v=36389c88 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
-               alt="Newborn kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
+               loading="lazy" alt="Newborn kits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them">
         </div>
         <div class="litter-body">
           <span data-fact="litter-no:2026-07-28" class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time> <span class="litter-age" data-born="2026-07-28" hidden></span>
@@ -601,7 +604,7 @@ h1,h2,h3{text-wrap:balance}
       <div class="litter-card">
         <div class="litter-media" data-note="One of the five on the day they were born, over the fur their mother pulled for a nest.">
           <img src="photos/litter-2026-06-28.jpg?v=5816cb81" srcset="photos/litter-2026-06-28.160.5816cb81.jpg 160w, photos/litter-2026-06-28.320.5816cb81.jpg 320w, photos/litter-2026-06-28.640.5816cb81.jpg 640w, photos/litter-2026-06-28.960.5816cb81.jpg 960w, photos/litter-2026-06-28.jpg?v=5816cb81 1400w" sizes="(min-width:940px) 896px, 100vw" width="1400" height="1050"
-               alt="A newborn kit in William's hand above a metal tray lined with pulled fur, inside a green cage">
+               loading="lazy" alt="A newborn kit in William's hand above a metal tray lined with pulled fur, inside a green cage">
         </div>
         <div class="litter-body">
           <span data-fact="litter-no:2026-06-28" class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time> <span class="litter-age" data-born="2026-06-28" hidden></span>
@@ -735,7 +738,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=eeef0335"></script>
+<script src="rabbits.js?v=04a6cc03"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -893,7 +896,8 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       el.textContent=r.reservedOn?('Reserved '+nice(r.reservedOn)):'Reserved';
       el.className='st-hold';
     } else {
-      el.textContent='Available \u00B7 $'+tilePrice(r); el.className='st-open';
+      el.textContent='Available'; var tp=document.createElement('span'); tp.className='tprice';
+      tp.textContent=' \u00B7 $'+tilePrice(r); el.appendChild(tp); el.className='st-open';
     }
   });
 
@@ -988,9 +992,19 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     lbImg.addEventListener('load',function(){
       if(!lbStage.style.getPropertyValue('--stage-ar')&&lbImg.naturalWidth) lbStage.style.setProperty('--stage-ar', lbImg.naturalWidth+'/'+lbImg.naturalHeight);
     });
+    function setCaptions(v, clip){
+      var old=v.querySelectorAll('track');
+      for(var i=0;i<old.length;i++) v.removeChild(old[i]);
+      if(!clip) return;
+      var t=document.createElement('track');
+      t.kind='captions'; t.srclang='en'; t.label='English';
+      t.src=clip.replace(/\.mp4(\?.*)?$/,'.vtt');
+      v.appendChild(t);
+    }
     function stopVideo(){
       if(!lbVideo) return;
       try{ lbVideo.pause(); }catch(e){}
+      setCaptions(lbVideo, null);
       if(lbVideo.getAttribute('src')){ lbVideo.removeAttribute('src'); lbVideo.removeAttribute('poster'); lbVideo.load(); }
       lbVideo.hidden=true; lbImg.hidden=false; lbStage.classList.remove('video');
     }
@@ -1001,6 +1015,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         lbImg.removeAttribute('src'); lbImg.alt=''; lbImg.hidden=true;
         lbVideo.setAttribute('poster', s.src);
         lbVideo.setAttribute('src', s.video);
+        setCaptions(lbVideo, s.video);
         lbVideo.setAttribute('aria-label', label+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+nice(s.date)):''));
         lbVideo.hidden=false; lbVideo.load(); lbStage.classList.add('video');
       } else {
@@ -1103,7 +1118,9 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
       var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
       when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
-    } else if(forP){ when=label+' is born'; }
+    } else if(forP){
+      var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
+      when=(pq&&pq.born)?(label+' go on sale'):(label+' is born'); }
     else { when='the next litter opens for reservation'; }
     var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
     fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
@@ -1188,6 +1205,6 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 })();
 </script>
 
-<script src="count.js?v=715c2edf" defer></script>
+<script src="count.js?v=b57252cf" defer></script>
 </body>
 </html>

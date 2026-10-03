@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hand-raised Rabbits for Sale in Tucson | Arizona Rabbits</title>
-<meta name="description" content="Hand-raised rabbits for sale in Tucson, Arizona. Handled daily from birth, home once they are weaned, and lifetime support for every owner.">
+<meta name="description" content="Hand-raised Holland Lop cross rabbits for sale in Tucson. Handled every day from their first week, home when they're ready, and you keep my number.">
 
 <meta name="theme-color" content="#FBF8F3">
 
@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://arizonarabbits.com/">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Hand-raised rabbits for sale in Tucson">
-<meta property="og:description" content="Hand-raised, handled daily from birth. Home once they are weaned, and you keep my number.">
+<meta property="og:description" content="Handled every day from their first week. Home when they're ready, and you keep my number.">
 
 <meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=6">
 <meta property="og:image:width" content="1200">
@@ -228,7 +228,8 @@ header .brandbox{padding-top:15px}
   .sprog{display:block;position:relative;height:4px;margin:9px 8px 0;border-radius:100px;
     background:rgba(210,196,176,.55);
     touch-action:none;cursor:pointer;-webkit-user-select:none;user-select:none}
-  .sprog::before{content:'';position:absolute;left:-8px;right:-8px;top:-10px;bottom:-8px}
+  
+  .sprog::before{content:'';position:absolute;left:-8px;right:-8px;top:-10px;bottom:-10px}
   .sprog-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--brick);
     border-radius:100px}
 
@@ -855,7 +856,6 @@ select{-webkit-appearance:none;appearance:none;padding-right:40px;
 .err.show{display:block}
 .fnav{display:flex;gap:10px;margin-top:22px}
 .fnav .btn{flex:1}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .privacy{font-size:12.5px;color:var(--ink-faint);margin-top:14px;line-height:1.55}
 .privacy a{color:var(--brick-dk)}
 .privacy a:hover{color:var(--brick)}
@@ -873,7 +873,7 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .foot a:hover{color:#fff}
 .foot .brand{color:#fff;display:block;margin-bottom:12px}
 .foot .brand small{color:var(--faint-on-ink)}
-.foot h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+.foot h3{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--faint-on-ink);font-family:var(--sans);font-weight:600;margin-bottom:12px}
 .foot-links{display:flex;flex-direction:column;gap:8px}
 
@@ -930,7 +930,9 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 
 .mbar .mbar-call{flex:0 0 auto;min-width:74px}
 .mbar .btn{flex:1;padding:12px 10px;font-size:15px;position:relative;z-index:1;
-  pointer-events:auto;border-radius:100px;min-height:44px}
+  pointer-events:auto;border-radius:100px;min-height:44px;white-space:nowrap}
+
+@media(max-width:340px){.mbar{gap:6px}.mbar .btn{padding:12px 8px;font-size:14px}.mbar .mbar-call{min-width:64px}}
 
 .js-mbar .mbar{transform:translateY(calc(115% + 26px));opacity:0;visibility:hidden;
   transition:transform .2s cubic-bezier(.3,0,.8,.15),
@@ -1487,8 +1489,8 @@ body.locked{overflow:hidden}
               <a href="#faq">FAQ</a>
               <a href="#contact">Contact</a>
             </div>
-            <div class="sprog" id="sprog" role="slider" tabindex="0" aria-label="Scroll through the page"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            
+            <div class="sprog" id="sprog" aria-hidden="true">
               <div class="sprog-fill" id="sprogFill"></div>
               <div class="sprog-grip" id="sprogGrip"></div>
               <div class="sprog-tag" id="sprogTag"></div>
@@ -1516,11 +1518,11 @@ body.locked{overflow:hidden}
 
       <div class="facts">
 
+        <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-home"><span><b>Home when ready</b><small>Eight weeks is the aim</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
         
-        <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="hero-media">
@@ -1568,7 +1570,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" aria-label="The news and the litters">
-      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-02">2 Oct</time>. Pay in parts. The rabbit is the smallest part.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-02">2 Oct</time>. The first purebred Holland Lops. Pay in parts.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 September. Four litters, photos from day one.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -1579,12 +1581,12 @@ body.locked{overflow:hidden}
         they go up on the site. That is the only thing I use your address for, and you can
         tell me to stop whenever you want. <a class="litterlink" href="terms.html#privacy">How I keep your details</a>.</p>
         
-        <p data-fact="opens" class="wl-opens">The September litter opens for reservation from <time datetime="2026-10-25">25 October</time><span class="away"></span>.</p>
+        <p data-fact="opens" class="wl-opens">The litter born 27 September opens for reservation from <time datetime="2026-10-25">25 October</time><span class="away"></span>.</p>
       </div>
       <div class="wl-side">
         <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
           
-          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><label data-label="every litter"><input type="radio" name="want" value="all" checked><span>Every litter</span></label><label data-label="the September litter"><input type="radio" name="want" value="L2026-09-27"><span>Just the September litter</span></label><label data-label="the first purebred Holland Lop litter"><input type="radio" name="want" value="Pholland-lop"><span>The first purebred Holland Lop litter</span></label><label data-label="the first Netherland Dwarf litter"><input type="radio" name="want" value="Pnetherland-dwarf"><span>The first Netherland Dwarf litter</span></label></div>
+          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><label data-label="every litter"><input type="radio" name="want" value="all" checked><span>Every litter</span></label><label data-label="the litter born 27 September"><input type="radio" name="want" value="L2026-09-27"><span>Just the litter born 27 September</span></label><label data-label="the first purebred Holland Lops"><input type="radio" name="want" value="Pholland-lop"><span>The first purebred Holland Lops</span></label><label data-label="the first Netherland Dwarf litter"><input type="radio" name="want" value="Pnetherland-dwarf"><span>The first Netherland Dwarf litter</span></label></div>
           <div class="wl-row">
             <input type="email" name="email" placeholder="you@email.com" aria-label="Your email address, to hear about the next litter" required>
             <input type="hidden" name="_subject" value="Waitlist signup">
@@ -1631,8 +1633,9 @@ body.locked{overflow:hidden}
       <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
       A farmer sold me a <a class="litterlink" href="#p-father" title="The father: his photos and his litters">Satin
       Angora</a>, and a <a class="litterlink" href="#p-mother" title="The mother: her photos and her litters">Holland
-      Lop</a> followed. The purebred lines come next: Netherland Dwarfs are here,
-      Holland Lops next, then another Angora, kept separate.</p>
+      Lop</a> followed. The purebred lines are starting: the Netherland Dwarfs are
+      here, the first purebred Holland Lops were born 18 September 2026, and another
+      Angora comes after, kept separate.</p>
       
       <p class="lede"><b>Some rabbits never go up for sale.</b> Each line is bred
       to get better, and the ones that carry it forward stay. Every
@@ -1649,12 +1652,11 @@ body.locked{overflow:hidden}
       <p class="lede"><b>Those weeks are long before you could meet them, so they're mine.</b> I keep
       it going every day after, with other people. A rabbit calm only with its breeder
       isn't socialized.</p>
-      
-      <p class="lede"><b>Handling doesn't make a rabbit love being lifted.</b> <a class="cite"
+
+      <p class="lede"><b>The routine is what you're paying for.</b> It makes a rabbit that comes
+      to people instead of running from them. It won't make one love being lifted: <a class="cite"
       href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
-      target="_blank" rel="noopener">Most never do</a>. What it does is make a rabbit that comes
-      to people instead of running from them. Each one is still its own animal. The routine
-      is what you're paying for.</p>
+      target="_blank" rel="noopener">most never do</a>, and each one is still its own animal.</p>
     </div>
   </div>
 </section>
@@ -1831,60 +1833,45 @@ body.locked{overflow:hidden}
           through the care sheet together and you leave with everything on the list above.</p>
         </div>
       </details>
+
       <details id="faq-price">
         <summary>Why do they cost what they cost?</summary>
         <div class="faq-body">
-          <p><b>The price on the photo is the price you pay.</b> No appointment fee, no no-show
-          fee, no charge to visit, nothing added at pickup.</p>
-          <p><b>It covers more than the rabbit.</b> Daily handling from its first week, and a
-          health check you watch me do. Two weeks of the food it's already eating, a written
-          care sheet, my number for as long as you have it, and <a class="litterlink"
-          href="#owners">help getting it seen</a> on Instagram.</p>
+          <p><b>The price on the photo is the price you pay.</b> No fee to visit, no booking
+          fee, nothing added at pickup.</p>
           <p><b>Each rabbit has its own price.</b> <span data-fact="prices-now">Right now Marshmallow, a white kit, is $375, and Honey, Biscuit, Toffee and Pecan, all fawn kits, are $350, and Butterscotch, a fawn doe, is $300.</span></p>
-          
-          <p><b>10% off if you serve.</b> Military, police, firefighters and other first
-          responders. Say so when you get in touch.</p>
-          <p><b>You can pay in parts.</b> $50 holds it, and the rest can come in any amounts
-          before pickup. <a class="litterlink" href="#faq-pay">How paying works</a>.</p>
-          <p><b>You can find a cheaper rabbit.</b> Classifieds are full of them under a hundred.
-          What you pay for here is a rabbit that's already used to being picked up, and
-          someone who still answers the phone at month seven. <a class="litterlink"
-          href="#faq-why">The whole list of what the extra buys</a>.</p>
+
+          <p><b>What the difference buys.</b> A rabbit in Tucson can be had for under a
+          hundred. Here's what comes with these:</p>
+          <ul>
+            <li><b>Handled every day from its first week.</b> Handled early, a rabbit <a
+            class="cite" href="https://pubmed.ncbi.nlm.nih.gov/10531536/" target="_blank"
+            rel="noopener">comes to people instead of running from them</a>.</li>
+            <li><b>A record you can check.</b> Its birth date, its litter from day one, its
+            parents and dated photos, all on this site.</li>
+            <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, together at
+            pickup, and it goes home when it passes <a class="litterlink"
+            href="#faq-home">the test</a>.</li>
+            <li><b>Two weeks of its food and a care sheet.</b> <a class="litterlink"
+            href="#faq-vet">The Tucson vets</a> who treat rabbits, and my number for as long as
+            you have it.</li>
+            
+            <li><b>Help getting it seen on Instagram.</b> My <a class="cite"
+            href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank"
+            rel="noopener">top reel</a> reached half a million views. <a class="litterlink"
+            href="#owners">How it works</a>.</li>
+            <li><b>If it isn't working out, you call me.</b> I'd rather help it find the right
+            home than have it stay where it isn't wanted.</li>
+          </ul>
           
           <p><b>The rabbit is the smallest part of what it costs.</b> A year of keeping one
           comes to <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
           target="_blank" rel="noopener">$1,672&nbsp;to&nbsp;$3,354</a> on Chewy's vet-reviewed figures,
           and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
-        </div>
-      </details>
-      
-      <details id="faq-why">
-        <summary>Why pay more than the cheapest listing?</summary>
-        <div class="faq-body">
-          <p><b>You can pay less.</b> A rabbit in Tucson can be had for under a hundred. What
-          the extra buys here is below, so you can decide with your eyes open.</p>
-          <p><b>Handled every day until it goes home.</b> Every kit here is picked up every
-          day from its first week. Handled early, a rabbit <a class="cite"
-          href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
-          target="_blank" rel="noopener">comes to people instead of running from them</a>,
-          and it still does as an adult. The routine is what you're paying for.</p>
-          <p><b>A record you can check.</b> Its birth date, its litter from the day it was born,
-          its mother and father, dated photos and video, and its age today, all on this site.
-          Nothing here is a guess, and you can hold any seller to the same.</p>
-          <p><b>A health check you watch, and eight weeks I aim for.</b> Ears, teeth, eyes,
-          weight and coat, gone over together at pickup. A kit goes home when it passes <a
-          class="litterlink" href="#faq-home">the test</a>.</p>
-          <p><b>What goes home with it.</b> Two weeks of the food it's eating, and the care
-          sheet with the signs that mean call a vet today. <a class="litterlink"
-          href="#faq-vet">The Tucson vets who treat rabbits</a>, and my number for as long as
-          you have it.</p>
-          
-          <p><b>Help getting it seen.</b> Start its account the day it comes home: I'll help with
-          the clips, and the good ones go on my story when there's room. My <a class="cite"
-          href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener">top
-          reel</a> reached half a million views.</p>
-          <p><b>And if it isn't working out, you call me.</b> The sale is final, but I'd rather
-          help you find it the right home than have it stay somewhere it isn't wanted.</p>
+          <p><b>10% off if you serve.</b> Military, police, firefighters and other first
+          responders. Say so when you get in touch.</p>
+          <p><b>You can pay in parts.</b> $50 holds it, and the rest can come in any amounts
+          before pickup. <a class="litterlink" href="#faq-pay">How paying works</a>.</p>
           <p><b>Ask any seller the same questions.</b> <a class="litterlink"
           href="#faq-ask">The eight I'd ask</a> are in the next answer.</p>
         </div>
@@ -1919,9 +1906,9 @@ body.locked{overflow:hidden}
       <details id="faq-pair">
         <summary>Can I take two?</summary>
         <div class="faq-body">
-          
-          <p><b>Yes. Two together: the second is 20% off.</b> Same litter or not,
-          the pair price is the same.</p>
+
+          <p><b>Yes. Two together: the second is 20% off.</b> The second is whichever costs
+          less, same litter or not.</p>
           <p><b>Not sure about a second? You have 48 hours.</b> Buy the second, or put $50
           on it, within 48 hours of the first one going home, and the 20% still applies.</p>
           <p><b>A $50 hold keeps the pair price for a month.</b> Need longer? Another $50
@@ -1953,20 +1940,21 @@ body.locked{overflow:hidden}
         <summary>Is there a deposit, and what happens to it?</summary>
         <div class="faq-body">
 
-          <p><b>$50 holds a rabbit and comes off the price.</b> Once it's paid, you get a
-          receipt from me, and that rabbit is yours until pickup. Holding a second rabbit for
-          the pair price works a little differently: <a class="litterlink"
-          href="#faq-pair">it's in the pair answer</a>.</p>
+          <p><b>$50 holds a rabbit and comes off the price.</b> You get a receipt from me, and
+          that rabbit is yours until pickup. Holding a second for the pair price works
+          <a class="litterlink" href="#faq-pair">a little differently</a>.</p>
           <p><b>Reservations open at four weeks old.</b> Before that, a kit's sex and colour are
           still a guess, and I won't take money for a guess.</p>
+          <p><b>Change your mind before pickup: the $50 moves with you.</b> To another rabbit or
+          the next litter. It isn't refunded, because holding a rabbit means turning other
+          people away.</p>
           
-          <p><b>Change your mind before pickup: the $50 moves with you.</b> It isn't refunded, because
-          holding a rabbit means turning other people away. It moves to another rabbit or to
-          the next litter.</p>
+          <p><b>Change your mind at pickup? Whole $50 back.</b> That holds for the first rabbit
+          you reserve. After a switch, we settle on what it cost me, fair to both of us. I'd
+          rather you said so than took one home unsure.</p>
           
-          <p><b>First switch free. After that, $25 each.</b> That's half the deposit.
-          Changing your mind once is normal. Every switch after that puts a rabbit back on
-          the list weeks late, and the fee is what that costs me.</p>
+          <p><b>First switch free. After that, $25 each.</b> That's half the deposit. Each one
+          after the first puts a rabbit back on the list weeks late.</p>
           <p><b>Three things get the $50 back, no argument:</b></p>
           <ul>
             <li>The rabbit gets ill or doesn't make it while still in my care.</li>
@@ -1978,11 +1966,6 @@ body.locked{overflow:hidden}
           <p><b>Normal growing up isn't a refund.</b> Colour and markings can still shift after
           four weeks. I'll say what's certain when you reserve, and you'll get photos the
           whole way.</p>
-          
-          <p><b>Change your mind at pickup? Whole $50 back.</b>
-          That holds for the first rabbit you reserve. After a switch, we settle on what it
-          cost me, fair to both of us. I'd rather you said so than took home a rabbit you
-          weren't sure about.</p>
         </div>
       </details>
       <details id="faq-pay">
@@ -2048,8 +2031,9 @@ body.locked{overflow:hidden}
           <p><b>Every photo carries its own day.</b> Open one and the date it was taken is on
           the picture, bottom left, with how old the rabbit was that day. A photo is a
           moment. The line under it is now.</p>
-          <p><b>Availability is me looking at the pens.</b> The line above the rabbits says
-          when I last did.</p>
+          <p><b>Availability changes the day a rabbit is held or sold.</b> The line above the
+          rabbits says when it last changed, or when I last looked at the pens and nothing
+          had.</p>
         </div>
       </details>
       <details id="faq-first">
@@ -2254,8 +2238,8 @@ body.locked{overflow:hidden}
           <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
           
           <span class="prog-label" id="plabel" aria-live="polite">Step 1 of 3</span>
-          
-          <div class="hp" aria-hidden="true"><label for="company">Company</label><input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+
+          <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="askabout" id="askAbout" tabindex="-1">
             <p class="ask-lead">Asking about <b id="askName"></b></p>
@@ -2376,7 +2360,7 @@ body.locked{overflow:hidden}
         from its first week, and every owner keeps my number.</p>
       </div>
       <div>
-        <h4>Pages</h4>
+        <h3>Pages</h3>
         <div class="foot-links">
           <a href="#available">Available</a>
           <a href="#about">About</a>
@@ -2391,7 +2375,7 @@ body.locked{overflow:hidden}
         </div>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <div class="foot-links">
           <a href="tel:+15202702827">(520) 270-2827</a>
           <!--email_off--><a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a><!--/email_off-->
@@ -2427,7 +2411,7 @@ body.locked{overflow:hidden}
       <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.6l4.6 4.6L19 7.8"/></svg>
       <span class="sr-only" id="viewerShareSaid" role="status"></span>
     </button>
-    <button class="viewer-close" type="button" id="viewerClose" aria-label="Close photos">&#215;</button>
+    <button class="viewer-close" type="button" id="viewerClose" aria-label="Close">&#215;</button>
     </div>
     
     <span class="vtags"><span class="status vstatus" id="viewerStatus" hidden></span><span class="newmark vnew" id="viewerNew" hidden>New</span><span class="newmark salemark vnew" id="viewerSale" hidden>Sale</span></span>
@@ -2467,7 +2451,9 @@ body.locked{overflow:hidden}
           <li><b>A health check with you</b> at pickup.</li>
           <li><b>Two weeks of its food</b> and a care sheet.</li>
           <li><b>My number</b> for as long as you have it.</li>
-          <li><b>Help getting it seen</b> on Instagram.</li>
+          
+          <li><b>Boarding when you travel</b>, only for rabbits from here.</li>
+          <li><b>Help getting it seen</b> on Instagram, where my top reel reached half a million views.</li>
         </ul>
         <p>The rabbit is the smallest part: a year of keeping one runs <a class="cite"
         href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost" target="_blank"
@@ -2498,7 +2484,7 @@ body.locked{overflow:hidden}
       
       <div class="viewer-foot"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
 
-        <p class="viewer-terms" id="viewerTerms">$50 holds a rabbit, and the rest can come in
+        <p class="viewer-terms" id="viewerTerms"><b>$50 holds a rabbit.</b> The rest can come in
           parts before pickup. The sale is final after pickup. 10% off if you serve. <a href="terms.html">The terms</a></p></div>
     </div>
   </div>
@@ -2510,7 +2496,7 @@ body.locked{overflow:hidden}
 <script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg"]],"w":1280},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"]],"w":1400},"photos/maple.jpg":{"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-09-27","count":"Seven born","kits":[],"line":"Holland Lop cross","never":false,"no":"Fourth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=eeef0335"></script>
+<script src="rabbits.js?v=04a6cc03"></script>
 
 <script>
 (function(){
@@ -2528,14 +2514,15 @@ body.locked{overflow:hidden}
     var el=document.getElementById('availStamp'); if(!el) return;
     var s=el.getAttribute('datetime');
     var c=(typeof CHECKED==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(CHECKED))?CHECKED:'';
-    if(c && c>s && daysFromToday(c)!==null && daysFromToday(c)<=0){ s=c; el.setAttribute('datetime',c); }
+    var verb='updated';
+    if(c && c>=s && daysFromToday(c)!==null && daysFromToday(c)<=0){ s=c; el.setAttribute('datetime',c); verb='checked'; }
     var n=daysFromToday(s);
     if(n===null) return;
     if(n>0){ el.hidden=true; return; }
     var d=-n;
-    if(d===0) el.textContent='checked today';
-    else if(d===1) el.textContent='checked yesterday';
-    else if(d<=7) el.textContent='checked '+d+' days ago';
+    if(d===0) el.textContent=verb+' today';
+    else if(d===1) el.textContent=verb+' yesterday';
+    else if(d<=7) el.textContent=verb+' '+d+' days ago';
   })();
 
   var mainEl=document.getElementById('main');
@@ -2931,6 +2918,7 @@ body.locked{overflow:hidden}
   }
 
   var railEl=document.getElementById('rail');
+  var DEEP_LINK=/^#[rp]-/.test(location.hash||'');
   var countEl=document.getElementById('count');
 
   function realPhoto(src){ return !!src && src.indexOf('coming-soon') < 0; }
@@ -3467,7 +3455,7 @@ body.locked{overflow:hidden}
       var badge=many
         ? '<span class="shots"><svg viewBox="0 0 24 24" aria-hidden="true">'+
           '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/>'+
-          '</svg>'+shots.length+(anyVideo?'<i class="play" aria-hidden="true"></i>':'')+'</span>'
+          '</svg>'+shots.length+'<span class="sr-only"> '+(anyVideo?'photos and clips':'photos')+'</span>'+(anyVideo?'<i class="play" aria-hidden="true"></i>':'')+'</span>'
         : '';
       var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
               (r.status==='available'?' data-avail="1"':'');
@@ -3477,10 +3465,10 @@ body.locked{overflow:hidden}
       else if(r.status==='sold'&&r.soldOn) stLabel='Sold '+dayMon(r.soldOn);
       else if(r.status==='adopted'&&(r.wentHome||r.soldOn)) stLabel='Went home '+dayMon(r.wentHome||r.soldOn);
       return '<div class="bunny'+dim+'"'+ask+' data-shots="'+esc(r.name)+'" data-rid="'+esc(addrOf(r))+'">'+
-        '<a class="bunny-link" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name)+': photos and details"></a>'+
+        '<a class="bunny-link" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name+(r.status==='available'?', $'+priceOf(r):'')+', '+stLabel.charAt(0).toLowerCase()+stLabel.slice(1))+': photos and details"></a>'+
         '<div class="bunny-media"><span class="status '+st[0]+homeMark(r)+'">'+stLabel+'</span>'+newHTML(r)+
         '<img src="'+esc(cover)+'"'+sizedAttrs(cover,cardSizes)+' alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
-        ' loading="lazy" onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
+        ' loading="lazy"'+(DEEP_LINK?' fetchpriority="low"':'')+' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+badge+'</div>'+
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
         '<span class="price">'+priceHTML(r)+'</span></div>'+
@@ -3490,6 +3478,14 @@ body.locked{overflow:hidden}
     }).join('');
     railEl.classList.toggle('few', list.length<=2);
     focusIn(railEl);
+    if(!railEl.__kb){ railEl.__kb=1;
+      railEl.addEventListener('focusin',function(ev){
+        if(getComputedStyle(railEl).overflowX==='visible') return;   /* the phone's grid does not scroll */
+        var c=ev.target.closest&&ev.target.closest('.bunny'); if(!c) return;
+        var rr=railEl.getBoundingClientRect(), cr=c.getBoundingClientRect();
+        if(cr.left<rr.left-1||cr.right>rr.right+1) c.scrollIntoView({block:'nearest',inline:'start'});
+      });
+    }
 
     if(countEl){
       var open=list.filter(function(r){return r.status==='available'}).length;
@@ -3500,6 +3496,12 @@ body.locked{overflow:hidden}
         ? 'All reserved. Ask to see the next litter first, below.'
         : open+' available'+(gone.length&&monthName?' \u00B7 '+gone.length+' sold since '+monthName:'');
       countEl.className = 'count ' + (open===0 ? 'none' : 'open');
+    }
+    var heroBtn=document.querySelector('.hero-cta .btn-primary');
+    if(heroBtn){
+      var nOpen=list.filter(function(r){return r.status==='available'}).length;
+      heroBtn.textContent = nOpen>1 ? 'See '+nOpen+' available rabbits'
+        : nOpen===1 ? 'See 1 available rabbit' : 'See the rabbits';
     }
 
     (function(){
@@ -3638,9 +3640,19 @@ body.locked{overflow:hidden}
       catch(e){ vBoxEl.scrollTop=0; }
     }
 
+    function setCaptions(v, clip){
+      var old=v.querySelectorAll('track');
+      for(var i=0;i<old.length;i++) v.removeChild(old[i]);
+      if(!clip) return;
+      var t=document.createElement('track');
+      t.kind='captions'; t.srclang='en'; t.label='English';
+      t.src=clip.replace(/\.mp4(\?.*)?$/,'.vtt');
+      v.appendChild(t);
+    }
     function stopVideo(){
       if(!vVideo) return;
       try{ vVideo.pause(); }catch(e){}
+      setCaptions(vVideo, null);
       if(vVideo.getAttribute('src')){ vVideo.removeAttribute('src'); vVideo.removeAttribute('poster'); vVideo.load(); }
       vVideo.hidden=true;
       vImg.hidden=false;
@@ -3651,6 +3663,10 @@ body.locked{overflow:hidden}
       if(ar){ vStage.style.setProperty('--stage-ar',ar); }
       else if(vImg.naturalWidth){ vStage.style.setProperty('--stage-ar',vImg.naturalWidth+'/'+vImg.naturalHeight); }
     }
+    if(vImg) vImg.addEventListener('error',function(){
+      var a=vImg.getAttribute('src'); if(!a||a===PLACEHOLDER) return;   /* emptied on close (shut) is not a failure */
+      vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes'); vImg.src=PLACEHOLDER;
+    });
     if(vImg) vImg.addEventListener('load',function(){
       if(!shapeFor(vImg.getAttribute('src')||'') && vImg.naturalWidth)
         vStage.style.setProperty('--stage-ar',vImg.naturalWidth+'/'+vImg.naturalHeight);
@@ -3666,6 +3682,7 @@ body.locked{overflow:hidden}
         setFrame(s.src); vImg.hidden=true;
         vVideo.setAttribute('poster', s.src);
         vVideo.setAttribute('src', s.video);
+        setCaptions(vVideo, s.video);
         vVideo.setAttribute('aria-label', who+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+niceDate(s.date)):''));
         vVideo.hidden=false;
         vVideo.load();
@@ -3673,6 +3690,8 @@ body.locked{overflow:hidden}
       } else {
         stopVideo();
         sizeImg(vImg, s.src, STAGE_SIZES);
+        if(DEEP_LINK){ vImg.setAttribute('fetchpriority','high'); DEEP_LINK=false; }
+        else vImg.removeAttribute('fetchpriority');
         vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
         setFocus(vImg, s.src);
         setFrame(s.src);
@@ -4165,17 +4184,35 @@ body.locked{overflow:hidden}
       if(/^#[rp]-/.test(location.hash||'')) openFromHash();
     });
 
-    function openAnswer(){
+    var ALIASES={'faq-why':'faq-price'};
+    function settle(d){
+      var moved=false, mark=function(){ moved=true; };
+      ['touchstart','wheel','keydown'].forEach(function(t){ window.addEventListener(t,mark,{once:true,passive:true}); });
+      var jump=function(){ if(moved) return; var h=document.documentElement, b=h.style.scrollBehavior;
+        h.style.scrollBehavior='auto'; d.scrollIntoView({block:'start'}); h.style.scrollBehavior=b; };
+      jump();
+      if(document.fonts&&document.fonts.ready) document.fonts.ready.then(jump);
+      if(document.readyState!=='complete') window.addEventListener('load',jump,{once:true});
+      setTimeout(jump,1200);
+    }
+    function openAnswer(ev){
       var m=/^#(faq-[a-z]+)$/.exec(location.hash||'');
-      var d=m&&document.getElementById(m[1]);
-      if(d&&d.tagName==='DETAILS') d.open=true;
+      if(!m) return;
+      var id=ALIASES[m[1]]||m[1];
+      var d=document.getElementById(id);
+      if(!d||d.tagName!=='DETAILS') return;
+      d.open=true;
+      var alias=(id!==m[1]);
+      if(alias){ try{ history.replaceState(history.state,'','#'+id); }catch(e){} }
+      if(alias||!ev) settle(d);
     }
     openAnswer();
     window.addEventListener('hashchange',openAnswer);
     document.addEventListener('click',function(ev){
       var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
       if(!a) return;
-      var d=document.getElementById(a.getAttribute('href').slice(1));
+      var id=a.getAttribute('href').slice(1);
+      var d=document.getElementById(ALIASES[id]||id);
       if(d&&d.tagName==='DETAILS') d.open=true;
     });
 
@@ -4352,7 +4389,9 @@ body.locked{overflow:hidden}
       var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
       var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
       when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
-    } else if(forP){ when=label+' is born'; }
+    } else if(forP){
+      var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
+      when=(pq&&pq.born)?(label+' go on sale'):(label+' is born'); }
     else { when='the next litter opens for reservation'; }
     var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
     fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
@@ -4408,7 +4447,8 @@ body.locked{overflow:hidden}
       if(subj) subj.value='Waitlist signup: '+(forLitter?(label+' ('+want+')'):'every litter');
       var finish=function(){
         wf.style.display='none';
-        if(forLitter) wok.textContent='You’re on the list for '+label+'. You’ll hear from me '+(/^L/.test(want)?'before it opens.':'when it’s born.');
+        var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
+        if(forLitter) wok.textContent='You’re on the list for '+label+'. You’ll hear from me '+(/^L/.test(want)?'before it opens.':((pq&&pq.born)?'before they go on sale.':'when it’s born.'));
         wok.classList.add('show');
       };
       if(a.indexOf('[[')!==-1||!a){
@@ -4737,6 +4777,10 @@ body.locked{overflow:hidden}
     v.setAttribute('playsinline',''); v.controls=true; v.preload='metadata';
     if(im) v.poster=im.currentSrc||im.src;
     v.src=a.getAttribute('href');
+    var t=document.createElement('track');
+    t.kind='captions'; t.srclang='en'; t.label='English';
+    t.src=v.getAttribute('src').replace(/\.mp4(\?.*)?$/,'.vtt');
+    v.appendChild(t);
     v.setAttribute('aria-label', a.getAttribute('aria-label')||'');
     a.parentNode.replaceChild(v, a);
     var p=v.play(); if(p&&p.catch) p.catch(function(){});
@@ -4744,6 +4788,6 @@ body.locked{overflow:hidden}
 })();
 </script>
 
-<script src="count.js?v=715c2edf" defer></script>
+<script src="count.js?v=b57252cf" defer></script>
 </body>
 </html>

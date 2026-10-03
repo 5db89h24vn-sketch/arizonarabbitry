@@ -37,7 +37,7 @@
 
 const TTL = 45 * 24 * 3600;
 const PAGES = new Set(['home', 'litters', 'news', 'terms', 'share']);
-const REFS = new Set(['instagram', 'facebook', 'tiktok', 'google', 'direct', 'other']);
+const REFS = new Set(['instagram', 'facebook', 'tiktok', 'google', 'direct', 'share', 'other']);   /* share: arrived from a /r/<name> link (2 Oct 2026) */
 const DEVS = new Set(['phone', 'desktop']);
 const SCROLLS = new Set([0, 25, 50, 75, 100]);
 const EVENT = /^[a-z][a-z0-9-]{0,23}$/;

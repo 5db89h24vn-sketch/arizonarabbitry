@@ -441,9 +441,13 @@ const PARENTS = {
    key: letters, digits and hyphens only; it is the list's name in the counter
    (P<key>) and must not change once people are on it.
    name: the pill's words, lowercase first letter, as it reads in a sentence
-   ("... waiting on the first Netherland Dwarf litter"). */
+   ("... waiting on the first Netherland Dwarf litter").
+   born: (optional) the day its litter was born, once it has been but its
+   article is not on the litters page yet (2 Oct 2026: the first purebred
+   Holland Lops, born 18 Sept, photos to come). The pill stays, and its
+   promise becomes "before they go on sale" instead of "when it's born". */
 const PLANNED = [
-  { key: "holland-lop",      name: "the first purebred Holland Lop litter" },
+  { key: "holland-lop",      name: "the first purebred Holland Lops", born: "2026-09-18" },
   { key: "netherland-dwarf", name: "the first Netherland Dwarf litter" }
 ];
 
@@ -582,18 +586,12 @@ const RABBITS = [
        1998). Monday 28 September is the day it is over, his words, so
        the site says "until Monday 28 September" and, that morning, puts
        $300 back by itself. */
-    /* SOLD 27 SEPT 2026 at $250, inside the 250-followers drop (24 to 28 Sept,
-       $300 struck beside $250); the drop lines came off with the sale.
-       BACK 28 SEPT 2026 (William: "Butterscotch got sold, but the buyer
-       basically backed out ... some things have happened to them ... I was
-       understanding and didn't penalize them ... make a little announcement
-       that Butterscotch is back and put it on the website again"). The sale
-       fell through before she went home, so status is available again with no
-       dates on her record (an available rabbit prints none; the sale that fell
-       through is history, kept here, not on the page). Her price is $300, the
-       price the drop was always going back to on Monday the 28th, his day for
-       it, printed plain with nothing struck. Nothing about the buyer is
-       written anywhere. */
+    /* SOLD 27 SEPT 2026, BACK 28 SEPT 2026: the sale fell through before she
+       went home, so status is available again with no dates on her record
+       (an available rabbit prints none). Her price is $300, printed plain
+       with nothing struck. THIS FILE IS PUBLIC (anyone can open
+       arizonarabbits.com/rabbits.js), so nothing about any buyer is ever
+       written in it, not even in a note; the history lives in the docs. */
     price:  300,
     breed:  "Holland Lop cross",
     mother: "lop",
@@ -692,15 +690,9 @@ const RABBITS = [
      sale (dealStays); the calendar asks after two weeks whether the struck
      price should come down, since a "was" price that never leaves is the
      perpetual sale the site does not run.
-     THE STRIKE CAME DOWN EARLY (2 Oct 2026), the prices unchanged. The six
-     were listed 19 Sept at $375/$400 with reservations opening 24 Sept, the
-     same day as the drop, so nobody could ever reserve at the struck price:
-     a former price has to be one the thing was actually offered at for a
-     reasonably substantial time (FTC, 16 CFR 233.1), and an outside review
-     the same day read the struck prices as the evidence a "scam" accuser
-     needs. The reason line under each price ("Instagram hit 250") went with
-     it, which also ends a follower count on every card. The News keeps the
-     24 Sept line: it is the dated record of what happened. */
+     THE STRIKE CAME DOWN (2 Oct 2026), the prices unchanged, and the reason
+     line under each price with it; the News keeps the 24 Sept line as the
+     dated record. (Why, in DEPLOY-GUIDE.md, 2 Oct 2026.) */
   {
     name:   "Honey",
     photos: [

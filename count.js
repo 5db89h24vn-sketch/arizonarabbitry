@@ -11,18 +11,24 @@
   if(location.protocol!=='https:' && location.hostname!=='localhost') return;
 
   var path=location.pathname.toLowerCase();
+  /* both forms of each address (2 Oct 2026, the fifth outside pass): Cloudflare
+     serves the pages at /litters, /updates and /terms, and answers the .html
+     forms with a redirect there, so a counter that knew only the .html forms
+     never counted a visit to the three pages */
   var page = /^\/r\//.test(path) ? 'share'
-           : /litters\.html$/.test(path) ? 'litters'
-           : /updates\.html$/.test(path) ? 'news'
-           : /terms\.html$/.test(path) ? 'terms'
-           : (path==='/'||/index\.html$/.test(path)) ? 'home' : '';
+           : /^\/litters(\.html)?$/.test(path) ? 'litters'
+           : /^\/updates(\.html)?$/.test(path) ? 'news'
+           : /^\/terms(\.html)?$/.test(path) ? 'terms'
+           : (path==='/'||/^\/index(\.html)?$/.test(path)) ? 'home' : '';
   if(!page) return;
 
   var ref='direct';
   try{
     var r=document.referrer? new URL(document.referrer).hostname.toLowerCase() : '';
     if(!r) ref='direct';
-    else if(r===location.hostname) ref='';                 /* moving inside the site */
+    /* a shared rabbit's link, /r/<name>, forwards to the front page: its
+       arrival is a share, not a move inside the site (2 Oct 2026) */
+    else if(r===location.hostname) ref=/^\/r\//.test(new URL(document.referrer).pathname)?'share':'';   /* moving inside the site */
     else if(/instagram\.com$/.test(r)) ref='instagram';
     else if(/facebook\.com$|fb\.com$|messenger\.com$/.test(r)) ref='facebook';
     else if(/tiktok\.com$/.test(r)) ref='tiktok';
@@ -44,7 +50,10 @@
     if(href.indexOf('tel:')===0) return 'call';
     if(href.indexOf('mailto:')===0) return 'email';
     if(/ig\.me\/m\//.test(href)) return 'instagram';   /* a message to him on Instagram (24 Sept 2026), from the listing's steps or the contact rows */
-    if(a.classList.contains('bunny')) return 'listing';
+    /* the card is a div since 2 Oct 2026: its overlay link opens the listing,
+       and its Ask line is a link of its own */
+    if(a.classList.contains('bunny')||a.classList.contains('bunny-link')) return 'listing';
+    if(a.classList.contains('bunny-cta')) return 'ask';
     if(a.classList.contains('hero-go')) return 'see-rabbits';
     if(a.classList.contains('parent')) return 'parent';
     if(a.classList.contains('stage-lit')) return 'litter-mark';
@@ -56,9 +65,9 @@
       if(/facebook/.test(href)) return 'facebook';
     }
     if(a.closest('.viewer') && a.tagName==='A' && /btn/.test(a.className)) return 'ask';
-    if(/updates\.html/.test(href)) return 'news';
-    if(/litters\.html/.test(href)) return 'litters';
-    if(/terms\.html/.test(href)) return 'terms';
+    if(/updates(\.html)?(#|$)/.test(href)) return 'news';
+    if(/litters(\.html)?(#|$)/.test(href)) return 'litters';
+    if(/terms(\.html)?(#|$)/.test(href)) return 'terms';
     if(/#available/.test(href)) return 'see-rabbits';
     if(/#waitlist/.test(href)) return 'to-waitlist';
     if(/#faq/.test(href)) return 'faq';

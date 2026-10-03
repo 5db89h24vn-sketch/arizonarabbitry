@@ -37,7 +37,10 @@
 /rabbits.js
   Cache-Control: public, max-age=0, must-revalidate
 
-# Carries what is available and what has been placed.
+# Carries what is available and what has been placed. Served at /litters (the
+# .html address redirects there), so the rule names both (2 Oct 2026).
+/litters
+  Cache-Control: public, max-age=0, must-revalidate
 /litters.html
   Cache-Control: public, max-age=0, must-revalidate
 
