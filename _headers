@@ -61,6 +61,14 @@
 /videos/*
   Cache-Control: public, max-age=86400
 
+# EVERY PAGE (4 Oct 2026, a technical audit): never framed by another site,
+# content types taken as sent, and HTTPS remembered for a year. No full CSP:
+# the pages carry their own inline script and style by design.
+/*
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Strict-Transport-Security: max-age=31536000
+
 # WILLIAM'S OWN PAGE (7 Sept 2026): who is waiting on which litter. Nobody
 # links to it and no search engine may list it; and it is never cached, so
 # what he sees is what the counter holds right now. The API it talks to

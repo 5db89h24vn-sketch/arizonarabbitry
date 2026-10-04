@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Holland Lop Cross Rabbits for Sale in Tucson | Arizona Rabbits</title>
-<meta name="description" content="Hand-raised Holland Lop cross rabbits for sale in Tucson. Free delivery anywhere in Arizona. Handled every day from their first week, and you keep my number.">
+<meta name="description" content="Hand-raised Holland Lop cross rabbits in Tucson. Free weekend delivery anywhere in Arizona. Handled every day from their first week, and you keep my number.">
 
 <meta name="theme-color" content="#FBF8F3">
 
@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://arizonarabbits.com/">
 <meta property="og:site_name" content="Arizona Rabbits">
 <meta property="og:title" content="Hand-raised rabbits for sale in Tucson">
-<meta property="og:description" content="Free delivery anywhere in Arizona. Handled every day from their first week, home when they're ready, and you keep my number.">
+<meta property="og:description" content="Free weekend delivery anywhere in Arizona. Handled every day from their first week, home when they're ready, and you keep my number.">
 
 <meta property="og:image" content="https://arizonarabbits.com/img/og.jpg?v=6">
 <meta property="og:image:width" content="1200">
@@ -178,6 +178,12 @@ header .brandbox{padding-top:15px}
 @media(max-width:1060px){.nav-links{gap:15px}}
 .nav-links a:hover{color:var(--ink)}
 .nav-right{display:flex;align-items:center;gap:16px}
+
+.nav-right .btn{white-space:nowrap}
+@media(max-width:360px){ .nav-right .btn{padding-left:13px;padding-right:13px} }
+.nav-right .gt-s{display:none}
+
+@media(max-width:340px){ .nav-right .gt-l{display:none} .nav-right .gt-s{display:inline} }
 .nav-tel{text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap}
 .nav-tel:hover{color:var(--brick)}
 @media(max-width:980px){.nav-links{display:none}}
@@ -929,6 +935,11 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
   
   @media(prefers-reduced-transparency:reduce){ .edgefade{display:none} }
   
+  @media(orientation:landscape) and (max-height:500px){ .mbar,.js-mbar .mbar.show{display:none} .edgefade{display:none} }
+  
+  .js-mbar .edgefade{opacity:0;transition:opacity .2s}
+  .js-mbar .edgefade.on{opacity:1}
+  
   .mbar .btn-ghost{background:#FCFAF6;border-color:rgba(198,182,162,.9)}
 }
 
@@ -1017,7 +1028,7 @@ html.vtout::view-transition-new(rabbitphoto){
   
   box-shadow:var(--lift-3)}
 
-.viewer-close,.viewer-share{position:absolute;top:9px;z-index:3;width:40px;height:40px;
+.viewer-close,.viewer-share{position:absolute;top:9px;z-index:3;width:44px;height:44px;
   border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;
   display:grid;place-items:center;line-height:1;font-size:19px;color:var(--ink);
   box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out}
@@ -1041,7 +1052,7 @@ html.vtout::view-transition-new(rabbitphoto){
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
 
-.viewer-share{right:57px}
+.viewer-share{right:61px}  
 .viewer-close:hover,.viewer-share:hover{border-color:var(--brick);color:var(--brick)}
 .viewer-share svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round}
@@ -1145,6 +1156,19 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-foot{position:sticky;bottom:0;z-index:4;margin:14px calc(-1*var(--vx)) 0;padding:0 var(--vx) var(--vb);background:var(--paper)}
 
 .viewer-terms{margin:8px 0 0;font-size:13px;line-height:1.45;color:var(--ink-faint);text-align:center;text-wrap:pretty}
+
+.vcta{display:flex;gap:9px}
+
+.viewer-box .vcta #viewerCta{flex:1 1 auto;min-width:0;width:auto}
+.viewer-box .vcta .vtext{flex:0 0 auto;width:auto;padding-left:18px;padding-right:18px}
+.vcta .vtext[hidden]{display:none}
+.vtext .tx-l{display:none}
+
+@media(max-width:340px){
+  .viewer-box .vcta #viewerCta{padding-left:10px;padding-right:10px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .viewer-box .vcta .vtext{padding-left:12px;padding-right:12px}
+}
+@media(hover:hover) and (pointer:fine){ .vtext .tx-s{display:none} .vtext .tx-l{display:inline} }
 .viewer-terms a{color:var(--brick-dk);text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(160,82,45,.35)}
 .viewer-terms a:hover{color:var(--brick);text-decoration-color:var(--brick)}
 .viewer-foot::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:30px;
@@ -1200,6 +1224,8 @@ html.vtout::view-transition-new(rabbitphoto){
 .pricelink,.grow-label,.stagelink,.nowlink,.viewer-when .litterlink,.whypanel .litterlink{position:relative}
 .pricelink::after,.grow-label::after,.stagelink::after,.nowlink::after,.viewer-when .litterlink::after,.whypanel .litterlink::after{
   content:'';position:absolute;left:-2px;right:-2px;top:-4px;bottom:-4px}
+
+.pricelink::after{top:-12px;bottom:-12px}
 
 .viewer-body{--sp:6px;--sp-open:8px}
 .viewer-meta{font-size:13px;color:var(--ink-faint);line-height:1.5;overflow:hidden}
@@ -1328,7 +1354,7 @@ html.vtout::view-transition-new(rabbitphoto){
   .viewer-foot{margin-top:auto}
   
   .viewer-close{right:calc(42% + 9px)}
-  .viewer-share{right:calc(42% + 57px)}
+  .viewer-share{right:calc(42% + 61px)}
 }
 @media(max-width:600px){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
@@ -1437,7 +1463,9 @@ body.locked{overflow:hidden}
   "@type":"LocalBusiness",
   "name":"Arizona Rabbits",
   "url":"https://arizonarabbits.com/",
-  "description":"Hand-raised rabbits for sale in Tucson, with free delivery anywhere in Arizona.",
+  "description":"Hand-raised rabbits for sale in Tucson, with free weekend delivery anywhere in Arizona.",
+  "image":"https://arizonarabbits.com/img/og.jpg?v=6",
+  "logo":"https://arizonarabbits.com/apple-touch-icon.png",
   "telephone":"+1-520-270-2827",
   "email":"hello@arizonarabbits.com",
   "sameAs":[
@@ -1474,7 +1502,7 @@ body.locked{overflow:hidden}
     </nav>
     <div class="nav-right">
       <a href="tel:+15202702827" class="nav-tel">(520) 270-2827</a>
-      <a href="#contact" class="btn btn-primary btn-sm">Get in touch</a>
+      <a href="#contact" class="btn btn-primary btn-sm"><span class="gt-l">Get in touch</span><span class="gt-s">Contact</span></a>
     </div>
   </div>
 
@@ -1514,11 +1542,11 @@ body.locked{overflow:hidden}
   <div class="wrap hero-grid">
     <div>
       <h1>Hand-raised rabbits in Tucson.</h1>
-      
-      <a class="hero-deliver" href="#faq-delivery"><b>Free delivery anywhere in Arizona</b><i class="chev" aria-hidden="true"></i></a>
-      
-      <p class="hero-sub">Handled gently every day from their first week, and not only by me.
-      The point is that being picked up is nothing new by the time it's you.</p>
+
+      <a class="hero-deliver" href="#faq-delivery"><b>Free weekend delivery in Arizona</b><i class="chev" aria-hidden="true"></i></a>
+
+      <p class="hero-sub">Handled gently every day from their first week, by me and by other
+      people, so being picked up is nothing new by the time they're yours.</p>
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
 
@@ -1528,7 +1556,8 @@ body.locked{overflow:hidden}
       <div class="facts">
 
         <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#faq-home"><span><b>Home when ready</b><small>Eight weeks is the aim</small></span><i class="chev" aria-hidden="true"></i></a>
+        
+        <a href="#faq-first"><span><b>First-timers welcome</b><small>Time, space, other pets</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
         
@@ -1578,8 +1607,8 @@ body.locked{overflow:hidden}
       </button>
     </div>
 
-    <div class="doors" aria-label="The news and the litters">
-      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-03">3 Oct</time>. Free delivery anywhere in Arizona.</small></span><i class="chev" aria-hidden="true"></i></a>
+    <div class="doors" role="group" aria-label="The news and the litters">
+      <a href="updates.html"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-03">3 Oct</time>. Free weekend delivery in Arizona.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="litters.html"><span><b>Every litter</b><small data-fact="litters-row">Newest born 27 September. Four litters photographed from day one, the purebreds next.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -1648,8 +1677,8 @@ body.locked{overflow:hidden}
       
       <p class="lede"><b>Some rabbits never go up for sale.</b> Each line is bred
       to get better, and the ones that carry it forward stay. Every
-      litter goes on <a class="litterlink" href="litters.html">the litters page</a> from its first
-      day, <a class="litterlink" href="litters.html#L2026-06-28">back to 28 June 2026</a>.</p>
+      litter goes on <a class="litterlink" href="litters.html">the litters page</a> once I have its
+      first photo, <a class="litterlink" href="litters.html#L2026-06-28">back to 28 June 2026</a>.</p>
       
       <p class="lede"><b>A few at a time, on purpose.</b> Selective breeding, then time on
       each animal, handled every day by me and by other people.</p>
@@ -1826,7 +1855,7 @@ body.locked{overflow:hidden}
   </div>
   <div class="wrap">
     <div class="faq" style="text-align:left">
-      
+
       <details id="faq-how" open>
         <summary>How does this work?</summary>
         <div class="faq-body">
@@ -1840,8 +1869,9 @@ body.locked{overflow:hidden}
           
           <p><b>Pickup is when the rabbit is ready.</b> Eight weeks is what I aim for. We go
           through the care sheet together and you leave with everything on the list above.</p>
-          <p><b>Or I bring it to you, on a weekend.</b> <a class="litterlink"
-          href="#faq-delivery">Free delivery anywhere in Arizona</a>.</p>
+          <p><b>Or I bring it to you.</b> <a class="litterlink" href="#faq-delivery">Free weekend
+          delivery anywhere in Arizona</a>, and I bring others along, so you can still choose
+          in person.</p>
         </div>
       </details>
 
@@ -1849,8 +1879,8 @@ body.locked{overflow:hidden}
         <summary>Why do they cost what they cost?</summary>
         <div class="faq-body">
           <p><b>The price on the photo is the price you pay.</b> No fee to visit, no booking
-          fee, nothing added at pickup, and <a class="litterlink" href="#faq-delivery">delivery
-          anywhere in Arizona</a> is free.</p>
+          fee, nothing added at pickup, and <a class="litterlink" href="#faq-delivery">weekend
+          delivery anywhere in Arizona</a> is free.</p>
           <p><b>Each rabbit has its own price.</b> <span data-fact="prices-now">Right now Marshmallow, a white kit, is $375, and Honey, Biscuit, Toffee and Pecan, all fawn kits, are $350, and Butterscotch, a fawn doe, is $300.</span></p>
 
           <p><b>What the difference buys.</b> A rabbit in Tucson can be had for under a
@@ -1913,6 +1943,100 @@ body.locked{overflow:hidden}
           href="#faq-after">You call me</a>, and we find it the right home.</p>
           <p><b>Where are the terms, in writing?</b> <a class="litterlink"
           href="terms.html">On one page</a>, deposit to final sale.</p>
+        </div>
+      </details>
+      
+      <details id="faq-delivery">
+        <summary>Do you deliver?</summary>
+        <div class="faq-body">
+          
+          <p><b>Yes. Free weekend delivery anywhere in Arizona.</b> Tell me roughly where you
+          are when you get in touch.</p>
+          <p><b>A $50 hold books the trip.</b> It comes off the price like any hold, and you get
+          a receipt. The rest can wait until the rabbit is in your hands.</p>
+          <p><b>You still choose in person.</b> I bring others along, so if another one suits you
+          better once you meet them, you can switch. Your first switch is free.</p>
+          <p><b>Want a set day?</b> Once it's ready, I'll drive it to you on the day you pick,
+          for a price we agree on first, fair to both of us.</p>
+          <p><b>Delivered, it goes the same way as a pickup.</b> We do the health check together
+          with the rabbit in your hands, and you get the food and the care sheet.</p>
+          
+          <p><b>Heat is the one thing I'm firm about.</b> What matters is the temperature the
+          rabbit would be sitting in on the way, and that has to <a class="cite"
+          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
+          target="_blank" rel="noopener">stay under the mid-80s</a>. If a trip isn't safe on
+          the day, we move it, and I'll say so.</p>
+        </div>
+      </details>
+      <details id="faq-first">
+        <summary>Is a rabbit right for me?</summary>
+        <div class="faq-body">
+          
+          <p><b>If you have time for one every day, yes.</b> First-timers are often who I enjoy
+          working with most, because they actually read the care sheet.</p>
+          <p><b>Here's what it takes.</b></p>
+          <ul>
+            <li><b>Time every day.</b> Hay, water and a quick clean, and <a class="cite"
+            href="https://rabbit.org/care/how-to-care-for-a-pet-rabbit-a-primer/"
+            target="_blank" rel="noopener">several hours per day</a> out of their pen.</li>
+            <li><b>An indoor pen.</b> In a room you use, with space to run. <a class="litterlink"
+            href="#faq-indoors">Why indoors</a>.</li>
+            <li><b>A vet who treats rabbits.</b> <a class="cite"
+            href="https://rabbit.org/care/rabbit-vets-near-me/"
+            target="_blank" rel="noopener">Not every vet does</a>; <a class="litterlink"
+            href="#faq-vet">the one I use</a>.</li>
+            <li><b>8 to 12 years.</b> <a class="litterlink" href="#faq-life">How long they live</a>.</li>
+            <li><b>About $1,672 to $3,354 a year.</b> What keeping one costs, on <a class="cite"
+            href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
+            target="_blank" rel="noopener">Chewy's vet-reviewed figures</a>.</li>
+          </ul>
+          <p><b>You won't be guessing.</b> A written care sheet, two weeks of their food, and my
+          number for as long as you have them.</p>
+          <p><b>Cats or dogs at home?</b> Often fine, with slow introductions. <a class="litterlink"
+          href="#faq-pets">How</a>.</p>
+          
+          <p><b>Rabbits and kids do well together with a grown-up in charge.</b> Kids sit on the
+          floor and let the rabbit come to them. <a class="cite"
+          href="https://rabbit.org/care/rabbits-and-children-kids-baby/"
+          target="_blank" rel="noopener">The lifting is an adult's job</a>, and the daily
+          care is too.</p>
+        </div>
+      </details>
+      
+      <details id="faq-pets">
+        <summary>I have cats or dogs. Can a rabbit work?</summary>
+        <div class="faq-body">
+          <p><b>Often, yes, with slow introductions.</b> Tell me what animals you have when you
+          get in touch. If a rabbit isn't right for your home, I'll say so.</p>
+          <p><b>Cats usually settle in.</b> The House Rabbit Society says indoor cats <a class="cite"
+          href="https://rabbit.org/care/rabbits-and-cats/"
+          target="_blank" rel="noopener">typically will peacefully coexist</a> with rabbits after
+          proper introductions. Start with the rabbit in a pen the cat can't reach into, and keep
+          the cat's claws trimmed.</p>
+          <p><b>With a dog, it depends on the dog.</b> A calm dog that doesn't chase small animals
+          can learn, on a lead and lying down, in short visits. Terriers and hunting breeds are the
+          hardest. <a class="cite" href="https://rabbit.org/behavior/dogs-and-bunnies/"
+          target="_blank" rel="noopener">Supervision is required until 100% trust has been
+          achieved</a>.</p>
+          <p><b>Always give the rabbit a way out.</b> A hiding place it can reach, and <a class="cite"
+          href="https://rabbitwelfare.co.uk/rabbits-living-with-other-pets/"
+          target="_blank" rel="noopener">never leave a dog on its own with rabbits</a>.</p>
+        </div>
+      </details>
+      
+      <details id="faq-one">
+        <summary>Can I take just one?</summary>
+        <div class="faq-body">
+          <p><b>Yes.</b> One rabbit does well when its pen is in the room where your family spends
+          the day. The House Rabbit Society suggests a single rabbit for people who <a class="cite"
+          href="https://houserabbit.org/single-or-pair"
+          target="_blank" rel="noopener">work from home or have flex schedules</a>.</p>
+          <p><b>Then you are its company.</b> The RSPCA's advice for a rabbit on its own: <a class="cite"
+          href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company"
+          target="_blank" rel="noopener">interact with them daily</a>.</p>
+          <p><b>Change your mind later?</b> Within 48 hours of the first one going home, a second is
+          still 20% off. After that, I'll help you introduce one. <a class="litterlink"
+          href="#faq-pair">How pairs work</a>.</p>
         </div>
       </details>
       <details id="faq-pair">
@@ -1986,6 +2110,9 @@ body.locked{overflow:hidden}
           
           <p><b>Meet them first, then pay.</b> Visits are free. Come and see them and pay the
           deposit in cash while you're here, so nothing is at stake until you've decided.</p>
+          <p><b>Further away?</b> Only the $50 is paid before you meet it, with a receipt. The rest
+          can wait until the rabbit is in your hands, <a class="litterlink" href="#faq-delivery">at
+          your door</a>.</p>
           <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit holds the rabbit. The balance is
           due at pickup, and cash is easiest for that.</p>
           
@@ -2014,7 +2141,7 @@ body.locked{overflow:hidden}
           <p><b>Eight weeks is when the changeover is done.</b> Kits wean at four to six
           weeks and lose the protection of their mother's milk while their gut is still
           learning solid food. The House Rabbit Society says <a class="cite"
-          href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
+          href="https://rabbit.org/care/babies/"
           target="_blank" rel="noopener">not to take them away “until they are a full
           eight weeks of age”</a>. The <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
@@ -2034,25 +2161,6 @@ body.locked{overflow:hidden}
         </div>
       </details>
       
-      <details id="faq-delivery">
-        <summary>Do you deliver?</summary>
-        <div class="faq-body">
-          <p><b>Yes. Free delivery anywhere in Arizona.</b> I bring the rabbit to you on a
-          weekend. Tell me roughly where you are when you get in touch.</p>
-          <p><b>Want a set day?</b> Once it's ready, I'll drive it to you on the day you pick,
-          for a price we agree on first, fair to both of us.</p>
-          <p><b>Delivered, it goes the same way as a pickup.</b> We do the health check together
-          with the rabbit in your hands, you get the food and the care sheet, and the balance
-          is due then.</p>
-          
-          <p><b>Heat is the one thing I'm firm about.</b> What matters is the temperature the
-          rabbit would be sitting in on the way, and that has to <a class="cite"
-          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
-          target="_blank" rel="noopener">stay under the mid-80s</a>. If a trip isn't safe on
-          the day, we move it, and I'll say so.</p>
-        </div>
-      </details>
-      
       <details id="faq-ages">
         <summary>How current is what I'm seeing?</summary>
         <div class="faq-body">
@@ -2067,29 +2175,16 @@ body.locked{overflow:hidden}
           had.</p>
         </div>
       </details>
-      <details id="faq-first">
-        <summary>I've never had a rabbit. Is that a problem?</summary>
-        <div class="faq-body">
-          <p><b>No.</b> First-timers are often who I enjoy working with most, because they
-          actually read the care sheet.</p>
-          <p><b>Rabbits aren't a low-maintenance starter pet.</b> They need room to run and time
-          with you every day, plus <a class="cite"
-          href="https://rabbit.org/care/rabbit-vets-near-me/"
-          target="_blank" rel="noopener">a vet who treats rabbits</a>. If that fits your house,
-          they're one of the best animals you can live with.</p>
-          
-          <p><b>Rabbits and kids do well together with a grown-up in charge.</b> Kids sit on the
-          floor and let the rabbit come to them. <a class="cite"
-          href="https://rabbit.org/care/rabbits-and-children-kids-baby/"
-          target="_blank" rel="noopener">The lifting is an adult's job</a>, and the daily
-          care is too.</p>
-        </div>
-      </details>
       <details id="faq-grooming">
         <summary>How much grooming do they need?</summary>
         <div class="faq-body">
           <p><b>Not much for a short coat.</b> A brush once a week is plenty, a little more when
           they moult. Nails every few weeks.</p>
+          
+          <p><b>A woolly coat needs more.</b> Some kits here have a longer, wavy coat, and a coat
+          like that needs <a class="cite"
+          href="https://www.rspcasa.org.au/grooming-tips-for-woolly-and-long-haired-rabbits/"
+          target="_blank" rel="noopener">daily grooming</a> so it doesn't mat.</p>
           <p><b>No baths.</b> They keep themselves clean, and a bath is <a class="cite"
           href="https://rabbitwelfare.co.uk/welfare-need/bathing-rabbits/"
           target="_blank" rel="noopener">stressful and dangerous for a rabbit</a>.</p>
@@ -2108,13 +2203,13 @@ body.locked{overflow:hidden}
       </details>
       
       <details id="faq-cages">
-        <summary>Why do you keep rabbits in cages?</summary>
+        <summary>Where do the rabbits live here?</summary>
         <div class="faq-body">
           <p><b>The cages are for the mothers, not for everyone.</b> The kits are out running
           through the day, and so are the bucks. A mother usually stays in, because she is
           nursing.</p>
           <p><b>A nursing doe needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
-          href="https://rabbit.org/domestic-baby-bunnies-and-their-mom/"
+          href="https://rabbit.org/care/babies/"
           target="_blank" rel="noopener">once or twice a day, and only when she feels safe</a>.
           The box has to be where she left it, quiet, with nobody else in it. So a doe and
           her litter are housed on their own, as <a class="cite"
@@ -2403,7 +2498,7 @@ body.locked{overflow:hidden}
     </div>
     <div class="foot-legal">
       <span>© <span id="yr">2026</span> Arizona Rabbits</span>
-      <span>A rabbit is an eight to twelve year commitment. Please be sure.</span>
+      <span>A rabbit is an eight to twelve year commitment. Please be&nbsp;sure.</span>
     </div>
   </div>
 </footer>
@@ -2497,11 +2592,11 @@ body.locked{overflow:hidden}
       </div>
       <div class="viewer-strip" id="viewerStrip"></div>
       <p class="viewer-note" id="viewerNote"></p>
-      
-      <div class="viewer-foot"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a>
+
+      <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-ghost vtext" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a></div>
 
         <p class="viewer-terms" id="viewerTerms"><b>$50 holds it, the rest in parts.</b> Any amounts
-          before pickup. The sale is final after pickup. Free delivery anywhere in Arizona. 10%&nbsp;off
+          before pickup. The sale is final after pickup. Free weekend delivery in Arizona. 10%&nbsp;off
           if you serve. <a href="terms.html">The terms</a></p></div>
     </div>
   </div>
@@ -2513,7 +2608,7 @@ body.locked{overflow:hidden}
 <script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg"]],"w":1280},"photos/litter-2026-08-27.jpg":{"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"]],"w":1400},"photos/maple.jpg":{"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-09-27","count":"Seven born","kits":[],"line":"Holland Lop cross","never":false,"no":"Fourth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=04a6cc03"></script>
+<script src="rabbits.js?v=f1806c24"></script>
 
 <script>
 (function(){
@@ -2848,7 +2943,8 @@ body.locked{overflow:hidden}
   if(mbar && heroCta && 'IntersectionObserver' in window){
     document.body.classList.add('js-mbar');
     var heroOn=true, contactOn=false;
-    var setBar=function(){ mbar.classList.toggle('show', !heroOn && !contactOn); };
+    var fade=document.querySelector('.edgefade');
+    var setBar=function(){ var on=!heroOn && !contactOn; mbar.classList.toggle('show', on); if(fade) fade.classList.toggle('on', on); };
     new IntersectionObserver(function(es){ heroOn=es[0].isIntersecting; setBar(); },{threshold:0}).observe(heroCta);
     if(contactSec) new IntersectionObserver(function(es){ contactOn=es[0].isIntersecting; setBar(); },{threshold:0}).observe(contactSec);
   }
@@ -3165,8 +3261,9 @@ body.locked{overflow:hidden}
       '<div class="kitrow">'+chips+'</div>'+
       '<p><b>Not sure yet? You have 48 hours.</b> Take one home; the '+PAIR_OFF+'% holds on a second you buy, or hold with $'+DEPOSIT+', within 48 hours. '+
         '<a class="litterlink" href="#faq-pair">How a hold works</a>.</p>'+
-      '<p><b>Better for them, too.</b> Rabbits are a highly social species, and one kept alone can suffer: '+
-        '<a class="cite" href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company" target="_blank" rel="noopener">the RSPCA\u2019s words</a>.</p>';
+      '<p><b>Two keep each other company.</b> Rabbits are '+
+        '<a class="cite" href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company" target="_blank" rel="noopener">a highly social species</a>. '+
+        'Just one? <a class="litterlink" href="#faq-one">That can work too</a>.</p>';
   }
   function stillHTML(r){
     if(r.status==='available') return '';
@@ -3198,7 +3295,7 @@ body.locked{overflow:hidden}
     else if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
                       esc(st.label.toLowerCase())+'</a>';
     var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
-    var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('Week '+wk+' of '+LAST_WEEK);
+    var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('In week '+wk+' of '+LAST_WEEK);
     if(full)
       return '<div class="grow viewer-grow'+(eight?' eight':'')+'" data-dob="'+esc(r.dob||'')+'">'+
         '<span class="grow-top"><span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
@@ -3612,6 +3709,7 @@ body.locked{overflow:hidden}
         vStrip=document.getElementById('viewerStrip'),
         vNote=document.getElementById('viewerNote'),
         vCta=document.getElementById('viewerCta'),
+        vText=document.getElementById('viewerText'),
         vTerms=document.getElementById('viewerTerms'),
         vStatus=document.getElementById('viewerStatus'),
         vNew=document.getElementById('viewerNew'),
@@ -3717,7 +3815,7 @@ body.locked{overflow:hidden}
       vBornText.textContent=s.date
         ? (niceDate(s.date)+(age?(' · '+age):''))
         : (born?('Born '+niceDate(born)):'');
-      vBornWhat.textContent=s.date?((s.video||s.reel)?'Filmed ':'Photo taken '):'';
+      vBornWhat.textContent=s.date?(s.reel?'Posted ':s.video?'Filmed ':'Photo taken '):'';
       vBorn.classList.toggle('nocam',!s.date);
       vBorn.classList.toggle('film',!!(s.date&&(s.video||s.reel)));
       if(!vPlay){
@@ -3878,6 +3976,7 @@ body.locked{overflow:hidden}
       paintLitters(p);
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
+      if(vText) vText.hidden=true;
       if(vTerms) vTerms.hidden=true;
       vStrip.innerHTML=shots.map(function(x,n){
         return '<button type="button" aria-label="'+((x.video||x.reel)?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'"'+sizedAttrs(x.src,'64px')+' alt=""'+
@@ -4090,6 +4189,10 @@ body.locked{overflow:hidden}
       vCta.setAttribute('href',openNow?'#contact':'#waitlist');
       if(openNow) vCta.setAttribute('data-ask',r.name);
       else vCta.removeAttribute('data-ask');
+      if(vText){
+        vText.hidden=!openNow;
+        if(openNow) vText.setAttribute('href','sms:+15202702827?&body='+encodeURIComponent('Hi William, I\u2019d like to ask about '+r.name+'.'));
+      }
       if(vTerms) vTerms.hidden=!openNow;
       vStrip.innerHTML=shots.map(function(s,n){
         return '<button type="button" aria-label="'+((s.video||s.reel)?'Video ':'Photo ')+(n+1)+
