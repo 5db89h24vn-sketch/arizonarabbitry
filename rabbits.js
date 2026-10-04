@@ -553,45 +553,13 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* THE PRICE DROP THAT IS COMING (19 Sept 2026, William: "make butterscotch
-       $375. and make it run as a discount to $300 for my Instagram account
-       hitting 100 followers! ... make the discount visible, so people can
-       clearly see that it dropped from $375 to $300"). Measured before it was
-       printed: the public profile read 98 followers that night, so the site
-       prints the drop as the promise it is, "$300 the day Instagram hits 100
-       followers", and not as a drop that happened. THE DAY IT HITS 100: set
-         price:    300,
-         wasPrice: 375,
-         dealNote: "Instagram hit 100 followers",
-         dealTag:  "Instagram hit 100",
-       and delete dealTo / dealWhen / dealLink / dealLinkText; the same lines
-       then print "$375" struck beside "$300" and the reason. No end date was
-       given, so none is printed. Earlier that evening she had been moved
-       from $375 to $350 for an hour ("bring butterscotch down to $350").
-       IT HIT 100 the same night (William: "My Instagram account already hit
-       100 followers, so give that butterscotch rabbit the discount!!";
-       read on the public profile at 22:05 Tucson: 100), so the drop is live.
-       THEN 250 (24 Sept 2026, William: "on Instagram we have 250 followers
-       now ... for butterscotch, I want you to make it $250. as it was one
-       of our original rabbits for 250 followers ... celebrate by making
-       this rabbit accessible to anyone at a phenomenal price ... the
-       butterscotch sale will be ending on Monday ... as long as somebody
-       reserves it before Monday, they can secure that sale and it's only
-       $50 to reserve"). $300 was her price from 19 to 24 September, so
-       $300 is the price struck beside $250: the struck price is the one
-       the reader saw last, never the highest one there ever was (the
-       former price must be the actual, bona fide, most recent one: FTC
-       guides against deceptive pricing, 16 CFR 233.1; and a reference
-       price is believed only while it is plausible, Compeau & Grewal
-       1998). Monday 28 September is the day it is over, his words, so
-       the site says "until Monday 28 September" and, that morning, puts
-       $300 back by itself. */
-    /* SOLD 27 SEPT 2026, BACK 28 SEPT 2026: the sale fell through before she
-       went home, so status is available again with no dates on her record
-       (an available rabbit prints none). Her price is $300, printed plain
-       with nothing struck. THIS FILE IS PUBLIC (anyone can open
-       arizonarabbits.com/rabbits.js), so nothing about any buyer is ever
-       written in it, not even in a note; the history lives in the docs. */
+    /* HER PRICE is $300, printed plain. How it got there (the follower-milestone
+       drops of 19 to 28 Sept 2026) is in RABBITS-HISTORY.md on the Desktop: this
+       file is public, so its notes say how to edit it, never why a price moved. */
+    /* Listed again on 28 Sept 2026; an available rabbit prints no dates. THIS FILE
+       IS PUBLIC (anyone can open arizonarabbits.com/rabbits.js), so nothing about
+       any buyer, and no price decision, is ever written in it, not even in a
+       note; that history lives in RABBITS-HISTORY.md. */
     price:  300,
     breed:  "Holland Lop cross",
     mother: "lop",
@@ -669,30 +637,13 @@ const RABBITS = [
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
   },
 
-  /* THE AUGUST FIVE (20 Sept 2026, William: "Add these five brown rabbits to my
-     website. Give them all a unique name and a cute description. Also list them
-     for $375 ... These are from the litter that we've been tracking."). Born 27
-     August 2026, the third litter; five of the six, all fawn; the names are
-     Claude's at his request, the sexes are not stated yet (sex: "" prints
-     nothing and the pronoun is "its"), and the FAQ's four-week rule stands:
-     the listing prints "Reserve from 24 Sep 2026" until that day. Photographed
-     on a brick wall on 18 September, his word ("the photos for these new
-     rabbits were taken yesterday so that would be the 18th", said on the
-     19th); sent and listed on the 19th. No capture date travels through a
-     chat, so a photo's date is the day he says, else the day it arrived;
-     the site's day is Tucson's, never the builder's UTC clock.
-     $25 OFF, TO STAY (24 Sept 2026, William, Instagram at 250 followers:
-     "make every baby discounted by $25 and make that the official new price
-     ... show the $25 discount, but also mention how this is going to be a
-     new standard, especially for this line in specific"). $375 struck beside
-     $350 on the five, $400 beside $375 on Marshmallow, the reason on every
-     card, and the listing says in words that it is the price now and not a
-     sale (dealStays); the calendar asks after two weeks whether the struck
-     price should come down, since a "was" price that never leaves is the
-     perpetual sale the site does not run.
-     THE STRIKE CAME DOWN (2 Oct 2026), the prices unchanged, and the reason
-     line under each price with it; the News keeps the 24 Sept line as the
-     dated record. (Why, in DEPLOY-GUIDE.md, 2 Oct 2026.) */
+  /* THE AUGUST FIVE: born 27 August 2026, the third litter; five of the six,
+     all fawn; the names are Claude's at his request. The sexes are not stated
+     yet (sex: "" prints nothing and the pronoun is "its"), and the FAQ's
+     four-week rule stands. Photographed on a brick wall on 18 September (his
+     word); no capture date travels through a chat, so a photo's date is the
+     day he says, else the day it arrived; the site's day is Tucson's, never
+     the builder's UTC clock. Their price history is in RABBITS-HISTORY.md. */
   {
     name:   "Honey",
     photos: [
@@ -825,10 +776,9 @@ const RABBITS = [
     note:   "Long wavy coat, the woolliest of the fawn kits. Ears up and forward in the 18 September photo, chin down on the brick."
   },
 
-  /* MARSHMALLOW, the sixth (19 Sept 2026, an hour after the five: "Also add
-     this white rabbit as well, and it will be for $400"). Two photographs from
-     the same wall, same day; the sitting one is the card. "White" is his word;
-     the eyes and nose are described as the photographs show them. */
+  /* MARSHMALLOW, the sixth, listed 19 Sept 2026. Two photographs from the same
+     wall, same day; the sitting one is the card. "White" is his word; the eyes
+     and nose are described as the photographs show them. */
   {
     name:   "Marshmallow",
     photos: [
