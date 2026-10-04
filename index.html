@@ -12,6 +12,8 @@
 <meta name="theme-color" content="#FBF8F3">
 
 <link rel="preload" as="script" href="rabbits.js?v=fb9fad85" data-fact="data-preload">
+
+<script>document.documentElement.classList.add('boot')</script>
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/marshmallow.1200.6a1cdc34.avif";l.setAttribute("imagesrcset","img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
 
 <link rel="canonical" href="https://arizonarabbits.com/">
@@ -310,6 +312,10 @@ header .brandbox{padding-top:15px}
 @media(min-width:600px){.hero h1 br{display:none}}
 .hero-sub{font-size:clamp(16.5px,1.7vw,18.5px);color:var(--ink-soft);max-width:48ch;margin-bottom:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
+.hero-proof{display:flex;align-items:flex-start;gap:7px;margin:-6px 0 0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+.hero-proof .vfd{width:15px;height:15px;margin-top:2px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px){ .hero-proof{display:none} }
 
 .hero-deliver{display:flex;width:fit-content;align-items:center;gap:10px;margin:-22px 0 2px;padding:12px 0;
   color:inherit;text-decoration:none;cursor:pointer}
@@ -403,6 +409,13 @@ html:not(.js) .ages-note{display:none}
   scrollbar-width:none;-ms-overflow-style:none}
 .bunnies::-webkit-scrollbar{display:none}
 .bunny{flex:0 0 300px;scroll-snap-align:start}
+
+html.boot:not(.js) #count,html.boot:not(.js) .rail-btn{visibility:hidden}
+html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';display:block;
+  aspect-ratio:5/7;border-radius:var(--r);background:var(--paper-2);border:1px solid var(--line)}
+@media(min-width:360px) and (max-width:760px){
+  html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{aspect-ratio:auto;height:calc((100vw - 52px) / 2 + 161px)}
+}
 
 @media(min-width:761px){.bunnies.few .bunny{flex:1 1 300px;max-width:calc((100% - 18px) / 2)}}
 
@@ -1661,14 +1674,17 @@ body.locked{overflow:hidden}
 
         <a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com." class="btn btn-ghost"><span class="tx-s">Text William</span><span class="tx-l">Text (520) 270-2827</span></a>
       </div>
+      
+      <p class="hero-proof"><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>Verified on Instagram as @arizonarabbits</p>
 
       <div class="facts">
 
         <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
+
+        <a href="#faq-pay"><span><b>Meet them before you pay</b><small>Delivered? Only $50 first</small></span><i class="chev" aria-hidden="true"></i></a>
         
-        <a href="#faq-first"><span><b>First-timers welcome</b><small>Time, space, other pets</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#faq-first"><span><b>First-timers welcome</b><small>Time, space, cats and dogs</small></span><i class="chev" aria-hidden="true"></i></a>
         <a href="#faq-pair"><span><b>20% off</b><small>Second of a pair</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#included"><span><b>You keep my number</b><small>For as long as you have them</small></span><i class="chev" aria-hidden="true"></i></a>
         
       </div>
     </div>
