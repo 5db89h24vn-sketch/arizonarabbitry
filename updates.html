@@ -35,6 +35,13 @@
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin-ext.521e24d1.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin.1dc044f4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 </style>
+<style data-fact="font-fallbacks">
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:400;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:500;ascent-override:89.52%;descent-override:22.29%;line-gap-override:0%;size-adjust:108.21%}
+@font-face{font-family:'Inter Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Arimo Bold'),local('Arimo-Bold'),local('Liberation Sans Bold'),local('LiberationSans-Bold');font-weight:600;ascent-override:95.42%;descent-override:23.76%;line-gap-override:0%;size-adjust:101.53%}
+@font-face{font-family:'Fraunces Fallback';src:local('Georgia');font-weight:100 900;ascent-override:92.37%;descent-override:24.08%;line-gap-override:0%;size-adjust:105.88%}
+@font-face{font-family:'Fraunces Fallback Times';src:local('Times New Roman'),local('TimesNewRomanPSMT'),local('Tinos'),local('Liberation Serif'),local('LiberationSerif');font-weight:100 900;ascent-override:84.18%;descent-override:21.95%;line-gap-override:0%;size-adjust:116.18%}
+</style>
 
 <style>
 :root{
@@ -44,8 +51,8 @@
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
-  --serif:'Fraunces',ui-serif,Georgia,serif;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times',ui-serif,Georgia,serif;
+  --sans:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -159,18 +166,18 @@ h1,h2,h3{text-wrap:balance}
 <header>
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="index.html">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
+      <a class="brand" href="/">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
       <div class="topbar-right">
         <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
         <a class="cta" href="sms:+15202702827">Text William</a>
       </div>
     </div>
-    <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <a class="back" href="/">&larr; Back to the rabbits</a>
     <nav class="subnav" aria-label="On the main page">
-      <a href="index.html#available">Available now</a>
-      <a href="index.html#raised">How they're raised</a>
-      <a href="index.html#boarding">Boarding</a>
-      <a href="index.html#faq">FAQ</a>
+      <a href="/#available">Available now</a>
+      <a href="/#raised">How they're raised</a>
+      <a href="/#boarding">Boarding</a>
+      <a href="/#faq">FAQ</a>
     </nav>
     <h1>News</h1>
     
@@ -187,17 +194,17 @@ h1,h2,h3{text-wrap:balance}
       <time class="updated" datetime="2026-10-03">Updated 3 October 2026</time>
       <h2>Week of September 28</h2>
       <ul>
-        <li><time datetime="2026-10-03">3 Oct</time> <b>Free weekend delivery in Arizona.</b> Anywhere in the state, once a $50 hold books it. I bring others along, so you still choose in person. <a class="xlink" href="index.html#faq-delivery">How it works</a>.</li>
-        <li><time datetime="2026-10-02">2 Oct</time> <b>The first purebred Holland Lops.</b> Three born 18 September to Catalina, the new mother, and Copper. Photos as soon as they are in. <a class="xlink" href="index.html#waitlist">The waitlist</a>.</li>
-        <li><time datetime="2026-10-02">2 Oct</time> <b>Pay in parts.</b> After the $50, the rest can come in any amounts before pickup. <a class="xlink" href="index.html#faq-pay">How paying works</a>.</li>
-        <li><time datetime="2026-10-02">2 Oct</time> <b>The rabbit is the smallest part.</b> A year of keeping one runs $1,672 to $3,354 on Chewy's vet-reviewed figures. <a class="xlink" href="index.html#faq-price">The price answer</a>.</li>
-        <li><time datetime="2026-09-28">28 Sep</time> <b>Butterscotch is back.</b> Her sale fell through before she went home, no hard feelings, and she is available again. <a class="xlink" href="index.html#r-butterscotch">Her listing</a>.</li>
-        <li><time datetime="2026-09-28">28 Sep</time> <b>Frederick again.</b> The 27 September litter has the same two parents as the three before it. <a class="xlink" href="litters.html#L2026-09-27">Their page</a>.</li>
+        <li><time datetime="2026-10-03">3 Oct</time> <b>Free weekend delivery in Arizona.</b> Anywhere in the state, once a $50 hold books it. I bring others along, so you still choose in person. <a class="xlink" href="/#faq-delivery">How it works</a>.</li>
+        <li><time datetime="2026-10-02">2 Oct</time> <b>The first purebred Holland Lops.</b> Three born 18 September to Catalina, the new mother, and Copper. Photos as soon as they are in. <a class="xlink" href="/#waitlist">The waitlist</a>.</li>
+        <li><time datetime="2026-10-02">2 Oct</time> <b>Pay in parts.</b> After the $50, the rest can come in any amounts before pickup. <a class="xlink" href="/#faq-pay">How paying works</a>.</li>
+        <li><time datetime="2026-10-02">2 Oct</time> <b>The rabbit is the smallest part.</b> A year of keeping one runs $1,672 to $3,354 on Chewy's vet-reviewed figures. <a class="xlink" href="/#faq-price">The price answer</a>.</li>
+        <li><time datetime="2026-09-28">28 Sep</time> <b>Butterscotch is back.</b> Her sale fell through before she went home, no hard feelings, and she is available again. <a class="xlink" href="/#r-butterscotch">Her listing</a>.</li>
+        <li><time datetime="2026-09-28">28 Sep</time> <b>Frederick again.</b> The 27 September litter has the same two parents as the three before it. <a class="xlink" href="/litters#L2026-09-27">Their page</a>.</li>
         <li><time datetime="2026-09-28">28 Sep</time> <b>Where things stand.</b> Available: Marshmallow $375; Honey, Biscuit, Toffee and Pecan $350 each; Butterscotch $300. Sold: Teddy, Sundae, Cloud and Maple.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html">See the litters</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
       </p>
     </article>
 
@@ -206,18 +213,18 @@ h1,h2,h3{text-wrap:balance}
       <h2>Week of September 21</h2>
       <ul>
         <li><time datetime="2026-09-27">27 Sep</time> <b>Where things stand.</b> Available: Marshmallow $375; Honey, Biscuit, Toffee and Pecan $350 each. Sold: Teddy, Butterscotch, Sundae, Cloud and Maple.</li>
-        <li><time datetime="2026-09-27">27 Sep</time> <b>Seven born.</b> A new litter from the same mother, photographed the day they were born. <a class="xlink" href="litters.html#L2026-09-27">Their page</a>.</li>
-        <li><time datetime="2026-09-26">26 Sep</time> <b>A receipt for every payment.</b> Written confirmation of what you paid, every time. <a class="xlink" href="index.html#faq-pay">How to pay</a>.</li>
-        <li><time datetime="2026-09-26">26 Sep</time> <b>48 hours for a second.</b> Take one home and the 20% off a second holds for 48 hours, bought or held with $50. <a class="xlink" href="index.html#faq-pair">The pair answer</a>.</li>
-        <li><time datetime="2026-09-24">24 Sep</time> <b>Message me on Instagram.</b> The way I'd rather hear from you: I can put a name to a face, and the conversation stays in one place. <a class="xlink" href="index.html#contact">Every way</a>.</li>
+        <li><time datetime="2026-09-27">27 Sep</time> <b>Seven born.</b> A new litter from the same mother, photographed the day they were born. <a class="xlink" href="/litters#L2026-09-27">Their page</a>.</li>
+        <li><time datetime="2026-09-26">26 Sep</time> <b>A receipt for every payment.</b> Written confirmation of what you paid, every time. <a class="xlink" href="/#faq-pay">How to pay</a>.</li>
+        <li><time datetime="2026-09-26">26 Sep</time> <b>48 hours for a second.</b> Take one home and the 20% off a second holds for 48 hours, bought or held with $50. <a class="xlink" href="/#faq-pair">The pair answer</a>.</li>
+        <li><time datetime="2026-09-24">24 Sep</time> <b>Message me on Instagram.</b> The way I'd rather hear from you: I can put a name to a face, and the conversation stays in one place. <a class="xlink" href="/#contact">Every way</a>.</li>
         <li><time datetime="2026-09-24">24 Sep</time> <b>Instagram hit 250 followers.</b> Every August kit is $25 off, the price for this line from here on, not a sale, and Butterscotch dropped to $250 until Monday.</li>
-        <li><time datetime="2026-09-23">23 Sep</time> <b>Her reel, on her listing.</b> Tap the second picture in Butterscotch's listing and the bumblebunny reel opens on Instagram. Every rabbit's reels will sit there. <a class="xlink" href="index.html#r-butterscotch">See her</a>.</li>
-        <li><time datetime="2026-09-22">22 Sep</time> <b>Two questions, answered.</b> Why pay more than the cheapest listing, and what to ask any breeder before you pay. <a class="xlink" href="index.html#faq-price">Read both</a>.</li>
-        <li><time datetime="2026-09-22">22 Sep</time> <b>Why eight weeks.</b> Butterscotch turned eight weeks today. Every listing now says which week it is on. <a class="xlink" href="index.html#faq-home">Why I aim for eight</a>.</li>
+        <li><time datetime="2026-09-23">23 Sep</time> <b>Her reel, on her listing.</b> Tap the second picture in Butterscotch's listing and the bumblebunny reel opens on Instagram. Every rabbit's reels will sit there. <a class="xlink" href="/#r-butterscotch">See her</a>.</li>
+        <li><time datetime="2026-09-22">22 Sep</time> <b>Two questions, answered.</b> Why pay more than the cheapest listing, and what to ask any breeder before you pay. <a class="xlink" href="/#faq-price">Read both</a>.</li>
+        <li><time datetime="2026-09-22">22 Sep</time> <b>Why eight weeks.</b> Butterscotch turned eight weeks today. Every listing now says which week it is on. <a class="xlink" href="/#faq-home">Why I aim for eight</a>.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html">See the litters</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
       </p>
     </article>
 
@@ -225,17 +232,17 @@ h1,h2,h3{text-wrap:balance}
       <time class="updated" datetime="2026-09-19">Updated 19 September 2026</time>
       <h2>Week of September 14</h2>
       <ul>
-        <li><time datetime="2026-09-19">19 Sep</time> <b>Butterscotch is $300.</b> Down from $375. Instagram hit 100 followers, so $75 off. <a class="xlink" href="index.html#r-butterscotch">Her listing</a>.</li>
-        <li><time datetime="2026-09-19">19 Sep</time> <b>The August six are listed.</b> Marshmallow $400; Honey, Biscuit, Toffee, Maple and Pecan $375 each; reservations from 24 September. <a class="xlink" href="index.html#available">See them</a>.</li>
-        <li><time datetime="2026-09-18">18 Sep</time> <b>New litters go up 19 September.</b> Look for them on the litters page. <a class="xlink" href="litters.html">See the litters</a>.</li>
+        <li><time datetime="2026-09-19">19 Sep</time> <b>Butterscotch is $300.</b> Down from $375. Instagram hit 100 followers, so $75 off. <a class="xlink" href="/#r-butterscotch">Her listing</a>.</li>
+        <li><time datetime="2026-09-19">19 Sep</time> <b>The August six are listed.</b> Marshmallow $400; Honey, Biscuit, Toffee, Maple and Pecan $375 each; reservations from 24 September. <a class="xlink" href="/#available">See them</a>.</li>
+        <li><time datetime="2026-09-18">18 Sep</time> <b>New litters go up 19 September.</b> Look for them on the litters page. <a class="xlink" href="/litters">See the litters</a>.</li>
         <li><time datetime="2026-09-18">18 Sep</time> <b>A new mother, a litter coming.</b> Details when I have them.</li>
-        <li><time datetime="2026-09-16">16 Sep</time> <b>They have started on hay.</b> At twenty days old the kits are eating hay and pellets, the first step to <a class="xlink" href="index.html#faq-home">going home</a>.</li>
+        <li><time datetime="2026-09-16">16 Sep</time> <b>They have started on hay.</b> At twenty days old the kits are eating hay and pellets, the first step to <a class="xlink" href="/#faq-home">going home</a>.</li>
         <li><time datetime="2026-09-15">15 Sep</time> <b>Watch them grow up.</b> New photos and video of the litters and their parents are going up on <a class="xlink" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">Instagram</a> and <a class="xlink" href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener">TikTok</a>.</li>
         <li><time datetime="2026-09-14">14 Sep</time> <b>Where things stand.</b> Available: Butterscotch, $375, ready 22 Sept. Sold: Teddy, Sundae and Cloud.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html">See the litters</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
       </p>
     </article>
 
@@ -243,17 +250,17 @@ h1,h2,h3{text-wrap:balance}
       <time class="updated" datetime="2026-09-12">Updated 12 September 2026</time>
       <h2>Week of September 7</h2>
       <ul>
-        <li><time datetime="2026-09-12">12 Sep</time> <b>The August litter on video.</b> Thirty-seven seconds of all six at two weeks, out of the nest box and in hand. <a class="xlink" href="litters.html#L2026-08-27">Watch it</a>.</li>
-        <li><time datetime="2026-09-08">8 Sep</time> <b>Their eyes are opening.</b> The August litter is twelve days old and the kits are starting to open their eyes. <a class="xlink" href="litters.html#L2026-08-27">See the photo</a>.</li>
+        <li><time datetime="2026-09-12">12 Sep</time> <b>The August litter on video.</b> Thirty-seven seconds of all six at two weeks, out of the nest box and in hand. <a class="xlink" href="/litters#L2026-08-27">Watch it</a>.</li>
+        <li><time datetime="2026-09-08">8 Sep</time> <b>Their eyes are opening.</b> The August litter is twelve days old and the kits are starting to open their eyes. <a class="xlink" href="/litters#L2026-08-27">See the photo</a>.</li>
         <li><time datetime="2026-09-07">7 Sep</time> <b>Meet Frederick and Cinnamony.</b> The father and the mother now carry their names on every listing.</li>
         <li><time datetime="2026-09-07">7 Sep</time> <b>Teddy is sold.</b> Bought outright. She is here until she goes home.</li>
-        <li><time datetime="2026-09-07">7 Sep</time> <b>The father on video.</b> Twenty seconds of him in a planter, on his page, beside a new portrait on the brick. Press play. <a class="xlink" href="index.html#p-father">The father</a>.</li>
+        <li><time datetime="2026-09-07">7 Sep</time> <b>The father on video.</b> Twenty seconds of him in a planter, on his page, beside a new portrait on the brick. Press play. <a class="xlink" href="/#p-father">The father</a>.</li>
         <li><time datetime="2026-09-07">7 Sep</time> <b>Hear about one litter only.</b> The waitlist can be for one litter only: the August six, the first purebred Holland Lops, or the first Netherland Dwarfs.</li>
         <li><time datetime="2026-09-07">7 Sep</time> <b>Where things stand.</b> Available: Butterscotch, $375, ready 22 Sept. Sold: Teddy, Sundae and Cloud.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html">See the litters</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
       </p>
     </article>
 
@@ -261,21 +268,21 @@ h1,h2,h3{text-wrap:balance}
       <time class="updated" datetime="2026-09-06">Updated 6 September 2026</time>
       <h2>Week of August 31</h2>
       <ul>
-        <li><time datetime="2026-09-06">6 Sep</time> <b>How long do they live?</b> 8 to 12 years with good care. Most don't get there. <a class="xlink" href="index.html#faq-life">The studies</a>.</li>
+        <li><time datetime="2026-09-06">6 Sep</time> <b>How long do they live?</b> 8 to 12 years with good care. Most don't get there. <a class="xlink" href="/#faq-life">The studies</a>.</li>
         <li><time datetime="2026-09-06">6 Sep</time> <b>Meet the parents.</b> Open any rabbit and its parents are there; tap either for photos and kits. The three facts under the top photo open what backs them.</li>
         <li><time datetime="2026-09-06">6 Sep</time> <b>The litter that started it all.</b> 28 June: five born, four raised, homed before this site existed. The numbering starts there.</li>
-        <li><time datetime="2026-09-06">6 Sep</time> <b>The August six at ten days.</b> One white, five fawn. In the nest box, one in hand. <a class="xlink" href="litters.html#L2026-08-27">See them</a>.</li>
+        <li><time datetime="2026-09-06">6 Sep</time> <b>The August six at ten days.</b> One white, five fawn. In the nest box, one in hand. <a class="xlink" href="/litters#L2026-08-27">See them</a>.</li>
         <li><time datetime="2026-09-05">5 Sep</time> <b>Six Netherland Dwarfs are home.</b> And a correction: the rabbits listed here are Holland Lop crosses, not Holland Lops. Every listing now says so.</li>
         <li><time datetime="2026-09-05">5 Sep</time> <b>Deposit is now $50.</b> Half what it was. It still comes off the price and moves with you if you change your mind.</li>
-        <li><time datetime="2026-09-03">3 Sep</time> <b>Reservations open 24 September.</b> The August litter opens for reservation from 24 September, at four weeks. The waitlist hears first. <a class="xlink" href="index.html#waitlist">Join the waitlist</a>.</li>
+        <li><time datetime="2026-09-03">3 Sep</time> <b>Reservations open 24 September.</b> The August litter opens for reservation from 24 September, at four weeks. The waitlist hears first. <a class="xlink" href="/#waitlist">Join the waitlist</a>.</li>
                 <li><time datetime="2026-09-02">2 Sep</time> <b>Where things stand.</b> Available: Butterscotch, $375, ready 22 Sept. Reserved: Teddy. Sold: Sundae and Cloud.</li>
         <li><time datetime="2026-09-02">2 Sep</time> <b>No set go-home age.</b> Weaned, eating well for a week, holding weight and healthy. My call. Cards show age, not a countdown.</li>
         <li><time datetime="2026-09-01">1 Sep</time> <b>Pair price.</b> Take two together and the
         second is 20% off. Reserve a littermate before the first goes home and it still counts.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html#L2026-08-27">See the August litter</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters#L2026-08-27">See the August litter</a>
       </p>
     </article>
 
@@ -290,7 +297,7 @@ h1,h2,h3{text-wrap:balance}
         <li><time datetime="2026-08-28">28 Aug</time> <b>Teddy is reserved.</b> Reserved shows the
         day it happened, on the card and in the litters record.</li>
         <li><time datetime="2026-08-27">27 Aug</time> <b>Six born.</b> A new litter, with the day-one
-        photo dated in <a class="xlink" href="litters.html#L2026-08-27">the litters record</a>.
+        photo dated in <a class="xlink" href="/litters#L2026-08-27">the litters record</a>.
         Names and reservations at four weeks. The waitlist hears first.</li>
         <li><time datetime="2026-08-27">27 Aug</time> <b>Every rabbit has its own link.</b>
         arizonarabbits.com/r/teddy shows the photo in a text, and keeps working after a sale.</li>
@@ -303,8 +310,8 @@ h1,h2,h3{text-wrap:balance}
         you here.</li>
       </ul>
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="litters.html">See the litters</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
       </p>
     </article>
 
@@ -315,9 +322,9 @@ h1,h2,h3{text-wrap:balance}
   <div class="wrap" style="display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between">
     <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
     <nav class="foot-nav" aria-label="Pages">
-      <a href="index.html">Rabbits</a>
-      <a href="litters.html">Litters</a>
-      <a href="terms.html">Terms and privacy</a>
+      <a href="/">Rabbits</a>
+      <a href="/litters">Litters</a>
+      <a href="/terms">Terms and privacy</a>
     </nav>
   </div>
 </footer>
@@ -377,6 +384,6 @@ h1,h2,h3{text-wrap:balance}
 })();
 </script>
 
-<script src="count.js?v=b57252cf" defer></script>
+<script src="count.js?v=6aeedef7" defer></script>
 </body>
 </html>

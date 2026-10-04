@@ -60,12 +60,12 @@
 # player uses to seek; Pages answers them by itself.
 /videos/*
   Cache-Control: public, max-age=86400
-# Fonts (4 Oct 2026, fontsself.py): named by their own fingerprint, so a font
+# Fonts (3 Oct 2026, fontsself.py): named by their own fingerprint, so a font
 # that changes is a new file; these can be kept a year and never asked again.
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-# EVERY PAGE (4 Oct 2026, a technical audit): never framed by another site,
+# EVERY PAGE (3 Oct 2026, a technical audit): never framed by another site,
 # content types taken as sent, and HTTPS remembered for a year. No full CSP:
 # the pages carry their own inline script and style by design. What a CSP can
 # still close without touching them (the same day, the second audit): no

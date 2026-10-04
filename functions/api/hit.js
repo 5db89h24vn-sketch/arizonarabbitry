@@ -8,7 +8,7 @@
      p    which page (home, litters, news, terms, share)
      d    phone or desktop (pointer:coarse), nothing finer
      ref  where the visit came from, as a word: instagram, facebook, tiktok,
-          google, direct, other (never the URL)
+          google, direct, share, site (another page here), other (never the URL)
      s    how far the page was scrolled, 25 / 50 / 75 / 100
      ev   which of the site's own controls were tapped, as short names
           (text, call, email, see-rabbits, listing, ask, waitlist, form,
@@ -37,7 +37,7 @@
 
 const TTL = 45 * 24 * 3600;
 const PAGES = new Set(['home', 'litters', 'news', 'terms', 'share']);
-const REFS = new Set(['instagram', 'facebook', 'tiktok', 'google', 'direct', 'share', 'other']);   /* share: arrived from a /r/<name> link (2 Oct 2026) */
+const REFS = new Set(['instagram', 'facebook', 'tiktok', 'google', 'direct', 'share', 'site', 'other']);   /* share: arrived from a /r/<name> link (2 Oct 2026); site: a move from another page of this site (4 Oct 2026) */
 const DEVS = new Set(['phone', 'desktop']);
 const SCROLLS = new Set([0, 25, 50, 75, 100]);
 const EVENT = /^[a-z][a-z0-9-]{0,23}$/;

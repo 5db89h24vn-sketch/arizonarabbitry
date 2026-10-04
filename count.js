@@ -7,7 +7,10 @@
    reader has already moved on. Loaded with defer at the end of every page. */
 (function(){
   'use strict';
-  if(!window.navigator || navigator.globalPrivacyControl) return;
+  /* an automated browser is not a visitor (4 Oct 2026: a test run of the site
+     sent its own visits here; navigator.webdriver is how such a browser says
+     what it is, and no person's browser sets it) */
+  if(!window.navigator || navigator.globalPrivacyControl || navigator.webdriver) return;
   if(location.protocol!=='https:' && location.hostname!=='localhost') return;
 
   var path=location.pathname.toLowerCase();
@@ -28,7 +31,10 @@
     if(!r) ref='direct';
     /* a shared rabbit's link, /r/<name>, forwards to the front page: its
        arrival is a share, not a move inside the site (2 Oct 2026) */
-    else if(r===location.hostname) ref=/^\/r\//.test(new URL(document.referrer).pathname)?'share':'';   /* moving inside the site */
+    /* moving inside the site is 'site' (4 Oct 2026: it was '' and the line
+       below turned it into 'other', so every move between the pages counted
+       as a visit from somewhere unknown) */
+    else if(r===location.hostname) ref=/^\/r\//.test(new URL(document.referrer).pathname)?'share':'site';
     else if(/instagram\.com$/.test(r)) ref='instagram';
     else if(/facebook\.com$|fb\.com$|messenger\.com$/.test(r)) ref='facebook';
     else if(/tiktok\.com$/.test(r)) ref='tiktok';

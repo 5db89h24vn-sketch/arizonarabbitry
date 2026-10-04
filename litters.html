@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -35,6 +36,13 @@
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin-ext.521e24d1.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin.1dc044f4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 </style>
+<style data-fact="font-fallbacks">
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:400;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:500;ascent-override:89.52%;descent-override:22.29%;line-gap-override:0%;size-adjust:108.21%}
+@font-face{font-family:'Inter Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Arimo Bold'),local('Arimo-Bold'),local('Liberation Sans Bold'),local('LiberationSans-Bold');font-weight:600;ascent-override:95.42%;descent-override:23.76%;line-gap-override:0%;size-adjust:101.53%}
+@font-face{font-family:'Fraunces Fallback';src:local('Georgia');font-weight:100 900;ascent-override:92.37%;descent-override:24.08%;line-gap-override:0%;size-adjust:105.88%}
+@font-face{font-family:'Fraunces Fallback Times';src:local('Times New Roman'),local('TimesNewRomanPSMT'),local('Tinos'),local('Liberation Serif'),local('LiberationSerif');font-weight:100 900;ascent-override:84.18%;descent-override:21.95%;line-gap-override:0%;size-adjust:116.18%}
+</style>
 
 <style>
 :root{
@@ -44,8 +52,8 @@
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
-  --serif:'Fraunces',ui-serif,Georgia,serif;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times',ui-serif,Georgia,serif;
+  --sans:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
   
   --lift-1:0 1px 2px rgba(36,31,29,.06),0 5px 14px rgba(36,31,29,.065);
@@ -219,7 +227,13 @@ body.lbox-open{overflow:hidden}
 .litter .litter-age{margin-left:4px}
 .litter .litter-age[hidden]{display:none}
 .tile-age{font-size:13px;color:var(--ink-faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.tile{container-type:inline-size}
+@container (max-width:170px){ .tile-age{font-size:12px;letter-spacing:-.005em} }
 .tile-age[hidden],.tile-age:empty{display:none}
+
+html.js .tile-age[hidden],html.js .tile-age:empty{display:block;visibility:hidden}
+html.js .tile-age:empty::before{content:'\00a0'}
 .litter-life{color:var(--ink-soft)}
 
 .litter-life a{white-space:nowrap}
@@ -378,6 +392,10 @@ h1,h2,h3{text-wrap:balance}
 .xlink:hover{border-bottom-style:solid}
 
 .finder{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-6px 0 16px}
+html:not(.js) .finder{display:none}
+
+@media(max-width:599px){ .finder{flex-direction:column;align-items:stretch;gap:6px} .finder select{width:100%} }
+@media(min-width:600px){ .finder{flex-wrap:nowrap} }
 .finder-label{font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap}
 .finder select{min-height:44px;max-width:100%;padding:0 38px 0 14px;border:1px solid var(--line);border-radius:var(--r);
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23736A64' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center/12px;
@@ -392,18 +410,18 @@ h1,h2,h3{text-wrap:balance}
 <header>
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="index.html">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
+      <a class="brand" href="/">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
       <div class="topbar-right">
         <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
         <a class="cta" href="sms:+15202702827">Text William</a>
       </div>
     </div>
-    <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <a class="back" href="/">&larr; Back to the rabbits</a>
     <nav class="subnav" aria-label="On the main page">
-      <a href="index.html#available">Available now</a>
-      <a href="index.html#raised">How they're raised</a>
-      <a href="index.html#boarding">Boarding</a>
-      <a href="index.html#faq">FAQ</a>
+      <a href="/#available">Available now</a>
+      <a href="/#raised">How they're raised</a>
+      <a href="/#boarding">Boarding</a>
+      <a href="/#faq">FAQ</a>
     </nav>
     <h1>Litters</h1>
   </div>
@@ -424,15 +442,15 @@ h1,h2,h3{text-wrap:balance}
           <h2>Seven born</h2>
           
           <div class="parents">
-            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
+            <a class="parent" href="/#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
             </a>
-            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
+            <a class="parent" href="/#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
               <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
           <p class="litter-life">A rabbit like these can live
-          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
+          <a class="xlink" href="/#faq-life">8 to 12 years</a>.</p>
           <p>Seven of them, in the nest box, in the hay and the fur she pulled. Taken the day
           they were born.</p>
           
@@ -448,11 +466,11 @@ h1,h2,h3{text-wrap:balance}
             </div>
           </div>
           <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
+          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
           hears first.<span data-fact="opens:2026-09-27"> For this litter that is from <time datetime="2026-10-25">25 October</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="terms.html#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -469,16 +487,16 @@ h1,h2,h3{text-wrap:balance}
           <h2>Six born</h2>
           
           <div class="parents">
-            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
+            <a class="parent" href="/#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
             </a>
-            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
+            <a class="parent" href="/#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
               <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
           
           <p class="litter-life">A rabbit like these can live
-          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
+          <a class="xlink" href="/#faq-life">8 to 12 years</a>.</p>
           <p>Taken the day they were born, before anything else. Six of them, in a nest
           of shavings and the fur their mother pulled to line it.</p>
           
@@ -527,33 +545,33 @@ h1,h2,h3{text-wrap:balance}
           <p>All six went up on the site on <time datetime="2026-09-19">19 September</time>,
           at three weeks and two days, each with a photograph from the day before.</p>
           <div class="whograph">
-            <a class="wt" href="index.html#r-honey" data-rid="honey">
+            <a class="wt" href="/#r-honey" data-rid="honey">
               <img src="photos/honey.jpg?v=5409c37f" srcset="photos/honey.160.5409c37f.jpg 160w, photos/honey.320.5409c37f.jpg 320w, photos/honey.640.5409c37f.jpg 640w, photos/honey.960.5409c37f.jpg 960w, photos/honey.1280.5409c37f.jpg 1280w, photos/honey.jpg?v=5409c37f 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Honey, a fawn Holland Lop cross" loading="lazy">
               <b>Honey</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-biscuit" data-rid="biscuit">
+            <a class="wt" href="/#r-biscuit" data-rid="biscuit">
               <img src="photos/biscuit.jpg?v=db57dcda" srcset="photos/biscuit.160.db57dcda.jpg 160w, photos/biscuit.320.db57dcda.jpg 320w, photos/biscuit.640.db57dcda.jpg 640w, photos/biscuit.960.db57dcda.jpg 960w, photos/biscuit.1280.db57dcda.jpg 1280w, photos/biscuit.jpg?v=db57dcda 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Biscuit, a fawn Holland Lop cross" loading="lazy">
               <b>Biscuit</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-toffee" data-rid="toffee">
+            <a class="wt" href="/#r-toffee" data-rid="toffee">
               <img src="photos/toffee.jpg?v=08091cd6" srcset="photos/toffee.160.08091cd6.jpg 160w, photos/toffee.320.08091cd6.jpg 320w, photos/toffee.640.08091cd6.jpg 640w, photos/toffee.960.08091cd6.jpg 960w, photos/toffee.1280.08091cd6.jpg 1280w, photos/toffee.jpg?v=08091cd6 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Toffee, a fawn Holland Lop cross" loading="lazy">
               <b>Toffee</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-maple" data-rid="maple">
+            <a class="wt" href="/#r-maple" data-rid="maple">
               <img src="photos/maple.jpg?v=b5a4d27b" srcset="photos/maple.160.b5a4d27b.jpg 160w, photos/maple.320.b5a4d27b.jpg 320w, photos/maple.640.b5a4d27b.jpg 640w, photos/maple.960.b5a4d27b.jpg 960w, photos/maple.1280.b5a4d27b.jpg 1280w, photos/maple.jpg?v=b5a4d27b 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Maple, a fawn Holland Lop cross" loading="lazy">
               <b>Maple</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-pecan" data-rid="pecan">
+            <a class="wt" href="/#r-pecan" data-rid="pecan">
               <img src="photos/pecan.jpg?v=ffb48d8d" srcset="photos/pecan.160.ffb48d8d.jpg 160w, photos/pecan.320.ffb48d8d.jpg 320w, photos/pecan.640.ffb48d8d.jpg 640w, photos/pecan.960.ffb48d8d.jpg 960w, photos/pecan.1280.ffb48d8d.jpg 1280w, photos/pecan.jpg?v=ffb48d8d 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Pecan, a fawn Holland Lop cross" loading="lazy">
               <b>Pecan</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-marshmallow" data-rid="marshmallow">
+            <a class="wt" href="/#r-marshmallow" data-rid="marshmallow">
               <img src="photos/marshmallow.jpg?v=6a1cdc34" srcset="photos/marshmallow.160.6a1cdc34.jpg 160w, photos/marshmallow.320.6a1cdc34.jpg 320w, photos/marshmallow.640.6a1cdc34.jpg 640w, photos/marshmallow.960.6a1cdc34.jpg 960w, photos/marshmallow.1280.6a1cdc34.jpg 1280w, photos/marshmallow.jpg?v=6a1cdc34 1600w" sizes="(min-width:700px) 215px, 45vw" alt="Marshmallow, a white Holland Lop cross" loading="lazy">
               <b>Marshmallow</b><small>&nbsp;</small>
             </a>
           </div>
           <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="index.html#waitlist">waitlist</a>
+          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
           hears first.<span data-fact="opens:2026-08-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
@@ -574,16 +592,16 @@ h1,h2,h3{text-wrap:balance}
           <h2>Six born, four raised</h2>
           
           <div class="parents">
-            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
+            <a class="parent" href="/#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
             </a>
-            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
+            <a class="parent" href="/#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
               <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
           
           <p class="litter-life">A rabbit like these can live
-          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
+          <a class="xlink" href="/#faq-life">8 to 12 years</a>.</p>
           <p>This is the photo from the day they arrived, before their eyes were open and
           before they had any fur. The fawn rabbit in the frame is from the litter before this
           one, about a month old here.</p>
@@ -594,19 +612,19 @@ h1,h2,h3{text-wrap:balance}
           and color honestly. Two fawn does and two sable point bucks.</p>
           
           <div class="whograph">
-            <a class="wt" href="index.html#r-teddy" data-rid="teddy">
+            <a class="wt" href="/#r-teddy" data-rid="teddy">
               <img src="photos/teddy.jpg?v=9068ff3a" srcset="photos/teddy.160.9068ff3a.jpg 160w, photos/teddy.320.9068ff3a.jpg 320w, photos/teddy.640.9068ff3a.jpg 640w, photos/teddy.960.9068ff3a.jpg 960w, photos/teddy.jpg?v=9068ff3a 1000w" sizes="(min-width:700px) 215px, 45vw" alt="Teddy, a fawn Holland Lop cross" loading="lazy">
               <b>Teddy</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-butterscotch" data-rid="butterscotch">
+            <a class="wt" href="/#r-butterscotch" data-rid="butterscotch">
               <img src="photos/butterscotch.jpg?v=4855dad5" srcset="photos/butterscotch.160.4855dad5.jpg 160w, photos/butterscotch.320.4855dad5.jpg 320w, photos/butterscotch.640.4855dad5.jpg 640w, photos/butterscotch.960.4855dad5.jpg 960w, photos/butterscotch.jpg?v=4855dad5 1000w" sizes="(min-width:700px) 215px, 45vw" alt="Butterscotch, a fawn Holland Lop cross" loading="lazy">
               <b>Butterscotch</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-sundae" data-rid="sundae">
+            <a class="wt" href="/#r-sundae" data-rid="sundae">
               <img src="photos/sundae.jpg?v=9a03d75c" srcset="photos/sundae.160.9a03d75c.jpg 160w, photos/sundae.320.9a03d75c.jpg 320w, photos/sundae.640.9a03d75c.jpg 640w, photos/sundae.960.9a03d75c.jpg 960w, photos/sundae.jpg?v=9a03d75c 1000w" sizes="(min-width:700px) 215px, 45vw" alt="Sundae, a sable point Holland Lop cross" loading="lazy">
               <b>Sundae</b><small>&nbsp;</small>
             </a>
-            <a class="wt" href="index.html#r-cloud" data-rid="cloud">
+            <a class="wt" href="/#r-cloud" data-rid="cloud">
               <img src="photos/cloud.jpg?v=936bda0a" srcset="photos/cloud.160.936bda0a.jpg 160w, photos/cloud.320.936bda0a.jpg 320w, photos/cloud.640.936bda0a.jpg 640w, photos/cloud.960.936bda0a.jpg 960w, photos/cloud.jpg?v=936bda0a 1000w" sizes="(min-width:700px) 215px, 45vw" alt="Cloud, a sable point Holland Lop cross" loading="lazy">
               <b>Cloud</b><small>&nbsp;</small>
             </a>
@@ -629,16 +647,16 @@ h1,h2,h3{text-wrap:balance}
           <h2>Five born, four raised</h2>
           
           <div class="parents">
-            <a class="parent" href="index.html#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
+            <a class="parent" href="/#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b></span>
             </a>
-            <a class="parent" href="index.html#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
+            <a class="parent" href="/#p-father" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and kits">
               <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b></span>
             </a>
           </div>
           
           <p class="litter-life">A rabbit like these can live
-          <a class="xlink" href="index.html#faq-life">8 to 12 years</a>.</p>
+          <a class="xlink" href="/#faq-life">8 to 12 years</a>.</p>
           <p>The litter that started it all: my first litter ever, and the first time I'd had
           baby rabbits. I didn't have a nest box yet, and I didn't know she was pregnant.</p>
           
@@ -658,7 +676,9 @@ h1,h2,h3{text-wrap:balance}
       the date I took it. Every litter goes here, starting with my first ever on 28 June
       2026, and none is ever taken out; the first purebred litter joins as soon as its
       photos are in. Anything newer than the last litter here is in the
-      <a class="xlink" href="updates.html">news</a>.</p>
+      <a class="xlink" href="/updates">news</a>.</p>
+
+      <div class="finder" id="finderBox"><label class="finder-label" for="litterFind">Find a litter</label><select id="litterFind"><option value="">All litters</option></select></div>
 
       <div class="grid">
 
@@ -709,8 +729,8 @@ h1,h2,h3{text-wrap:balance}
       </div>
 
       <p class="newscta">
-        <a class="btn btn-primary" href="index.html#available">See who is available</a>
-        <a class="btn btn-ghost" href="index.html#waitlist">Hear about the next litter</a>
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/#waitlist">Hear about the next litter</a>
       </p>
     </div>
 
@@ -721,9 +741,9 @@ h1,h2,h3{text-wrap:balance}
   <div class="wrap" style="display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between">
     <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
     <nav class="foot-nav" aria-label="Pages">
-      <a href="index.html">Rabbits</a>
-      <a href="updates.html">News</a>
-      <a href="terms.html">Terms and privacy</a>
+      <a href="/">Rabbits</a>
+      <a href="/updates">News</a>
+      <a href="/terms">Terms and privacy</a>
     </nav>
   </div>
 </footer>
@@ -756,7 +776,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=39d6fe71"></script>
+<script src="rabbits.js?v=94aefa54"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -791,7 +811,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
             'September','October','November','December'];
     function full(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
       return m?(+m[3])+' '+FM[+m[2]-1]+' '+m[1]:'';}
-    var BASE='index.html#r-';
+    var BASE='/#r-';
     var probe=document.querySelector('a.wt[href*="#r-"]');
     if(probe){var bm=/^(.*#r-)/.exec(probe.getAttribute('href'));if(bm)BASE=bm[1];}
     var byDob={};
@@ -852,11 +872,11 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       return {id:a.id,y:m[1],mo:+m[2],key:m[1]+'-'+m[2],no:no?no.textContent.trim():''};
     }).filter(Boolean).sort(function(a,b){return a.id<b.id?-1:1;});
     var fgrid=document.querySelector('.browse .grid'), flede=document.querySelector('.browse .lede');
-    if(LITS.length>1&&fgrid&&flede){
-      var fbox=document.createElement('div');fbox.className='finder';
-      var flab=document.createElement('label');flab.className='finder-label';flab.htmlFor='litterFind';flab.textContent='Find a litter';
-      var fsel=document.createElement('select');fsel.id='litterFind';
-      var fall=document.createElement('option');fall.value='';fall.textContent='All litters';fsel.appendChild(fall);
+    var fboxAt=document.getElementById('finderBox');
+    if(fboxAt&&!(LITS.length>1&&fgrid&&flede)) fboxAt.parentNode.removeChild(fboxAt);
+    if(LITS.length>1&&fgrid&&flede&&fboxAt){
+      var fbox=document.getElementById('finderBox');
+      var fsel=document.getElementById('litterFind');
       var g1=document.createElement('optgroup');g1.label='By number';
       LITS.forEach(function(a){ if(!a.no) return; var o=document.createElement('option');
         o.value='n:'+a.id; o.textContent=a.no+', '+FMN[a.mo-1]+' '+a.y; g1.appendChild(o); });
@@ -866,8 +886,6 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         o.value='m:'+a.key; o.textContent=FMN[a.mo-1]+' '+a.y; g2.appendChild(o); });
       fsel.appendChild(g2);
       var fnote=document.createElement('p');fnote.className='finder-note';fnote.setAttribute('aria-live','polite');fnote.hidden=true;
-      fbox.appendChild(flab);fbox.appendChild(fsel);
-      flede.parentNode.insertBefore(fbox,fgrid);
       flede.parentNode.insertBefore(fnote,fgrid);
       var dobOf={};
       RABBITS.forEach(function(r){ if(r.addr) dobOf[r.addr]=r.dob||''; });
@@ -1243,6 +1261,6 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 })();
 </script>
 
-<script src="count.js?v=b57252cf" defer></script>
+<script src="count.js?v=6aeedef7" defer></script>
 </body>
 </html>

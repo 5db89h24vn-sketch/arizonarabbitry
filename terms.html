@@ -34,6 +34,13 @@
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin-ext.521e24d1.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family: 'Inter';font-style: normal;font-weight: 600;font-display: swap;src: url(fonts/inter-latin.1dc044f4.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 </style>
+<style data-fact="font-fallbacks">
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:400;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
+@font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:500;ascent-override:89.52%;descent-override:22.29%;line-gap-override:0%;size-adjust:108.21%}
+@font-face{font-family:'Inter Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Arimo Bold'),local('Arimo-Bold'),local('Liberation Sans Bold'),local('LiberationSans-Bold');font-weight:600;ascent-override:95.42%;descent-override:23.76%;line-gap-override:0%;size-adjust:101.53%}
+@font-face{font-family:'Fraunces Fallback';src:local('Georgia');font-weight:100 900;ascent-override:92.37%;descent-override:24.08%;line-gap-override:0%;size-adjust:105.88%}
+@font-face{font-family:'Fraunces Fallback Times';src:local('Times New Roman'),local('TimesNewRomanPSMT'),local('Tinos'),local('Liberation Serif'),local('LiberationSerif');font-weight:100 900;ascent-override:84.18%;descent-override:21.95%;line-gap-override:0%;size-adjust:116.18%}
+</style>
 
 <style>
 :root{
@@ -43,8 +50,8 @@
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
-  --serif:'Fraunces',ui-serif,Georgia,serif;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times',ui-serif,Georgia,serif;
+  --sans:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -132,18 +139,18 @@ h1,h2,h3{text-wrap:balance}
 <header>
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="index.html">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
+      <a class="brand" href="/">Arizo<span class="brand-na">na<svg class="brand-rabbit" viewBox="0 0 220 200" aria-hidden="true" focusable="false"><clipPath id="brand-rabbit-far"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/></clipPath><g fill="currentColor"><path d="M142 96C128 80 116 60 116 46C116 34 128 32 134 40C144 54 152 76 156 94Z"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z" fill="none" style="stroke:var(--paper)" stroke-width="8" clip-path="url(#brand-rabbit-far)"/><path d="M157 90C154 67 156 44 164 32C170 22 183 24 185 37C187 55 181 75 172 94Z"/><path d="M40 192C20 186 14 162 17 142C22 106 54 84 92 84C114 84 128 90 138 100C152 118 166 152 176 192Z"/><path d="M114 124C112 94 136 74 164 74C192 74 212 94 212 120C212 144 194 162 168 164C138 166 116 152 114 124Z"/><path d="M32 190C32 182 52 179 78 180C100 181 112 184 112 188C112 193 96 194 74 194C50 194 32 195 32 190Z"/><path d="M158 186C158 178 170 174 182 176C194 178 197 186 193 190C189 194 176 194 168 193C160 192 158 190 158 186Z"/><circle cx="21" cy="140" r="10.5"/><circle cx="182" cy="108" r="7" style="fill:var(--paper)"/></g></svg></span> Rabbits<small>Tucson</small></a>
       <div class="topbar-right">
         <a class="tel" href="tel:+15202702827">(520) 270-2827</a>
         <a class="cta" href="sms:+15202702827">Text William</a>
       </div>
     </div>
-    <a class="back" href="index.html">&larr; Back to the rabbits</a>
+    <a class="back" href="/">&larr; Back to the rabbits</a>
     <nav class="subnav" aria-label="On the main page">
-      <a href="index.html#available">Available now</a>
-      <a href="index.html#raised">How they're raised</a>
-      <a href="index.html#boarding">Boarding</a>
-      <a href="index.html#faq">FAQ</a>
+      <a href="/#available">Available now</a>
+      <a href="/#raised">How they're raised</a>
+      <a href="/#boarding">Boarding</a>
+      <a href="/#faq">FAQ</a>
     </nav>
     <h1>The terms, on one sheet</h1>
     <p class="lede">Everything about the money and your details in one place, in plain words.
@@ -206,7 +213,7 @@ h1,h2,h3{text-wrap:balance}
   $15 a day after the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.
   Outside rabbits stay out because RHDV2 is in Arizona's wild rabbits.</p>
   <p>The long answers, with the reasons, are in the
-  <a class="xlink" href="index.html#faq">questions on the front page</a>.</p>
+  <a class="xlink" href="/#faq">questions on the front page</a>.</p>
 
   <h2 id="privacy">Your details</h2>
   
@@ -237,10 +244,10 @@ h1,h2,h3{text-wrap:balance}
   <div class="wrap">
     <span>&copy; 2026 Arizona Rabbits &middot; Tucson</span>
     <nav class="foot-nav" aria-label="Pages">
-      <a href="index.html">Rabbits</a>
-      <a href="litters.html">Litters</a>
-      <a href="updates.html">News</a>
-      <a href="terms.html#privacy">Privacy</a>
+      <a href="/">Rabbits</a>
+      <a href="/litters">Litters</a>
+      <a href="/updates">News</a>
+      <a href="/terms#privacy">Privacy</a>
     </nav>
   </div>
 </footer>
@@ -277,6 +284,6 @@ h1,h2,h3{text-wrap:balance}
 })();
 </script>
 
-<script src="count.js?v=b57252cf" defer></script>
+<script src="count.js?v=6aeedef7" defer></script>
 </body>
 </html>

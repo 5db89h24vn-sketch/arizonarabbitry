@@ -166,6 +166,15 @@
       crosses can never carry one. Their record here is still worth keeping,
       and it is what a buyer is actually asking for.
 
+   ── A WOOLLY COAT (4 Oct 2026) ──
+      A rabbit whose coat is long and wavy gets one line:
+
+        coat:   "woolly",
+
+      and its listing prints "A woolly coat needs daily grooming.", with the
+      grooming answer one tap away, so a buyer who is weighing the work sees
+      it on the rabbit and not only in the FAQ. Leave it out on a short coat.
+
    ── TO ADD A NEW RABBIT ──
       Copy any block between { and }, including the comma at the end,
       paste it in, and change the details.
@@ -686,6 +695,7 @@ const RABBITS = [
     father: "angora",
     sex:    "",
     colour: "Fawn",
+    coat:   "woolly",
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
@@ -765,6 +775,7 @@ const RABBITS = [
     father: "angora",
     sex:    "",
     colour: "Fawn",
+    coat:   "woolly",
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
