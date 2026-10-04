@@ -11,6 +11,7 @@
 
 <meta name="theme-color" content="#FBF8F3">
 
+<link rel="preload" as="script" href="rabbits.js?v=fb9fad85" data-fact="data-preload">
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/marshmallow.1200.6a1cdc34.avif";l.setAttribute("imagesrcset","img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
 
 <link rel="canonical" href="https://arizonarabbits.com/">
@@ -2376,8 +2377,8 @@ body.locked{overflow:hidden}
           X-rays $175, in-house bloodwork $100. Prices change, so their list is the one that
           counts. They ask every client to spay or neuter, which I would tell you to do anyway.</p>
           <p><b>The exotic hospital is the name people think of first.</b> Arizona Exotic Animal
-          Hospital on Grant Road sees rabbits too. For the same care, Santa Cruz is the much
-          better option for its price. If Santa Cruz can't fit you in, the exotic hospital asks
+          Hospital on Grant Road sees rabbits too. I recommend Santa Cruz: the much better
+          option for its price. If Santa Cruz can't fit you in, the exotic hospital asks
           you to call for anything within two days: <a href="tel:+15203050055">(520) 305-0055</a>.</p>
           <p><b>A sick rabbit does not wait for an appointment.</b> If you see any of the same-day
           signs in the next answer, call whoever can see you today.</p>
@@ -3105,12 +3106,13 @@ body.locked{overflow:hidden}
     im.onerror=null; im.removeAttribute('srcset'); im.removeAttribute('sizes'); im.src=PLACEHOLDER; };
   function sizeImg(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,''), e=PHOTO_SIZES[s];
     var so=(im.parentNode&&im.parentNode.tagName==='PICTURE')?im.parentNode.querySelector('source[type="image/avif"]'):null;
-    if(so){ so.removeAttribute('srcset'); so.removeAttribute('sizes');
-      if(e&&e.a&&e.a.length){ so.setAttribute('sizes',sizes); so.setAttribute('srcset',e.a.map(function(v){return v[1]+' '+v[0]+'w'}).join(', ')); } }
-    im.removeAttribute('srcset'); im.removeAttribute('sizes');
-    if(!e||!e.v||!e.v.length) return;
-    var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
-    im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
+    var av=(so&&e&&e.a&&e.a.length)?e.a.map(function(v){return v[1]+' '+v[0]+'w'}).join(', '):'';
+    if(av){ so.setAttribute('sizes',sizes); so.setAttribute('srcset',av); }
+    if(e&&e.v&&e.v.length){
+      var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
+      im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', '));
+    } else { if(src&&im.getAttribute('src')!==src) im.setAttribute('src',src); im.removeAttribute('srcset'); im.removeAttribute('sizes'); }
+    if(so&&!av){ so.removeAttribute('srcset'); so.removeAttribute('sizes'); } }
   var STAGE_SIZES='(min-width:1288px) 719px, (min-width:920px) calc(58vw - 28px), (min-resolution:2.5dppx) 67vw, (-webkit-min-device-pixel-ratio:2.5) 67vw, 100vw';
   document.addEventListener('DOMContentLoaded',function(){ focusIn(document); });
 
@@ -3913,7 +3915,7 @@ body.locked{overflow:hidden}
     if(vImg) vImg.addEventListener('error',function(){
       var a=vImg.getAttribute('src'); if(!a||a===PLACEHOLDER) return;   /* emptied on close (shut) is not a failure */
       if(vAvif&&vAvif.getAttribute('srcset')){ vAvif.removeAttribute('srcset'); vAvif.removeAttribute('sizes'); return; }
-      vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes'); vImg.src=PLACEHOLDER;
+      vImg.src=PLACEHOLDER; vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes');
     });
     var vFrame=vStage?vStage.querySelector('.viewer-frame'):null, stageHint=null;
     function hintOff(){ if(vFrame){ vFrame.style.backgroundImage=''; vFrame.style.backgroundPosition=''; } }
@@ -3937,7 +3939,9 @@ body.locked{overflow:hidden}
       var s=shots[at];
       var who=(vName.textContent||'Rabbit');
       if(s.video&&vVideo){
-        sizeImg(vImg, s.src, STAGE_SIZES); vImg.src=s.src; vImg.alt='';
+        vImg.removeAttribute('src'); vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes');
+        if(vAvif){ vAvif.removeAttribute('srcset'); vAvif.removeAttribute('sizes'); }
+        vImg.alt='';
         setFocus(vImg, s.src);
         setFrame(s.src); vImg.hidden=true;
         vVideo.setAttribute('poster', s.src);
@@ -4346,7 +4350,7 @@ body.locked{overflow:hidden}
         if(openNow) vText.setAttribute('href','sms:+15202702827?&body='+encodeURIComponent('Hi William, I\u2019d like to ask about '+r.name+'.'));
       }
       if(vTerms) vTerms.hidden=!openNow;
-      vStrip.innerHTML=shots.map(function(s,n){
+      vStrip.innerHTML=shots.length<2?'':shots.map(function(s,n){
         return '<button type="button" aria-label="'+((s.video||s.reel)?'Video ':'Photo ')+(n+1)+
           (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'"'+sizedAttrs(s.src,'64px')+' alt=""'+
           ' onerror="this.onerror=null;this.src=\''+PLACEHOLDER+'\'">'+((s.video||s.reel)?'<i class="pv" aria-hidden="true"></i>':'')+'</button>';
@@ -4416,8 +4420,8 @@ body.locked{overflow:hidden}
       vw.classList.remove('open','morphed');
       document.body.classList.remove('locked');
       stopVideo();
+      vImg.removeAttribute('src'); vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes');
       if(vAvif){ vAvif.removeAttribute('srcset'); vAvif.removeAttribute('sizes'); }
-      vImg.src='';
       if(!keepAddr && /^#[rp]-/.test(location.hash||'') && history.replaceState){
         history.replaceState(null,'',location.pathname+location.search);
         lastRouted=location.hash||'';
