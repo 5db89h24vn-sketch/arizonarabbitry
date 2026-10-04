@@ -62,6 +62,9 @@ header{padding:16px 0 0}
 
 :root{--logo:#4B2912}
 .topbar .brand{color:var(--logo)}
+
+.topbar .brand{white-space:nowrap}
+@media(max-width:350px){ .topbar .brand{font-size:17px} }
 .brand-na{position:relative}
 .brand-rabbit{position:absolute;left:50%;bottom:.76em;width:1.1725em;height:1.066em;
   margin-left:-.586em;overflow:visible}
@@ -84,6 +87,15 @@ header{padding:16px 0 0}
   border-radius:100px;background:#fff;font-size:14px;font-weight:500;
   color:var(--ink-soft);text-decoration:none;white-space:nowrap}
 .subnav a:hover,.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
+
+@media(max-width:480px){
+  .subnav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-22px;padding:3px 22px 3px 0;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav a{flex:0 0 auto}
+  .subnav a:focus-visible{outline-offset:-3px}
+}
 .back:active{color:var(--brick)}
 h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
@@ -137,7 +149,7 @@ h1,h2,h3{text-wrap:balance}
 <main class="wrap sheet">
   <h2 id="terms">Buying a rabbit</h2>
   <p><b>$50 holds a rabbit and comes off the price.</b> Reservations open at four weeks old.
-  Before that, a kit's sex and colour are still a guess, and I won't take money for a guess.</p>
+  Before that, a kit's sex and color are still a guess, and I won't take money for a guess.</p>
   <p><b>Change your mind before pickup: the $50 moves with you.</b> It isn't refunded, because holding a
   rabbit means turning other people away. It moves to another rabbit or to the next litter.
   First switch free. After that, $25 each.</p>
@@ -145,7 +157,7 @@ h1,h2,h3{text-wrap:balance}
   <ul>
     <li>The rabbit gets ill or doesn't make it while still in my care.</li>
     <li>I'm the one who cancels, for any reason.</li>
-    <li>The rabbit isn't what I told you it was. Wrong sex, a colour clearly different from
+    <li>The rabbit isn't what I told you it was. Wrong sex, a color clearly different from
     the listing, not the rabbit you reserved, or it fails the health check at pickup.</li>
   </ul>
   <p><b>Change your mind at pickup? Whole $50 back.</b> That holds for the first rabbit you
@@ -199,8 +211,8 @@ h1,h2,h3{text-wrap:balance}
   Web Analytics; by <a class="xlink" href="https://www.cloudflare.com/web-analytics/">Cloudflare's
   own description</a> it sets no cookie and does not follow you to other sites. I also count,
   as totals only, which buttons on the site get tapped and how far each page is scrolled:
-  no cookie, no ID, nothing that says who you are, and a browser that asks not to be
-  tracked isn't counted at all. The site's fonts come from Google Fonts, so your browser
+  no cookie, no ID, nothing that says who you are, and my count leaves out any browser
+  that asks not to be tracked. The site's fonts come from Google Fonts, so your browser
   fetches them from Google too.</p>
   <p><b>The form and the waitlist go through Formspree to my email.</b> Formspree
   (formspree.io) delivers them to me. The waitlist also keeps your address on the site's

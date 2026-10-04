@@ -63,9 +63,15 @@
 
 # EVERY PAGE (4 Oct 2026, a technical audit): never framed by another site,
 # content types taken as sent, and HTTPS remembered for a year. No full CSP:
-# the pages carry their own inline script and style by design.
+# the pages carry their own inline script and style by design. What a CSP can
+# still close without touching them (the same day, the second audit): no
+# plugins, no <base> rewriting every link, forms post only here and to
+# Formspree (the three forms' action, used when script is off), and no page
+# may ask for the camera, the microphone or where you are, none of which the
+# site ever uses.
 /*
-  Content-Security-Policy: frame-ancestors 'none'
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'none'; form-action 'self' https://formspree.io
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-Content-Type-Options: nosniff
   Strict-Transport-Security: max-age=31536000
 
