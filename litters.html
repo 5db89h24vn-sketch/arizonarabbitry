@@ -40,8 +40,12 @@
 @font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:400;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
 @font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:500;ascent-override:89.52%;descent-override:22.29%;line-gap-override:0%;size-adjust:108.21%}
 @font-face{font-family:'Inter Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Arimo Bold'),local('Arimo-Bold'),local('Liberation Sans Bold'),local('LiberationSans-Bold');font-weight:600;ascent-override:95.42%;descent-override:23.76%;line-gap-override:0%;size-adjust:101.53%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:400;ascent-override:90.24%;descent-override:22.47%;line-gap-override:0%;size-adjust:107.35%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:500;ascent-override:89.33%;descent-override:22.24%;line-gap-override:0%;size-adjust:108.45%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold');font-weight:600;ascent-override:89.89%;descent-override:22.38%;line-gap-override:0%;size-adjust:107.78%}
 @font-face{font-family:'Fraunces Fallback';src:local('Georgia');font-weight:100 900;ascent-override:92.37%;descent-override:24.08%;line-gap-override:0%;size-adjust:105.88%}
 @font-face{font-family:'Fraunces Fallback Times';src:local('Times New Roman'),local('TimesNewRomanPSMT'),local('Tinos'),local('Liberation Serif'),local('LiberationSerif');font-weight:100 900;ascent-override:84.18%;descent-override:21.95%;line-gap-override:0%;size-adjust:116.18%}
+@font-face{font-family:'Fraunces Fallback Noto';src:local('Noto Serif'),local('NotoSerif'),local('NotoSerif-Regular');font-weight:100 900;ascent-override:99.66%;descent-override:25.99%;line-gap-override:0%;size-adjust:98.13%}
 </style>
 
 <style>
@@ -52,8 +56,8 @@
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
-  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times',ui-serif,Georgia,serif;
-  --sans:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times','Fraunces Fallback Noto',ui-serif,Georgia,serif;
+  --sans:'Inter','Inter Fallback','Inter Fallback Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --r:8px;
   
   --lift-1:0 1px 2px rgba(36,31,29,.06),0 5px 14px rgba(36,31,29,.065);
@@ -776,7 +780,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=94aefa54"></script>
+<script src="rabbits.js?v=fb9fad85"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -1001,6 +1005,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 
     var box=document.createElement('div'); box.className='lbox'; box.hidden=true;
     box.setAttribute('role','dialog'); box.setAttribute('aria-label','Litter photos');
+    box.setAttribute('aria-modal','true');   /* 4 Oct 2026: a dialog says it is modal, and Tab stays inside it (below) */
     box.innerHTML=
       '<span class="counter" id="lbCount"></span>'+
       '<button type="button" class="close" aria-label="Close">\u2715</button>'+
@@ -1078,18 +1083,26 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       lbCount.textContent=(at+1)+' of '+shots.length;
       bPrev.disabled=(at===0); bNext.disabled=(at===shots.length-1);
     }
+    var lbPushed=false, lbPopIgnore=false;
     function open(set,dob,name,i){
       shots=set; born=dob; label=name; lastFocus=document.activeElement;
       setFrame(set);
       box.hidden=false; document.body.classList.add('lbox-open');
       paint(i||0); bClose.focus();
+      if(!lbPushed){ try{ history.pushState({lb:1},''); lbPushed=true; }catch(e){ lbPushed=false; } }
     }
-    function shut(){
+    function shut(fromPop){
       stopVideo();
       box.hidden=true; document.body.classList.remove('lbox-open');
       if(lastFocus&&lastFocus.focus) lastFocus.focus();
+      if(lbPushed&&fromPop!==true){ lbPushed=false; lbPopIgnore=true; try{ history.back(); }catch(e){ lbPopIgnore=false; } }
+      else lbPushed=false;
     }
-    bClose.addEventListener('click',shut);
+    window.addEventListener('popstate',function(){
+      if(lbPopIgnore){ lbPopIgnore=false; return; }
+      if(!box.hidden) shut(true);
+    });
+    bClose.addEventListener('click',function(){ shut(); });
     bPrev.addEventListener('click',function(){paint(at-1);});
     bNext.addEventListener('click',function(){paint(at+1);});
     box.addEventListener('click',function(e){ if(e.target===box) shut(); });
@@ -1098,6 +1111,14 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       if(e.key==='Escape') shut();
       else if(e.key==='ArrowLeft') paint(at-1);
       else if(e.key==='ArrowRight') paint(at+1);
+      else if(e.key==='Tab'){
+        var f=[].filter.call(box.querySelectorAll('button,video[controls],a[href]'),function(el){ return !el.disabled&&!el.hidden&&el.getClientRects().length; });
+        if(!f.length) return;
+        var first=f[0], last=f[f.length-1], a=document.activeElement;
+        if(!box.contains(a)){ e.preventDefault(); first.focus(); }
+        else if(e.shiftKey&&a===first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey&&a===last){ e.preventDefault(); first.focus(); }
+      }
     });
 
     var arts=document.querySelectorAll('article.litter');

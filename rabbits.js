@@ -186,7 +186,7 @@
       • Cards sort themselves: available rabbits first, then reserved,
         then sold, most expensive first within each group. Don't
         reorder them yourself; the order in this file doesn't matter.
-      • The "6 available · 4 sold since August" counter updates itself.
+      • The "6 available" counter updates itself.
       • Sold rabbits with departed: true never show on the front page.
       • Adopted rabbits vanish 7 days after the day they went home.
 

@@ -40,8 +40,12 @@
 @font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:400;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
 @font-face{font-family:'Inter Fallback';src:local('Arial'),local('ArialMT'),local('Arimo'),local('Liberation Sans'),local('LiberationSans');font-weight:500;ascent-override:89.52%;descent-override:22.29%;line-gap-override:0%;size-adjust:108.21%}
 @font-face{font-family:'Inter Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Arimo Bold'),local('Arimo-Bold'),local('Liberation Sans Bold'),local('LiberationSans-Bold');font-weight:600;ascent-override:95.42%;descent-override:23.76%;line-gap-override:0%;size-adjust:101.53%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:400;ascent-override:90.24%;descent-override:22.47%;line-gap-override:0%;size-adjust:107.35%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:500;ascent-override:89.33%;descent-override:22.24%;line-gap-override:0%;size-adjust:108.45%}
+@font-face{font-family:'Inter Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold');font-weight:600;ascent-override:89.89%;descent-override:22.38%;line-gap-override:0%;size-adjust:107.78%}
 @font-face{font-family:'Fraunces Fallback';src:local('Georgia');font-weight:100 900;ascent-override:92.37%;descent-override:24.08%;line-gap-override:0%;size-adjust:105.88%}
 @font-face{font-family:'Fraunces Fallback Times';src:local('Times New Roman'),local('TimesNewRomanPSMT'),local('Tinos'),local('Liberation Serif'),local('LiberationSerif');font-weight:100 900;ascent-override:84.18%;descent-override:21.95%;line-gap-override:0%;size-adjust:116.18%}
+@font-face{font-family:'Fraunces Fallback Noto';src:local('Noto Serif'),local('NotoSerif'),local('NotoSerif-Regular');font-weight:100 900;ascent-override:99.66%;descent-override:25.99%;line-gap-override:0%;size-adjust:98.13%}
 </style>
 
 <style>
@@ -57,8 +61,8 @@
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6;
   --gone:#6E6058; --gone-line:#DDD3C8;
   --alert:#A32218;
-  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times',ui-serif,Georgia,serif;
-  --sans:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times','Fraunces Fallback Noto',ui-serif,Georgia,serif;
+  --sans:'Inter','Inter Fallback','Inter Fallback Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --maxw:1140px; --r:8px;
 
   color-scheme:light;
@@ -1104,7 +1108,7 @@ html.vtout::view-transition-new(rabbitphoto){
 
 .viewer-stage{position:relative;background:var(--paper-2);aspect-ratio:var(--stage-ar,4/3);flex:none}
 
-.viewer-frame{position:absolute;inset:0}
+.viewer-frame{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat}
 .viewer-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1A1613}
 .viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
@@ -1987,9 +1991,9 @@ body.locked{overflow:hidden}
             rel="noopener">comes to people instead of running from them</a>.</li>
             <li><b>A record you can check.</b> Its birth date, its litter from day one, its
             parents and dated photos, all on this site.</li>
-            <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, together
-            before the sale is final, and it goes home when it passes <a class="litterlink"
-            href="#faq-home">the test</a>.</li>
+            <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, checked
+            together, and it goes home when it passes <a class="litterlink"
+            href="#faq-home">the test</a>. If it doesn't, your $50 comes back.</li>
             <li><b>Two weeks of its food and a care sheet.</b> <a class="litterlink"
             href="#faq-vet">The Tucson vets</a> who treat rabbits, and my number for as long as
             you have it.</li>
@@ -2143,12 +2147,12 @@ body.locked{overflow:hidden}
           keeps it going, and every $50 comes off the price. One switch is free, and a switch
           doesn't extend the month. When the month is up I'll check in, and you'll have a
           week to decide.</p>
-          <p><b>Rabbits are a highly social species.</b> The RSPCA's words: they need
-          companionship as much as a healthy diet, and <a class="cite"
+          
+          <p><b>Rabbits are a highly social species.</b> <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company"
-          target="_blank" rel="noopener">one rabbit needs another rabbit</a>, unless a vet
-          says otherwise. Just one? <a class="litterlink" href="#faq-one">That can work
-          too</a>.</p>
+          target="_blank" rel="noopener">The RSPCA's words</a>: they need companionship as
+          much as a healthy diet. Just one? <a class="litterlink" href="#faq-one">Then you
+          are its company</a>.</p>
           
           <p><b>Littermates already get along.</b> They've been together since the day they were
           born, so a pair from one litter goes home used to each other.</p>
@@ -2653,8 +2657,8 @@ body.locked{overflow:hidden}
         
         <ul>
           <li><b>Handled every day</b> from its first week.</li>
-          <li><b>Free weekend delivery</b> anywhere in Arizona.</li>
-          <li><b>A health check with you</b> before the sale is final.</li>
+          <li><b>Weekend delivery</b> anywhere in Arizona, included.</li>
+          <li><b>A health check with you</b>, and your $50 back if it fails.</li>
           <li><b>Two weeks of its food</b> and a care sheet.</li>
           <li><b>The whole price.</b> Nothing added at pickup.</li>
           <li><b>My number</b> for as long as you have it.</li>
@@ -2692,7 +2696,7 @@ body.locked{overflow:hidden}
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-ghost vtext" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a></div>
 
         <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>$50 holds it, the rest in parts.</b> <span
-          class="vt-more">Pay any amounts before pickup.</span></span> <span class="vt-row"><b>Free weekend delivery
+          class="vt-more">Any amounts, any time before pickup.</span></span> <span class="vt-row"><b>Free weekend delivery
           in Arizona.</b> <span class="vt-more">You meet it before the sale is final. 10%&nbsp;off if you
           serve.</span> <a href="/terms">The terms</a></span></p></div>
     </div>
@@ -2705,7 +2709,7 @@ body.locked{overflow:hidden}
 <script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit.jpg":{"a":[[640,"photos/biscuit.640.db57dcda.avif"],[960,"photos/biscuit.960.db57dcda.avif"],[1280,"photos/biscuit.1280.db57dcda.avif"],[1600,"photos/biscuit.1600.db57dcda.avif"]],"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"],[1280,"photos/biscuit.1280.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"a":[[640,"photos/butterscotch-bumble.640.8b815efa.avif"],[960,"photos/butterscotch-bumble.960.8b815efa.avif"],[1186,"photos/butterscotch-bumble.1186.8b815efa.avif"]],"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"a":[[640,"photos/butterscotch.640.4855dad5.avif"],[960,"photos/butterscotch.960.4855dad5.avif"],[1000,"photos/butterscotch.1000.4855dad5.avif"]],"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"a":[[640,"photos/cloud.640.936bda0a.avif"],[960,"photos/cloud.960.936bda0a.avif"],[1000,"photos/cloud.1000.936bda0a.avif"]],"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"a":[[640,"photos/father-2.640.607c5d09.avif"],[960,"photos/father-2.960.607c5d09.avif"],[1280,"photos/father-2.1280.607c5d09.avif"],[1448,"photos/father-2.1448.607c5d09.avif"]],"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"],[1280,"photos/father-2.1280.607c5d09.jpg"]],"w":1448},"photos/father-video.jpg":{"a":[[640,"photos/father-video.640.539b3407.avif"],[960,"photos/father-video.960.539b3407.avif"]],"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"a":[[640,"photos/honey.640.5409c37f.avif"],[960,"photos/honey.960.5409c37f.avif"],[1280,"photos/honey.1280.5409c37f.avif"],[1600,"photos/honey.1600.5409c37f.avif"]],"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"],[1280,"photos/honey.1280.5409c37f.jpg"]],"w":1600},"photos/litter-2026-06-28.jpg":{"a":[[640,"photos/litter-2026-06-28.640.5816cb81.avif"],[960,"photos/litter-2026-06-28.960.5816cb81.avif"],[1280,"photos/litter-2026-06-28.1280.5816cb81.avif"],[1400,"photos/litter-2026-06-28.1400.5816cb81.avif"]],"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"],[1280,"photos/litter-2026-06-28.1280.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"a":[[640,"photos/litter-2026-07-28.640.36389c88.avif"],[960,"photos/litter-2026-07-28.960.36389c88.avif"],[1280,"photos/litter-2026-07-28.1280.36389c88.avif"],[1400,"photos/litter-2026-07-28.1400.36389c88.avif"]],"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"],[1280,"photos/litter-2026-07-28.1280.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"a":[[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.avif"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.avif"],[1280,"photos/litter-2026-08-27-2026-09-02.1280.7cf9c3bb.avif"],[1400,"photos/litter-2026-08-27-2026-09-02.1400.7cf9c3bb.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"],[1280,"photos/litter-2026-08-27-2026-09-02.1280.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"a":[[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.avif"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.avif"],[1280,"photos/litter-2026-08-27-2026-09-06.1280.d44c58ea.avif"],[1400,"photos/litter-2026-08-27-2026-09-06.1400.d44c58ea.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"],[1280,"photos/litter-2026-08-27-2026-09-06.1280.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"a":[[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.avif"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.avif"],[1280,"photos/litter-2026-08-27-2026-09-08.1280.64ba1c94.avif"],[1400,"photos/litter-2026-08-27-2026-09-08.1400.64ba1c94.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"],[1280,"photos/litter-2026-08-27-2026-09-08.1280.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"a":[[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.avif"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.avif"],[1280,"photos/litter-2026-08-27-2026-09-11-video.1280.cd43108f.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg"]],"w":1280},"photos/litter-2026-08-27.jpg":{"a":[[640,"photos/litter-2026-08-27.640.bcb889d9.avif"],[960,"photos/litter-2026-08-27.960.bcb889d9.avif"],[1280,"photos/litter-2026-08-27.1280.bcb889d9.avif"],[1400,"photos/litter-2026-08-27.1400.bcb889d9.avif"]],"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"],[1280,"photos/litter-2026-08-27.1280.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"a":[[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.avif"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.avif"],[1280,"photos/litter-2026-09-27-2026-09-27-nest.1280.b7ba9c5b.avif"],[1400,"photos/litter-2026-09-27-2026-09-27-nest.1400.b7ba9c5b.avif"]],"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"],[1280,"photos/litter-2026-09-27-2026-09-27-nest.1280.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"a":[[640,"photos/litter-2026-09-27.640.14c29a12.avif"],[960,"photos/litter-2026-09-27.960.14c29a12.avif"],[1280,"photos/litter-2026-09-27.1280.14c29a12.avif"],[1400,"photos/litter-2026-09-27.1400.14c29a12.avif"]],"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"],[1280,"photos/litter-2026-09-27.1280.14c29a12.jpg"]],"w":1400},"photos/maple.jpg":{"a":[[640,"photos/maple.640.b5a4d27b.avif"],[960,"photos/maple.960.b5a4d27b.avif"],[1280,"photos/maple.1280.b5a4d27b.avif"],[1600,"photos/maple.1600.b5a4d27b.avif"]],"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"],[1280,"photos/maple.1280.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"a":[[640,"photos/marshmallow-2.640.20869aa2.avif"],[960,"photos/marshmallow-2.960.20869aa2.avif"],[1280,"photos/marshmallow-2.1280.20869aa2.avif"],[1600,"photos/marshmallow-2.1600.20869aa2.avif"]],"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"],[1280,"photos/marshmallow-2.1280.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"a":[[640,"photos/marshmallow.640.6a1cdc34.avif"],[960,"photos/marshmallow.960.6a1cdc34.avif"],[1280,"photos/marshmallow.1280.6a1cdc34.avif"],[1600,"photos/marshmallow.1600.6a1cdc34.avif"]],"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"],[1280,"photos/marshmallow.1280.6a1cdc34.jpg"]],"w":1600},"photos/mother-2.jpg":{"a":[[640,"photos/mother-2.640.55c3d426.avif"],[960,"photos/mother-2.960.55c3d426.avif"],[1280,"photos/mother-2.1280.55c3d426.avif"],[1600,"photos/mother-2.1600.55c3d426.avif"]],"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"],[1280,"photos/mother-2.1280.55c3d426.jpg"]],"w":1600},"photos/mother.jpg":{"a":[[640,"photos/mother.640.82c16a60.avif"],[960,"photos/mother.960.82c16a60.avif"],[1280,"photos/mother.1280.82c16a60.avif"],[1600,"photos/mother.1600.82c16a60.avif"]],"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"],[1280,"photos/mother.1280.82c16a60.jpg"]],"w":1600},"photos/pecan.jpg":{"a":[[640,"photos/pecan.640.ffb48d8d.avif"],[960,"photos/pecan.960.ffb48d8d.avif"],[1280,"photos/pecan.1280.ffb48d8d.avif"],[1600,"photos/pecan.1600.ffb48d8d.avif"]],"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"],[1280,"photos/pecan.1280.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"a":[[640,"photos/sundae.640.9a03d75c.avif"],[960,"photos/sundae.960.9a03d75c.avif"],[1000,"photos/sundae.1000.9a03d75c.avif"]],"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"a":[[640,"photos/teddy.640.9068ff3a.avif"],[960,"photos/teddy.960.9068ff3a.avif"],[1000,"photos/teddy.1000.9068ff3a.avif"]],"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"a":[[640,"photos/toffee.640.08091cd6.avif"],[960,"photos/toffee.960.08091cd6.avif"],[1280,"photos/toffee.1280.08091cd6.avif"],[1600,"photos/toffee.1600.08091cd6.avif"]],"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"],[1280,"photos/toffee.1280.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-09-27","count":"Seven born","kits":[],"line":"Holland Lop cross","never":false,"no":"Fourth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=94aefa54"></script>
+<script src="rabbits.js?v=fb9fad85"></script>
 
 <script>
 (function(){
@@ -3386,13 +3390,13 @@ body.locked{overflow:hidden}
     }).join('');
     var who=(m.kind==='litter')?(m.list.length===1?'the littermate':'a littermate'):'any of these';
     return '<small>A pair</small>'+
-      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> With '+who+', that\u2019s '+saving+' off.</p>'+
+      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+' off.</p>'+
       '<div class="kitrow">'+chips+'</div>'+
-      '<p><b>Not sure yet? You have 48 hours.</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
+      '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">How a hold works</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
         '<a class="cite" href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company" target="_blank" rel="noopener">a highly social species</a>. '+
-        'Just one? <a class="litterlink" href="#faq-one">That can work too</a>.</p>';
+        'Just one? <a class="litterlink" href="#faq-one">Then you are its company</a>.</p>';
   }
   function stillHTML(r){
     if(r.status==='available') return '';
@@ -3732,12 +3736,9 @@ body.locked{overflow:hidden}
 
     if(countEl){
       var open=list.filter(function(r){return r.status==='available'}).length;
-      var gone=RABBITS.filter(function(r){return (r.status==='sold'||r.status==='adopted')&&(r.soldOn||r.wentHome);});
-      var since=gone.map(function(r){return String(r.soldOn||r.wentHome);}).sort()[0]||'';
-      var monthName=since?(typeof MONTHS_LONG!=='undefined'?MONTHS_LONG:['January','February','March','April','May','June','July','August','September','October','November','December'])[(+since.slice(5,7))-1]:'';
       countEl.textContent = open===0
         ? 'All reserved. Ask to see the next litter first, below.'
-        : open+' available'+(gone.length&&monthName?' \u00B7 '+gone.length+' sold since '+monthName:'');
+        : open+' available';
       countEl.className = 'count ' + (open===0 ? 'none' : 'open');
     }
     var heroBtn=document.querySelector('.hero-cta .btn-primary');
@@ -3914,6 +3915,18 @@ body.locked{overflow:hidden}
       if(vAvif&&vAvif.getAttribute('srcset')){ vAvif.removeAttribute('srcset'); vAvif.removeAttribute('sizes'); return; }
       vImg.removeAttribute('srcset'); vImg.removeAttribute('sizes'); vImg.src=PLACEHOLDER;
     });
+    var vFrame=vStage?vStage.querySelector('.viewer-frame'):null, stageHint=null;
+    function hintOff(){ if(vFrame){ vFrame.style.backgroundImage=''; vFrame.style.backgroundPosition=''; } }
+    function hintOn(s){
+      var h=stageHint; stageHint=null;
+      if(!vFrame) return;
+      var bare=function(x){ return String(x||'').replace(/\?v=[0-9a-f]+/,''); };
+      if(h&&bare(h.src)===bare(s.src)&&!(vImg.complete&&vImg.naturalWidth)){
+        vFrame.style.backgroundImage='url("'+String(h.url).replace(/"/g,'%22')+'")';
+        vFrame.style.backgroundPosition=vImg.style.objectPosition||'';
+      } else hintOff();
+    }
+    if(vImg) vImg.addEventListener('load',hintOff);
     if(vImg) vImg.addEventListener('load',function(){
       if(!shapeFor(vImg.getAttribute('src')||'') && vImg.naturalWidth)
         vStage.style.setProperty('--stage-ar',vImg.naturalWidth+'/'+vImg.naturalHeight);
@@ -3934,6 +3947,7 @@ body.locked{overflow:hidden}
         vVideo.hidden=false;
         vVideo.load();
         vStage.classList.add('video');
+        hintOff();
       } else {
         stopVideo();
         sizeImg(vImg, s.src, STAGE_SIZES);
@@ -3944,6 +3958,7 @@ body.locked{overflow:hidden}
         vImg.src=s.src; vImg.alt=who+', photo '+(at+1)+' of '+shots.length;
         setFocus(vImg, s.src);
         setFrame(s.src);
+        hintOn(s);
       }
       var age=ageAt(born,s.date);
       vBornText.textContent=s.date
@@ -4397,6 +4412,7 @@ body.locked{overflow:hidden}
 
     function shut(keepAddr){
       releaseCards();
+      hintOff(); stageHint=null;
       vw.classList.remove('open','morphed');
       document.body.classList.remove('locked');
       stopVideo();
@@ -4450,6 +4466,7 @@ body.locked{overflow:hidden}
       var rid=card.getAttribute('data-rid');
       var r=RABBITS.filter(function(x){return addrOf(x)===rid;})[0];
       var pic=card.querySelector('.bunny-media img');
+      stageHint=(r&&pic&&pic.complete&&pic.naturalWidth>1&&pic.currentSrc&&!/^data:/.test(pic.currentSrc))?{src:r.photo||'',url:pic.currentSrc}:null;
       if(r && morph(pic,function(){ return openFor(r,true); })) ev.preventDefault();
     });
 
