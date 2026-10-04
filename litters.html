@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="preload" as="script" href="rabbits.js?v=fb9fad85" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=c32597f1" data-fact="data-preload">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -244,6 +244,8 @@ html.js .tile-age[hidden],html.js .tile-age:empty{display:block;visibility:hidde
 html.js .tile-age:empty::before{content:'\00a0'}
 .litter-life{color:var(--ink-soft)}
 
+.litter-last > b:first-child{display:block;text-wrap:balance;line-height:1.35;margin-bottom:3px}
+
 .litter-life a{white-space:nowrap}
 
 .alert-form{margin-top:16px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2)}
@@ -450,6 +452,9 @@ html:not(.js) .finder{display:none}
         <div class="litter-body">
           <span data-fact="litter-no:2026-09-27" class="litter-no">Fourth litter</span> <time datetime="2026-09-27">Born 27 September 2026</time> <span class="litter-age" data-born="2026-09-27" hidden></span>
           <h2>Seven born</h2>
+          
+          <p class="litter-last"><b>The last litter from Cinnamony and Frederick.</b> Frederick goes
+          on to pure angora lines once I find an angora doe for him.</p>
           
           <div class="parents">
             <a class="parent" href="/#p-mother" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and kits">
@@ -785,7 +790,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=fb9fad85"></script>
+<script src="rabbits.js?v=c32597f1"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;

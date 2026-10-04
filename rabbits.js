@@ -725,8 +725,9 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* William, 4 Oct 2026: "Mark toffee as both sold and reserved today" */
+    reservedOn: "2026-10-04",
+    soldOn: "2026-10-04",
     ear:    "",
     weights: [],
     photo:  "photos/toffee.jpg",
