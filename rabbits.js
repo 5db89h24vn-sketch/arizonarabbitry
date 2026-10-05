@@ -309,7 +309,11 @@
       parent with no photo. Names are optional (name: "..."); without one
       the site says "The mother" and "The father", which is what William
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
-      typed here: no colour, no age, no line about temperament.
+      typed here: no colour, no age, no line about temperament. A PARENT'S
+      PAPERS (4 Oct 2026, Tango's pedigree card): variety, ear and dob are
+      optional too, and print as the parent's record under the breed line,
+      the way a kit's ear number and weight print in its own, so a pedigreed
+      parent reads as one; leave out what the card leaves blank.
 
    ── A REEL IS A FRAME THAT OPENS INSTAGRAM (23 Sept 2026) ──
       Every reel you post of a rabbit belongs in that rabbit's photos list
@@ -437,19 +441,28 @@ const PARENTS = {
         note: "Twenty seconds in a planter, nibbling." }
     ]
   },
-  /* THE SECOND PUREBRED PAIR'S DOE (4 Oct 2026, evening). William, with two
-     photos of her beside the nest box and of the box: "Liter of six, however,
-     two of them haven't made it so far ... a new mom bred with the same buck as
-     the previous litter ... the second [litter] for Holland lop purebred ...
-     broken orange, if that's what it's called, and that's the doe". No name
-     yet: his to give, and until then the site says "The mother". The buck is
-     Copper (the News names him); his tile waits for his photograph, because
-     the archive prints no parent it was not given one of. Her photo is dated
-     the day it arrived, the rule since 9 Sept. */
-  orange: {
-    role:   "mother",
-    breed:  "Holland Lop",
-    note:   "Broken orange, purebred. This is her first litter.",
+  /* TANGO, the second purebred pair's doe (4 Oct 2026, evening). William, with
+     two photos of her beside the nest box and of the box: "Liter of six,
+     however, two of them haven't made it so far ... a new mom bred with the
+     same buck as the previous litter ... the second [litter] for Holland lop
+     purebred ... broken orange, if that's what it's called, and that's the
+     doe". An hour later, her pedigree card (a screenshot): the registered
+     name carries her breeder's prefix, and his word is "use this name for
+     her, but remove the LMB part", so the site says Tango; "include her ear
+     tattoo, since it's official, and make it look like an official pedigreed
+     rabbit": the card's own facts print as her record, variety, ear number,
+     birth date, exactly as the card has them, and nothing it leaves blank
+     (registration, grand champion, legs, weight) is printed or implied. The
+     breeder's name on the card is theirs and stays off the site. Her photo is
+     dated the day it arrived, the rule since 9 Sept. */
+  tango: {
+    role:    "mother",
+    name:    "Tango",
+    breed:   "Holland Lop",
+    variety: "Broken orange",
+    ear:     "RJ1T",
+    dob:     "2025-08-20",
+    note:    "Pedigreed. This is her first litter.",
     photos: [
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
