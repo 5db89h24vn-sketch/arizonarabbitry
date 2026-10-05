@@ -76,6 +76,28 @@
       asks after two weeks whether to take the strike down (delete
       wasPrice and the deal lines: $350 then simply stands). Never both
       dealEnds and dealStays on one rabbit: the build refuses it.
+      A DROP THAT IS ONE RABBIT'S OWN (5 Oct 2026, Biscuit's ear): a price
+      lowered for a reason that belongs to that rabbit, not to its line:
+      add      dealScope: "rabbit"
+      with dealStays: true. The listing then says "That's the new price for
+      this rabbit, not a sale." instead of "for this line"; everything else
+      is the same (the struck old price, the reason with the saving worked
+      out, no SALE mark). Leave it out for a line-wide price.
+
+   ── A MARK ON THE RABBIT, SAID AND SHOWN (5 Oct 2026) ──
+      A cosmetic mark a buyer should see before they ask (Biscuit's ear):
+
+        mark: { src: "photos/biscuit-ear.jpg",
+                lead: "The nick is cosmetic.",
+                text: "A small piece is missing from the edge of one ear. ..." },
+
+      The listing prints a small box right under the price's reason: the
+      photograph at thumbnail size and your words, the lead in bold. Say
+      what it is, what you think caused it, what it is not, and that the
+      care is the same. The photograph belongs in the photos list too, with
+      its date, so the strip carries the record. Dateless words only (no
+      "now", "still", "today": the sweep refuses them, as in every note),
+      because the box is read for as long as the rabbit is listed.
       A PAIR, ON EVERY LISTING (26 Sept 2026): nothing to add here. Every
       AVAILABLE rabbit's listing shows a pair box by itself: its available
       littermates (the same dob) as chips with their prices, or, when it
@@ -774,13 +796,36 @@ const RABBITS = [
     name:   "Biscuit",
     photos: [
       { src: "photos/biscuit.jpg", date: "2026-09-18" },
-      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
+      { src: "photos/biscuit-car.jpg", date: "2026-10-05" },
+      { src: "photos/biscuit-ear.jpg", date: "2026-10-05", note: "The nick in one ear, from behind." },
+      { src: "photos/biscuit-ear-2.jpg", date: "2026-10-05", note: "The same ear from the inside." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
-      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,
+    /* William, 5 Oct 2026: "discount biscuit by $100 ... I'm not sure how the
+       ear got like that, but my guess is that one of its litter mates or
+       potentially the mom was grooming this rabbit and nicked a part of its
+       ear out. It is all simply cosmetic ... because it's not a perfect
+       rabbit, I can't have a perfect price ... all the discounts on the
+       website can still be applied ... it received the same amount of care
+       that every other rabbit has received ... as the rabbit gets bigger, the
+       ear will also get bigger, so the bite mark will actually be less and
+       less noticeable." The price is its own (dealScope), said under the
+       price with the saving worked out, and the ear is shown and explained
+       in the mark block right under that, in his words. */
+    price:  250,
+    wasPrice: 350,
+    dealNote: "One ear has a small nick",
+    dealTag:  "A nick in one ear",
+    dealOn:   "2026-10-05",
+    dealStays: true,
+    dealScope: "rabbit",
+    mark: {
+      src:  "photos/biscuit-ear.jpg",
+      lead: "The nick is cosmetic.",
+      text: "A small piece is missing from the edge of one ear. I don't know how it happened; my guess is that a littermate or its mother nicked it while grooming. It is not a health problem. As it grows, so does the ear, and the nick shows less and less. It had the same care as every rabbit here and gets the same care at this price as at any price. Every discount on the site applies to it."
+    },
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -794,8 +839,8 @@ const RABBITS = [
     soldOn: "",
     ear:    "",
     weights: [],
-    photo:  "photos/biscuit.jpg",
-    note:   "The fluffiest coat of the fawn kits, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up."
+    photo:  "photos/biscuit-car.jpg",
+    note:   "The fluffiest coat of the fawn kits, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
   },
   {
     name:   "Toffee",
