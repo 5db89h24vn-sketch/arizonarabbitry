@@ -301,6 +301,10 @@
                   photos: [ { src: "photos/newdoe.jpg" } ] },
 
       and on each of its kits:   mother: "newdoe",   father: "somebuck",
+      Its own address is #p-newdoe (5 Oct 2026: a second pair arrived, so
+      every parent is addressed by its handle; #p-mother and #p-father still
+      open the first of each, Cinnamony and Frederick). The litters page's
+      tiles link the same address with data-parent="newdoe".
       The build refuses a rabbit whose parents are not both here, and a
       parent with no photo. Names are optional (name: "..."); without one
       the site says "The mother" and "The father", which is what William
@@ -431,6 +435,23 @@ const PARENTS = {
          The clip carried its own time stamp, 7 Sept 2026, 10:11 Tucson. */
       { video: "videos/father.mp4", poster: "photos/father-video.jpg", date: "2026-09-07",
         note: "Twenty seconds in a planter, nibbling." }
+    ]
+  },
+  /* THE SECOND PUREBRED PAIR'S DOE (4 Oct 2026, evening). William, with two
+     photos of her beside the nest box and of the box: "Liter of six, however,
+     two of them haven't made it so far ... a new mom bred with the same buck as
+     the previous litter ... the second [litter] for Holland lop purebred ...
+     broken orange, if that's what it's called, and that's the doe". No name
+     yet: his to give, and until then the site says "The mother". The buck is
+     Copper (the News names him); his tile waits for his photograph, because
+     the archive prints no parent it was not given one of. Her photo is dated
+     the day it arrived, the rule since 9 Sept. */
+  orange: {
+    role:   "mother",
+    breed:  "Holland Lop",
+    note:   "Broken orange, purebred. This is her first litter.",
+    photos: [
+      { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
   }
 };
