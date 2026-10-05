@@ -4127,6 +4127,10 @@ body.locked{overflow:hidden}
         } else { vMate.hidden=true; }
       }
       var whose=(p.role==='mother')?'Her':'His';
+      var ORDW=['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth'];
+      var ownNo={};
+      mine.slice().sort(function(a,b){ return a.born<b.born?-1:(a.born>b.born?1:0); })
+        .forEach(function(l,i){ ownNo[l.born]=whose+' '+(ORDW[i]||((i+1)+'th'))+' litter'; });
       var html='<small>'+whose+' litters</small>';
       mine.forEach(function(l){
         var age=l.born?ageAt(l.born, todayISO()):'';
@@ -4135,7 +4139,7 @@ body.locked{overflow:hidden}
         html+='<div class="litrow">'+
           '<a class="litrow-main" href="/litters#L'+esc(l.born)+'"'+
           ' title="See this litter, with the photo from the day it was born">'+
-          (l.no?('<small>'+esc(l.no)+'</small>'):'')+
+          '<small>'+esc(ownNo[l.born]||l.no||'')+'</small>'+
           '<b><time datetime="'+esc(l.born)+'">Born '+esc(niceDate(l.born))+'</time>'+
             (age&&age!=='the day it was born'?('<span>'+esc(age)+'</span>'):'')+'</b>'+
           (line?('<span>'+esc(line)+'</span>'):'')+
