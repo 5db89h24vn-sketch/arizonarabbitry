@@ -467,15 +467,25 @@ const PARENTS = {
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
   },
-  /* COPPER, the purebred Holland Lop buck (named by Claude at William's
-     request, 21 Sept 2026; the News of 2 Oct names him with Catalina). Two
-     photos sent 4 Oct 2026, evening, with "This is the father for that
-     litter": the side view at the bars, then his face. Dated the day they
-     arrived. Nothing about his colour is printed: he has not said it. */
-  copper: {
-    role:   "father",
-    name:   "Copper",
-    breed:  "Holland Lop",
+  /* ROOT BEER, the purebred Holland Lop buck, father of both purebred litters.
+     Called Copper on the site from 21 Sept (a name Claude picked at William's
+     request) until 4 Oct 2026, 9:27pm, when his pedigree card arrived ("This
+     is the pedigree name for the buck. Do the exact same thing for him"): the
+     registered name carries his breeder's prefix, dropped at William's word
+     as for Tango, so the site says Root Beer. The card's own facts print as
+     his record (Tortoise, Ear # TA4T, DOB July 26, 2025, Sex Buck); what it
+     leaves blank (registration, grand champion, legs, weight) is not printed
+     or implied, and the breeder's name on it stays off the site. Two photos
+     sent the same evening ("This is the father for that litter"): the side
+     view at the bars, then his face; dated the day they arrived. */
+  rootbeer: {
+    role:    "father",
+    name:    "Root Beer",
+    breed:   "Holland Lop",
+    variety: "Tortoise",
+    ear:     "TA4T",
+    dob:     "2025-07-26",
+    note:    "Pedigreed.",
     photos: [
       { src: "photos/father-copper.jpg", date: "2026-10-04" },
       { src: "photos/father-copper-2.jpg", date: "2026-10-04" }
