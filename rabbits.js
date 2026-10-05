@@ -453,6 +453,20 @@ const PARENTS = {
     photos: [
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
+  },
+  /* COPPER, the purebred Holland Lop buck (named by Claude at William's
+     request, 21 Sept 2026; the News of 2 Oct names him with Catalina). Two
+     photos sent 4 Oct 2026, evening, with "This is the father for that
+     litter": the side view at the bars, then his face. Dated the day they
+     arrived. Nothing about his colour is printed: he has not said it. */
+  copper: {
+    role:   "father",
+    name:   "Copper",
+    breed:  "Holland Lop",
+    photos: [
+      { src: "photos/father-copper.jpg", date: "2026-10-04" },
+      { src: "photos/father-copper-2.jpg", date: "2026-10-04" }
+    ]
   }
 };
 
