@@ -310,10 +310,12 @@
       the site says "The mother" and "The father", which is what William
       chose on 6 Sept 2026. Nothing about a parent is printed that is not
       typed here: no colour, no age, no line about temperament. A PARENT'S
-      PAPERS (4 Oct 2026, Tango's pedigree card): variety, ear and dob are
-      optional too, and print as the parent's record under the breed line,
-      the way a kit's ear number and weight print in its own, so a pedigreed
-      parent reads as one; leave out what the card leaves blank.
+      PAPERS (4 Oct 2026, Tango's pedigree card): variety, ear, dob and
+      pedigreed (true when its card is in hand) are optional too, and print
+      as the parent's record under the breed line, the way a kit's ear number
+      and weight print in its own, so a pedigreed parent reads as one; the
+      litters page prints the same facts under the parent's tile (sweep.py
+      parent-facts). Leave out what the card leaves blank.
 
    ── A REEL IS A FRAME THAT OPENS INSTAGRAM (23 Sept 2026) ──
       Every reel you post of a rabbit belongs in that rabbit's photos list
@@ -462,6 +464,7 @@ const PARENTS = {
     variety: "Broken orange",
     ear:     "RJ1T",
     dob:     "2025-08-20",
+    pedigreed: true,
     note:    "Pedigreed. This is her first litter.",
     photos: [
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
@@ -485,6 +488,7 @@ const PARENTS = {
     variety: "Tortoise",
     ear:     "TA4T",
     dob:     "2025-07-26",
+    pedigreed: true,
     note:    "Pedigreed.",
     photos: [
       { src: "photos/father-copper.jpg", date: "2026-10-04" },
@@ -512,6 +516,7 @@ const PARENTS = {
     variety: "Sable point",
     ear:     "SB1T",
     dob:     "2025-08-02",
+    pedigreed: true,
     note:    "Pedigreed.",
     photos: [
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
