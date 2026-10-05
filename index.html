@@ -225,6 +225,12 @@ header .brand{color:var(--logo)}
       #000 calc(100% - 22px),transparent 100%);
     mask-image:linear-gradient(90deg,transparent 0,#000 22px,
       #000 calc(100% - 22px),transparent 100%)}
+  
+  .mnav-track[data-edge="start"]{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
+  .mnav-track[data-edge="end"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%)}
+  .mnav-track[data-edge="fit"]{-webkit-mask-image:none;mask-image:none}
 
   .mnav-inner{position:relative;width:max-content;min-width:100%;padding:5px 0 10px}
   .mnav-row{display:flex;gap:6px;min-width:max-content}
@@ -5207,5 +5213,17 @@ body.locked{overflow:hidden}
 </script>
 
 <script src="count.js?v=6aeedef7" defer></script>
+<script>
+(function(){
+  var rows=document.querySelectorAll('.subnav,.mnav-track');
+  function mark(el){ var max=el.scrollWidth-el.clientWidth, x=el.scrollLeft;
+    el.setAttribute('data-edge', max<=1?'fit':(x<=1?'start':(x>=max-1?'end':'mid'))); }
+  [].forEach.call(rows,function(el){ var t=null;
+    var f=function(){ if(t) return; t=requestAnimationFrame(function(){ t=null; mark(el); }); };
+    el.addEventListener('scroll',f,{passive:true}); window.addEventListener('resize',f);
+    if('ResizeObserver' in window) new ResizeObserver(f).observe(el);
+    mark(el); });
+})();
+</script>
 </body>
 </html>
