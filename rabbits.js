@@ -491,17 +491,28 @@ const PARENTS = {
       { src: "photos/father-copper-2.jpg", date: "2026-10-04" }
     ]
   },
-  /* CATALINA, the purebred Holland Lop doe (named by Claude at William's
-     request, 21 Sept 2026), mother of the first purebred litter, three born
-     18 Sept 2026, with Copper ("she also mated to the same buck", 4 Oct).
-     Her photo: a screenshot of his phone's photo library sent 4 Oct, whose
-     own caption reads "September 18 11:41", so the frame is dated the day
-     his phone says it was taken; the photo itself never arrived (the 21 Sept
-     copies reached a phone chat, not the archive). Her colour unsaid. */
-  catalina: {
-    role:   "mother",
-    name:   "Catalina",
-    breed:  "Holland Lop",
+  /* S'MORRI, the purebred Holland Lop doe, mother of the first purebred
+     litter, three born 18 Sept 2026, with Root Beer ("she also mated to the
+     same buck", 4 Oct). Called Catalina on the site from 21 Sept (a name
+     picked here at William's request) until 4 Oct 2026, 9:27pm, when her
+     pedigree card arrived ("this is the sable point that had the babies in
+     September. Same thing for her as well"): the registered name without
+     the breeder's prefix, as for the other two. The card's own facts print
+     as her record (Sable Point, Ear # SB1T, DOB August 2, 2025, Sex Doe);
+     what it leaves blank is not printed or implied; the breeder's name and
+     number on it stay off the site. Her photo: a screenshot of his phone's
+     photo library sent 4 Oct, whose own caption reads "September 18 11:41",
+     so the frame is dated the day his phone says it was taken; the photo
+     itself never arrived (the 21 Sept copies reached a phone chat, not the
+     archive). */
+  smorri: {
+    role:    "mother",
+    name:    "S'Morri",
+    breed:   "Holland Lop",
+    variety: "Sable point",
+    ear:     "SB1T",
+    dob:     "2025-08-02",
+    note:    "Pedigreed.",
     photos: [
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
     ]
