@@ -467,6 +467,21 @@ const PARENTS = {
       { src: "photos/father-copper.jpg", date: "2026-10-04" },
       { src: "photos/father-copper-2.jpg", date: "2026-10-04" }
     ]
+  },
+  /* CATALINA, the purebred Holland Lop doe (named by Claude at William's
+     request, 21 Sept 2026), mother of the first purebred litter, three born
+     18 Sept 2026, with Copper ("she also mated to the same buck", 4 Oct).
+     Her photo: a screenshot of his phone's photo library sent 4 Oct, whose
+     own caption reads "September 18 11:41", so the frame is dated the day
+     his phone says it was taken; the photo itself never arrived (the 21 Sept
+     copies reached a phone chat, not the archive). Her colour unsaid. */
+  catalina: {
+    role:   "mother",
+    name:   "Catalina",
+    breed:  "Holland Lop",
+    photos: [
+      { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
+    ]
   }
 };
 
@@ -491,7 +506,9 @@ const PARENTS = {
    Holland Lops, born 18 Sept, photos to come). The pill stays, and its
    promise becomes "before they go on sale" instead of "when it's born". */
 const PLANNED = [
-  { key: "holland-lop",      name: "the first purebred Holland Lops", born: "2026-09-18" },
+  /* "holland-lop" (the first purebred Holland Lops, born 18 Sept) came off
+     4 Oct 2026, the day its article went on the litters page; the people who
+     asked for it stay on the waitlist page under that name. */
   { key: "netherland-dwarf", name: "the first Netherland Dwarf litter" }
 ];
 
