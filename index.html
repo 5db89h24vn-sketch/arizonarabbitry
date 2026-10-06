@@ -1126,11 +1126,12 @@ html.vtout::view-transition-new(rabbitphoto){
   
   .viewer.navunder .viewer-nav{opacity:0;pointer-events:none}
   
-  .viewer.ctlbar .viewer-ctl::before{content:'';position:absolute;left:0;right:0;top:0;height:58px;
-    box-sizing:border-box;padding:0 112px 0 16px;background:var(--paper);box-shadow:0 1px 0 var(--line);
+  .viewer .viewer-ctl::before{content:'';position:absolute;left:0;right:0;top:0;height:58px;
+    background:var(--paper);box-shadow:0 1px 0 var(--line);opacity:var(--bar,0);pointer-events:none;z-index:1}
+  .viewer .viewer-ctl::after{content:attr(data-name);position:absolute;left:0;right:0;top:0;height:58px;
+    box-sizing:border-box;padding:0 112px 0 16px;
     font-family:var(--serif);font-weight:500;font-size:18px;line-height:58px;color:var(--ink);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .viewer.ctlbar.ctlname .viewer-ctl::before{content:attr(data-name)}
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:var(--name,0);pointer-events:none;z-index:2}
 }
 
 .viewer-share{right:61px}  
@@ -3983,8 +3984,15 @@ body.locked{overflow:hidden}
       var sc=vScroller()||vBody;
       padForFoot();
       vBody.classList.toggle('more', sc.scrollHeight-sc.clientHeight-sc.scrollTop>1);
-      vw.classList.toggle('ctlbar', sc===vBoxEl && !!vStage && vBoxEl.scrollTop>vStage.offsetHeight-58);
-      vw.classList.toggle('ctlname', sc===vBoxEl && !!vName && (vName.getBoundingClientRect().bottom < vBoxEl.getBoundingClientRect().top+58));
+      if(vCtl){
+        var pr=0;
+        if(sc===vBoxEl && vName){
+          var nr=vName.getBoundingClientRect(), bt=vBoxEl.getBoundingClientRect().top+58;
+          pr=Math.max(0, Math.min(1, (bt-nr.top)/Math.max(1,nr.height)));
+        }
+        vCtl.style.setProperty('--bar', pr.toFixed(3));
+        vCtl.style.setProperty('--name', (pr*pr).toFixed(3));
+      }
       vw.classList.toggle('navunder', sc===vBoxEl && !!vStage && vStage.offsetHeight/2-vBoxEl.scrollTop<70);
     }
     function toTop(){ if(vBody) vBody.scrollTop=0; if(vBoxEl) vBoxEl.scrollTop=0; }
