@@ -1227,7 +1227,9 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-terms{margin:8px 0 0;font-size:13px;line-height:1.45;color:var(--ink-soft);text-align:left;text-wrap:pretty}
 .viewer-terms b{color:var(--ink);font-weight:600}
 
-.viewer-terms .vt-row{display:block}
+.viewer-terms .vt-row{display:block;text-wrap:balance}
+.viewer-terms .vt-row b{white-space:nowrap}
+@media(max-width:339px){.viewer-terms .vt-row b{white-space:normal}}
 
 @media(max-height:600px){.viewer-terms .vt-more{display:none}}
 
@@ -2748,8 +2750,7 @@ body.locked{overflow:hidden}
 
         <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>$50 holds it, the rest in parts.</b> <span
           class="vt-more">Any amounts, any time before pickup.</span></span> <span class="vt-row"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery
-          anywhere in&nbsp;Arizona.</b> <span class="vt-more">You meet it before the sale is final. 10%&nbsp;off if you
-          serve.</span> <a href="/terms">The terms</a></span></p></div>
+          anywhere in&nbsp;Arizona.</b> <span class="vt-more">You meet it before the sale is final. 10%&nbsp;off if&nbsp;you&nbsp;serve.</span> <a href="/terms">The terms</a></span></p></div>
     </div>
   </div>
 </div>
@@ -3927,9 +3928,17 @@ body.locked{overflow:hidden}
       return vBody;
     }
     var vCtl=vw.querySelector('.viewer-ctl');
+    var vFootEl=vw.querySelector('.viewer-foot');
+    function padForFoot(){
+      if(!vFootEl) return;
+      var pad=Math.round(vFootEl.offsetHeight+36)+'px';
+      if(vBoxEl) vBoxEl.style.scrollPaddingBottom=pad;
+      vBody.style.scrollPaddingBottom=pad;
+    }
     function moreBelow(){
       if(!vBody) return;
       var sc=vScroller()||vBody;
+      padForFoot();
       vBody.classList.toggle('more', sc.scrollHeight-sc.clientHeight-sc.scrollTop>1);
       vw.classList.toggle('ctlbar', sc===vBoxEl && !!vStage && vBoxEl.scrollTop>vStage.offsetHeight-58);
       vw.classList.toggle('navunder', sc===vBoxEl && !!vStage && vStage.offsetHeight/2-vBoxEl.scrollTop<70);
