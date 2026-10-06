@@ -316,13 +316,16 @@ header .brand{color:var(--logo)}
 .hero-sub{font-size:clamp(16.5px,1.7vw,18.5px);color:var(--ink-soft);max-width:48ch;margin-bottom:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
 
-.hero-proof{display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;margin:-18px 0 -12px;padding:12px 0;
-  font-size:13.5px;line-height:1.4;color:var(--ink-soft);text-decoration:none;cursor:pointer}
-.hero-proof .ig{width:15px;height:15px;flex:none;fill:currentColor;transition:color .15s}
-.hero-proof b{font-weight:600;color:var(--ink);transition:color .15s}
-.hero-proof:hover b,.hero-proof:focus-visible b,.hero-proof:hover .ig,.hero-proof:focus-visible .ig{color:var(--brick-dk)}
+.srow{display:block;text-wrap:balance;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+.srow a{display:inline-flex;align-items:center;gap:6px;padding:12px 0;margin-right:8px;vertical-align:top;
+  color:inherit;text-decoration:none;white-space:nowrap;cursor:pointer}
+.srow a:last-child{margin-right:0}
+.srow svg{width:15px;height:15px;flex:none;fill:currentColor;transition:color .15s}
+.srow b{font-weight:600;color:var(--ink);transition:color .15s}
+.srow a:hover b,.srow a:focus-visible b,.srow a:hover svg,.srow a:focus-visible svg{color:var(--brick-dk)}
+.hero-srow{margin:-18px 0 -12px}
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px){ .hero-proof{display:none} }
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px){ .hero-srow{display:none} }
 
 .hero-deliver{display:flex;width:fit-content;align-items:center;gap:10px;margin:-22px 0 2px;padding:12px 0;
   color:inherit;text-decoration:none;cursor:pointer}
@@ -745,19 +748,8 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .owners li{padding:11px 0;border-bottom:1px solid var(--line)}
 .owners b{display:block;font-weight:600;font-size:15.5px;color:var(--ink);margin-bottom:2px}
 .owners small{display:block;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
-.social{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
-.social a{display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;
-  background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 12px;
-  box-shadow:var(--lift-1);
-  transition:border-color .15s,transform .15s,background .15s,box-shadow .15s}
-.social a:hover{border-color:var(--brick);background:var(--brick-tint);transform:translateY(-2px);
-  box-shadow:var(--lift-2)}
-.social svg{width:25px;height:25px;fill:var(--ink);transition:fill .15s;flex:none}
-.social a:hover svg{fill:var(--brick)}
-.social b{font-size:15px;font-weight:600;line-height:1.2}
 
-.social small .vfd{width:12px;height:12px;vertical-align:-2px;margin-left:1px;fill:none;stroke:currentColor;
-  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block}
+.social-head .srow{margin-top:14px;padding-top:2px;border-top:1px solid var(--line);font-size:13.5px;max-width:none}
 
 .reel{margin:18px 0 0;max-width:420px}
 
@@ -765,7 +757,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
   .social-head{display:grid;grid-template-columns:minmax(0,1fr) 420px;grid-template-rows:auto auto auto 1fr;column-gap:56px;align-items:start}
   .social-head > *{grid-column:1}
   .social-head > .reel{grid-column:2;grid-row:1 / span 4;margin-top:4px}
-  .social-head > .social{grid-column:1 / -1}
+  .social-head > .srow{grid-column:1 / -1}
 }
 .reel:empty{display:none}
 .reel-play{position:relative;display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
@@ -779,18 +771,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .reel figcaption{font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin-top:8px;text-wrap:pretty}
 .reel figcaption b{display:block;color:var(--ink);font-weight:600}
 .reel figcaption time{white-space:nowrap}
-.social small{font-size:12.5px;color:var(--ink-faint);line-height:1.3;text-align:center;
-  word-break:break-word}
-
 @media(max-width:600px){
-  .social{grid-template-columns:1fr;gap:0;margin-top:14px;border-top:1px solid var(--line)}
-  .social a{flex-direction:row;align-items:center;gap:12px;min-height:54px;padding:10px 2px 10px 0;
-    background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none}
-  .social a:hover{transform:none;background:transparent;box-shadow:none}
-  .social svg{width:22px;height:22px}
-  .social b{font-size:15px}
-  .social small{font-size:13.5px;text-align:right;margin-left:auto;word-break:normal;white-space:nowrap;
-    color:var(--ink-soft)}
   .social-head{margin-top:32px;padding-top:22px}
 }
 
@@ -1745,7 +1726,7 @@ body.locked{overflow:hidden}
         <a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com." class="btn btn-ghost"><span class="tx-s">Text William</span><span class="tx-l">Text (520) 270-2827</span></a>
       </div>
       
-      <a class="hero-proof" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span>Verified on Instagram as&nbsp;<b>@arizonarabbits</b></span></a>
+      <p class="srow hero-srow"><a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener" aria-label="Verified on Instagram, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span>Verified on <b>Instagram</b></span></a> <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener" aria-label="TikTok, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><b>TikTok</b></a> <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener" aria-label="Facebook, Arizona Rabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg><b>Facebook</b></a></p>
 
       <div class="facts">
 
@@ -1943,25 +1924,7 @@ body.locked{overflow:hidden}
       </ul>
       
       <figure data-fact="reel" class="reel"><a class="reel-play rv" href="videos/litter-2026-08-27-2026-09-11.mp4" aria-label="Play the newest clip: Out of the nest box, on a chair, and handled."><img src="photos/litter-2026-08-27-2026-09-11-video.jpg?v=cd43108f" srcset="photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg 160w, photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg 320w, photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg 640w, photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg 960w, photos/litter-2026-08-27-2026-09-11-video.jpg?v=cd43108f 1280w" sizes="(min-width:761px) 420px, 100vw" width="1280" height="960" loading="lazy" alt="Fifteen-day-old kits, fawn and white, curled up together on a black chair"><i class="pv" aria-hidden="true"></i></a><figcaption><b>One clip before you go.</b> Filmed <time datetime="2026-09-11">11 Sep</time> · 2 weeks, 1 day old. Out of the nest box, on a chair, and handled. More like it on Instagram and TikTok.</figcaption></figure>
-      <div class="social rv row">
-        <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
-          <b>Instagram</b>
-          
-          <small>@arizonarabbits <svg class="vfd" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><span class="sr-only">verified</span></small>
-        </a>
-        
-        <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-          <b>TikTok</b>
-          <small>@arizonarabbits</small>
-        </a>
-        <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
-          <b>Facebook</b>
-          <small>Arizona Rabbits</small>
-        </a>
-      </div>
+      <p class="srow rv"><a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener" aria-label="Verified on Instagram, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span>Verified on <b>Instagram</b></span></a> <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener" aria-label="TikTok, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><b>TikTok</b></a> <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener" aria-label="Facebook, Arizona Rabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg><b>Facebook</b></a></p>
     </div>
   </div>
 </section>
