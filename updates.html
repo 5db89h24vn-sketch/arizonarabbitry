@@ -100,6 +100,8 @@ header{padding:16px 0 0}
 .back:active{color:var(--brick)}
 .foot-nav{display:flex;flex-wrap:wrap;gap:4px 14px}
 .foot-nav a{color:var(--ink-soft);text-decoration:none;min-height:24px;display:inline-flex;align-items:center}
+.foot-nav .foot-top{gap:6px;white-space:nowrap}
+.foot-nav .foot-top svg{flex:none}
 .foot-nav a:hover,.foot-nav a:active{color:var(--brick)}
 
 .back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
@@ -178,7 +180,7 @@ h1,h2,h3{text-wrap:balance}
 </head>
 <body>
 
-<header>
+<header id="top">
   <div class="wrap">
     <div class="topbar">
       <a class="brand" href="/"><svg class="brand-side" viewBox="9.82 7.24 82.18 83.01" aria-hidden="true" focusable="false"><path d="M22 88 C12 87 9 81 10 71 C10 56 22 43 37 43 C44 43 49 45 54 49 L59 41 C53 30 45 13 49 8 C55 3 64 24 67 34 C69 24 73 13 78 14 C84 16 77 34 73 41 C84 42 92 48 92 55 C92 62 85 66 78 66 C79 71 77 76 74 79 C83 79 88 84 86 88 L55 88 C44 91 31 91 22 88 Z" fill="currentColor"/></svg>Arizona Rabbits<small>Tucson</small></a>
@@ -356,6 +358,8 @@ h1,h2,h3{text-wrap:balance}
       <a href="/">Rabbits</a>
       <a href="/litters">Litters</a>
       <a href="/terms">Terms and privacy</a>
+      
+      <a class="foot-top" href="#top">Back to top <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M2.2 5.4 6 1.6l3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </nav>
   </div>
 </footer>
