@@ -1228,7 +1228,7 @@ html.vtout::view-transition-new(rabbitphoto){
 
 .viewer-foot{position:sticky;bottom:0;z-index:4;margin:14px calc(-1*var(--vx)) 0;padding:0 var(--vx) var(--vb);background:var(--paper)}
 
-.viewer-terms{margin:8px 0 0;font-size:13px;line-height:1.45;color:var(--ink-soft);text-align:left;text-wrap:pretty}
+.viewer-terms{margin:8px 0 0;font-size:14px;line-height:1.45;color:var(--ink-soft);text-align:left;text-wrap:pretty}
 .viewer-terms b{color:var(--ink);font-weight:600}
 
 .viewer-terms .vt-row{display:block;text-wrap:balance}
@@ -1355,6 +1355,11 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec p+p,.pairrec .kitrow+p{margin-top:6px}
 .pairrec .kitrow{margin-top:7px}
 .pairrec b{font-weight:600;color:var(--ink)}
+
+.pairrec .pairmore{font-size:13px;line-height:1.5;margin-left:2px;white-space:normal;text-align:left}
+.pairrec .pairmore-panel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft)}
+.pairrec .pairmore-panel[hidden]{display:none}
+.pairrec .pairmore-panel .kitrow{margin-top:0}
 .kit span{color:var(--ink-faint);font-weight:400;margin-left:5px}
 #viewerGrow{margin-top:var(--sp-open)}
 #viewerGrow:empty{display:none}
@@ -3456,14 +3461,18 @@ body.locked{overflow:hidden}
       return '<a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+priceOf(x)+'</span></a>';
     }).join('');
     var who=(m.kind==='litter')?(m.list.length===1?'the littermate':'a littermate'):'any of these';
+    var label=(m.kind==='litter')?'The littermates, and how a hold works':'Who, and how a hold works';
     return '<small>A pair</small>'+
-      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+' off.</p>'+
+      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+' off. '+
+      '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+label+'</button></p>'+
+      '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
       '<div class="kitrow">'+chips+'</div>'+
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">How a hold works</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
         '<a class="cite" href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company" target="_blank" rel="noopener">a highly social species</a>. '+
-        'Just one? <a class="litterlink" href="#faq-one">Then you are its company</a>.</p>';
+        'Just one? <a class="litterlink" href="#faq-one">Then you are its company</a>.</p>'+
+      '</div>';
   }
   function stillHTML(r){
     if(r.status==='available') return '';
@@ -4730,6 +4739,20 @@ body.locked{overflow:hidden}
     if(vWhyMore) vWhyMore.addEventListener('click',function(ev){
       ev.preventDefault();
       leaveFor(vWhyMore.getAttribute('href'));
+    });
+    if(vPair) vPair.addEventListener('click',function(ev){
+      var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
+      ev.preventDefault();
+      var panel=document.getElementById('viewerPairMore'); if(!panel) return;
+      var opening=panel.hidden;
+      panel.hidden=!opening;
+      bt.setAttribute('aria-expanded',opening?'true':'false');
+      if(opening){
+        var sc=vScroller(), pr=panel.getBoundingClientRect(), foot=vw.querySelector('.viewer-foot');
+        var limit=foot?foot.getBoundingClientRect().top:innerHeight;
+        if(sc&&pr.bottom>limit) sc.scrollTop+=Math.min(pr.bottom-limit+8, pr.top-sc.getBoundingClientRect().top-62);
+      }
+      moreBelow();
     });
 
     vClose.addEventListener('click',dismiss);
