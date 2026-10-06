@@ -675,7 +675,10 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .grow-txt .u{white-space:nowrap}
 
 .viewer-grow{flex-direction:column;align-items:flex-start;gap:6px}
-.viewer-grow .grow-top{display:flex;align-items:center;gap:8px;line-height:18px;height:18px}
+
+.viewer-grow .grow-top{display:block;line-height:18px}
+.viewer-grow .grow-bar{display:inline-flex;vertical-align:1px;margin-right:8px}
+.viewer-grow .grow-txt{display:inline}
 .viewer-grow .grow-bar{margin-top:0}
 .grow-label{font-size:12.5px;color:var(--brick-dk);text-decoration:none;white-space:nowrap;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
@@ -1118,10 +1121,12 @@ html.vtout::view-transition-new(rabbitphoto){
   .viewer .viewer-ctl{display:block;position:sticky;top:0;height:0;z-index:5}
   
   .viewer.navunder .viewer-nav{opacity:0;pointer-events:none}
-  .viewer.ctlbar .viewer-ctl::before{content:attr(data-name);position:absolute;left:0;right:0;top:0;height:58px;
+  
+  .viewer.ctlbar .viewer-ctl::before{content:'';position:absolute;left:0;right:0;top:0;height:58px;
     box-sizing:border-box;padding:0 112px 0 16px;background:var(--paper);box-shadow:0 1px 0 var(--line);
     font-family:var(--serif);font-weight:500;font-size:18px;line-height:58px;color:var(--ink);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .viewer.ctlbar.ctlname .viewer-ctl::before{content:attr(data-name)}
 }
 
 .viewer-share{right:61px}  
@@ -1260,8 +1265,9 @@ html.vtout::view-transition-new(rabbitphoto){
   .vcta{flex-wrap:wrap} .viewer-box .vcta .vtext{flex:1 1 100%}
   
   .viewer-body{scroll-padding-bottom:245px} }
-.viewer-terms a{color:var(--brick-dk);text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(160,82,45,.35)}
-.viewer-terms a:hover{color:var(--brick);text-decoration-color:var(--brick)}
+
+.viewer-terms a{color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+.viewer-terms a:hover{color:var(--brick);border-bottom-style:solid}
 .viewer-foot::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:30px;
   background:linear-gradient(to bottom,rgba(251,248,243,0),var(--paper) 72%);pointer-events:none;
   opacity:0;transition:opacity .15s}
@@ -1293,6 +1299,14 @@ html.vtout::view-transition-new(rabbitphoto){
 
 .viewer-head .vprice{display:block;flex:none;text-align:right}
 .viewer-head .vprice .price{display:block}
+
+.viewer-sub{display:flow-root;margin-top:-2px}
+.viewer-sub .viewer-meta{overflow:visible;margin:0}
+
+.viewer-sub .pricelink{float:right;margin:0 0 0 14px;height:19px;line-height:17px;padding:0}
+.viewer-meta .u{white-space:nowrap}
+
+.viewer-sub~#viewerGrow .viewer-grow{margin-top:4px}
 .pricelink{display:inline-block;margin-top:2px;font-size:13px;line-height:1.35;white-space:nowrap;
   color:var(--brick-dk);text-decoration:none;
   border:0;border-bottom:1px dotted rgba(124,62,33,.5);padding:0 0 1px;border-radius:0;
@@ -1357,7 +1371,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec .kitrow{margin-top:7px}
 .pairrec b{font-weight:600;color:var(--ink)}
 
-.pairrec .pairmore{font-size:13px;line-height:1.5;margin-left:2px;white-space:normal;text-align:left}
+.pairrec .pairmore{display:block;font-size:13px;line-height:1.5;margin:3px 0 0 2px;white-space:normal;text-align:left}
 .pairrec .pairmore-panel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft)}
 .pairrec .pairmore-panel[hidden]{display:none}
 .pairrec .pairmore-panel .kitrow{margin-top:0}
@@ -2720,7 +2734,9 @@ body.locked{overflow:hidden}
     </div>
     <div class="viewer-body">
       
-      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span><button type="button" class="pricelink" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button></span></div>
+      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span></div>
+      
+      <div class="viewer-sub"><button type="button" class="pricelink" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button><p class="viewer-meta" id="viewerMeta"></p></div>
       
       <div class="whypanel" id="viewerWhyPanel" hidden>
         
@@ -2737,7 +2753,6 @@ body.locked{overflow:hidden}
         href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost" target="_blank"
         rel="noopener">$1,672 to $3,354</a>. <a class="litterlink" id="viewerWhyMore" href="#faq-price">The whole answer</a></p>
       </div>
-      <p class="viewer-meta" id="viewerMeta"></p>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>
       
@@ -2766,9 +2781,8 @@ body.locked{overflow:hidden}
 
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-ghost vtext" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a></div>
 
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>$50 holds it, the rest in parts.</b> <span
-          class="vt-more">Any amounts, any time before pickup.</span></span> <span class="vt-row"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery
-          anywhere in&nbsp;Arizona.</b> <span class="vt-more">You meet it before the sale is final. 10%&nbsp;off if&nbsp;you&nbsp;serve.</span> <a href="/terms">The terms</a></span></p></div>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>$50 holds it, the rest in parts.</b></span> <span class="vt-row"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery
+          anywhere in&nbsp;Arizona.</b> <span class="vt-more">10%&nbsp;off if&nbsp;you&nbsp;serve.</span> <a class="litterlink" href="/terms">The&nbsp;terms</a></span></p></div>
     </div>
   </div>
 </div>
@@ -3473,8 +3487,8 @@ body.locked{overflow:hidden}
     var who=(m.kind==='litter')?(m.list.length===1?'the littermate':'a littermate'):'any of these';
     var label=(m.kind==='litter')?'The littermates, and how a hold works':'Who, and how a hold works';
     return '<small>A pair</small>'+
-      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+' off. '+
-      '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+label+'</button></p>'+
+      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+'\u00a0off.</p>'+
+      '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+label+'</button>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
       '<div class="kitrow pairs">'+chips+'</div>'+
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
@@ -3507,19 +3521,18 @@ body.locked{overflow:hidden}
     var cardTxt='<b>'+units.map(function(u,i){
       return '<span class="u">'+(i===0&&isNow?'Now ':'')+u+(i<units.length-1?',':'')+'</span>';
     }).join(' ')+'</b>';
-    var txt='<b>'+(full&&isNow?'<a class="nowlink" href="#faq-ages">Now</a> ':'')+esc(age)+'</b>';
+    var txt='<b>'+(full&&isNow?'Now ':'')+esc(age)+'</b>';
     var pastEight=(daysOld(r.dob)!==null&&daysOld(r.dob)>=LAST_WEEK*7);
     if(full&&st&&pastEight&&document.getElementById('stage-home'))
-      txt+=' &middot; <a class="stagelink" href="#stage-home">going-home age</a>';
-    else if(full&&st) txt+=' &middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
-                      esc(st.label.toLowerCase())+'</a>';
+      txt+=' <span class="u">&middot; <a class="stagelink" href="#stage-home">going-home age</a></span>';
+    else if(full&&st) txt+=' <span class="u">&middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
+                      esc(st.label.toLowerCase())+'</a></span>';
     var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
     var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('In week '+wk+' of '+LAST_WEEK);
     if(full)
       return '<div class="grow viewer-grow'+(eight?' eight':'')+'" data-dob="'+esc(r.dob||'')+'">'+
-        '<span class="grow-top"><span class="grow-bar" aria-hidden="true">'+bar+'</span>'+
-        '<a class="grow-label" href="#faq-home">'+label+'</a></span>'+
-        '<span class="grow-txt">'+txt+'</span></div>';
+        '<span class="grow-top"><span class="grow-bar" role="img" aria-label="'+esc(label)+(eight?'':' before going home')+'">'+bar+'</span>'+
+        '<span class="grow-txt">'+txt+'</span></span></div>';
     return '<div class="grow" data-dob="'+esc(r.dob||'')+'">'+
       '<span class="grow-txt">'+cardTxt+'</span></div>';
   }
@@ -3967,6 +3980,7 @@ body.locked{overflow:hidden}
       padForFoot();
       vBody.classList.toggle('more', sc.scrollHeight-sc.clientHeight-sc.scrollTop>1);
       vw.classList.toggle('ctlbar', sc===vBoxEl && !!vStage && vBoxEl.scrollTop>vStage.offsetHeight-58);
+      vw.classList.toggle('ctlname', sc===vBoxEl && !!vName && (vName.getBoundingClientRect().bottom < vBoxEl.getBoundingClientRect().top+58));
       vw.classList.toggle('navunder', sc===vBoxEl && !!vStage && vStage.offsetHeight/2-vBoxEl.scrollTop<70);
     }
     function toTop(){ if(vBody) vBody.scrollTop=0; if(vBoxEl) vBoxEl.scrollTop=0; }
@@ -4281,6 +4295,22 @@ body.locked{overflow:hidden}
       vMeta.textContent='';
       vMeta.appendChild(document.createTextNode(
         [oneBreed()?null:r.breed,sexColour(r)].filter(Boolean).join(' · ')));
+      if(r.dob){
+        var born=document.createElement('span'); born.className='u';
+        born.appendChild(document.createTextNode((vMeta.textContent?'\u00b7 ':'')+'Born '));
+        born.appendChild(timeEl(r.dob));
+        if(vMeta.textContent) vMeta.appendChild(document.createTextNode(' '));
+        vMeta.appendChild(born);
+        var lit=document.createElement('span'); lit.className='u';
+        lit.appendChild(document.createTextNode('\u00b7 '));
+        var lk=document.createElement('a'); lk.className='litterlink'; lk.href='/litters#L'+r.dob;
+        lk.title='See the litter this rabbit came from';
+        lk.setAttribute('aria-label','Born '+niceDate(r.dob)+': see '+pronoun(r)+' litter from day one');
+        lk.textContent='the litter from day one';
+        lit.appendChild(lk);
+        vMeta.appendChild(document.createTextNode(' '));
+        vMeta.appendChild(lit);
+      }
       paintRecord(recordRows(r));
     }
     function parentRecordRows(p){
@@ -4332,10 +4362,6 @@ body.locked{overflow:hidden}
     }
     function recordRows(r){
       var out=[];
-      if(r.dob) out.push({label:'Born',iso:r.dob,href:'/litters#L'+r.dob,
-        after:'\u00b7 '+pronoun(r)+' litter from birth',
-        title:'See the litter this rabbit came from',
-        aria:'Born '+niceDate(r.dob)+': see '+pronoun(r)+' litter from birth'});
       if(r.ready&&r.status==='available') out.push({label:'Ready',text:String(r.ready)});
       if(r.status==='available'&&r.dob&&!r.reservedOn){
         var opens=isoPlusDays(r.dob,RESERVE_AT_DAYS);
@@ -4363,21 +4389,27 @@ body.locked{overflow:hidden}
       return out;
     }
     function metaText(r){
-      return [oneBreed()?null:r.breed,sexColour(r)].filter(Boolean).join(' · ');
+      var t=[oneBreed()?null:r.breed,sexColour(r)].filter(Boolean).join(' · ');
+      if(r.dob) t+=(t?' · ':'')+'Born '+niceDate(r.dob)+' · the litter from day one';
+      return t;
     }
 
     var fittedAt=-1;
-    function tallest(el, cls, texts, w){
+    function tallest(el, cls, texts, w, floatEl){
+      var box=document.createElement('div');
+      box.style.cssText='position:absolute;visibility:hidden;height:auto;width:'+w+'px;display:flow-root';
+      if(floatEl){ var fl=floatEl.cloneNode(true); fl.removeAttribute('id'); fl.hidden=false; box.appendChild(fl); }
       var probe=document.createElement('p');
       probe.className=cls;
-      probe.style.cssText='position:absolute;visibility:hidden;height:auto;width:'+w+'px';
-      el.parentNode.appendChild(probe);
+      probe.style.cssText='height:auto;margin:0';
+      box.appendChild(probe);
+      el.parentNode.appendChild(box);
       var tall=0;
       for(var i=0;i<texts.length;i++){
         probe.textContent=texts[i]||'';
         if(probe.offsetHeight>tall) tall=probe.offsetHeight;
       }
-      probe.parentNode.removeChild(probe);
+      box.parentNode.removeChild(box);
       return tall;
     }
     function fitBlocks(){
@@ -4394,8 +4426,8 @@ body.locked{overflow:hidden}
           .replace(/&middot;/g,'·')
           .replace(/\s+/g,' ').trim());
       }
-      if(grows.length) vGrow.style.minHeight=(tallest(vGrow,'grow-txt',grows,w)+24)+'px';   /* + the bar's own line (18px) and the gap (6px), 22 Sept 2026 */
-      vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w)+'px';
+      if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w-78)+'px';
+      vMeta.style.height=tallest(vMeta,'viewer-meta',metas,w,(vWhy&&!vWhy.hidden)?vWhy:null)+'px';
       vNote.style.height='';
       fittedAt=w;
     }
