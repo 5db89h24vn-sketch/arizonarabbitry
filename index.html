@@ -1374,13 +1374,39 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec .kitrow{margin-top:7px}
 .pairrec b{font-weight:600;color:var(--ink)}
 
-.pairrec .pairmore{display:block;font-size:13px;line-height:1.5;margin:3px 0 0 2px;white-space:normal;text-align:left}
+.pairrec .pairmore{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.5;margin:5px 0 0;
+  white-space:normal;text-align:left;border-bottom:0;padding:0}
+
+.pairrec .pairmore .pm-t{border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px;text-wrap:balance}
+.pairrec .pairmore:hover .pm-t,.pairrec .pairmore[aria-expanded="true"] .pm-t{border-bottom-style:solid}
+.pairrec .faces{display:flex;flex:none;padding-left:2px}
+.pairrec .faces img,.pairrec .faces .face-none{display:block;width:26px;height:26px;border-radius:50%;object-fit:cover;
+  background:var(--paper-2);box-shadow:0 0 0 2px var(--paper);margin-left:-7px;position:relative}
+.pairrec .faces>:first-child{margin-left:0;z-index:4}
+.pairrec .faces>:nth-child(2){z-index:3}
+.pairrec .faces>:nth-child(3){z-index:2}
 .pairrec .pairmore-panel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft)}
 .pairrec .pairmore-panel[hidden]{display:none}
 .pairrec .pairmore-panel .kitrow{margin-top:0}
 
-.pairrec .kitrow.pairs{flex-direction:column;align-items:flex-start;gap:6px}
-.pairrec .pairone{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.pairrec .kitrow.pairs{flex-direction:column;align-items:stretch;gap:9px}
+
+.pairrec .pairone{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:10px;row-gap:1px;align-items:center}
+.pairrec .pairone .face{grid-row:1 / span 2;display:block;width:40px;height:40px;border-radius:50%;overflow:hidden;
+  background:var(--paper-2);transition:transform .12s ease-out}
+.pairrec .pairone .face img,.pairrec .pairone .face .face-none{display:block;width:100%;height:100%;object-fit:cover}
+.pairrec .pairone .face:hover{box-shadow:0 0 0 2px rgba(160,82,45,.45)}
+.pairrec .pairone .face:active{transform:scale(.96)}
+
+.pairrec .pairone .kit{justify-self:start;min-height:0;padding:0;border:0;border-radius:0;background:none;
+  font-size:13.5px;font-weight:500;color:var(--brick-dk);line-height:1.45}
+.pairrec .pairone .kit .kn{color:inherit;font-weight:inherit;margin:0;border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+.pairrec .pairone .kit::after{inset:-6px -6px}
+.pairrec .pairone .kit:hover,.pairrec .pairone .kit:focus-visible{color:var(--brick)}
+.pairrec .pairone .kit:hover .kn,.pairrec .pairone .kit:focus-visible .kn{border-bottom-style:solid}
+.pairrec .pairone .pairsum{grid-column:2;line-height:1.45}
+
+.pairrec .pairone .kit:last-child{grid-row:1 / span 2}
 .pairrec .pairsum{font-size:13px;line-height:1.5;color:var(--ink-soft)}
 .pairrec .pairsum .pairask{margin-top:0;white-space:nowrap}
 .kit span{color:var(--ink-faint);font-weight:400;margin-left:5px}
@@ -3456,8 +3482,14 @@ body.locked{overflow:hidden}
     var me=addrOf(r);
     var avail=RABBITS.filter(function(x){ return x.status==='available' && addrOf(x)!==me; });
     var mates=avail.filter(function(x){ return x.dob && x.dob===r.dob; });
-    return mates.length?{kind:'litter',list:mates}:{kind:'others',list:avail};
+    return mates.length?{kind:'litter',list:dearestFirst(mates)}:{kind:'others',list:dearestFirst(avail)};
   }
+  function dearestFirst(list){ return list.slice().sort(function(a,b){ return priceOf(b)-priceOf(a); }); }
+  function faceSrc(r){ var s=r.photo||(Array.isArray(r.photos)&&r.photos[0]&&r.photos[0].src)||'';
+    return realPhoto(s)?s:''; }
+  function faceImg(r,px){ var s=faceSrc(r);
+    return s?'<img src="'+esc(s)+'"'+sizedAttrs(s,px+'px')+' alt="" loading="lazy" width="'+px+'" height="'+px+'">'
+            :'<i class="face-none"></i>'; }
   function pairHTML(r){
     if(r.status!=='available') return '';
     var m=pairMates(r); if(!m.list.length) return '';
@@ -3467,7 +3499,9 @@ body.locked{overflow:hidden}
     var saving=(lo===hi)?('$'+lo):('$'+lo+' to $'+hi);
     var chips=m.list.map(function(x){
       var other=priceOf(x), off=Math.round(Math.min(mine,other)*PAIR_OFF/100), two=mine+other-off;
-      return '<div class="pairone"><a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+other+'</span></a>'+
+      var to='#r-'+esc(addrOf(x));
+      return '<div class="pairone"><a class="face" href="'+to+'" tabindex="-1" aria-hidden="true">'+faceImg(x,40)+'</a>'+
+        '<a class="kit" href="'+to+'"><span class="kn">'+esc(x.name)+'</span><span>$'+other+'</span></a>'+
         '<span class="pairsum"><b>$'+two+'</b> for the two, $'+off+' off. '+
         '<button type="button" class="pricelink pairask" data-pair="'+esc(x.name)+'">Ask about both</button></span></div>';
     }).join('');
@@ -3475,7 +3509,9 @@ body.locked{overflow:hidden}
     var label=(m.kind==='litter')?'The littermates, and how a hold works':'Who, and how a hold works';
     return '<small>A pair</small>'+
       '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+'\u00a0off.</p>'+
-      '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+label+'</button>'+
+      '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
+        '<span class="faces" aria-hidden="true">'+m.list.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
+        '<span class="pm-t">'+label+'</span></button>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
       '<div class="kitrow pairs">'+chips+'</div>'+
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
@@ -3489,12 +3525,14 @@ body.locked{overflow:hidden}
     if(r.status==='available') return '';
     var m=pairMates(r); if(!m.list.length) return '';
     var chips=m.list.map(function(x){
-      return '<a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+priceOf(x)+'</span></a>';
+      var to='#r-'+esc(addrOf(x));
+      return '<div class="pairone"><a class="face" href="'+to+'" tabindex="-1" aria-hidden="true">'+faceImg(x,40)+'</a>'+
+        '<a class="kit" href="'+to+'"><span class="kn">'+esc(x.name)+'</span><span>$'+priceOf(x)+'</span></a></div>';
     }).join('');
     var lead=(m.kind==='litter')
       ? (m.list.length===1?'One from '+pronoun(r)+' litter is still available.':'From '+pronoun(r)+' litter, still available.')
       : 'Still available.';
-    return '<small>Still here</small><p><b>'+lead+'</b></p><div class="kitrow">'+chips+'</div>';
+    return '<small>Still here</small><p><b>'+lead+'</b></p><div class="kitrow pairs">'+chips+'</div>';
   }
   function growHTML(r, full){
     var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
