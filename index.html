@@ -881,8 +881,9 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
   width:4px;height:8px;border:solid var(--brick);border-width:0 2px 2px 0;transform:rotate(42deg)}
 .rpick button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
 
-.pairnote{display:none;margin:11px 0 0;font-size:14.5px;color:var(--ink)}
+.pairnote{display:none;margin:11px 0 0;font-size:14.5px;color:var(--ink);text-wrap:pretty}
 .pairnote.on{display:block}
+.pairnote b{font-weight:600}
 .prog{display:flex;gap:6px;margin-bottom:8px}
 .prog i{height:3px;flex:1;border-radius:2px;background:var(--line);transition:background .3s}
 .prog i.on{background:var(--brick)}
@@ -1360,6 +1361,11 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec .pairmore-panel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft)}
 .pairrec .pairmore-panel[hidden]{display:none}
 .pairrec .pairmore-panel .kitrow{margin-top:0}
+
+.pairrec .kitrow.pairs{flex-direction:column;align-items:flex-start;gap:6px}
+.pairrec .pairone{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.pairrec .pairsum{font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.pairrec .pairsum .pairask{margin-top:0;white-space:nowrap}
 .kit span{color:var(--ink-faint);font-weight:400;margin-left:5px}
 #viewerGrow{margin-top:var(--sp-open)}
 #viewerGrow:empty{display:none}
@@ -2513,7 +2519,7 @@ body.locked{overflow:hidden}
           <div class="askabout" id="askAbout" tabindex="-1">
             <p class="ask-lead">Asking about <b id="askName"></b></p>
             <div class="rpick" id="askPick" role="group" aria-label="Which rabbits"></div>
-            
+
             <p class="pairnote" id="askPair">Two rabbits going home together, so the second is
             20% off. We'll talk through neutering and how to introduce them before you take a pair.</p>
           </div>
@@ -3416,6 +3422,7 @@ body.locked{overflow:hidden}
     return pic+'<p>'+(m.lead?'<b>'+esc(m.lead)+'</b> ':'')+esc(m.text)+'</p>';
   }
   var DEPOSIT=50, PAIR_OFF=20;
+  window.PAIR_OFF=PAIR_OFF;   /* the form's pair figure reads the same number (pairQuote) */
   function objPronoun(r){
     var x=String((r&&r.sex)||'').toLowerCase();
     return x==='doe'?'her':x==='buck'?'him':'it';
@@ -3458,7 +3465,10 @@ body.locked{overflow:hidden}
     var lo=Math.min.apply(null,offs), hi=Math.max.apply(null,offs);
     var saving=(lo===hi)?('$'+lo):('$'+lo+' to $'+hi);
     var chips=m.list.map(function(x){
-      return '<a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+priceOf(x)+'</span></a>';
+      var other=priceOf(x), off=Math.round(Math.min(mine,other)*PAIR_OFF/100), two=mine+other-off;
+      return '<div class="pairone"><a class="kit" href="#r-'+esc(addrOf(x))+'">'+esc(x.name)+'<span>$'+other+'</span></a>'+
+        '<span class="pairsum"><b>$'+two+'</b> for the two, $'+off+' off. '+
+        '<button type="button" class="pricelink pairask" data-pair="'+esc(x.name)+'">Ask about both</button></span></div>';
     }).join('');
     var who=(m.kind==='litter')?(m.list.length===1?'the littermate':'a littermate'):'any of these';
     var label=(m.kind==='litter')?'The littermates, and how a hold works':'Who, and how a hold works';
@@ -3466,7 +3476,7 @@ body.locked{overflow:hidden}
       '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+' off. '+
       '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+label+'</button></p>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
-      '<div class="kitrow">'+chips+'</div>'+
+      '<div class="kitrow pairs">'+chips+'</div>'+
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">How a hold works</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
@@ -3781,7 +3791,7 @@ body.locked{overflow:hidden}
           '</svg>'+shots.length+'<span class="sr-only"> '+(anyVideo?'photos and clips':'photos')+'</span>'+(anyVideo?'<i class="play" aria-hidden="true"></i>':'')+'</span>'
         : '';
       var ask=gone?'':' data-ask="'+esc(r.name)+'"'+
-              (r.status==='available'?' data-avail="1"':'');
+              (r.status==='available'?' data-avail="1" data-price="'+priceOf(r)+'"':'');
 
       var stLabel=st[1];
       if(r.status==='reserved'&&r.reservedOn) stLabel='Reserved '+dayMon(r.reservedOn);
@@ -4741,6 +4751,16 @@ body.locked{overflow:hidden}
       leaveFor(vWhyMore.getAttribute('href'));
     });
     if(vPair) vPair.addEventListener('click',function(ev){
+      var ab=ev.target.closest&&ev.target.closest('.pairask');
+      if(ab&&vPair.contains(ab)){
+        ev.preventDefault();
+        var me=vCta.getAttribute('data-ask'), them=ab.getAttribute('data-pair');
+        if(!me||!them) return;
+        shut(true);
+        lastRouted='#contact'; location.hash='#contact';
+        document.dispatchEvent(new CustomEvent('rabbit:ask',{detail:[me,them]}));
+        return;
+      }
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
@@ -5012,6 +5032,25 @@ body.locked{overflow:hidden}
     if(a.length<2) return a[0]||'';
     return a.slice(0,-1).join(', ')+' and '+a[a.length-1];
   }
+  function pairOffNow(){ return (typeof window.PAIR_OFF==='number')?window.PAIR_OFF:20; }
+  function pairQuote(names){
+    if(names.length!==2) return null;
+    var cards=names.map(function(n){ return [].filter.call(document.querySelectorAll('.bunny[data-avail]'),function(c){ return c.getAttribute('data-ask')===n; })[0]; });
+    if(!cards[0]||!cards[1]) return null;
+    var p=[+cards[0].getAttribute('data-price')||0, +cards[1].getAttribute('data-price')||0];
+    if(!(p[0]>0&&p[1]>0)) return null;
+    var low=p[1]<p[0]?1:0, off=Math.round(p[low]*pairOffNow()/100);
+    return {names:names.slice(), prices:p, off:off, two:p[0]+p[1]-off, equal:p[0]===p[1], cheaper:names[low]};
+  }
+  var PAIR_NOTE_REST='We\u2019ll talk through neutering and how to introduce them before you take a pair.';
+  function pairNoteHTML(q){
+    var pc=pairOffNow()+'% off';
+    if(!q) return 'Two rabbits going home together, so the second is '+pc+'. '+PAIR_NOTE_REST;
+    var esc=function(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+    return '<b>'+esc(joinNames(q.names))+' together: $'+q.two+'.</b> '+
+      (q.equal?'The second is '+pc+', so $'+q.off+' comes off. ':'The second is whichever costs less, '+pc+', so $'+q.off+' comes off '+esc(q.cheaper)+'. ')+
+      PAIR_NOTE_REST;
+  }
   function setInterest(v){
     var r=form.querySelector('input[name="interest"][value="'+v+'"]');
     form.querySelectorAll('input[name="interest"]').forEach(function(x){x.checked=false});
@@ -5042,15 +5081,17 @@ body.locked{overflow:hidden}
   var sendBtn=document.getElementById('askSend');
   function syncSend(){ if(sendBtn && !sendBtn.disabled) sendBtn.textContent=picked.length?'Ask about '+joinNames(picked):'Send'; }
   function syncAsk(){
+    var q=pairQuote(picked);
     askField.value=picked.join(', ');
     syncSend();
     askName.textContent=picked.length?joinNames(picked):'no one in particular yet';
     var textRow=document.querySelector('.reach a[href^="sms:"]');
     if(textRow){
       textRow.setAttribute('href', picked.length
-        ? 'sms:+15202702827?&body='+encodeURIComponent("Hi William, I'm asking about "+joinNames(picked)+'.')
+        ? 'sms:+15202702827?&body='+encodeURIComponent("Hi William, I'm asking about "+joinNames(picked)+(q?', $'+q.two+' for the two on your site.':'.'))
         : 'sms:+15202702827?&body='+encodeURIComponent('Hi William, I saw your rabbits on arizonarabbits.com.'));
     }
+    askPair.innerHTML=pairNoteHTML(q);
     askPair.classList.toggle('on',picked.length>1);
     setInterest(picked.length>1?'A pair':picked.length===1?'One rabbit':'Not sure yet');
     askPick.querySelectorAll('button').forEach(function(b){
@@ -5080,7 +5121,7 @@ body.locked{overflow:hidden}
   function askAbout(name){
     if(!askBox||!name) return;
     if(!askPick.children.length) buildPick();
-    if(picked.indexOf(name)===-1) picked.push(name);
+    (Array.isArray(name)?name:[name]).forEach(function(n){ if(n&&picked.indexOf(n)===-1) picked.push(n); });
     syncAsk();
     askBox.classList.add('on');
     if(cur!==1) show(1);            /* straight past "what are you after" */
@@ -5140,6 +5181,8 @@ body.locked{overflow:hidden}
     if(nicePhone) fd.append('phone', nicePhone);
     if(email) fd.append('email', email);
     fd.append('asking about', said||'No rabbit in particular');
+    var q=pairQuote(names);
+    if(q) fd.append('pair price shown', '$'+q.two+' for the two: '+q.names[0]+' $'+q.prices[0]+' + '+q.names[1]+' $'+q.prices[1]+', '+pairOffNow()+'% off the second ($'+q.off+' off'+(q.equal?'':' '+q.cheaper)+'). Shown on '+new Date().toLocaleDateString('en-US',{day:'numeric',month:'long',year:'numeric'})+'.');
     if(interest) fd.append('looking for', interest);
     if(exp) fd.append('had a rabbit before', exp);
     if(when) fd.append('hoping to bring one home', when);
