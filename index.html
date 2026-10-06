@@ -401,13 +401,15 @@ header .brand{color:var(--logo)}
 html:not(.js) .ages-note{display:none}
 
 @media(max-width:430px){
-  .avail-stamp a{display:block;width:max-content;margin:-13px -4px -15px}
+  .avail-stamp .ages-note a{display:block;width:max-content;margin:-13px -4px -15px}
 }
 
 .avail-stamp a{color:var(--ink-soft);text-decoration:underline;
   text-underline-offset:2px;text-decoration-color:var(--line);
   display:inline-block;padding:15px 4px;margin:-15px -4px}
 .avail-stamp a:hover{color:var(--brick-dk);text-decoration-color:var(--brick-dk)}
+
+.avail-stamp .stamp-link{padding:15px 2px;margin:-15px -2px}
 
 .count{display:inline-flex;align-items:center;gap:9px;background:var(--paper-2);
   border:1px solid var(--line);border-radius:100px;padding:7px 15px;font-size:14px;
@@ -1768,7 +1770,7 @@ body.locked{overflow:hidden}
         daily handling from their first week to the day they leave.</p>
 
         <p class="avail-stamp">Availability
-          <span data-fact="stamp"><time id="availStamp" datetime="2026-10-05">current as of October 5, 2026</time></span>
+          <span data-fact="stamp"><a class="stamp-link" href="/updates#changes" title="Every change, with its date"><time id="availStamp" datetime="2026-10-05">current as of October 5, 2026</time></a></span>
           <span class="ages-note">Ages are counted from each birth date, so they're right today. <a href="#faq-ages">How that works</a></span></p>
       </div>
       
