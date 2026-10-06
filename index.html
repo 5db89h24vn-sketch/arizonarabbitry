@@ -315,8 +315,12 @@ header .brand{color:var(--logo)}
 @media(min-width:600px){.hero h1 br{display:none}}
 .hero-sub{font-size:clamp(16.5px,1.7vw,18.5px);color:var(--ink-soft);max-width:48ch;margin-bottom:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:18px}
-.hero-proof{display:flex;align-items:flex-start;gap:7px;margin:-6px 0 0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
-.hero-proof .vfd{width:15px;height:15px;margin-top:2px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.hero-proof{display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;margin:-18px 0 -12px;padding:12px 0;
+  font-size:13.5px;line-height:1.4;color:var(--ink-soft);text-decoration:none;cursor:pointer}
+.hero-proof .ig{width:15px;height:15px;flex:none;fill:currentColor;transition:color .15s}
+.hero-proof b{font-weight:600;color:var(--ink);transition:color .15s}
+.hero-proof:hover b,.hero-proof:focus-visible b,.hero-proof:hover .ig,.hero-proof:focus-visible .ig{color:var(--brick-dk)}
 
 @media(orientation:landscape) and (max-height:500px) and (min-width:560px){ .hero-proof{display:none} }
 
@@ -1738,7 +1742,7 @@ body.locked{overflow:hidden}
         <a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com." class="btn btn-ghost"><span class="tx-s">Text William</span><span class="tx-l">Text (520) 270-2827</span></a>
       </div>
       
-      <p class="hero-proof"><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>Verified on Instagram as @arizonarabbits</p>
+      <a class="hero-proof" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span>Verified on Instagram as&nbsp;<b>@arizonarabbits</b></span></a>
 
       <div class="facts">
 
