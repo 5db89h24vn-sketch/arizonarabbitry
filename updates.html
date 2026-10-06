@@ -143,7 +143,7 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
 .edition time{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:14px}
-.edition h2{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:8px}
+.edition h2,.edition h3{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:8px}
 .edition p{color:var(--ink-soft)}
 .edition ul{margin:10px 0 4px 20px;color:var(--ink-soft)}
 .edition li{margin-bottom:8px}
@@ -161,14 +161,9 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
 
 .changes{margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
 .changes h2{margin-bottom:6px}
-.changes .lede{margin-bottom:4px}
-.changes h3{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:22px 0 2px}
-.log{list-style:none;margin:0;padding:0}
-.log li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line-soft);line-height:1.45;color:var(--ink-soft)}
-.log li time{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding-top:3px;white-space:nowrap}
-.log li b{color:var(--ink);font-weight:600}
-.log li b a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5)}
-.log li b a:hover{color:var(--brick-dk);border-bottom-style:solid}
+.changes .lede{margin-bottom:18px}
+.changes .edition.brief li b a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5)}
+.changes .edition.brief li b a:hover{color:var(--brick-dk);border-bottom-style:solid}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
 
@@ -361,39 +356,71 @@ h1,h2,h3{text-wrap:balance}
 
     <section class="changes" id="changes">
       <h2>Availability log</h2>
-      <p class="lede">Who was listed, priced, reserved and sold, and when. From the record, newest first.</p>
-      <div data-fact="changes"><h3>October 2026</h3><ul class="log">
-<li><time datetime="2026-10-05">5 Oct</time> <span><b><a class="xlink" href="/#r-biscuit">Biscuit</a></b> $350 &rarr; $250, a nick in one ear.</span></li>
-<li><time datetime="2026-10-05">5 Oct</time> <span><b><a class="xlink" href="/#r-biscuit">Biscuit</a></b>, 3 new photos.</span></li>
-<li><time datetime="2026-10-04">4 Oct</time> <span><b><a class="xlink" href="/#r-toffee">Toffee</a></b> sold.</span></li>
-<li><time datetime="2026-10-04">4 Oct</time> <span><b><a class="xlink" href="/#r-toffee">Toffee</a></b> reserved.</span></li>
-<li><time datetime="2026-10-04">4 Oct</time> <span><b><a class="xlink" href="/litters#L2026-10-04">A litter born</a></b>, six.</span></li>
-</ul>
-<h3>September 2026</h3><ul class="log">
-<li><time datetime="2026-09-28">28 Sep</time> <span><b><a class="xlink" href="/#r-butterscotch">Butterscotch</a></b> listed, $300.</span></li>
-<li><time datetime="2026-09-27">27 Sep</time> <span><b><a class="xlink" href="/#r-maple">Maple</a></b> sold.</span></li>
-<li><time datetime="2026-09-27">27 Sep</time> <span><b><a class="xlink" href="/litters#L2026-09-27">A litter born</a></b>, seven.</span></li>
-<li><time datetime="2026-09-26">26 Sep</time> <span><b><a class="xlink" href="/#r-maple">Maple</a></b> reserved.</span></li>
-<li><time datetime="2026-09-22">22 Sep</time> <span><b><a class="xlink" href="/#r-butterscotch">Butterscotch</a></b>, a new photo.</span></li>
-<li><time datetime="2026-09-19">19 Sep</time> <span><b><a class="xlink" href="/#r-honey">Honey</a></b>, <b><a class="xlink" href="/#r-biscuit">Biscuit</a></b>, <b><a class="xlink" href="/#r-toffee">Toffee</a></b>, <b><a class="xlink" href="/#r-maple">Maple</a></b> and <b><a class="xlink" href="/#r-pecan">Pecan</a></b> listed, $350 each; <b><a class="xlink" href="/#r-marshmallow">Marshmallow</a></b> $375.</span></li>
-<li><time datetime="2026-09-18">18 Sep</time> <span>New photos of <b><a class="xlink" href="/#r-honey">Honey</a></b>, <b><a class="xlink" href="/#r-biscuit">Biscuit</a></b>, <b><a class="xlink" href="/#r-toffee">Toffee</a></b>, <b><a class="xlink" href="/#r-maple">Maple</a></b>, <b><a class="xlink" href="/#r-pecan">Pecan</a></b> and <b><a class="xlink" href="/#r-marshmallow">Marshmallow</a></b>.</span></li>
-<li><time datetime="2026-09-18">18 Sep</time> <span><b><a class="xlink" href="/litters#L2026-09-18">A litter born</a></b>, three.</span></li>
-<li><time datetime="2026-09-07">7 Sep</time> <span><b><a class="xlink" href="/#r-teddy">Teddy</a></b> sold.</span></li>
-</ul>
-<h3>August 2026</h3><ul class="log">
-<li><time datetime="2026-08-29">29 Aug</time> <span><b><a class="xlink" href="/#r-sundae">Sundae</a></b> and <b><a class="xlink" href="/#r-cloud">Cloud</a></b> sold.</span></li>
-<li><time datetime="2026-08-28">28 Aug</time> <span><b><a class="xlink" href="/#r-teddy">Teddy</a></b> reserved.</span></li>
-<li><time datetime="2026-08-27">27 Aug</time> <span><b><a class="xlink" href="/litters#L2026-08-27">A litter born</a></b>, six.</span></li>
-<li><time datetime="2026-08-25">25 Aug</time> <span><b><a class="xlink" href="/#r-sundae">Sundae</a></b> and <b><a class="xlink" href="/#r-cloud">Cloud</a></b> reserved.</span></li>
-<li><time datetime="2026-08-24">24 Aug</time> <span><b><a class="xlink" href="/#r-sundae">Sundae</a></b> and <b><a class="xlink" href="/#r-cloud">Cloud</a></b> listed, $350 each; <b><a class="xlink" href="/#r-teddy">Teddy</a></b> $375.</span></li>
-<li><time datetime="2026-08-23">23 Aug</time> <span>New photos of <b><a class="xlink" href="/#r-teddy">Teddy</a></b>, <b><a class="xlink" href="/#r-butterscotch">Butterscotch</a></b>, <b><a class="xlink" href="/#r-sundae">Sundae</a></b> and <b><a class="xlink" href="/#r-cloud">Cloud</a></b>.</span></li>
-</ul>
-<h3>July 2026</h3><ul class="log">
-<li><time datetime="2026-07-28">28 Jul</time> <span><b><a class="xlink" href="/litters#L2026-07-28">A litter born</a></b>, six.</span></li>
-</ul>
-<h3>June 2026</h3><ul class="log">
-<li><time datetime="2026-06-28">28 Jun</time> <span><b><a class="xlink" href="/litters#L2026-06-28">A litter born</a></b>, five.</span></li>
-</ul></div>
+      <p class="lede">Who was listed, priced, reserved and sold, and when. From the record, a week at a time.</p>
+      <div data-fact="changes"><article class="edition brief" data-week="2026-10-05">
+<time class="updated" datetime="2026-10-05">Updated 5 October 2026</time>
+<h3>Week of October 5</h3>
+<ul>
+<li><time datetime="2026-10-05">5 Oct</time> <b><a class="xlink" href="/#r-biscuit">Biscuit</a> $350 &rarr; $250.</b> A nick in one ear.</li>
+<li><time datetime="2026-10-05">5 Oct</time> <b><a class="xlink" href="/#r-biscuit">Biscuit</a>, 3 new photos.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-09-28">
+<time class="updated" datetime="2026-10-04">Updated 4 October 2026</time>
+<h3>Week of September 28</h3>
+<ul>
+<li><time datetime="2026-10-04">4 Oct</time> <b><a class="xlink" href="/#r-toffee">Toffee</a> reserved, then sold.</b></li>
+<li><time datetime="2026-10-04">4 Oct</time> <b><a class="xlink" href="/litters#L2026-10-04">A litter born</a>, six.</b></li>
+<li><time datetime="2026-09-28">28 Sep</time> <b><a class="xlink" href="/#r-butterscotch">Butterscotch</a> listed, $300.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-09-21">
+<time class="updated" datetime="2026-09-27">Updated 27 September 2026</time>
+<h3>Week of September 21</h3>
+<ul>
+<li><time datetime="2026-09-27">27 Sep</time> <b><a class="xlink" href="/#r-maple">Maple</a> reserved, then sold.</b> Reserved 26 Sep.</li>
+<li><time datetime="2026-09-27">27 Sep</time> <b><a class="xlink" href="/litters#L2026-09-27">A litter born</a>, seven.</b></li>
+<li><time datetime="2026-09-22">22 Sep</time> <b><a class="xlink" href="/#r-butterscotch">Butterscotch</a>, a new photo.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-09-14">
+<time class="updated" datetime="2026-09-19">Updated 19 September 2026</time>
+<h3>Week of September 14</h3>
+<ul>
+<li><time datetime="2026-09-19">19 Sep</time> <b>Six listed.</b> <a class="xlink" href="/#r-honey">Honey</a>, <a class="xlink" href="/#r-biscuit">Biscuit</a>, <a class="xlink" href="/#r-toffee">Toffee</a>, <a class="xlink" href="/#r-maple">Maple</a> and <a class="xlink" href="/#r-pecan">Pecan</a> $350 each; <a class="xlink" href="/#r-marshmallow">Marshmallow</a> $375.</li>
+<li><time datetime="2026-09-18">18 Sep</time> <b>New photos.</b> <a class="xlink" href="/#r-honey">Honey</a>, <a class="xlink" href="/#r-biscuit">Biscuit</a>, <a class="xlink" href="/#r-toffee">Toffee</a>, <a class="xlink" href="/#r-maple">Maple</a>, <a class="xlink" href="/#r-pecan">Pecan</a> and <a class="xlink" href="/#r-marshmallow">Marshmallow</a>.</li>
+<li><time datetime="2026-09-18">18 Sep</time> <b><a class="xlink" href="/litters#L2026-09-18">A litter born</a>, three.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-09-07">
+<time class="updated" datetime="2026-09-07">Updated 7 September 2026</time>
+<h3>Week of September 7</h3>
+<ul>
+<li><time datetime="2026-09-07">7 Sep</time> <b><a class="xlink" href="/#r-teddy">Teddy</a> sold.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-08-24">
+<time class="updated" datetime="2026-08-29">Updated 29 August 2026</time>
+<h3>Week of August 24</h3>
+<ul>
+<li><time datetime="2026-08-29">29 Aug</time> <b><a class="xlink" href="/#r-sundae">Sundae</a> and <a class="xlink" href="/#r-cloud">Cloud</a> reserved, then sold.</b> Reserved 25 Aug.</li>
+<li><time datetime="2026-08-28">28 Aug</time> <b><a class="xlink" href="/#r-teddy">Teddy</a> reserved.</b></li>
+<li><time datetime="2026-08-27">27 Aug</time> <b><a class="xlink" href="/litters#L2026-08-27">A litter born</a>, six.</b></li>
+<li><time datetime="2026-08-24">24 Aug</time> <b>Three listed.</b> <a class="xlink" href="/#r-sundae">Sundae</a> and <a class="xlink" href="/#r-cloud">Cloud</a> $350 each; <a class="xlink" href="/#r-teddy">Teddy</a> $375.</li>
+</ul></article>
+<article class="edition brief" data-week="2026-08-17">
+<time class="updated" datetime="2026-08-23">Updated 23 August 2026</time>
+<h3>Week of August 17</h3>
+<ul>
+<li><time datetime="2026-08-23">23 Aug</time> <b>New photos.</b> <a class="xlink" href="/#r-teddy">Teddy</a>, <a class="xlink" href="/#r-butterscotch">Butterscotch</a>, <a class="xlink" href="/#r-sundae">Sundae</a> and <a class="xlink" href="/#r-cloud">Cloud</a>.</li>
+</ul></article>
+<article class="edition brief" data-week="2026-07-27">
+<time class="updated" datetime="2026-07-28">Updated 28 July 2026</time>
+<h3>Week of July 27</h3>
+<ul>
+<li><time datetime="2026-07-28">28 Jul</time> <b><a class="xlink" href="/litters#L2026-07-28">A litter born</a>, six.</b></li>
+</ul></article>
+<article class="edition brief" data-week="2026-06-22">
+<time class="updated" datetime="2026-06-28">Updated 28 June 2026</time>
+<h3>Week of June 22</h3>
+<ul>
+<li><time datetime="2026-06-28">28 Jun</time> <b><a class="xlink" href="/litters#L2026-06-28">A litter born</a>, five.</b></li>
+</ul></article></div>
     </section>
 
   </div>
@@ -446,24 +473,28 @@ h1,h2,h3{text-wrap:balance}
 </script>
 <script>
 (function(){
-  var eds=[].slice.call(document.querySelectorAll('article.edition'));
-  var keep=(eds.length&&eds[0].querySelectorAll('li').length<3)?2:1;
-  if(eds.length<=keep) return;
-  var older=eds.slice(keep);
-  var btn=document.createElement('button');
-  btn.type='button'; btn.className='btn btn-ghost earlier';
-  btn.setAttribute('aria-expanded','false');
-  btn.textContent='Earlier weeks ('+older.length+')';
-  older[0].parentNode.insertBefore(btn,older[0]);
-  older.forEach(function(e){ e.hidden=true; });
-  function openAll(focus){
-    older.forEach(function(e){ e.hidden=false; });
-    btn.setAttribute('aria-expanded','true'); btn.hidden=true;
-    if(focus){ var h=older[0].querySelector('h2'); if(h){ h.setAttribute('tabindex','-1'); try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
+  function fold(eds){
+    var keep=(eds.length&&eds[0].querySelectorAll('li').length<3)?2:1;
+    if(eds.length<=keep) return;
+    var older=eds.slice(keep);
+    var btn=document.createElement('button');
+    btn.type='button'; btn.className='btn btn-ghost earlier';
+    btn.setAttribute('aria-expanded','false');
+    btn.textContent='Earlier weeks ('+older.length+')';
+    older[0].parentNode.insertBefore(btn,older[0]);
+    older.forEach(function(e){ e.hidden=true; });
+    function openAll(focus){
+      older.forEach(function(e){ e.hidden=false; });
+      btn.setAttribute('aria-expanded','true'); btn.hidden=true;
+      if(focus){ var h=older[0].querySelector('h2, h3'); if(h){ h.setAttribute('tabindex','-1'); try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
+    }
+    btn.addEventListener('click',function(){ openAll(true); });
+    var t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if(t&&older.some(function(e){ return e.contains(t); })) openAll(false);
   }
-  btn.addEventListener('click',function(){ openAll(true); });
-  var t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));
-  if(t&&older.some(function(e){ return e.contains(t); })) openAll(false);
+  var all=[].slice.call(document.querySelectorAll('article.edition'));
+  fold(all.filter(function(e){ return !e.closest('#changes'); }));
+  fold(all.filter(function(e){ return !!e.closest('#changes'); }));
 })();
 </script>
 
