@@ -1282,18 +1282,28 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-cap.empty{visibility:hidden}
 .viewer-cap{font-size:13px;color:var(--ink-faint);line-height:1.55;overflow:hidden}
 
-.viewer-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:5px 5px 6px;margin:-5px -5px -4px;
-  
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,
-    #000 calc(100% - 14px),transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 14px,
-    #000 calc(100% - 14px),transparent 100%)}
+.viewer-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:5px 5px 6px;margin:-5px -5px -4px}
+
+.viewer-strip.more-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 14px),transparent 100%);
+  mask-image:linear-gradient(90deg,#000 calc(100% - 14px),transparent 100%)}
+.viewer-strip.more-l{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px);
+  mask-image:linear-gradient(90deg,transparent 0,#000 14px)}
+.viewer-strip.more-l.more-r{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%)}
 .viewer-strip::-webkit-scrollbar{display:none}
-.viewer-strip button{flex:0 0 62px;height:52px;padding:0;border-radius:6px;overflow:hidden;
+
+.viewer-media{flex:none;position:relative}
+.viewer-gallery{display:flex;flex-wrap:wrap;align-items:center;column-gap:12px;padding:0 18px}
+.viewer-gallery .viewer-strip{flex:0 1 auto;min-width:0;margin:5px -5px -4px}
+.viewer-gallery .viewer-said{flex:1 1 140px;min-width:0;margin:5px 0 -4px}
+.viewer-gallery .viewer-cap{text-wrap:balance}
+.viewer-strip button{flex:0 0 62px;width:62px;height:52px;padding:0;border-radius:6px;overflow:hidden;
   border:2px solid transparent;background:var(--paper-2);cursor:pointer;position:relative;
   transition:border-color .15s,transform .12s ease-out}
 .viewer-strip img{width:100%;height:100%;object-fit:cover;display:block}
 .viewer-strip button.on{border-color:var(--brick)}
+
+.viewer-strip button:focus-visible{box-shadow:0 0 0 3px #fff}
 .viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 
 .viewer-head h2{font-size:21px;margin-bottom:0;letter-spacing:-.015em}
@@ -1509,8 +1519,18 @@ html.vtout::view-transition-new(rabbitphoto){
   
   .viewer-box{flex-direction:row;width:min(1240px,calc(100vw - 48px))}
 
-  .viewer-stage{flex:0 0 58%;width:58%;align-self:stretch;display:flex;align-items:center;background:#1A1613}
-  .viewer-frame{position:relative;inset:auto;flex:none;width:100%;aspect-ratio:var(--stage-ar,4/3)}
+  .viewer-media{flex:0 0 58%;width:58%;align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:#1A1613}
+  .viewer-stage{flex:none;width:100%;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;background:#1A1613}
+  .viewer:not(.solo) .viewer-media{--gal-h:88px}
+  .viewer-gallery{flex:none;flex-wrap:nowrap;padding:0 14px 12px}
+  
+  .viewer-gallery .viewer-said{flex:1 1 0;min-width:150px}
+  .viewer-gallery .viewer-cap{color:rgba(239,232,222,.78)}
+  .viewer-gallery .viewer-cap a{color:#EFE8DE;border-bottom-color:rgba(239,232,222,.5)}
+  
+  .viewer-frame{position:relative;inset:auto;flex:none;width:100%;aspect-ratio:var(--stage-ar,4/3);
+    width:min(100%,calc((100vh - 24px - var(--gal-h,0px)) * var(--stage-arn,1.3333)));
+    width:min(100%,calc((100dvh - 24px - var(--gal-h,0px)) * var(--stage-arn,1.3333)))}
   .viewer-body{flex:1 1 0;min-width:0;--vx:22px;--vb:20px;padding:20px var(--vx) 0}
   .viewer-foot{margin-top:auto}
   
@@ -1527,7 +1547,8 @@ html.vtout::view-transition-new(rabbitphoto){
   .viewer-box{width:calc(100vw - 16px);max-height:calc(100dvh - 20px)}
   
   .viewer-body{--vx:14px;--vb:16px;padding:13px var(--vx) 0}
-  .viewer-strip button{flex:0 0 56px;height:47px}
+  .viewer-strip button{flex:0 0 56px;width:56px;height:47px}
+  .viewer-gallery{padding:0 14px}
 }
 
 .shots{position:absolute;bottom:9px;right:9px;z-index:2;display:inline-flex;align-items:center;
@@ -2719,6 +2740,7 @@ body.locked{overflow:hidden}
     </div>
     
     <span class="vtags"><span class="status vstatus" id="viewerStatus" hidden></span><span class="newmark vnew" id="viewerNew" hidden>New</span><span class="newmark salemark vnew" id="viewerSale" hidden>Sale</span></span>
+    <div class="viewer-media">
     <div class="viewer-stage">
       
       <div class="viewer-frame">
@@ -2744,6 +2766,14 @@ body.locked{overflow:hidden}
       <button class="viewer-nav next" type="button" id="viewerNext" aria-label="Next photo">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
+    </div>
+    
+    <div class="viewer-gallery">
+      <div class="viewer-strip" id="viewerStrip"></div>
+      <div class="viewer-said" id="viewerSaid">
+        <p class="viewer-cap" id="viewerCap"></p>
+      </div>
+    </div>
     </div>
     <div class="viewer-body">
       
@@ -2782,10 +2812,6 @@ body.locked{overflow:hidden}
       <div class="litrec" id="viewerLitters" hidden></div>
       
       <p class="viewer-when" id="viewerWhen" hidden></p>
-      <div class="viewer-said" id="viewerSaid">
-        <p class="viewer-cap" id="viewerCap"></p>
-      </div>
-      <div class="viewer-strip" id="viewerStrip"></div>
       <p class="viewer-note" id="viewerNote"></p>
       
       <p class="viewer-coat" id="viewerCoat" hidden></p>
@@ -4022,6 +4048,17 @@ body.locked{overflow:hidden}
       if(window.ResizeObserver) new ResizeObserver(moreBelow).observe(vBody);
       window.addEventListener('resize',moreBelow);
     }
+    function stripEdges(){
+      if(!vStrip) return;
+      var l=vStrip.scrollLeft, m=vStrip.scrollWidth-vStrip.clientWidth;
+      vStrip.classList.toggle('more-l', l>1);
+      vStrip.classList.toggle('more-r', m-l>1);
+    }
+    if(vStrip){
+      vStrip.addEventListener('scroll',stripEdges,{passive:true});
+      if(window.ResizeObserver) new ResizeObserver(stripEdges).observe(vStrip);
+      window.addEventListener('resize',stripEdges);
+    }
     function showStage(){
       if(vScroller()!==vBoxEl||!vBoxEl||vBoxEl.scrollTop<4) return;
       try{ vBoxEl.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
@@ -4046,10 +4083,15 @@ body.locked{overflow:hidden}
       vImg.hidden=false;
       vStage.classList.remove('video');
     }
+    function setAr(v){
+      vStage.style.setProperty('--stage-ar',v);
+      var p=String(v).split('/'), n=(+p[0])/((+p[1])||1);
+      if(n>0&&isFinite(n)) vStage.style.setProperty('--stage-arn',n.toFixed(4));
+    }
     function setFrame(src){
       var ar=shapeFor(src);
-      if(ar){ vStage.style.setProperty('--stage-ar',ar); }
-      else if(vImg.naturalWidth){ vStage.style.setProperty('--stage-ar',vImg.naturalWidth+'/'+vImg.naturalHeight); }
+      if(ar){ setAr(ar); }
+      else if(vImg.naturalWidth){ setAr(vImg.naturalWidth+'/'+vImg.naturalHeight); }
     }
     if(vImg) vImg.addEventListener('error',function(){
       var a=vImg.getAttribute('src'); if(!a||a===PLACEHOLDER) return;   /* emptied on close (shut) is not a failure */
@@ -4070,7 +4112,7 @@ body.locked{overflow:hidden}
     if(vImg) vImg.addEventListener('load',hintOff);
     if(vImg) vImg.addEventListener('load',function(){
       if(!shapeFor(vImg.getAttribute('src')||'') && vImg.naturalWidth)
-        vStage.style.setProperty('--stage-ar',vImg.naturalWidth+'/'+vImg.naturalHeight);
+        setAr(vImg.naturalWidth+'/'+vImg.naturalHeight);
     });
     function paint(i){
       if(i<0||i>=shots.length) return;
@@ -4140,6 +4182,7 @@ body.locked{overflow:hidden}
         if(br.left<sr.left) vStrip.scrollLeft-=(sr.left-br.left)+8;
         else if(br.right>sr.right) vStrip.scrollLeft+=(br.right-sr.right)+8;
       }
+      stripEdges();
     }
 
     var born='';
