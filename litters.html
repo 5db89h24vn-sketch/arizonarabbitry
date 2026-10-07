@@ -543,8 +543,13 @@ html:not(.js) .views{display:none}
 .fam .parent b{white-space:normal;overflow-wrap:anywhere}
 .fam-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;padding:0 12px;
   border:1px solid var(--line);border-radius:var(--r);background:transparent;font:inherit;font-size:14.5px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left}
-.fam-toggle::after{content:'+';font-size:19px;line-height:1;color:var(--ink-faint)}
-.fam-toggle[aria-expanded="true"]::after{content:'\2212'}
+
+.fam-toggle::after{content:'';flex:none;width:7px;height:7px;margin-right:2px;
+  border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
+  transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.fam-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(225deg)}
+.fam-toggle:hover::after{border-color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.fam-toggle::after{transition:none}}
 .fam-toggle:hover{border-color:var(--ink);background:rgba(36,31,29,.03)}
 .fam-list{margin-top:8px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .fam-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 12px;align-items:center;min-height:48px;padding:8px 12px;
@@ -560,6 +565,13 @@ html:not(.js) .views{display:none}
   font:inherit;font-size:16px;font-weight:500;color:var(--ink);-webkit-appearance:none;appearance:none;cursor:pointer}
 .finder select:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
 .finder-note{font-size:14px;color:var(--ink-soft);margin:-6px 0 16px}
+
+.mini{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:4px 12px;margin:0 0 0 4px;
+  border:1px solid var(--line);border-radius:var(--r);background:transparent;font:inherit;font-size:13px;font-weight:500;line-height:1.2;
+  color:var(--ink);cursor:pointer;white-space:nowrap;vertical-align:middle;-webkit-appearance:none;appearance:none;
+  transition:border-color .15s,background-color .15s}
+.mini:hover{border-color:var(--ink);background-color:rgba(36,31,29,.03)}
+.mini::before{content:'';position:absolute;left:-4px;right:-4px;top:-6px;bottom:-6px}
 .finder-note[hidden],.tile[hidden],.wt[hidden],.wallhead[hidden],.whograph[hidden],.wall[hidden]{display:none}
 </style>
 </head>
@@ -1274,8 +1286,8 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         else { var f=LITS.filter(function(a){return a.id===ids[0];})[0];
           what=FMN[f.mo-1]+' '+f.y+', '+(ids.length===1?'one litter':(NUMW[ids.length]||ids.length)+' litters'); }
         fnote.textContent='Showing '+what+'. ';
-        var back=document.createElement('a');back.href='#all';back.className='xlink';back.textContent='All litters';
-        back.addEventListener('click',function(e){ e.preventDefault(); fsel.value=''; showLitters(''); fsel.focus(); });
+        var back=document.createElement('button');back.type='button';back.className='mini';back.textContent='Show all litters';
+        back.addEventListener('click',function(){ fsel.value=''; showLitters(''); fsel.focus(); });
         fnote.appendChild(back); fnote.hidden=false;
       }
       fsel.addEventListener('change',function(){ showLitters(fsel.value); });
