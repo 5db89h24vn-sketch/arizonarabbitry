@@ -841,7 +841,7 @@ const RABBITS = [
     weights: [],
     departed: true,
     photo:  "photos/biscuit-car.jpg",
-    note:   "The fluffiest coat of the fawn kits, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
+    note:   "The fluffiest coat of the fawn ones, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
   },
   {
     name:   "Toffee",
@@ -922,7 +922,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
-    note:   "Long wavy coat, the woolliest of the fawn kits. Ears up and forward in the 18 September photo, chin down on the brick."
+    note:   "Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick."
   },
 
   /* MARSHMALLOW, the sixth, listed 19 Sept 2026. Two photographs from the same
