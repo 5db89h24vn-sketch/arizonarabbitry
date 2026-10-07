@@ -835,10 +835,11 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* William, 6 Oct 2026: "Mark biscuit as sold", paid for that day (his answer) */
+    soldOn: "2026-10-06",
     ear:    "",
     weights: [],
+    departed: true,
     photo:  "photos/biscuit-car.jpg",
     note:   "The fluffiest coat of the fawn kits, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
   },
