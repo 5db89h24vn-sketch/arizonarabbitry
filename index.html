@@ -4338,6 +4338,7 @@ body.locked{overflow:hidden}
       document.body.classList.add('locked');
       fitBlocks();
       fitCaption();
+      fitGal();
       paint(0);
       toTop();
       moreBelow();
@@ -4530,6 +4531,13 @@ body.locked{overflow:hidden}
       if(any&&w) vCap.style.height=tallest(vCap,'viewer-cap',caps,w)+'px';
       vSaid.style.display=any?'':'none';
     }
+    var vGal=vw.querySelector('.viewer-gallery');
+    function fitGal(){
+      var m=vGal&&vGal.parentNode; if(!m) return;
+      if(vw.classList.contains('solo')){ m.style.removeProperty('--gal-h'); return; }
+      m.style.setProperty('--gal-h', Math.max(88, Math.ceil(vGal.offsetHeight))+'px');
+    }
+    window.addEventListener('resize',function(){ if(vw.classList.contains('open')) fitGal(); });
 
     function openFor(r, force){
       shots=galleryFor(r);
@@ -4595,6 +4603,7 @@ body.locked{overflow:hidden}
       document.body.classList.add('locked');
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
       fitCaption();
+      fitGal();
       var start=0;
       for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
       paint(start);
