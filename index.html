@@ -1399,26 +1399,41 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec .pairmore-panel[hidden]{display:none}
 .pairrec .pairmore-panel .kitrow{margin-top:0}
 
-.pairrec .kitrow.pairs{flex-direction:column;align-items:stretch;gap:9px}
+.pairrec .pairtab{width:100%;border-collapse:collapse;margin:0}
+.pairrec .pairtab th,.pairrec .pairtab td{padding:4px 0;vertical-align:middle;white-space:nowrap;font-weight:inherit}
+.pairrec .pairtab thead th{padding:0 0 2px;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);line-height:1.35;text-align:right}
+.pairrec .pairtab thead th:first-child{text-align:left}
+.pairrec .pairtab tbody tr+tr>*{border-top:1px solid var(--line-soft)}
+.pairrec .pairtab .two,.pairrec .pairtab .off{text-align:right;padding-left:10px;font-variant-numeric:tabular-nums}
+.pairrec .pairtab .two b{font-size:13.5px}
+.pairrec .pairtab .off{color:var(--ink-soft)}
+.pairrec .pairtab .ask{text-align:right;padding-left:12px}
+.pairrec .pairtab .pairask{margin-top:0}
+.pairrec .pairtab .pairask::after{left:-10px;right:-6px}
 
-.pairrec .pairone{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:10px;row-gap:1px;align-items:center}
-.pairrec .pairone .face{grid-row:1 / span 2;display:block;width:40px;height:40px;border-radius:50%;overflow:hidden;
-  background:var(--paper-2);transition:transform .12s ease-out}
-.pairrec .pairone .face img,.pairrec .pairone .face .face-none{display:block;width:100%;height:100%;object-fit:cover}
-.pairrec .pairone .face:hover{box-shadow:0 0 0 2px rgba(160,82,45,.45)}
-.pairrec .pairone .face:active{transform:scale(.96)}
+.pairrec .pairtab tbody th{text-align:left;width:100%;max-width:0}
+.pairrec .pairtab .kit{max-width:100%}
+.pairrec .pairtab .kit .kn{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.pairrec .pairtab .kit .kn+span{flex:none}
+.pairrec .pairtab+p{margin-top:6px}
 
-.pairrec .pairone .kit{justify-self:start;min-height:0;padding:0;border:0;border-radius:0;background:none;
-  font-size:13.5px;font-weight:500;color:var(--brick-dk);line-height:1.45}
-.pairrec .pairone .kit .kn{color:inherit;font-weight:inherit;margin:0;border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
-.pairrec .pairone .kit::after{inset:-6px -6px}
-.pairrec .pairone .kit:hover,.pairrec .pairone .kit:focus-visible{color:var(--brick)}
-.pairrec .pairone .kit:hover .kn,.pairrec .pairone .kit:focus-visible .kn{border-bottom-style:solid}
-.pairrec .pairone .pairsum{grid-column:2;line-height:1.45}
+.kit.kit-face{padding-left:4px;padding-right:10px}
+.kit .face{flex:none;width:28px;height:28px;margin:0 7px 0 0;border-radius:50%;overflow:hidden;background:var(--paper-2)}
+.kit .face img,.kit .face .face-none{display:block;width:100%;height:100%;object-fit:cover}
+.kit .kn{color:inherit;font-weight:inherit;margin-left:0}
 
-.pairrec .pairone .kit:last-child{grid-row:1 / span 2}
-.pairrec .pairsum{font-size:13px;line-height:1.5;color:var(--ink-soft)}
-.pairrec .pairsum .pairask{margin-top:0;white-space:nowrap}
+@media(max-width:374px){
+  .pairrec .pairtab .two,.pairrec .pairtab .off{padding-left:8px}
+  .pairrec .pairtab .ask{padding-left:10px}
+  .pairrec .pairtab thead th{letter-spacing:.06em}
+}
+@media(max-width:359px){
+  .kit.kit-face{padding-left:9px;padding-right:8px}
+  .kit.kit-face .face{display:none}
+  .pairrec .pairtab .two,.pairrec .pairtab .off{padding-left:7px}
+  .pairrec .pairtab .ask{padding-left:8px}
+}
 .kit span{color:var(--ink-faint);font-weight:400;margin-left:5px}
 #viewerGrow{margin-top:var(--sp-open)}
 #viewerGrow:empty{display:none}
@@ -3511,6 +3526,14 @@ body.locked{overflow:hidden}
     return mates.length?{kind:'litter',list:dearestFirst(mates)}:{kind:'others',list:dearestFirst(avail)};
   }
   function dearestFirst(list){ return list.slice().sort(function(a,b){ return priceOf(b)-priceOf(a); }); }
+  function pairAll(r){
+    var me=addrOf(r);
+    return dearestFirst(RABBITS.filter(function(x){ return x.status==='available' && addrOf(x)!==me; }));
+  }
+  function chipHTML(x, cls){
+    return '<a class="kit kit-face'+(cls?' '+cls:'')+'" href="#r-'+esc(addrOf(x))+'"><span class="face" aria-hidden="true">'+faceImg(x,28)+'</span>'+
+      '<span class="kn">'+esc(x.name)+'</span><span>$'+priceOf(x)+'</span></a>';
+  }
   function faceSrc(r){ var s=r.photo||(Array.isArray(r.photos)&&r.photos[0]&&r.photos[0].src)||'';
     return realPhoto(s)?s:''; }
   function faceImg(r,px){ var s=faceSrc(r);
@@ -3518,28 +3541,27 @@ body.locked{overflow:hidden}
             :'<i class="face-none"></i>'; }
   function pairHTML(r){
     if(r.status!=='available') return '';
-    var m=pairMates(r); if(!m.list.length) return '';
+    var all=pairAll(r); if(!all.length) return '';
     var mine=priceOf(r);
-    var offs=m.list.map(function(x){ return Math.round(Math.min(mine,priceOf(x))*PAIR_OFF/100); });
+    var offs=all.map(function(x){ return Math.round(Math.min(mine,priceOf(x))*PAIR_OFF/100); });
     var lo=Math.min.apply(null,offs), hi=Math.max.apply(null,offs);
     var saving=(lo===hi)?('$'+lo):('$'+lo+' to $'+hi);
-    var chips=m.list.map(function(x){
+    var rows=all.map(function(x){
       var other=priceOf(x), off=Math.round(Math.min(mine,other)*PAIR_OFF/100), two=mine+other-off;
-      var to='#r-'+esc(addrOf(x));
-      return '<div class="pairone"><a class="face" href="'+to+'" tabindex="-1" aria-hidden="true">'+faceImg(x,40)+'</a>'+
-        '<a class="kit" href="'+to+'"><span class="kn">'+esc(x.name)+'</span><span>$'+other+'</span></a>'+
-        '<span class="pairsum"><b>$'+two+'</b> for the two, $'+off+' off. '+
-        '<button type="button" class="pricelink pairask" data-pair="'+esc(x.name)+'">Ask about both</button></span></div>';
+      return '<tr class="pairone"><th scope="row">'+chipHTML(x)+'</th>'+
+        '<td class="two"><b>$'+two+'</b></td><td class="off">$'+off+'</td>'+
+        '<td class="ask"><button type="button" class="pricelink pairask" data-pair="'+esc(x.name)+'" '+
+          'aria-label="'+esc('Ask about '+r.name+' and '+x.name+', $'+two+' for the two')+'">Ask</button></td></tr>';
     }).join('');
-    var who=(m.kind==='litter')?(m.list.length===1?'the littermate':'a littermate'):'any of these';
-    var label=(m.kind==='litter')?'The littermates, and how a hold works':'Who, and how a hold works';
+    var label='Every pair price, and how a hold works';
     return '<small>A pair</small>'+
-      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> '+(m.kind==='litter'?'Any two count; with '+who:'With '+who)+', that\u2019s '+saving+'\u00a0off.</p>'+
+      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> Any two count; that\u2019s '+saving+'\u00a0off.</p>'+
       '<button type="button" class="pricelink pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
-        '<span class="faces" aria-hidden="true">'+m.list.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
+        '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
         '<span class="pm-t">'+label+'</span></button>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
-      '<div class="kitrow pairs">'+chips+'</div>'+
+      '<table class="pairtab"><thead><tr><th scope="col"><span class="sr-only">With</span></th><th scope="col" class="two">Both</th>'+
+        '<th scope="col" class="off">Save</th><th scope="col"><span class="sr-only">Ask</span></th></tr></thead><tbody>'+rows+'</tbody></table>'+
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second, or hold one with $'+DEPOSIT+', within 48 hours, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">How a hold works</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
@@ -3550,15 +3572,11 @@ body.locked{overflow:hidden}
   function stillHTML(r){
     if(r.status==='available') return '';
     var m=pairMates(r); if(!m.list.length) return '';
-    var chips=m.list.map(function(x){
-      var to='#r-'+esc(addrOf(x));
-      return '<div class="pairone"><a class="face" href="'+to+'" tabindex="-1" aria-hidden="true">'+faceImg(x,40)+'</a>'+
-        '<a class="kit" href="'+to+'"><span class="kn">'+esc(x.name)+'</span><span>$'+priceOf(x)+'</span></a></div>';
-    }).join('');
+    var chips=m.list.map(function(x){ return chipHTML(x,'pairone'); }).join('');
     var lead=(m.kind==='litter')
       ? (m.list.length===1?'One from '+pronoun(r)+' litter is still available.':'From '+pronoun(r)+' litter, still available.')
       : 'Still available.';
-    return '<small>Still here</small><p><b>'+lead+'</b></p><div class="kitrow pairs">'+chips+'</div>';
+    return '<small>Still here</small><p><b>'+lead+'</b></p><div class="kitrow">'+chips+'</div>';
   }
   function growHTML(r, full){
     var wk=weekOf(r.dob); if(wk===null||!STAGES.length) return '';
