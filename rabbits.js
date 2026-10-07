@@ -543,6 +543,26 @@ const PARENTS = {
     photos: [
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
     ]
+  },
+  /* BAKALAKI, the purebred Netherland Dwarf doe, mother of the first
+     Netherland Dwarf litter (born 6 Oct 2026). From her pedigree card: Opal,
+     born 21 June 2025, ear number BAKALAKI; her name without her breeder's
+     prefix, as for Tango and Root Beer. What her card leaves blank is not
+     printed. Two photos, dated the day they arrived: in the nest box, and
+     close up on the cage floor beside the fur she pulled. */
+  bakalaki: {
+    role:    "mother",
+    name:    "Bakalaki",
+    breed:   "Netherland Dwarf",
+    variety: "Opal",
+    ear:     "BAKALAKI",
+    dob:     "2025-06-21",
+    pedigreed: true,
+    note:    "Pedigreed. Hand-picked for me by her breeder, who has been breeding for more than 30 years. Both her parents are Grand Champions.",
+    photos: [
+      { src: "photos/mother-bakalaki-2.jpg", date: "2026-10-06" },
+      { src: "photos/mother-bakalaki.jpg", date: "2026-10-06" }
+    ]
   }
 };
 
@@ -569,8 +589,10 @@ const PARENTS = {
 const PLANNED = [
   /* "holland-lop" (the first purebred Holland Lops, born 18 Sept) came off
      4 Oct 2026, the day its article went on the litters page; the people who
-     asked for it stay on the waitlist page under that name. */
-  { key: "netherland-dwarf", name: "the first Netherland Dwarf litter" }
+     asked for it stay on the waitlist page under that name.
+     "netherland-dwarf" (the first Netherland Dwarf litter, born 6 Oct) came
+     off 6 Oct 2026 the same way; its people stay on the waitlist page under
+     "the first Netherland Dwarf litter". */
 ];
 
 /* WHERE THEY ENDED UP -- the homes the rabbits went to, in the owners' own
