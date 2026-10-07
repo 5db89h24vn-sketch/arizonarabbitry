@@ -3469,7 +3469,7 @@ body.locked{overflow:hidden}
   }
   var MARK_SIZES='96px';
   function markHTML(r){
-    var m=r&&r.mark; if(!m||!m.text) return '';
+    var m=r&&r.mark; if(!m||!m.text||r.status!=='available') return '';
     var src=String(m.src||'').trim(), alt=esc(m.alt||(m.lead?m.lead.replace(/[.!]+$/,''):'The mark'));
     var pic=src?('<picture class="av">'+avifSource(src,MARK_SIZES)+'<img src="'+esc(src)+'"'+sizedAttrs(src,MARK_SIZES)+' alt="'+alt+'" width="96" height="72" loading="lazy" decoding="async" onerror="cardErr(this)"></picture>'):'';
     return pic+'<p>'+(m.lead?'<b>'+esc(m.lead)+'</b> ':'')+esc(m.text)+'</p>';
