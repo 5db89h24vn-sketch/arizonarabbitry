@@ -139,6 +139,11 @@
       change   status: "reserved"  (or "available")
       to       status: "sold"
       and set  soldOn: "2026-08-29"      (the day it was paid for)
+      SOLD STRAIGHT FROM AVAILABLE (7 Oct 2026, your rule): paid in full
+      with no reservation first is paid outright, and that counts as a
+      reservation the same day, so reservedOn is the sold date too.
+      Type it, or leave it out and the build writes it in for you. A
+      reservation date you did give stays exactly as you typed it.
       The rabbit stays on the rail under a dated Sold label for THREE
       DAYS after that date (19 Sept 2026, your rule: "disappear into the
       archive after X amount of time after it's sold, like three days"),
@@ -858,6 +863,7 @@ const RABBITS = [
     listedOn: "2026-09-19",
     ready:  "",
     status: "sold",                            /* William, 6 Oct 2026: "Mark biscuit as sold", paid for that day (his answer) */
+    reservedOn: "2026-10-06",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
     soldOn: "2026-10-06",
     ear:    "",
     weights: [],
