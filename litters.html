@@ -368,6 +368,18 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .litter .alert-ok{font-size:15px;font-weight:600;color:var(--open);margin:10px 0 0}
 
 .litter .alert-privacy{font-size:12.5px;color:var(--ink-faint);margin:10px 0 0;line-height:1.5}
+
+.wl-more{display:flex;align-items:center;gap:10px;margin:0 0 10px;min-height:26px;cursor:pointer;font-size:14.5px;color:var(--ink);line-height:1.35;position:relative}
+.wl-more input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.wl-tick{flex:none;position:relative;width:20px;height:20px;border:1.5px solid var(--ink-faint);border-radius:5px;background:#fff;
+  transition:background-color .15s,border-color .15s}
+.wl-tick::after{content:'';position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;
+  transform:rotate(45deg);opacity:0}
+.wl-more input:checked+.wl-tick{background:var(--brick);border-color:var(--brick)}
+.wl-more input:checked+.wl-tick::after{opacity:1}
+.wl-more input:focus-visible+.wl-tick{outline:2px solid var(--brick-dk);outline-offset:2px}
+.alert-form .wl-more[hidden]{display:none}
+.alert-form .err{color:var(--alert);font-size:13px;margin:8px 0 0}
 .alert-count[hidden],.alert-ok[hidden]{display:none}
 .tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -648,7 +660,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-10-06"> For this litter that is from <time datetime="2026-11-03">3 November</time>.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-10-06"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-06" data-label="the litter born 6 October"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-06"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 6 October (L2026-10-06)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-10-06"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-06" data-label="the litter born 6 October" data-name="the Netherland Dwarfs born 6 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-06"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 6 October (L2026-10-06)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -684,7 +696,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-10-04"> For this litter that is from <time datetime="2026-11-01">1 November</time>.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-10-04"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-04" data-label="the litter born 4 October"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-04"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 4 October (L2026-10-04)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-10-04"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-04" data-label="the litter born 4 October" data-name="the Holland Lops born 4 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-04"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 4 October (L2026-10-04)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -733,7 +745,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-09-27"> For this litter that is from <time datetime="2026-10-25">25 October</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -767,7 +779,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-09-18"> For this litter that is from <time datetime="2026-10-16">16 October</time>.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-18"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-18" data-label="the litter born 18 September"><p class="alert-lead"><b>Hear first about this litter.</b> One email with their names and photos before they open for reservation, then nothing more.</p><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-18"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 18 September (L2026-09-18)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter. You’ll hear from me before it opens.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-18"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-18" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-18"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 18 September (L2026-09-18)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -1707,27 +1719,31 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 <script>
 (function(){
   var ALERT_API='/api/waitlist';
-  function waitFields(form, email, want, label){
-    var fd=new FormData(), forL=/^L\d{4}-\d{2}-\d{2}$/.test(want), forP=/^P/.test(want);
-    var when;
-    if(forL){
-      var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
-      var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-      when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
-    } else if(forP){
-      var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
-      when=(pq&&pq.born)?(label+' go on sale'):(label+' is born'); }
-    else { when='the next litter opens for reservation'; }
-    var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
-    fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
+  function sentenceList(xs){ return xs.length<2?(xs[0]||''):xs.slice(0,-1).join(', ')+' and '+xs[xs.length-1]; }
+  function capFirst(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
+  function levelWords(level){
+    return level==='all'?'Every update: new photos as they grow, and the day they go on sale':'One email per litter, the day it goes on sale';
+  }
+  function waitFields(form, email, picks, level){
+    var fd=new FormData(), every=picks.some(function(p){ return p.want==='all'; });
+    var names=every?['every litter']:picks.map(function(p){ return p.name||p.label; });
+    fd.append('_subject', 'Waitlist: '+sentenceList(names)+(level==='all'?', every update':''));
     fd.append('this is', 'Someone joined the waitlist on arizonarabbits.com.');
-    fd.append('they want to hear about', whatFor);
+    fd.append('they want to hear about', every?'Every litter, including the ones not born yet':capFirst(sentenceList(names)));
+    fd.append('send them', levelWords(level));
     fd.append('email', email);
-    fd.append('next step', 'Nothing to send yet. They hear from you when '+when+'. The site promises the waitlist hears first, so that day is the day.');
+    fd.append('next step', 'Nothing to send yet. Email them the day '+(every?'a litter':(picks.length>1?'each of those litters':'that litter'))+' goes on sale'+
+      (level==='all'?', and when you post new photos of '+(every||picks.length>1?'one of them':'it'):'')+'.');
     var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
     return fd;
   }
-  function tieLastWords(s){ return s.replace(/ (\S+)$/, '\u00A0$1'); }
+  function thanksFor(picks, level){
+    var every=picks.some(function(p){ return p.want==='all'; });
+    var who=every?'every litter':sentenceList(picks.map(function(p){ return p.name||p.label; }));
+    var when=every?'the day each one goes on sale':'the day they go on sale';
+    return 'You’re on the list for '+who+'. '+(level==='all'?'You’ll get '+(every?'new photos':'their new photos')+' as they grow, and an email '+when+'.':'You’ll get an email '+when+'.');
+  }
+  function tieLastWords(s){ return s.replace(/ (\S+)$/, ' $1'); }
   function waitingText(n, label){
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
   }
@@ -1744,26 +1760,37 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       .then(function(d){ if(d&&d.ok&&typeof d.count==='number') showWaiting(el, d.count, label, mine); })
       .catch(function(){});
   }
-  function recordWaiting(email, want, done){
+  function recordWaiting(email, wants, level, done){
     if(!/^https?:/.test(location.protocol)){ done(null); return; }
-    fetch(ALERT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,want:want})})
+    fetch(ALERT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,want:wants,level:level})})
       .then(function(r){ return r.json(); })
       .then(function(d){ done(d&&d.ok&&typeof d.count==='number'?d.count:null); })
       .catch(function(){ done(null); });
   }
+  function sayError(form, id, html){
+    var p=document.getElementById(id);
+    if(!p){ p=document.createElement('p'); p.id=id; p.className='err show'; p.setAttribute('role','alert'); form.appendChild(p); }
+    p.innerHTML=html; p.classList.add('show');
+  }
+
   var forms=document.querySelectorAll('form.alert-form');
   for(var i=0;i<forms.length;i++)(function(f){
-    var want=f.getAttribute('data-want')||'', label=f.getAttribute('data-label')||'this litter';
+    var want=f.getAttribute('data-want')||'', label=f.getAttribute('data-label')||'this litter', name=f.getAttribute('data-name')||label;
     var count=f.querySelector('.alert-count'), okEl=f.querySelector('.alert-ok'), row=f.querySelector('.alert-row'), lead=f.querySelector('.alert-lead');
+    var more=f.querySelector('.wl-more');
+    var levelNow=function(){ var c=f.querySelector('input[name="level"]:checked'); return c?c.value:'sale'; };
     fetchWaiting(want, count, label);
     f.addEventListener('submit',function(ev){
       ev.preventDefault();
-      var email=(f.querySelector('input[name="email"]')||{}).value||'';
-      fetch(f.getAttribute('action'),{method:'POST',body:waitFields(f, email, want, label),headers:{'Accept':'application/json'}})
+      var email=(f.querySelector('input[name="email"]')||{}).value||'', level=levelNow(), picks=[{want:want, label:label, name:name}];
+      fetch(f.getAttribute('action'),{method:'POST',body:waitFields(f, email, picks, level),headers:{'Accept':'application/json'}})
         .then(function(r){ if(!r.ok) throw 0;
-          if(row) row.hidden=true; if(lead) lead.hidden=true; if(okEl) okEl.hidden=false;
-          recordWaiting(email, want, function(n){ showWaiting(count, n, label, true); }); })
-        .catch(function(){ alert('That didn\'t send. Text me at (520) 270-2827 instead.'); });
+          [row, lead, more].forEach(function(x){ if(x) x.hidden=true; });
+          if(okEl){ okEl.textContent=thanksFor(picks, level); okEl.hidden=false; }
+          recordWaiting(email, [want], level, function(n){ showWaiting(count, n, label, true); }); })
+        .catch(function(){
+          sayError(f, 'alertErr'+want, 'That didn’t send. <a href="sms:+15202702827">Text me</a> and I’ll add you myself, or try again.');
+        });
     });
   })(forms[i]);
 })();

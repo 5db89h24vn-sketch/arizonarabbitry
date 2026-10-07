@@ -16,10 +16,25 @@
    If this API is down, or not switched on yet, a signup still reaches the
    inbox and the page simply shows no number.
 
+   7 Oct 2026, William: "let them select multiple" and "have it be more of an
+   update tracker where they get notified for all the updates or just when it
+   goes live, whatever they sign up for". So a signup names any number of
+   lists, and says what the person wants sent: "sale" (the email the day a
+   litter goes on sale, what everybody gets) or "all" (also that litter's new
+   photos as it grows). The choice is kept on every record as f, and the admin
+   list reads it back so the every-update people can be copied apart.
+
    WHAT THE PAGES ASK FOR
      GET  /api/waitlist?litter=L2026-08-27   -> {"litter":"L2026-08-27","count":4}
-     POST /api/waitlist  {"email":"...","want":"all"|"L2026-08-27"}
-                                            -> {"ok":true,"fresh":true,"count":5}
+     POST /api/waitlist  {"email":"...","want":"all"|"L2026-08-27"|[up to 12 of them],
+                          "level":"sale"|"all"}
+                                            -> {"ok":true,"want":"L2026-08-27",
+                                                "wants":[...],"level":"all",
+                                                "fresh":true,"count":5}
+          "all" in a list stands alone (every litter already holds the rest);
+          a list with one bad name is refused whole and nothing is written;
+          the count answered is the first list's; level is "sale" unless it
+          says "all".
           with "dry":true it checks the address and answers without writing
           (the live check uses that, so a check never becomes a signup)
    WHAT WILLIAM'S PAGE ASKS FOR, with "Authorization: Bearer <ADMIN_KEY>",
@@ -36,8 +51,11 @@
      n:<litter id>, n:all  the number currently shown, with when it was counted
    The hash is SHA-256 of the lowercased address, so a person is counted once
    however many times they sign up, and the key names carry no address. The
-   address sits in the value and in the key's metadata, which is what the
-   admin list reads back so he can email the people on it.
+   address, the day they joined (w) and what they asked to be sent (f: "sale"
+   or "all") sit in the value and in the key's metadata, which is what the
+   admin list reads back so he can email the people on it. The same person
+   signing up again with a different choice of what to send keeps the new
+   choice and the day they first joined.
 
    THE NUMBER on the page for a litter is everybody who will hear about it:
    the people who asked for that litter alone, plus everybody on the
@@ -66,6 +84,7 @@ const COUNT_TTL = 15 * 60 * 1000;
 const LITTER_ID = /^(L\d{4}-\d{2}-\d{2}|P[a-z0-9-]{1,40})$/;
 const MAX_EMAIL = 254;
 const MAX_IMPORT = 500;
+const MAX_WANTS = 12;   /* lists one signup may name: every litter waiting and planned, with room */
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -159,13 +178,22 @@ async function countedLitters(kv) {
    had expired and the read fell through to a recount, and adding one to
    that counted the person twice (the first run of waitlistfntest.mjs
    caught exactly that). */
-async function record(kv, want, email, source, now, bump) {
+async function record(kv, want, email, source, now, bump, level) {
   const hash = await hashOf(email);
   const key = keyFor(want, hash);
   const when = new Date(now).toISOString().slice(0, 10);
-  if (await kv.get(key)) return { fresh: false, count: bump === false ? null : await currentCount(kv, want, now) };
+  const f = level === 'all' ? 'all' : 'sale';
+  const had = await kv.get(key, { type: 'json' });
+  if (had) {
+    /* the same person again: counted once; a changed choice of what to send
+       is kept (the day they first joined stays theirs) */
+    if (level && (had.f || 'sale') !== f) {
+      await kv.put(key, JSON.stringify(Object.assign({}, had, { f })), { metadata: { e: had.email || email, w: had.when || when, f } });
+    }
+    return { fresh: false, count: bump === false ? null : await currentCount(kv, want, now) };
+  }
   if (bump === false) {
-    await kv.put(key, JSON.stringify({ email, when, source }), { metadata: { e: email, w: when } });
+    await kv.put(key, JSON.stringify({ email, when, source, f }), { metadata: { e: email, w: when, f } });
     return { fresh: true, count: null };
   }
   const bumps = [];   /* [litter, number before] for every number this person joins */
@@ -180,7 +208,7 @@ async function record(kv, want, email, source, now, bump) {
     if (!(await kv.get(keyFor('all', hash)))) bumps.push([want, n]);   /* else counted already through every-litter */
     else bumps.push([want, n - 1]);   /* no change: written back as n */
   }
-  await kv.put(key, JSON.stringify({ email, when, source }), { metadata: { e: email, w: when } });
+  await kv.put(key, JSON.stringify({ email, when, source, f }), { metadata: { e: email, w: when, f } });
   let shown = null;
   for (const [id, before] of bumps) {
     const n = await writeCount(kv, id, before + 1, now);
@@ -192,11 +220,13 @@ async function record(kv, want, email, source, now, bump) {
 /* every number recounted from the keys: the every-litter list and each
    litter that has people of its own or a number on show */
 async function recountAll(kv, now) {
-  const all = (await listAll(kv, 'all:')).map(k => ({ email: k.metadata && k.metadata.e || '', when: k.metadata && k.metadata.w || '' }));
+  /* a record from before 7 Oct 2026 carries no f: it asked for the sale day */
+  const entry = k => ({ email: k.metadata && k.metadata.e || '', when: k.metadata && k.metadata.w || '', f: k.metadata && k.metadata.f === 'all' ? 'all' : 'sale' });
+  const all = (await listAll(kv, 'all:')).map(entry);
   const litters = {};
   for (const k of await listAll(kv, 'l:')) {
     const id = k.name.slice(2, k.name.lastIndexOf(':'));
-    (litters[id] = litters[id] || []).push({ email: k.metadata && k.metadata.e || '', when: k.metadata && k.metadata.w || '' });
+    (litters[id] = litters[id] || []).push(entry(k));
   }
   const counts = { all: all.length };
   for (const id of Object.keys(litters).concat(await countedLitters(kv))) {
@@ -229,6 +259,29 @@ function wantOf(raw) {
   const w = String(raw || 'all').trim();
   if (w === 'all' || LITTER_ID.test(w)) return w;
   return '';
+}
+
+/* the lists a signup names: one name or a list of up to MAX_WANTS, each
+   once, in the order given. One bad name refuses the whole list (an empty
+   answer, and the caller writes nothing); "all" stands alone, because the
+   every-litter list already holds every litter. Nothing named is every
+   litter, as it always was. */
+function wantsOf(raw) {
+  if (!Array.isArray(raw)) { const w = wantOf(raw); return w ? [w] : []; }
+  if (!raw.length || raw.length > MAX_WANTS) return [];
+  const out = [];
+  for (const x of raw) {
+    const w = typeof x === 'string' ? x.trim() : '';
+    if (!(w === 'all' || LITTER_ID.test(w))) return [];
+    if (out.indexOf(w) < 0) out.push(w);
+  }
+  return out.indexOf('all') >= 0 ? ['all'] : out;
+}
+
+/* what to send: "all" (every update: the litter's new photos as it grows,
+   and the day it goes on sale) only when asked for, else "sale" */
+function levelOf(raw) {
+  return String(raw || '').trim() === 'all' ? 'all' : 'sale';
 }
 
 async function readBody(request) {
@@ -287,12 +340,21 @@ export async function onRequestPost(context) {
   }
   const email = cleanEmail(body.email);
   if (!email) return json({ ok: false, why: 'that is not an email address' }, 400);
-  const want = wantOf(body.want);
-  if (!want) return json({ ok: false, why: 'want must be all, L<YYYY-MM-DD> or P<key>' }, 400);
-  if (body.dry === true || body.dry === 'true') return json({ ok: true, dry: true, want, on: !!kv });
-  if (!kv) return json({ ok: true, fresh: null, count: null, why: 'not switched on' });
-  const r = await record(kv, want, email, 'site', now);
-  return json({ ok: true, want, fresh: r.fresh, count: r.count });
+  const wants = wantsOf(body.want);
+  if (!wants.length) return json({ ok: false, why: 'want must be all, L<YYYY-MM-DD> or P<key>, or a list of up to ' + MAX_WANTS + ' of them' }, 400);
+  const level = levelOf(body.level);
+  const want = wants[0];
+  if (body.dry === true || body.dry === 'true') return json({ ok: true, dry: true, want, wants, level, on: !!kv });
+  if (!kv) return json({ ok: true, want, wants, level, fresh: null, count: null, why: 'not switched on' });
+  /* one record per list; the number answered is the first list's, the one
+     the page's count line follows */
+  let fresh = false, count = null;
+  for (let i = 0; i < wants.length; i++) {
+    const r = await record(kv, wants[i], email, 'site', now, true, level);
+    if (r.fresh) fresh = true;
+    if (i === 0) count = r.count;
+  }
+  return json({ ok: true, want, wants, level, fresh, count });
 }
 
 export async function onRequest(context) {

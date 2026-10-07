@@ -577,16 +577,57 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .gotcha{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 
 .wl-pick{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-
 .wl-pick:empty{display:none}
-.wl-pick small{flex-basis:100%;font-size:12px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600;line-height:1.2}
-
+.wl-pick>small{flex-basis:100%;font-size:12px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600;line-height:1.2}
 .wl-pick label{position:relative;cursor:pointer;max-width:100%}
 .wl-pick input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
-.wl-pick span{display:inline-block;padding:7px 13px;border:1px solid var(--line);border-radius:100px;background:#fff;
+
+.wl-pick>label>span{display:inline-block;padding:7px 13px;border:1px solid var(--line);border-radius:100px;background:#fff;
   font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.3;text-wrap:balance}
-.wl-pick input:checked+span{border-color:var(--brick);background:var(--brick-tint);color:var(--brick-dk)}
-.wl-pick input:focus-visible+span{outline:2px solid var(--brick-dk);outline-offset:2px}  
+.wl-pick>label>input:checked+span{border-color:var(--brick);background:var(--brick-tint);color:var(--brick-dk)}
+.wl-pick>label>input:focus-visible+span{outline:2px solid var(--brick-dk);outline-offset:2px}  
+
+.wl-lits{display:flex;flex-direction:column;gap:6px;flex-basis:100%;min-width:0}
+.wl-lit{display:block;margin:0}
+
+.wl-lit input{inset:0;width:100%;height:100%;cursor:pointer}
+.wl-card{display:flex;align-items:center;gap:10px;min-height:54px;padding:5px 12px 5px 5px;border:1px solid var(--line);
+  border-radius:var(--r);background:#fff;box-shadow:var(--lift-1);transition:border-color .15s,background-color .15s}
+.wl-lit:hover .wl-card{border-color:var(--ink-faint)}
+.wl-lit input:checked+.wl-card{border-color:var(--brick);background:var(--brick-tint)}
+.wl-lit input:focus-visible+.wl-card{outline:2px solid var(--brick-dk);outline-offset:2px}
+.wl-pic{flex:none;display:block;width:56px;height:42px;border-radius:5px;object-fit:cover;background:var(--paper-2);overflow:hidden}
+
+.wl-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px}
+.wl-mosaic img{display:block;width:100%;height:100%;object-fit:cover}
+.wl-t{flex:1;min-width:0}
+.wl-t b{display:block;font-size:15px;font-weight:500;color:var(--ink);line-height:1.3}
+.wl-t small{display:block;font-size:13px;color:var(--ink-soft);line-height:1.35}
+.wl-lit input:checked+.wl-card .wl-t b{color:var(--brick-dk)}
+.wl-tick{flex:none;position:relative;width:20px;height:20px;border:1.5px solid var(--ink-faint);border-radius:5px;background:#fff;
+  transition:background-color .15s,border-color .15s}
+.wl-tick::after{content:'';position:absolute;left:5.5px;top:1.5px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;
+  transform:rotate(45deg);opacity:0}
+.wl-lit input:checked+.wl-card .wl-tick{background:var(--brick);border-color:var(--brick)}
+.wl-lit input:checked+.wl-card .wl-tick::after{opacity:1}
+
+@media(max-width:359px){
+  .wl-pic{width:44px;height:33px}
+  .wl-card{gap:8px;padding-right:10px}
+}
+
+@media(min-width:640px){
+  .wl-lits{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+}
+@media(min-width:801px){
+  .wl-side{min-width:520px;max-width:540px}
+}
+
+.wl-more{display:flex;align-items:center;gap:10px;margin:0;min-height:26px;cursor:pointer;font-size:14.5px;color:var(--ink);line-height:1.35}
+.wl-more input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.wl-more input:checked+.wl-tick{background:var(--brick);border-color:var(--brick)}
+.wl-more input:checked+.wl-tick::after{opacity:1}
+.wl-more input:focus-visible+.wl-tick{outline:2px solid var(--brick-dk);outline-offset:2px}
 
 .wl-count{font-size:14.5px;color:var(--ink-soft)}
 .wl-count b{color:var(--ink)}
@@ -1062,8 +1103,10 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
   .kit:active{transform:scale(.96)}
   
   .stage-lit:active{transform:scale(.977)}
-  .wl-pick span{transition:border-color .15s,background .15s,color .15s,transform .12s ease-out}
-  .wl-pick label:active span{transform:scale(.96)}
+  .wl-pick>label>span{transition:border-color .15s,background .15s,color .15s,transform .12s ease-out}
+  .wl-pick>label:active>span{transform:scale(.96)}
+  .wl-card{transition:border-color .15s,background-color .15s,transform .12s ease-out}
+  .wl-lit:active .wl-card{transform:scale(.985)}
   .opt{transition:border-color .15s,background .15s,transform .12s ease-out}
 }
 
@@ -1891,16 +1934,18 @@ body.locked{overflow:hidden}
     <div class="wl" id="waitlist">
       <div>
         <h3>Want to see the next litter first?</h3>
-        <p>When a litter is born I send one email with photos of them, a few days before
-        they go up on the site. That is the only thing I use your address for, and you can
-        tell me to stop whenever you want. <a class="litterlink" href="/terms#privacy">How I keep your details</a>.</p>
+        
+        <p>Pick the litters you want. I'll email you the day they go on sale and nothing
+        else. You can stop anytime. <a class="litterlink" href="/terms#privacy">How I keep your details</a>.</p>
         
         <p data-fact="opens" class="wl-opens">The litter born 6 October opens for reservation from <time datetime="2026-11-03">3 November</time><span class="away"></span>.</p>
       </div>
       <div class="wl-side">
         <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
           
-          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><label data-label="every litter"><input type="radio" name="want" value="all" checked><span>Every litter</span></label><label data-label="the litter born 6 October"><input type="radio" name="want" value="L2026-10-06"><span>Just the litter born 6 October, purebred Netherland Dwarfs</span></label><label data-label="the litter born 4 October"><input type="radio" name="want" value="L2026-10-04"><span>Just the litter born 4 October, purebred Holland Lops</span></label><label data-label="the litter born 27 September"><input type="radio" name="want" value="L2026-09-27"><span>Just the litter born 27 September, Holland Lop crosses</span></label><label data-label="the litter born 18 September"><input type="radio" name="want" value="L2026-09-18"><span>Just the litter born 18 September, purebred Holland Lops</span></label></div>
+          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><span class="wl-pic wl-mosaic" aria-hidden="true"><img src="photos/litter-2026-10-06.jpg?v=894bf330" srcset="photos/litter-2026-10-06.160.894bf330.jpg 160w, photos/litter-2026-10-06.320.894bf330.jpg 320w, photos/litter-2026-10-06.640.894bf330.jpg 640w, photos/litter-2026-10-06.960.894bf330.jpg 960w, photos/litter-2026-10-06.1280.894bf330.jpg 1280w, photos/litter-2026-10-06.jpg?v=894bf330 1400w" sizes="28px" alt="" width="28" height="21" loading="lazy" decoding="async"><img src="photos/litter-2026-10-04.jpg?v=9cbd2aeb" srcset="photos/litter-2026-10-04.160.9cbd2aeb.jpg 160w, photos/litter-2026-10-04.320.9cbd2aeb.jpg 320w, photos/litter-2026-10-04.640.9cbd2aeb.jpg 640w, photos/litter-2026-10-04.960.9cbd2aeb.jpg 960w, photos/litter-2026-10-04.1280.9cbd2aeb.jpg 1280w, photos/litter-2026-10-04.jpg?v=9cbd2aeb 1400w" sizes="28px" alt="" width="28" height="21" loading="lazy" decoding="async"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="28px" alt="" width="28" height="21" loading="lazy" decoding="async"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="28px" alt="" width="28" height="21" loading="lazy" decoding="async"></span><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 6 October" data-name="the Netherland Dwarfs born 6 Oct"><input type="checkbox" name="want" value="L2026-10-06"><span class="wl-card"><img src="photos/litter-2026-10-06.jpg?v=894bf330" srcset="photos/litter-2026-10-06.160.894bf330.jpg 160w, photos/litter-2026-10-06.320.894bf330.jpg 320w, photos/litter-2026-10-06.640.894bf330.jpg 640w, photos/litter-2026-10-06.960.894bf330.jpg 960w, photos/litter-2026-10-06.1280.894bf330.jpg 1280w, photos/litter-2026-10-06.jpg?v=894bf330 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Netherland Dwarfs</b><small>Purebred, born 6 Oct</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 4 October" data-name="the Holland Lops born 4 Oct"><input type="checkbox" name="want" value="L2026-10-04"><span class="wl-card"><img src="photos/litter-2026-10-04.jpg?v=9cbd2aeb" srcset="photos/litter-2026-10-04.160.9cbd2aeb.jpg 160w, photos/litter-2026-10-04.320.9cbd2aeb.jpg 320w, photos/litter-2026-10-04.640.9cbd2aeb.jpg 640w, photos/litter-2026-10-04.960.9cbd2aeb.jpg 960w, photos/litter-2026-10-04.1280.9cbd2aeb.jpg 1280w, photos/litter-2026-10-04.jpg?v=9cbd2aeb 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Purebred, born 4 Oct</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><input type="checkbox" name="want" value="L2026-09-27"><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lop crosses</b><small>Born 27 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><input type="checkbox" name="want" value="L2026-09-18"><span class="wl-card"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Purebred, born 18 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
+          
+          <label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label>
           <div class="wl-row">
             <input type="email" name="email" placeholder="you@email.com" aria-label="Your email address, to hear about the next litter" required>
             <input type="hidden" name="_subject" value="Waitlist signup">
@@ -5024,27 +5069,31 @@ body.locked{overflow:hidden}
   } else { showAll(); }
 
   var ALERT_API='/api/waitlist';
-  function waitFields(form, email, want, label){
-    var fd=new FormData(), forL=/^L\d{4}-\d{2}-\d{2}$/.test(want), forP=/^P/.test(want);
-    var when;
-    if(forL){
-      var p=want.slice(1).split('-'), d=new Date(+p[0], +p[1]-1, +p[2]+28);
-      var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-      when=label+' opens for reservation on '+d.getDate()+' '+MONTHS[d.getMonth()];
-    } else if(forP){
-      var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
-      when=(pq&&pq.born)?(label+' go on sale'):(label+' is born'); }
-    else { when='the next litter opens for reservation'; }
-    var whatFor=(forL||forP)?(label.charAt(0).toUpperCase()+label.slice(1)):'Every litter';
-    fd.append('_subject', 'Waitlist: '+((forL||forP)?label:'every litter'));
+  function sentenceList(xs){ return xs.length<2?(xs[0]||''):xs.slice(0,-1).join(', ')+' and '+xs[xs.length-1]; }
+  function capFirst(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
+  function levelWords(level){
+    return level==='all'?'Every update: new photos as they grow, and the day they go on sale':'One email per litter, the day it goes on sale';
+  }
+  function waitFields(form, email, picks, level){
+    var fd=new FormData(), every=picks.some(function(p){ return p.want==='all'; });
+    var names=every?['every litter']:picks.map(function(p){ return p.name||p.label; });
+    fd.append('_subject', 'Waitlist: '+sentenceList(names)+(level==='all'?', every update':''));
     fd.append('this is', 'Someone joined the waitlist on arizonarabbits.com.');
-    fd.append('they want to hear about', whatFor);
+    fd.append('they want to hear about', every?'Every litter, including the ones not born yet':capFirst(sentenceList(names)));
+    fd.append('send them', levelWords(level));
     fd.append('email', email);
-    fd.append('next step', 'Nothing to send yet. They hear from you when '+when+'. The site promises the waitlist hears first, so that day is the day.');
+    fd.append('next step', 'Nothing to send yet. Email them the day '+(every?'a litter':(picks.length>1?'each of those litters':'that litter'))+' goes on sale'+
+      (level==='all'?', and when you post new photos of '+(every||picks.length>1?'one of them':'it'):'')+'.');
     var trap=form.querySelector('input[name="_gotcha"]'); fd.append('_gotcha', trap?trap.value:'');
     return fd;
   }
-  function tieLastWords(s){ return s.replace(/ (\S+)$/, '\u00A0$1'); }
+  function thanksFor(picks, level){
+    var every=picks.some(function(p){ return p.want==='all'; });
+    var who=every?'every litter':sentenceList(picks.map(function(p){ return p.name||p.label; }));
+    var when=every?'the day each one goes on sale':'the day they go on sale';
+    return 'You’re on the list for '+who+'. '+(level==='all'?'You’ll get '+(every?'new photos':'their new photos')+' as they grow, and an email '+when+'.':'You’ll get an email '+when+'.');
+  }
+  function tieLastWords(s){ return s.replace(/ (\S+)$/, ' $1'); }
   function waitingText(n, label){
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
   }
@@ -5061,36 +5110,49 @@ body.locked{overflow:hidden}
       .then(function(d){ if(d&&d.ok&&typeof d.count==='number') showWaiting(el, d.count, label, mine); })
       .catch(function(){});
   }
-  function recordWaiting(email, want, done){
+  function recordWaiting(email, wants, level, done){
     if(!/^https?:/.test(location.protocol)){ done(null); return; }
-    fetch(ALERT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,want:want})})
+    fetch(ALERT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,want:wants,level:level})})
       .then(function(r){ return r.json(); })
       .then(function(d){ done(d&&d.ok&&typeof d.count==='number'?d.count:null); })
       .catch(function(){ done(null); });
   }
+  function sayError(form, id, html){
+    var p=document.getElementById(id);
+    if(!p){ p=document.createElement('p'); p.id=id; p.className='err show'; p.setAttribute('role','alert'); form.appendChild(p); }
+    p.innerHTML=html; p.classList.add('show');
+  }
 
   var wf=document.getElementById('wlform'), wok=document.getElementById('wlok'), wcount=document.getElementById('wlcount');
   if(wf){
-    var pills=[].slice.call(wf.querySelectorAll('input[name="want"]'));
-    var labelOf=function(inp){ return (inp&&inp.parentNode.getAttribute('data-label'))||''; };
-    var firstNamed=pills.filter(function(i){ return i.value!=='all'; })[0]||null;
-    var shownPill=function(){ var c=wf.querySelector('input[name="want"]:checked'); return (c&&c.value!=='all')?c:firstNamed; };
+    var boxes=[].slice.call(wf.querySelectorAll('input[name="want"]'));
+    var everyBox=boxes.filter(function(i){ return i.value==='all'; })[0]||null;
+    var named=boxes.filter(function(i){ return i.value!=='all'; });
+    var rowOf=function(inp){ return inp&&inp.closest?inp.closest('label'):null; };
+    var labelOf=function(inp){ var l=rowOf(inp); return (l&&l.getAttribute('data-label'))||''; };
+    var pickOf=function(inp){ var l=rowOf(inp); return {want:inp.value, label:labelOf(inp), name:(l&&l.getAttribute('data-name'))||''}; };
+    var ticked=function(){ return boxes.filter(function(i){ return i.checked; }); };
+    var shownBox=function(){ var t=ticked().filter(function(i){ return i.value!=='all'; }); return t[0]||named[0]||null; };
     var showFor=function(inp, mine){ if(inp) fetchWaiting(inp.value, wcount, labelOf(inp), mine); else showWaiting(wcount, null); };
-    showFor(shownPill());
-    for(var pi=0;pi<pills.length;pi++) pills[pi].addEventListener('change',function(){ showFor(shownPill()); });
+    showFor(shownBox());
+    boxes.forEach(function(b){ b.addEventListener('change',function(){
+      if(b.checked){ if(b===everyBox) named.forEach(function(x){ x.checked=false; }); else if(everyBox) everyBox.checked=false; }
+      var e=document.getElementById('wlErr'); if(e&&ticked().length) e.classList.remove('show');
+      showFor(shownBox());
+    }); });
+    var levelNow=function(){ var c=wf.querySelector('input[name="level"]:checked'); return c?c.value:'sale'; };
     wf.addEventListener('submit',function(ev){
       ev.preventDefault();
       var a=wf.getAttribute('action')||'';
-      var chosen=wf.querySelector('input[name="want"]:checked');
-      var want=chosen?chosen.value:'all';
-      var forLitter=want!=='all';
-      var label=labelOf(chosen);
+      var chosen=ticked();
+      if(!chosen.length){ sayError(wf, 'wlErr', 'Pick at least one litter, or Every litter.'); return; }
+      var picks=chosen.map(pickOf), wants=picks.map(function(p){ return p.want; }), level=levelNow();
+      var every=wants.indexOf('all')>=0;
       var subj=wf.querySelector('input[name="_subject"]');
-      if(subj) subj.value='Waitlist signup: '+(forLitter?(label+' ('+want+')'):'every litter');
+      if(subj) subj.value='Waitlist signup: '+(every?'every litter':wants.join(', '));
       var finish=function(){
         wf.style.display='none';
-        var pq=(typeof PLANNED!=='undefined'?PLANNED:[]).filter(function(q){ return 'P'+q.key===want; })[0];
-        if(forLitter) wok.textContent='You’re on the list for '+label+'. You’ll hear from me '+(/^L/.test(want)?'before it opens.':((pq&&pq.born)?'before they go on sale.':'when it’s born.'));
+        wok.textContent=thanksFor(picks, level);
         wok.classList.add('show');
       };
       if(a.indexOf('[[')!==-1||!a){
@@ -5100,18 +5162,15 @@ body.locked{overflow:hidden}
         return;
       }
       var email=(wf.querySelector('input[name="email"]')||{}).value||'';
-      fetch(a,{method:'POST',body:waitFields(wf, email, want, forLitter?label:''),headers:{'Accept':'application/json'}})
+      fetch(a,{method:'POST',body:waitFields(wf, email, picks, level),headers:{'Accept':'application/json'}})
         .then(function(r){ if(!r.ok) throw 0; finish();
-          recordWaiting(email, want, function(n){
-            if(forLitter) showWaiting(wcount, n, label, true);
-            else showFor(shownPill(), true);
+          recordWaiting(email, wants, level, function(n){
+            var shown=shownBox();
+            if(!every&&shown) showWaiting(wcount, n, labelOf(shown), true);
+            else showFor(shown, true);
           }); })
         .catch(function(){
-          var p=document.getElementById('wlErr');
-          if(!p){ p=document.createElement('p'); p.id='wlErr'; p.className='err show'; p.setAttribute('role','alert');
-            wf.appendChild(p); }
-          p.innerHTML='That didn\u2019t send. <a href="sms:+15202702827">Text me</a> and I\u2019ll add you myself, or try again.';
-          p.classList.add('show');
+          sayError(wf, 'wlErr', 'That didn’t send. <a href="sms:+15202702827">Text me</a> and I’ll add you myself, or try again.');
         });
     });
   }

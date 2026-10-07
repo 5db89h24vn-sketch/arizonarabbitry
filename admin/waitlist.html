@@ -12,7 +12,9 @@
      bookmarks it. It shows who is waiting on which litter, counts them
      the way the public pages do, copies the addresses for an email, and
      takes a paste of the addresses that signed up before the counter
-     existed. Everything it shows comes from /api/waitlist with his key
+     existed. Since 7 Oct 2026 it also shows what each person asked to be
+     sent ("every update" beside an address) and copies those people apart,
+     for the emails with a litter's new photos. Everything it shows comes from /api/waitlist with his key
      in the Authorization header; the key is typed here each time and
      kept nowhere. The page is plain HTML, so with scripts off it says
      so and nothing else.
@@ -145,16 +147,21 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
     });
     return b;
   }
-  function card(title, count, sub, entries, copyLabel, union){
+  /* WHAT EACH PERSON ASKED TO BE SENT (7 Oct 2026): "every update" (new photos
+     as the litter grows, and the day it goes on sale) or only that day. The
+     day a litter goes on sale, everybody on it gets the email (the first
+     button); for new photos, only the every-update people (the second). */
+  function card(title, count, sub, entries, copyLabel, union, updates){
     var c=document.createElement('div'); c.className='card';
     c.innerHTML='<h3>'+esc(title)+'</h3><div class="n">'+esc(people(count))+'</div><p class="note">'+esc(sub)+'</p>';
     var row=document.createElement('div'); row.className='row';
     if(union.length) row.appendChild(copyBtn(copyLabel, union));
+    if(updates&&updates.length) row.appendChild(copyBtn('Copy the '+updates.length+' who want every update (new photos)', updates));
     c.appendChild(row);
     if(entries.length){
       var ul=document.createElement('ul');
       entries.slice().sort(function(a,b){ return (b.when||'').localeCompare(a.when||''); }).forEach(function(e){
-        var li=document.createElement('li'); li.innerHTML='<span>'+esc(e.email)+'</span><time>'+esc(e.when||'')+'</time>'; ul.appendChild(li);
+        var li=document.createElement('li'); li.innerHTML='<span>'+esc(e.email)+(e.f==='all'?' <em>every update</em>':'')+'</span><time>'+esc(e.when||'')+'</time>'; ul.appendChild(li);
       });
       c.appendChild(ul);
     }
@@ -173,10 +180,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
       var seen={}, union=[];
       ownEmails.concat(allEmails).forEach(function(e){ if(!seen[e]){ seen[e]=1; union.push(e); } });
       var both=ownEmails.filter(function(e){ return allEmails.indexOf(e)>=0; }).length;
-      var sub=people(own.length)+' asked for this litter by name'+(both?(', '+both+' of them also on the every-litter list':'')+'; '+people(all.length)+' want every litter. The site shows '+union.length+'.';
-      lists.appendChild(card(litterName(id), union.length, sub, own, 'Copy all '+union.length+' addresses for the email', union));
+      /* (the bracket after "list'" was missing from 7 Sept to 7 Oct 2026, so
+         this whole script never ran; waitlisttest.js now opens this page) */
+      var sub=people(own.length)+' asked for this litter by name'+(both?(', '+both+' of them also on the every-litter list'):'')+'; '+people(all.length)+' want every litter. The site shows '+union.length+'.';
+      var seenU={}, updates=[];
+      own.concat(all).forEach(function(x){ if(x.f==='all'&&!seenU[x.email]){ seenU[x.email]=1; updates.push(x.email); } });
+      lists.appendChild(card(litterName(id), union.length, sub, own, 'Copy all '+union.length+' addresses (the day it goes on sale)', union, updates));
     });
-    lists.appendChild(card('Every litter', all.length, 'These people asked to hear about every litter. They count on every litter above.', all, 'Copy the addresses', allEmails));
+    var allUpdates=all.filter(function(x){ return x.f==='all'; }).map(function(x){ return x.email; });
+    lists.appendChild(card('Every litter', all.length, 'These people asked to hear about every litter. They count on every litter above.', all, 'Copy the addresses', allEmails, allUpdates));
     lists.hidden=false; importBox.hidden=false; setup.hidden=true;
   }
   function load(){
