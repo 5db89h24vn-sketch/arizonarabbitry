@@ -538,6 +538,9 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
 .meta span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+.meta span.sc{white-space:normal;overflow:visible;text-overflow:clip}
+.meta span.sc .u{display:inline;white-space:nowrap}
+
 .bunny p.desc{font-size:15px;color:var(--ink-soft);line-height:1.55;flex:none;
   display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .bunny-cta{font-size:14.5px;font-weight:600;color:var(--brick);display:flex;
@@ -2417,7 +2420,7 @@ body.locked{overflow:hidden}
       <details id="faq-cages">
         <summary>Where do the rabbits live here?</summary>
         <div class="faq-body">
-          <p><b>The cages are for the mothers, not for everyone.</b> The young rabbits are out running through the day, and so are the adult males. A mother usually stays in, because she is
+          <p><b>The cages are for the mothers, not for everyone.</b> The young rabbits are out running through the day, and so are the bucks&nbsp;(the males). A mother usually stays in, because she is
           nursing.</p>
           <p><b>A nursing mother needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
           href="https://rabbit.org/care/babies/"
@@ -3737,7 +3740,7 @@ body.locked{overflow:hidden}
   }
   function sexColour(r){
     var sex=String((r&&r.sex)||'').trim(), colour=String((r&&r.colour)||'').trim();
-    var word={doe:'Female',buck:'Male'}[sex.toLowerCase()]||sex;
+    var word={doe:'Doe\u00a0(female)',buck:'Buck\u00a0(male)'}[sex.toLowerCase()]||sex;
     if(sex) return [word,colour].filter(Boolean).join(' \u00b7 ');
     return colour?colour+' coat':'';
   }
@@ -3836,7 +3839,8 @@ body.locked{overflow:hidden}
       var st=stateOf(r);
       var dim=(r.status==='available')?'':' sold-dim';
       var meta=(showBreed&&r.breed?'<span>'+esc(r.breed)+'</span>':'')+
-        '<span>'+esc(sexColour(r))+'</span>';
+        '<span class="sc">'+sexColour(r).split(' \u00b7 ').map(function(x,i){
+          return '<span class="u">'+(i?'\u00b7 ':'')+esc(x)+'</span>'; }).join(' ')+'</span>';
       if(r.ready && r.status==='available' && !growHTML(r,false))
         meta+=' &middot; Ready '+esc(r.ready);
       var open=(r.status==='available');
@@ -4370,8 +4374,13 @@ body.locked{overflow:hidden}
     }
     function paintMeta(r){
       vMeta.textContent='';
-      vMeta.appendChild(document.createTextNode(
-        [oneBreed()?null:r.breed,sexColour(r)].filter(Boolean).join(' · ')));
+      [oneBreed()?null:r.breed].concat(String(sexColour(r)||'').split(' \u00b7 ')).filter(Boolean)
+        .forEach(function(x,i){
+          var u=document.createElement('span'); u.className='u';
+          u.textContent=(i?'\u00b7 ':'')+x;
+          if(i) vMeta.appendChild(document.createTextNode(' '));
+          vMeta.appendChild(u);
+        });
       if(r.dob){
         var born=document.createElement('span'); born.className='u';
         born.appendChild(document.createTextNode((vMeta.textContent?'\u00b7 ':'')+'Born '));
