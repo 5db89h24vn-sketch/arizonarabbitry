@@ -58,6 +58,8 @@
   --ink-faint:#736A64;   --line:#E3DACC; --line-soft:#EDE6DA;
   --brick:#A0522D; --brick-dk:#7C3E21; --brick-tint:#F7EFE8;
   
+  --brick-tone:#EEDACB;
+  
   --faint-on-ink:rgba(239,232,222,.55);
   
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9;
@@ -137,6 +139,32 @@ h2{font-size:clamp(27px,3.5vw,37px);margin-bottom:14px;letter-spacing:-.022em}
 .mbar .btn-primary,.mbar .btn-primary:active{box-shadow:none}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--ink);background:rgba(36,31,29,.03)}
+
+.btn-tonal{background:var(--brick-tone);border-color:var(--brick-tone);color:var(--ink)}
+.btn-tonal:hover{border-color:rgba(124,62,33,.4)}
+.btn .txi{width:19px;height:19px;flex:none;margin-left:-3px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+
+.txbig{display:none}
+html.txscreen .txbig{display:inline-flex}
+html.txscreen .txgo{display:none}
+.txbig[hidden]{display:none!important}
+.txbig::after{content:'';flex:none;width:7px;height:7px;margin:0 0 0 4px;
+  border-right:1.6px solid var(--ink-faint);border-bottom:1.6px solid var(--ink-faint);
+  transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.txbig[aria-expanded="true"]::after{transform:translateY(2px) rotate(225deg)}
+@media (prefers-reduced-motion:reduce){.txbig::after{transition:none}}
+
+.txqr{display:flex;align-items:center;gap:16px;margin:0 0 16px;padding:12px 16px 12px 12px;max-width:460px;
+  border:1px solid var(--line);border-radius:var(--r);background:#fff;box-shadow:var(--lift-1)}
+.txqr[hidden]{display:none}
+.txcode{flex:none;display:block;width:118px;height:118px}
+.txsay{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+.txsay b{display:block;margin-bottom:3px;font-size:15.5px;font-weight:600;color:var(--ink)}
+.txsay .txnum,.txsay .txwho{display:block;margin-top:6px}
+.txsay .txnum{color:var(--ink);font-weight:600;white-space:nowrap}
+.txsay .txwho:empty{display:none}
+
+.viewer-foot .txqr{max-width:none;margin:9px 0 0;box-shadow:none}
 .btn-sm{padding:10px 18px;font-size:14.5px}
 .btn-block{width:100%}
 
@@ -1734,7 +1762,32 @@ body.locked{overflow:hidden}
   .hero h1{font-size:33px;line-height:1.12;margin-bottom:12px}
   .hero-sub{font-size:16px;line-height:1.5;margin-bottom:16px}
 }
+
+@media(orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px){
+  .hero-grid{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);column-gap:28px;row-gap:0;align-items:stretch}
+  .hero-grid > div:not(.hero-media){display:contents}
+  .hero h1{grid-column:1;grid-row:1}
+  .hero-deliver{grid-column:1;grid-row:2;justify-self:start}
+  .hero-sub{grid-column:1;grid-row:3}
+  .hero-cta{grid-column:1;grid-row:4}
+  .hero .txqr{grid-column:1;grid-row:5}
+  .hero-srow{grid-column:1;grid-row:6}
+  .hero .facts{grid-column:1 / -1;grid-row:7;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px}
+  .hero-media{grid-column:2;grid-row:1 / 7;position:relative;min-height:0}
+  .hero-go{position:absolute;inset:0}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
+  .hero .facts a span,.hero .facts b,.hero .facts small{display:block}
+  .hero .facts small{margin-top:2px;white-space:normal}
+  
+  .hero-srow{margin-bottom:0}
+  .hero .facts{margin-top:14px}
+  .hero .facts a{min-height:0;padding-top:9px;padding-bottom:9px}
+  .hero-cta .btn{flex:1 1 auto;padding-left:20px;padding-right:20px}
+}
 @media(orientation:landscape) and (max-height:500px) and (min-width:560px){
+  
+  .hero .facts a span,.hero .facts b,.hero .facts small{display:block}
+  .hero .facts small{margin-top:2px;white-space:normal}
   .hero{padding:12px 0 24px}
   .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:24px;align-items:start}
   .hero-media{order:2;position:static;min-height:0}
@@ -1876,8 +1929,10 @@ body.locked{overflow:hidden}
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
 
-        <a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com." class="btn btn-ghost"><span class="tx-s">Text William</span><span class="tx-l">Text (520) 270-2827</span></a>
+        <a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com." class="btn btn-tonal txgo"><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg><span class="tx-s">Text William</span><span class="tx-l">Text (520) 270-2827</span></a>
+        <button type="button" class="btn btn-tonal txbig" aria-expanded="false" aria-controls="textQR"><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text William</button>
       </div>
+      <div class="txqr" id="textQR" hidden><svg class="txcode" viewBox="0 0 45 45" role="img" shape-rendering="crispEdges" aria-label="A code for your phone's camera: it opens a text to (520) 270-2827"><path fill="#fff" d="M0 0h45v45H0z"/><path fill="none" stroke="#241F1D" d="M4 4.5h7m6 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h7m-37 1h1m5 0h1m2 0h2m2 0h7m1 0h2m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m3 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h3m2 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m1 0h1m4 0h1m3 0h1m2 0h3m2 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m2 0h3m4 0h1m2 0h1m-25 1h1m1 0h5m3 0h1m3 0h1m3 0h1m1 0h1m1 0h2m1 0h3m2 0h5m-33 1h1m1 0h1m2 0h1m5 0h4m6 0h1m4 0h1m2 0h1m1 0h1m1 0h2m-37 1h2m1 0h1m2 0h1m1 0h2m1 0h4m3 0h1m1 0h3m1 0h2m1 0h1m1 0h8m-37 1h2m1 0h3m1 0h3m3 0h1m2 0h1m4 0h1m7 0h4m2 0h2m-36 1h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h1m4 0h1m1 0h2m2 0h1m1 0h6m-36 1h1m1 0h1m1 0h2m4 0h3m4 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m3 0h1m-32 1h1m1 0h4m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m6 0h1m1 0h1m1 0h1m2 0h3m-37 1h1m2 0h2m2 0h1m2 0h1m1 0h3m2 0h2m2 0h3m2 0h2m7 0h2m-36 1h2m1 0h3m1 0h6m1 0h2m2 0h1m2 0h1m2 0h4m1 0h1m1 0h1m3 0h1m-35 1h1m1 0h2m2 0h1m1 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m-37 1h3m3 0h1m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h4m1 0h1m2 0h4m-34 1h1m1 0h1m4 0h1m3 0h2m3 0h4m1 0h1m1 0h2m7 0h1m-33 1h2m1 0h1m1 0h1m3 0h2m1 0h5m2 0h2m1 0h1m2 0h1m1 0h5m1 0h1m-35 1h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m5 0h1m2 0h1m-30 1h2m4 0h2m4 0h5m1 0h1m3 0h1m1 0h2m1 0h2m1 0h4m1 0h2m-37 1h2m1 0h3m4 0h2m3 0h2m4 0h2m1 0h1m3 0h1m1 0h1m1 0h1m-33 1h2m4 0h1m1 0h4m1 0h3m2 0h1m3 0h1m1 0h4m1 0h2m1 0h2m2 0h1m-37 1h2m2 0h1m5 0h1m3 0h3m4 0h1m1 0h1m1 0h1m2 0h1m4 0h4m-37 1h1m3 0h3m1 0h1m2 0h4m3 0h1m2 0h1m2 0h2m1 0h1m2 0h3m2 0h2m-37 1h1m3 0h1m2 0h1m3 0h2m3 0h1m1 0h1m2 0h4m5 0h1m5 0h1m-37 1h1m2 0h1m2 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h1m1 0h7m1 0h1m-27 1h4m4 0h2m1 0h1m3 0h2m3 0h1m3 0h1m1 0h2m-36 1h7m2 0h1m1 0h1m2 0h4m3 0h2m5 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h4m4 0h3m1 0h3m1 0h1m1 0h3m3 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m3 0h1m2 0h1m3 0h10m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h4m1 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m3 0h6m3 0h1m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h2m5 0h1m1 0h1m1 0h1m4 0h3m2 0h2m1 0h1m1 0h3"/></svg><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txnum">Or text (520) 270-2827.</span></p></div>
       
       <div class="srow hero-srow"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener" aria-label="@arizonarabbits on Instagram, verified"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener" aria-label="TikTok, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener" aria-label="Facebook, Arizona Rabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener" aria-label="Snapchat, @arizonarabbits"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
 
@@ -2894,7 +2949,8 @@ body.locked{overflow:hidden}
       
       <div class="pairrec" id="viewerPair" hidden></div>
 
-      <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-ghost vtext" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a></div>
+      <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text William</button></div>
+        <div class="txqr" id="viewerTextQR" hidden><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txwho"></span><span class="txnum">Or text (520) 270-2827.</span></p></div>
 
         <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>A $50 deposit reserves it.</b> Pay the rest in any amounts before&nbsp;pickup. <a class="litterlink" href="/terms">The&nbsp;terms</a></span> <span class="vt-row"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery anywhere in&nbsp;Arizona.</b></span> <span class="vt-row vt-more">10%&nbsp;off for military and first&nbsp;responders.</span></p></div>
     </div>
@@ -4075,6 +4131,8 @@ body.locked{overflow:hidden}
         vCoat=document.getElementById('viewerCoat'),
         vCta=document.getElementById('viewerCta'),
         vText=document.getElementById('viewerText'),
+        vTextBig=document.getElementById('viewerTextBig'),
+        vTextQR=document.getElementById('viewerTextQR'),
         vTerms=document.getElementById('viewerTerms'),
         vStatus=document.getElementById('viewerStatus'),
         vNew=document.getElementById('viewerNew'),
@@ -4400,6 +4458,8 @@ body.locked{overflow:hidden}
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       if(vText) vText.hidden=true;
+      if(vTextBig){ vTextBig.hidden=true; vTextBig.setAttribute('aria-expanded','false'); }
+      if(vTextQR) vTextQR.hidden=true;
       if(vTerms) vTerms.hidden=true;
       vStrip.innerHTML=shots.map(function(x,n){
         return '<button type="button" aria-label="'+((x.video||x.reel)?'Video ':'Photo ')+(n+1)+'"><img src="'+esc(x.src)+'"'+sizedAttrs(x.src,'64px')+' alt=""'+
@@ -4662,6 +4722,12 @@ body.locked{overflow:hidden}
         vText.hidden=!openNow;
         if(openNow) vText.setAttribute('href','sms:+15202702827?&body='+encodeURIComponent('Hi William, I\u2019d like to ask about '+r.name+'.'));
       }
+      if(vTextBig){ vTextBig.hidden=!openNow; vTextBig.setAttribute('aria-expanded','false'); }
+      if(vTextQR){
+        vTextQR.hidden=true;
+        var who=vTextQR.querySelector('.txwho');
+        if(who) who.textContent=openNow?('Say it\u2019s about '+r.name+'.'):'';
+      }
       if(vTerms) vTerms.hidden=!openNow;
       vStrip.innerHTML=shots.length<2?'':shots.map(function(s,n){
         return '<button type="button" aria-label="'+((s.video||s.reel)?'Video ':'Photo ')+(n+1)+
@@ -4730,6 +4796,8 @@ body.locked{overflow:hidden}
 
     function shut(keepAddr){
       releaseCards();
+      if(vTextQR) vTextQR.hidden=true;
+      if(vTextBig) vTextBig.setAttribute('aria-expanded','false');
       hintOff(); stageHint=null;
       vw.classList.remove('open','morphed');
       document.body.classList.remove('locked');
@@ -5176,6 +5244,31 @@ body.locked{overflow:hidden}
         });
     });
   }
+
+  (function(){
+    var mq=window.matchMedia?window.matchMedia('(hover:hover) and (pointer:fine) and (min-width:601px)'):null;
+    var root=document.documentElement;
+    function shutAll(){
+      [].forEach.call(document.querySelectorAll('.txbig[aria-expanded="true"]'),function(b){
+        b.setAttribute('aria-expanded','false');
+        var pnl=document.getElementById(b.getAttribute('aria-controls')); if(pnl) pnl.hidden=true;
+      });
+    }
+    function mode(){ var on=!!(mq&&mq.matches); root.classList.toggle('txscreen',on); if(!on) shutAll(); }
+    mode();
+    if(mq){ if(mq.addEventListener) mq.addEventListener('change',mode); else if(mq.addListener) mq.addListener(mode); }
+    document.addEventListener('click',function(e){
+      var b=e.target&&e.target.closest?e.target.closest('.txbig'):null; if(!b) return;
+      var pnl=document.getElementById(b.getAttribute('aria-controls')); if(!pnl) return;
+      var open=b.getAttribute('aria-expanded')!=='true';
+      if(open&&!pnl.querySelector('svg')){
+        var code=document.querySelector('#textQR svg');
+        if(code) pnl.insertBefore(code.cloneNode(true),pnl.firstChild);
+      }
+      b.setAttribute('aria-expanded',open?'true':'false');
+      pnl.hidden=!open;
+    });
+  })();
 
   var form=document.getElementById('lead'); if(!form) return;
   var steps=form.querySelectorAll('.fstep'), bars=form.querySelectorAll('.prog i');
