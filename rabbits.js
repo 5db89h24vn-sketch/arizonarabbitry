@@ -483,7 +483,10 @@ const PARENTS = {
      birth date, exactly as the card has them, and nothing it leaves blank
      (registration, grand champion, legs, weight) is printed or implied. The
      breeder's name on the card is theirs and stays off the site. Her photo is
-     dated the day it arrived, the rule since 9 Sept. */
+     dated the day it arrived, the rule since 9 Sept. 8 OCT 2026: none of her
+     first litter lived (litters.html, its article), so the note says only what
+     stays true, "Pedigreed.", like the other parents'; "This is her first
+     litter" read as a litter still in the nest. */
   tango: {
     role:    "mother",
     name:    "Tango",
@@ -492,7 +495,7 @@ const PARENTS = {
     ear:     "RJ1T",
     dob:     "2025-08-20",
     pedigreed: true,
-    note:    "Pedigreed. This is her first litter.",
+    note:    "Pedigreed.",
     photos: [
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
