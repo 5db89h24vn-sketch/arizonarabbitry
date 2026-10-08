@@ -586,7 +586,8 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .wl{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);
   padding:26px 28px;margin-top:26px;display:grid;grid-template-columns:1fr auto;
   gap:22px;align-items:start}
-@media(max-width:800px){.wl{grid-template-columns:1fr;gap:16px}}
+
+@media(max-width:979px){.wl{grid-template-columns:1fr;gap:16px}}
 .wl h3{font-size:20px;margin-bottom:5px}
 
 .wl-opens{font-size:15px;color:var(--ink);margin-top:10px;max-width:52ch}
@@ -595,7 +596,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .wl p{font-size:15px;color:var(--ink-soft);max-width:52ch}
 
 .wl-side{display:flex;flex-direction:column;gap:10px;min-width:340px;max-width:400px}
-@media(max-width:800px){.wl-side{min-width:0;max-width:none;width:100%}}
+@media(max-width:979px){.wl-side{min-width:0;max-width:none;width:100%}}
 .wl-form{display:flex;flex-direction:column;gap:10px}
 .wl-row{display:flex;gap:9px}
 .wl-row input[type=email]{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r);
@@ -647,7 +648,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 @media(min-width:640px){
   .wl-lits{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 }
-@media(min-width:801px){
+@media(min-width:980px){
   .wl-side{min-width:520px;max-width:540px}
 }
 
@@ -1317,9 +1318,11 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-terms{margin:8px 0 0;font-size:14px;line-height:1.45;color:var(--ink-soft);text-align:left;text-wrap:pretty}
 .viewer-terms b{color:var(--ink);font-weight:600}
 
-.viewer-terms .vt-row{display:block;text-wrap:balance}
-.viewer-terms .vt-row b{white-space:nowrap}
-@media(max-width:339px){.viewer-terms .vt-row b{white-space:normal}}
+.viewer-terms .vt-row{display:flex;align-items:flex-start;gap:9px}
+.viewer-terms .vt-row+.vt-row{margin-top:3px}
+.viewer-terms .vt-row>span{flex:1 1 auto;min-width:0}
+.viewer-terms .vti{flex:none;display:block;width:18px;height:18px;margin-top:1px;color:var(--ink-faint);
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 @media(max-height:600px){.viewer-terms .vt-more{display:none}}
 
@@ -1342,9 +1345,10 @@ html.vtout::view-transition-new(rabbitphoto){
 }
 
 @media(hover:hover) and (pointer:fine) and (min-width:601px){ .vtext .tx-s{display:none} .vtext .tx-l{display:inline}
-  .vcta{flex-wrap:wrap} .viewer-box .vcta .vtext{flex:1 1 100%}
+  html:not(.txscreen) .vcta{flex-wrap:wrap} html:not(.txscreen) .viewer-box .vcta .vtext{flex:1 1 100%}
+  .viewer-box .vcta .vtext.txbig{padding-left:16px;padding-right:16px}
   
-  .viewer-body{scroll-padding-bottom:245px} }
+  html:not(.txscreen) .viewer-body{scroll-padding-bottom:245px} }
 
 .viewer-terms a{color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .viewer-terms a:hover{color:var(--brick);border-bottom-style:solid}
@@ -1395,6 +1399,8 @@ html.vtout::view-transition-new(rabbitphoto){
 
 .viewer-sub .opener.why{float:right;margin:-1px 0 -2px 10px}
 .viewer-meta .u{white-space:nowrap}
+
+.u.ul>.ud{display:none}
 
 .viewer-sub~#viewerGrow .viewer-grow{margin-top:4px}
 
@@ -1475,6 +1481,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .pairrec p+p,.pairrec .kitrow+p{margin-top:6px}
 .pairrec .kitrow{margin-top:7px}
 .pairrec b{font-weight:600;color:var(--ink)}
+.pairrec .pairlead b{display:block}
 
 .pairrec .pairmore{margin:8px 0 0;padding-left:8px;font-size:13.5px;white-space:normal}
 .pairrec .pairmore .pm-t{text-wrap:balance}
@@ -1630,10 +1637,10 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-box .btn{width:100%}
 
 @media(min-width:920px) and (min-height:520px), (orientation:landscape) and (min-width:640px){
-  
-  .viewer-box{flex-direction:row;width:min(1240px,calc(100vw - 48px))}
 
-  .viewer-media{flex:0 0 58%;width:58%;align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:#1A1613}
+  .viewer-box{flex-direction:row;width:min(1240px,calc(100vw - 48px));--vcol:max(380px,42%)}
+
+  .viewer-media{flex:1 1 0;width:auto;min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:#1A1613}
   .viewer-stage{flex:none;width:100%;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;background:#1A1613}
   .viewer:not(.solo) .viewer-media{--gal-h:88px}
   .viewer-gallery{flex:none;flex-wrap:nowrap;padding:0 14px 12px}
@@ -1645,11 +1652,17 @@ html.vtout::view-transition-new(rabbitphoto){
   .viewer-frame{position:relative;inset:auto;flex:none;width:100%;aspect-ratio:var(--stage-ar,4/3);
     width:min(100%,calc((100vh - 24px - var(--gal-h,0px)) * var(--stage-arn,1.3333)));
     width:min(100%,calc((100dvh - 24px - var(--gal-h,0px)) * var(--stage-arn,1.3333)))}
-  .viewer-body{flex:1 1 0;min-width:0;--vx:22px;--vb:20px;padding:20px var(--vx) 0}
+  .viewer-body{flex:0 0 var(--vcol);min-width:0;--vx:22px;--vb:20px;padding:20px var(--vx) 0}
   .viewer-foot{margin-top:auto}
   
-  .viewer-close{right:calc(42% + 9px)}
-  .viewer-share{right:calc(42% + 61px)}
+  .viewer-box .vcta #viewerCta{padding-left:16px;padding-right:16px}
+  
+  .viewer-close{right:calc(var(--vcol) + 9px)}
+  .viewer-share{right:calc(var(--vcol) + 61px)}
+}
+
+@media(orientation:landscape) and (min-width:640px) and (max-width:919px){
+  .viewer-box{width:calc(100vw - 24px)}
 }
 
 @media(orientation:landscape) and (min-width:640px) and (max-height:519px){
@@ -1799,6 +1812,7 @@ body.locked{overflow:hidden}
   .hero-cta .btn{min-height:46px;padding-top:11px;padding-bottom:11px}
   
   .viewer-terms{font-size:12px;line-height:1.38;margin-top:5px}
+  .viewer-terms .vti{width:16px;height:16px;margin-top:0}
   .viewer-body{scroll-padding-bottom:200px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -2949,10 +2963,10 @@ body.locked{overflow:hidden}
       
       <div class="pairrec" id="viewerPair" hidden></div>
 
-      <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text William</button></div>
+      <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text</button></div>
         <div class="txqr" id="viewerTextQR" hidden><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txwho"></span><span class="txnum">Or text (520) 270-2827.</span></p></div>
 
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><b>A $50 deposit reserves it.</b> Pay the rest in any amounts before&nbsp;pickup. <a class="litterlink" href="/terms">The&nbsp;terms</a></span> <span class="vt-row"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery anywhere in&nbsp;Arizona.</b></span> <span class="vt-row vt-more">10%&nbsp;off for military and first&nbsp;responders.</span></p></div>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b>A $50 deposit reserves it.</b> <a class="litterlink" href="/terms">The&nbsp;terms</a></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free weekend delivery</b> in&nbsp;Arizona.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span></p></div>
     </div>
   </div>
 </div>
@@ -3673,7 +3687,7 @@ body.locked{overflow:hidden}
     }).join('');
     var label='The price of every pair';
     return '<small>A pair</small>'+
-      '<p><b>Two together: the second is '+PAIR_OFF+'% off.</b> Any two qualify. You\u00a0save\u00a0'+saving.replace(/ /g,'\u00a0')+'.</p>'+
+      '<p class="pairlead"><b>Two together: the second is '+PAIR_OFF+'% off.</b> Any two qualify. You\u00a0save\u00a0'+saving.replace(/ /g,'\u00a0')+'.</p>'+
       '<button type="button" class="opener pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
         '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
         '<span class="pm-t">'+label+'</span></button>'+
@@ -4475,6 +4489,7 @@ body.locked{overflow:hidden}
       fitBlocks();
       fitCaption();
       fitGal();
+      unleadAll();
       paint(0);
       toTop();
       moreBelow();
@@ -4509,6 +4524,43 @@ body.locked{overflow:hidden}
       }catch(e){ clear(); return open(); }
       return true;
     }
+    function dotOf(u){
+      var d=u.firstElementChild;
+      if(d&&d.className==='ud') return d;
+      var t=u.firstChild;
+      if(!t||t.nodeType!==3||!/^\u00b7\s/.test(t.nodeValue)) return null;
+      d=document.createElement('span'); d.className='ud';
+      d.textContent=t.nodeValue.slice(0,2); t.nodeValue=t.nodeValue.slice(2);
+      u.insertBefore(d,t);
+      return d;
+    }
+    function unlead(el){
+      if(!el) return;
+      var i, old=el.querySelectorAll('br.ub');
+      for(i=0;i<old.length;i++) old[i].parentNode.removeChild(old[i]);
+      old=el.querySelectorAll('.u.ul');
+      for(i=0;i<old.length;i++) old[i].classList.remove('ul');
+      var us=el.querySelectorAll('.u');
+      for(i=0;i<us.length;i++){
+        var u=us[i], d=dotOf(u); if(!d) continue;
+        var box=u.parentNode;
+        while(box&&box!==el&&getComputedStyle(box).display==='inline') box=box.parentNode;
+        var cs=getComputedStyle(box), edge=box.getBoundingClientRect().left+(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.borderLeftWidth)||0);
+        var r=d.getClientRects()[0];
+        if(!r||r.left-edge>=1.5) continue;
+        u.classList.add('ul');
+        var br=document.createElement('br'); br.className='ub';
+        u.parentNode.insertBefore(br,u);
+      }
+    }
+    var unleadW=0;
+    function unleadAll(){
+      if(!vw.classList.contains('open')) return;
+      unleadW=vBody.clientWidth;
+      unlead(vMeta); unlead(vGrow);
+    }
+    if(window.ResizeObserver) new ResizeObserver(function(){ if(vBody.clientWidth!==unleadW) unleadAll(); }).observe(vBody);
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(unleadAll);
     function paintMeta(r){
       vMeta.textContent='';
       [oneBreed()?null:r.breed].concat(String(sexColour(r)||'').split(' \u00b7 ')).filter(Boolean)
@@ -4611,11 +4663,6 @@ body.locked{overflow:hidden}
       if(home) out.push(['Went home',home]);
       return out;
     }
-    function metaText(r){
-      var t=[oneBreed()?null:r.breed,sexColour(r)].filter(Boolean).join(' · ');
-      if(r.dob) t+=(t?' · ':'')+'Born '+niceDate(r.dob)+' · see '+pronoun(r)+' litter';
-      return t;
-    }
 
     var fittedAt=-1;
     function tallest(el, cls, texts, w, floatEl){
@@ -4637,9 +4684,8 @@ body.locked{overflow:hidden}
     }
     function fitBlocks(){
       var w=vNote.clientWidth;
+      vMeta.style.height='';
       if(!w||w===fittedAt) return;
-      var metas=[], metasFree=[];
-      for(var i=0;i<RABBITS.length;i++) (RABBITS[i].status==='available'?metas:metasFree).push(metaText(RABBITS[i]));
       var grows=[];
       for(var g=0;g<RABBITS.length;g++){
         if(weekOf(RABBITS[g].dob)===null) continue;
@@ -4650,8 +4696,6 @@ body.locked{overflow:hidden}
           .replace(/\s+/g,' ').trim());
       }
       if(grows.length) vGrow.style.minHeight=tallest(vGrow,'grow-txt',grows,w-78)+'px';
-      vMeta.style.height=Math.max(tallest(vMeta,'viewer-meta',metas,w,(vWhy&&!vWhy.hidden)?vWhy:null),
-                                  tallest(vMeta,'viewer-meta',metasFree,w,null))+'px';
       vNote.style.height='';
       fittedAt=w;
     }
@@ -4747,6 +4791,7 @@ body.locked{overflow:hidden}
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
       fitCaption();
       fitGal();
+      unleadAll();
       var start=0;
       for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
       paint(start);
