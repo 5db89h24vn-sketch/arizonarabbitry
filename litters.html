@@ -586,10 +586,10 @@ html:not(.js) .views{display:none}
 .finder-note{font-size:14px;color:var(--ink-soft);margin:-6px 0 16px}
 
 .mini{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:4px 12px;margin:0 0 0 4px;
-  border:1px solid var(--line);border-radius:var(--r);background:transparent;font:inherit;font-size:13px;font-weight:500;line-height:1.2;
+  border:0;border-radius:999px;background:var(--paper-2);font:inherit;font-size:13px;font-weight:500;line-height:1.2;
   color:var(--ink);cursor:pointer;white-space:nowrap;vertical-align:middle;-webkit-appearance:none;appearance:none;
-  transition:border-color .15s,background-color .15s}
-.mini:hover{border-color:var(--ink);background-color:rgba(36,31,29,.03)}
+  transition:background-color .15s}
+.mini:hover,.mini:focus-visible{background:var(--line)}
 .mini::before{content:'';position:absolute;left:-4px;right:-4px;top:-6px;bottom:-6px}
 .finder-note[hidden],.tile[hidden],.wt[hidden],.wallhead[hidden],.whograph[hidden],.wall[hidden]{display:none}
 </style>
