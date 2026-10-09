@@ -1620,6 +1620,20 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
 
+.chip,.viewer-meta a.chip,.viewer-grow a.chip,.viewer-terms a.chip,.whypanel a.chip,.routine-now a.chip{position:relative;display:inline-flex;align-items:center;gap:6px;
+  min-height:26px;padding:0 8px 0 10px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);
+  font-weight:500;font-size:12.5px;line-height:1.2;text-decoration:none;white-space:nowrap;vertical-align:middle;
+  transition:background-color .15s}
+.chip::after,.stagelink.chip::after,.viewer-when a.chip::after,.whypanel a.chip::after{content:none}
+.chip::before{content:'';position:absolute;left:-2px;right:-2px;top:-9px;bottom:-9px}
+.chip .chev{flex:none;width:7px;height:7px;margin:0 1px 0 0;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);
+  transform:rotate(-45deg);transition:transform .15s,border-color .15s}
+.chip:hover,.chip:focus-visible{background:var(--line);color:var(--ink)}
+.chip:hover .chev,.chip:focus-visible .chev{border-color:var(--ink);transform:rotate(-45deg) translate(2px,2px)}
+
+.viewer-meta a.chip{min-height:20px;padding:0 7px 0 9px;font-size:12px}
+.viewer-meta a.chip::before{top:-5px;bottom:-5px}
+
 .nowlink{color:inherit;text-decoration:none;
   border-bottom:1px dotted rgba(36,31,29,.45);padding-bottom:1px}
 .nowlink:hover{color:var(--brick-dk);border-bottom-style:solid}
@@ -2017,7 +2031,7 @@ body.locked{overflow:hidden}
       <div class="wl-side">
         <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
           
-          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><input type="checkbox" name="want" value="L2026-09-27"><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lop crosses</b><small>Born 27 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><input type="checkbox" name="want" value="L2026-09-18"><span class="wl-card"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Purebred, born 18 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
+          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><input type="checkbox" name="want" value="L2026-09-27"><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Cross, born 27 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><input type="checkbox" name="want" value="L2026-09-18"><span class="wl-card"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Purebred, born 18 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
           
           <label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label>
           <div class="wl-row">
@@ -2958,7 +2972,7 @@ body.locked{overflow:hidden}
         </ul>
         <p>The rabbit is the smallest part of the cost: a year of keeping one runs <a class="cite"
         href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost" target="_blank"
-        rel="noopener noreferrer" data-leaves="word">$1,672 to <span class="kw">$3,354</span><span class="sr-only"> (opens in a new tab)</span></a>. <a class="litterlink" id="viewerWhyMore" href="#faq-price">The whole answer</a></p>
+        rel="noopener noreferrer" data-leaves="word">$1,672 to <span class="kw">$3,354</span><span class="sr-only"> (opens in a new tab)</span></a>. <a class="litterlink chip" id="viewerWhyMore" href="#faq-price">The whole answer<i class="chev" aria-hidden="true"></i></a></p>
       </div>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>
@@ -2985,7 +2999,7 @@ body.locked{overflow:hidden}
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text</button></div>
         <div class="txqr" id="viewerTextQR" hidden><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txwho"></span><span class="txnum">Or text (520) 270-2827.</span></p></div>
 
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b>A $50 deposit reserves it.</b> <a class="litterlink" href="/terms">The&nbsp;terms</a></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free weekend delivery</b> in&nbsp;Arizona.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span></p></div>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b>A $50 deposit reserves it.</b> <a class="litterlink chip" href="/terms">The terms<i class="chev" aria-hidden="true"></i></a></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free weekend delivery</b> in&nbsp;Arizona.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span></p></div>
     </div>
   </div>
 </div>
@@ -3743,10 +3757,11 @@ body.locked{overflow:hidden}
     }).join(' ')+'</b>';
     var txt='<b>'+(full&&isNow?'Now ':'')+esc(age)+'</b>';
     var pastEight=(daysOld(r.dob)!==null&&daysOld(r.dob)>=LAST_WEEK*7);
+    var chev='<i class="chev" aria-hidden="true"></i>';
     if(full&&st&&pastEight&&document.getElementById('stage-home'))
-      txt+=' <span class="u">&middot; <a class="stagelink" href="#stage-home">going-home age</a></span>';
-    else if(full&&st) txt+=' <span class="u">&middot; <a class="stagelink" href="#stage-w'+st.from+'">'+
-                      esc(st.now)+'</a></span>';
+      txt+=' <a class="stagelink chip" href="#stage-home">Going-home age'+chev+'</a>';
+    else if(full&&st) txt+=' <a class="stagelink chip" href="#stage-w'+st.from+'">'+
+                      esc(st.now.charAt(0).toUpperCase()+st.now.slice(1))+chev+'</a>';
     var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
     var label=eight?('All '+(LAST_WEEK===8?'eight':LAST_WEEK)+' weeks'):('In week '+wk+' of '+LAST_WEEK);
     if(full)
@@ -4597,11 +4612,11 @@ body.locked{overflow:hidden}
         if(vMeta.textContent) vMeta.appendChild(document.createTextNode(' '));
         vMeta.appendChild(born);
         var lit=document.createElement('span'); lit.className='u';
-        lit.appendChild(document.createTextNode('\u00b7 '));
-        var lk=document.createElement('a'); lk.className='litterlink'; lk.href='/litters#L'+r.dob;
+        var lk=document.createElement('a'); lk.className='litterlink chip'; lk.href='/litters#L'+r.dob;
         lk.title='See the litter this rabbit came from';
         lk.setAttribute('aria-label','Born '+niceDate(r.dob)+': see '+pronoun(r)+' litter');
-        lk.textContent='see '+pronoun(r)+' litter';
+        var pw=pronoun(r); lk.textContent=pw.charAt(0).toUpperCase()+pw.slice(1)+' litter';
+        var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true'); lk.appendChild(ch);
         lit.appendChild(lk);
         vMeta.appendChild(document.createTextNode(' '));
         vMeta.appendChild(lit);
