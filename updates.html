@@ -186,6 +186,9 @@ h1,h2,h3{text-wrap:balance}
 .xlink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .xlink:hover{border-bottom-style:solid}
+
+a[data-leaves] .kw{white-space:nowrap}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
 </style>
 </head>
 <body>
@@ -285,7 +288,7 @@ h1,h2,h3{text-wrap:balance}
         <li><time datetime="2026-09-18">18 Sep</time> <b>New litters go up 19 September.</b> Look for them on the litters page. <a class="xlink" href="/litters">See the litters</a>.</li>
         <li><time datetime="2026-09-18">18 Sep</time> <b>A new mother, a litter coming.</b> Details when I have them.</li>
         <li><time datetime="2026-09-16">16 Sep</time> <b>They have started on hay.</b> At twenty days old the kits are eating hay and pellets, the first step to <a class="xlink" href="/#faq-home">going home</a>.</li>
-        <li><time datetime="2026-09-15">15 Sep</time> <b>Watch them grow up.</b> New photos and video of the litters and their parents are going up on <a class="xlink" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">Instagram</a> and <a class="xlink" href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener">TikTok</a>.</li>
+        <li><time datetime="2026-09-15">15 Sep</time> <b>Watch them grow up.</b> New photos and video of the litters and their parents are going up on <a class="xlink" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Instagram</span><span class="sr-only"> (opens in a new tab)</span></a> and <a class="xlink" href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">TikTok</span><span class="sr-only"> (opens in a new tab)</span></a>.</li>
         <li><time datetime="2026-09-14">14 Sep</time> <b>Where things stand.</b> Available: Butterscotch, $375, ready 22 Sept. Sold: Teddy, Sundae and Cloud.</li>
       </ul>
       <p class="newscta">

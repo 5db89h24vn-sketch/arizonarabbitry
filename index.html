@@ -1613,6 +1613,9 @@ html.vtout::view-transition-new(rabbitphoto){
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .cite:hover{border-bottom-style:solid;color:var(--brick)}
 
+a[data-leaves] .kw{white-space:nowrap}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+
 .stagelink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .stagelink:hover{color:var(--brick-dk);border-bottom-style:solid}
@@ -1948,7 +1951,7 @@ body.locked{overflow:hidden}
       </div>
       <div class="txqr" id="textQR" hidden><svg class="txcode" viewBox="0 0 45 45" role="img" shape-rendering="crispEdges" aria-label="A code for your phone's camera: it opens a text to (520) 270-2827"><path fill="#fff" d="M0 0h45v45H0z"/><path fill="none" stroke="#241F1D" d="M4 4.5h7m6 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h7m-37 1h1m5 0h1m2 0h2m2 0h7m1 0h2m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m3 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h3m2 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m1 0h1m4 0h1m3 0h1m2 0h3m2 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m2 0h3m4 0h1m2 0h1m-25 1h1m1 0h5m3 0h1m3 0h1m3 0h1m1 0h1m1 0h2m1 0h3m2 0h5m-33 1h1m1 0h1m2 0h1m5 0h4m6 0h1m4 0h1m2 0h1m1 0h1m1 0h2m-37 1h2m1 0h1m2 0h1m1 0h2m1 0h4m3 0h1m1 0h3m1 0h2m1 0h1m1 0h8m-37 1h2m1 0h3m1 0h3m3 0h1m2 0h1m4 0h1m7 0h4m2 0h2m-36 1h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h1m4 0h1m1 0h2m2 0h1m1 0h6m-36 1h1m1 0h1m1 0h2m4 0h3m4 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m3 0h1m-32 1h1m1 0h4m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m6 0h1m1 0h1m1 0h1m2 0h3m-37 1h1m2 0h2m2 0h1m2 0h1m1 0h3m2 0h2m2 0h3m2 0h2m7 0h2m-36 1h2m1 0h3m1 0h6m1 0h2m2 0h1m2 0h1m2 0h4m1 0h1m1 0h1m3 0h1m-35 1h1m1 0h2m2 0h1m1 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m-37 1h3m3 0h1m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h4m1 0h1m2 0h4m-34 1h1m1 0h1m4 0h1m3 0h2m3 0h4m1 0h1m1 0h2m7 0h1m-33 1h2m1 0h1m1 0h1m3 0h2m1 0h5m2 0h2m1 0h1m2 0h1m1 0h5m1 0h1m-35 1h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m5 0h1m2 0h1m-30 1h2m4 0h2m4 0h5m1 0h1m3 0h1m1 0h2m1 0h2m1 0h4m1 0h2m-37 1h2m1 0h3m4 0h2m3 0h2m4 0h2m1 0h1m3 0h1m1 0h1m1 0h1m-33 1h2m4 0h1m1 0h4m1 0h3m2 0h1m3 0h1m1 0h4m1 0h2m1 0h2m2 0h1m-37 1h2m2 0h1m5 0h1m3 0h3m4 0h1m1 0h1m1 0h1m2 0h1m4 0h4m-37 1h1m3 0h3m1 0h1m2 0h4m3 0h1m2 0h1m2 0h2m1 0h1m2 0h3m2 0h2m-37 1h1m3 0h1m2 0h1m3 0h2m3 0h1m1 0h1m2 0h4m5 0h1m5 0h1m-37 1h1m2 0h1m2 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h1m1 0h7m1 0h1m-27 1h4m4 0h2m1 0h1m3 0h2m3 0h1m3 0h1m1 0h2m-36 1h7m2 0h1m1 0h1m2 0h4m3 0h2m5 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h4m4 0h3m1 0h3m1 0h1m1 0h3m3 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m3 0h1m2 0h1m3 0h10m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h4m1 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m3 0h6m3 0h1m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h2m5 0h1m1 0h1m1 0h1m4 0h3m2 0h2m1 0h1m1 0h3"/></svg><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txnum">Or text (520) 270-2827.</span></p></div>
       
-      <div class="srow hero-srow"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener" aria-label="@arizonarabbits on Instagram, verified"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener" aria-label="TikTok, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener" aria-label="Facebook, Arizona Rabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener" aria-label="Snapchat, @arizonarabbits"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
+      <div class="srow hero-srow"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
 
       <div class="facts">
 
@@ -2078,16 +2081,25 @@ body.locked{overflow:hidden}
       each animal, handled every day by me and by other people.</p>
       <p class="lede"><b>Rabbits are prey animals, and hands have to be learned.</b> Babies handled briefly at feeding time in their first week <a class="cite"
       href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
-      target="_blank" rel="noopener">come up to people at weaning, and still do as adults</a>.
+      target="_blank" rel="noopener noreferrer" data-leaves="word">come up to people at weaning, and still do as <span class="kw">adults</span><span class="sr-only"> (opens in a new tab)</span></a>.
       Babies nobody handled avoid the hand and grow up afraid of people.</p>
       <p class="lede"><b>Those weeks come long before you could meet them, so that job is mine.</b> I keep
-      it going every day after, with other people. A rabbit calm only with its breeder
-      isn't socialized.</p>
+      it going every day after. Every baby here is handled by at least ten different people
+      before it goes home, and goes outside for new sounds and smells. A rabbit calm only with
+      its breeder isn't socialized.</p>
 
       <p class="lede"><b>The routine is what you're paying for.</b> It makes a rabbit that comes
       to people instead of running from them. It won't make one love being lifted: <a class="cite"
       href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
-      target="_blank" rel="noopener">most never do</a>, and each one is still its own animal.</p>
+      target="_blank" rel="noopener noreferrer" data-leaves="word">most never <span class="kw">do</span><span class="sr-only"> (opens in a new tab)</span></a>, and each one is still its own animal.</p>
+      
+      <p class="lede"><b>Where the money goes.</b> I buy my breeding rabbits from breeders I meet at
+      shows across the country, and I fly home with them. A pedigreed rabbit from a winning
+      line costs thousands. I pay it so that its babies can go to homes here for a fraction
+      of that, and every sale on this site goes into the next trip and the next line.</p>
+      <p class="lede"><b>Every rabbit here gets the same raising, whatever its price.</b> The aim is a
+      rabbit good enough for the show table that is just as happy on your couch. One day this
+      is a ranch, and other animals get the same care. It starts with rabbits, done properly.</p>
     </div>
   </div>
 </section>
@@ -2118,9 +2130,10 @@ body.locked{overflow:hidden}
         <span class="stage-when">Week 6–8</span>
         <h3>New people, new noise</h3>
         
-        <p>Visitors, children, the noise of a house, and the carrier with the door open so
-        it stops being a trap. Ordinary life at their own pace, with somewhere to retreat
-        to whenever they want it.</p>
+        <p>Visitors, children, the noise of a house, time outside for new sounds and smells,
+        and the carrier with the door open so it stops being a trap. At least ten different
+        people handle each one before it goes home. Ordinary life at their own pace, with
+        somewhere to retreat to whenever they want it.</p>
       </div>
       <div class="stage" id="stage-home">
         
@@ -2145,12 +2158,12 @@ body.locked{overflow:hidden}
         <li><b>Send me your clips.</b><small>I'll help you make them, and tell you what would
         make the next one better.</small></li>
         <li><b>The good ones go on my story when there's room.</b><small>My <a class="cite"
-        href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener">top
-        reel</a> reached half a million views.</small></li>
+        href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener noreferrer" data-leaves="word">top
+        <span class="kw">reel</span><span class="sr-only"> (opens in a new tab)</span></a> reached half a million views.</small></li>
       </ul>
       
       <figure data-fact="reel" class="reel"></figure>
-      <div class="srow rv"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener" aria-label="@arizonarabbits on Instagram, verified"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener" aria-label="TikTok, @arizonarabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener" aria-label="Facebook, Arizona Rabbits"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener" aria-label="Snapchat, @arizonarabbits"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
+      <div class="srow rv"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
     </div>
   </div>
 </section>
@@ -2165,6 +2178,7 @@ body.locked{overflow:hidden}
       stretch</a>, so nobody should be guessing through them.</p>
       <ul class="incl">
         <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
+        <li><b>Bamboo to chew on</b><small>It outlasts the two weeks of food. Chewing keeps their teeth worn down.</small></li>
         <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
         <li><b>My health check, done with you</b><small>Ears, teeth, eyes, weight and coat, gone over together at pickup.</small></li>
         <li><b>Tucson exotic vet recommendations</b><small>Not every clinic here treats rabbits. <a class="litterlink" href="#faq-vet">The one I use</a>, and why.</small></li>
@@ -2199,7 +2213,7 @@ body.locked{overflow:hidden}
           <b>My own rabbits only</b>
           <p>Arizona's wild rabbits carry a virus called
           <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-             target="_blank" rel="noopener">RHDV2</a>, and it is usually fatal. Keeping the property closed to outside rabbits is how
+             target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, and it is usually fatal. Keeping the property closed to outside rabbits is how
           I keep everyone here safe, yours included.</p>
         </div>
         <a href="#contact" class="btn btn-primary">Ask about dates</a>
@@ -2264,12 +2278,13 @@ body.locked{overflow:hidden}
           <ul>
             <li><b>Handled every day from its first week.</b> Handled early, a rabbit <a
             class="cite" href="https://pubmed.ncbi.nlm.nih.gov/10531536/" target="_blank"
-            rel="noopener">comes to people instead of running from them</a>.</li>
+            rel="noopener noreferrer" data-leaves="word">comes to people instead of running from <span class="kw">them</span><span class="sr-only"> (opens in a new tab)</span></a>. At least ten
+            different people handle each one before it goes home.</li>
             <li><b>A record you can check.</b> Its birth date, its litter from the day it was born, its parents and dated photos, all on this site.</li>
             <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, checked
             together, and it goes home when it passes <a class="litterlink"
             href="#faq-home">the test</a>. If it doesn't, your $50 deposit comes back.</li>
-            <li><b>Two weeks of its food and a care sheet.</b> <a class="litterlink"
+            <li><b>Two weeks of its food, bamboo to chew, and a care sheet.</b> <a class="litterlink"
             href="#faq-vet">The Tucson vets</a> who treat rabbits, and my number for as long as
             you have it.</li>
             
@@ -2279,7 +2294,7 @@ body.locked{overflow:hidden}
           
           <p><b>The rabbit is the smallest part of what it costs.</b> A year of keeping one
           comes to <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
-          target="_blank" rel="noopener">$1,672&nbsp;to&nbsp;$3,354</a> on Chewy's vet-reviewed figures,
+          target="_blank" rel="noopener noreferrer" data-leaves="word">$1,672&nbsp;to&<span class="kw">nbsp;$3,354</span><span class="sr-only"> (opens in a new tab)</span></a> on Chewy's vet-reviewed figures,
           and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
           <p><b>10% off for military and first responders.</b> That includes police and firefighters. Say so when you get in touch.</p>
           <p><b>You can pay in parts.</b> A $50 deposit reserves it, and the rest can come in any amounts
@@ -2305,7 +2320,7 @@ body.locked{overflow:hidden}
           first.</p>
           <p><b>What's the health check, and can I watch?</b> Ears, teeth, eyes, weight and
           coat, <a class="litterlink" href="#included">done with you</a> at pickup.</p>
-          <p><b>What comes with it?</b> Two weeks of its food, the care sheet, <a
+          <p><b>What comes with it?</b> Two weeks of its food, bamboo to chew, the care sheet, <a
           class="litterlink" href="#faq-vet">the vets</a>, and my number for as long as you
           have it.</p>
           <p><b>What if it isn't working out?</b> <a class="litterlink"
@@ -2332,7 +2347,7 @@ body.locked{overflow:hidden}
           <p><b>Heat is the one thing I'm firm about.</b> What matters is the temperature the
           rabbit would be sitting in on the way, and that has to <a class="cite"
           href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
-          target="_blank" rel="noopener">stay under the mid-80s</a>. If a trip isn't safe on
+          target="_blank" rel="noopener noreferrer" data-leaves="word">stay under the <span class="kw">mid-80s</span><span class="sr-only"> (opens in a new tab)</span></a>. If a trip isn't safe on
           the day, we move it, and I'll say so.</p>
         </div>
       </details>
@@ -2349,17 +2364,17 @@ body.locked{overflow:hidden}
           <ul>
             <li><b>Time every day.</b> Hay, water and a quick clean, and <a class="cite"
             href="https://rabbit.org/care/how-to-care-for-a-pet-rabbit-a-primer/"
-            target="_blank" rel="noopener">several hours per day</a> out of their pen.</li>
+            target="_blank" rel="noopener noreferrer" data-leaves="word">several hours per <span class="kw">day</span><span class="sr-only"> (opens in a new tab)</span></a> out of their pen.</li>
             <li><b>An indoor pen.</b> In a room you use, with space to run. <a class="litterlink"
             href="#faq-indoors">Why indoors</a>.</li>
             <li><b>A vet who treats rabbits.</b> <a class="cite"
             href="https://rabbit.org/care/rabbit-vets-near-me/"
-            target="_blank" rel="noopener">Not every vet does</a>; <a class="litterlink"
+            target="_blank" rel="noopener noreferrer" data-leaves="word">Not every vet <span class="kw">does</span><span class="sr-only"> (opens in a new tab)</span></a>; <a class="litterlink"
             href="#faq-vet">the one I use</a>.</li>
             <li><b>8 to 12 years.</b> <a class="litterlink" href="#faq-life">How long they live</a>.</li>
             <li><b>About $1,672 to $3,354 a year.</b> What keeping one costs, on <a class="cite"
             href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
-            target="_blank" rel="noopener">Chewy's vet-reviewed figures</a>.</li>
+            target="_blank" rel="noopener noreferrer" data-leaves="word">Chewy's vet-reviewed <span class="kw">figures</span><span class="sr-only"> (opens in a new tab)</span></a>.</li>
           </ul>
           <p><b>You won't be guessing.</b> A written care sheet, two weeks of their food, and my
           number for as long as you have them.</p>
@@ -2367,7 +2382,7 @@ body.locked{overflow:hidden}
           <p><b>Rabbits and kids do well together with a grown-up in charge.</b> Kids sit on the
           floor and let the rabbit come to them. <a class="cite"
           href="https://rabbit.org/care/rabbits-and-children-kids-baby/"
-          target="_blank" rel="noopener">The lifting is an adult's job</a>, and the daily
+          target="_blank" rel="noopener noreferrer" data-leaves="word">The lifting is an adult's <span class="kw">job</span><span class="sr-only"> (opens in a new tab)</span></a>, and the daily
           care is too.</p>
         </div>
       </details>
@@ -2377,19 +2392,23 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Often, yes, with slow introductions.</b> Tell me what animals you have when you
           get in touch. If a rabbit isn't right for your home, I'll say so.</p>
+          <p><b>They've met noise before.</b> While they're still working out what is safe, the
+          babies here hear the noise of a house, go outside for new sounds and smells, and get
+          handled by at least ten different people. Your home is one more new place, not the
+          first.</p>
           <p><b>Cats usually settle in.</b> The House Rabbit Society says indoor cats <a class="cite"
           href="https://rabbit.org/care/rabbits-and-cats/"
-          target="_blank" rel="noopener">typically will peacefully coexist</a> with rabbits after
+          target="_blank" rel="noopener noreferrer" data-leaves="word">typically will peacefully <span class="kw">coexist</span><span class="sr-only"> (opens in a new tab)</span></a> with rabbits after
           proper introductions. Start with the rabbit in a pen the cat can't reach into, and keep
           the cat's claws trimmed.</p>
           <p><b>With a dog, it depends on the dog.</b> A calm dog that doesn't chase small animals
           can learn, on a lead and lying down, in short visits. Terriers and hunting breeds are the
           hardest. <a class="cite" href="https://rabbit.org/behavior/dogs-and-bunnies/"
-          target="_blank" rel="noopener">Supervision is required until 100% trust has been
-          achieved</a>.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">Supervision is required until 100% trust has been
+          <span class="kw">achieved</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p><b>Always give the rabbit a way out.</b> A hiding place it can reach, and <a class="cite"
           href="https://rabbitwelfare.co.uk/rabbits-living-with-other-pets/"
-          target="_blank" rel="noopener">never leave a dog on its own with rabbits</a>.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">never leave a dog on its own with <span class="kw">rabbits</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </details>
       
@@ -2399,10 +2418,10 @@ body.locked{overflow:hidden}
           <p><b>Yes.</b> One rabbit does well when its pen is in the room where your family spends
           the day. The House Rabbit Society suggests a single rabbit for people who <a class="cite"
           href="https://houserabbit.org/single-or-pair"
-          target="_blank" rel="noopener">work from home or have flex schedules</a>.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">work from home or have flex <span class="kw">schedules</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p><b>Then you are its company.</b> The RSPCA's advice for a rabbit on its own: <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company"
-          target="_blank" rel="noopener">interact with them daily</a>.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">interact with them <span class="kw">daily</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p><b>Change your mind later?</b> Within 48 hours of the first one going home, a second is
           still 20% off. After that, I'll help you introduce one. <a class="litterlink"
           href="#faq-pair">How pairs work</a>.</p>
@@ -2420,7 +2439,7 @@ body.locked{overflow:hidden}
           
           <p><b>Rabbits are a highly social species.</b> <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company"
-          target="_blank" rel="noopener">The RSPCA's words</a>: they need companionship as
+          target="_blank" rel="noopener noreferrer" data-leaves="word">The RSPCA's <span class="kw">words</span><span class="sr-only"> (opens in a new tab)</span></a>: they need companionship as
           much as a healthy diet. Just one? <a class="litterlink" href="#faq-one">Then you
           are its company</a>.</p>
           
@@ -2428,14 +2447,14 @@ body.locked{overflow:hidden}
           born, so a pair from one litter goes home used to each other.</p>
           <p><b>To keep it that way, both need neutering.</b> Rabbits hit puberty at <a class="cite"
           href="https://rabbit.org/care/debunking-common-myths-about-baby-rabbits-part-ii/"
-          target="_blank" rel="noopener">about three to four months</a>, and that's when
+          target="_blank" rel="noopener noreferrer" data-leaves="word">about three to four <span class="kw">months</span><span class="sr-only"> (opens in a new tab)</span></a>, and that's when
           siblings start to fight. The usual way through is to separate them then, neuter both,
           and reunite them a month after surgery; bonding again isn't guaranteed. We'll talk it
           through before you take a pair.</p>
           <p><b>Two that didn't grow up together need a proper introduction.</b> Both neutered
           first, then short meetings on <a class="cite"
           href="https://rabbit.org/behavior/bonding-rabbits-faq/"
-          target="_blank" rel="noopener">neutral ground</a>, a little longer each day.
+          target="_blank" rel="noopener noreferrer" data-leaves="word">neutral <span class="kw">ground</span><span class="sr-only"> (opens in a new tab)</span></a>, a little longer each day.
           Breed doesn't change the steps. I'll walk you through it.</p>
         </div>
       </details>
@@ -2502,14 +2521,14 @@ body.locked{overflow:hidden}
           weeks and lose the protection of their mother's milk while their gut is still
           learning solid food. The House Rabbit Society says <a class="cite"
           href="https://rabbit.org/care/babies/"
-          target="_blank" rel="noopener">not to take them away “until they are a full
-          eight weeks of age”</a>. The <a class="cite"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">not to take them away “until they are a full
+          eight weeks of <span class="kw">age”</span><span class="sr-only"> (opens in a new tab)</span></a>. The <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
-          target="_blank" rel="noopener">RSPCA agrees</a>: eight weeks, “fully weaned
+          target="_blank" rel="noopener noreferrer" data-leaves="word">RSPCA <span class="kw">agrees</span><span class="sr-only"> (opens in a new tab)</span></a>: eight weeks, “fully weaned
           and independent”.</p>
           <p><b>The risk is in those weeks, and it's rare.</b> The <a class="cite"
           href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits"
-          target="_blank" rel="noopener">Merck Veterinary Manual</a> puts enterotoxaemia, a
+          target="_blank" rel="noopener noreferrer" data-leaves="word">Merck Veterinary <span class="kw">Manual</span><span class="sr-only"> (opens in a new tab)</span></a> puts enterotoxaemia, a
           severe gut disease, “primarily” in rabbits “4–8 weeks
           old”, and names diet and the stress of weaning. A new house and new food
           land in that same window. So the younger a rabbit goes, the more room there is for
@@ -2543,10 +2562,10 @@ body.locked{overflow:hidden}
           <p><b>A woolly coat needs more.</b> Some of my rabbits have a longer, wavy coat, and a coat
           like that needs <a class="cite"
           href="https://www.rspcasa.org.au/grooming-tips-for-woolly-and-long-haired-rabbits/"
-          target="_blank" rel="noopener">daily grooming</a> so it doesn't mat.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">daily <span class="kw">grooming</span><span class="sr-only"> (opens in a new tab)</span></a> so it doesn't mat.</p>
           <p><b>No baths.</b> They keep themselves clean, and a bath is <a class="cite"
           href="https://rabbitwelfare.co.uk/welfare-need/bathing-rabbits/"
-          target="_blank" rel="noopener">stressful and dangerous for a rabbit</a>.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">stressful and dangerous for a <span class="kw">rabbit</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </details>
       <details id="faq-indoors">
@@ -2554,8 +2573,8 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Indoors, especially here.</b> Rabbits handle cold far better than heat, and <a class="cite"
           href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
-          target="_blank" rel="noopener">anything over the mid-80s for long is
-          dangerous</a>. A Tucson summer isn't survivable in a hutch.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">anything over the mid-80s for long is
+          <span class="kw">dangerous</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tucson summer isn't survivable in a hutch.</p>
           <p><b>An indoor pen with daily run-around time.</b> That's what I recommend. Supervised,
           because rabbits chew cables.</p>
         </div>
@@ -2568,17 +2587,17 @@ body.locked{overflow:hidden}
           nursing.</p>
           <p><b>A nursing mother needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
           href="https://rabbit.org/care/babies/"
-          target="_blank" rel="noopener">once or twice a day, and only when she feels safe</a>.
+          target="_blank" rel="noopener noreferrer" data-leaves="word">once or twice a day, and only when she feels <span class="kw">safe</span><span class="sr-only"> (opens in a new tab)</span></a>.
           The box has to be where she left it, quiet, with nobody else in it. So a mother and her litter are housed on their own, as <a class="cite"
           href="https://extension.psu.edu/rabbit-production"
-          target="_blank" rel="noopener">the university guide to raising rabbits</a> says.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">the university guide to raising <span class="kw">rabbits</span><span class="sr-only"> (opens in a new tab)</span></a>&nbsp;says.</p>
           <p><b>Keeping them apart is how a pedigree stays true.</b> Nothing breeds by accident
           here, so I know every rabbit's mother and father. That is what lets me tell you
           exactly what you are buying.</p>
           <p><b>A cage is not a home for a pet rabbit.</b> The welfare groups are right about
           that, and <a class="litterlink" href="#faq-indoors">the indoors answer</a> says the same: an indoor pen with <a class="cite"
           href="https://rabbitwelfare.co.uk/welfare-need/space-recommendations/"
-          target="_blank" rel="noopener">room to run</a>, and time out every day.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">room to <span class="kw">run</span><span class="sr-only"> (opens in a new tab)</span></a>, and time out every day.</p>
         </div>
       </details>
       
@@ -2587,15 +2606,15 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>8 to 12 years indoors, with good care.</b> That is the <a class="cite"
           href="https://rabbit.org/resources/how-long-do-rabbits-live/"
-          target="_blank" rel="noopener">House Rabbit Society's range</a>. Spayed or
+          target="_blank" rel="noopener noreferrer" data-leaves="word">House Rabbit Society's <span class="kw">range</span><span class="sr-only"> (opens in a new tab)</span></a>. Spayed or
           neutered and kept indoors, about ten is typical.</p>
           <p><b>Most pet rabbits don't get there.</b> A study of 6,349 rabbits under vet care
           in England, a quarter of them lops, found the <a class="cite"
           href="https://pubmed.ncbi.nlm.nih.gov/31594841/"
-          target="_blank" rel="noopener">typical one died at 4.3 years</a>. A Tokyo
+          target="_blank" rel="noopener noreferrer" data-leaves="word">typical one died at 4.3 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tokyo
           clinic's 898 cases put it at <a class="cite"
           href="https://www.cliniciansbrief.com/article/life-expectancy-pet-rabbits"
-          target="_blank" rel="noopener">7 years</a>, with nearly one in five past nine.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">7 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>, with nearly one in five past nine.</p>
           <p><b>The gap is care, not luck.</b> Flystrike led the causes in England, with not
           eating next. Not eating is on my same-day emergency list, and you keep my
           number for life.</p>
@@ -2612,9 +2631,9 @@ body.locked{overflow:hidden}
           daily handling they grew up with, and photos while you're gone.</p>
           <p><b>Why only my own rabbits:</b> <a class="cite"
           href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-          target="_blank" rel="noopener">RHDV2</a> is in Arizona's wild rabbits. It <a class="cite"
+          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a> is in Arizona's wild rabbits. It <a class="cite"
           href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
-          target="_blank" rel="noopener">survives for months in the environment</a> and travels
+          target="_blank" rel="noopener noreferrer" data-leaves="word">survives for months in the <span class="kw">environment</span><span class="sr-only"> (opens in a new tab)</span></a> and travels
           on shoes and clothing, and it's often fatal. One outside rabbit could bring it to
           every rabbit here, including the babies waiting to go to their homes.</p>
           <p><b>A closed property is also why I can promise a healthy rabbit at pickup.</b></p>
@@ -2631,8 +2650,8 @@ body.locked{overflow:hidden}
           four months with very few openings, so book the first check-up the day you reserve.
           5408 S 12th Ave, <a href="tel:+15208899643">(520) 889-9643</a>.</p>
           <p><b>Their prices are on their own site.</b> In September 2026 <a class="cite"
-          href="https://www.santacruzpet.com/services/" target="_blank" rel="noopener">their
-          list</a> read: office exam $50, recheck $35, rabbit neuter $160, rabbit spay $200,
+          href="https://www.santacruzpet.com/services/" target="_blank" rel="noopener noreferrer" data-leaves="word">their
+          <span class="kw">list</span><span class="sr-only"> (opens in a new tab)</span></a> read: office exam $50, recheck $35, rabbit neuter $160, rabbit spay $200,
           X-rays $175, in-house bloodwork $100. Prices change, so their list is the one that
           counts. They ask every client to spay or neuter, which I would tell you to do anyway.</p>
           <p><b>The exotic hospital is the name people think of first.</b> Arizona Exotic Animal
@@ -2649,7 +2668,7 @@ body.locked{overflow:hidden}
           <p class="alert"><b>These signs are a same-day emergency:</b> Not eating, no droppings, hunched and quiet,
           breathing hard, or loose watery droppings. Get to a rabbit-savvy vet. A rabbit that
           isn't eating can go from <a class="cite" href="https://rabbit.org/care/gi-stasis/"
-          target="_blank" rel="noopener">a little off to critical in hours</a>. Don't wait to
+          target="_blank" rel="noopener noreferrer" data-leaves="word">a little off to critical in <span class="kw">hours</span><span class="sr-only"> (opens in a new tab)</span></a>. Don't wait to
           reach me first. Text me on the way and I'll help with whatever I can.</p>
           <p><b>For anything that isn't urgent, call me.</b> Whether you've had the rabbit three
           days or three years, I'd rather hear early than after it's serious.</p>
@@ -2688,7 +2707,7 @@ body.locked{overflow:hidden}
       <p class="reach-head">Four ways to reach me</p>
       <ul class="reach">
         
-        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">I'm most active here</span><b>Message me on Instagram</b><small>The way I'd rather hear from you: I can put a name to a face, and the whole conversation stays in one place.</small></span></a></li>
+        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="row"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">I'm most active here</span><b>Message me on <span class="kw">Instagram</span></b><small>The way I'd rather hear from you: I can put a name to a face, and the whole conversation stays in one place.</small></span><span class="sr-only"> (opens in a new tab)</span></a></li>
         
         <li><a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com."><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text (520) 270-2827</b><small>The fastest way to reach me, and completely fine for a first message.</small></span></a></li>
 
@@ -2846,10 +2865,10 @@ body.locked{overflow:hidden}
         <div class="foot-links">
           <a href="tel:+15202702827">(520) 270-2827</a>
           <!--email_off--><a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a><!--/email_off-->
-          <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener">TikTok</a>
-          <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener">Snapchat</a>
+          <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Instagram</span><span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">TikTok</span><span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Facebook</span><span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Snapchat</span><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
       </div>
     </div>
@@ -2929,17 +2948,17 @@ body.locked{overflow:hidden}
       <div class="whypanel" id="viewerWhyPanel" hidden>
         
         <ul>
-          <li><b>Handled every day</b> from its first week.</li>
+          <li><b>Handled every day</b> from its first week, by at least ten people.</li>
           <li><b>Weekend delivery</b> anywhere in Arizona, included.</li>
           <li><b>A health check with you</b>, and your $50 deposit back if it fails.</li>
-          <li><b>Two weeks of its food</b> and a care sheet.</li>
+          <li><b>Two weeks of its food</b>, bamboo, and a care sheet.</li>
           <li><b>The whole price.</b> Nothing added at pickup.</li>
           <li><b>My number</b> for as long as you have it.</li>
           
         </ul>
         <p>The rabbit is the smallest part of the cost: a year of keeping one runs <a class="cite"
         href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost" target="_blank"
-        rel="noopener">$1,672 to $3,354</a>. <a class="litterlink" id="viewerWhyMore" href="#faq-price">The whole answer</a></p>
+        rel="noopener noreferrer" data-leaves="word">$1,672 to <span class="kw">$3,354</span><span class="sr-only"> (opens in a new tab)</span></a>. <a class="litterlink" id="viewerWhyMore" href="#faq-price">The whole answer</a></p>
       </div>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>

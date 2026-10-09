@@ -135,6 +135,9 @@ h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;le
 .sheet li{margin-bottom:6px}
 .xlink{color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
 .xlink:hover{border-bottom-style:solid;color:var(--brick)}
+
+a[data-leaves] .kw{white-space:nowrap}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
 .xlink:active{color:var(--brick)}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 18px;
@@ -227,8 +230,8 @@ h1,h2,h3{text-wrap:balance}
   <p><b>What I get is what you type.</b> Your name, an email address, a phone number if you
   give one, and your message. If you text or call, your number. No account, and no cookies
   from me. Cloudflare, which hosts the site, counts visits with a script of its own, Cloudflare
-  Web Analytics; by <a class="xlink" href="https://www.cloudflare.com/web-analytics/">Cloudflare's
-  own description</a> it sets no cookie and does not follow you to other sites. I also count,
+  Web Analytics; by <a class="xlink" href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer" data-leaves="word">Cloudflare's
+  own <span class="kw">description</span><span class="sr-only"> (opens in a new tab)</span></a> it sets no cookie and does not follow you to other sites. I also count,
   as totals only, which buttons on the site get tapped and how far each page is scrolled:
   no cookie, no ID, nothing that says who you are, and my count leaves out any browser
   that asks not to be tracked.</p>
