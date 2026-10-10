@@ -188,7 +188,10 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .dock-in{pointer-events:auto;border-radius:var(--float-r);background:var(--float-solid);
     border:1px solid var(--float-line);box-shadow:var(--float-shadow);
     padding:2px 7px;overflow:hidden;
-    width:max-content;max-width:100%;margin:0 auto}
+    width:max-content;max-width:100%;margin:0 auto;
+    
+    display:flex;align-items:flex-start;gap:4px}
+  .dock-in>.mnav{flex:1 1 auto;min-width:0}
   @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
     
     .dock-in{background:var(--float-glass);
@@ -284,6 +287,17 @@ header .brand{color:var(--logo)}
   
   .mnav-track a:active{background:var(--line-soft);transform:scale(.95);
     transition-duration:.15s,.15s,.15s,.09s}
+  
+  .dock-top{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:5px;
+    padding:0 14px 0 12px;border-radius:100px;background:rgba(246,241,233,.92);
+    border:1px solid rgba(255,255,255,.5);font-size:14px;font-weight:500;color:var(--ink);
+    text-decoration:none;white-space:nowrap;transform-origin:100% 100%;
+    transition:background .15s,color .15s,transform .22s cubic-bezier(.34,1.56,.64,1)}
+  .dock-top[hidden]{display:none}
+  .dock-top .up{flex:none;width:.72em;height:.72em;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
+  .dock-top:active{background:var(--line-soft);transform:scale(.95);transition-duration:.15s,.15s,.09s}
+  .dock-top:focus-visible{outline-offset:-3px}
 }
 
 .sprog{display:none}
@@ -1934,6 +1948,8 @@ body.locked{overflow:hidden}
           </div>
         </div>
       </nav>
+      
+      <a href="#top" class="dock-top" id="dockTop" aria-label="Back to top" hidden><i class="up" aria-hidden="true"></i>Top</a>
     </div>
   </div>
 
@@ -3098,6 +3114,35 @@ body.locked{overflow:hidden}
     catch(e){ window.scrollTo(0,y); }
   }
 
+  function scrollTopFast(){
+    var html=document.documentElement, from=scrollPos();
+    var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches);
+    var was=html.style.scrollBehavior; html.style.scrollBehavior='auto';
+    var stopped=false;
+    function stop(){ stopped=true; }   /* a finger or a wheel takes the page back */
+    function done(){
+      html.style.scrollBehavior=was; window.__fastScroll=false;
+      window.removeEventListener('touchstart',stop); window.removeEventListener('wheel',stop);
+      var h=document.getElementById('top');
+      if(h&&!stopped){ if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1');
+        try{ h.focus({preventScroll:true}); }catch(e){ try{ h.focus(); }catch(x){} } }
+      fireScroll();
+    }
+    if(reduce||from<2||!window.requestAnimationFrame){ scrollToY(0,false); done(); return; }
+    window.__fastScroll=true;   /* the rail holds its pill still until the page lands */
+    window.addEventListener('touchstart',stop,{passive:true}); window.addEventListener('wheel',stop,{passive:true});
+    var t0=null, D=380;
+    function step(now){
+      if(stopped){ done(); return; }
+      if(t0===null) t0=now;
+      var p=Math.min(1,(now-t0)/D), e=1-Math.pow(1-p,3);
+      scrollToY(Math.round(from*(1-e)),false);
+      if(p<1) requestAnimationFrame(step); else done();
+    }
+    requestAnimationFrame(step);
+  }
+  window.__scrollTopFast=scrollTopFast;
+
   var subs=[], lastSeen=-1;
   function onScrollChange(fn){ subs.push(fn); }
   function fireScroll(){ for(var i=0;i<subs.length;i++) subs[i](); }
@@ -3126,10 +3171,12 @@ body.locked{overflow:hidden}
     });
 
     var current='';
+    var dockTopEl=document.getElementById('dockTop');
     var setActive=function(id){
       if(id===current || !links[id]) return;
       current=id;
       for(var k in links) links[k].classList.toggle('on', k===id);
+      if(dockTopEl) dockTopEl.hidden=(id==='top');
       window.dispatchEvent(new Event('navpill'));
       var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
       var spEl=document.getElementById('sprog');
@@ -3160,6 +3207,7 @@ body.locked{overflow:hidden}
     };
     var ticking=false;
     onScrollChange(function(){
+      if(window.__fastScroll) return;   /* the page is on its way to the top; one pick when it lands */
       if(ticking) return; ticking=true;
       requestAnimationFrame(function(){ pick(); ticking=false; });
     });
@@ -3169,9 +3217,11 @@ body.locked{overflow:hidden}
       var a=e.target.closest && e.target.closest('a');
       if(a && a.getAttribute('href')==='#top'){
         e.preventDefault();
-        scrollToY(0,true);
+        scrollTopFast();
       }
     });
+    var dockTop=document.getElementById('dockTop');
+    if(dockTop) dockTop.addEventListener('click',function(e){ e.preventDefault(); scrollTopFast(); });
     pick();
   }
 
