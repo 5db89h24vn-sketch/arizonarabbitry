@@ -3536,14 +3536,18 @@ body.locked{overflow:hidden}
     var d=Math.floor((b-a)/86400000);
     if(d===0) return 'the day it was born';
     if(d<14)  return d+(d===1?' day old':' days old');
-    if(d<84){
+    if(d<56){
       var w=Math.floor(d/7), rem=d%7;
       return w+' week'+(w===1?'':'s')+
              (rem?(', '+rem+' day'+(rem===1?'':'s')):'')+' old';
     }
     var A=new Date(a), B=new Date(b);
     var mo=(B.getFullYear()-A.getFullYear())*12+(B.getMonth()-A.getMonth())-(B.getDate()<A.getDate()?1:0);
-    if(mo<12) return mo+(mo===1?' month old':' months old');
+    if(mo<12){
+      var h=Math.round(d/30.44*2)/2; if(h>11.5) h=11.5;
+      var whole=Math.floor(h);
+      return (h>whole?whole+'\u00BD':String(whole))+' months old';
+    }
     var y=Math.floor(mo/12), rm=mo%12;
     return y+' year'+(y===1?'':'s')+(rm?(', '+rm+' month'+(rm===1?'':'s')):'')+' old';
   }
@@ -3753,8 +3757,8 @@ body.locked{overflow:hidden}
     if(age==='the day it was born') age='Born today';
     var isNow=(age!=='Born today');
     var units=esc(age).split(', ');
-    var cardTxt='<b>'+units.map(function(u,i){
-      return '<span class="u">'+(i===0&&isNow?'Now ':'')+u+(i<units.length-1?',':'')+'</span>';
+    var cardTxt='<b>'+(units.length===1&&isNow?'<span class="u">Now</span> ':'')+units.map(function(u,i){
+      return '<span class="u">'+(i===0&&isNow&&units.length>1?'Now ':'')+u+(i<units.length-1?',':'')+'</span>';
     }).join(' ')+'</b>';
     var txt='<b>'+(full&&isNow?'Now ':'')+esc(age)+'</b>';
     var pastEight=(daysOld(r.dob)!==null&&daysOld(r.dob)>=LAST_WEEK*7);
