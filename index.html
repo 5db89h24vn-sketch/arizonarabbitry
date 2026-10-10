@@ -188,10 +188,7 @@ header.nav.stuck{border-bottom-color:var(--line)}
   .dock-in{pointer-events:auto;border-radius:var(--float-r);background:var(--float-solid);
     border:1px solid var(--float-line);box-shadow:var(--float-shadow);
     padding:2px 7px;overflow:hidden;
-    width:max-content;max-width:100%;margin:0 auto;
-    
-    display:flex;align-items:flex-start;gap:4px}
-  .dock-in>.mnav{flex:1 1 auto;min-width:0}
+    width:max-content;max-width:100%;margin:0 auto}
   @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
     
     .dock-in{background:var(--float-glass);
@@ -253,17 +250,14 @@ header .brand{color:var(--logo)}
   
   .mnav-track a:focus-visible{outline-offset:-3px}
   .mnav-track::-webkit-scrollbar{display:none}
-  
+
   .mnav-track{
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,
-      #000 calc(100% - 22px),transparent 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 22px,
-      #000 calc(100% - 22px),transparent 100%)}
+    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
   
   .mnav-track[data-edge="start"]{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%);
     mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
-  .mnav-track[data-edge="end"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%);
-    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%)}
+  .mnav-track[data-edge="end"]{-webkit-mask-image:none;mask-image:none}
   .mnav-track[data-edge="fit"]{-webkit-mask-image:none;mask-image:none}
 
   .mnav-inner{position:relative;width:max-content;min-width:100%;padding:5px 0 10px}
@@ -288,16 +282,12 @@ header .brand{color:var(--logo)}
   .mnav-track a:active{background:var(--line-soft);transform:scale(.95);
     transition-duration:.15s,.15s,.15s,.09s}
   
-  .dock-top{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:5px;
-    padding:0 14px 0 12px;border-radius:100px;background:rgba(246,241,233,.92);
-    border:1px solid rgba(255,255,255,.5);font-size:14px;font-weight:500;color:var(--ink);
-    text-decoration:none;white-space:nowrap;transform-origin:100% 100%;
-    transition:background .15s,color .15s,transform .22s cubic-bezier(.34,1.56,.64,1)}
-  .dock-top[hidden]{display:none}
-  .dock-top .up{flex:none;width:.72em;height:.72em;background:currentColor;
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
-  .dock-top:active{background:var(--line-soft);transform:scale(.95);transition-duration:.15s,.15s,.09s}
-  .dock-top:focus-visible{outline-offset:-3px}
+  .mnav-track a.pin{position:sticky;left:0;z-index:2}
+  
+  .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin{background:#F6F1E9}
+  .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin::after{content:'';position:absolute;
+    left:100%;top:-6px;bottom:-6px;width:30px;pointer-events:none;
+    background:linear-gradient(90deg,var(--float-solid) 0,rgba(251,248,243,0) 100%)}
 }
 
 .sprog{display:none}
@@ -1930,7 +1920,7 @@ body.locked{overflow:hidden}
           <div class="mnav-inner">
             <div class="mnav-row">
               
-              <a href="#top">Home</a>
+              <a href="#top" class="pin">Home</a>
               <a href="#available">Available</a>
               <a href="#about">About</a>
               <a href="#raised">How they're raised</a>
@@ -1948,8 +1938,6 @@ body.locked{overflow:hidden}
           </div>
         </div>
       </nav>
-      
-      <a href="#top" class="dock-top" id="dockTop" aria-label="Back to top" hidden><i class="up" aria-hidden="true"></i>Top</a>
     </div>
   </div>
 
@@ -2032,7 +2020,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" role="group" aria-label="The news and the litters">
-      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-08">8 Oct</time>. Bakalaki's litter did not make it.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-10">10 Oct</time>. Bakalaki's litter did not make it.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">Seven so far. The newest was born 6 October.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -3171,19 +3159,29 @@ body.locked{overflow:hidden}
     });
 
     var current='';
-    var dockTopEl=document.getElementById('dockTop');
     var setActive=function(id){
       if(id===current || !links[id]) return;
       current=id;
       for(var k in links) links[k].classList.toggle('on', k===id);
-      if(dockTopEl) dockTopEl.hidden=(id==='top');
       window.dispatchEvent(new Event('navpill'));
       var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
       var spEl=document.getElementById('sprog');
       if(spEl && spEl.classList.contains('drag')) return;
-      var left=(a.offsetWidth>track.clientWidth)
-        ? a.offsetLeft
-        : a.offsetLeft-(track.clientWidth-a.offsetWidth)/2;
+      var pinEl=mnav.querySelector('a.pin'), pinW=(pinEl&&pinEl!==a)?pinEl.offsetWidth+6:0;
+      var avail=track.clientWidth-pinW;
+      var left=(a.offsetWidth>avail)
+        ? a.offsetLeft-pinW
+        : a.offsetLeft-pinW-(avail-a.offsetWidth)/2;
+      if(pinW){
+        var best=null, row=mnav.querySelectorAll('.mnav-row a');
+        for(var i=0;i<row.length;i++){
+          if(row[i]===pinEl) continue;
+          var cand=row[i].offsetLeft-pinW;
+          if(cand<0||cand>track.scrollWidth-track.clientWidth) continue;
+          if(best===null||Math.abs(cand-left)<Math.abs(best-left)) best=cand;
+        }
+        if(best!==null) left=best;
+      }
       if(track.scrollTo) track.scrollTo({left:left,behavior:'smooth'});
       else track.scrollLeft=left;
     };
@@ -3220,8 +3218,6 @@ body.locked{overflow:hidden}
         scrollTopFast();
       }
     });
-    var dockTop=document.getElementById('dockTop');
-    if(dockTop) dockTop.addEventListener('click',function(e){ e.preventDefault(); scrollTopFast(); });
     pick();
   }
 
