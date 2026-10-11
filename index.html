@@ -287,32 +287,42 @@ header .brand{color:var(--logo)}
   .mnav-track a:active{background:var(--line-soft);transform:scale(.95);
     transition-duration:.15s,.15s,.15s,.09s}
   
-  .dock-lump{position:absolute;z-index:1;display:block;width:84px;height:19px;margin-left:-42px;
-    top:calc(100% - 4px - 2px);
-    left:calc(50% + (max(11px,env(safe-area-inset-left)) - max(11px,env(safe-area-inset-right))) / 2);
-    pointer-events:auto;-webkit-tap-highlight-color:transparent;border-radius:0 0 22px 22px;
-    transform-origin:50% 0;transform:scaleY(0);opacity:0;visibility:hidden;
-    transition:transform .2s cubic-bezier(.4,0,1,1),opacity .14s,visibility 0s .2s}
-  .dock-lump[hidden]{display:none}
-  .dock-lump.on{transform:none;opacity:1;visibility:visible;
-    transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .12s,visibility 0s}
-  .dock-in:has(.sprog.drag)~.dock-lump.on{opacity:0;visibility:hidden}
-  .dock-lump::before{content:'';position:absolute;left:0;right:0;top:0;height:44px}
-  .dock-lump .dl-shade{position:absolute;left:-12px;top:-2px;width:108px;height:40px;overflow:visible;pointer-events:none}
-  .dock-lump .dl-glass{position:absolute;left:0;top:0;width:84px;height:19px;pointer-events:none;
-    background:var(--float-solid);-webkit-clip-path:path('M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z');clip-path:path('M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z')}
+  .dock-shell{display:none;position:absolute;left:0;top:0;z-index:0;pointer-events:none}
+  .dock.shelled .dock-shell{display:block}
+  .dock.shelled .dock-in{position:relative;z-index:1;background:transparent;
+    -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border-color:transparent}
+  .ds-shade,.ds-glass,.ds-rim{position:absolute;left:0;top:0;width:100%;height:100%}
+  
+  .ds-shade-box{position:absolute;left:0;top:0;width:100%;border-radius:var(--float-r);
+    box-shadow:0 10px 30px rgba(36,31,29,.13),0 2px 6px rgba(36,31,29,.07)}
+  .ds-shade-bump{position:absolute;left:0;top:0;width:72px;height:19px;margin-left:-36px;
+    border-radius:0 0 36px 36px;background:rgba(36,31,29,.17);-webkit-filter:blur(3.2px);filter:blur(3.2px);
+    transform-origin:50% 0;transform:scaleY(0)}
+  
+  .ds-glass{background:var(--float-solid);box-shadow:inset 0 1px 0 rgba(255,255,255,.72)}
   @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
-    .dock-lump .dl-glass{background:rgba(251,248,243,.95);
+    .ds-glass{background:linear-gradient(rgba(251,248,243,.88),rgba(251,248,243,.82) var(--ds-h,100%),rgba(251,248,243,.82));
       -webkit-backdrop-filter:var(--float-blur);backdrop-filter:var(--float-blur)}
   }
   @media(prefers-reduced-transparency:reduce){
-    .dock-lump .dl-glass{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none}
+    .ds-glass{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none}
   }
-  .dock-lump .up{position:absolute;left:50%;top:4.5px;width:11px;height:11px;margin-left:-5.5px;pointer-events:none;
-    background:var(--ink-soft);transition:background-color .15s;
+  
+  .ds-rim{overflow:visible}
+  .ds-rim path{fill:none;stroke:var(--float-line);stroke-width:2}
+  @media(prefers-reduced-transparency:reduce){ .ds-rim path{stroke:var(--line)} }
+  
+  .dock-lump{position:absolute;left:0;top:0;z-index:2;display:block;width:84px;height:17px;
+    pointer-events:auto;-webkit-tap-highlight-color:transparent;border-radius:0 0 22px 22px;
+    visibility:hidden;transition:visibility 0s .2s}
+  .dock-lump[hidden]{display:none}
+  .dock-lump.on{visibility:visible;transition:visibility 0s}
+  .dock-in:has(.sprog.drag)~.dock-lump.on{visibility:hidden}
+  .dock-lump::before{content:'';position:absolute;left:0;right:0;top:0;height:44px}
+  .dock-lump .up{position:absolute;left:50%;top:3px;width:11px;height:11px;margin-left:-5.5px;pointer-events:none;
+    background:var(--ink-soft);opacity:0;transition:background-color .15s;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
   .dock-lump:hover .up,.dock-lump:focus-visible .up{background:var(--ink)}
-  .dock-lump:active .up{transform:translateY(-1px)}
 }
 
 .sprog{display:none}
@@ -360,7 +370,6 @@ header .brand{color:var(--logo)}
 
 @media(max-width:980px) and (orientation:landscape) and (max-height:500px){
   .dock{padding-top:4px;padding-bottom:2px}
-  .dock-lump{top:calc(100% - 2px - 2px)}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
 }
@@ -1801,7 +1810,6 @@ body.locked{overflow:hidden}
 
 @media(orientation:portrait) and (max-width:480px) and (max-height:640px){
   .dock{padding-top:4px;padding-bottom:2px}
-  .dock-lump{top:calc(100% - 2px - 2px)}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
   .hero-img{aspect-ratio:2/1}
@@ -1940,6 +1948,8 @@ body.locked{overflow:hidden}
 
 </header>
   <div class="dock" id="dock">
+    
+    <div class="dock-shell" id="dockShell" aria-hidden="true"><div class="ds-shade" id="dsShade"><div class="ds-shade-box" id="dsShadeBox"></div><div class="ds-shade-bump" id="dsShadeBump"></div></div><div class="ds-glass" id="dsGlass"></div><svg class="ds-rim" id="dsRim" aria-hidden="true" focusable="false"><path/></svg></div>
     <div class="dock-in">
 
       <nav class="mnav" id="mnav" aria-label="Page sections">
@@ -1967,7 +1977,7 @@ body.locked{overflow:hidden}
       </nav>
     </div>
     
-    <a href="#top" class="dock-lump" id="dockLump" aria-label="Back to top" hidden><svg class="dl-shade" viewBox="-12 -2 108 40" aria-hidden="true" focusable="false"><defs><filter id="dlBlur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter><mask id="dlOut" maskUnits="userSpaceOnUse" x="-12" y="-2" width="108" height="40"><rect x="-12" y="2" width="108" height="36" fill="#fff"/><path d="M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z" fill="#000"/></mask></defs><path d="M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z" transform="translate(0 2.5)" fill="#241F1D" fill-opacity=".13" filter="url(#dlBlur)" mask="url(#dlOut)"/></svg><span class="dl-glass"></span><i class="up" aria-hidden="true"></i></a>
+    <a href="#top" class="dock-lump" id="dockLump" aria-label="Back to top" hidden><i class="up" aria-hidden="true"></i></a>
   </div>
 
 <main id="main">
@@ -3200,17 +3210,87 @@ body.locked{overflow:hidden}
     });
 
     var current='';
-    var lumpEl=document.getElementById('dockLump');
+    var lumpEl=document.getElementById('dockLump'), shellEl=document.getElementById('dockShell');
+    var dockBox=document.getElementById('dock'), islandEl=dockBox&&dockBox.querySelector('.dock-in');
+    var dsGlass=document.getElementById('dsGlass'), dsShade=document.getElementById('dsShade'),
+        dsShadeBox=document.getElementById('dsShadeBox'), dsShadeBump=document.getElementById('dsShadeBump'),
+        dsRim=document.getElementById('dsRim'), dsRimPath=dsRim&&dsRim.querySelector('path'),
+        lumpUp=lumpEl&&lumpEl.querySelector('.up'), spBar=document.getElementById('sprog');
+    var LUMP_D=17, LUMP_W=84, ROOM=28;
+    var lumpWant=false, lumpDepth=0, lumpVel=0, lumpRaf=0, lumpLast=0, lumpGeo=null;
+    function nf(n){ return Math.round(n*100)/100; }
+    function outline(W,H,R,d){
+      var c=W/2, h=LUMP_W/2;
+      return 'M'+nf(R)+' 0H'+nf(W-R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(W)+' '+nf(R)
+        +'V'+nf(H-R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(W-R)+' '+nf(H)
+        +'H'+nf(c+h)+'C'+nf(c+h-15)+' '+nf(H)+' '+nf(c+h-19)+' '+nf(H+d)+' '+nf(c)+' '+nf(H+d)
+        +'C'+nf(c-h+19)+' '+nf(H+d)+' '+nf(c-h+15)+' '+nf(H)+' '+nf(c-h)+' '+nf(H)
+        +'H'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 0 '+nf(H-R)+'V'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(R)+' 0Z';
+    }
+    function drawShell(){
+      if(!lumpGeo || !lumpGeo.W) return;
+      var d=Math.max(0,lumpDepth), W=lumpGeo.W, H=lumpGeo.H, R=Math.min(29,H/2);
+      var o=outline(W,H,R,d), cp="path('"+o+"')";
+      dsGlass.style.webkitClipPath=cp; dsGlass.style.clipPath=cp;
+      dsRim.style.webkitClipPath=cp; dsRim.style.clipPath=cp; dsRimPath.setAttribute('d',o);
+      var out="path(evenodd,'M-90 -90H"+nf(W+90)+"V"+nf(H+ROOM+90)+"H-90Z"+o+"')";
+      dsShade.style.webkitClipPath=out; dsShade.style.clipPath=out;
+      dsShadeBump.style.transform='translateY(.5px) scaleY('+(d/LUMP_D).toFixed(3)+')';
+      if(lumpUp){
+        lumpUp.style.opacity=Math.max(0,Math.min(1,(d-7)/7)).toFixed(3);
+        lumpUp.style.transform='translateY('+(d/2-8.5).toFixed(2)+'px)';
+      }
+      shellEl.setAttribute('data-depth',d.toFixed(2));
+    }
+    function measureShell(){
+      if(!islandEl || !shellEl) return;
+      var dr=dockBox.getBoundingClientRect(), ir=islandEl.getBoundingClientRect();
+      if(!ir.width){ lumpGeo=null; return; }
+      lumpGeo={x:ir.left-dr.left, y:ir.top-dr.top, W:ir.width, H:ir.height};
+      shellEl.style.left=lumpGeo.x+'px'; shellEl.style.top=lumpGeo.y+'px';
+      shellEl.style.width=lumpGeo.W+'px'; shellEl.style.height=(lumpGeo.H+ROOM)+'px';
+      shellEl.style.setProperty('--ds-h',lumpGeo.H+'px');
+      dsShadeBox.style.height=lumpGeo.H+'px';
+      dsShadeBump.style.left=(lumpGeo.W/2)+'px'; dsShadeBump.style.top=lumpGeo.H+'px';
+      lumpEl.style.left=(lumpGeo.x+lumpGeo.W/2-LUMP_W/2)+'px'; lumpEl.style.top=(lumpGeo.y+lumpGeo.H)+'px';
+      drawShell();
+    }
+    function lumpGoal(){ return (lumpWant && !(spBar && spBar.classList.contains('drag'))) ? LUMP_D : 0; }
+    function lumpTick(now){
+      var goal=lumpGoal(), dt=lumpLast ? Math.min(.1,(now-lumpLast)/1000) : 1/60;
+      lumpLast=now;
+      var k=goal>0 ? 247 : 600, c=goal>0 ? 21.4 : 49, steps=Math.max(1,Math.ceil(dt/.004)), h=dt/steps;
+      for(var n=0;n<steps;n++){ var a=-k*(lumpDepth-goal)-c*lumpVel; lumpVel+=a*h; lumpDepth+=lumpVel*h; }
+      if(Math.abs(lumpDepth-goal)<.05 && Math.abs(lumpVel)<.5){ lumpDepth=goal; lumpVel=0; }
+      drawShell();
+      if(lumpDepth!==goal || lumpVel!==0) lumpRaf=requestAnimationFrame(lumpTick);
+      else { lumpRaf=0; lumpLast=0; }
+    }
+    function aimLump(){
+      if(!lumpGeo) return;
+      var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches);
+      if(reduce || !window.requestAnimationFrame){
+        if(lumpRaf){ cancelAnimationFrame(lumpRaf); lumpRaf=0; lumpLast=0; }
+        lumpDepth=lumpGoal(); lumpVel=0; drawShell(); return;
+      }
+      if(!lumpRaf) lumpRaf=requestAnimationFrame(lumpTick);
+    }
     function syncLump(id){
       if(!lumpEl) return;
       var on=!!id && id!=='top';
       if(lumpEl.classList.contains('on')!==on) lumpEl.classList.toggle('on',on);
+      if(lumpWant!==on){ lumpWant=on; aimLump(); }
     }
-    if(lumpEl){
+    if(lumpEl && shellEl && islandEl && dsGlass && dsRimPath){
       lumpEl.hidden=false;
+      dockBox.classList.add('shelled');
+      measureShell();
+      if('ResizeObserver' in window){ var ro=new ResizeObserver(measureShell); ro.observe(islandEl); ro.observe(dockBox); }
+      window.addEventListener('resize',measureShell);
+      if(spBar && 'MutationObserver' in window) new MutationObserver(aimLump).observe(spBar,{attributes:true,attributeFilter:['class']});
       lumpEl.addEventListener('click',function(e){
         e.preventDefault();
-        lumpEl.classList.remove('on');   /* it retracts as the page starts up */
+        lumpEl.classList.remove('on'); lumpWant=false; aimLump();   /* it melts back in as the page starts up */
         scrollTopFast();
       });
     }
