@@ -284,6 +284,10 @@ header .brand{color:var(--logo)}
   
   .mnav-track a.pin{position:sticky;left:0;z-index:2}
   
+  .mnav-track a.pin .up{display:none;flex:none;width:.72em;height:.72em;margin-right:6px;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
+  .mnav-track a.pin.away .up{display:inline-block}
+  
   .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin{background:#F6F1E9}
   .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin::after{content:'';position:absolute;
     left:100%;top:-6px;bottom:-6px;width:30px;pointer-events:none;
@@ -1919,8 +1923,8 @@ body.locked{overflow:hidden}
         <div class="mnav-track" id="mnavTrack">
           <div class="mnav-inner">
             <div class="mnav-row">
-              
-              <a href="#top" class="pin">Home</a>
+
+              <a href="#top" class="pin"><i class="up" aria-hidden="true"></i><span class="pw">Home</span></a>
               <a href="#available">Available</a>
               <a href="#about">About</a>
               <a href="#raised">How they're raised</a>
@@ -3167,7 +3171,14 @@ body.locked{overflow:hidden}
       var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
       var spEl=document.getElementById('sprog');
       if(spEl && spEl.classList.contains('drag')) return;
-      var pinEl=mnav.querySelector('a.pin'), pinW=(pinEl&&pinEl!==a)?pinEl.offsetWidth+6:0;
+      var pinEl=mnav.querySelector('a.pin');
+      if(pinEl){
+        var away=(id!=='top'), pw=pinEl.querySelector('.pw');
+        pinEl.classList.toggle('away',away);
+        if(pw) pw.textContent=away?'Top':'Home';
+        if(away) pinEl.setAttribute('aria-label','Back to top'); else pinEl.removeAttribute('aria-label');
+      }
+      var pinW=(pinEl&&pinEl!==a)?pinEl.offsetWidth+6:0;
       var avail=track.clientWidth-pinW;
       var left=(a.offsetWidth>avail)
         ? a.offsetLeft-pinW
