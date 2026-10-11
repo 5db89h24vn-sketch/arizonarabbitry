@@ -293,11 +293,10 @@ header .brand{color:var(--logo)}
     -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border-color:transparent}
   .ds-shade,.ds-glass,.ds-rim{position:absolute;left:0;top:0;width:100%;height:100%}
   
-  .ds-shade-box{position:absolute;left:0;top:0;width:100%;border-radius:var(--float-r);
-    box-shadow:0 10px 30px rgba(36,31,29,.13),0 2px 6px rgba(36,31,29,.07)}
-  .ds-shade-bump{position:absolute;left:0;top:0;width:72px;height:19px;margin-left:-36px;
-    border-radius:0 0 36px 36px;background:rgba(36,31,29,.17);-webkit-filter:blur(3.2px);filter:blur(3.2px);
-    transform-origin:50% 0;transform:scaleY(0)}
+  .ds-shade-fx{position:absolute;left:0;top:0;width:100%;height:100%;
+    -webkit-filter:drop-shadow(0 10px 15px rgba(36,31,29,.13)) drop-shadow(0 2px 3px rgba(36,31,29,.07));
+    filter:drop-shadow(0 10px 15px rgba(36,31,29,.13)) drop-shadow(0 2px 3px rgba(36,31,29,.07))}
+  .ds-shade-shape{position:absolute;left:0;top:0;width:100%;height:100%;background:#FBF8F3}
   
   .ds-glass{background:var(--float-solid);box-shadow:inset 0 1px 0 rgba(255,255,255,.72)}
   @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
@@ -323,9 +322,11 @@ header .brand{color:var(--logo)}
     background:var(--ink-soft);opacity:0;transition:background-color .15s;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
   .dock-lump:hover .up,.dock-lump:focus-visible .up{background:var(--ink)}
-  
+
   .dock-lump .words{position:absolute;left:50%;top:0;white-space:nowrap;pointer-events:none;
-    font-size:12.5px;font-weight:600;line-height:15px;color:var(--ink);opacity:0}
+    font-size:11px;font-weight:600;line-height:13px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);opacity:0}
+  .dock-lump:hover .words,.dock-lump:focus-visible .words{color:var(--ink)}
 }
 
 .sprog{display:none}
@@ -1952,7 +1953,7 @@ body.locked{overflow:hidden}
 </header>
   <div class="dock" id="dock">
     
-    <div class="dock-shell" id="dockShell" aria-hidden="true"><div class="ds-shade" id="dsShade"><div class="ds-shade-box" id="dsShadeBox"></div><div class="ds-shade-bump" id="dsShadeBump"></div></div><div class="ds-glass" id="dsGlass"></div><svg class="ds-rim" id="dsRim" aria-hidden="true" focusable="false"><path/></svg></div>
+    <div class="dock-shell" id="dockShell" aria-hidden="true"><div class="ds-shade" id="dsShade"><div class="ds-shade-fx"><div class="ds-shade-shape" id="dsShadeShape"></div></div></div><div class="ds-glass" id="dsGlass"></div><svg class="ds-rim" id="dsRim" aria-hidden="true" focusable="false"><path/></svg></div>
     <div class="dock-in">
 
       <nav class="mnav" id="mnav" aria-label="Page sections">
@@ -2002,8 +2003,7 @@ body.locked{overflow:hidden}
 
       <a class="hero-deliver" href="#faq-delivery"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery&nbsp;statewide</b><i class="chev" aria-hidden="true"></i></a>
 
-      <p class="hero-sub">They're handled gently every day from their first&nbsp;week. At least ten
-      different people hold each one before it's yours.</p>
+      <p class="hero-sub">Handled gently every day from their first week, so they come home used to being&nbsp;held.</p>
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
 
@@ -3216,11 +3216,11 @@ body.locked{overflow:hidden}
     var lumpEl=document.getElementById('dockLump'), shellEl=document.getElementById('dockShell');
     var dockBox=document.getElementById('dock'), islandEl=dockBox&&dockBox.querySelector('.dock-in');
     var dsGlass=document.getElementById('dsGlass'), dsShade=document.getElementById('dsShade'),
-        dsShadeBox=document.getElementById('dsShadeBox'), dsShadeBump=document.getElementById('dsShadeBump'),
+        dsShadeShape=document.getElementById('dsShadeShape'),
         dsRim=document.getElementById('dsRim'), dsRimPath=dsRim&&dsRim.querySelector('path'),
         lumpUp=lumpEl&&lumpEl.querySelector('.up'), lumpWords=lumpEl&&lumpEl.querySelector('.words'),
         spBar=document.getElementById('sprog');
-    var LUMP_D=17, LUMP_W=84, ROOM=28, WORDS_D=22, WORDS_MS=3000, WORDS_REST=20000;
+    var LUMP_D=17, LUMP_W=84, ROOM=28, WORDS_D=24, WORDS_MS=3000, WORDS_REST=20000;
     var lumpWant=false, lumpDepth=0, lumpVel=0, lumpRaf=0, lumpLast=0, lumpGeo=null;
     var lumpHalf=LUMP_W/2, lumpHalfVel=0, wordsOn=false, wordsTimer=0, wordsAt=-1e9, wordsW=0;
     function nf(n){ return Math.round(n*100)/100; }
@@ -3232,7 +3232,7 @@ body.locked{overflow:hidden}
         +'C'+nf(c-h+19)+' '+nf(H+d)+' '+nf(c-h+15)+' '+nf(H)+' '+nf(c-h)+' '+nf(H)
         +'H'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 0 '+nf(H-R)+'V'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(R)+' 0Z';
     }
-    function halfWide(){ return Math.max(LUMP_W/2, (16+wordsW)/2+30); }
+    function halfWide(){ return Math.max(LUMP_W/2, (16+wordsW)/2+28); }
     function drawShell(){
       if(!lumpGeo || !lumpGeo.W) return;
       var d=Math.max(0,lumpDepth), W=lumpGeo.W, H=lumpGeo.H, R=Math.min(29,H/2);
@@ -3240,10 +3240,9 @@ body.locked{overflow:hidden}
       var o=outline(W,H,R,d,h), cp="path('"+o+"')";
       dsGlass.style.webkitClipPath=cp; dsGlass.style.clipPath=cp;
       dsRim.style.webkitClipPath=cp; dsRim.style.clipPath=cp; dsRimPath.setAttribute('d',o);
+      dsShadeShape.style.webkitClipPath=cp; dsShadeShape.style.clipPath=cp;
       var out="path(evenodd,'M-90 -90H"+nf(W+90)+"V"+nf(H+ROOM+90)+"H-90Z"+o+"')";
       dsShade.style.webkitClipPath=out; dsShade.style.clipPath=out;
-      dsShadeBump.style.width=nf(2*h-12)+'px'; dsShadeBump.style.marginLeft=nf(6-h)+'px';
-      dsShadeBump.style.transform='translateY(.5px) scaleY('+(d/LUMP_D).toFixed(3)+')';
       lumpEl.style.left=nf(lumpGeo.x+W/2-h)+'px'; lumpEl.style.width=nf(2*h)+'px';
       lumpEl.style.height=nf(Math.max(1,d))+'px';
       var e=wide>LUMP_W/2+.5 ? Math.max(0,Math.min(1,(h-LUMP_W/2)/(wide-LUMP_W/2))) : 0;
@@ -3254,7 +3253,7 @@ body.locked{overflow:hidden}
       }
       if(lumpWords){
         lumpWords.style.opacity=(show*Math.max(0,Math.min(1,(e-.55)/.35))).toFixed(3);
-        lumpWords.style.transform='translate('+(16-row/2).toFixed(2)+'px,'+(d/2-7.5).toFixed(2)+'px)';
+        lumpWords.style.transform='translate('+(16-row/2).toFixed(2)+'px,'+(d/2-6.5).toFixed(2)+'px)';
       }
       shellEl.setAttribute('data-depth',d.toFixed(2));
       shellEl.setAttribute('data-ext',e.toFixed(2));
@@ -3267,8 +3266,6 @@ body.locked{overflow:hidden}
       shellEl.style.left=lumpGeo.x+'px'; shellEl.style.top=lumpGeo.y+'px';
       shellEl.style.width=lumpGeo.W+'px'; shellEl.style.height=(lumpGeo.H+ROOM)+'px';
       shellEl.style.setProperty('--ds-h',lumpGeo.H+'px');
-      dsShadeBox.style.height=lumpGeo.H+'px';
-      dsShadeBump.style.left=(lumpGeo.W/2)+'px'; dsShadeBump.style.top=lumpGeo.H+'px';
       lumpEl.style.top=(lumpGeo.y+lumpGeo.H)+'px';
       if(lumpWords) wordsW=lumpWords.getBoundingClientRect().width||wordsW;
       drawShell();
@@ -3330,7 +3327,7 @@ body.locked{overflow:hidden}
         aimLump();
       }
     }
-    if(lumpEl && shellEl && islandEl && dsGlass && dsRimPath){
+    if(lumpEl && shellEl && islandEl && dsGlass && dsRimPath && dsShadeShape){
       lumpEl.hidden=false;
       dockBox.classList.add('shelled');
       measureShell();
