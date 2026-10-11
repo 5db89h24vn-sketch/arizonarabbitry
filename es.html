@@ -5231,7 +5231,7 @@ body.locked{overflow:hidden}
       el.parentNode.appendChild(box);
       var tall=0;
       for(var i=0;i<texts.length;i++){
-        probe.textContent=texts[i]||'';
+        probe.textContent=texts[i]||''; if(window.__es) window.__es.visit(probe);
         if(probe.offsetHeight>tall) tall=probe.offsetHeight;
       }
       box.parentNode.removeChild(box);
