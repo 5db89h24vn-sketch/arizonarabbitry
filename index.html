@@ -250,14 +250,17 @@ header .brand{color:var(--logo)}
   
   .mnav-track a:focus-visible{outline-offset:-3px}
   .mnav-track::-webkit-scrollbar{display:none}
-
+  
   .mnav-track{
-    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%);
-    mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,
+      #000 calc(100% - 22px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,
+      #000 calc(100% - 22px),transparent 100%)}
   
   .mnav-track[data-edge="start"]{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%);
     mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),transparent 100%)}
-  .mnav-track[data-edge="end"]{-webkit-mask-image:none;mask-image:none}
+  .mnav-track[data-edge="end"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 100%)}
   .mnav-track[data-edge="fit"]{-webkit-mask-image:none;mask-image:none}
 
   .mnav-inner{position:relative;width:max-content;min-width:100%;padding:5px 0 10px}
@@ -282,16 +285,32 @@ header .brand{color:var(--logo)}
   .mnav-track a:active{background:var(--line-soft);transform:scale(.95);
     transition-duration:.15s,.15s,.15s,.09s}
   
-  .mnav-track a.pin{position:sticky;left:0;z-index:2}
-  
-  .mnav-track a.pin .up{display:none;flex:none;width:.72em;height:.72em;margin-right:6px;background:currentColor;
+  .dock-lump{position:absolute;z-index:1;display:block;width:84px;height:19px;margin-left:-42px;
+    top:calc(100% - 4px - 2px);
+    left:calc(50% + (max(11px,env(safe-area-inset-left)) - max(11px,env(safe-area-inset-right))) / 2);
+    pointer-events:auto;-webkit-tap-highlight-color:transparent;border-radius:0 0 22px 22px;
+    transform-origin:50% 0;transform:scaleY(0);opacity:0;visibility:hidden;
+    transition:transform .2s cubic-bezier(.4,0,1,1),opacity .14s,visibility 0s .2s}
+  .dock-lump[hidden]{display:none}
+  .dock-lump.on{transform:none;opacity:1;visibility:visible;
+    transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .12s,visibility 0s}
+  .dock-in:has(.sprog.drag)~.dock-lump.on{opacity:0;visibility:hidden}
+  .dock-lump::before{content:'';position:absolute;left:0;right:0;top:0;height:44px}
+  .dock-lump .dl-shade{position:absolute;left:-12px;top:-2px;width:108px;height:40px;overflow:visible;pointer-events:none}
+  .dock-lump .dl-glass{position:absolute;left:0;top:0;width:84px;height:19px;pointer-events:none;
+    background:var(--float-solid);-webkit-clip-path:path('M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z');clip-path:path('M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z')}
+  @supports ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+    .dock-lump .dl-glass{background:rgba(251,248,243,.95);
+      -webkit-backdrop-filter:var(--float-blur);backdrop-filter:var(--float-blur)}
+  }
+  @media(prefers-reduced-transparency:reduce){
+    .dock-lump .dl-glass{background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none}
+  }
+  .dock-lump .up{position:absolute;left:50%;top:4.5px;width:11px;height:11px;margin-left:-5.5px;pointer-events:none;
+    background:var(--ink-soft);transition:background-color .15s;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
-  .mnav-track a.pin.away .up{display:inline-block}
-  
-  .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin{background:#F6F1E9}
-  .mnav-track:not([data-edge="start"]):not([data-edge="fit"]) a.pin::after{content:'';position:absolute;
-    left:100%;top:-6px;bottom:-6px;width:30px;pointer-events:none;
-    background:linear-gradient(90deg,var(--float-solid) 0,rgba(251,248,243,0) 100%)}
+  .dock-lump:hover .up,.dock-lump:focus-visible .up{background:var(--ink)}
+  .dock-lump:active .up{transform:translateY(-1px)}
 }
 
 .sprog{display:none}
@@ -339,6 +358,7 @@ header .brand{color:var(--logo)}
 
 @media(max-width:980px) and (orientation:landscape) and (max-height:500px){
   .dock{padding-top:4px;padding-bottom:2px}
+  .dock-lump{top:calc(100% - 2px - 2px)}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
 }
@@ -1779,6 +1799,7 @@ body.locked{overflow:hidden}
 
 @media(orientation:portrait) and (max-width:480px) and (max-height:640px){
   .dock{padding-top:4px;padding-bottom:2px}
+  .dock-lump{top:calc(100% - 2px - 2px)}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
   .hero-img{aspect-ratio:2/1}
@@ -1923,8 +1944,8 @@ body.locked{overflow:hidden}
         <div class="mnav-track" id="mnavTrack">
           <div class="mnav-inner">
             <div class="mnav-row">
-
-              <a href="#top" class="pin"><i class="up" aria-hidden="true"></i><span class="pw">Home</span></a>
+              
+              <a href="#top">Home</a>
               <a href="#available">Available</a>
               <a href="#about">About</a>
               <a href="#raised">How they're raised</a>
@@ -1943,6 +1964,8 @@ body.locked{overflow:hidden}
         </div>
       </nav>
     </div>
+    
+    <a href="#top" class="dock-lump" id="dockLump" aria-label="Back to top" hidden><svg class="dl-shade" viewBox="-12 -2 108 40" aria-hidden="true" focusable="false"><defs><filter id="dlBlur" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter><mask id="dlOut" maskUnits="userSpaceOnUse" x="-12" y="-2" width="108" height="40"><rect x="-12" y="2" width="108" height="36" fill="#fff"/><path d="M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z" fill="#000"/></mask></defs><path d="M0 0C15 0 19 19 42 19C65 19 69 0 84 0Z" transform="translate(0 2.5)" fill="#241F1D" fill-opacity=".13" filter="url(#dlBlur)" mask="url(#dlOut)"/></svg><span class="dl-glass"></span><i class="up" aria-hidden="true"></i></a>
   </div>
 
 <main id="main">
@@ -3163,6 +3186,20 @@ body.locked{overflow:hidden}
     });
 
     var current='';
+    var lumpEl=document.getElementById('dockLump');
+    function syncLump(id){
+      if(!lumpEl) return;
+      var on=!!id && id!=='top';
+      if(lumpEl.classList.contains('on')!==on) lumpEl.classList.toggle('on',on);
+    }
+    if(lumpEl){
+      lumpEl.hidden=false;
+      lumpEl.addEventListener('click',function(e){
+        e.preventDefault();
+        lumpEl.classList.remove('on');   /* it retracts as the page starts up */
+        scrollTopFast();
+      });
+    }
     var setActive=function(id){
       if(id===current || !links[id]) return;
       current=id;
@@ -3171,28 +3208,9 @@ body.locked{overflow:hidden}
       var a=links[id], track=document.getElementById('mnavTrack')||a.parentNode;
       var spEl=document.getElementById('sprog');
       if(spEl && spEl.classList.contains('drag')) return;
-      var pinEl=mnav.querySelector('a.pin');
-      if(pinEl){
-        var away=(id!=='top'), pw=pinEl.querySelector('.pw');
-        pinEl.classList.toggle('away',away);
-        if(pw) pw.textContent=away?'Top':'Home';
-        if(away) pinEl.setAttribute('aria-label','Back to top'); else pinEl.removeAttribute('aria-label');
-      }
-      var pinW=(pinEl&&pinEl!==a)?pinEl.offsetWidth+6:0;
-      var avail=track.clientWidth-pinW;
-      var left=(a.offsetWidth>avail)
-        ? a.offsetLeft-pinW
-        : a.offsetLeft-pinW-(avail-a.offsetWidth)/2;
-      if(pinW){
-        var best=null, row=mnav.querySelectorAll('.mnav-row a');
-        for(var i=0;i<row.length;i++){
-          if(row[i]===pinEl) continue;
-          var cand=row[i].offsetLeft-pinW;
-          if(cand<0||cand>track.scrollWidth-track.clientWidth) continue;
-          if(best===null||Math.abs(cand-left)<Math.abs(best-left)) best=cand;
-        }
-        if(best!==null) left=best;
-      }
+      var left=(a.offsetWidth>track.clientWidth)
+        ? a.offsetLeft
+        : a.offsetLeft-(track.clientWidth-a.offsetWidth)/2;
       if(track.scrollTo) track.scrollTo({left:left,behavior:'smooth'});
       else track.scrollLeft=left;
     };
@@ -3213,6 +3231,7 @@ body.locked{overflow:hidden}
       if(sy>=scrollSpan()-4 && order.length)
         found=order[order.length-1].id;
       if(found) setActive(found); else { current=''; for(var k in links) links[k].classList.remove('on'); }
+      syncLump(found);
     };
     var ticking=false;
     onScrollChange(function(){
