@@ -941,6 +941,8 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 
 .faq-body b{color:var(--ink);font-weight:600}
 
+.about-more{margin-top:26px;border-top:1px solid var(--line)}
+.about-more .faq-body{max-width:none}
 .faq-body p > b:first-child,.faq-body li > b:first-child,
 .about-story p > b:first-child,.about-head p > b:first-child{
   display:block;text-wrap:balance;line-height:1.35;margin-bottom:3px}
@@ -1077,6 +1079,13 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
 .foot h3{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--faint-on-ink);font-family:var(--sans);font-weight:600;margin-bottom:12px}
 .foot-links{display:flex;flex-direction:column;gap:8px}
+
+.keys-note{display:none;margin:16px 0 0;font-size:13px;line-height:1.5;color:rgba(239,232,222,.58)}
+@media (hover:hover) and (pointer:fine) and (min-width:981px){
+  html.keys-on .keys-note,html.keys-off .keys-note{display:block}
+}
+.keys-note .mini{margin-top:8px;background:rgba(255,255,255,.12);color:#EFE8DE}
+.keys-note .mini:hover,.keys-note .mini:focus-visible{background:rgba(255,255,255,.2);color:#fff}
 .foot-legal{align-items:center}
 .foot-top{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:rgba(239,232,222,.58);text-decoration:none;white-space:nowrap}
 .foot-top:hover{color:#fff}
@@ -2033,8 +2042,8 @@ body.locked{overflow:hidden}
     <div class="avail-head">
       <div>
         <h2 style="margin-bottom:8px">Available now</h2>
-        <p class="lede">Litters are small. The price you see is the whole price, and it covers
-        daily handling from their first week to the day they leave.</p>
+        <p class="lede">Litters are small, and every baby is handled daily. The price you see
+        is the whole&nbsp;price.</p>
 
         <p class="avail-stamp">Availability
           <span data-fact="stamp"><a class="stamp-link" href="/updates#changes" title="Every change, with its date"><time id="availStamp" datetime="2026-10-10">current as of October 10, 2026</time></a></span>
@@ -2062,7 +2071,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="doors" role="group" aria-label="The news and the litters">
-      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-10">10 Oct</time>. Bakalaki's litter did not make it.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-10">10 Oct</time>. Biscuit is sold.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">Seven so far. The newest was born 6 October.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -2111,10 +2120,10 @@ body.locked{overflow:hidden}
   <div class="wrap about-grid">
     <div class="about-head">
       <p class="kicker">About</p>
-      <h2>Comfort with people is built in the first weeks, long before you meet them.</h2>
-      <p class="lede"><b>I'm William, and I came to rabbits through chinchillas.</b> A chinchilla
-      doesn't want to be held. Keeping them taught me what I was after: an animal that comes
-      to you.</p>
+      
+      <h2>Small on purpose, so every rabbit gets my&nbsp;time.</h2>
+      <p class="lede"><b>I'm William.</b> I started with chinchillas, but they don't like being
+      held. I wanted a pet that comes to you, and that led me to rabbits.</p>
     </div>
     <div class="rv about-media">
       
@@ -2125,42 +2134,39 @@ body.locked{overflow:hidden}
       
       <p class="lede"><b data-fact="breeds-now">These litters are Holland Lop crosses.</b>
       <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
-      A farmer sold me a <a class="litterlink" href="#p-angora" title="The father: his photos and his litters">Satin
-      Angora</a>, and a <a class="litterlink" href="#p-lop" title="The mother: her photos and her litters">Holland
-      Lop</a> followed. The purebred lines are starting: the first <a class="litterlink"
+      The crosses come from my <a class="litterlink" href="#p-lop" title="The mother: her photos and her litters">Holland
+      Lop</a> and my <a class="litterlink" href="#p-angora" title="The father: his photos and his litters">Satin
+      Angora</a>. My first <a class="litterlink"
       href="/litters#L2026-09-18">purebred Holland Lops</a> were born 18 September 2026,
-      the first <a class="litterlink" href="/litters#L2026-10-06">Netherland Dwarfs</a>
-      were born 6 October 2026, and another Angora comes after, kept separate.
-      Every purebred has its full pedigree.</p>
+      each with its full pedigree.</p>
 
-      <p class="lede"><b>Some rabbits never go up for sale.</b> Each bloodline is bred
-      to get better, and the ones that carry it forward stay. Every
-      litter goes on <a class="litterlink" href="/litters">the litters page</a> once I have its
-      first photo, <a class="litterlink" href="/litters#L2026-06-28">back to 28 June 2026</a>.</p>
-      
-      <p class="lede"><b>A few rabbits at a time, on purpose.</b> Selective breeding, then time on
-      each animal, handled every day by me and by other people.</p>
-      <p class="lede"><b>Rabbits are prey animals, and hands have to be learned.</b> Babies handled briefly at feeding time in their first week <a class="cite"
+      <p class="lede"><b>Why the first weeks matter.</b> Babies handled briefly in their first week <a class="cite"
       href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
       target="_blank" rel="noopener noreferrer" data-leaves="word">come up to people at weaning, and still do as <span class="kw">adults</span><span class="sr-only"> (opens in a new tab)</span></a>.
-      Babies nobody handled avoid the hand and grow up afraid of people.</p>
-      <p class="lede"><b>Those weeks come long before you could meet them, so that job is mine.</b> I keep
-      it going every day after. Every baby here is handled by at least ten different people
-      before it goes home, and goes outside for new sounds and smells. A rabbit calm only with
-      its breeder isn't socialized.</p>
-
-      <p class="lede"><b>The routine is what you're paying for.</b> It makes a rabbit that comes
-      to people instead of running from them. It won't make one love being lifted: <a class="cite"
-      href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
-      target="_blank" rel="noopener noreferrer" data-leaves="word">most never <span class="kw">do</span><span class="sr-only"> (opens in a new tab)</span></a>, and each one is still its own animal.</p>
-      
-      <p class="lede"><b>Where the money goes.</b> I buy my breeding rabbits from breeders I meet at
-      shows across the country, and I fly home with them. A pedigreed rabbit from a winning
-      line costs thousands. I pay it so that its babies can go to homes here for a fraction
-      of that, and every sale on this site goes into the next trip and the next line.</p>
-      <p class="lede"><b>Every rabbit here gets the same raising, whatever its price.</b> The aim is a
-      rabbit good enough for the show table that is just as happy on your couch. One day this
-      is a ranch, and other animals get the same care. It starts with rabbits, done properly.</p>
+      So every baby here is handled daily, and gets used to new people, sounds and places
+      before it goes&nbsp;home.</p>
+      <p class="lede"><b>That routine is what you're paying for.</b> It gives you a rabbit that
+      comes to&nbsp;people.</p>
+      <p class="lede"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
+      shows across the country, at thousands each, and fly home with them. Their babies go
+      home here for a fraction of that, and every sale goes into the next&nbsp;line.</p>
+      <p class="lede"><b>Every rabbit gets the same care, whatever its price.</b> The aim is a
+      rabbit good enough for a show table and just as happy on your&nbsp;couch.</p>
+      <details class="about-more">
+        <summary>More about the rabbitry</summary>
+        <div class="faq-body">
+          <p><b>Some rabbits stay.</b> Each line is bred to get better, and the ones that carry
+          it forward stay with me. Every litter is on <a class="litterlink"
+          href="/litters">the litters page</a>, <a class="litterlink"
+          href="/litters#L2026-06-28">back to 28 June 2026</a>.</p>
+          <p><b>Each rabbit is still its own animal.</b> Handling makes a rabbit come to people.
+          It won't make one love being lifted: <a class="cite"
+          href="https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/rabbit-myths"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">most never <span class="kw">do</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <p><b>One day, a ranch.</b> Other animals will get the same care. It starts with
+          rabbits, done&nbsp;properly.</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -2170,7 +2176,7 @@ body.locked{overflow:hidden}
     <p class="kicker">The routine here</p>
     <h2>What happens before you meet them</h2>
     <p class="lede">The whole routine, week by week. Every listing shows which week its
-    rabbit is in. Ask me about any part of it.</p>
+    rabbit is&nbsp;in.</p>
     
     <p data-fact="routine-now" class="routine-now">Fifth litter was born <time datetime="2026-09-27">27 September</time>.</p>
     <div class="stages">
@@ -2178,39 +2184,36 @@ body.locked{overflow:hidden}
       <div class="stage" data-now="being handled in short, gentle sessions">
         <span class="stage-when">Week 1–2</span>
         <h3>First handling</h3>
-        <p>Short, gentle sessions within days of birth, nest kept warm and mostly undisturbed.</p>
+        <p>Short, gentle sessions from the first days, with the nest kept warm and&nbsp;quiet.</p>
       </div>
       <div class="stage" data-now="getting used to being carried">
         <span class="stage-when">Week 3–5</span>
         <h3>Carrying becomes normal</h3>
-        <p>Lifting with a hand under the back and bottom every time, and long stretches at
-        floor level, which is where a rabbit is most at ease. Leaving the ground is the fear
-        most pet rabbits never lose.</p>
+        
+        <p>Lifted with a hand under the back and bottom every time, and plenty of time at
+        floor level, where rabbits are most at&nbsp;ease.</p>
       </div>
       <div class="stage" data-now="getting used to people and noise">
         <span class="stage-when">Week 6–8</span>
-        <h3>New people, new noise</h3>
-        
-        <p>Visitors, children, the noise of a house, time outside for new sounds and smells,
-        and the carrier with the door open so it stops being a trap. At least ten different
-        people handle each one before it goes home. Ordinary life at their own pace, with
-        somewhere to retreat to whenever they want it.</p>
+        <h3>New people, new sounds</h3>
+
+        <p>Visitors, children and the sounds of a busy house, time outside, and a carrier
+        left open so it feels familiar. All at their own pace, with a hiding place
+        whenever they want&nbsp;one.</p>
       </div>
       <div class="stage" id="stage-home">
         
         <span class="stage-when">Going home</span>
         <h3>When they're ready</h3>
-        <p>Eight weeks is what I aim for. A rabbit goes home once it's off milk and eating hay
-        and pellets on its own, and has been eating and drinking well for at least a week.
-        I weigh it, and it has to be holding or gaining, with nothing wrong with it. One
-        that isn't there yet waits, whatever its age.</p>
+        <p>Eight weeks is what I aim for. It goes home once it eats hay and pellets on its
+        own, has been eating and drinking well for a week, and is healthy and holding or
+        gaining weight. If it isn't ready, it waits, whatever its&nbsp;age.</p>
       </div>
     </div>
 
     <div class="social-head">
       <h3>Watch them grow up</h3>
-      <p>Don't take my word for any of the above. Photos and video, including the
-      unglamorous parts.</p>
+      <p>See it for yourself: photos and video of every&nbsp;stage.</p>
 
       <p class="owners-lead" id="owners"><b>Bought one here? I'll help it&nbsp;get&nbsp;seen&nbsp;online.</b></p>
       <ul class="owners">
@@ -2234,9 +2237,9 @@ body.locked{overflow:hidden}
     <div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
-      
-      <p class="lede">The first two weeks at home are <a class="litterlink" href="#faq-home">the risky
-      stretch</a>, so nobody should be guessing through them.</p>
+
+      <p class="lede">Everything for <a class="litterlink" href="#faq-home">the first two
+      weeks</a> at home, so you're never&nbsp;guessing.</p>
       <ul class="incl">
         <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
         <li><b>Bamboo to chew on</b><small>It outlasts the two weeks of food. Chewing keeps their teeth worn down.</small></li>
@@ -2262,9 +2265,9 @@ body.locked{overflow:hidden}
       <div class="svc-main">
         <p class="kicker">Also offered</p>
         <h2>Boarding, whenever you travel</h2>
-        <p class="svc-lede">Most kennels aren't set up for rabbits, and one left with a stranger
-        spends the whole week stressed. Yours comes back to the food it knows and
-        the same hands that raised it.</p>
+        
+        <p class="svc-lede">Your rabbit comes back to the food it knows and the same hands
+        that raised&nbsp;it.</p>
         <ul>
           <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
           <li>Photos while you're gone, so you're not left wondering</li>
@@ -2272,10 +2275,10 @@ body.locked{overflow:hidden}
         </ul>
         <div class="callout">
           <b>My own rabbits only</b>
-          <p>Arizona's wild rabbits carry a virus called
+          
+          <p>A closed property keeps every rabbit here, yours included, safe from
           <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-             target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, and it is usually fatal. Keeping the property closed to outside rabbits is how
-          I keep everyone here safe, yours included.</p>
+             target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild&nbsp;rabbits.</p>
         </div>
         <a href="#contact" class="btn btn-primary">Ask about dates</a>
       </div>
@@ -2310,11 +2313,10 @@ body.locked{overflow:hidden}
       <details id="faq-how" open>
         <summary>How does this work?</summary>
         <div class="faq-body">
-          <p><b>Send me a text or a note.</b> Tell me a little about your home and who the
-          rabbit is for. I'll tell you which one fits, and I'll say so if the answer is to
-          wait for the next litter.</p>
-          <p><b>Then come and meet them.</b> The visit is free and there's no booking fee.
-          Nothing has to be decided on the day.</p>
+          <p><b>Send me a text or a note.</b> Tell me about your home and who the rabbit is
+          for. I'll tell you which one fits, or if the next litter would suit you&nbsp;better.</p>
+          <p><b>Then come and meet them.</b> The visit is free, and nothing has to be decided
+          on the&nbsp;day.</p>
           <p><b>A $50 deposit reserves the one you choose.</b> It comes off the price, and you get a receipt
           from me. Rabbits open for reservation at four weeks old.</p>
           
@@ -2339,8 +2341,8 @@ body.locked{overflow:hidden}
           <ul>
             <li><b>Handled every day from its first week.</b> Handled early, a rabbit <a
             class="cite" href="https://pubmed.ncbi.nlm.nih.gov/10531536/" target="_blank"
-            rel="noopener noreferrer" data-leaves="word">comes to people instead of running from <span class="kw">them</span><span class="sr-only"> (opens in a new tab)</span></a>. At least ten
-            different people handle each one before it goes home.</li>
+            rel="noopener noreferrer" data-leaves="word">comes to people instead of running from <span class="kw">them</span><span class="sr-only"> (opens in a new tab)</span></a>. Each one
+            meets new people before it goes&nbsp;home.</li>
             <li><b>A record you can check.</b> Its birth date, its litter from the day it was born, its parents and dated photos, all on this site.</li>
             <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, checked
             together, and it goes home when it passes <a class="litterlink"
@@ -2355,7 +2357,7 @@ body.locked{overflow:hidden}
           
           <p><b>The rabbit is the smallest part of what it costs.</b> A year of keeping one
           comes to <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">$1,672&nbsp;to&<span class="kw">nbsp;$3,354</span><span class="sr-only"> (opens in a new tab)</span></a> on Chewy's vet-reviewed figures,
+          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">$1,672&nbsp;to&nbsp;$3,354</span><span class="sr-only"> (opens in a new tab)</span></a> on Chewy's vet-reviewed figures,
           and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
           <p><b>10% off for military and first responders.</b> That includes police and firefighters. Say so when you get in touch.</p>
           <p><b>You can pay in parts.</b> A $50 deposit reserves it, and the rest can come in any amounts
@@ -2374,8 +2376,8 @@ body.locked{overflow:hidden}
           <p><b>Can I see its litter and its parents?</b> <a class="litterlink"
           href="/litters">Its litter</a> from its first day, and the mother and father
           on every listing.</p>
-          <p><b>Who handles it, and since when?</b> Me and other people, every day, <a class="litterlink"
-          href="#about">from its first week</a>.</p>
+          <p><b>Who handles it, and since when?</b> I do, every day <a class="litterlink"
+          href="#about">from its first week</a>, and it meets new people before it goes&nbsp;home.</p>
           <p><b>When can it go home, and what decides that?</b> <a class="litterlink"
           href="#faq-home">Eight weeks is what I aim for</a>, and a test every rabbit passes
           first.</p>
@@ -2453,10 +2455,8 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Often, yes, with slow introductions.</b> Tell me what animals you have when you
           get in touch. If a rabbit isn't right for your home, I'll say so.</p>
-          <p><b>They've met noise before.</b> While they're still working out what is safe, the
-          babies here hear the noise of a house, go outside for new sounds and smells, and get
-          handled by at least ten different people. Your home is one more new place, not the
-          first.</p>
+          <p><b>They're used to a busy house.</b> Here they hear household noise, spend time
+          outside and meet new people. Your home is one more new place, not the&nbsp;first.</p>
           <p><b>Cats usually settle in.</b> The House Rabbit Society says indoor cats <a class="cite"
           href="https://rabbit.org/care/rabbits-and-cats/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">typically will peacefully <span class="kw">coexist</span><span class="sr-only"> (opens in a new tab)</span></a> with rabbits after
@@ -2604,12 +2604,10 @@ body.locked{overflow:hidden}
       <details id="faq-ages">
         <summary>How current is what I'm seeing?</summary>
         <div class="faq-body">
-          <p><b>The ages are counted on the day you look.</b> Every rabbit's birth date is
-          in its record, and the page counts from it each time it opens, and again at
-          midnight if you leave it open. No age here was typed in once and left.</p>
-          <p><b>Every photo carries its own day.</b> Open one and the date it was taken is on
-          the picture, bottom left, with how old the rabbit was that day. A photo is a
-          moment. The line under it is now.</p>
+          <p><b>The ages are counted on the day you look.</b> The page counts from each
+          rabbit's birth date every time it opens, and again at midnight if you leave it&nbsp;open.</p>
+          <p><b>Every photo carries its own date.</b> Open one and the day it was taken is on
+          the picture, bottom left, with the rabbit's age that&nbsp;day.</p>
           <p><b>Availability changes the day a rabbit is reserved or sold.</b> <a class="litterlink" href="#available">The line above the rabbits</a> says when it last changed, or when I last looked at the pens and nothing
           had.</p>
         </div>
@@ -2635,7 +2633,7 @@ body.locked{overflow:hidden}
           <p><b>Indoors, especially here.</b> Rabbits handle cold far better than heat, and <a class="cite"
           href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">anything over the mid-80s for long is
-          <span class="kw">dangerous</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tucson summer isn't survivable in a hutch.</p>
+          <span class="kw">dangerous</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tucson summer is too hot for a hutch&nbsp;outside.</p>
           <p><b>An indoor pen with daily run-around time.</b> That's what I recommend. Supervised,
           because rabbits chew cables.</p>
         </div>
@@ -2669,16 +2667,15 @@ body.locked{overflow:hidden}
           href="https://rabbit.org/resources/how-long-do-rabbits-live/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">House Rabbit Society's <span class="kw">range</span><span class="sr-only"> (opens in a new tab)</span></a>. Spayed or
           neutered and kept indoors, about ten is typical.</p>
-          <p><b>Most pet rabbits don't get there.</b> A study of 6,349 rabbits under vet care
-          in England, a quarter of them lops, found the <a class="cite"
+          <p><b>Care makes the difference.</b> A study of 6,349 pet rabbits in England found
+          the <a class="cite"
           href="https://pubmed.ncbi.nlm.nih.gov/31594841/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">typical one died at 4.3 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tokyo
           clinic's 898 cases put it at <a class="cite"
           href="https://www.cliniciansbrief.com/article/life-expectancy-pet-rabbits"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">7 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>, with nearly one in five past nine.</p>
-          <p><b>The gap is care, not luck.</b> Flystrike led the causes in England, with not
-          eating next. Not eating is on my same-day emergency list, and you keep my
-          number for life.</p>
+          target="_blank" rel="noopener noreferrer" data-leaves="word">7 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>.
+          Flystrike led the causes in England, with not eating next. Not eating is on my
+          same-day emergency list, and you keep my number for&nbsp;life.</p>
         </div>
       </details>
       <details id="faq-boarding">
@@ -2692,11 +2689,11 @@ body.locked{overflow:hidden}
           daily handling they grew up with, and photos while you're gone.</p>
           <p><b>Why only my own rabbits:</b> <a class="cite"
           href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a> is in Arizona's wild rabbits. It <a class="cite"
+          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild rabbits, <a class="cite"
           href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
           target="_blank" rel="noopener noreferrer" data-leaves="word">survives for months in the <span class="kw">environment</span><span class="sr-only"> (opens in a new tab)</span></a> and travels
-          on shoes and clothing, and it's often fatal. One outside rabbit could bring it to
-          every rabbit here, including the babies waiting to go to their homes.</p>
+          on shoes and clothing. Keeping outside rabbits away protects every rabbit here, the
+          babies&nbsp;included.</p>
           <p><b>A closed property is also why I can promise a healthy rabbit at pickup.</b></p>
           <p><b>Rabbit from somewhere else?</b> Ask me anyway and I'll point you to a Tucson
           boarder or exotic vet who takes outside rabbits.</p>
@@ -2707,18 +2704,16 @@ body.locked{overflow:hidden}
         <summary>Which vet should I use?</summary>
         <div class="faq-body">
           <p><b>Santa Cruz Veterinary Clinic, and book months ahead.</b> They see rabbits, and
-          for the price they are the best option in town. Appointments are booked out about
-          four months with very few openings, so book the first check-up the day you reserve.
+          for the price they are the best option in town. They're booked about four months
+          out, so book the first check-up the day you&nbsp;reserve.
           5408 S 12th Ave, <a href="tel:+15208899643">(520) 889-9643</a>.</p>
           <p><b>Their prices are on their own site.</b> In September 2026 <a class="cite"
           href="https://www.santacruzpet.com/services/" target="_blank" rel="noopener noreferrer" data-leaves="word">their
           <span class="kw">list</span><span class="sr-only"> (opens in a new tab)</span></a> read: office exam $50, recheck $35, rabbit neuter $160, rabbit spay $200,
           X-rays $175, in-house bloodwork $100. Prices change, so their list is the one that
           counts. They ask every client to spay or neuter, which I would tell you to do anyway.</p>
-          <p><b>The exotic hospital is the name people think of first.</b> Arizona Exotic Animal
-          Hospital on Grant Road sees rabbits too. I recommend Santa Cruz: the much better
-          option for its price. If Santa Cruz can't fit you in, the exotic hospital asks
-          you to call for anything within two days: <a href="tel:+15203050055">(520) 305-0055</a>.</p>
+          <p><b>Arizona Exotic Animal Hospital sees rabbits too.</b> It's on Grant Road. If Santa
+          Cruz can't fit you in, the hospital asks you to call for anything within two&nbsp;days: <a href="tel:+15203050055">(520) 305-0055</a>.</p>
           <p><b>A sick rabbit does not wait for an appointment.</b> If you see any of <a class="litterlink" href="#faq-after">the same-day emergency signs</a>, call whoever can see you today.</p>
         </div>
       </details>
@@ -2738,15 +2733,13 @@ body.locked{overflow:hidden}
           rabbit in your hands: ears, teeth, eyes, weight and coat. If it doesn't
           pass, it doesn't go home, and you get your deposit back in full.</p>
           
-          <p><b>Once a rabbit goes home, the sale is final.</b> I'd rather you read that
-          here than find it out later. Nothing about the rabbit is hidden from you on the day,
-          and you leave with <a class="litterlink" href="#included">everything that comes with it</a>.</p>
-          <p><b>If it simply isn't working out, call me.</b> That isn't a refund, but it isn't
-          the end of it either. I'd rather help you find it the right home than have it stay
-          somewhere it isn't wanted.</p>
-          <p><b>I'd rather promise what I can deliver than print a guarantee with fine
-          print.</b> A rabbit that was healthy when you took it, and me reachable for the
-          whole of its life.</p>
+          <p><b>Once a rabbit goes home, the sale is final.</b> Nothing about the rabbit is
+          hidden from you on the day, and you leave with <a class="litterlink"
+          href="#included">everything that comes with it</a>.</p>
+          <p><b>If it isn't working out, call me.</b> It isn't a refund, but I'll help you find
+          it the right&nbsp;home.</p>
+          <p><b>What I promise:</b> a rabbit that was healthy when you took it, and me
+          reachable for the whole of its&nbsp;life.</p>
           <p><b>The deposit refunds are separate.</b> All of those happen before a rabbit ever
           leaves here. They're in <a class="litterlink" href="#faq-deposit">the deposit answer</a>.</p>
           
@@ -2761,20 +2754,19 @@ body.locked{overflow:hidden}
     <div>
       <p class="kicker">Get in touch</p>
       <h2>Tell me a little about you</h2>
-      <p class="lede">Three short steps, about a minute. I read every one myself and reply
-      personally, almost always the same day. If a rabbit isn't right for your situation, I'll
-      say so.</p>
+      <p class="lede">Three short steps, about a minute. I reply myself, almost always the
+      same&nbsp;day.</p>
       
       <p class="reach-head">Four ways to reach me</p>
       <ul class="reach">
         
-        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="row"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">I'm most active here</span><b>Message me on <span class="kw">Instagram</span></b><small>The way I'd rather hear from you: I can put a name to a face, and the whole conversation stays in one place.</small></span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="row"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">I'm most active here</span><b>Message me on <span class="kw">Instagram</span></b><small>I can put a name to a face, and it all stays in one place.</small></span><span class="sr-only"> (opens in a new tab)</span></a></li>
         
-        <li><a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com."><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text (520) 270-2827</b><small>The fastest way to reach me, and completely fine for a first message.</small></span></a></li>
+        <li><a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com."><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text (520) 270-2827</b><small>The fastest way to reach me. Fine for a first message.</small></span></a></li>
 
-        <li><a href="tel:+15202702827" aria-label="Call (520) 270-2827"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.1l1.6 4-2 1.5a12.5 12.5 0 0 0 6.1 6.1l1.5-2 4 1.6v3.1a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 3.4 5.5a1.8 1.8 0 0 1 1.8-2z"/></svg></span><span class="rt"><b>Call the same number</b><small>If you would rather talk it through.</small></span></a></li>
+        <li><a href="tel:+15202702827" aria-label="Call (520) 270-2827"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.1l1.6 4-2 1.5a12.5 12.5 0 0 0 6.1 6.1l1.5-2 4 1.6v3.1a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 3.4 5.5a1.8 1.8 0 0 1 1.8-2z"/></svg></span><span class="rt"><b>Call the same number</b><small>To talk it through.</small></span></a></li>
         
-        <li><!--email_off--><a href="mailto:hello@arizonarabbits.com"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span><span class="rt"><b>hello@arizonarabbits.com</b><small>Better for longer questions, or if you'd rather write it all out.</small></span></a><!--/email_off--></li>
+        <li><!--email_off--><a href="mailto:hello@arizonarabbits.com"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span><span class="rt"><b>hello@arizonarabbits.com</b><small>For longer questions.</small></span></a><!--/email_off--></li>
       </ul>
     </div>
 
@@ -2920,6 +2912,9 @@ body.locked{overflow:hidden}
           <a href="/updates">News</a>
           <a href="/terms">Terms and privacy</a>
         </div>
+        <p class="keys-note" id="keysNote"><span id="keysSay">On a keyboard, press 1 to 8 to jump through
+        the page, top to bottom.</span><br><button type="button" class="mini" id="keysToggle">Turn
+        off</button></p>
       </div>
       <div>
         <h3>Contact</h3>
@@ -3009,7 +3004,7 @@ body.locked{overflow:hidden}
       <div class="whypanel" id="viewerWhyPanel" hidden>
         
         <ul>
-          <li><b>Handled every day</b> from its first week, by at least ten people.</li>
+          <li><b>Handled every day</b> from its first week, and used to new&nbsp;people.</li>
           <li><b>Weekend delivery</b> anywhere in Arizona, included.</li>
           <li><b>A health check with you</b>, and your $50 deposit back if it fails.</li>
           <li><b>Two weeks of its food</b>, bamboo, and a care sheet.</li>
@@ -3164,15 +3159,18 @@ body.locked{overflow:hidden}
     var was=html.style.scrollBehavior; html.style.scrollBehavior='auto';
     var stopped=false;
     function stop(){ stopped=true; }   /* a finger or a wheel takes the page back */
+    window.__stopFastScroll=stop;
     function done(){
       html.style.scrollBehavior=was; window.__fastScroll=false;
       window.removeEventListener('touchstart',stop); window.removeEventListener('wheel',stop);
+      window.removeEventListener('pointerdown',stop); if(window.__stopFastScroll===stop) window.__stopFastScroll=null;
       if(!stopped) focusQuietly(document.getElementById('top'));
       fireScroll();
     }
     if(reduce||from<2||!window.requestAnimationFrame){ scrollToY(0,false); done(); return; }
     window.__fastScroll=true;   /* the rail holds its pill still until the page lands */
     window.addEventListener('touchstart',stop,{passive:true}); window.addEventListener('wheel',stop,{passive:true});
+    window.addEventListener('pointerdown',stop,{passive:true});
     var t0=null, D=380;
     function step(now){
       if(stopped){ done(); return; }
@@ -3184,6 +3182,42 @@ body.locked{overflow:hidden}
     requestAnimationFrame(step);
   }
   window.__scrollTopFast=scrollTopFast;
+
+  (function(){
+    var pills=[].slice.call(document.querySelectorAll('#mnav .mnav-row a'));
+    var note=document.getElementById('keysNote'), say=document.getElementById('keysSay'), btn=document.getElementById('keysToggle');
+    if(pills.length!==8||!note||!say||!btn) return;
+    var html=document.documentElement, on=true;
+    try{ on=localStorage.getItem('numberKeys')!=='off'; }catch(e){}
+    var named=[];
+    pills.forEach(function(a,i){
+      var href=a.getAttribute('href');
+      named.push([a,String(i+1)]);
+      [].forEach.call(document.querySelectorAll('header a[href="'+href+'"]'),function(b){ named.push([b,String(i+1)]); });
+    });
+    function show(){
+      html.classList.toggle('keys-on',on); html.classList.toggle('keys-off',!on);
+      say.textContent=on?'On a keyboard, press 1 to 8 to jump through the page, top to bottom.':'The number keys are off.';
+      btn.textContent=on?'Turn off':'Turn on';
+      named.forEach(function(p){ if(on) p[0].setAttribute('aria-keyshortcuts',p[1]); else p[0].removeAttribute('aria-keyshortcuts'); });
+    }
+    btn.addEventListener('click',function(){
+      on=!on;
+      try{ localStorage.setItem('numberKeys',on?'on':'off'); }catch(e){}
+      show();
+    });
+    document.addEventListener('keydown',function(ev){
+      if(!on||ev.defaultPrevented||ev.repeat||ev.ctrlKey||ev.metaKey||ev.altKey||ev.isComposing) return;
+      if(!/^[1-8]$/.test(ev.key)) return;
+      var t=ev.target;
+      if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      var vw=document.getElementById('viewer'); if(vw&&vw.classList.contains('open')) return;
+      ev.preventDefault();
+      if(window.__stopFastScroll){ if(ev.key==='1') return; window.__stopFastScroll(); }
+      pills[+ev.key-1].click();
+    });
+    show();
+  })();
 
   var subs=[], lastSeen=-1;
   function onScrollChange(fn){ subs.push(fn); }
@@ -4072,12 +4106,11 @@ body.locked{overflow:hidden}
       if(!here.length) rn.hidden=true;
       else{
         rn.hidden=false;
-        rn.innerHTML=here.map(function(l){
-          var head=(l.age==='the day it was born')?' was <b>born today</b> and is ':' is <b>'+esc(l.age)+'</b> today and ';
-          return '<a class="litterlink" href="/litters#L'+esc(l.born)+'">'+esc(litterName(l))+'</a>'+head+
-            '<a class="stagelink" href="#'+esc(l.id)+'">'+esc(l.stage.now)+'</a>.'+
-            ((!l.listed&&!l.never)?' None are listed yet.':'');
-        }).join(' ');
+        var NUM=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine'];
+        rn.innerHTML=(here.length===1)
+          ? 'The <a class="litterlink" href="/litters#L'+esc(here[0].born)+'">'+esc(litterName(here[0]).toLowerCase())+
+            '</a> is growing up here now, shown at its week&nbsp;below.'
+          : '<b>'+(NUM[here.length]||here.length)+' litters</b> are growing up here now, each shown at its week&nbsp;below.';
       }
     }
   }
