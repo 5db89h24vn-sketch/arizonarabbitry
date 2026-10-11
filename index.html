@@ -323,6 +323,9 @@ header .brand{color:var(--logo)}
     background:var(--ink-soft);opacity:0;transition:background-color .15s;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
   .dock-lump:hover .up,.dock-lump:focus-visible .up{background:var(--ink)}
+  
+  .dock-lump .words{position:absolute;left:50%;top:0;white-space:nowrap;pointer-events:none;
+    font-size:12.5px;font-weight:600;line-height:15px;color:var(--ink);opacity:0}
 }
 
 .sprog{display:none}
@@ -1977,7 +1980,7 @@ body.locked{overflow:hidden}
       </nav>
     </div>
     
-    <a href="#top" class="dock-lump" id="dockLump" aria-label="Back to top" hidden><i class="up" aria-hidden="true"></i></a>
+    <a href="#top" class="dock-lump" id="dockLump" aria-label="Back to top" hidden><i class="up" aria-hidden="true"></i><span class="words" aria-hidden="true">Back to top</span></a>
   </div>
 
 <main id="main">
@@ -1999,8 +2002,8 @@ body.locked{overflow:hidden}
 
       <a class="hero-deliver" href="#faq-delivery"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery&nbsp;statewide</b><i class="chev" aria-hidden="true"></i></a>
 
-      <p class="hero-sub">Handled gently every day from their first week, by me and by other
-      people, so being picked up is nothing new by the time they're yours.</p>
+      <p class="hero-sub">They're handled gently every day from their first&nbsp;week. At least ten
+      different people hold each one before it's yours.</p>
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
 
@@ -3215,32 +3218,46 @@ body.locked{overflow:hidden}
     var dsGlass=document.getElementById('dsGlass'), dsShade=document.getElementById('dsShade'),
         dsShadeBox=document.getElementById('dsShadeBox'), dsShadeBump=document.getElementById('dsShadeBump'),
         dsRim=document.getElementById('dsRim'), dsRimPath=dsRim&&dsRim.querySelector('path'),
-        lumpUp=lumpEl&&lumpEl.querySelector('.up'), spBar=document.getElementById('sprog');
-    var LUMP_D=17, LUMP_W=84, ROOM=28;
+        lumpUp=lumpEl&&lumpEl.querySelector('.up'), lumpWords=lumpEl&&lumpEl.querySelector('.words'),
+        spBar=document.getElementById('sprog');
+    var LUMP_D=17, LUMP_W=84, ROOM=28, WORDS_D=22, WORDS_MS=3000, WORDS_REST=20000;
     var lumpWant=false, lumpDepth=0, lumpVel=0, lumpRaf=0, lumpLast=0, lumpGeo=null;
+    var lumpHalf=LUMP_W/2, lumpHalfVel=0, wordsOn=false, wordsTimer=0, wordsAt=-1e9, wordsW=0;
     function nf(n){ return Math.round(n*100)/100; }
-    function outline(W,H,R,d){
-      var c=W/2, h=LUMP_W/2;
+    function outline(W,H,R,d,h){
+      var c=W/2;
       return 'M'+nf(R)+' 0H'+nf(W-R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(W)+' '+nf(R)
         +'V'+nf(H-R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(W-R)+' '+nf(H)
         +'H'+nf(c+h)+'C'+nf(c+h-15)+' '+nf(H)+' '+nf(c+h-19)+' '+nf(H+d)+' '+nf(c)+' '+nf(H+d)
         +'C'+nf(c-h+19)+' '+nf(H+d)+' '+nf(c-h+15)+' '+nf(H)+' '+nf(c-h)+' '+nf(H)
         +'H'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 0 '+nf(H-R)+'V'+nf(R)+'A'+nf(R)+' '+nf(R)+' 0 0 1 '+nf(R)+' 0Z';
     }
+    function halfWide(){ return Math.max(LUMP_W/2, (16+wordsW)/2+30); }
     function drawShell(){
       if(!lumpGeo || !lumpGeo.W) return;
       var d=Math.max(0,lumpDepth), W=lumpGeo.W, H=lumpGeo.H, R=Math.min(29,H/2);
-      var o=outline(W,H,R,d), cp="path('"+o+"')";
+      var h=Math.max(LUMP_W/2,lumpHalf), wide=halfWide();
+      var o=outline(W,H,R,d,h), cp="path('"+o+"')";
       dsGlass.style.webkitClipPath=cp; dsGlass.style.clipPath=cp;
       dsRim.style.webkitClipPath=cp; dsRim.style.clipPath=cp; dsRimPath.setAttribute('d',o);
       var out="path(evenodd,'M-90 -90H"+nf(W+90)+"V"+nf(H+ROOM+90)+"H-90Z"+o+"')";
       dsShade.style.webkitClipPath=out; dsShade.style.clipPath=out;
+      dsShadeBump.style.width=nf(2*h-12)+'px'; dsShadeBump.style.marginLeft=nf(6-h)+'px';
       dsShadeBump.style.transform='translateY(.5px) scaleY('+(d/LUMP_D).toFixed(3)+')';
+      lumpEl.style.left=nf(lumpGeo.x+W/2-h)+'px'; lumpEl.style.width=nf(2*h)+'px';
+      lumpEl.style.height=nf(Math.max(1,d))+'px';
+      var e=wide>LUMP_W/2+.5 ? Math.max(0,Math.min(1,(h-LUMP_W/2)/(wide-LUMP_W/2))) : 0;
+      var show=Math.max(0,Math.min(1,(d-7)/7)), row=16+wordsW;
       if(lumpUp){
-        lumpUp.style.opacity=Math.max(0,Math.min(1,(d-7)/7)).toFixed(3);
-        lumpUp.style.transform='translateY('+(d/2-8.5).toFixed(2)+'px)';
+        lumpUp.style.opacity=show.toFixed(3);
+        lumpUp.style.transform='translate('+(e*(5.5-row/2)).toFixed(2)+'px,'+(d/2-8.5).toFixed(2)+'px)';
+      }
+      if(lumpWords){
+        lumpWords.style.opacity=(show*Math.max(0,Math.min(1,(e-.55)/.35))).toFixed(3);
+        lumpWords.style.transform='translate('+(16-row/2).toFixed(2)+'px,'+(d/2-7.5).toFixed(2)+'px)';
       }
       shellEl.setAttribute('data-depth',d.toFixed(2));
+      shellEl.setAttribute('data-ext',e.toFixed(2));
     }
     function measureShell(){
       if(!islandEl || !shellEl) return;
@@ -3252,18 +3269,39 @@ body.locked{overflow:hidden}
       shellEl.style.setProperty('--ds-h',lumpGeo.H+'px');
       dsShadeBox.style.height=lumpGeo.H+'px';
       dsShadeBump.style.left=(lumpGeo.W/2)+'px'; dsShadeBump.style.top=lumpGeo.H+'px';
-      lumpEl.style.left=(lumpGeo.x+lumpGeo.W/2-LUMP_W/2)+'px'; lumpEl.style.top=(lumpGeo.y+lumpGeo.H)+'px';
+      lumpEl.style.top=(lumpGeo.y+lumpGeo.H)+'px';
+      if(lumpWords) wordsW=lumpWords.getBoundingClientRect().width||wordsW;
       drawShell();
     }
-    function lumpGoal(){ return (lumpWant && !(spBar && spBar.classList.contains('drag'))) ? LUMP_D : 0; }
+    function lumpOut(){ return lumpWant && !(spBar && spBar.classList.contains('drag')); }
+    function lumpGoal(){ return lumpOut() ? (wordsOn ? WORDS_D : LUMP_D) : 0; }
+    function halfGoal(){ return (lumpOut() && wordsOn) ? halfWide() : LUMP_W/2; }
+    function showWords(){
+      if(!lumpEl || !wordsW) return;
+      wordsOn=true; wordsAt=Date.now();
+      if(wordsTimer) clearTimeout(wordsTimer);
+      wordsTimer=setTimeout(function(){ wordsTimer=0; wordsOn=false; aimLump(); },WORDS_MS);
+      lumpEl.setAttribute('data-words','1');
+      aimLump();
+    }
+    function hideWords(){
+      if(wordsTimer){ clearTimeout(wordsTimer); wordsTimer=0; }
+      wordsOn=false;
+    }
     function lumpTick(now){
-      var goal=lumpGoal(), dt=lumpLast ? Math.min(.1,(now-lumpLast)/1000) : 1/60;
+      var goal=lumpGoal(), hGoal=halfGoal(), dt=lumpLast ? Math.min(.1,(now-lumpLast)/1000) : 1/60;
       lumpLast=now;
-      var k=goal>0 ? 247 : 600, c=goal>0 ? 21.4 : 49, steps=Math.max(1,Math.ceil(dt/.004)), h=dt/steps;
-      for(var n=0;n<steps;n++){ var a=-k*(lumpDepth-goal)-c*lumpVel; lumpVel+=a*h; lumpDepth+=lumpVel*h; }
+      var k=goal>0 ? 247 : 600, c=goal>0 ? 21.4 : 49,
+          kh=hGoal>lumpHalf ? 247 : 600, ch=hGoal>lumpHalf ? 21.4 : 49,
+          steps=Math.max(1,Math.ceil(dt/.004)), h=dt/steps;
+      for(var n=0;n<steps;n++){
+        var a=-k*(lumpDepth-goal)-c*lumpVel; lumpVel+=a*h; lumpDepth+=lumpVel*h;
+        var b=-kh*(lumpHalf-hGoal)-ch*lumpHalfVel; lumpHalfVel+=b*h; lumpHalf+=lumpHalfVel*h;
+      }
       if(Math.abs(lumpDepth-goal)<.05 && Math.abs(lumpVel)<.5){ lumpDepth=goal; lumpVel=0; }
+      if(Math.abs(lumpHalf-hGoal)<.05 && Math.abs(lumpHalfVel)<.5){ lumpHalf=hGoal; lumpHalfVel=0; }
       drawShell();
-      if(lumpDepth!==goal || lumpVel!==0) lumpRaf=requestAnimationFrame(lumpTick);
+      if(lumpDepth!==goal || lumpVel!==0 || lumpHalf!==hGoal || lumpHalfVel!==0) lumpRaf=requestAnimationFrame(lumpTick);
       else { lumpRaf=0; lumpLast=0; }
     }
     function aimLump(){
@@ -3271,15 +3309,26 @@ body.locked{overflow:hidden}
       var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches);
       if(reduce || !window.requestAnimationFrame){
         if(lumpRaf){ cancelAnimationFrame(lumpRaf); lumpRaf=0; lumpLast=0; }
-        lumpDepth=lumpGoal(); lumpVel=0; drawShell(); return;
+        lumpDepth=lumpGoal(); lumpVel=0; lumpHalf=halfGoal(); lumpHalfVel=0; drawShell(); return;
       }
       if(!lumpRaf) lumpRaf=requestAnimationFrame(lumpTick);
     }
+    var wordsTaught=false;
+    try{ wordsTaught=sessionStorage.getItem('lumpWords')==='1'; }catch(e){}
     function syncLump(id){
       if(!lumpEl) return;
       var on=!!id && id!=='top';
       if(lumpEl.classList.contains('on')!==on) lumpEl.classList.toggle('on',on);
-      if(lumpWant!==on){ lumpWant=on; aimLump(); }
+      if(lumpWant!==on){
+        lumpWant=on;
+        if(!on) hideWords();
+        else if(!wordsTaught && wordsW){
+          wordsTaught=true;
+          try{ sessionStorage.setItem('lumpWords','1'); }catch(e){}
+          showWords(); return;
+        }
+        aimLump();
+      }
     }
     if(lumpEl && shellEl && islandEl && dsGlass && dsRimPath){
       lumpEl.hidden=false;
@@ -3290,8 +3339,18 @@ body.locked{overflow:hidden}
       if(spBar && 'MutationObserver' in window) new MutationObserver(aimLump).observe(spBar,{attributes:true,attributeFilter:['class']});
       lumpEl.addEventListener('click',function(e){
         e.preventDefault();
-        lumpEl.classList.remove('on'); lumpWant=false; aimLump();   /* it melts back in as the page starts up */
+        lumpEl.classList.remove('on'); lumpWant=false; hideWords(); aimLump();   /* it melts back in as the page starts up */
         scrollTopFast();
+      });
+      if(document.fonts && document.fonts.ready) document.fonts.ready.then(measureShell);
+      var upFrom=null, upLast=0;
+      onScrollChange(function(){
+        var y=scrollPos();
+        if(window.__fastScroll || (spBar && spBar.classList.contains('drag')) || !lumpWant){ upFrom=null; upLast=y; return; }
+        if(y<upLast-1){ if(upFrom===null) upFrom=upLast; }
+        else if(y>upLast+1) upFrom=null;
+        upLast=y;
+        if(upFrom!==null && upFrom-y>=(window.innerHeight||600) && !wordsOn && Date.now()-wordsAt>WORDS_REST){ upFrom=null; showWords(); }
       });
     }
     var setActive=function(id){
