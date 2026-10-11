@@ -65,6 +65,8 @@
 
 :focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
 
+.quiet-focus:focus{outline:none}
+
 html{font-synthesis:none}
 b,strong{font-weight:600}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
@@ -501,7 +503,10 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
     function openAll(focus){
       older.forEach(function(e){ e.hidden=false; });
       btn.setAttribute('aria-expanded','true'); btn.hidden=true;
-      if(focus){ var h=older[0].querySelector('h2, h3'); if(h){ h.setAttribute('tabindex','-1'); try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
+      if(focus){ var h=older[0].querySelector('h2, h3');
+        if(h){ var lend=!h.hasAttribute('tabindex'); if(lend) h.setAttribute('tabindex','-1'); h.classList.add('quiet-focus');
+          h.addEventListener('blur',function(){ h.classList.remove('quiet-focus'); if(lend) h.removeAttribute('tabindex'); },{once:true});
+          try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
     }
     btn.addEventListener('click',function(){ openAll(true); });
     var t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));

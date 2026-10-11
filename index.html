@@ -114,6 +114,8 @@ p{margin:0}
 
 :focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
 
+.quiet-focus:focus{outline:none}
+
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
 section{padding:60px 0}
 
@@ -3080,6 +3082,7 @@ body.locked{overflow:hidden}
     return mainEl ? absTop(mainEl)-mainEl.getBoundingClientRect().top : 0;
   }
   function scrollPos(){
+    if((window.pageYOffset||0)<0) return 0;
     if(!mainEl) return window.pageYOffset||0;
     var v=rawPos();
     if(posBase===null || v<posBase) posBase=v;
@@ -3129,6 +3132,19 @@ body.locked{overflow:hidden}
     catch(e){ window.scrollTo(0,y); }
   }
 
+  function focusQuietly(el){
+    if(!el) return;
+    var lend=el.tabIndex<0 && !el.hasAttribute('tabindex');
+    if(lend) el.setAttribute('tabindex','-1');
+    el.classList.add('quiet-focus');
+    el.addEventListener('blur',function(){
+      el.classList.remove('quiet-focus');
+      if(lend) el.removeAttribute('tabindex');
+    },{once:true});
+    try{ el.focus({preventScroll:true}); }catch(e){ try{ el.focus(); }catch(x){} }
+  }
+  window.__focusQuietly=focusQuietly;
+
   function scrollTopFast(){
     var html=document.documentElement, from=scrollPos();
     var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches);
@@ -3138,9 +3154,7 @@ body.locked{overflow:hidden}
     function done(){
       html.style.scrollBehavior=was; window.__fastScroll=false;
       window.removeEventListener('touchstart',stop); window.removeEventListener('wheel',stop);
-      var h=document.getElementById('top');
-      if(h&&!stopped){ if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1');
-        try{ h.focus({preventScroll:true}); }catch(e){ try{ h.focus(); }catch(x){} } }
+      if(!stopped) focusQuietly(document.getElementById('top'));
       fireScroll();
     }
     if(reduce||from<2||!window.requestAnimationFrame){ scrollToY(0,false); done(); return; }
@@ -5227,7 +5241,7 @@ body.locked{overflow:hidden}
       var open=btn.getAttribute('aria-expanded')==='true';
       btn.setAttribute('aria-expanded', open?'false':'true');
       ways.hidden=open;
-      if(!open){ var first=ways.querySelector('a'); if(first) try{ first.focus({preventScroll:true}); }catch(e){} }
+      if(!open && ev.detail===0){ var first=ways.querySelector('a'); if(first) try{ first.focus({preventScroll:true}); }catch(e){} }
     });
     document.addEventListener('keydown',function(ev){
       if(!vw.classList.contains('open')) return;
