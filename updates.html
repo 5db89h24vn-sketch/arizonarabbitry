@@ -10,7 +10,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>News | Arizona Rabbits</title>
 <meta name="description" content="What is happening at Arizona Rabbits, a week at a time: new litters, who is available, and what changed on the site. Every line dated.">
-<meta name="theme-color" content="#FBF8F3">
+<meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1713" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://arizonarabbits.com/updates">
 <link rel="alternate" hreflang="en" href="https://arizonarabbits.com/updates">
 <link rel="alternate" hreflang="es" href="https://arizonarabbits.com/es-updates">
@@ -65,6 +66,8 @@
   --r:8px;
   --lift-brick:0 1px 2px rgba(88,40,18,.22),0 6px 18px rgba(160,82,45,.26);
   --lift-brick-press:0 1px 2px rgba(88,40,18,.26);
+
+  --card:#fff; --brick-fill:#A0522D; --brick-fill-dk:#7C3E21; --on-brick:#fff; --link-line:rgba(124,62,33,.5);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -98,10 +101,10 @@ header{padding:16px 0 0}
 .tel:hover,.tel:active{color:var(--brick)}
 
 .cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 13px;
-  border-radius:var(--r);background:var(--brick);color:#fff;text-decoration:none;font-weight:500;
+  border-radius:var(--r);background:var(--brick-fill);color:var(--on-brick);text-decoration:none;font-weight:500;
   font-size:14.5px;white-space:nowrap;box-shadow:var(--lift-brick);
   transition:background .15s,transform .18s cubic-bezier(.34,1.56,.64,1)}
-.cta:hover{background:var(--brick-dk)}
+.cta:hover{background:var(--brick-fill-dk)}
 .cta:active{transform:scale(.96);box-shadow:var(--lift-brick-press);transition-duration:.15s,.09s}
 @media(max-width:480px){.tel{display:none}}
 .back:active{color:var(--brick)}
@@ -131,7 +134,7 @@ header{padding:16px 0 0}
 .earlier[hidden]{display:none}
 
 .subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);
-  border-radius:100px;background:#fff;font-size:14px;font-weight:500;
+  border-radius:100px;background:var(--card);font-size:14px;font-weight:500;
   color:var(--ink-soft);text-decoration:none;white-space:nowrap}
 .subnav a:hover,.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
 
@@ -152,7 +155,7 @@ header{padding:16px 0 0}
 h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
   letter-spacing:-.02em;margin:18px 0 10px}
 .lede{color:var(--ink-soft);max-width:52ch;margin-bottom:34px}
-.edition{border:1px solid var(--line);border-radius:var(--r);background:#fff;
+.edition{border:1px solid var(--line);border-radius:var(--r);background:var(--card);
   padding:24px 24px 20px;margin-bottom:18px}
 .edition time{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
@@ -176,7 +179,7 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,40px);
 .changes{margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
 .changes h2{margin-bottom:6px}
 .changes .lede{margin-bottom:18px}
-.changes .edition.brief li b a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(124,62,33,.5)}
+.changes .edition.brief li b a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--link-line)}
 .changes .edition.brief li b a:hover{color:var(--brick-dk);border-bottom-style:solid}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint)}
@@ -188,17 +191,42 @@ h1,h2,h3{text-wrap:balance}
 .newscta .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:56px;padding:14px 26px;border-radius:var(--r);font-weight:500;font-size:16px;
   text-decoration:none;border:1px solid var(--paper-2);background:var(--paper-2);color:var(--ink);cursor:pointer}
-.newscta .btn-primary{background:var(--brick);border-color:transparent;color:#fff;box-shadow:var(--lift-brick)}
+.newscta .btn-primary{background:var(--brick-fill);border-color:transparent;color:var(--on-brick);box-shadow:var(--lift-brick)}
 .newscta .btn:hover{border-color:var(--line-soft);background:var(--line-soft);color:var(--ink)}
-.newscta .btn-primary:hover,.newscta .btn-primary:active{background:var(--brick-dk);border-color:transparent;color:#fff}
+.newscta .btn-primary:hover,.newscta .btn-primary:active{background:var(--brick-fill-dk);border-color:transparent;color:var(--on-brick)}
 .newscta .btn-primary:active{box-shadow:var(--lift-brick-press)}
 
 .xlink{color:var(--brick-dk);text-decoration:none;
-  border-bottom:1px dotted rgba(124,62,33,.5);padding-bottom:1px}
+  border-bottom:1px dotted var(--link-line);padding-bottom:1px}
 .xlink:hover{border-bottom-style:solid}
 
 a[data-leaves] .kw{white-space:nowrap}
 a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+
+@media (prefers-color-scheme: dark){
+  :root{color-scheme:dark;
+    --paper:#1C1713; --paper-2:#261F1A; --card:#2B2420; --ink:#F3EBE0; --ink-soft:#D4C7B7; --ink-faint:#B0A291;
+    --line:#3D342C; --line-soft:#322A24;
+    --brick:#E29A72; --brick-dk:#EDB08E; --brick-tint:#33241B; --brick-tone:#4A2E20;
+    --brick-fill:#E29A72; --brick-fill-dk:#EDB08E; --on-brick:#1C1713;
+    --brick-tint-line:#5A3A29; --callout-line:#5A3A29;
+    --moss:#9DB08F; --moss-dk:#B7C7AB; --moss-tint:#252A20;
+    --open:#7FC29A; --open-line:#2F4A39; --open-tint:#1C2A21;
+    --hold:#E0B565; --hold-line:#5A4520; --hold-tint:#2E2416;
+    --gone:#B8AAA0; --gone-line:#4A3F38; --alert:#F08A7E;
+    --field-line:#4A3F36; --field-line-2:#544739; --field-hover:#6A5A4A; --field-hover-2:#7A6855;
+    --link-line:rgba(226,154,114,.55); --brick-line:rgba(226,154,114,.5); --brick-line-2:rgba(226,154,114,.45);
+    --link-line-soft:rgba(226,154,114,.35); --focus-glow:rgba(226,154,114,.22);
+    --ink-line:rgba(243,235,224,.45); --hover-tint:rgba(243,235,224,.05); --press-tint:rgba(243,235,224,.08);
+    --band:#120E0B; --tip-bg:#F3EBE0; --tip-ink:#1C1713;
+    --track:rgba(122,104,86,.6); --ring-track:rgba(243,235,224,.2);
+    --logo:#E3C29E;
+    --lift-1:0 1px 2px rgba(0,0,0,.28); --lift-2:0 2px 8px rgba(0,0,0,.34);
+    --lift-photo:0 1px 3px rgba(0,0,0,.4);
+    --lift-brick:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(226,154,114,.16); --lift-brick-press:0 1px 2px rgba(0,0,0,.4);
+    --float:rgba(28,23,19,.66); --float-solid:rgba(28,23,19,.94); --float-line:rgba(255,236,218,.12);
+    --faint-on-ink:rgba(239,232,222,.55)}
+}
 </style>
 </head>
 <body>
@@ -231,7 +259,19 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
 <main>
   <div class="wrap">
 
-            <article class="edition brief" data-week="2026-10-05">
+            <article class="edition brief" data-week="2026-10-12">
+      <time class="updated" datetime="2026-10-12">Updated 12 October 2026</time>
+      <h2>Week of October 12</h2>
+      <ul>
+        <li><time datetime="2026-10-12">12 Oct</time> <b>Where things stand.</b> Available: Marshmallow $375; Pecan $350; Butterscotch $300. Reserved: Honey. Sold: Teddy, Sundae, Cloud, Biscuit, Toffee and Maple.</li>
+      </ul>
+      <p class="newscta">
+        <a class="btn btn-primary" href="/#available">See who is available</a>
+        <a class="btn btn-ghost" href="/litters">See the litters</a>
+      </p>
+    </article>
+
+<article class="edition brief" data-week="2026-10-05">
       <time class="updated" datetime="2026-10-11">Updated 11 October 2026</time>
       <h2>Week of October 5</h2>
       <ul>

@@ -8,7 +8,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Page not found | Arizona Rabbits</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FBF8F3">
+<meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1713" media="(prefers-color-scheme: dark)">
 
 <style data-fact="fonts">
 @font-face{font-family: 'Fraunces';font-style: normal;font-weight: 500;font-display: swap;src: url(/fonts/fraunces-latin-ext.8c15c79f.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
@@ -41,6 +42,8 @@
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
   --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times','Fraunces Fallback Noto',ui-serif,Georgia,serif;
   --sans:'Inter','Inter Fallback','Inter Fallback Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+
+  --brick-fill:#A0522D; --brick-fill-dk:#7C3E21; --on-brick:#fff;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -61,10 +64,35 @@ p{color:var(--ink-soft);margin-bottom:26px;text-wrap:pretty}
   font-size:15.5px;text-decoration:none;border:1px solid var(--paper-2);
   background:var(--paper-2);color:var(--ink)}
 
-.btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
+.btn.primary{background:var(--brick-fill);border-color:var(--brick-fill);color:var(--on-brick)}
 .btn:hover{border-color:var(--line-soft);background:var(--line-soft);color:var(--ink)}
-.btn.primary:hover{background:var(--brick-dk);color:#fff}
+.btn.primary:hover{background:var(--brick-fill-dk);color:var(--on-brick)}
 small{display:block;margin-top:22px;font-size:13.5px;color:var(--ink-faint)}
+
+@media (prefers-color-scheme: dark){
+  :root{color-scheme:dark;
+    --paper:#1C1713; --paper-2:#261F1A; --card:#2B2420; --ink:#F3EBE0; --ink-soft:#D4C7B7; --ink-faint:#B0A291;
+    --line:#3D342C; --line-soft:#322A24;
+    --brick:#E29A72; --brick-dk:#EDB08E; --brick-tint:#33241B; --brick-tone:#4A2E20;
+    --brick-fill:#E29A72; --brick-fill-dk:#EDB08E; --on-brick:#1C1713;
+    --brick-tint-line:#5A3A29; --callout-line:#5A3A29;
+    --moss:#9DB08F; --moss-dk:#B7C7AB; --moss-tint:#252A20;
+    --open:#7FC29A; --open-line:#2F4A39; --open-tint:#1C2A21;
+    --hold:#E0B565; --hold-line:#5A4520; --hold-tint:#2E2416;
+    --gone:#B8AAA0; --gone-line:#4A3F38; --alert:#F08A7E;
+    --field-line:#4A3F36; --field-line-2:#544739; --field-hover:#6A5A4A; --field-hover-2:#7A6855;
+    --link-line:rgba(226,154,114,.55); --brick-line:rgba(226,154,114,.5); --brick-line-2:rgba(226,154,114,.45);
+    --link-line-soft:rgba(226,154,114,.35); --focus-glow:rgba(226,154,114,.22);
+    --ink-line:rgba(243,235,224,.45); --hover-tint:rgba(243,235,224,.05); --press-tint:rgba(243,235,224,.08);
+    --band:#120E0B; --tip-bg:#F3EBE0; --tip-ink:#1C1713;
+    --track:rgba(122,104,86,.6); --ring-track:rgba(243,235,224,.2);
+    --logo:#E3C29E;
+    --lift-1:0 1px 2px rgba(0,0,0,.28); --lift-2:0 2px 8px rgba(0,0,0,.34);
+    --lift-photo:0 1px 3px rgba(0,0,0,.4);
+    --lift-brick:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(226,154,114,.16); --lift-brick-press:0 1px 2px rgba(0,0,0,.4);
+    --float:rgba(28,23,19,.66); --float-solid:rgba(28,23,19,.94); --float-line:rgba(255,236,218,.12);
+    --faint-on-ink:rgba(239,232,222,.55)}
+}
 </style>
 </head>
 <body>
