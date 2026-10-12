@@ -185,7 +185,12 @@ html[data-look="dim"] .moon{display:none}
 
 .changes .rel{margin-top:6px}
 .changes .rel h2{margin-bottom:0}
+.rel-when{margin-top:4px;font-size:14.5px;color:var(--ink-soft)}
 .rel-ver{margin-top:2px;font-size:13.5px;color:var(--ink-faint)}
+
+.rel-old .rel-sum{display:block}
+.rel-old .rel-date{display:block;margin-top:2px;font-family:var(--sans);font-size:13px;font-weight:400;color:var(--ink-faint)}
+.rel-old > .rel-ver{margin-top:2px}
 .chg{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
 .chg-lead{margin-bottom:4px}
 .chg p{color:var(--ink-soft)}
@@ -260,8 +265,32 @@ html[data-look="dim"]{color-scheme:dark;
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-10-12d" aria-labelledby="v2026-10-12d-h">
-  <h2 id="v2026-10-12d-h"><time datetime="2026-10-12">12 October 2026</time></h2>
+<section class="rel" id="v2026-10-12f" aria-labelledby="v2026-10-12f-h">
+  <h2 id="v2026-10-12f-h">More room on the front page's photo</h2>
+  <p class="rel-when"><time datetime="2026-10-12">12 October 2026</time></p>
+  <p class="rel-ver">Site version 2026.10.12f</p>
+  <article class="chg" id="c-hero-circles">
+    <p class="chg-lead"><b>The two buttons on the front page's photo are circles now.</b></p>
+    <p>They open to show their words when you arrive, then close so the photo has room. Dim still works with one tap.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.10.12f/hero-circles-before-780.webp" srcset="changes/2026.10.12f/hero-circles-before-390.webp 390w, changes/2026.10.12f/hero-circles-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the top of the front page on a phone, with two wide buttons on the photo." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.10.12f/hero-circles-after-780.webp" srcset="changes/2026.10.12f/hero-circles-after-390.webp 390w, changes/2026.10.12f/hero-circles-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same view, with two small round buttons on the photo." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-10-12e">
+  <summary><span class="rel-sum">A page for every change</span><time class="rel-date" datetime="2026-10-12">12 October 2026</time></summary>
+  <p class="rel-ver">Site version 2026.10.12e</p>
+  <article class="chg" id="c-this-page">
+    <p class="chg-lead"><b>This page shows every change to the site.</b></p>
+    <p>Each change has a picture of before and after. The newest is first, and older ones fold away.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.10.12e/this-page-before-780.webp" srcset="changes/2026.10.12e/this-page-before-390.webp 390w, changes/2026.10.12e/this-page-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: this address showed a page that said it was not there." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.10.12e/this-page-after-780.webp" srcset="changes/2026.10.12e/this-page-after-390.webp 390w, changes/2026.10.12e/this-page-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the top of this page." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-foot-link">
+    <p class="chg-lead"><b>Every page links here from the bottom.</b></p>
+    <p>Site changes sits in every footer, after the terms. The News page says where it is too.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.10.12e/foot-link-before-780.webp" srcset="changes/2026.10.12e/foot-link-before-390.webp 390w, changes/2026.10.12e/foot-link-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the bottom of the terms page on a phone, without a link here." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.10.12e/foot-link-after-780.webp" srcset="changes/2026.10.12e/foot-link-after-390.webp 390w, changes/2026.10.12e/foot-link-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same footer, with Site changes after Privacy." loading="lazy" decoding="async"></figure></div>
+  </article>
+</details>
+<details class="rel rel-old" id="v2026-10-12d">
+  <summary><span class="rel-sum">Dim moved to the top</span><time class="rel-date" datetime="2026-10-12">12 October 2026</time></summary>
   <p class="rel-ver">Site version 2026.10.12d</p>
   <article class="chg" id="c-dim-top">
     <p class="chg-lead"><b>Dim is at the top of every page.</b></p>
@@ -278,7 +307,7 @@ html[data-look="dim"]{color-scheme:dark;
     <p>It shows while you scroll fast and fades slowly once you stop. The first time, it says Back to top.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.10.12d/pc-up-before-780.webp" srcset="changes/2026.10.12d/pc-up-before-390.webp 390w, changes/2026.10.12d/pc-up-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the lower right of the front page on a computer, beside a photo, with no button there." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.10.12d/pc-up-after-780.webp" srcset="changes/2026.10.12d/pc-up-after-390.webp 390w, changes/2026.10.12d/pc-up-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same view, with a round Back to top button in the corner." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 
 </main>
 
