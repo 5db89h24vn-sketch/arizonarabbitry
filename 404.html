@@ -36,7 +36,7 @@
 :root{
   color-scheme:light;
   --paper:#FBF8F3; --ink:#241F1D; --ink-soft:#57504A; --ink-faint:#736A64;  
-  --line:#E3DACC; --brick:#A0522D; --brick-dk:#7C3E21;
+  --line:#E3DACC; --brick:#A0522D; --brick-dk:#7C3E21; --paper-2:#F3EDE3; --line-soft:#EDE6DA;
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9; --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6; --gone:#6E6058; --gone-line:#DDD3C8; --alert:#A32218;
   --serif:'Fraunces','Fraunces Fallback','Fraunces Fallback Times','Fraunces Fallback Noto',ui-serif,Georgia,serif;
@@ -58,10 +58,11 @@ p{color:var(--ink-soft);margin-bottom:26px;text-wrap:pretty}
 .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;
   min-height:48px;padding:0 22px;border-radius:100px;font-weight:600;
-  font-size:15.5px;text-decoration:none;border:1px solid var(--line);
-  background:#fff;color:var(--ink)}
+  font-size:15.5px;text-decoration:none;border:1px solid var(--paper-2);
+  background:var(--paper-2);color:var(--ink)}
+
 .btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
-.btn:hover{border-color:var(--brick);color:var(--brick-dk)}
+.btn:hover{border-color:var(--line-soft);background:var(--line-soft);color:var(--ink)}
 .btn.primary:hover{background:var(--brick-dk);color:#fff}
 small{display:block;margin-top:22px;font-size:13.5px;color:var(--ink-faint)}
 </style>

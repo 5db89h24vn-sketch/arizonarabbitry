@@ -215,8 +215,9 @@ h2{font-size:clamp(27px,3.5vw,37px);margin-bottom:14px;letter-spacing:-.022em}
 .btn-primary:active{box-shadow:var(--lift-brick-press)}
 
 .mbar .btn-primary,.mbar .btn-primary:active{box-shadow:none}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--ink);background:rgba(36,31,29,.03)}
+
+.btn-ghost{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+.btn-ghost:hover{background:var(--line-soft);border-color:var(--line-soft)}
 
 .btn-tonal{background:var(--brick-tone);border-color:var(--brick-tone);color:var(--ink)}
 .btn-tonal:hover{border-color:rgba(124,62,33,.4)}
@@ -1233,7 +1234,7 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
   .js-mbar .edgefade{opacity:0;transition:opacity .2s}
   .js-mbar .edgefade.on{opacity:1}
   
-  .mbar .btn-ghost{background:#FCFAF6;border-color:rgba(198,182,162,.9)}
+  .mbar .btn-ghost{background:var(--line-soft);border-color:var(--line-soft)}
 }
 
 .mbar .mbar-call{flex:0 0 auto;min-width:74px}
@@ -2019,6 +2020,8 @@ body.locked{overflow:hidden}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Arizona Rabbits","alternateName":"Arizona Rabbitry","url":"https://arizonarabbits.com/"}
 </script>
+
+<script type="application/ld+json" id="ldRabbits">{"@context":"https://schema.org","@type":"ItemList","name":"Rabbits available in Tucson","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Butterscotch","description":"Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts.","image":"https://arizonarabbits.com/photos/butterscotch.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-butterscotch","offers":{"@type":"Offer","price":"300","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-butterscotch","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Pecan","description":"Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick.","image":"https://arizonarabbits.com/photos/pecan.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-pecan","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-pecan","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Marshmallow","description":"The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other.","image":"https://arizonarabbits.com/photos/marshmallow.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-marshmallow","offers":{"@type":"Offer","price":"375","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-marshmallow","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}}]}</script>
 </head>
 <body>
 
@@ -2238,7 +2241,7 @@ body.locked{overflow:hidden}
       before it goes&nbsp;home.</p>
       <p class="lede"><b>That routine is what you're paying for.</b> It gives you a rabbit that
       comes to&nbsp;people.</p>
-      <p class="lede"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
+      <p class="lede" id="money"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
       shows across the country, at thousands each, and fly home with them. Their babies go
       home here for a fraction of that, and every sale goes into the next&nbsp;line.</p>
       <p class="lede"><b>Every rabbit gets the same care, whatever its price.</b> The aim is a
@@ -2363,6 +2366,8 @@ body.locked{overflow:hidden}
           <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
           <li>Photos while you're gone, so you're not left wondering</li>
           <li>Charged by the day, so you only pay for the days you're actually away</li>
+          
+          <li>Stays of up to three days are free; a longer stay is charged from its first&nbsp;day</li>
         </ul>
         <div class="callout">
           <b>My own rabbits only</b>
@@ -2406,8 +2411,10 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Send me a text or a note.</b> Tell me about your home and who the rabbit is
           for. I'll tell you which one fits, or if the next litter would suit you&nbsp;better.</p>
+          
           <p><b>Then come and meet them.</b> The visit is free, and nothing has to be decided
-          on the&nbsp;day.</p>
+          on the day. There's no pressure to buy: a rabbit is a commitment of
+          <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
           <p><b>A $50 deposit reserves the one you choose.</b> It comes off the price, and you get a receipt
           from me. Rabbits open for reservation at four weeks old.</p>
           
@@ -2444,6 +2451,9 @@ body.locked{overflow:hidden}
             
             <li><b>If it isn't working out, you call me.</b> I'd rather help it find the right
             home than have it stay where it isn't wanted.</li>
+            
+            <li><b>Every sale goes toward the next breeding rabbits.</b> <a class="litterlink"
+            href="#money">Where the money goes</a>.</li>
           </ul>
           
           <p><b>The rabbit is the smallest part of what it costs.</b> A year of keeping one
@@ -2610,6 +2620,20 @@ body.locked{overflow:hidden}
           Breed doesn't change the steps. I'll walk you through it.</p>
         </div>
       </details>
+      
+      <details id="faq-meet">
+        <summary>I already have a rabbit. Can mine meet yours?</summary>
+        <div class="faq-body">
+          <p><b>Yes, at your home.</b> On a <a class="litterlink" href="#faq-delivery">free weekend
+          delivery</a> I bring others along with the one you reserved, and your rabbit meets them
+          there. If another one gets along with yours better, you can switch. Your first switch
+          is free.</p>
+          <p><b>Pick a room your rabbit doesn't use.</b> A rabbit guards its own space, so a first
+          meeting goes better on ground that's new to&nbsp;both.</p>
+          <p><b>A good first meeting is a start.</b> Living together takes <a class="litterlink"
+          href="#faq-pair">a few more steps</a>, and I'll walk you through&nbsp;them.</p>
+        </div>
+      </details>
       <details id="faq-deposit">
         <summary>Is there a deposit, and what happens to it?</summary>
         <div class="faq-body">
@@ -2641,8 +2665,9 @@ body.locked{overflow:hidden}
         <summary>How do I pay?</summary>
         <div class="faq-body">
           
-          <p><b>Meet them first, then pay.</b> Visits are free. Come and see them and pay the
-          deposit in cash while you're here, so nothing is at stake until you've decided.</p>
+          <p><b>Meet them first, then pay.</b> Visits are free, and there's no pressure to buy.
+          Come and see them and pay the deposit in cash while you're here, so nothing is at
+          stake until you've decided.</p>
           <p><b>Further away?</b> Only the $50 deposit is paid before you meet it, with a receipt. The rest
           can wait until the rabbit is in your hands, <a class="litterlink" href="#faq-delivery">at
           your door</a>.</p>
@@ -2774,6 +2799,8 @@ body.locked{overflow:hidden}
         <div class="faq-body">
           <p><b>Yes, for rabbits I've bred.</b> One rabbit is $20 a day, dropping to $15 a day after
           the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</p>
+          <p><b>Stays of up to three days are free.</b> A longer stay is charged from its first
+          day.</p>
           <p><b>Priced by the day on purpose.</b> You only pay for the days you're away, and you
           can extend without renegotiating anything.</p>
           <p><b>Food, bedding and handling are included.</b> Hay, pellets, clean bedding and the same
@@ -4565,37 +4592,35 @@ body.locked{overflow:hidden}
 
     (function(){
       var SITE='https://arizonarabbits.com/';
-      var STOCK={available:'InStock', reserved:'OutOfStock', sold:'SoldOut', adopted:'SoldOut'};
-      var items=list.map(function(r,i){
-        var cov=(r.photos&&r.photos.length&&r.photos[0].src)||r.photo||'';
-        var img=(cov && cov.indexOf('coming-soon')<0) ? SITE+cov : null;
-        var p={
-          '@type':'Product',
-          'name':r.name,
-          'description':r.note||'',
-          'category':(r.breed?r.breed+' rabbit':'rabbit'),
-          'offers':{
-            '@type':'Offer',
-            'price':String(priceOf(r)),
-            'priceCurrency':'USD',
-            'availability':'https://schema.org/'+(STOCK[r.status]||'InStock'),
-            'url':SITE+'#available',
-            'seller':{'@type':'LocalBusiness','name':'Arizona Rabbits'}
-          }
+      var items=RABBITS.filter(function(r){
+        return String(r.status||'available').toLowerCase()==='available' && r.price;
+      }).map(function(r,i){
+        var cov=((r.photos||[]).filter(function(ph){
+          return ph && ph.src && ph.src.indexOf('coming-soon')<0; })[0]||{}).src||'';
+        var url=SITE+'#r-'+addrOf(r);
+        var p={'@type':'Product','name':r.name};
+        if(r.note) p.description=r.note;
+        if(cov) p.image=SITE+cov;
+        p.category=(r.breed?r.breed+' rabbit':'rabbit');
+        p.url=url;
+        p.offers={
+          '@type':'Offer',
+          'price':String(priceOf(r)),
+          'priceCurrency':'USD',
+          'availability':'https://schema.org/InStock',
+          'url':url,
+          'seller':{'@type':'LocalBusiness','name':'Arizona Rabbits'}
         };
-        if(img) p.image=img;
         return {'@type':'ListItem','position':i+1,'item':p};
       });
-      if(!items.length) return;
-      var s=document.createElement('script');
-      s.type='application/ld+json';
-      s.textContent=JSON.stringify({
+      var s=document.getElementById('ldRabbits');
+      if(!s){ s=document.createElement('script'); s.type='application/ld+json'; s.id='ldRabbits'; document.head.appendChild(s); }
+      s.textContent=items.length ? JSON.stringify({
         '@context':'https://schema.org',
         '@type':'ItemList',
         'name':'Rabbits available in Tucson',
         'itemListElement':items
-      });
-      document.head.appendChild(s);
+      }) : '{}';
     })();
   } else {
     if(countEl) countEl.textContent='Call or text for current litters';
@@ -5074,6 +5099,12 @@ body.locked{overflow:hidden}
     }
     if(window.ResizeObserver) new ResizeObserver(function(){ if(vBody.clientWidth!==unleadW) unleadAll(); }).observe(vBody);
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(unleadAll);
+    if(window.MutationObserver){
+      var unleadT='';
+      var reUnlead=function(){ var t=vMeta.textContent+'|'+vGrow.textContent; if(t===unleadT) return; unleadT=t;
+        (window.requestAnimationFrame||setTimeout)(unleadAll); };
+      [vMeta,vGrow].forEach(function(el){ new MutationObserver(reUnlead).observe(el,{childList:true,subtree:true,characterData:true}); });
+    }
     function paintMeta(r){
       vMeta.textContent='';
       [oneBreed()?null:r.breed].concat(String(sexColour(r)||'').split(' \u00b7 ')).filter(Boolean)

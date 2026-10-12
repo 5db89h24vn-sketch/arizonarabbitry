@@ -446,8 +446,9 @@ h2{font-size:clamp(27px,3.5vw,37px);margin-bottom:14px;letter-spacing:-.022em}
 .btn-primary:active{box-shadow:var(--lift-brick-press)}
 
 .mbar .btn-primary,.mbar .btn-primary:active{box-shadow:none}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--ink);background:rgba(36,31,29,.03)}
+
+.btn-ghost{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+.btn-ghost:hover{background:var(--line-soft);border-color:var(--line-soft)}
 
 .btn-tonal{background:var(--brick-tone);border-color:var(--brick-tone);color:var(--ink)}
 .btn-tonal:hover{border-color:rgba(124,62,33,.4)}
@@ -1464,7 +1465,7 @@ footer{background:var(--ink);color:rgba(239,232,222,.58);padding:0 0 108px;font-
   .js-mbar .edgefade{opacity:0;transition:opacity .2s}
   .js-mbar .edgefade.on{opacity:1}
   
-  .mbar .btn-ghost{background:#FCFAF6;border-color:rgba(198,182,162,.9)}
+  .mbar .btn-ghost{background:var(--line-soft);border-color:var(--line-soft)}
 }
 
 .mbar .mbar-call{flex:0 0 auto;min-width:74px}
@@ -2250,6 +2251,8 @@ body.locked{overflow:hidden}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Arizona Rabbits","alternateName":"Arizona Rabbitry","url":"https://arizonarabbits.com/"}
 </script>
+
+<script type="application/ld+json" id="ldRabbits">{"@context":"https://schema.org","@type":"ItemList","name":"Rabbits available in Tucson","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Butterscotch","description":"Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts.","image":"https://arizonarabbits.com/photos/butterscotch.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-butterscotch","offers":{"@type":"Offer","price":"300","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-butterscotch","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Pecan","description":"Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick.","image":"https://arizonarabbits.com/photos/pecan.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-pecan","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-pecan","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Marshmallow","description":"The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other.","image":"https://arizonarabbits.com/photos/marshmallow.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-marshmallow","offers":{"@type":"Offer","price":"375","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-marshmallow","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}}]}</script>
 </head>
 <body>
 
@@ -2454,7 +2457,7 @@ body.locked{overflow:hidden}
       href="https://pubmed.ncbi.nlm.nih.gov/10531536/"
       target="_blank" rel="noopener noreferrer" data-leaves="word">se acercan a las personas al destete, y lo siguen haciendo de <span class="kw">adultos</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Por eso aquí a cada bebé se le carga todos los días, y se acostumbra a gente, sonidos y lugares nuevos antes de irse a&nbsp;casa.</p>
       <p class="lede"><b>Esa rutina es lo que usted paga.</b> Le da un conejo que se acerca a la&nbsp;gente.</p>
-      <p class="lede"><b>A dónde va el dinero.</b> Compro conejos reproductores de líneas ganadoras en exposiciones por todo el país, a miles de dólares cada uno, y vuelo a casa con ellos. Sus bebés se venden aquí por una fracción de eso, y cada venta se invierte en la siguiente&nbsp;línea.</p>
+      <p class="lede" id="money"><b>A dónde va el dinero.</b> Compro conejos reproductores de líneas ganadoras en exposiciones por todo el país, a miles de dólares cada uno, y vuelo a casa con ellos. Sus bebés se venden aquí por una fracción de eso, y cada venta se invierte en la siguiente&nbsp;línea.</p>
       <p class="lede"><b>Todos los conejos reciben el mismo cuidado, sin importar su precio.</b> La meta es un conejo digno de una exposición e igual de feliz en su&nbsp;sillón.</p>
       <details class="about-more">
         <summary>Más sobre el criadero</summary>
@@ -2562,6 +2565,8 @@ body.locked{overflow:hidden}
           <li>Heno, pellets, cama limpia y el trato diario con el que crecieron</li>
           <li>Fotos mientras está fuera, para que no se quede con la duda</li>
           <li>Se cobra por día, así que solo paga los días que de verdad esté fuera</li>
+          
+          <li>Las estancias de hasta tres días son gratis; una estancia más larga se cobra desde su primer&nbsp;día</li>
         </ul>
         <div class="callout">
           <b>Solo mis propios conejos</b>
@@ -2603,7 +2608,8 @@ body.locked{overflow:hidden}
         <summary>¿Cómo funciona?</summary>
         <div class="faq-body">
           <p><b>Mándeme un mensaje o una nota.</b> Cuénteme de su casa y para quién es el conejo. Le diré cuál le queda, o si le conviene más la próxima&nbsp;camada.</p>
-          <p><b>Luego venga a conocerlos.</b> La visita es gratis, y no tiene que decidir nada ese&nbsp;día.</p>
+          
+          <p><b>Luego venga a conocerlos.</b> La visita es gratis, y no tiene que decidir nada ese día. No hay ninguna presión para comprar: un conejo es un compromiso de <a class="litterlink" href="#faq-life">8&nbsp;a&nbsp;12&nbsp;años</a>.</p>
           <p><b>Un depósito de $50 reserva el que usted elija.</b> Se descuenta del precio, y le doy un recibo. Los conejos se pueden reservar desde las cuatro semanas de edad.</p>
           
           <p><b>Se lo lleva cuando el conejo esté listo.</b> Mi meta son ocho semanas. Repasamos juntos la hoja de cuidados y usted se va con <a class="litterlink" href="#included">todo lo que incluye</a>.</p>
@@ -2629,6 +2635,9 @@ body.locked{overflow:hidden}
             href="#faq-vet">Los veterinarios de Tucson</a> que atienden conejos, y mi número mientras usted lo tenga.</li>
             
             <li><b>Si no funciona, me llama.</b> Prefiero ayudarle a encontrar el hogar adecuado que dejarlo donde no lo quieren.</li>
+            
+            <li><b>Cada venta se invierte en los siguientes conejos reproductores.</b> <a class="litterlink"
+            href="#money">A dónde va el dinero</a>.</li>
           </ul>
           
           <p><b>El conejo es la parte más pequeña de lo que cuesta.</b> Un año de cuidarlo cuesta <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
@@ -2757,6 +2766,16 @@ body.locked{overflow:hidden}
           target="_blank" rel="noopener noreferrer" data-leaves="word">terreno <span class="kw">neutral</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a>, un poco más largos cada día. La raza no cambia los pasos. Yo le explico cómo.</p>
         </div>
       </details>
+      
+      <details id="faq-meet">
+        <summary>Ya tengo un conejo. ¿Puede conocer a los suyos?</summary>
+        <div class="faq-body">
+          <p><b>Sí, en su casa.</b> En una <a class="litterlink" href="#faq-delivery">entrega gratis en fin de semana</a> llevo a otros junto con el que apartó, y su conejo los conoce ahí. Si otro se lleva mejor con el suyo, puede cambiar. Su primer cambio es gratis.</p>
+          <p><b>Escoja un cuarto que su conejo no ocupe.</b> Un conejo defiende su propio espacio, así que un primer encuentro sale mejor en un lugar nuevo para los&nbsp;dos.</p>
+          <p><b>Un buen primer encuentro es un comienzo.</b> Vivir juntos lleva <a class="litterlink"
+          href="#faq-pair">unos pasos más</a>, y yo le explico&nbsp;cómo.</p>
+        </div>
+      </details>
       <details id="faq-deposit">
         <summary>¿Hay depósito, y qué pasa con él?</summary>
         <div class="faq-body">
@@ -2781,7 +2800,7 @@ body.locked{overflow:hidden}
         <summary>¿Cómo pago?</summary>
         <div class="faq-body">
           
-          <p><b>Primero conózcalos, luego pague.</b> Las visitas son gratis. Venga a verlos y pague el depósito en efectivo mientras está aquí, para que no arriesgue nada hasta que decida.</p>
+          <p><b>Primero conózcalos, luego pague.</b> Las visitas son gratis, y no hay ninguna presión para comprar. Venga a verlos y pague el depósito en efectivo mientras está aquí, para que no arriesgue nada hasta que decida.</p>
           <p><b>¿Vive más lejos?</b> Solo el depósito de $50 se paga antes de conocerlo, con recibo. El resto puede esperar hasta que tenga el conejo en sus manos, <a class="litterlink" href="#faq-delivery">en la puerta de su casa</a>.</p>
           <p><b>Zelle, Apple Pay o efectivo.</b> El depósito de $50 reserva el conejo. El resto se paga el día que se lo lleva, y para eso lo más fácil es efectivo.</p>
           
@@ -2876,6 +2895,7 @@ body.locked{overflow:hidden}
         <summary>¿Me puede cuidar a mi conejo mientras viajo?</summary>
         <div class="faq-body">
           <p><b>Sí, si es un conejo que yo crié.</b> Un conejo cuesta $20 al día, y baja a $15 al día después de la primera semana. Una pareja unida que comparte corral cuesta $30 al día, y baja a $22.</p>
+          <p><b>Las estancias de hasta tres días son gratis.</b> Una estancia más larga se cobra desde su primer&nbsp;día.</p>
           <p><b>Por día, a propósito.</b> Solo paga los días que esté fuera, y puede extenderlo sin volver a negociar nada.</p>
           <p><b>Comida, cama y trato diario incluidos.</b> Heno, pellets, cama limpia y el mismo trato diario con el que crecieron, y fotos mientras está fuera.</p>
           <p><b>Por qué solo mis propios conejos:</b> <a class="cite"
@@ -4639,37 +4659,35 @@ body.locked{overflow:hidden}
 
     (function(){
       var SITE='https://arizonarabbits.com/';
-      var STOCK={available:'InStock', reserved:'OutOfStock', sold:'SoldOut', adopted:'SoldOut'};
-      var items=list.map(function(r,i){
-        var cov=(r.photos&&r.photos.length&&r.photos[0].src)||r.photo||'';
-        var img=(cov && cov.indexOf('coming-soon')<0) ? SITE+cov : null;
-        var p={
-          '@type':'Product',
-          'name':r.name,
-          'description':r.note||'',
-          'category':(r.breed?r.breed+' rabbit':'rabbit'),
-          'offers':{
-            '@type':'Offer',
-            'price':String(priceOf(r)),
-            'priceCurrency':'USD',
-            'availability':'https://schema.org/'+(STOCK[r.status]||'InStock'),
-            'url':SITE+'#available',
-            'seller':{'@type':'LocalBusiness','name':'Arizona Rabbits'}
-          }
+      var items=RABBITS.filter(function(r){
+        return String(r.status||'available').toLowerCase()==='available' && r.price;
+      }).map(function(r,i){
+        var cov=((r.photos||[]).filter(function(ph){
+          return ph && ph.src && ph.src.indexOf('coming-soon')<0; })[0]||{}).src||'';
+        var url=SITE+'#r-'+addrOf(r);
+        var p={'@type':'Product','name':r.name};
+        if(r.note) p.description=r.note;
+        if(cov) p.image=SITE+cov;
+        p.category=(r.breed?r.breed+' rabbit':'rabbit');
+        p.url=url;
+        p.offers={
+          '@type':'Offer',
+          'price':String(priceOf(r)),
+          'priceCurrency':'USD',
+          'availability':'https://schema.org/InStock',
+          'url':url,
+          'seller':{'@type':'LocalBusiness','name':'Arizona Rabbits'}
         };
-        if(img) p.image=img;
         return {'@type':'ListItem','position':i+1,'item':p};
       });
-      if(!items.length) return;
-      var s=document.createElement('script');
-      s.type='application/ld+json';
-      s.textContent=JSON.stringify({
+      var s=document.getElementById('ldRabbits');
+      if(!s){ s=document.createElement('script'); s.type='application/ld+json'; s.id='ldRabbits'; document.head.appendChild(s); }
+      s.textContent=items.length ? JSON.stringify({
         '@context':'https://schema.org',
         '@type':'ItemList',
         'name':'Rabbits available in Tucson',
         'itemListElement':items
-      });
-      document.head.appendChild(s);
+      }) : '{}';
     })();
   } else {
     if(countEl) countEl.textContent='Call or text for current litters';
@@ -5148,6 +5166,12 @@ body.locked{overflow:hidden}
     }
     if(window.ResizeObserver) new ResizeObserver(function(){ if(vBody.clientWidth!==unleadW) unleadAll(); }).observe(vBody);
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(unleadAll);
+    if(window.MutationObserver){
+      var unleadT='';
+      var reUnlead=function(){ var t=vMeta.textContent+'|'+vGrow.textContent; if(t===unleadT) return; unleadT=t;
+        (window.requestAnimationFrame||setTimeout)(unleadAll); };
+      [vMeta,vGrow].forEach(function(el){ new MutationObserver(reUnlead).observe(el,{childList:true,subtree:true,characterData:true}); });
+    }
     function paintMeta(r){
       vMeta.textContent='';
       [oneBreed()?null:r.breed].concat(String(sexColour(r)||'').split(' \u00b7 ')).filter(Boolean)
