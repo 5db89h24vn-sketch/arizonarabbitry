@@ -239,8 +239,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Noticias | Arizona Rabbits</title>
 <meta name="description" content="Lo que pasa en Arizona Rabbits, semana por semana: nuevas camadas, quién está disponible y qué cambió en el sitio. Cada línea con fecha.">
-<meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1C1713" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FBF8F3">
+
+<script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
 <link rel="canonical" href="https://arizonarabbits.com/es-updates">
 <link rel="alternate" hreflang="en" href="https://arizonarabbits.com/updates">
 <link rel="alternate" hreflang="es" href="https://arizonarabbits.com/es-updates">
@@ -432,30 +433,40 @@ h1,h2,h3{text-wrap:balance}
 a[data-leaves] .kw{white-space:nowrap}
 a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
 
-@media (prefers-color-scheme: dark){
-  :root{color-scheme:dark;
-    --paper:#1C1713; --paper-2:#261F1A; --card:#2B2420; --ink:#F3EBE0; --ink-soft:#D4C7B7; --ink-faint:#B0A291;
-    --line:#3D342C; --line-soft:#322A24;
-    --brick:#E29A72; --brick-dk:#EDB08E; --brick-tint:#33241B; --brick-tone:#4A2E20;
-    --brick-fill:#E29A72; --brick-fill-dk:#EDB08E; --on-brick:#1C1713;
-    --brick-tint-line:#5A3A29; --callout-line:#5A3A29;
-    --moss:#9DB08F; --moss-dk:#B7C7AB; --moss-tint:#252A20;
-    --open:#7FC29A; --open-line:#2F4A39; --open-tint:#1C2A21;
-    --hold:#E0B565; --hold-line:#5A4520; --hold-tint:#2E2416;
-    --gone:#B8AAA0; --gone-line:#4A3F38; --alert:#F08A7E;
-    --field-line:#4A3F36; --field-line-2:#544739; --field-hover:#6A5A4A; --field-hover-2:#7A6855;
-    --link-line:rgba(226,154,114,.55); --brick-line:rgba(226,154,114,.5); --brick-line-2:rgba(226,154,114,.45);
-    --link-line-soft:rgba(226,154,114,.35); --focus-glow:rgba(226,154,114,.22);
-    --ink-line:rgba(243,235,224,.45); --hover-tint:rgba(243,235,224,.05); --press-tint:rgba(243,235,224,.08);
-    --band:#120E0B; --tip-bg:#F3EBE0; --tip-ink:#1C1713;
-    --track:rgba(122,104,86,.6); --ring-track:rgba(243,235,224,.2);
+.look-on{display:none}
+html[data-look="dim"] .look-on{display:inline}
+html[data-look="dim"] .look-off{display:none}
+
+.look-mini{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:4px 12px;
+  margin:0;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:inherit;font-size:13px;line-height:1.2;
+  white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.look-mini:hover,.look-mini:focus-visible{background:var(--line)}
+.look-mini::before{content:'';position:absolute;left:-4px;right:-4px;top:-6px;bottom:-6px}
+</style>
+<style data-dim>
+
+html[data-look="dim"]{color-scheme:dark;
+    --paper:#2D251F; --paper-2:#362D26; --card:#3A3029; --ink:#E6D9C7; --ink-soft:#D0C1AE; --ink-faint:#B8A794;
+    --line:#4B4037; --line-soft:#41372F;
+    --brick:#E6A27C; --brick-dk:#EDB08E; --brick-tint:#3F2C21; --brick-tone:#5A3829;
+    --brick-fill:#A0522D; --brick-fill-dk:#8C4626; --on-brick:#F6EEE3;
+    --brick-tint-line:#67442F; --callout-line:#67442F;
+    --moss:#A3B595; --moss-dk:#BCCBB0; --moss-tint:#313826;
+    --open:#88C9A1; --open-line:#3B5B46; --open-tint:#26362A;
+    --hold:#E5BC6E; --hold-line:#6A5326; --hold-tint:#3C301D;
+    --gone:#C0B3A9; --gone-line:#574B43; --alert:#F4978B;
+    --field-line:#574A3F; --field-line-2:#615243; --field-hover:#776553; --field-hover-2:#87735E;
+    --link-line:rgba(230,162,124,.55); --brick-line:rgba(230,162,124,.5); --brick-line-2:rgba(230,162,124,.45);
+    --link-line-soft:rgba(230,162,124,.35); --focus-glow:rgba(230,162,124,.22);
+    --ink-line:rgba(230,217,199,.45); --hover-tint:rgba(230,217,199,.05); --press-tint:rgba(230,217,199,.08);
+    --band:#241D18; --tip-bg:#F1E7DA; --tip-ink:#2D251F;
+    --track:rgba(130,112,94,.6); --ring-track:rgba(230,217,199,.2);
     --logo:#E3C29E;
-    --lift-1:0 1px 2px rgba(0,0,0,.28); --lift-2:0 2px 8px rgba(0,0,0,.34);
-    --lift-photo:0 1px 3px rgba(0,0,0,.4);
-    --lift-brick:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(226,154,114,.16); --lift-brick-press:0 1px 2px rgba(0,0,0,.4);
-    --float:rgba(28,23,19,.66); --float-solid:rgba(28,23,19,.94); --float-line:rgba(255,236,218,.12);
-    --faint-on-ink:rgba(239,232,222,.55)}
-}
+    --lift-1:0 1px 2px rgba(0,0,0,.24); --lift-2:0 2px 8px rgba(0,0,0,.3);
+    --lift-photo:0 1px 3px rgba(0,0,0,.34);
+    --lift-brick:0 1px 2px rgba(0,0,0,.3); --lift-brick-press:0 1px 2px rgba(0,0,0,.3);
+    --float:rgba(45,37,31,.7); --float-solid:rgba(45,37,31,.95); --float-line:rgba(255,236,218,.12);
+    --faint-on-ink:rgba(239,232,222,.62)}
 </style>
 </head>
 <body>
@@ -718,6 +729,7 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
       <a href="es-terms.html">Condiciones y privacidad</a>
       
       <a href="/updates" hreflang="en" lang="en" data-lang-switch>English</a>
+      <button type="button" class="look-mini" data-look-switch aria-pressed="false"><span class="look-off">Atenuar la página</span><span class="look-on">Aclarar la página</span></button>
       <a class="foot-top" href="#top">Volver arriba <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M6 10.5V1.8M2.2 5.4 6 1.6l3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </nav>
   </div>
@@ -824,6 +836,26 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
     el.addEventListener('scroll',f,{passive:true}); window.addEventListener('resize',f);
     if('ResizeObserver' in window) new ResizeObserver(f).observe(el);
     mark(el); });
+})();
+</script>
+<script>
+(function(){
+  var root=document.documentElement;
+  function dim(){ return root.getAttribute('data-look')==='dim'; }
+  function paint(){
+    var d=dim();
+    [].forEach.call(document.querySelectorAll('[data-look-switch]'),function(b){ b.setAttribute('aria-pressed', d?'true':'false'); });
+    var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content', d?'#2D251F':'#FBF8F3');
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-look-switch]'); if(!b) return;
+    var d=!dim();
+    if(d) root.setAttribute('data-look','dim'); else root.removeAttribute('data-look');
+    try{ localStorage.setItem('look', d?'dim':'light'); }catch(x){}
+    paint();
+    try{ document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:d}})); }catch(x){}
+  });
+  paint();
 })();
 </script>
 </body>
