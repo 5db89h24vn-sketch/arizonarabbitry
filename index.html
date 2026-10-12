@@ -1470,7 +1470,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .hero-cta .tx-l{display:none}
 @media(hover:hover) and (pointer:fine) and (min-width:601px){ .hero-cta .tx-s{display:none} .hero-cta .tx-l{display:inline} }
 
-@media(max-width:374px){
+@media(max-width:389px){
   .viewer-box .vcta #viewerCta{padding-left:12px;padding-right:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .viewer-box .vcta .vtext{padding-left:14px;padding-right:14px}
 }
@@ -2174,7 +2174,7 @@ body.locked{overflow:hidden}
           
           <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><input type="checkbox" name="want" value="L2026-09-27"><span class="wl-card"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Cross, born 27 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><input type="checkbox" name="want" value="L2026-09-18"><span class="wl-card"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><span class="wl-t"><b>Holland Lops</b><small>Purebred, born 18 Sep</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
           
-          <label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label>
+          <label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label>
           <div class="wl-row">
             <input type="email" name="email" placeholder="you@email.com" aria-label="Your email address, to hear about the next litter" required>
             <input type="hidden" name="_subject" value="Waitlist signup">
@@ -6101,8 +6101,36 @@ body.locked{overflow:hidden}
     var t=last.textContent;
     if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
     var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
-    if(!m) return;
+    if(!m){ tieAcross(el, last); return; }
     last.textContent=m[1]+'\u00A0'+m[3];
+  }
+  function tieAcross(el, last){
+    var inl=function(n){ for(var p=n.parentElement;p&&p!==el;p=p.parentElement){ if(getComputedStyle(p).display!=='inline') return false; } return true; };
+    if(!inl(last)) return;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT), seq=[], n;
+    while((n=w.nextNode())){
+      if(n.nodeType===1){ if(n.tagName==='BR') seq.push(null); continue; }
+      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+      seq.push(n);
+      if(n===last) break;
+    }
+    var word=false;
+    for(var k=seq.length-1;k>=0;k--){
+      var node=seq[k]; if(node===null) return;
+      var s=node.textContent;
+      for(var j=s.length-1;j>=0;j--){
+        var c=s.charAt(j);
+        if(c==='\u00A0'){ if(word) return; continue; }
+        if(!/\s/.test(c)){ word=true; continue; }
+        if(!word) continue;
+        var a=j; while(a>0 && /[ \t\n\r]/.test(s.charAt(a-1))) a--;
+        var before=s.slice(0,a).trim().length>0;
+        for(var q=k-1;!before&&q>=0;q--){ if(seq[q]===null) return; if(seq[q].textContent.trim()) before=true; }
+        if(!before || !inl(node)) return;
+        node.textContent=s.slice(0,a)+'\u00A0'+s.slice(j+1);
+        return;
+      }
+    }
   }
   function noOrphans(root){
     if(!root) return;

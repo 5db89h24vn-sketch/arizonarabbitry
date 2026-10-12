@@ -745,7 +745,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-09-27"> For this litter that is from <time datetime="2026-10-25">25 October</time>.</span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-27"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-27" data-label="the litter born 27 September" data-name="the Holland Lop crosses born 27 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-27"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 27 September (L2026-09-27)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -779,7 +779,7 @@ html:not(.js) .views{display:none}
           hears first.<span data-fact="opens:2026-09-18"> For this litter that is from <time datetime="2026-10-16">16 October</time>.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
-          <div data-fact="alert:2026-09-18"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-18" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-18"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 18 September (L2026-09-18)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
+          <div data-fact="alert:2026-09-18"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-09-18" data-label="the litter born 18 September" data-name="the Holland Lops born 18 Sep"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-09-18"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 18 September (L2026-09-18)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
       </div>
     </article>
@@ -1171,8 +1171,8 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     el.textContent='';
     if(!m){ el.textContent=word; return; }
     var t=document.createElement('span');
-    t.appendChild(document.createTextNode(word+' '+(+m[3])+' '+MON[+m[2]-1]));
-    var y=document.createElement('span'); y.className='yr'; y.textContent=' '+m[1];
+    t.appendChild(document.createTextNode(word+' '+(+m[3])+'\u00A0'+MON[+m[2]-1]));
+    var y=document.createElement('span'); y.className='yr'; y.textContent='\u00A0'+m[1];
     t.appendChild(y); el.appendChild(t);
   }
   try{
@@ -1856,8 +1856,36 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     var t=last.textContent;
     if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
     var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
-    if(!m) return;
+    if(!m){ tieAcross(el, last); return; }
     last.textContent=m[1]+'\u00A0'+m[3];
+  }
+  function tieAcross(el, last){
+    var inl=function(n){ for(var p=n.parentElement;p&&p!==el;p=p.parentElement){ if(getComputedStyle(p).display!=='inline') return false; } return true; };
+    if(!inl(last)) return;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT), seq=[], n;
+    while((n=w.nextNode())){
+      if(n.nodeType===1){ if(n.tagName==='BR') seq.push(null); continue; }
+      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+      seq.push(n);
+      if(n===last) break;
+    }
+    var word=false;
+    for(var k=seq.length-1;k>=0;k--){
+      var node=seq[k]; if(node===null) return;
+      var s=node.textContent;
+      for(var j=s.length-1;j>=0;j--){
+        var c=s.charAt(j);
+        if(c==='\u00A0'){ if(word) return; continue; }
+        if(!/\s/.test(c)){ word=true; continue; }
+        if(!word) continue;
+        var a=j; while(a>0 && /[ \t\n\r]/.test(s.charAt(a-1))) a--;
+        var before=s.slice(0,a).trim().length>0;
+        for(var q=k-1;!before&&q>=0;q--){ if(seq[q]===null) return; if(seq[q].textContent.trim()) before=true; }
+        if(!before || !inl(node)) return;
+        node.textContent=s.slice(0,a)+'\u00A0'+s.slice(j+1);
+        return;
+      }
+    }
   }
   function noOrphans(root){
     if(!root) return;

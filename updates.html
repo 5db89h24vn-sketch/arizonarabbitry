@@ -480,8 +480,36 @@ a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-b
     var t=last.textContent;
     if(t.indexOf('\u00A0')>-1) return;                 /* already bound */
     var m=/^([\s\S]*\S)([ \t\n\r]+)(\S+[\s]*)$/.exec(t);
-    if(!m) return;
+    if(!m){ tieAcross(el, last); return; }
     last.textContent=m[1]+'\u00A0'+m[3];
+  }
+  function tieAcross(el, last){
+    var inl=function(n){ for(var p=n.parentElement;p&&p!==el;p=p.parentElement){ if(getComputedStyle(p).display!=='inline') return false; } return true; };
+    if(!inl(last)) return;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT), seq=[], n;
+    while((n=w.nextNode())){
+      if(n.nodeType===1){ if(n.tagName==='BR') seq.push(null); continue; }
+      if(n.parentElement && n.parentElement.closest('.sr-only')) continue;
+      seq.push(n);
+      if(n===last) break;
+    }
+    var word=false;
+    for(var k=seq.length-1;k>=0;k--){
+      var node=seq[k]; if(node===null) return;
+      var s=node.textContent;
+      for(var j=s.length-1;j>=0;j--){
+        var c=s.charAt(j);
+        if(c==='\u00A0'){ if(word) return; continue; }
+        if(!/\s/.test(c)){ word=true; continue; }
+        if(!word) continue;
+        var a=j; while(a>0 && /[ \t\n\r]/.test(s.charAt(a-1))) a--;
+        var before=s.slice(0,a).trim().length>0;
+        for(var q=k-1;!before&&q>=0;q--){ if(seq[q]===null) return; if(seq[q].textContent.trim()) before=true; }
+        if(!before || !inl(node)) return;
+        node.textContent=s.slice(0,a)+'\u00A0'+s.slice(j+1);
+        return;
+      }
+    }
   }
   function noOrphans(root){
     if(!root) return;
