@@ -4697,7 +4697,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var ctaFull=gone?'See the next litter first':('Ask about '+esc(r.name));
       var ctaShort=gone?'Next litter':'Ask';
       var cta='<span class="cta-full">'+ctaFull+'</span>'+
-              '<span class="cta-short">'+ctaShort+'</span>';
+              '<span class="cta-short" aria-hidden="true">'+ctaShort+'</span>';
 
       var shots=galleryFor(r);
       var many=shots.length>1;
