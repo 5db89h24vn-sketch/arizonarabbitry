@@ -2109,7 +2109,13 @@ html[data-look="dim"]{color-scheme:dark;
     --glass-sheet-hi:rgba(48,40,33,.92); --glass-sheet-lo:rgba(48,40,33,.88);
     --glass-rim:rgba(255,236,218,.16); --glass-spec:rgba(255,236,218,.24); --glass-spec-lo:rgba(255,236,218,.06);
     --glass-edge-a:rgba(255,236,218,.42); --glass-edge-b:rgba(255,236,218,.08); --glass-edge-c:rgba(255,236,218,.04);
-    --glass-edge-d:rgba(255,236,218,.2)}
+    --glass-edge-d:rgba(255,236,218,.2);
+    
+    --float-shadow:0 10px 30px rgba(0,0,0,.34),0 2px 6px rgba(0,0,0,.22),
+      inset 0 1px 0 rgba(255,236,218,.1),inset 0 -1px 0 rgba(255,236,218,.03)}
+
+html[data-look="dim"] .corner-sheet{box-shadow:0 0 0 .5px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.3),
+  inset 0 1px 0 var(--glass-spec),inset 0 -1px 0 var(--glass-spec-lo)}
 html[data-look="dim"] .mnav-track a{background:rgba(58,48,41,.92);border-color:rgba(255,236,218,.1)}
 html[data-look="dim"] .ds-glass{box-shadow:inset 0 1px 0 rgba(255,236,218,.12)}
 html[data-look="dim"] .viewer-nav{background:rgba(58,48,41,.94)}
