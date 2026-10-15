@@ -879,6 +879,12 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .stage-lit small .age{white-space:nowrap}
 .stage-lit:hover,.stage-lit:focus-visible{border-color:var(--brick)}
 .stage-lit:hover b{color:var(--brick)}
+
+.stage-lit .lit-state{align-self:flex-start;display:inline-flex;margin-top:5px;padding:2px 9px;
+  border:1px solid var(--line);border-radius:100px;background:var(--paper-2);color:var(--ink-soft);
+  font-size:12px;font-weight:600;line-height:1.45;white-space:nowrap}
+.stage-lit .lit-state.open{background:var(--open-tint);border-color:var(--open-line);color:var(--open)}
+.stage-lit .lit-state.hold{background:var(--hold-tint);border-color:var(--hold-line);color:var(--hold)}
 .stage.now .stage-when,.stage:target .stage-when{box-shadow:inset 0 2px 0 var(--moss)}
 @media(max-width:560px){
   .stages{gap:0;padding-left:30px}
@@ -1050,6 +1056,13 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
 .faq-body li{position:relative;padding-left:19px}
 .faq-body li::before{content:'';position:absolute;left:2px;top:.62em;width:5px;height:5px;
   border-radius:50%;background:var(--ink-faint)}
+
+.faq{border-top:0}
+.faq-topics-head{font-size:13.5px;color:var(--ink-faint);margin:0 0 8px}
+.doors.faq-topics{margin:0 0 6px}
+.faq-topic{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.12em;line-height:1.3;
+  text-transform:uppercase;color:var(--ink-soft);margin:0;padding:34px 0 12px;border-bottom:1px solid var(--line)}
+.faq-topic:first-of-type{padding-top:4px}
 
 .form-sec{background:var(--band);color:#EFE8DE}
 
@@ -2559,6 +2572,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   <div class="wrap">
     <div class="faq" style="text-align:left">
 
+      <p class="faq-topics-head">Jump to a topic</p>
+      <nav class="doors faq-topics" aria-label="FAQ topics">
+        <a href="#topic-buying"><span><b>How buying works</b><small>Price, deposit, delivery, going home</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#topic-checking"><span><b>Checking a breeder</b><small>What to ask, and what you can check here</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#topic-fit"><span><b>Is it right for you?</b><small>A first rabbit, cats and dogs, one or two</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#topic-care"><span><b>Everyday care</b><small>What to have ready, food, litter, grooming</small></span><i class="chev" aria-hidden="true"></i></a>
+        <a href="#topic-after"><span><b>After it's home</b><small>If something's wrong, the vet, boarding</small></span><i class="chev" aria-hidden="true"></i></a>
+      </nav>
+      <h3 class="faq-topic" id="topic-buying">How buying works</h3>
       <details id="faq-how" open>
         <summary>How does this work?</summary>
         <div class="faq-body">
@@ -2619,6 +2641,111 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>Ask any seller the same questions.</b> Here are <a class="litterlink" href="#faq-ask">the eight I'd ask</a>.</p>
         </div>
       </details>
+      
+      <details id="faq-delivery">
+        <summary>Do you deliver?</summary>
+        <div class="faq-body">
+          
+          <p><b>Yes. Free weekend delivery anywhere in Arizona.</b> Tell me roughly where you
+          are when you get in touch.</p>
+          <p><b>A $50 deposit books the trip.</b> It comes off the price like any deposit, and you get a receipt. The rest can wait until the rabbit is in your hands.</p>
+          <p><b>You still choose in person.</b> I bring others along, so if another one suits you
+          better once you meet them, you can switch. Your first switch is free.</p>
+          <p><b>Want it on a day you pick?</b> Once it's ready, I'll drive it to you that day,
+          for a price we agree on first, fair to both of us.</p>
+          <p><b>A delivery goes the same way as a pickup.</b> We do the health check together
+          with the rabbit in your hands, and you get the food and the care sheet.</p>
+          
+          <p><b>Heat is the one thing I'm firm about.</b> What matters is the temperature the
+          rabbit would be sitting in on the way, and that has to <a class="cite"
+          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">stay under the <span class="kw">mid-80s</span><span class="sr-only"> (opens in a new tab)</span></a>. If a trip isn't safe on
+          the day, we move it, and I'll say so.</p>
+        </div>
+      </details>
+      <details id="faq-deposit">
+        <summary>Is there a deposit, and what happens to it?</summary>
+        <div class="faq-body">
+
+          <p><b>A $50 deposit reserves a rabbit and comes off the price.</b> You get a receipt from me, and that rabbit is yours until pickup. Reserving a second for the pair price works
+          <a class="litterlink" href="#faq-pair">a little differently</a>.</p>
+          <p><b>Reservations open at four weeks old.</b> Before that, a baby's sex and color are
+          still a guess, and I won't take money for a guess.</p>
+          <p><b>Change your mind before pickup? The $50 moves to another rabbit.</b> Or to the next litter. It isn't refunded, because reserving a rabbit means turning other people away.</p>
+          
+          <p><b>Change your mind at pickup? You get the whole $50 back.</b> That's for the first rabbit you reserve. If you've switched rabbits before, we settle on what it cost me, fair to both of us. I'd
+          rather you said so than took one home unsure.</p>
+          
+          <p><b>Your first switch to another rabbit is free.</b> After that, each switch is $25, half the deposit. Each one after the first puts a rabbit back on the list weeks late.</p>
+          <p><b>Three things get the $50 back, no argument:</b></p>
+          <ul>
+            <li>The rabbit gets ill or doesn't make it while still in my care.</li>
+            <li>I'm the one who cancels, for any reason.</li>
+            <li><b>The rabbit isn't what I told you it was.</b> Wrong sex, a color clearly
+            different from the listing, not the rabbit you reserved, or it fails the health
+            check at pickup.</li>
+          </ul>
+          <p><b>Normal changes as it grows don't get the $50 back.</b> Color and markings can still shift after
+          four weeks. I'll say what's certain when you reserve, and you'll get photos the
+          whole way.</p>
+        </div>
+      </details>
+      <details id="faq-pay">
+        <summary>How do I pay?</summary>
+        <div class="faq-body">
+          
+          <p><b>Meet them first, then pay.</b> Visits are free, and there's no pressure to buy.
+          Come and see them and pay the deposit in cash while you're here, so nothing is at
+          stake until you've decided.</p>
+          <p><b>Further away?</b> Only the $50 deposit is paid before you meet it, with a receipt. The rest
+          can wait until the rabbit is in your hands, <a class="litterlink" href="#faq-delivery">at
+          your door</a>.</p>
+          <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit reserves the rabbit. The balance is
+          due at pickup, and cash is easiest for that.</p>
+          
+          <p><b>You can pay in parts.</b> After the $50 deposit, the rest can come in any amounts
+          before pickup, and the rabbit goes home once it's paid in full. Change your mind
+          before pickup and everything over the $50 comes back.</p>
+          
+          <p><b>Every payment gets a receipt from me.</b> Deposit or balance, whichever way you
+          pay, I send you written confirmation the moment it lands, so you have it on record.</p>
+          
+          <p><b>Once a rabbit goes home, the sale is final.</b> <a class="litterlink"
+          href="/terms">The terms page</a> has all of this on one sheet.</p>
+        </div>
+      </details>
+      <details id="faq-home">
+        <summary>When can I take one home?</summary>
+        <div class="faq-body">
+          
+          <p><b>Eight weeks is what I aim for.</b> Every listing shows them as eight squares, filled up to the rabbit's current week. When all eight are filled, the label reads "All eight weeks".</p>
+          <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
+          own. Eating and drinking well, on the same food, for at least seven days. Holding
+          or gaining weight when I weigh it, with nothing wrong with it that I can find. One
+          that isn't there yet waits, whatever its age.</p>
+          <p><b>Eight weeks is when the changeover is done.</b> Babies wean at four to six
+          weeks and lose the protection of their mother's milk while their gut is still
+          learning solid food. The House Rabbit Society says <a class="cite"
+          href="https://rabbit.org/care/babies/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">not to take them away “until they are a full
+          eight weeks of <span class="kw">age”</span><span class="sr-only"> (opens in a new tab)</span></a>. The <a class="cite"
+          href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">RSPCA <span class="kw">agrees</span><span class="sr-only"> (opens in a new tab)</span></a>: eight weeks, “fully weaned
+          and independent”.</p>
+          <p><b>The risk is in those weeks, and it's rare.</b> The <a class="cite"
+          href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">Merck Veterinary <span class="kw">Manual</span><span class="sr-only"> (opens in a new tab)</span></a> puts enterotoxaemia, a
+          severe gut disease, “primarily” in rabbits “4–8 weeks
+          old”, and names diet and the stress of weaning. A new house and new food
+          land in that same window. So the younger a rabbit goes, the more room there is for
+          something to go wrong.</p>
+          <p><b>They go home eating what they eat here.</b> Two weeks of that food goes in the
+          bag. Nothing changes on day one.</p>
+          <p><b>A Ready date on a listing is the day I expect it to be ready.</b> You'll get
+          photos and video the whole way through, so the wait is easier.</p>
+        </div>
+      </details>
+      <h3 class="faq-topic" id="topic-checking">Checking a breeder</h3>
       <details id="faq-ask">
         <summary>What should I ask any breeder before I pay?</summary>
         <div class="faq-body">
@@ -2647,27 +2774,39 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         </div>
       </details>
       
-      <details id="faq-delivery">
-        <summary>Do you deliver?</summary>
+      <details id="faq-cages">
+        <summary>Where do the rabbits live here?</summary>
         <div class="faq-body">
-          
-          <p><b>Yes. Free weekend delivery anywhere in Arizona.</b> Tell me roughly where you
-          are when you get in touch.</p>
-          <p><b>A $50 deposit books the trip.</b> It comes off the price like any deposit, and you get a receipt. The rest can wait until the rabbit is in your hands.</p>
-          <p><b>You still choose in person.</b> I bring others along, so if another one suits you
-          better once you meet them, you can switch. Your first switch is free.</p>
-          <p><b>Want it on a day you pick?</b> Once it's ready, I'll drive it to you that day,
-          for a price we agree on first, fair to both of us.</p>
-          <p><b>A delivery goes the same way as a pickup.</b> We do the health check together
-          with the rabbit in your hands, and you get the food and the care sheet.</p>
-          
-          <p><b>Heat is the one thing I'm firm about.</b> What matters is the temperature the
-          rabbit would be sitting in on the way, and that has to <a class="cite"
-          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">stay under the <span class="kw">mid-80s</span><span class="sr-only"> (opens in a new tab)</span></a>. If a trip isn't safe on
-          the day, we move it, and I'll say so.</p>
+          <p><b>The cages are for the mothers, not for everyone.</b> The young rabbits are out running through the day, and so are the bucks&nbsp;(the males). A mother usually stays in, because she is
+          nursing.</p>
+          <p><b>A nursing mother needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
+          href="https://rabbit.org/care/babies/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">once or twice a day, and only when she feels <span class="kw">safe</span><span class="sr-only"> (opens in a new tab)</span></a>.
+          The box has to be where she left it, quiet, with nobody else in it. So a mother and her litter are housed on their own, as <a class="cite"
+          href="https://extension.psu.edu/rabbit-production"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">the university guide to raising <span class="kw">rabbits</span><span class="sr-only"> (opens in a new tab)</span></a>&nbsp;says.</p>
+          <p><b>Keeping them apart is how a pedigree stays true.</b> Nothing breeds by accident
+          here, so I know every rabbit's mother and father. That is what lets me tell you
+          exactly what you are buying.</p>
+          <p><b>A cage is not a home for a pet rabbit.</b> The welfare groups are right about
+          that, and <a class="litterlink" href="#faq-indoors">the indoors answer</a> says the same: an indoor pen with <a class="cite"
+          href="https://rabbitwelfare.co.uk/welfare-need/space-recommendations/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">room to <span class="kw">run</span><span class="sr-only"> (opens in a new tab)</span></a>, and time out every day.</p>
         </div>
       </details>
+      
+      <details id="faq-ages">
+        <summary>How current is what I'm seeing?</summary>
+        <div class="faq-body">
+          <p><b>The ages are counted on the day you look.</b> The page counts from each
+          rabbit's birth date every time it opens, and again at midnight if you leave it&nbsp;open.</p>
+          <p><b>Every photo carries its own date.</b> Open one and the day it was taken is on
+          the picture, bottom left, with the rabbit's age that&nbsp;day.</p>
+          <p><b>Availability changes the day a rabbit is reserved or sold.</b> <a class="litterlink" href="#available">The line above the rabbits</a> says when it last changed, or when I last looked at the pens and nothing
+          had.</p>
+        </div>
+      </details>
+      <h3 class="faq-topic" id="topic-fit">Is it right for you?</h3>
       <details id="faq-first">
         <summary>Is a rabbit right for me?</summary>
         <div class="faq-body">
@@ -2787,98 +2926,62 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           href="#faq-pair">a few more steps</a>, and I'll walk you through&nbsp;them.</p>
         </div>
       </details>
-      <details id="faq-deposit">
-        <summary>Is there a deposit, and what happens to it?</summary>
+      <h3 class="faq-topic" id="topic-care">Everyday care</h3>
+      
+      <details id="faq-setup">
+        <summary>What should I have ready before it comes home?</summary>
         <div class="faq-body">
-
-          <p><b>A $50 deposit reserves a rabbit and comes off the price.</b> You get a receipt from me, and that rabbit is yours until pickup. Reserving a second for the pair price works
-          <a class="litterlink" href="#faq-pair">a little differently</a>.</p>
-          <p><b>Reservations open at four weeks old.</b> Before that, a baby's sex and color are
-          still a guess, and I won't take money for a guess.</p>
-          <p><b>Change your mind before pickup? The $50 moves to another rabbit.</b> Or to the next litter. It isn't refunded, because reserving a rabbit means turning other people away.</p>
-          
-          <p><b>Change your mind at pickup? You get the whole $50 back.</b> That's for the first rabbit you reserve. If you've switched rabbits before, we settle on what it cost me, fair to both of us. I'd
-          rather you said so than took one home unsure.</p>
-          
-          <p><b>Your first switch to another rabbit is free.</b> After that, each switch is $25, half the deposit. Each one after the first puts a rabbit back on the list weeks late.</p>
-          <p><b>Three things get the $50 back, no argument:</b></p>
-          <ul>
-            <li>The rabbit gets ill or doesn't make it while still in my care.</li>
-            <li>I'm the one who cancels, for any reason.</li>
-            <li><b>The rabbit isn't what I told you it was.</b> Wrong sex, a color clearly
-            different from the listing, not the rabbit you reserved, or it fails the health
-            check at pickup.</li>
-          </ul>
-          <p><b>Normal changes as it grows don't get the $50 back.</b> Color and markings can still shift after
-          four weeks. I'll say what's certain when you reserve, and you'll get photos the
-          whole way.</p>
+          <p><b>A pen indoors, in a room you use.</b> A pen rather than a cage, with room to
+          hop, and time out of it every day. <a class="litterlink" href="#faq-indoors">Why indoors</a>.</p>
+          <p><b>A litter box with hay in it.</b> Rabbits like to eat while they go, so hay in
+          the box keeps them using it. <a class="litterlink" href="#faq-litter">How the box works</a>.</p>
+          <p><b>Water, hay and a box to hide in.</b> Fresh water every day and grass hay always
+          there. A cardboard box with a doorway cut in it <a class="cite" href="https://rabbit.org/care/how-to-care-for-a-pet-rabbit-a-primer/" target="_blank" rel="noopener noreferrer" data-leaves="word">helps a rabbit feel <span class="kw">safe</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <p><b>Cables out of reach.</b> Rabbits chew them. The House Rabbit Society's advice:
+          <a class="cite" href="https://rabbit.org/care/habitat/bunny-proofing-your-space/" target="_blank" rel="noopener noreferrer" data-leaves="word">cords in tubing or out of <span class="kw">reach</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <p><b>The food comes with it.</b> Two weeks of what it eats now, bamboo to chew and the
+          care sheet. <a class="litterlink" href="#included">Everything that comes with it</a>.</p>
         </div>
       </details>
-      <details id="faq-pay">
-        <summary>How do I pay?</summary>
+      <details id="faq-indoors">
+        <summary>Indoors or outdoors?</summary>
         <div class="faq-body">
-          
-          <p><b>Meet them first, then pay.</b> Visits are free, and there's no pressure to buy.
-          Come and see them and pay the deposit in cash while you're here, so nothing is at
-          stake until you've decided.</p>
-          <p><b>Further away?</b> Only the $50 deposit is paid before you meet it, with a receipt. The rest
-          can wait until the rabbit is in your hands, <a class="litterlink" href="#faq-delivery">at
-          your door</a>.</p>
-          <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit reserves the rabbit. The balance is
-          due at pickup, and cash is easiest for that.</p>
-          
-          <p><b>You can pay in parts.</b> After the $50 deposit, the rest can come in any amounts
-          before pickup, and the rabbit goes home once it's paid in full. Change your mind
-          before pickup and everything over the $50 comes back.</p>
-          
-          <p><b>Every payment gets a receipt from me.</b> Deposit or balance, whichever way you
-          pay, I send you written confirmation the moment it lands, so you have it on record.</p>
-          
-          <p><b>Once a rabbit goes home, the sale is final.</b> <a class="litterlink"
-          href="/terms">The terms page</a> has all of this on one sheet.</p>
-        </div>
-      </details>
-      <details id="faq-home">
-        <summary>When can I take one home?</summary>
-        <div class="faq-body">
-          
-          <p><b>Eight weeks is what I aim for.</b> Every listing shows them as eight squares, filled up to the rabbit's current week. When all eight are filled, the label reads "All eight weeks".</p>
-          <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
-          own. Eating and drinking well, on the same food, for at least seven days. Holding
-          or gaining weight when I weigh it, with nothing wrong with it that I can find. One
-          that isn't there yet waits, whatever its age.</p>
-          <p><b>Eight weeks is when the changeover is done.</b> Babies wean at four to six
-          weeks and lose the protection of their mother's milk while their gut is still
-          learning solid food. The House Rabbit Society says <a class="cite"
-          href="https://rabbit.org/care/babies/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">not to take them away “until they are a full
-          eight weeks of <span class="kw">age”</span><span class="sr-only"> (opens in a new tab)</span></a>. The <a class="cite"
-          href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">RSPCA <span class="kw">agrees</span><span class="sr-only"> (opens in a new tab)</span></a>: eight weeks, “fully weaned
-          and independent”.</p>
-          <p><b>The risk is in those weeks, and it's rare.</b> The <a class="cite"
-          href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">Merck Veterinary <span class="kw">Manual</span><span class="sr-only"> (opens in a new tab)</span></a> puts enterotoxaemia, a
-          severe gut disease, “primarily” in rabbits “4–8 weeks
-          old”, and names diet and the stress of weaning. A new house and new food
-          land in that same window. So the younger a rabbit goes, the more room there is for
-          something to go wrong.</p>
-          <p><b>They go home eating what they eat here.</b> Two weeks of that food goes in the
-          bag. Nothing changes on day one.</p>
-          <p><b>A Ready date on a listing is the day I expect it to be ready.</b> You'll get
-          photos and video the whole way through, so the wait is easier.</p>
+          <p><b>Indoors, especially here.</b> Rabbits handle cold far better than heat, and <a class="cite"
+          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">anything over the mid-80s for long is
+          <span class="kw">dangerous</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tucson summer is too hot for a hutch&nbsp;outside.</p>
+          <p><b>An indoor pen with daily run-around time.</b> That's what I recommend. Supervised,
+          because rabbits chew cables. <a class="litterlink" href="#faq-setup">What to have ready</a>.</p>
         </div>
       </details>
       
-      <details id="faq-ages">
-        <summary>How current is what I'm seeing?</summary>
+      <details id="faq-food">
+        <summary>What do they eat?</summary>
         <div class="faq-body">
-          <p><b>The ages are counted on the day you look.</b> The page counts from each
-          rabbit's birth date every time it opens, and again at midnight if you leave it&nbsp;open.</p>
-          <p><b>Every photo carries its own date.</b> Open one and the day it was taken is on
-          the picture, bottom left, with the rabbit's age that&nbsp;day.</p>
-          <p><b>Availability changes the day a rabbit is reserved or sold.</b> <a class="litterlink" href="#available">The line above the rabbits</a> says when it last changed, or when I last looked at the pens and nothing
-          had.</p>
+          <p><b>Mostly hay, as much as it wants.</b> Grass hay like timothy is about 85% of a
+          grown rabbit's diet. The House Rabbit Society: <a class="cite" href="https://rabbit.org/care/food-diet/" target="_blank" rel="noopener noreferrer" data-leaves="word">unlimited fresh hay, every <span class="kw">day</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <p><b>A grown rabbit also gets greens and a few pellets.</b> At least three kinds of
+          leafy greens a day, one new kind at a time, and a small amount of plain timothy
+          pellets, not a mix with seeds or nuts.</p>
+          <p><b>Fruit only as a treat.</b> A small piece, once or twice a week.</p>
+          <p><b>Fresh water, always.</b> Changed every day.</p>
+          <p><b>Its first two weeks, the same food as here.</b> It goes home with two weeks of
+          it. After that, anything new goes in slowly, one food at a time, because a sudden
+          change upsets a rabbit's stomach. The care sheet goes through its diet in detail.</p>
+        </div>
+      </details>
+      
+      <details id="faq-litter">
+        <summary>Will it use a litter box?</summary>
+        <div class="faq-body">
+          <p><b>Usually, yes.</b> Rabbits choose a corner to go in, so a box in that corner gets
+          used. Put <a class="cite" href="https://rabbit.org/care/litter-training/" target="_blank" rel="noopener noreferrer" data-leaves="word">hay in the box or next to <span class="kw">it</span><span class="sr-only"> (opens in a new tab)</span></a>, because they like to eat while they go.</p>
+          <p><b>A young one takes a little patience.</b> Older rabbits often learn faster, and
+          spaying or neutering usually helps.</p>
+          <p><b>A few droppings outside the box are normal.</b> It's how a rabbit marks its
+          space. Dry, hard droppings are nothing to worry about.</p>
+          <p><b>Paper or wood-pellet litter, never clumping cat litter.</b> A thin layer, with
+          hay on top. Pine and cedar shavings are out too.</p>
         </div>
       </details>
       <details id="faq-grooming">
@@ -2894,38 +2997,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>No baths.</b> They keep themselves clean, and a bath is <a class="cite"
           href="https://rabbitwelfare.co.uk/welfare-need/bathing-rabbits/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">stressful and dangerous for a <span class="kw">rabbit</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
-        </div>
-      </details>
-      <details id="faq-indoors">
-        <summary>Indoors or outdoors?</summary>
-        <div class="faq-body">
-          <p><b>Indoors, especially here.</b> Rabbits handle cold far better than heat, and <a class="cite"
-          href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">anything over the mid-80s for long is
-          <span class="kw">dangerous</span><span class="sr-only"> (opens in a new tab)</span></a>. A Tucson summer is too hot for a hutch&nbsp;outside.</p>
-          <p><b>An indoor pen with daily run-around time.</b> That's what I recommend. Supervised,
-          because rabbits chew cables.</p>
-        </div>
-      </details>
-      
-      <details id="faq-cages">
-        <summary>Where do the rabbits live here?</summary>
-        <div class="faq-body">
-          <p><b>The cages are for the mothers, not for everyone.</b> The young rabbits are out running through the day, and so are the bucks&nbsp;(the males). A mother usually stays in, because she is
-          nursing.</p>
-          <p><b>A nursing mother needs her nest box to stay put.</b> A rabbit feeds her litter <a class="cite"
-          href="https://rabbit.org/care/babies/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">once or twice a day, and only when she feels <span class="kw">safe</span><span class="sr-only"> (opens in a new tab)</span></a>.
-          The box has to be where she left it, quiet, with nobody else in it. So a mother and her litter are housed on their own, as <a class="cite"
-          href="https://extension.psu.edu/rabbit-production"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">the university guide to raising <span class="kw">rabbits</span><span class="sr-only"> (opens in a new tab)</span></a>&nbsp;says.</p>
-          <p><b>Keeping them apart is how a pedigree stays true.</b> Nothing breeds by accident
-          here, so I know every rabbit's mother and father. That is what lets me tell you
-          exactly what you are buying.</p>
-          <p><b>A cage is not a home for a pet rabbit.</b> The welfare groups are right about
-          that, and <a class="litterlink" href="#faq-indoors">the indoors answer</a> says the same: an indoor pen with <a class="cite"
-          href="https://rabbitwelfare.co.uk/welfare-need/space-recommendations/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">room to <span class="kw">run</span><span class="sr-only"> (opens in a new tab)</span></a>, and time out every day.</p>
         </div>
       </details>
       
@@ -2947,47 +3018,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           same-day emergency list, and you keep my number for&nbsp;life.</p>
         </div>
       </details>
-      <details id="faq-boarding">
-        <summary>Can you look after my rabbit while I'm away?</summary>
-        <div class="faq-body">
-          <p><b>Yes, for rabbits I've bred.</b> One rabbit is $20 a day, dropping to $15 a day after
-          the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</p>
-          <p><b>Stays of up to three days are free.</b> A longer stay is charged from its first
-          day.</p>
-          <p><b>Priced by the day on purpose.</b> You only pay for the days you're away, and you
-          can extend without renegotiating anything.</p>
-          <p><b>Food, bedding and handling are included.</b> Hay, pellets, clean bedding and the same
-          daily handling they grew up with, and photos while you're gone.</p>
-          <p><b>Why only my own rabbits:</b> <a class="cite"
-          href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
-          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild rabbits, <a class="cite"
-          href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">survives for months in the <span class="kw">environment</span><span class="sr-only"> (opens in a new tab)</span></a> and travels
-          on shoes and clothing. Keeping outside rabbits away lowers the risk for every rabbit
-          here, the babies&nbsp;included.</p>
-          
-          <p><b>Rabbit from somewhere else?</b> Ask me anyway and I'll point you to a Tucson
-          boarder or exotic vet who takes outside rabbits.</p>
-        </div>
-      </details>
-
-      <details id="faq-vet">
-        <summary>Which vet should I use?</summary>
-        <div class="faq-body">
-          <p><b>Santa Cruz Veterinary Clinic, and book months ahead.</b> They see rabbits, and
-          for the price they are the best option in town. They're booked about four months
-          out, so book the first check-up the day you&nbsp;reserve.
-          5408 S 12th Ave, <a href="tel:+15208899643">(520) 889-9643</a>.</p>
-          <p><b>Their prices are on their own site.</b> In September 2026 <a class="cite"
-          href="https://www.santacruzpet.com/services/" target="_blank" rel="noopener noreferrer" data-leaves="word">their
-          <span class="kw">list</span><span class="sr-only"> (opens in a new tab)</span></a> read: office exam $50, recheck $35, rabbit neuter $160, rabbit spay $200,
-          X-rays $175, in-house bloodwork $100. Prices change, so their list is the one that
-          counts. They ask every client to spay or neuter, which I would tell you to do anyway.</p>
-          <p><b>Arizona Exotic Animal Hospital sees rabbits too.</b> It's on Grant Road. If Santa
-          Cruz can't fit you in, the hospital asks you to call for anything within two&nbsp;days: <a href="tel:+15203050055">(520) 305-0055</a>.</p>
-          <p><b>A sick rabbit does not wait for an appointment.</b> If you see any of <a class="litterlink" href="#faq-after">the same-day emergency signs</a>, call whoever can see you today.</p>
-        </div>
-      </details>
+      <h3 class="faq-topic" id="topic-after">After it's home</h3>
       <details id="faq-after">
         <summary>What if something goes wrong after pickup?</summary>
         <div class="faq-body">
@@ -3014,6 +3045,47 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>The deposit refunds are separate.</b> All of those happen before a rabbit ever
           leaves here. They're in <a class="litterlink" href="#faq-deposit">the deposit answer</a>.</p>
           
+        </div>
+      </details>
+
+      <details id="faq-vet">
+        <summary>Which vet should I use?</summary>
+        <div class="faq-body">
+          <p><b>Santa Cruz Veterinary Clinic, and book months ahead.</b> They see rabbits, and
+          for the price they are the best option in town. They're booked about four months
+          out, so book the first check-up the day you&nbsp;reserve.
+          5408 S 12th Ave, <a href="tel:+15208899643">(520) 889-9643</a>.</p>
+          <p><b>Their prices are on their own site.</b> In September 2026 <a class="cite"
+          href="https://www.santacruzpet.com/services/" target="_blank" rel="noopener noreferrer" data-leaves="word">their
+          <span class="kw">list</span><span class="sr-only"> (opens in a new tab)</span></a> read: office exam $50, recheck $35, rabbit neuter $160, rabbit spay $200,
+          X-rays $175, in-house bloodwork $100. Prices change, so their list is the one that
+          counts. They ask every client to spay or neuter, which I would tell you to do anyway.</p>
+          <p><b>Arizona Exotic Animal Hospital sees rabbits too.</b> It's on Grant Road. If Santa
+          Cruz can't fit you in, the hospital asks you to call for anything within two&nbsp;days: <a href="tel:+15203050055">(520) 305-0055</a>.</p>
+          <p><b>A sick rabbit does not wait for an appointment.</b> If you see any of <a class="litterlink" href="#faq-after">the same-day emergency signs</a>, call whoever can see you today.</p>
+        </div>
+      </details>
+      <details id="faq-boarding">
+        <summary>Can you look after my rabbit while I'm away?</summary>
+        <div class="faq-body">
+          <p><b>Yes, for rabbits I've bred.</b> One rabbit is $20 a day, dropping to $15 a day after
+          the first week. A bonded pair sharing a pen is $30 a day, dropping to $22.</p>
+          <p><b>Stays of up to three days are free.</b> A longer stay is charged from its first
+          day.</p>
+          <p><b>Priced by the day on purpose.</b> You only pay for the days you're away, and you
+          can extend without renegotiating anything.</p>
+          <p><b>Food, bedding and handling are included.</b> Hay, pellets, clean bedding and the same
+          daily handling they grew up with, and photos while you're gone.</p>
+          <p><b>Why only my own rabbits:</b> <a class="cite"
+          href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
+          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild rabbits, <a class="cite"
+          href="https://cwhl.vet.cornell.edu/resource/rabbit-hemorrhagic-disease-virus"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">survives for months in the <span class="kw">environment</span><span class="sr-only"> (opens in a new tab)</span></a> and travels
+          on shoes and clothing. Keeping outside rabbits away lowers the risk for every rabbit
+          here, the babies&nbsp;included.</p>
+          
+          <p><b>Rabbit from somewhere else?</b> Ask me anyway and I'll point you to a Tucson
+          boarder or exotic vet who takes outside rabbits.</p>
         </div>
       </details>
     </div>
@@ -4469,6 +4541,17 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       out.sort(function(a,b){ return a.born<b.born?1:(a.born>b.born?-1:0); });
       return out;
     }
+    function litState(l){
+      if(l.never||typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return null;
+      var kits=RABBITS.filter(function(r){ return r&&r.dob===l.born; });
+      if(kits.length){
+        var n=kits.filter(function(r){ return r.status==='available'; }).length;
+        return n ? {cls:'open', text:n+' available'} : {cls:'hold', text:'All reserved'};
+      }
+      var opens=isoPlusDays(l.born,RESERVE_AT_DAYS);
+      if(opens&&opens>todayISO()) return {cls:'wait', text:'Not available until '+dayMon(opens)};
+      return {cls:'wait', text:'Not available yet'};
+    }
     function litterName(l){ return l.no || ('Litter born '+dayMon(l.born)); }
     function markStageNow(){
       var here={};
@@ -4491,10 +4574,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(l.line){ var dt=document.createElement('span'); dt.className='dot'; dt.textContent='\u00B7 '; ag.appendChild(dt); }
           ag.appendChild(document.createTextNode(l.age)); s.appendChild(ag);
           var tx=document.createElement('span'); tx.appendChild(b); tx.appendChild(s);
+          var st=litState(l);
+          if(st){ var pill=document.createElement('span'); pill.className='lit-state '+st.cls; pill.textContent=st.text; tx.appendChild(pill); }
           var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
           a.appendChild(tx); a.appendChild(ch);
           a.setAttribute('aria-label',litterName(l)+(l.line?', '+l.line:'')+', born '+niceDate(l.born)+
-            ', '+l.age+'. Open it in the litter archive.');
+            ', '+l.age+'.'+(st?' '+st.text+'.':'')+' Open it in the litter archive.');
           tag.appendChild(a);
         });
         var when=el.querySelector('.stage-when');
