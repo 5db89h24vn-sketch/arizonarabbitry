@@ -885,6 +885,8 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
   font-size:12px;font-weight:600;line-height:1.45;white-space:nowrap}
 .stage-lit .lit-state.open{background:var(--open-tint);border-color:var(--open-line);color:var(--open)}
 .stage-lit .lit-state.hold{background:var(--hold-tint);border-color:var(--hold-line);color:var(--hold)}
+
+.stage-lit .lit-state.wait{background:transparent;border-style:dashed}
 .stage.now .stage-when,.stage:target .stage-when{box-shadow:inset 0 2px 0 var(--moss)}
 @media(max-width:560px){
   .stages{gap:0;padding-left:30px}
@@ -1037,7 +1039,7 @@ summary:hover{color:var(--brick)}
 summary::after{content:'';position:absolute;right:6px;top:50%;width:10px;height:10px;
   border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
   transform:translateY(-70%) rotate(45deg);transition:transform .2s}
-details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+details[open]>summary::after{transform:translateY(-30%) rotate(225deg)}   
 .faq-body{padding:0 0 20px;color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:62ch}
 .faq-body p+p,.faq-body ul+p{margin-top:14px}   
 
@@ -1058,11 +1060,13 @@ details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
   border-radius:50%;background:var(--ink-faint)}
 
 .faq{border-top:0}
-.faq-topics-head{font-size:13.5px;color:var(--ink-faint);margin:0 0 8px}
-.doors.faq-topics{margin:0 0 6px}
-.faq-topic{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.12em;line-height:1.3;
-  text-transform:uppercase;color:var(--ink-soft);margin:0;padding:34px 0 12px;border-bottom:1px solid var(--line)}
-.faq-topic:first-of-type{padding-top:4px}
+
+.faq details.topic>summary{font-family:var(--sans);font-size:16px;font-weight:600;line-height:1.3;color:var(--ink);padding:15px 38px 15px 0}
+.faq details.topic>summary small{display:block;font-weight:400;font-size:13.5px;line-height:1.4;color:var(--ink-soft);margin-top:3px}
+.faq details.topic>summary b{font-weight:600}
+
+.faq details.topic[open]>details:first-of-type{border-top:1px solid var(--line-soft)}
+.faq details.topic>details:last-of-type{border-bottom:0}
 
 .form-sec{background:var(--band);color:#EFE8DE}
 
@@ -2221,7 +2225,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 </header>
   <div class="dock" id="dock">
     
-    <div class="dock-shell" id="dockShell" aria-hidden="true"><div class="ds-shade" id="dsShade"><div class="ds-shade-fx"><div class="ds-shade-shape" id="dsShadeShape"></div></div></div><div class="ds-glass" id="dsGlass"></div><svg class="ds-rim" id="dsRim" aria-hidden="true" focusable="false"><path/></svg></div>
+    <div class="dock-shell" id="dockShell" aria-hidden="true"><div class="ds-shade" id="dsShade"><div class="ds-shade-fx"><div class="ds-shade-shape" id="dsShadeShape"></div></div></div><div class="ds-glass" id="dsGlass"></div><svg class="ds-rim" id="dsRim" aria-hidden="true" focusable="false"><path d="M0 0"/></svg></div>
     <div class="dock-in">
 
       <nav class="mnav" id="mnav" aria-label="Page sections">
@@ -2342,7 +2346,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <p>Pick the litters you want. I'll email you the day they go on sale and nothing
         else. You can stop anytime. <a class="litterlink" href="/terms#privacy">How I keep your details</a>.</p>
         
-        <p data-fact="opens" class="wl-opens">The litter born 27 September opens for reservation from <time datetime="2026-10-25">25 October</time><span class="away"></span>.</p>
+        <p data-fact="opens" class="wl-opens">The litters born 18 and 27 September are coming soon. There's no set day: each one is listed once it's photographed and I've checked it's in good health, and the waitlist hears first.</p>
       </div>
       <div class="wl-side">
         <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
@@ -2393,7 +2397,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     <div class="about-story">
       
       <p class="lede"><b data-fact="breeds-now">These litters are Holland Lop crosses.</b>
-      <span data-fact="plan-now">Purebreds go on sale late October or early November, once I've seen which ones I'm keeping as they grow.</span>
+      <span data-fact="plan-now">The purebreds are coming soon, once I've seen which ones I'm keeping as they grow.</span>
       The crosses come from my <a class="litterlink" href="#p-lop" title="The mother: her photos and her litters">Holland
       Lop</a> and my <a class="litterlink" href="#p-angora" title="The father: his photos and his litters">Satin
       Angora</a>. My first <a class="litterlink"
@@ -2572,16 +2576,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   <div class="wrap">
     <div class="faq" style="text-align:left">
 
-      <p class="faq-topics-head">Jump to a topic</p>
-      <nav class="doors faq-topics" aria-label="FAQ topics">
-        <a href="#topic-buying"><span><b>How buying works</b><small>Price, deposit, delivery, going home</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#topic-checking"><span><b>Checking a breeder</b><small>What to ask, and what you can check here</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#topic-fit"><span><b>Is it right for you?</b><small>A first rabbit, cats and dogs, one or two</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#topic-care"><span><b>Everyday care</b><small>What to have ready, food, litter, grooming</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#topic-after"><span><b>After it's home</b><small>If something's wrong, the vet, boarding</small></span><i class="chev" aria-hidden="true"></i></a>
-      </nav>
-      <h3 class="faq-topic" id="topic-buying">How buying works</h3>
-      <details id="faq-how" open>
+      <details class="topic" id="topic-buying">
+        <summary><span><b>How buying works</b><small>Price, deposit, delivery, going home</small></span></summary>
+      <details id="faq-how">
         <summary>How does this work?</summary>
         <div class="faq-body">
           <p><b>Send me a text or a note.</b> Tell me about your home and who the rabbit is
@@ -2745,7 +2742,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           photos and video the whole way through, so the wait is easier.</p>
         </div>
       </details>
-      <h3 class="faq-topic" id="topic-checking">Checking a breeder</h3>
+      </details>
+      <details class="topic" id="topic-checking">
+        <summary><span><b>Checking a breeder</b><small>What to ask, and what you can check here</small></span></summary>
       <details id="faq-ask">
         <summary>What should I ask any breeder before I pay?</summary>
         <div class="faq-body">
@@ -2806,7 +2805,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           had.</p>
         </div>
       </details>
-      <h3 class="faq-topic" id="topic-fit">Is it right for you?</h3>
+      </details>
+      <details class="topic" id="topic-fit">
+        <summary><span><b>Is it right for you?</b><small>A first rabbit, cats and dogs, one or two</small></span></summary>
       <details id="faq-first">
         <summary>Is a rabbit right for me?</summary>
         <div class="faq-body">
@@ -2861,7 +2862,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           target="_blank" rel="noopener noreferrer" data-leaves="word">Supervision is required until 100% trust has been
           <span class="kw">achieved</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p><b>Always give the rabbit a way out.</b> A hiding place it can reach, and <a class="cite"
-          href="https://rabbitwelfare.co.uk/rabbits-living-with-other-pets/"
+          href="https://rabbitwelfare.co.uk/welfare-need/rabbits-living-with-other-pets/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">never leave a dog on its own with <span class="kw">rabbits</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </details>
@@ -2926,7 +2927,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           href="#faq-pair">a few more steps</a>, and I'll walk you through&nbsp;them.</p>
         </div>
       </details>
-      <h3 class="faq-topic" id="topic-care">Everyday care</h3>
+      </details>
+      <details class="topic" id="topic-care">
+        <summary><span><b>Everyday care</b><small>What to have ready, food, litter, grooming</small></span></summary>
       
       <details id="faq-setup">
         <summary>What should I have ready before it comes home?</summary>
@@ -2975,7 +2978,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <summary>Will it use a litter box?</summary>
         <div class="faq-body">
           <p><b>Usually, yes.</b> Rabbits choose a corner to go in, so a box in that corner gets
-          used. Put <a class="cite" href="https://rabbit.org/care/litter-training/" target="_blank" rel="noopener noreferrer" data-leaves="word">hay in the box or next to <span class="kw">it</span><span class="sr-only"> (opens in a new tab)</span></a>, because they like to eat while they go.</p>
+          used. Put <a class="cite" href="https://rabbit.org/care/litter-training-faq/" target="_blank" rel="noopener noreferrer" data-leaves="word">hay in the box or next to <span class="kw">it</span><span class="sr-only"> (opens in a new tab)</span></a>, because they like to eat while they go.</p>
           <p><b>A young one takes a little patience.</b> Older rabbits often learn faster, and
           spaying or neutering usually helps.</p>
           <p><b>A few droppings outside the box are normal.</b> It's how a rabbit marks its
@@ -3018,7 +3021,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           same-day emergency list, and you keep my number for&nbsp;life.</p>
         </div>
       </details>
-      <h3 class="faq-topic" id="topic-after">After it's home</h3>
+      </details>
+      <details class="topic" id="topic-after">
+        <summary><span><b>After it's home</b><small>If something's wrong, the vet, boarding</small></span></summary>
       <details id="faq-after">
         <summary>What if something goes wrong after pickup?</summary>
         <div class="faq-body">
@@ -3087,6 +3092,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>Rabbit from somewhere else?</b> Ask me anyway and I'll point you to a Tucson
           boarder or exotic vet who takes outside rabbits.</p>
         </div>
+      </details>
       </details>
     </div>
   </div>
@@ -3310,8 +3316,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     <div class="viewer-stage">
       
       <div class="viewer-frame">
-        
-        <picture class="vpic"><source id="viewerAvif" type="image/avif"><img id="viewerImg" alt=""></picture>
+
+        <picture class="vpic"><source id="viewerAvif" type="image/avif" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img id="viewerImg" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></picture>
         
         <video id="viewerVideo" playsinline preload="metadata" controls hidden></video>
         
@@ -4548,9 +4554,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var n=kits.filter(function(r){ return r.status==='available'; }).length;
         return n ? {cls:'open', text:n+' available'} : {cls:'hold', text:'All reserved'};
       }
-      var opens=isoPlusDays(l.born,RESERVE_AT_DAYS);
-      if(opens&&opens>todayISO()) return {cls:'wait', text:'Not available until '+dayMon(opens)};
-      return {cls:'wait', text:'Not available yet'};
+      return {cls:'wait', text:'Coming soon'};
     }
     function litterName(l){ return l.no || ('Litter born '+dayMon(l.born)); }
     function markStageNow(){
@@ -5050,6 +5054,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     if(vImg) vImg.addEventListener('load',hintOff);
     if(vImg) vImg.addEventListener('load',function(){
+      if(/^data:/.test(vImg.currentSrc||vImg.getAttribute('src')||'')) return;
       if(!shapeFor(vImg.getAttribute('src')||'') && vImg.naturalWidth)
         setAr(vImg.naturalWidth+'/'+vImg.naturalHeight);
     });
@@ -5748,11 +5753,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       setTimeout(jump,1200);
     }
     function openAnswer(ev){
-      var m=/^#(faq-[a-z]+)$/.exec(location.hash||(!ev&&window.__faqHash)||'');
+      var m=/^#(faq-[a-z]+|topic-[a-z]+)$/.exec(location.hash||(!ev&&window.__faqHash)||'');
       if(!m) return;
       var id=ALIASES[m[1]]||m[1];
       var d=document.getElementById(id);
       if(!d||d.tagName!=='DETAILS') return;
+      var wasHidden=false;
+      for(var up=d.parentElement; up; up=up.parentElement){ if(up.tagName==='DETAILS'&&!up.open){ wasHidden=true; up.open=true; } }
       d.open=true;
       var alias=(id!==m[1]);
       if(alias){ try{ history.replaceState(history.state,'','#'+id); }catch(e){} }
@@ -5763,10 +5770,25 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(document.readyState==='complete') put(); else window.addEventListener('load',put,{once:true});
         }
       }
-      else if(alias) settle(d);
+      else if(alias||wasHidden) settle(d);
     }
     openAnswer();
     window.addEventListener('hashchange',openAnswer);
+    (function(){
+      var topics=[].slice.call(document.querySelectorAll('#faq details.topic'));
+      topics.forEach(function(t){
+        var s=t.querySelector('summary'); if(!s||s.parentElement!==t) return;
+        s.addEventListener('click',function(){
+          if(t.open) return;                       /* this tap shuts it */
+          topics.forEach(function(o){ if(o!==t&&o.open) o.open=false; });
+          requestAnimationFrame(function(){ requestAnimationFrame(function(){
+            if(!t.open) return;
+            var r=t.getBoundingClientRect(), pad=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+            if(r.top<pad-2||r.top>innerHeight*0.4) t.scrollIntoView({block:'start'});
+          }); });
+        });
+      });
+    })();
     document.addEventListener('click',function(ev){
       var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
       if(!a) return;
