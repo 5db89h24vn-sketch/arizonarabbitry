@@ -987,6 +987,102 @@ const RABBITS = [
     photo:  "photos/marshmallow.jpg",
     feature: true,                             /* the hero since 27 Sept 2026, when Butterscotch sold: the dearest rabbit available, first on the rail, settled on the brick with nothing holding her */
     note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
+  },
+
+  /* THE FIRST PUREBREDS, listed 15 Oct 2026: S'Morri and Root Beer's three,
+     born 18 Sept. William, with ten photographs from the brick by the fountain:
+     "Post these two bunnies on the website. This is from the pure line. Sable
+     point and tort", then the third ("I had to separate it because he looks
+     like his twin brother"), then "correction, there's no gender": so no sex
+     is printed. The names and the lines are Claude's, from the photographs,
+     as for the August six. Each photograph is cut the way the August ones
+     were (listingphoto.py, the 4:3 window slid down the frame so the whole
+     rabbit and the ledge are in; Marshmallow's framing the reference, his
+     ask). Dated the day they arrived. The varieties are the parents' card
+     words: Sable point (S'Morri's), Tortoise (Root Beer's). */
+  {
+    name:   "Latte",
+    photos: [
+      { src: "photos/latte.jpg", date: "2026-10-15" },
+      { src: "photos/latte-2.jpg", date: "2026-10-15", note: "From the side, one eye open, flat on the brick." },
+      { src: "photos/latte-3.jpg", date: "2026-10-15", note: "Flat out, eyes shut." },
+      { src: "photos/latte-4.jpg", date: "2026-10-15", note: "Face down on the brick, eyes shut, both ears down." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  450,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Sable point",
+    dob:    "2026-09-18",
+    listedOn: "2026-10-15",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/latte.jpg",
+    note:   "The pale one of the three: a cream coat with the ears, nose and feet shaded grey-brown, which is what sable point means. Both ears down in the 15 October photos, settled on the brick by the fountain, flat out with eyes shut in two of them."
+  },
+
+  {
+    name:   "Mocha",
+    photos: [
+      { src: "photos/mocha.jpg", date: "2026-10-15" },
+      { src: "photos/mocha-2.jpg", date: "2026-10-15", note: "Face on, eyes shut, both ears down." },
+      { src: "photos/mocha-3.jpg", date: "2026-10-15", note: "Flat out on the brick, eyes shut, the fountain behind." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  400,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Tortoise",
+    dob:    "2026-09-18",
+    listedOn: "2026-10-15",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/mocha.jpg",
+    note:   "Tortoise: a warm brown coat with smoky grey-brown on the face, the ears and the haunches, the darker of the two torts. Both ears down in the 15 October photos, settled on the brick, eyes shut for the face-on one."
+  },
+
+  {
+    name:   "Nutmeg",
+    photos: [
+      { src: "photos/nutmeg.jpg", date: "2026-10-15" },
+      { src: "photos/nutmeg-2.jpg", date: "2026-10-15", note: "Face on, eyes shut, both ears out to the sides." },
+      { src: "photos/nutmeg-3.jpg", date: "2026-10-15", note: "From the side, one eye open, the fountain behind." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  400,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Tortoise",
+    dob:    "2026-09-18",
+    listedOn: "2026-10-15",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/nutmeg.jpg",
+    note:   "Tortoise like Mocha, and the two are hard to tell apart: a shade warmer and fluffier in the 15 October photos, one ear down and one out to the side in two of them, sitting up on the brick by the fountain."
   }
 
 ];
