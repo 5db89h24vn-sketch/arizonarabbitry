@@ -1050,10 +1050,12 @@ const RABBITS = [
     dob:    "2026-09-18",
     listedOn: "2026-10-15",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",
+    reservedOn: "2026-10-16",                  /* sold outright, so reserved the same day (his rule, 7 Oct 2026) */
+    soldOn: "2026-10-16",                      /* his word, 16 Oct 2026, afternoon: "Mocha has just been sold!! I'm delivering it right now" */
     ear:    "",
     weights: [],
+    departed: true,                            /* delivered the day it was sold, so off the rail at once; no went-home date is printed */
     photo:  "photos/mocha.jpg",
     note:   "Tortoise: a warm brown coat with smoky grey-brown on the face, the ears and the haunches, the darker of the two torts. Both ears down in the 15 October photos, settled on the brick, eyes shut for the face-on one."
   },
