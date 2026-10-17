@@ -4548,12 +4548,19 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(l.lost) return;
           var wk=weekOf(l.born), st=wk?stageOf(wk):null;
           if(st) out.push({born:l.born, id:'stage-w'+st.from, stage:st, no:l.no||'', line:l.line||'',
-                           listed:!!(l.kits||[]).length, never:!!l.never,
+                           listed:!!(l.kits||[]).length, never:!!l.never, count:l.count||'',
                            age:ageAt(l.born, todayISO())});
         });
       }catch(e){}
       out.sort(function(a,b){ return a.born<b.born?1:(a.born>b.born?-1:0); });
       return out;
+    }
+    var COUNT_WORDS={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12};
+    function litterCount(l){
+      var c=String(l.count||''), m=/\b(\w+) raised\b/i.exec(c)||/^(\w+) born\b/i.exec(c);
+      if(!m) return 0;
+      var w=m[1].toLowerCase();
+      return /^\d+$/.test(w)?+w:(COUNT_WORDS[w]||0);
     }
     function litState(l){
       if(l.never||typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return null;
@@ -4562,7 +4569,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var n=kits.filter(function(r){ return r.status==='available'; }).length;
         return n ? {cls:'open', text:n+' available'} : {cls:'hold', text:'All reserved'};
       }
-      return {cls:'wait', text:'Coming soon'};
+      var c=litterCount(l);
+      return {cls:'wait', text:c?c+' coming soon':'Coming soon'};
     }
     function litterName(l){ return l.no || ('Litter born '+dayMon(l.born)); }
     function markStageNow(){
