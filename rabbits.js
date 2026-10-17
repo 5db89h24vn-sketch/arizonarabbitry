@@ -169,6 +169,16 @@
       It leaves the rail three days after the sold date (or after this
       date, when there was no sold date), the same rule as Sold.
 
+   ── TO MARK ONE PAYING IN PARTS (17 Oct 2026, your rule) ──
+      set      partsFrom: "2026-10-10"   (the day the first payment came in)
+      Its card and its listing say "Paying in parts", and its record
+      says "Payments started 10 Oct 2026" in place of Reserved. No
+      amount and no name, ever: only the words and the two days.
+      When the last payment comes in, set  paidOff: "2026-12-01"
+      and the words become "Paid in parts", with "Paid off 1 Dec 2026"
+      in the record. Its status follows the rabbit as before (reserved
+      while it is here, adopted once it has gone home).
+
    ── THE PEDIGREE FIELDS: EAR NUMBER AND WEIGHT ──
       8 Sept 2026, William: "I want this website to paint the full timeline,
       it's more help for when we need to start making pedigrees." A pedigree
@@ -819,6 +829,8 @@ const RABBITS = [
     reservedOn: "2026-10-10",                  /* his word, 10 Oct 2026, 2:25pm Tucson: "Mark honey as reserved" */
     soldOn: "",
     wentHome: "2026-10-16",                    /* his word, 16 Oct 2026, 8:10pm Tucson: picked up "around the middle of the day" that day */
+    partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no amount, no name */
+    paidOff: "",                               /* the day the last payment comes in: then "Paid in parts" and "Paid off <date>" */
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
