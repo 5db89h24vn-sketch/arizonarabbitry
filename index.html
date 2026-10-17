@@ -695,6 +695,8 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .bunny-body{padding:16px 17px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
 .bunny-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .bunny-top h3{font-size:20px}
+
+.bunny .parts{margin:-5px 0 0;font-size:14px;font-weight:600;line-height:1.3;color:var(--ink)}
 .price{font-family:var(--serif);font-weight:500;font-size:18px;color:var(--ink-soft);white-space:nowrap}
 
 .price s{font-size:.8em;color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1px;margin-right:2px}
@@ -4828,6 +4830,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
         '<span class="price">'+priceHTML(r)+'</span></div>'+
+        (r.status==='available'?'<p class="parts">Pay in parts</p>':'')+
         '<p class="meta">'+meta+'</p>'+dealHTML(r,false)+growHTML(r,false)+
         '<p class="desc">'+esc(r.note)+'</p>'+
         '<a class="bunny-cta" href="'+href+'">'+cta+arrow+'</a></div></div>';
