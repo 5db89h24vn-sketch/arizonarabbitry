@@ -4934,7 +4934,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(r.status==='reserved'&&r.partsFrom&&!r.paidOff) stLabel='';
       return '<div class="bunny'+dim+'"'+ask+' data-shots="'+esc(r.name)+'" data-rid="'+esc(addrOf(r))+'">'+
         '<a class="bunny-link" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name+(r.status==='available'?', $'+priceOf(r):'')+(pmk?', '+pmk.charAt(0).toLowerCase()+pmk.slice(1).replace(/\u00A0/g,' '):'')+(stLabel?', '+stLabel.charAt(0).toLowerCase()+stLabel.slice(1):''))+': photos and details"></a>'+
-        '<div class="bunny-media">'+(pmk?'<span class="ptags"><span class="planmark">'+pmh+'</span>':'')+(stLabel?'<span class="status '+st[0]+(r.status==='adopted'?'':homeMark(r))+'">'+stLabel+'</span>':'')+
+        '<div class="bunny-media">'+(pmk?'<span class="ptags"><span class="planmark">'+pmh+'</span>':'')+(stLabel?'<span class="status '+st[0]+homeMark(r)+'">'+stLabel+'</span>':'')+
         (pmk?'</span>':'')+newHTML(r)+
         holdImg('<picture>'+avifSource(cover,cardSizes)+'<img src="'+esc(cover)+'"'+sizedAttrs(cover,cardSizes)+' alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
         ' loading="lazy"'+(DEEP_LINK?' fetchpriority="low"':'')+' onerror="cardErr(this)"></picture>')+badge+'</div>'+
