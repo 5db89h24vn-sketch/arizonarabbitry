@@ -191,8 +191,18 @@
       only the words and the two days.
       When the last payment comes in, set  paidOff: "2026-12-01"
       and the mark becomes PAID IN PARTS, with "Paid off 1 Dec 2026"
-      in the record. Its status follows the rabbit as before (reserved
-      while it is here, adopted once it has gone home).
+      in the record. Its status follows the rabbit, as for any sale:
+        still here, being paid for:  status "reserved" (the card says
+          PAYING IN PARTS over "Since 12 Oct", never "Reserved": paying
+          in parts is not a reservation; the News says "Paying in
+          parts: Pecan." and the log "Payments started for Pecan.")
+        paid off, still here:  status "sold", soldOn: the payoff day
+          (sold means paid for and still here: "Sold 1 Dec" with the
+          house, under PAID IN PARTS)
+        gone home:  status "adopted", wentHome: the day it left
+          (PAYING IN PARTS or PAID IN PARTS over "Went home 16 Oct")
+      A rabbit on a plan stays on the front page until it is paid off,
+      then three days, like a sale.
 
    ── THE PEDIGREE FIELDS: EAR NUMBER AND WEIGHT ──
       8 Sept 2026, William: "I want this website to paint the full timeline,
@@ -979,6 +989,8 @@ const RABBITS = [
     ready:  "",
     status: "reserved",
     reservedOn: "2026-10-12",                  /* his word, 12 Oct 2026, about 8:55pm Tucson: "make sure you mark pecan as reserved today!!" */
+    partsFrom: "2026-10-12",                   /* his word, 17 Oct 2026, about 9:30pm: "pecan is also being paid in parts, but it hasn't been taken home yet ... it's being paid in parts, which is different from a reservation"; the first payment was the day she was reserved (his rule: the payment start date takes the reservation's place) */
+    paidOff: "",
     soldOn: "",
     ear:    "",
     weights: [],
