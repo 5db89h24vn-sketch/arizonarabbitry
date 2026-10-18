@@ -182,25 +182,26 @@
       It leaves the rail three days after the sold date (or after this
       date, when there was no sold date), the same rule as Sold.
 
-   ── TO MARK ONE PAYING IN PARTS (17 Oct 2026, your rule) ──
+   ── TO MARK ONE ON A PAYMENT PLAN (17 Oct 2026, your rule; called
+      "payment plan" since 18 Oct, the name people know) ──
       set      partsFrom: "2026-10-10"   (the day the first payment came in)
-      Its card and its listing wear a PAYING IN PARTS mark on the
+      Its card and its listing wear a PAYMENT PLAN mark on the
       photograph (above the state badge), its tile on the litters page
       says it above its state, and its record says "Payments started
       10 Oct 2026" in place of Reserved. No amount and no name, ever:
       only the words and the two days.
       When the last payment comes in, set  paidOff: "2026-12-01"
-      and the mark becomes PAID IN PARTS, with "Paid off 1 Dec 2026"
+      and the mark becomes PLAN PAID OFF, with "Paid off 1 Dec 2026"
       in the record. Its status follows the rabbit, as for any sale:
         still here, being paid for:  status "reserved" (the card says
-          PAYING IN PARTS over "Since 12 Oct", never "Reserved": paying
-          in parts is not a reservation; the News says "Paying in
-          parts: Pecan." and the log "Payments started for Pecan.")
+          PAYMENT PLAN over "Since 12 Oct", never "Reserved": a
+          payment plan is not a reservation; the News says "On a
+          payment plan: Pecan." and the log "Pecan, payments started.")
         paid off, still here:  status "sold", soldOn: the payoff day
           (sold means paid for and still here: "Sold 1 Dec" with the
-          house, under PAID IN PARTS)
+          house, under PLAN PAID OFF)
         gone home:  status "adopted", wentHome: the day it left
-          (PAYING IN PARTS or PAID IN PARTS over "Went home 16 Oct")
+          (PAYMENT PLAN or PLAN PAID OFF over "Went home 16 Oct")
       A rabbit on a plan stays on the front page until it is paid off,
       then three days, like a sale.
 
@@ -855,7 +856,7 @@ const RABBITS = [
     soldOn: "",
     wentHome: "2026-10-16",                    /* his word, 16 Oct 2026, 8:10pm Tucson: picked up "around the middle of the day" that day */
     partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no amount, no name */
-    paidOff: "",                               /* the day the last payment comes in: then "Paid in parts" and "Paid off <date>" */
+    paidOff: "",                               /* the day the last payment comes in: then "Plan paid off" and "Paid off <date>" */
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
