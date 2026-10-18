@@ -6,7 +6,7 @@
 <script data-lang-redirect>(function(){try{if(localStorage.getItem('lang')==='es'&&!/[?&]lang=en\b/.test(location.search)){location.replace('es-litters.html'+location.search+location.hash);}}catch(e){}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang-switch]');if(a){try{localStorage.setItem('lang',a.getAttribute('hreflang'));}catch(x){}}});})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="preload" as="script" href="rabbits.js?v=2c8d8b5f" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=9a6af80f" data-fact="data-preload">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -480,6 +480,8 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .wt-gone img{opacity:.82;filter:saturate(.75)}
 
 .wt small.homemark{display:flex;align-items:center;gap:5px}
+
+.wt small.wt-plan{color:var(--ink);font-weight:600;margin-top:-7px}
 @media(max-width:360px){ .wt .yr{display:none} }
 
 @media(max-width:340px){ .wt b{font-size:13.5px;letter-spacing:-.01em} }
@@ -1212,7 +1214,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=2c8d8b5f"></script>
+<script src="rabbits.js?v=9a6af80f"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -1399,6 +1401,8 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       el.textContent='Available'; var tp=document.createElement('span'); tp.className='tprice';
       tp.textContent=' \u00B7 $'+tilePrice(r); el.appendChild(tp); el.className='st-open';
     }
+    var pm=(r.status==='available'||!r.partsFrom)?'':(r.paidOff?'Paid in parts':'Paying in parts');
+    if(pm){ var pl=document.createElement('small'); pl.className='wt-plan'; pl.textContent=pm; el.parentNode.insertBefore(pl, el.nextSibling); }
   });
 
   try{
