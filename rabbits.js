@@ -84,6 +84,19 @@
       is the same (the struck old price, the reason with the saving worked
       out, no SALE mark). Leave it out for a line-wide price.
 
+   ── TO CHANGE A PRICE, WITH NO STRIKE (17 Oct 2026, Marshmallow) ──
+      set      price:    350          (the new price: the card and the
+                                       listing show it alone)
+      add      repriced: [ { on: "2026-10-17", was: 375 } ]
+                                      (the day it changed and what it
+                                       was until then; a later change adds
+                                       one more { on, was } to the list)
+      The News page's change log keeps the day the rabbit was listed at
+      the price of that day, and says each change on its own day:
+      "Marshmallow $375 → $350." Without it the log would rewrite the
+      listing day with today's price. For a drop people should see struck
+      through, use the price drop above instead.
+
    ── A MARK ON THE RABBIT, SAID AND SHOWN (5 Oct 2026) ──
       A cosmetic mark a buyer should see before they ask (Biscuit's ear):
 
@@ -172,8 +185,8 @@
    ── TO MARK ONE PAYING IN PARTS (17 Oct 2026, your rule) ──
       set      partsFrom: "2026-10-10"   (the day the first payment came in)
       Its card and its listing wear a PAYING IN PARTS mark on the
-      photograph (under the state badge), its tile on the litters page
-      says it under its state, and its record says "Payments started
+      photograph (above the state badge), its tile on the litters page
+      says it above its state, and its record says "Payments started
       10 Oct 2026" in place of Reserved. No amount and no name, ever:
       only the words and the two days.
       When the last payment comes in, set  paidOff: "2026-12-01"
@@ -986,7 +999,8 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  375,
+    price:  350,                               /* his word, 17 Oct 2026, evening: "make marshmallow 350" (was 375) */
+    repriced: [ { on: "2026-10-17", was: 375 } ],  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
