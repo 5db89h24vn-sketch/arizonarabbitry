@@ -682,7 +682,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8.9.4c.5 2.1 2.3 3.2 3.4 4.8.9 1.3 1.4 2.7 1.4 4.3 0 3.1-2.5 5.6-5.7 5.6S2.3 12.6 2.3 9.5c0-1.9.9-3.5 2.2-4.7.2 1.3.9 2.3 2 2.7-.6-2.4.6-4.6 2.4-7.1z'/%3E%3C/svg%3E") center/contain no-repeat}
 
 .homemark{display:inline-flex;align-items:center;gap:5px}
-.homemark::before{content:'';flex:none;width:11px;height:11px;margin:-1px 0;background:currentColor;border-radius:0;
+.homemark::before,.planmark::before{content:'';flex:none;width:11px;height:11px;margin:-1px 0;background:currentColor;border-radius:0;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2 1.6 6.6c-.3.2-.3.7 0 .9.2.2.6.2.8 0l.4-.4V13c0 .9.7 1.6 1.6 1.6h7.2c.9 0 1.6-.7 1.6-1.6V7.1l.4.4c.2.2.6.2.8 0 .3-.2.3-.7 0-.9L8 1.2Zm0 5.7c-.7-1-2.6-1-2.8.5-.1 1.1 1.3 2.5 2.8 3.6 1.5-1.1 2.9-2.5 2.8-3.6-.2-1.5-2.1-1.5-2.8-.5Z'/%3E%3C/svg%3E") no-repeat center/contain;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2 1.6 6.6c-.3.2-.3.7 0 .9.2.2.6.2.8 0l.4-.4V13c0 .9.7 1.6 1.6 1.6h7.2c.9 0 1.6-.7 1.6-1.6V7.1l.4.4c.2.2.6.2.8 0 .3-.2.3-.7 0-.9L8 1.2Zm0 5.7c-.7-1-2.6-1-2.8.5-.1 1.1 1.3 2.5 2.8 3.6 1.5-1.1 2.9-2.5 2.8-3.6-.2-1.5-2.1-1.5-2.8-.5Z'/%3E%3C/svg%3E") no-repeat center/contain}
 
@@ -690,8 +690,6 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .status.st-open::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:currentColor}
 .status.st-hold:not(.homemark)::before{content:'';flex:none;width:11px;height:11px;margin:-1px 0;border-radius:0;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.75h8a1 1 0 0 1 1 1v11.1a.65.65 0 0 1-1 .55L8 11.8l-4 2.6a.65.65 0 0 1-1-.55V2.75a1 1 0 0 1 1-1Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.75h8a1 1 0 0 1 1 1v11.1a.65.65 0 0 1-1 .55L8 11.8l-4 2.6a.65.65 0 0 1-1-.55V2.75a1 1 0 0 1 1-1Z'/%3E%3C/svg%3E") center/contain no-repeat}
-.planmark::before{content:'';flex:none;width:12px;height:11px;margin:-1px 0;border-radius:0;background:currentColor;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M2.5 3h11A1.5 1.5 0 0 1 15 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 11.5v-7A1.5 1.5 0 0 1 2.5 3ZM2.6 6v1.6h10.8V6H2.6Zm0 3.2v2.1c0 .2.1.3.3.3h10.2c.2 0 .3-.1.3-.3V9.2H2.6Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M2.5 3h11A1.5 1.5 0 0 1 15 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 11.5v-7A1.5 1.5 0 0 1 2.5 3ZM2.6 6v1.6h10.8V6H2.6Zm0 3.2v2.1c0 .2.1.3.3.3h10.2c.2 0 .3-.1.3-.3V9.2H2.6Z'/%3E%3C/svg%3E") center/contain no-repeat}
 .newmark:not(.salemark)::before{content:'';flex:none;width:11px;height:11px;margin:-1px 0;border-radius:0;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1.25c.65 3.9 2.85 6.1 6.75 6.75-3.9.65-6.1 2.85-6.75 6.75C7.35 10.85 5.15 8.65 1.25 8 5.15 7.35 7.35 5.15 8 1.25Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1.25c.65 3.9 2.85 6.1 6.75 6.75-3.9.65-6.1 2.85-6.75 6.75C7.35 10.85 5.15 8.65 1.25 8 5.15 7.35 7.35 5.15 8 1.25Z'/%3E%3C/svg%3E") center/contain no-repeat}
 
@@ -2693,7 +2691,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">$1,672&nbsp;to&nbsp;$3,354</span><span class="sr-only"> (opens in a new tab)</span></a> on Chewy's vet-reviewed figures,
           and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
           <p><b>10% off for military and first responders.</b> That includes police and firefighters. Say so when you get in touch.</p>
-          <p><b>You can buy on a payment plan.</b> Text or call me, and we'll work out a plan that fits you.
+          <p><b>You can buy on a payment plan.</b> If paying all at once is hard, that's what it's for: you pay over time and still take your rabbit home. Text or call me, and we'll work out a plan that fits you.
           <a class="litterlink" href="#faq-pay">How paying works</a>.</p>
           <p><b>Ask any seller the same questions.</b> Here are <a class="litterlink" href="#faq-ask">the eight I'd ask</a>.</p>
         </div>
@@ -2760,7 +2758,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit reserves the rabbit. Pay the rest when
           you pick it up, or on a payment plan. Cash is easiest at pickup.</p>
 
-          <p><b>You can buy on a payment plan.</b> Text or call me, and we'll work out a plan that fits you.</p>
+          <p><b>You can buy on a payment plan.</b> If paying all at once is hard, that's what it's for: you pay over time and still take your rabbit home. Text or call me, and we'll work out a plan that fits you.</p>
           
           <p><b>Every payment gets a receipt from me.</b> Deposit or balance, whichever way you
           pay, I send you written confirmation the moment it lands, so you have it on record.</p>
@@ -3420,7 +3418,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       
       <div class="whypanel paypanel" id="viewerPayPanel" hidden>
         <p class="payplan" id="viewerPayPlan" hidden></p>
-        <p><b>You can buy on a payment plan.</b> Text or call me, and we'll work out a plan that fits you.
+        <p><b>You can buy on a payment plan.</b> If paying all at once is hard, that's what it's for: you pay over time and still take your rabbit home. Text or call me, and we'll work out a plan that fits you.
         <a class="litterlink" id="viewerPayMore" href="#faq-pay">How paying works</a>.</p>
         <p class="paynow" id="viewerPayNow" hidden></p>
       </div>
@@ -4872,7 +4870,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var stLabel=stWord+(stDate?' '+stDate:'');
       var stHTML=esc(stWord);
       var stMeta=stDate?'<p class="plan-meta state-meta">'+esc(stWord)+' <span class="pd">'+esc(stDate).replace(' ','\u00A0')+'</span></p>':'';
-      if(r.status==='reserved'&&r.partsFrom&&!r.paidOff) stLabel='';
+      if(r.partsFrom&&!r.paidOff&&r.status!=='available') stLabel='';
       var planInBody=!!(pmk&&stLabel);
       return '<div class="bunny'+dim+'"'+ask+' data-shots="'+esc(r.name)+'" data-rid="'+esc(addrOf(r))+'">'+
         '<a class="bunny-link" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name+(r.status==='available'?', $'+priceOf(r):'')+(pmk?', '+pmk.charAt(0).toLowerCase()+pmk.slice(1).replace(/\u00A0/g,' '):'')+(stLabel?', '+stLabel.charAt(0).toLowerCase()+stLabel.slice(1):''))+': photos and details"></a>'+
