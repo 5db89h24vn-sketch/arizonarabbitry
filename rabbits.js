@@ -183,25 +183,43 @@
       date, when there was no sold date), the same rule as Sold.
 
    ── TO MARK ONE ON A PAYMENT PLAN (17 Oct 2026, your rule; called
-      "payment plan" since 18 Oct, the name people know) ──
+      "payment plan" since 18 Oct, the name people know; the badge says
+      PAYING since 19 Oct, an action like RESERVED and SOLD) ──
       set      partsFrom: "2026-10-10"   (the day the first payment came in)
-      Its card and its listing wear a PAYMENT PLAN 10 OCT badge on the
-      photograph (that day, the first payment's), its tile on the
-      litters page says "Payment plan 10 Oct 2026", and its record says
+      Its card wears a PAYING badge on the photograph (Sold's amber, a
+      dashed border: not finished yet, with the house and its clock) and
+      says "Paying since 10 Oct" under the price; its tile on the litters
+      page says "Paying since 10 Oct 2026", and its record says
       "Payments started 10 Oct 2026" in place of Reserved. No amount and
-      no name, ever: only the words and the two days.
+      no name, ever: only the words and the days.
+      HOW FAR ALONG (19 Oct 2026, your words: "a percentage of completion
+      for the payment without additional details on when payments have
+      been paid"):
+      set      planPct: 43        the share of the price received so far,
+                                  a whole number from 0 to 100; the record
+                                  says "Paid so far 43%". Leave it out and
+                                  the record says nothing of it.
+      THE DAY IT SHOULD END ("tie in a projected completion payment date"):
+      set      planDue: "2026-12-10"   the day you expect the last payment;
+                                  the record says "Paid off by 10 Dec
+                                  2026". Empty, nothing is said.
+      Both are yours to type and yours to keep current; both leave the
+      record the day the plan is paid off.
       When the last payment comes in, set  paidOff: "2026-12-01"
-      and the record says "Paid off 1 Dec 2026"; the badge keeps its
-      start day. Its status follows the rabbit, as for any sale:
+      and the record says "Paid off 1 Dec 2026"; the card goes back to
+      its state's badge (SOLD or WENT HOME, with the house) and keeps the
+      plan's line under the price, "Paid off 1 Dec". Its status follows
+      the rabbit, as for any sale:
         still here, being paid for:  status "reserved" (the card says
-          PAYMENT PLAN 12 OCT alone, never "Reserved": a payment plan
-          is not a reservation; the News says "On a payment plan:
-          Pecan." and the log "Pecan, payments started.")
+          PAYING alone, never "Reserved": a payment plan is not a
+          reservation; the News says "On a payment plan: Pecan." and
+          the log "Pecan, payments started.")
         paid off, still here:  status "sold", soldOn: the payoff day
           (sold means paid for and still here: "Sold 1 Dec" with the
-          house, under PAYMENT PLAN 10 OCT)
-        gone home:  status "adopted", wentHome: the day it left
-          (PAYMENT PLAN 10 OCT over "Went home 16 Oct")
+          house, over "Paid off 1 Dec")
+        gone home:  status "adopted", wentHome: the day it left (while
+          the plan runs the card still says PAYING; the record says
+          "Went home 16 Oct 2026")
       A rabbit on a plan stays on the front page until it is paid off,
       then three days, like a sale.
 
@@ -857,6 +875,8 @@ const RABBITS = [
     wentHome: "2026-10-16",                    /* his word, 16 Oct 2026, 8:10pm Tucson: picked up "around the middle of the day" that day */
     partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no amount, no name */
     paidOff: "",                               /* the day the last payment comes in: then "Paid off <date>" in its record */
+    planPct: 43,                               /* the share of her price received so far (19 Oct 2026, his rule: a percentage, no amounts and no days) */
+    planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
@@ -992,6 +1012,8 @@ const RABBITS = [
     reservedOn: "2026-10-12",                  /* his word, 12 Oct 2026, about 8:55pm Tucson: "make sure you mark pecan as reserved today!!" */
     partsFrom: "2026-10-12",                   /* his word, 17 Oct 2026, about 9:30pm: "pecan is also being paid in parts, but it hasn't been taken home yet ... it's being paid in parts, which is different from a reservation"; the first payment was the day she was reserved (his rule: the payment start date takes the reservation's place) */
     paidOff: "",
+    planPct: 14,                               /* the share of her price received so far (19 Oct 2026, his rule: a percentage, no amounts and no days) */
+    planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
     soldOn: "",
     ear:    "",
     weights: [],
