@@ -915,7 +915,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
 </header>
 
 <script data-fact="arrival">(function(){
-  if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia) return;
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)');   // read again before a delayed start and on every frame (Round 110)
+  if (RM.matches) return;
   var seen = false; try { seen = !!sessionStorage.getItem('arrived'); } catch (e) {}
   if (seen) return;
   var s = document.querySelector('header .brand-side'); if (!s || !window.requestAnimationFrame) return;
@@ -956,6 +958,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
     return HEAD + ' C' + w[0] + ' ' + w[1] + ' ' + w[2] + ' C' + w[3] + ' ' + w[4] + ' ' + w[5] + ' C' + w[6] + ' ' + w[7] + ' ' + w[8] + ' C' + w[9] + ' ' + w[10] + ' ' + PR[0] + ' ' + PR[1] + ' ' + TAIL;
   }
   function go() {
+    if (RM.matches) return;
     if (document.visibilityState === 'hidden') {
       document.addEventListener('visibilitychange', function once() {
         if (document.visibilityState !== 'hidden') { document.removeEventListener('visibilitychange', once); setTimeout(go, 150); }
@@ -986,7 +989,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
     function frame(now) {
       if (start === null) start = now;
       var t = now - start;
-      if (t >= T) { s.innerHTML = rest; s.removeAttribute('data-arriving'); return; }
+      if (t >= T || RM.matches) { s.innerHTML = rest; s.removeAttribute('data-arriving'); return; }
       var b = body(t), aL = earL(t)[0], aR = earR(t)[0];
       if (Math.abs(b[0]) < 0.001 && Math.abs(b[1] - 1) < 0.0001 && Math.abs(b[2] - 1) < 0.0001) g.removeAttribute('transform');
       else g.setAttribute('transform', 'translate(0 ' + b[0].toFixed(3) + ') translate(' + ox + ' ' + oy + ') scale(' + b[1].toFixed(4) + ' ' + b[2].toFixed(4) + ') translate(' + (-ox) + ' ' + (-oy) + ')');

@@ -931,8 +931,8 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
   background:var(--card);color:var(--hold);box-shadow:var(--lift-photo);pointer-events:none}
 
 .planmark::before{content:'';flex:none;width:11px;height:11px;margin:-1px 0;background:currentColor;border-radius:0;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2 1.6 6.6c-.3.2-.3.7 0 .9.2.2.6.2.8 0l.4-.4V13c0 .9.7 1.6 1.6 1.6h7.2c.9 0 1.6-.7 1.6-1.6V7.4A4.1 4.1 0 0 1 9.08 2.11L8 1.2Zm0 5.7c-.7-1-2.6-1-2.8.5-.1 1.1 1.3 2.5 2.8 3.6 1.5-1.1 2.9-2.5 2.8-3.6-.2-1.5-2.1-1.5-2.8-.5ZM13 0a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 1 1 0-6.6ZM13 1a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 1 0 0-4.6ZM12.55 1.5h.9v1.35h.95v.9h-1.85Z'/%3E%3C/svg%3E") no-repeat center/contain;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2 1.6 6.6c-.3.2-.3.7 0 .9.2.2.6.2.8 0l.4-.4V13c0 .9.7 1.6 1.6 1.6h7.2c.9 0 1.6-.7 1.6-1.6V7.4A4.1 4.1 0 0 1 9.08 2.11L8 1.2Zm0 5.7c-.7-1-2.6-1-2.8.5-.1 1.1 1.3 2.5 2.8 3.6 1.5-1.1 2.9-2.5 2.8-3.6-.2-1.5-2.1-1.5-2.8-.5ZM13 0a3.3 3.3 0 1 1 0 6.6 3.3 3.3 0 1 1 0-6.6ZM13 1a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 1 0 0-4.6ZM12.55 1.5h.9v1.35h.95v.9h-1.85Z'/%3E%3C/svg%3E") no-repeat center/contain}
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 .8a7.2 7.2 0 1 1 0 14.4A7.2 7.2 0 1 1 8 .8ZM8 2.4a5.6 5.6 0 1 0 0 11.2A5.6 5.6 0 1 0 8 2.4ZM7.2 3.6h1.6v3.6h3.4v1.6H7.2Z'/%3E%3C/svg%3E") no-repeat center/contain;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 .8a7.2 7.2 0 1 1 0 14.4A7.2 7.2 0 1 1 8 .8ZM8 2.4a5.6 5.6 0 1 0 0 11.2A5.6 5.6 0 1 0 8 2.4ZM7.2 3.6h1.6v3.6h3.4v1.6H7.2Z'/%3E%3C/svg%3E") no-repeat center/contain}
 .planmark[hidden]{display:none}
 
 .planmark .pd,.status .sd,.plan-meta .pd{white-space:nowrap}
@@ -2521,7 +2521,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 </header>
 
 <script data-fact="arrival">(function(){
-  if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia) return;
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)');   // read again before a delayed start and on every frame (Round 110)
+  if (RM.matches) return;
   var seen = false; try { seen = !!sessionStorage.getItem('arrived'); } catch (e) {}
   if (seen) return;
   var s = document.querySelector('header .brand-side'); if (!s || !window.requestAnimationFrame) return;
@@ -2562,6 +2564,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     return HEAD + ' C' + w[0] + ' ' + w[1] + ' ' + w[2] + ' C' + w[3] + ' ' + w[4] + ' ' + w[5] + ' C' + w[6] + ' ' + w[7] + ' ' + w[8] + ' C' + w[9] + ' ' + w[10] + ' ' + PR[0] + ' ' + PR[1] + ' ' + TAIL;
   }
   function go() {
+    if (RM.matches) return;
     if (document.visibilityState === 'hidden') {
       document.addEventListener('visibilitychange', function once() {
         if (document.visibilityState !== 'hidden') { document.removeEventListener('visibilitychange', once); setTimeout(go, 150); }
@@ -2592,7 +2595,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function frame(now) {
       if (start === null) start = now;
       var t = now - start;
-      if (t >= T) { s.innerHTML = rest; s.removeAttribute('data-arriving'); return; }
+      if (t >= T || RM.matches) { s.innerHTML = rest; s.removeAttribute('data-arriving'); return; }
       var b = body(t), aL = earL(t)[0], aR = earR(t)[0];
       if (Math.abs(b[0]) < 0.001 && Math.abs(b[1] - 1) < 0.0001 && Math.abs(b[2] - 1) < 0.0001) g.removeAttribute('transform');
       else g.setAttribute('transform', 'translate(0 ' + b[0].toFixed(3) + ') translate(' + ox + ' ' + oy + ') scale(' + b[1].toFixed(4) + ' ' + b[2].toFixed(4) + ') translate(' + (-ox) + ' ' + (-oy) + ')');
