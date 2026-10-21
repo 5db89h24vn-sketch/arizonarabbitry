@@ -72,6 +72,8 @@
   --faint-on-ink:rgba(239,232,222,.55);
   
   --moss:#57694F; --moss-dk:#3F4F39; --moss-tint:#EDF0E9;
+  
+  --ped-dam:#B24E62; --ped-dam-ink:#8E3447; --ped-dam-tint:#FBEFF1;
   --open:#2C6B41; --open-line:#C3DECB; --open-tint:#EEF4EF;
   --hold:#8A5A08; --hold-line:#EBD9B6; --hold-tint:#FBF4E6;
   
@@ -2149,9 +2151,9 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
 @media (prefers-reduced-motion:reduce){ .pc-up,.pc-up.on{transition:opacity .2s linear,visibility 0s} .pc-up .up,.pc-up.on .up{transform:none;transition:none} }
 
 .viewer-tags{display:flex;flex-wrap:wrap;gap:3px 14px;margin:7px 0 0;padding:0;list-style:none;
-  font-size:12.5px;font-weight:500;line-height:1.35;color:var(--moss-dk)}
+  font-size:12.5px;font-weight:500;line-height:1.35}
 .viewer-tags[hidden]{display:none}
-.viewer-tags li{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.viewer-tags li{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;color:var(--ink-soft)}
 .viewer-tags li::before{content:'';flex:none;width:12px;height:12px;background:var(--moss);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
 
@@ -2164,14 +2166,22 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
 .viewer-ped>small{display:block;margin-bottom:5px;font-size:10.5px;font-weight:500;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-faint);line-height:1.35;white-space:nowrap}
 .ped-list,.ped-list ul{list-style:none;margin:0;padding:0}
-.ped-list ul{margin:0 0 0 5px;padding:0 0 0 11px;border-left:1px solid var(--line)}
-.ped-row{display:grid;grid-template-columns:50px minmax(0,1fr);column-gap:9px;align-items:baseline;padding:2px 0}
-.ped-rel{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+.ped-list ul{margin:0 0 0 5px;padding:0 0 0 12px;border-left:2px solid var(--line)}
+
+.ped-list>li.side-sire>ul{border-left-color:var(--ink-soft)}
+.ped-list>li.side-dam>ul{border-left-color:var(--ped-dam)}
+.ped-list>li.side-sire ul ul{border-left-color:color-mix(in srgb,var(--ink-soft) 40%,transparent)}
+.ped-list>li.side-dam ul ul{border-left-color:color-mix(in srgb,var(--ped-dam) 55%,transparent)}
+.ped-list>li+li{margin-top:6px}
+.ped-row{display:block;padding:3px 0}
+.side-sire .ped-rel{color:var(--ink-soft)}
+.side-dam .ped-rel{color:var(--ped-dam-ink)}
+.ped-rel{display:block;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
   line-height:1.35;white-space:nowrap}
 .ped-info{display:flex;flex-wrap:wrap;align-items:baseline;gap:1px 8px;min-width:0}
 .ped-who{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.45;white-space:nowrap}
 .ped-what{font-size:13px;color:var(--ink-faint);line-height:1.45;white-space:nowrap}
-.ped-best{color:var(--moss-dk);font-weight:500}
+.ped-best{color:var(--ink);font-weight:600}
 .ped-info .chip{font-size:13px}
 .ped-more{margin:10px 0 0}
 
@@ -2202,6 +2212,23 @@ html.pedopen,html.pedopen body{overflow:hidden}
 .ped-cell.g3{padding-left:32px}
 .ped-box{border:1px solid var(--line);border-radius:6px;background:var(--card);padding:8px 11px 9px}
 .ped-none{min-height:20px;border-style:dashed;background:transparent}
+
+.ped-cell.side-sire .ped-box{border-left:4px solid var(--ink-soft);background:var(--paper-2)}
+.ped-cell.side-dam .ped-box{border-left:4px solid var(--ped-dam);background:var(--ped-dam-tint)}
+.ped-cell.side-sire .ped-rel{color:var(--ink-soft)}
+
+.ped-cell.side-sire .chip{background:var(--card)}
+.ped-cell.side-sire .chip:hover,.ped-cell.side-sire .chip:focus-visible{background:var(--line)}
+.ped-cell.side-dam .ped-rel{color:var(--ped-dam-ink)}
+
+.ped-how{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;margin:0 0 14px;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.ped-how .ped-fam{display:inline-flex;align-items:center;gap:7px;font-weight:600;white-space:nowrap}
+.ped-how .ped-fam::before{content:'';flex:none;width:12px;height:12px;border-radius:3px}
+.ped-how .ped-fam.side-sire{color:var(--ink-soft)}
+.ped-how .ped-fam.side-sire::before{background:var(--ink-soft)}
+.ped-how .ped-fam.side-dam{color:var(--ped-dam-ink)}
+.ped-how .ped-fam.side-dam::before{background:var(--ped-dam)}
+.ped-how .ped-say{flex-basis:100%}
 .ped-box .ped-rel{display:block;margin-bottom:1px}
 .ped-nm{display:block;font-size:15px;font-weight:600;line-height:1.35;color:var(--ink);white-space:nowrap}
 .ped-nm .chip{font-size:13.5px}
@@ -2213,7 +2240,7 @@ html.pedopen,html.pedopen body{overflow:hidden}
 .ped-br{height:0}
 .ped-f b{flex:none;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
 
-.ped-me{background:var(--paper-2);border-color:transparent;padding:12px 14px 13px}
+.ped-me{background:var(--card);border-color:var(--ink-faint);padding:12px 14px 13px}
 .ped-me .ped-nm{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:-.015em;line-height:1.2}
 
 .ped-self{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;border-radius:4px}
@@ -2273,11 +2300,20 @@ html.pedopen,html.pedopen body{overflow:hidden}
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
   html.pedopen .ped-bar{display:none}
   html.pedopen .ped-page{max-width:none;margin:0;padding:0}
-  .pedsheet .ped-head{margin:0 0 .12in;padding:0 0 .08in;border-color:#999}
+  .pedsheet .ped-head{margin:0 0 .08in;padding:0 0 .06in;border-color:#999}
   .pedsheet .ped-brand{font-size:14pt;color:#000}
   .pedsheet .ped-head h2{font-size:15pt;color:#000}
-  .pedsheet .ped-tree{--cg:.26in;--rg:.045in}
-  .pedsheet .ped-box{border-color:#888;background:#fff;padding:.05in .08in;break-inside:avoid}
+  
+  .pedsheet .ped-tree{--cg:.24in;--rg:.04in;grid-template-columns:minmax(0,.95fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,1.25fr)}
+  .pedsheet .ped-box{border-color:#888;background:#fff;padding:.035in .08in .04in;break-inside:avoid}
+  .pedsheet .ped-cell.side-sire .ped-box{border-left:3pt solid #57504A;background:#F7F3ED}
+  .pedsheet .ped-cell.side-dam .ped-box{border-left:3pt solid var(--ped-dam);background:#FDF4F5}
+  .pedsheet .ped-cell.side-sire .ped-rel{color:#3F3934}
+  .pedsheet .ped-cell.side-dam .ped-rel{color:#7A2C3C}
+  .pedsheet .ped-how{margin:0 0 .08in;font-size:8pt;line-height:1.3;color:#222;gap:.02in .16in}
+  .pedsheet .ped-how .ped-fam.side-sire{color:#3F3934}
+  .pedsheet .ped-how .ped-fam.side-dam{color:#7A2C3C}
+  .pedsheet .ped-how .ped-say{flex-basis:auto}
   .pedsheet .ped-me{background:#fff;border-color:#000}
   .pedsheet .ped-rel{font-size:6.5pt;color:#444}
   
@@ -2285,7 +2321,7 @@ html.pedopen,html.pedopen body{overflow:hidden}
   .pedsheet .ped-nm{font-size:10pt;color:#000}
   .pedsheet .ped-me .ped-nm{font-size:16pt}
   .pedsheet .ped-cell.g3 .ped-nm{font-size:9pt}
-  .pedsheet .ped-fs,.pedsheet .ped-cell.g3 .ped-fs{font-size:8pt;line-height:1.35;color:#000;gap:.01in .14in;margin-top:.03in}
+  .pedsheet .ped-fs,.pedsheet .ped-cell.g3 .ped-fs{font-size:8pt;line-height:1.28;color:#000;gap:0 .14in;margin-top:.02in}
   .pedsheet .ped-me .ped-fs{font-size:9pt;margin-top:.06in}
   .pedsheet .ped-me .ped-f{padding:.035in 0}
   .pedsheet .ped-me .ped-f b{width:.8in;font-size:6.5pt}
@@ -2314,6 +2350,7 @@ html[data-look="dim"]{color-scheme:dark;
     --brick-fill:#A0522D; --brick-fill-dk:#8C4626; --on-brick:#F6EEE3;
     --brick-tint-line:#67442F; --callout-line:#67442F;
     --moss:#A3B595; --moss-dk:#BCCBB0; --moss-tint:#313826;
+    --ped-dam:#E08A99; --ped-dam-ink:#EBA0AD; --ped-dam-tint:#3D2B2D;
     --open:#88C9A1; --open-line:#3B5B46; --open-tint:#26362A;
     --hold:#E5BC6E; --hold-line:#6A5326; --hold-tint:#3C301D;
     --hold-dash:#987D4F;
@@ -5628,6 +5665,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       return n.href?('<a class="chip ped-go" href="'+esc(n.href)+'">'+nm+'<i class="chev" aria-hidden="true"></i></a>')
                    :('<b class="ped-who">'+nm+'</b>');
     }
+    var PED_REL=[null,['Father','Mother'],['Grandfather','Grandmother'],['Great-grandfather','Great-grandmother']];
+    function pedRel(g,dam){ return PED_REL[g][dam?1:0]; }
     function pedLine(n,rel){
       var r=n.rec, legs=pedLegs(r);
       return '<div class="ped-row"><span class="ped-rel">'+rel+'</span><span class="ped-info">'+pedWho(n)+
@@ -5636,17 +5675,17 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         (pedBest(r)?' <span class="ped-what ped-best">Best in Show</span>':'')+
         '</span></div>';
     }
-    function pedList(n,rel){
+    function pedList(n,g,dam,side){
       if(!n) return '';
-      var kids=(n.sire||n.dam)?('<ul>'+pedList(n.sire,'Father')+pedList(n.dam,'Mother')+'</ul>'):'';
-      return '<li>'+pedLine(n,rel)+kids+'</li>';
+      var kids=(n.sire||n.dam)?('<ul>'+pedList(n.sire,g+1,false,side)+pedList(n.dam,g+1,true,side)+'</ul>'):'';
+      return '<li'+(g===1?' class="side-'+side+'"':'')+'>'+pedLine(n,pedRel(g,dam))+kids+'</li>';
     }
     function paintPed(s){
       if(!vPed) return;
       if(!s){ vPed.hidden=true; vPed.innerHTML=''; return; }
       var t=pedTree(s);
       vPed.innerHTML='<small>Pedigree</small>'+pedKeptHTML(s)+
-        '<ul class="ped-list">'+pedList(t.sire,'Father')+pedList(t.dam,'Mother')+'</ul>'+
+        '<ul class="ped-list">'+pedList(t.sire,1,false,'sire')+pedList(t.dam,1,true,'dam')+'</ul>'+
         '<p class="ped-more"><a class="chip" href="#ped-'+s.kind+'-'+esc(s.id)+'">See the full pedigree<i class="chev" aria-hidden="true"></i></a></p>';
       vPed.hidden=false;
     }
@@ -5659,8 +5698,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function pedFacts(r){
       var w=((+r.lb)||(+r.oz))?esc(weightText(r)):'';
-      return '<span class="ped-fs">'+pedField('Ear #',r.ear?esc(r.ear):'')+pedField('Weight',w)+'<span class="ped-br"></span>'+
-        pedField('Variety',r.variety?esc(r.variety):'')+(r.reg?pedField('Reg #',esc(r.reg)):'')+'</span>';
+      return '<span class="ped-fs">'+pedField('Ear number',r.ear?esc(r.ear):'')+pedField('Weight',w)+'<span class="ped-br"></span>'+
+        pedField('Color',r.variety?esc(r.variety):'')+(r.reg?pedField('Registration',esc(r.reg)):'')+'</span>';
     }
     function pedBox(n,rel){
       if(!n) return '<div class="ped-box ped-none"></div>';
@@ -5669,9 +5708,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function pedMe(s){
       var f=[];
       f.push(pedField('Breed',esc(s.breed)));
-      f.push(pedField('Variety',s.variety?esc(s.variety):''));
+      f.push(pedField('Color',s.variety?esc(s.variety):''));
       f.push(pedField('Sex',s.sex?(s.sex==='doe'?'Doe (female)':'Buck (male)'):''));
-      f.push(pedField('Ear #',s.ear?esc(s.ear):''));
+      f.push(pedField('Ear number',s.ear?esc(s.ear):''));
       f.push(s.dob?pedField('Born',pedWhen(s.dob)):pedField('Born',''));
       f.push(pedField('Weight',s.weight?esc(weightText(s.weight)):''));
       return '<div class="ped-box ped-me"><span class="ped-nm"><a class="ped-self" href="'+esc(s.href)+'">'+esc(s.name)+
@@ -5680,16 +5719,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function pedCells(s,t){
       var out=[];
       out.push('<div class="ped-cell g0 i0'+((t.sire||t.dam)?' kids':'')+'">'+pedMe(s)+'</div>');
-      (function walk(n,g,i){
+      (function walk(n,g,i,side){
         var kids=g<3&&n&&(n.sire||n.dam);
-        out.push('<div class="ped-cell g'+g+' i'+i+' up'+(kids?' kids':'')+'">'+pedBox(n,i%2?'Mother':'Father')+'</div>');
-        if(g<3){ walk(n&&n.sire,g+1,i*2); walk(n&&n.dam,g+1,i*2+1); }
-      })(t.sire,1,0);
-      (function walk(n,g,i){
+        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1))+'</div>');
+        if(g<3){ walk(n&&n.sire,g+1,i*2,side); walk(n&&n.dam,g+1,i*2+1,side); }
+      })(t.sire,1,0,'sire');
+      (function walk(n,g,i,side){
         var kids=g<3&&n&&(n.sire||n.dam);
-        out.push('<div class="ped-cell g'+g+' i'+i+' up'+(kids?' kids':'')+'">'+pedBox(n,i%2?'Mother':'Father')+'</div>');
-        if(g<3){ walk(n&&n.sire,g+1,i*2); walk(n&&n.dam,g+1,i*2+1); }
-      })(t.dam,1,1);
+        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1))+'</div>');
+        if(g<3){ walk(n&&n.sire,g+1,i*2,side); walk(n&&n.dam,g+1,i*2+1,side); }
+      })(t.dam,1,1,'dam');
       return out.join('');
     }
     function pedSheetHTML(s){
@@ -5704,6 +5743,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }
       return '<div class="ped-head"><a class="ped-brand" href="#top">Arizona Rabbits</a>'+
         '<h2 id="pedTitle" tabindex="-1">'+esc(s.breed)+' pedigree</h2></div>'+
+        '<p class="ped-how"><span class="ped-fam side-sire">Father\u2019s side</span> <span class="ped-fam side-dam">Mother\u2019s side</span> '+
+        '<span class="ped-say">Each rabbit\u2019s father is above its mother. A line is something not on record yet, to fill in by\u00a0hand.</span></p>'+
         '<div class="ped-tree">'+pedCells(s,t)+'</div>'+
         '<div class="ped-foot">'+foot+'</div>';
     }
