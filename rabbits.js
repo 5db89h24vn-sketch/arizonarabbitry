@@ -579,6 +579,7 @@ const PARENTS = {
     dam:     "goldie",
     note:    "Pedigreed.",
     photos: [
+      { src: "photos/father-rootbeer-portrait.jpg", date: "2026-10-21" },   /* his portrait of him, 21 Oct 2026: his face on the site, the first frame */
       { src: "photos/father-copper.jpg", date: "2026-10-04" },
       { src: "photos/father-copper-2.jpg", date: "2026-10-04" }
     ]
@@ -609,6 +610,7 @@ const PARENTS = {
     dam:     "blackbird",
     note:    "Pedigreed.",
     photos: [
+      { src: "photos/mother-smorri-portrait.jpg", date: "2026-10-21" },   /* his portrait of her, 21 Oct 2026: her face on the site, the first frame */
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
     ]
   },
@@ -626,9 +628,12 @@ const PARENTS = {
     ear:     "BAKALAKI",
     dob:     "2025-06-21",
     pedigreed: true,
+    sire:    "ynolacagueis",         /* the father, in ANCESTORS below (her card, 21 Oct 2026) */
+    dam:     "denada",
     note:    "Pedigreed. Hand-picked for me by her breeder, who has been breeding for more than 30 years. Both her parents are Grand Champions.",
-    gcParents: true,   /* the label "Grand Champion parents" (21 Oct 2026), from the note's own words */
+    gcParents: true,   /* the label "Grand Champion parents" (21 Oct 2026), from the note's own words; her card gives both their Grand Champion numbers */
     photos: [
+      { src: "photos/mother-bakalaki-portrait.jpg", date: "2026-10-21" },   /* his portrait of her, 21 Oct 2026: her face on the site, the first frame */
       { src: "photos/mother-bakalaki-2.jpg", date: "2026-10-06" },
       { src: "photos/mother-bakalaki.jpg", date: "2026-10-06" }
     ]
@@ -718,7 +723,32 @@ const ANCESTORS = {
   /* S'Morri's mother's side (Kilo above is her grandfather too) */
   blackbird:         { name: "Black Bird", variety: "Broken", ear: "KC4S", dob: "2024-06-04", sire: "kilo", dam: "applejack" },
   applejack:         { name: "Apple Jack", variety: "Broken", ear: "CA2", dob: "2023-02-01", sire: "chimnickchonga", dam: "appletini" },
-  appletini:         { name: "Appletini", variety: "Broken black", ear: "APLN", lb: 3 }
+  appletini:         { name: "Appletini", variety: "Broken black", ear: "APLN", lb: 3 },
+  /* BAKALAKI'S LINE (21 Oct 2026). William, with the cards of every Netherland
+     Dwarf here: "this is the pedigree list for every single Netherland dwarf in
+     our rabbitry ... our super strong line ... handpicked for us". From her
+     card, field by field; every name without its breeder's prefix (his 4 Oct
+     rule), and no breeder, town, phone or email. reg: the card's registration
+     number. gc: the card gives a Grand Champion number (said "Grand Champion";
+     show legs alone are never read as one). award: a win the card names, in
+     plain words. A field the card leaves blank is left out. */
+  ynolacagueis:      { name: "Y No La Cagueis", variety: "Black tortoise", ear: "YNOLACAGUEIS", reg: "H827U", gc: true, sire: "bzinga", dam: "seattle" },
+  bzinga:            { name: "Bzinga", variety: "Black otter", ear: "BZINGA", lb: 2, oz: 8, reg: "D848S", gc: true, sire: "spook", dam: "swig" },
+  spook:             { name: "Spook", variety: "Black otter", ear: "SPK", lb: 2, oz: 7, reg: "R751P", gc: true, legs: 18, award: "Best Opposite Sex of Breed, 2018 nationals" },
+  swig:              { name: "Swig", variety: "Chestnut", ear: "SWIG", lb: 2, oz: 8, reg: "Z623P", gc: true },
+  seattle:           { name: "Seattle", variety: "Orange", ear: "SEATTLE", lb: 2, oz: 10, sire: "dubs", dam: "mango" },
+  dubs:              { name: "Dubs", variety: "Orange", ear: "DB", lb: 2, oz: 2 },
+  mango:             { name: "Mango", variety: "Orange", ear: "MANGO", lb: 2, oz: 8 },
+  denada:            { name: "De Nada", variety: "Opal", ear: "DE NADA", lb: 2, oz: 8, reg: "H832U", gc: true, sire: "doohicky", dam: "muenster" },
+  doohicky:          { name: "Doohicky", variety: "Chestnut", ear: "DOOHICKY", lb: 2, oz: 2, reg: "P881S", gc: true, sire: "strut", dam: "blessyourheart" },
+  strut:             { name: "Strut", variety: "Steel", ear: "STRUT", lb: 2, oz: 6, reg: "H690R", gc: true, legs: 42, award: "Dwarf of the Year 2019" },
+  /* Bless Your Heart's card puts her whole name in the ear-number box; no ear
+     carries a tattoo that long, so it is left blank (the build's rule: an ear
+     number is a few characters, exactly as written in the ear) */
+  blessyourheart:    { name: "Bless Your Heart", variety: "Ruby-eyed white", lb: 2, oz: 4, reg: "D842S", gc: true },
+  muenster:          { name: "Muenster", variety: "Black otter", ear: "MUENSTER", lb: 2, oz: 8, reg: "H680R", gc: true, sire: "sweettooth", dam: "gorgonzola" },
+  sweettooth:        { name: "Sweet Tooth", variety: "Chocolate otter", ear: "SWEET TOOTH", lb: 2, oz: 6 },
+  gorgonzola:        { name: "Gorgonzola", variety: "Blue silver marten", ear: "ZOLA", lb: 2, oz: 7 }
 };
 
 /* THE LITTERS YOU ARE PLANNING (7 Sept 2026). William: "an option to be alerted
