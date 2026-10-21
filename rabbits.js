@@ -1127,8 +1127,8 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,                               /* his word, 17 Oct 2026, evening: "make marshmallow 350" (was 375) */
-    repriced: [ { on: "2026-10-17", was: 375 } ],  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct */
+    price:  300,                               /* his word, 21 Oct 2026, 1:42pm: "Also make marshmallow $300" (350 from 17 Oct, 375 before) */
+    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 } ],  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct and "$350 → $300" on 21 Oct */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
