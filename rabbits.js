@@ -549,6 +549,8 @@ const PARENTS = {
     ear:     "RJ1T",
     dob:     "2025-08-20",
     pedigreed: true,
+    sire:    "rubberbandman",        /* the father, in ANCESTORS below */
+    dam:     "jenny",
     note:    "Pedigreed.",
     photos: [
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
@@ -573,6 +575,8 @@ const PARENTS = {
     ear:     "TA4T",
     dob:     "2025-07-26",
     pedigreed: true,
+    sire:    "tinytim",        /* the father, in ANCESTORS below */
+    dam:     "goldie",
     note:    "Pedigreed.",
     photos: [
       { src: "photos/father-copper.jpg", date: "2026-10-04" },
@@ -601,6 +605,8 @@ const PARENTS = {
     ear:     "SB1T",
     dob:     "2025-08-02",
     pedigreed: true,
+    sire:    "mrstealyogirl",        /* the father, in ANCESTORS below */
+    dam:     "blackbird",
     note:    "Pedigreed.",
     photos: [
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
@@ -621,11 +627,98 @@ const PARENTS = {
     dob:     "2025-06-21",
     pedigreed: true,
     note:    "Pedigreed. Hand-picked for me by her breeder, who has been breeding for more than 30 years. Both her parents are Grand Champions.",
+    gcParents: true,   /* the label "Grand Champion parents" (21 Oct 2026), from the note's own words */
     photos: [
       { src: "photos/mother-bakalaki-2.jpg", date: "2026-10-06" },
       { src: "photos/mother-bakalaki.jpg", date: "2026-10-06" }
     ]
   }
+};
+
+/* THE PEDIGREES (21 Oct 2026). William, with the three pedigree cards (Tango,
+   Root Beer, S'Morri): "I want people to be able to click on a rabbit and
+   automatically see its pedigree ... interactive to where they can click on a
+   rabbit that is in our website ... a direct redirect to that rabbit so they
+   can read all about it ... an effort for increased transparency on our lines
+   ... it also needs to be printable as well, since I will give people a paper
+   copy for every rabbit." And: "this is your foundation".
+
+   Every rabbit on the three cards is here once, by a short key, with the
+   facts its card prints for it, and its own father and mother by key: sire is
+   the father, dam the mother (the pedigree's own words, kept to this file;
+   the page says Father and Mother). A parent in PARENTS names its two the
+   same way (sire, dam), and a baby names its parents as it always has
+   (mother, father), so every pedigree on the site is worked out from here:
+   three generations back from the rabbit, the depth ARBA asks for. A baby's
+   three generations reach Root Beer's and S'Morri's grandparents; the cards'
+   oldest row shows on the parents' own pedigrees.
+
+   THE CARDS' FACTS AND NOTHING ELSE. Names as he asked for Tango on 4 Oct
+   ("remove the LMB part"): no rabbitry's name in front of any rabbit's, no
+   breeder's name, town or number. What a card leaves blank is left out here,
+   and the page never prints or implies it. The one registration number on the
+   cards, Cream Puff's, is carried (reg): ARBA asks for a registered ancestor's
+   number on a pedigree. Every rabbit on the cards is a Holland Lop.
+     variety  the colour as the card has it, written plainly
+              ("Tort. - Blue" is "Blue tortoise")
+     ear      the ear number (tattoo)
+     lb, oz   the weight
+     legs     show wins toward a Grand Champion title, as the card counts them
+     wins     the card's show awards, in words, with the day
+     reg      the ARBA registration number, where the card has one
+     dob      the birth date (the cards print one for the first two rows only)
+   Two left off on purpose: Cylindrical's name on the card goes on with a slur,
+   and her ear number spells it, so both stop here; Jazz's weight reads
+   "35 lb" on both cards that carry it, a typing slip, so it is not printed.
+   Jenny and Goldie carry the same ear number on their cards, CJ2S, printed as
+   the cards have it.
+
+   TO ADD A CARD: one line per rabbit, its key in lowercase letters, and its
+   father and mother by their keys (add them too, or leave sire/dam out where
+   the card ends). Then give the parent in PARENTS its sire and dam. */
+const ANCESTORS = {
+  /* Tango's father's side */
+  rubberbandman:     { name: "Rubber Band Man", variety: "Orange", ear: "QA3S", legs: 1, dob: "2024-04-24", sire: "quety", dam: "eeyore" },
+  quety:             { name: "Quety", variety: "Orange", ear: "CP22CT", lb: 3, oz: 2, legs: 3, dob: "2022-04-11", sire: "creampuff", dam: "frostedflakes" },
+  creampuff:         { name: "Cream Puff", variety: "Frosty", ear: "TVC1", lb: 3, oz: 8, legs: 2, reg: "N712R" },
+  frostedflakes:     { name: "Frosted Flakes", variety: "Frosty", ear: "FF1", lb: 2 },
+  eeyore:            { name: "Eeyore", variety: "Blue tortoise", ear: "BFEE", lb: 4, oz: 8, dob: "2023-07-17", sire: "indiana", dam: "fedora" },
+  indiana:           { name: "Indiana", variety: "Tortoise", ear: "INA", legs: 3 },
+  fedora:            { name: "Fedora", variety: "Black tortoise", ear: "FD" },
+  /* Tango's mother's side (her card leaves Jenny's colour blank) */
+  jenny:             { name: "Jenny", ear: "CJ2S", dob: "2024-06-07", sire: "chimnickchonga", dam: "gem" },
+  chimnickchonga:    { name: "Chimnickchonga", variety: "Tortoise", ear: "CHIM", lb: 3, legs: 14, dob: "2018-11-18",
+                       wins: [ { award: "Best in Show", on: "2020-01-18" }, { award: "Best Reserve in Show", on: "2020-01-18" },
+                               { award: "Best Opposite Sex", on: "2020-01-18" }, { award: "Best of Breed", on: "2019-07-26" } ],
+                       sire: "martin", dam: "lyzza" },
+  martin:            { name: "Martin", variety: "Black tortoise", ear: "X23", lb: 3, legs: 6 },
+  lyzza:             { name: "Lyzza", variety: "Black tortoise", ear: "RZLZ", lb: 3, oz: 4, legs: 1 },
+  gem:               { name: "Gem", variety: "Broken", ear: "LFT1", dob: "2020-11-12", sire: "bruce", dam: "corona" },
+  bruce:             { name: "Bruce", variety: "Broken", ear: "FTBF", lb: 3, oz: 12, legs: 8 },
+  corona:            { name: "Corona", variety: "Black tortoise", ear: "CORONA" },
+  /* Root Beer's father's side */
+  tinytim:           { name: "Tiny Tim", variety: "Black tortoise", ear: "KM4S", dob: "2024-05-04", sire: "kilo", dam: "may" },
+  kilo:              { name: "Kilo", variety: "Black", ear: "KILO", lb: 3, dob: "2023-02-14", sire: "chimnickchonga", dam: "jazz" },
+  jazz:              { name: "Jazz", variety: "Broken black", ear: "JAZ", legs: 7 },
+  may:               { name: "May", variety: "Orange", ear: "MAY", lb: 3, dob: "2020-06-01", sire: "creampuff", dam: "june" },
+  june:              { name: "June", variety: "Blue tortoise", ear: "JUNE", lb: 4 },
+  /* Root Beer's mother's side */
+  goldie:            { name: "Goldie", variety: "Orange", ear: "CJ2S", dob: "2024-03-04", sire: "chimnickchonga", dam: "cylindrical" },
+  cylindrical:       { name: "Cylindrical", variety: "Broken chinchilla", lb: 2, dob: "2020-09-09", sire: "jefferson", dam: "applejuice" },
+  jefferson:         { name: "Jefferson", variety: "Broken black", ear: "JEFF", lb: 3, legs: 6 },
+  applejuice:        { name: "Apple Juice", variety: "Broken black tortoise", ear: "APL" },
+  /* S'Morri's father's side */
+  mrstealyogirl:     { name: "Mr Steal Yo Girl", variety: "Tortoise", ear: "CR4S", dob: "2024-03-11", sire: "thad", dam: "rose" },
+  thad:              { name: "Thad", variety: "Orange", ear: "TH", dob: "2022-06-27", sire: "heavenlystarlight", dam: "tequilasunrise" },
+  heavenlystarlight: { name: "Heavenly Starlight", variety: "Chestnut agouti", ear: "HN2", lb: 3, oz: 13 },
+  tequilasunrise:    { name: "Tequila Sunrise", variety: "Orange", ear: "TS" },
+  rose:              { name: "Rose", variety: "Tortoise", ear: "ROSE", lb: 4, dob: "2022-11-23", sire: "jacques", dam: "cw" },
+  jacques:           { name: "Jacques", variety: "Black tortoise", ear: "JC" },
+  cw:                { name: "CW", variety: "Black tortoise" },
+  /* S'Morri's mother's side (Kilo above is her grandfather too) */
+  blackbird:         { name: "Black Bird", variety: "Broken", ear: "KC4S", dob: "2024-06-04", sire: "kilo", dam: "applejack" },
+  applejack:         { name: "Apple Jack", variety: "Broken", ear: "CA2", dob: "2023-02-01", sire: "chimnickchonga", dam: "appletini" },
+  appletini:         { name: "Appletini", variety: "Broken black", ear: "APLN", lb: 3 }
 };
 
 /* THE LITTERS YOU ARE PLANNING (7 Sept 2026). William: "an option to be alerted

@@ -18,7 +18,7 @@
 
 <script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
 
-<link rel="preload" as="script" href="rabbits.js?v=ca42e8a0" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=aa1608f5" data-fact="data-preload">
 
 <script>document.documentElement.classList.add('boot')</script>
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/marshmallow.1200.6a1cdc34.avif";l.setAttribute("imagesrcset","img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
@@ -2147,6 +2147,163 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
   .pc-up.on .up{transform:none;transition:transform .32s cubic-bezier(.2,.9,.25,1.2)}
 }
 @media (prefers-reduced-motion:reduce){ .pc-up,.pc-up.on{transition:opacity .2s linear,visibility 0s} .pc-up .up,.pc-up.on .up{transform:none;transition:none} }
+
+.viewer-tags{display:flex;flex-wrap:wrap;gap:3px 14px;margin:7px 0 0;padding:0;list-style:none;
+  font-size:12.5px;font-weight:500;line-height:1.35;color:var(--moss-dk)}
+.viewer-tags[hidden]{display:none}
+.viewer-tags li{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.viewer-tags li::before{content:'';flex:none;width:12px;height:12px;background:var(--moss);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
+
+.pedmark{position:absolute;bottom:9px;left:9px;z-index:2;display:inline-flex;align-items:center;
+  padding:4px 9px;border-radius:100px;background:rgba(24,20,18,.72);color:#fff;pointer-events:none;
+  font-size:11.5px;font-weight:600;letter-spacing:.02em;line-height:normal;box-shadow:var(--lift-photo)}
+
+.viewer-ped{margin-top:var(--sp-open);padding-top:11px;border-top:1px solid var(--line)}
+.viewer-ped[hidden]{display:none}
+.viewer-ped>small{display:block;margin-bottom:5px;font-size:10.5px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);line-height:1.35;white-space:nowrap}
+.ped-list,.ped-list ul{list-style:none;margin:0;padding:0}
+.ped-list ul{margin:0 0 0 5px;padding:0 0 0 11px;border-left:1px solid var(--line)}
+.ped-row{display:grid;grid-template-columns:50px minmax(0,1fr);column-gap:9px;align-items:baseline;padding:2px 0}
+.ped-rel{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  line-height:1.35;white-space:nowrap}
+.ped-info{display:flex;flex-wrap:wrap;align-items:baseline;gap:1px 8px;min-width:0}
+.ped-who{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.45;white-space:nowrap}
+.ped-what{font-size:13px;color:var(--ink-faint);line-height:1.45;white-space:nowrap}
+.ped-best{color:var(--moss-dk);font-weight:500}
+.ped-info .chip{font-size:13px}
+.ped-more{margin:10px 0 0}
+
+.pedsheet{position:fixed;inset:0;z-index:130;overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;background:var(--paper);color:var(--ink)}
+.pedsheet[hidden]{display:none}
+html.pedopen,html.pedopen body{overflow:hidden}
+.ped-bar{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:flex-end;gap:10px;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;background:var(--paper);border-bottom:1px solid var(--line-soft)}
+.ped-close{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);
+  display:grid;place-items:center;font-size:19px;line-height:1;color:var(--ink);cursor:pointer;
+  transition:border-color .15s,color .15s,transform .12s ease-out}
+.ped-close:hover{border-color:var(--brick);color:var(--brick)}
+.ped-close:active{transform:scale(.94)}
+.ped-close:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px var(--card)}
+.ped-page{max-width:1180px;margin:0 auto;padding:18px 16px calc(44px + env(safe-area-inset-bottom,0px))}
+.ped-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;
+  margin:0 0 16px;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.ped-brand{font-family:var(--serif);font-weight:500;font-size:17px;line-height:1.2;color:var(--logo);
+  text-decoration:none;white-space:nowrap}
+.ped-head h2{margin:0;font-size:21px;line-height:1.25;letter-spacing:-.015em;outline:none}
+
+.ped-tree{display:block}
+.ped-cell{position:relative}
+.ped-cell+.ped-cell{margin-top:6px}
+.ped-cell.g0{margin-bottom:14px}
+.ped-cell.g2{padding-left:16px}
+.ped-cell.g3{padding-left:32px}
+.ped-box{border:1px solid var(--line);border-radius:6px;background:var(--card);padding:8px 11px 9px}
+.ped-none{min-height:20px;border-style:dashed;background:transparent}
+.ped-box .ped-rel{display:block;margin-bottom:1px}
+.ped-nm{display:block;font-size:15px;font-weight:600;line-height:1.35;color:var(--ink);white-space:nowrap}
+.ped-nm .chip{font-size:13.5px}
+.ped-fs{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:4px;font-size:13px;line-height:1.45;
+  color:var(--ink);font-variant-numeric:tabular-nums}
+
+.ped-f{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px;white-space:nowrap;min-width:0}
+.ped-f.ped-v,.ped-br{flex-basis:100%}
+.ped-br{height:0}
+.ped-f b{flex:none;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+
+.ped-me{background:var(--paper-2);border-color:transparent;padding:12px 14px 13px}
+.ped-me .ped-nm{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:-.015em;line-height:1.2}
+
+.ped-self{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;border-radius:4px}
+.ped-self .chev{flex:none;width:8px;height:8px;margin-top:3px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);
+  transform:rotate(-45deg);transition:transform .15s,border-color .15s}
+.ped-self:hover{color:var(--brick-dk)}
+.ped-self:hover .chev{border-color:var(--brick-dk);transform:rotate(-45deg) translate(2px,2px)}
+.ped-self:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+
+.ped-kept{margin:0 0 7px;font-size:13px;line-height:1.5;color:var(--ink-faint)}
+.ped-me .ped-fs{display:block;margin-top:8px}
+.ped-me .ped-f{gap:10px;padding:2px 0}
+.ped-me .ped-f b{width:86px;font-size:10.5px;letter-spacing:.1em}
+
+.ped-ln{display:inline-block;width:64px;height:1.05em;vertical-align:baseline;border-bottom:1px solid var(--ink-faint)}
+.ped-me .ped-ln{width:130px}
+
+.ped-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.ped-foot p{margin:0}
+.ped-foot p+p,.ped-foot p+div,.ped-foot div+p{margin-top:8px}
+.ped-cert{color:var(--ink)}
+.ped-sigs{display:flex;flex-wrap:wrap;gap:6px 28px}
+.ped-sig{display:inline-flex;align-items:baseline;gap:8px;white-space:nowrap}
+.ped-sig b{font-weight:500;color:var(--ink-faint)}
+.ped-sig .ped-ln{width:190px}
+.ped-by{display:flex;flex-wrap:wrap;gap:1px 14px;color:var(--ink)}
+.ped-by span{white-space:nowrap}
+.ped-src{color:var(--ink-faint)}
+
+@media (min-width:880px), print{
+  .ped-tree{display:grid;--cg:30px;--rg:8px;grid-template-columns:minmax(0,.92fr) repeat(3,minmax(0,1fr));
+    grid-template-rows:repeat(8,1fr);column-gap:var(--cg);row-gap:var(--rg)}
+  .ped-cell{display:flex;flex-direction:column;justify-content:center;margin:0!important;padding:0!important}
+  .ped-cell.g0{grid-column:1;grid-row:1/9}
+  .ped-cell.g1.i0{grid-column:2;grid-row:1/5}.ped-cell.g1.i1{grid-column:2;grid-row:5/9}
+  .ped-cell.g2.i0{grid-column:3;grid-row:1/3}.ped-cell.g2.i1{grid-column:3;grid-row:3/5}
+  .ped-cell.g2.i2{grid-column:3;grid-row:5/7}.ped-cell.g2.i3{grid-column:3;grid-row:7/9}
+  .ped-cell.g3{grid-column:4}
+  .ped-cell.g3.i0{grid-row:1}.ped-cell.g3.i1{grid-row:2}.ped-cell.g3.i2{grid-row:3}.ped-cell.g3.i3{grid-row:4}
+  .ped-cell.g3.i4{grid-row:5}.ped-cell.g3.i5{grid-row:6}.ped-cell.g3.i6{grid-row:7}.ped-cell.g3.i7{grid-row:8}
+  .ped-cell.up::before{content:'';position:absolute;left:calc(var(--cg) / -2);width:calc(var(--cg) / 2);top:50%;
+    border-top:1px solid var(--ink-faint)}
+  .ped-cell.kids::after{content:'';position:absolute;left:100%;width:calc(var(--cg) / 2);
+    top:calc(25% - var(--rg) / 4);bottom:calc(25% - var(--rg) / 4);border-right:1px solid var(--ink-faint);
+    background:linear-gradient(var(--ink-faint),var(--ink-faint)) 0 50%/100% 1px no-repeat}
+  .ped-cell.g3 .ped-box{padding:6px 10px 7px}
+  .ped-cell.g3 .ped-nm{font-size:14px}
+  .ped-cell.g3 .ped-fs{font-size:12.5px;gap:0 12px}
+  .ped-cell.g3 .ped-ln{width:48px}
+}
+
+@media print{
+  @page{size:11in 8.5in;margin:.35in}
+  html.pedopen body>*:not(#pedSheet){display:none!important}
+  html.pedopen,html.pedopen body{overflow:visible!important;height:auto!important;background:#fff!important}
+  html.pedopen .pedsheet{position:static;inset:auto;overflow:visible;background:#fff;color:#000;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html.pedopen .ped-bar{display:none}
+  html.pedopen .ped-page{max-width:none;margin:0;padding:0}
+  .pedsheet .ped-head{margin:0 0 .12in;padding:0 0 .08in;border-color:#999}
+  .pedsheet .ped-brand{font-size:14pt;color:#000}
+  .pedsheet .ped-head h2{font-size:15pt;color:#000}
+  .pedsheet .ped-tree{--cg:.26in;--rg:.045in}
+  .pedsheet .ped-box{border-color:#888;background:#fff;padding:.05in .08in;break-inside:avoid}
+  .pedsheet .ped-me{background:#fff;border-color:#000}
+  .pedsheet .ped-rel{font-size:6.5pt;color:#444}
+  
+  .pedsheet .ped-box .ped-rel{float:right;margin:.02in 0 0 .06in}
+  .pedsheet .ped-nm{font-size:10pt;color:#000}
+  .pedsheet .ped-me .ped-nm{font-size:16pt}
+  .pedsheet .ped-cell.g3 .ped-nm{font-size:9pt}
+  .pedsheet .ped-fs,.pedsheet .ped-cell.g3 .ped-fs{font-size:8pt;line-height:1.35;color:#000;gap:.01in .14in;margin-top:.03in}
+  .pedsheet .ped-me .ped-fs{font-size:9pt;margin-top:.06in}
+  .pedsheet .ped-me .ped-f{padding:.035in 0}
+  .pedsheet .ped-me .ped-f b{width:.8in;font-size:6.5pt}
+  .pedsheet .ped-f b{color:#444;font-size:6pt}
+  .pedsheet .ped-ln{border-color:#000;width:.55in}
+  .pedsheet .ped-me .ped-ln{width:1.15in}
+  .pedsheet .ped-sig .ped-ln{width:2.3in}
+  .pedsheet .chip{background:none;padding:0;min-height:0;color:#000;font-weight:600;font-size:inherit}
+  .pedsheet .ped-self{color:#000}
+  .pedsheet .ped-self .chev{display:none}
+  .pedsheet .chip::before,.pedsheet .chip .chev{display:none}
+  .pedsheet .ped-cell.up::before{border-color:#555}
+  .pedsheet .ped-cell.kids::after{border-color:#555;background-image:linear-gradient(#555,#555)}
+  .pedsheet .ped-foot{margin-top:.12in;padding-top:.08in;border-color:#999;font-size:8pt;line-height:1.35;color:#111}
+  .pedsheet .ped-foot p+p,.pedsheet .ped-foot p+div,.pedsheet .ped-foot div+p{margin-top:.05in}
+  .pedsheet .ped-src{color:#333}
+  .pedsheet .ped-cert,.pedsheet .ped-by{color:#000}
+}
 </style>
 <style data-dim>
 
@@ -3474,6 +3631,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       
       <div class="viewer-sub"><button type="button" class="opener sm why" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button><button type="button" class="opener sm pay" id="viewerPay" aria-expanded="false" aria-controls="viewerPayPanel" hidden>Payment plans</button><p class="viewer-meta" id="viewerMeta"></p></div>
       
+      <ul class="viewer-tags" id="viewerTags" hidden></ul>
+      
       <div class="whypanel" id="viewerWhyPanel" hidden>
         
         <ul>
@@ -3516,6 +3675,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       
       <p class="viewer-coat" id="viewerCoat" hidden></p>
       
+      <div class="viewer-ped" id="viewerPed" hidden></div>
+      
       <div class="pairrec" id="viewerPair" hidden></div>
 
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text</button></div>
@@ -3526,13 +3687,23 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   </div>
 </div>
 
+<div class="pedsheet" id="pedSheet" role="dialog" aria-modal="true" aria-labelledby="pedTitle" hidden>
+  <div class="ped-bar">
+    <button type="button" class="btn btn-tonal btn-sm" id="pedPrint">Print</button>
+    <button type="button" class="ped-close" id="pedClose" aria-label="Close">&#215;</button>
+  </div>
+  <div class="ped-page" id="pedPage"><h2 id="pedTitle" tabindex="-1">Pedigree</h2></div>
+</div>
+
 <script id="photoFocus" type="application/json">{"photos/litter-2026-08-27-2026-09-11-video.jpg":"0% 50%"}</script>
 
 <script id="photoShape" type="application/json">{"photos/biscuit-car.jpg":"1600/1200","photos/biscuit-ear-2.jpg":"966/724","photos/biscuit-ear.jpg":"966/724","photos/biscuit.jpg":"1600/1200","photos/butterscotch-bumble.jpg":"1186/889","photos/butterscotch.jpg":"1000/750","photos/cloud.jpg":"1000/750","photos/father-2.jpg":"1448/1086","photos/father-copper-2.jpg":"1600/1200","photos/father-copper.jpg":"1600/1200","photos/father-video.jpg":"960/720","photos/honey.jpg":"1600/1200","photos/latte-2.jpg":"1512/1134","photos/latte-3.jpg":"1512/1134","photos/latte-4.jpg":"1512/1134","photos/latte.jpg":"1323/992","photos/litter-2026-06-28.jpg":"1400/1050","photos/litter-2026-07-28.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-02.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-06.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-08.jpg":"1400/1050","photos/litter-2026-08-27-2026-09-11-video.jpg":"1280/960","photos/litter-2026-08-27.jpg":"1400/1050","photos/litter-2026-09-18.jpg":"1400/1050","photos/litter-2026-09-27-2026-09-27-nest.jpg":"1400/1050","photos/litter-2026-09-27-2026-10-11.jpg":"1400/1050","photos/litter-2026-09-27-2026-10-19.jpg":"1400/1050","photos/litter-2026-09-27.jpg":"1400/1050","photos/litter-2026-10-04.jpg":"1400/1050","photos/litter-2026-10-06.jpg":"1400/1050","photos/litter-2026-10-19-2026-10-19-nest.jpg":"1400/1050","photos/litter-2026-10-19.jpg":"1400/1050","photos/maple.jpg":"1600/1200","photos/marshmallow-2.jpg":"1600/1200","photos/marshmallow.jpg":"1600/1200","photos/mocha-2.jpg":"1512/1134","photos/mocha-3.jpg":"1512/1134","photos/mocha.jpg":"1512/1134","photos/mother-2.jpg":"1600/1200","photos/mother-bakalaki-2.jpg":"1600/1200","photos/mother-bakalaki.jpg":"1449/1087","photos/mother-catalina.jpg":"1186/890","photos/mother-orange.jpg":"1600/1200","photos/mother.jpg":"1600/1200","photos/nutmeg-2.jpg":"1512/1134","photos/nutmeg-3.jpg":"1512/1134","photos/nutmeg.jpg":"1512/1134","photos/pecan.jpg":"1600/1200","photos/sundae.jpg":"1000/750","photos/teddy.jpg":"1000/750","photos/toffee.jpg":"1600/1200"}</script>
 <script id="photoSizes" type="application/json">{"img/about.jpg":{"v":[[160,"img/about.160.3a9c523e.jpg"],[320,"img/about.320.3a9c523e.jpg"],[640,"img/about.640.3a9c523e.jpg"],[960,"img/about.960.3a9c523e.jpg"]],"w":1000},"img/included.jpg":{"v":[[160,"img/included.160.a2a15768.jpg"],[320,"img/included.320.a2a15768.jpg"],[640,"img/included.640.a2a15768.jpg"]],"w":800},"photos/biscuit-car.jpg":{"a":[[320,"photos/biscuit-car.320.dfe7257d.avif"],[640,"photos/biscuit-car.640.dfe7257d.avif"],[960,"photos/biscuit-car.960.dfe7257d.avif"],[1280,"photos/biscuit-car.1280.dfe7257d.avif"],[1600,"photos/biscuit-car.1600.dfe7257d.avif"]],"v":[[160,"photos/biscuit-car.160.dfe7257d.jpg"],[320,"photos/biscuit-car.320.dfe7257d.jpg"],[640,"photos/biscuit-car.640.dfe7257d.jpg"],[960,"photos/biscuit-car.960.dfe7257d.jpg"],[1280,"photos/biscuit-car.1280.dfe7257d.jpg"]],"w":1600},"photos/biscuit-ear-2.jpg":{"a":[[320,"photos/biscuit-ear-2.320.eeca07ba.avif"],[640,"photos/biscuit-ear-2.640.eeca07ba.avif"],[960,"photos/biscuit-ear-2.960.eeca07ba.avif"],[966,"photos/biscuit-ear-2.966.eeca07ba.avif"]],"v":[[160,"photos/biscuit-ear-2.160.eeca07ba.jpg"],[320,"photos/biscuit-ear-2.320.eeca07ba.jpg"],[640,"photos/biscuit-ear-2.640.eeca07ba.jpg"],[960,"photos/biscuit-ear-2.960.eeca07ba.jpg"]],"w":966},"photos/biscuit-ear.jpg":{"a":[[320,"photos/biscuit-ear.320.6ea14cff.avif"],[640,"photos/biscuit-ear.640.6ea14cff.avif"],[960,"photos/biscuit-ear.960.6ea14cff.avif"],[966,"photos/biscuit-ear.966.6ea14cff.avif"]],"v":[[160,"photos/biscuit-ear.160.6ea14cff.jpg"],[320,"photos/biscuit-ear.320.6ea14cff.jpg"],[640,"photos/biscuit-ear.640.6ea14cff.jpg"],[960,"photos/biscuit-ear.960.6ea14cff.jpg"]],"w":966},"photos/biscuit.jpg":{"a":[[320,"photos/biscuit.320.db57dcda.avif"],[640,"photos/biscuit.640.db57dcda.avif"],[960,"photos/biscuit.960.db57dcda.avif"],[1280,"photos/biscuit.1280.db57dcda.avif"],[1600,"photos/biscuit.1600.db57dcda.avif"]],"v":[[160,"photos/biscuit.160.db57dcda.jpg"],[320,"photos/biscuit.320.db57dcda.jpg"],[640,"photos/biscuit.640.db57dcda.jpg"],[960,"photos/biscuit.960.db57dcda.jpg"],[1280,"photos/biscuit.1280.db57dcda.jpg"]],"w":1600},"photos/butterscotch-bumble.jpg":{"a":[[320,"photos/butterscotch-bumble.320.8b815efa.avif"],[640,"photos/butterscotch-bumble.640.8b815efa.avif"],[960,"photos/butterscotch-bumble.960.8b815efa.avif"],[1186,"photos/butterscotch-bumble.1186.8b815efa.avif"]],"v":[[160,"photos/butterscotch-bumble.160.8b815efa.jpg"],[320,"photos/butterscotch-bumble.320.8b815efa.jpg"],[640,"photos/butterscotch-bumble.640.8b815efa.jpg"],[960,"photos/butterscotch-bumble.960.8b815efa.jpg"]],"w":1186},"photos/butterscotch.jpg":{"a":[[320,"photos/butterscotch.320.4855dad5.avif"],[640,"photos/butterscotch.640.4855dad5.avif"],[960,"photos/butterscotch.960.4855dad5.avif"],[1000,"photos/butterscotch.1000.4855dad5.avif"]],"v":[[160,"photos/butterscotch.160.4855dad5.jpg"],[320,"photos/butterscotch.320.4855dad5.jpg"],[640,"photos/butterscotch.640.4855dad5.jpg"],[960,"photos/butterscotch.960.4855dad5.jpg"]],"w":1000},"photos/cloud.jpg":{"a":[[320,"photos/cloud.320.936bda0a.avif"],[640,"photos/cloud.640.936bda0a.avif"],[960,"photos/cloud.960.936bda0a.avif"],[1000,"photos/cloud.1000.936bda0a.avif"]],"v":[[160,"photos/cloud.160.936bda0a.jpg"],[320,"photos/cloud.320.936bda0a.jpg"],[640,"photos/cloud.640.936bda0a.jpg"],[960,"photos/cloud.960.936bda0a.jpg"]],"w":1000},"photos/father-2.jpg":{"a":[[320,"photos/father-2.320.607c5d09.avif"],[640,"photos/father-2.640.607c5d09.avif"],[960,"photos/father-2.960.607c5d09.avif"],[1280,"photos/father-2.1280.607c5d09.avif"],[1448,"photos/father-2.1448.607c5d09.avif"]],"v":[[160,"photos/father-2.160.607c5d09.jpg"],[320,"photos/father-2.320.607c5d09.jpg"],[640,"photos/father-2.640.607c5d09.jpg"],[960,"photos/father-2.960.607c5d09.jpg"],[1280,"photos/father-2.1280.607c5d09.jpg"]],"w":1448},"photos/father-copper-2.jpg":{"a":[[320,"photos/father-copper-2.320.9d4e90c8.avif"],[640,"photos/father-copper-2.640.9d4e90c8.avif"],[960,"photos/father-copper-2.960.9d4e90c8.avif"],[1280,"photos/father-copper-2.1280.9d4e90c8.avif"],[1600,"photos/father-copper-2.1600.9d4e90c8.avif"]],"v":[[160,"photos/father-copper-2.160.9d4e90c8.jpg"],[320,"photos/father-copper-2.320.9d4e90c8.jpg"],[640,"photos/father-copper-2.640.9d4e90c8.jpg"],[960,"photos/father-copper-2.960.9d4e90c8.jpg"],[1280,"photos/father-copper-2.1280.9d4e90c8.jpg"]],"w":1600},"photos/father-copper.jpg":{"a":[[320,"photos/father-copper.320.a5833be2.avif"],[640,"photos/father-copper.640.a5833be2.avif"],[960,"photos/father-copper.960.a5833be2.avif"],[1280,"photos/father-copper.1280.a5833be2.avif"],[1600,"photos/father-copper.1600.a5833be2.avif"]],"v":[[160,"photos/father-copper.160.a5833be2.jpg"],[320,"photos/father-copper.320.a5833be2.jpg"],[640,"photos/father-copper.640.a5833be2.jpg"],[960,"photos/father-copper.960.a5833be2.jpg"],[1280,"photos/father-copper.1280.a5833be2.jpg"]],"w":1600},"photos/father-video.jpg":{"a":[[320,"photos/father-video.320.539b3407.avif"],[640,"photos/father-video.640.539b3407.avif"],[960,"photos/father-video.960.539b3407.avif"]],"v":[[160,"photos/father-video.160.539b3407.jpg"],[320,"photos/father-video.320.539b3407.jpg"],[640,"photos/father-video.640.539b3407.jpg"]],"w":960},"photos/honey.jpg":{"a":[[320,"photos/honey.320.5409c37f.avif"],[640,"photos/honey.640.5409c37f.avif"],[960,"photos/honey.960.5409c37f.avif"],[1280,"photos/honey.1280.5409c37f.avif"],[1600,"photos/honey.1600.5409c37f.avif"]],"v":[[160,"photos/honey.160.5409c37f.jpg"],[320,"photos/honey.320.5409c37f.jpg"],[640,"photos/honey.640.5409c37f.jpg"],[960,"photos/honey.960.5409c37f.jpg"],[1280,"photos/honey.1280.5409c37f.jpg"]],"w":1600},"photos/latte-2.jpg":{"a":[[320,"photos/latte-2.320.84d89dd7.avif"],[640,"photos/latte-2.640.84d89dd7.avif"],[960,"photos/latte-2.960.84d89dd7.avif"],[1280,"photos/latte-2.1280.84d89dd7.avif"],[1512,"photos/latte-2.1512.84d89dd7.avif"]],"v":[[160,"photos/latte-2.160.84d89dd7.jpg"],[320,"photos/latte-2.320.84d89dd7.jpg"],[640,"photos/latte-2.640.84d89dd7.jpg"],[960,"photos/latte-2.960.84d89dd7.jpg"],[1280,"photos/latte-2.1280.84d89dd7.jpg"]],"w":1512},"photos/latte-3.jpg":{"a":[[320,"photos/latte-3.320.14a39ab2.avif"],[640,"photos/latte-3.640.14a39ab2.avif"],[960,"photos/latte-3.960.14a39ab2.avif"],[1280,"photos/latte-3.1280.14a39ab2.avif"],[1512,"photos/latte-3.1512.14a39ab2.avif"]],"v":[[160,"photos/latte-3.160.14a39ab2.jpg"],[320,"photos/latte-3.320.14a39ab2.jpg"],[640,"photos/latte-3.640.14a39ab2.jpg"],[960,"photos/latte-3.960.14a39ab2.jpg"],[1280,"photos/latte-3.1280.14a39ab2.jpg"]],"w":1512},"photos/latte-4.jpg":{"a":[[320,"photos/latte-4.320.440ace86.avif"],[640,"photos/latte-4.640.440ace86.avif"],[960,"photos/latte-4.960.440ace86.avif"],[1280,"photos/latte-4.1280.440ace86.avif"],[1512,"photos/latte-4.1512.440ace86.avif"]],"v":[[160,"photos/latte-4.160.440ace86.jpg"],[320,"photos/latte-4.320.440ace86.jpg"],[640,"photos/latte-4.640.440ace86.jpg"],[960,"photos/latte-4.960.440ace86.jpg"],[1280,"photos/latte-4.1280.440ace86.jpg"]],"w":1512},"photos/latte.jpg":{"a":[[320,"photos/latte.320.15e7573c.avif"],[640,"photos/latte.640.15e7573c.avif"],[960,"photos/latte.960.15e7573c.avif"],[1280,"photos/latte.1280.15e7573c.avif"],[1323,"photos/latte.1323.15e7573c.avif"]],"v":[[160,"photos/latte.160.15e7573c.jpg"],[320,"photos/latte.320.15e7573c.jpg"],[640,"photos/latte.640.15e7573c.jpg"],[960,"photos/latte.960.15e7573c.jpg"],[1280,"photos/latte.1280.15e7573c.jpg"]],"w":1323},"photos/litter-2026-06-28.jpg":{"a":[[320,"photos/litter-2026-06-28.320.5816cb81.avif"],[640,"photos/litter-2026-06-28.640.5816cb81.avif"],[960,"photos/litter-2026-06-28.960.5816cb81.avif"],[1280,"photos/litter-2026-06-28.1280.5816cb81.avif"],[1400,"photos/litter-2026-06-28.1400.5816cb81.avif"]],"v":[[160,"photos/litter-2026-06-28.160.5816cb81.jpg"],[320,"photos/litter-2026-06-28.320.5816cb81.jpg"],[640,"photos/litter-2026-06-28.640.5816cb81.jpg"],[960,"photos/litter-2026-06-28.960.5816cb81.jpg"],[1280,"photos/litter-2026-06-28.1280.5816cb81.jpg"]],"w":1400},"photos/litter-2026-07-28.jpg":{"a":[[320,"photos/litter-2026-07-28.320.36389c88.avif"],[640,"photos/litter-2026-07-28.640.36389c88.avif"],[960,"photos/litter-2026-07-28.960.36389c88.avif"],[1280,"photos/litter-2026-07-28.1280.36389c88.avif"],[1400,"photos/litter-2026-07-28.1400.36389c88.avif"]],"v":[[160,"photos/litter-2026-07-28.160.36389c88.jpg"],[320,"photos/litter-2026-07-28.320.36389c88.jpg"],[640,"photos/litter-2026-07-28.640.36389c88.jpg"],[960,"photos/litter-2026-07-28.960.36389c88.jpg"],[1280,"photos/litter-2026-07-28.1280.36389c88.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-02.jpg":{"a":[[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.avif"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.avif"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.avif"],[1280,"photos/litter-2026-08-27-2026-09-02.1280.7cf9c3bb.avif"],[1400,"photos/litter-2026-08-27-2026-09-02.1400.7cf9c3bb.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-02.160.7cf9c3bb.jpg"],[320,"photos/litter-2026-08-27-2026-09-02.320.7cf9c3bb.jpg"],[640,"photos/litter-2026-08-27-2026-09-02.640.7cf9c3bb.jpg"],[960,"photos/litter-2026-08-27-2026-09-02.960.7cf9c3bb.jpg"],[1280,"photos/litter-2026-08-27-2026-09-02.1280.7cf9c3bb.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-06.jpg":{"a":[[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.avif"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.avif"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.avif"],[1280,"photos/litter-2026-08-27-2026-09-06.1280.d44c58ea.avif"],[1400,"photos/litter-2026-08-27-2026-09-06.1400.d44c58ea.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-06.160.d44c58ea.jpg"],[320,"photos/litter-2026-08-27-2026-09-06.320.d44c58ea.jpg"],[640,"photos/litter-2026-08-27-2026-09-06.640.d44c58ea.jpg"],[960,"photos/litter-2026-08-27-2026-09-06.960.d44c58ea.jpg"],[1280,"photos/litter-2026-08-27-2026-09-06.1280.d44c58ea.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-08.jpg":{"a":[[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.avif"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.avif"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.avif"],[1280,"photos/litter-2026-08-27-2026-09-08.1280.64ba1c94.avif"],[1400,"photos/litter-2026-08-27-2026-09-08.1400.64ba1c94.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-08.160.64ba1c94.jpg"],[320,"photos/litter-2026-08-27-2026-09-08.320.64ba1c94.jpg"],[640,"photos/litter-2026-08-27-2026-09-08.640.64ba1c94.jpg"],[960,"photos/litter-2026-08-27-2026-09-08.960.64ba1c94.jpg"],[1280,"photos/litter-2026-08-27-2026-09-08.1280.64ba1c94.jpg"]],"w":1400},"photos/litter-2026-08-27-2026-09-11-video.jpg":{"a":[[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.avif"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.avif"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.avif"],[1280,"photos/litter-2026-08-27-2026-09-11-video.1280.cd43108f.avif"]],"v":[[160,"photos/litter-2026-08-27-2026-09-11-video.160.cd43108f.jpg"],[320,"photos/litter-2026-08-27-2026-09-11-video.320.cd43108f.jpg"],[640,"photos/litter-2026-08-27-2026-09-11-video.640.cd43108f.jpg"],[960,"photos/litter-2026-08-27-2026-09-11-video.960.cd43108f.jpg"]],"w":1280},"photos/litter-2026-08-27.jpg":{"a":[[320,"photos/litter-2026-08-27.320.bcb889d9.avif"],[640,"photos/litter-2026-08-27.640.bcb889d9.avif"],[960,"photos/litter-2026-08-27.960.bcb889d9.avif"],[1280,"photos/litter-2026-08-27.1280.bcb889d9.avif"],[1400,"photos/litter-2026-08-27.1400.bcb889d9.avif"]],"v":[[160,"photos/litter-2026-08-27.160.bcb889d9.jpg"],[320,"photos/litter-2026-08-27.320.bcb889d9.jpg"],[640,"photos/litter-2026-08-27.640.bcb889d9.jpg"],[960,"photos/litter-2026-08-27.960.bcb889d9.jpg"],[1280,"photos/litter-2026-08-27.1280.bcb889d9.jpg"]],"w":1400},"photos/litter-2026-09-18.jpg":{"a":[[320,"photos/litter-2026-09-18.320.db5251c4.avif"],[640,"photos/litter-2026-09-18.640.db5251c4.avif"],[960,"photos/litter-2026-09-18.960.db5251c4.avif"],[1280,"photos/litter-2026-09-18.1280.db5251c4.avif"],[1400,"photos/litter-2026-09-18.1400.db5251c4.avif"]],"v":[[160,"photos/litter-2026-09-18.160.db5251c4.jpg"],[320,"photos/litter-2026-09-18.320.db5251c4.jpg"],[640,"photos/litter-2026-09-18.640.db5251c4.jpg"],[960,"photos/litter-2026-09-18.960.db5251c4.jpg"],[1280,"photos/litter-2026-09-18.1280.db5251c4.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-09-27-nest.jpg":{"a":[[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.avif"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.avif"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.avif"],[1280,"photos/litter-2026-09-27-2026-09-27-nest.1280.b7ba9c5b.avif"],[1400,"photos/litter-2026-09-27-2026-09-27-nest.1400.b7ba9c5b.avif"]],"v":[[160,"photos/litter-2026-09-27-2026-09-27-nest.160.b7ba9c5b.jpg"],[320,"photos/litter-2026-09-27-2026-09-27-nest.320.b7ba9c5b.jpg"],[640,"photos/litter-2026-09-27-2026-09-27-nest.640.b7ba9c5b.jpg"],[960,"photos/litter-2026-09-27-2026-09-27-nest.960.b7ba9c5b.jpg"],[1280,"photos/litter-2026-09-27-2026-09-27-nest.1280.b7ba9c5b.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-10-11.jpg":{"a":[[320,"photos/litter-2026-09-27-2026-10-11.320.696b58d7.avif"],[640,"photos/litter-2026-09-27-2026-10-11.640.696b58d7.avif"],[960,"photos/litter-2026-09-27-2026-10-11.960.696b58d7.avif"],[1280,"photos/litter-2026-09-27-2026-10-11.1280.696b58d7.avif"],[1400,"photos/litter-2026-09-27-2026-10-11.1400.696b58d7.avif"]],"v":[[160,"photos/litter-2026-09-27-2026-10-11.160.696b58d7.jpg"],[320,"photos/litter-2026-09-27-2026-10-11.320.696b58d7.jpg"],[640,"photos/litter-2026-09-27-2026-10-11.640.696b58d7.jpg"],[960,"photos/litter-2026-09-27-2026-10-11.960.696b58d7.jpg"],[1280,"photos/litter-2026-09-27-2026-10-11.1280.696b58d7.jpg"]],"w":1400},"photos/litter-2026-09-27-2026-10-19.jpg":{"a":[[320,"photos/litter-2026-09-27-2026-10-19.320.b78fd388.avif"],[640,"photos/litter-2026-09-27-2026-10-19.640.b78fd388.avif"],[960,"photos/litter-2026-09-27-2026-10-19.960.b78fd388.avif"],[1280,"photos/litter-2026-09-27-2026-10-19.1280.b78fd388.avif"],[1400,"photos/litter-2026-09-27-2026-10-19.1400.b78fd388.avif"]],"v":[[160,"photos/litter-2026-09-27-2026-10-19.160.b78fd388.jpg"],[320,"photos/litter-2026-09-27-2026-10-19.320.b78fd388.jpg"],[640,"photos/litter-2026-09-27-2026-10-19.640.b78fd388.jpg"],[960,"photos/litter-2026-09-27-2026-10-19.960.b78fd388.jpg"],[1280,"photos/litter-2026-09-27-2026-10-19.1280.b78fd388.jpg"]],"w":1400},"photos/litter-2026-09-27.jpg":{"a":[[320,"photos/litter-2026-09-27.320.14c29a12.avif"],[640,"photos/litter-2026-09-27.640.14c29a12.avif"],[960,"photos/litter-2026-09-27.960.14c29a12.avif"],[1280,"photos/litter-2026-09-27.1280.14c29a12.avif"],[1400,"photos/litter-2026-09-27.1400.14c29a12.avif"]],"v":[[160,"photos/litter-2026-09-27.160.14c29a12.jpg"],[320,"photos/litter-2026-09-27.320.14c29a12.jpg"],[640,"photos/litter-2026-09-27.640.14c29a12.jpg"],[960,"photos/litter-2026-09-27.960.14c29a12.jpg"],[1280,"photos/litter-2026-09-27.1280.14c29a12.jpg"]],"w":1400},"photos/litter-2026-10-04.jpg":{"a":[[320,"photos/litter-2026-10-04.320.144c329d.avif"],[640,"photos/litter-2026-10-04.640.144c329d.avif"],[960,"photos/litter-2026-10-04.960.144c329d.avif"],[1280,"photos/litter-2026-10-04.1280.144c329d.avif"],[1400,"photos/litter-2026-10-04.1400.144c329d.avif"]],"v":[[160,"photos/litter-2026-10-04.160.144c329d.jpg"],[320,"photos/litter-2026-10-04.320.144c329d.jpg"],[640,"photos/litter-2026-10-04.640.144c329d.jpg"],[960,"photos/litter-2026-10-04.960.144c329d.jpg"],[1280,"photos/litter-2026-10-04.1280.144c329d.jpg"]],"w":1400},"photos/litter-2026-10-06.jpg":{"a":[[320,"photos/litter-2026-10-06.320.894bf330.avif"],[640,"photos/litter-2026-10-06.640.894bf330.avif"],[960,"photos/litter-2026-10-06.960.894bf330.avif"],[1280,"photos/litter-2026-10-06.1280.894bf330.avif"],[1400,"photos/litter-2026-10-06.1400.894bf330.avif"]],"v":[[160,"photos/litter-2026-10-06.160.894bf330.jpg"],[320,"photos/litter-2026-10-06.320.894bf330.jpg"],[640,"photos/litter-2026-10-06.640.894bf330.jpg"],[960,"photos/litter-2026-10-06.960.894bf330.jpg"],[1280,"photos/litter-2026-10-06.1280.894bf330.jpg"]],"w":1400},"photos/litter-2026-10-19-2026-10-19-nest.jpg":{"a":[[320,"photos/litter-2026-10-19-2026-10-19-nest.320.567ea0cd.avif"],[640,"photos/litter-2026-10-19-2026-10-19-nest.640.567ea0cd.avif"],[960,"photos/litter-2026-10-19-2026-10-19-nest.960.567ea0cd.avif"],[1280,"photos/litter-2026-10-19-2026-10-19-nest.1280.567ea0cd.avif"],[1400,"photos/litter-2026-10-19-2026-10-19-nest.1400.567ea0cd.avif"]],"v":[[160,"photos/litter-2026-10-19-2026-10-19-nest.160.567ea0cd.jpg"],[320,"photos/litter-2026-10-19-2026-10-19-nest.320.567ea0cd.jpg"],[640,"photos/litter-2026-10-19-2026-10-19-nest.640.567ea0cd.jpg"],[960,"photos/litter-2026-10-19-2026-10-19-nest.960.567ea0cd.jpg"],[1280,"photos/litter-2026-10-19-2026-10-19-nest.1280.567ea0cd.jpg"]],"w":1400},"photos/litter-2026-10-19.jpg":{"a":[[320,"photos/litter-2026-10-19.320.671e03d9.avif"],[640,"photos/litter-2026-10-19.640.671e03d9.avif"],[960,"photos/litter-2026-10-19.960.671e03d9.avif"],[1280,"photos/litter-2026-10-19.1280.671e03d9.avif"],[1400,"photos/litter-2026-10-19.1400.671e03d9.avif"]],"v":[[160,"photos/litter-2026-10-19.160.671e03d9.jpg"],[320,"photos/litter-2026-10-19.320.671e03d9.jpg"],[640,"photos/litter-2026-10-19.640.671e03d9.jpg"],[960,"photos/litter-2026-10-19.960.671e03d9.jpg"],[1280,"photos/litter-2026-10-19.1280.671e03d9.jpg"]],"w":1400},"photos/maple.jpg":{"a":[[320,"photos/maple.320.b5a4d27b.avif"],[640,"photos/maple.640.b5a4d27b.avif"],[960,"photos/maple.960.b5a4d27b.avif"],[1280,"photos/maple.1280.b5a4d27b.avif"],[1600,"photos/maple.1600.b5a4d27b.avif"]],"v":[[160,"photos/maple.160.b5a4d27b.jpg"],[320,"photos/maple.320.b5a4d27b.jpg"],[640,"photos/maple.640.b5a4d27b.jpg"],[960,"photos/maple.960.b5a4d27b.jpg"],[1280,"photos/maple.1280.b5a4d27b.jpg"]],"w":1600},"photos/marshmallow-2.jpg":{"a":[[320,"photos/marshmallow-2.320.20869aa2.avif"],[640,"photos/marshmallow-2.640.20869aa2.avif"],[960,"photos/marshmallow-2.960.20869aa2.avif"],[1280,"photos/marshmallow-2.1280.20869aa2.avif"],[1600,"photos/marshmallow-2.1600.20869aa2.avif"]],"v":[[160,"photos/marshmallow-2.160.20869aa2.jpg"],[320,"photos/marshmallow-2.320.20869aa2.jpg"],[640,"photos/marshmallow-2.640.20869aa2.jpg"],[960,"photos/marshmallow-2.960.20869aa2.jpg"],[1280,"photos/marshmallow-2.1280.20869aa2.jpg"]],"w":1600},"photos/marshmallow.jpg":{"a":[[320,"photos/marshmallow.320.6a1cdc34.avif"],[640,"photos/marshmallow.640.6a1cdc34.avif"],[960,"photos/marshmallow.960.6a1cdc34.avif"],[1280,"photos/marshmallow.1280.6a1cdc34.avif"],[1600,"photos/marshmallow.1600.6a1cdc34.avif"]],"v":[[160,"photos/marshmallow.160.6a1cdc34.jpg"],[320,"photos/marshmallow.320.6a1cdc34.jpg"],[640,"photos/marshmallow.640.6a1cdc34.jpg"],[960,"photos/marshmallow.960.6a1cdc34.jpg"],[1280,"photos/marshmallow.1280.6a1cdc34.jpg"]],"w":1600},"photos/mocha-2.jpg":{"a":[[320,"photos/mocha-2.320.ed17eb7e.avif"],[640,"photos/mocha-2.640.ed17eb7e.avif"],[960,"photos/mocha-2.960.ed17eb7e.avif"],[1280,"photos/mocha-2.1280.ed17eb7e.avif"],[1512,"photos/mocha-2.1512.ed17eb7e.avif"]],"v":[[160,"photos/mocha-2.160.ed17eb7e.jpg"],[320,"photos/mocha-2.320.ed17eb7e.jpg"],[640,"photos/mocha-2.640.ed17eb7e.jpg"],[960,"photos/mocha-2.960.ed17eb7e.jpg"],[1280,"photos/mocha-2.1280.ed17eb7e.jpg"]],"w":1512},"photos/mocha-3.jpg":{"a":[[320,"photos/mocha-3.320.93dfcb9e.avif"],[640,"photos/mocha-3.640.93dfcb9e.avif"],[960,"photos/mocha-3.960.93dfcb9e.avif"],[1280,"photos/mocha-3.1280.93dfcb9e.avif"],[1512,"photos/mocha-3.1512.93dfcb9e.avif"]],"v":[[160,"photos/mocha-3.160.93dfcb9e.jpg"],[320,"photos/mocha-3.320.93dfcb9e.jpg"],[640,"photos/mocha-3.640.93dfcb9e.jpg"],[960,"photos/mocha-3.960.93dfcb9e.jpg"],[1280,"photos/mocha-3.1280.93dfcb9e.jpg"]],"w":1512},"photos/mocha.jpg":{"a":[[320,"photos/mocha.320.cacae45e.avif"],[640,"photos/mocha.640.cacae45e.avif"],[960,"photos/mocha.960.cacae45e.avif"],[1280,"photos/mocha.1280.cacae45e.avif"],[1512,"photos/mocha.1512.cacae45e.avif"]],"v":[[160,"photos/mocha.160.cacae45e.jpg"],[320,"photos/mocha.320.cacae45e.jpg"],[640,"photos/mocha.640.cacae45e.jpg"],[960,"photos/mocha.960.cacae45e.jpg"],[1280,"photos/mocha.1280.cacae45e.jpg"]],"w":1512},"photos/mother-2.jpg":{"a":[[320,"photos/mother-2.320.55c3d426.avif"],[640,"photos/mother-2.640.55c3d426.avif"],[960,"photos/mother-2.960.55c3d426.avif"],[1280,"photos/mother-2.1280.55c3d426.avif"],[1600,"photos/mother-2.1600.55c3d426.avif"]],"v":[[160,"photos/mother-2.160.55c3d426.jpg"],[320,"photos/mother-2.320.55c3d426.jpg"],[640,"photos/mother-2.640.55c3d426.jpg"],[960,"photos/mother-2.960.55c3d426.jpg"],[1280,"photos/mother-2.1280.55c3d426.jpg"]],"w":1600},"photos/mother-bakalaki-2.jpg":{"a":[[320,"photos/mother-bakalaki-2.320.8c248db3.avif"],[640,"photos/mother-bakalaki-2.640.8c248db3.avif"],[960,"photos/mother-bakalaki-2.960.8c248db3.avif"],[1280,"photos/mother-bakalaki-2.1280.8c248db3.avif"],[1600,"photos/mother-bakalaki-2.1600.8c248db3.avif"]],"v":[[160,"photos/mother-bakalaki-2.160.8c248db3.jpg"],[320,"photos/mother-bakalaki-2.320.8c248db3.jpg"],[640,"photos/mother-bakalaki-2.640.8c248db3.jpg"],[960,"photos/mother-bakalaki-2.960.8c248db3.jpg"],[1280,"photos/mother-bakalaki-2.1280.8c248db3.jpg"]],"w":1600},"photos/mother-bakalaki.jpg":{"a":[[320,"photos/mother-bakalaki.320.0bd739b5.avif"],[640,"photos/mother-bakalaki.640.0bd739b5.avif"],[960,"photos/mother-bakalaki.960.0bd739b5.avif"],[1280,"photos/mother-bakalaki.1280.0bd739b5.avif"],[1449,"photos/mother-bakalaki.1449.0bd739b5.avif"]],"v":[[160,"photos/mother-bakalaki.160.0bd739b5.jpg"],[320,"photos/mother-bakalaki.320.0bd739b5.jpg"],[640,"photos/mother-bakalaki.640.0bd739b5.jpg"],[960,"photos/mother-bakalaki.960.0bd739b5.jpg"],[1280,"photos/mother-bakalaki.1280.0bd739b5.jpg"]],"w":1449},"photos/mother-catalina.jpg":{"a":[[320,"photos/mother-catalina.320.294b7fcc.avif"],[640,"photos/mother-catalina.640.294b7fcc.avif"],[960,"photos/mother-catalina.960.294b7fcc.avif"],[1186,"photos/mother-catalina.1186.294b7fcc.avif"]],"v":[[160,"photos/mother-catalina.160.294b7fcc.jpg"],[320,"photos/mother-catalina.320.294b7fcc.jpg"],[640,"photos/mother-catalina.640.294b7fcc.jpg"],[960,"photos/mother-catalina.960.294b7fcc.jpg"]],"w":1186},"photos/mother-orange.jpg":{"a":[[320,"photos/mother-orange.320.39c627f5.avif"],[640,"photos/mother-orange.640.39c627f5.avif"],[960,"photos/mother-orange.960.39c627f5.avif"],[1280,"photos/mother-orange.1280.39c627f5.avif"],[1600,"photos/mother-orange.1600.39c627f5.avif"]],"v":[[160,"photos/mother-orange.160.39c627f5.jpg"],[320,"photos/mother-orange.320.39c627f5.jpg"],[640,"photos/mother-orange.640.39c627f5.jpg"],[960,"photos/mother-orange.960.39c627f5.jpg"],[1280,"photos/mother-orange.1280.39c627f5.jpg"]],"w":1600},"photos/mother.jpg":{"a":[[320,"photos/mother.320.82c16a60.avif"],[640,"photos/mother.640.82c16a60.avif"],[960,"photos/mother.960.82c16a60.avif"],[1280,"photos/mother.1280.82c16a60.avif"],[1600,"photos/mother.1600.82c16a60.avif"]],"v":[[160,"photos/mother.160.82c16a60.jpg"],[320,"photos/mother.320.82c16a60.jpg"],[640,"photos/mother.640.82c16a60.jpg"],[960,"photos/mother.960.82c16a60.jpg"],[1280,"photos/mother.1280.82c16a60.jpg"]],"w":1600},"photos/nutmeg-2.jpg":{"a":[[320,"photos/nutmeg-2.320.2de495c1.avif"],[640,"photos/nutmeg-2.640.2de495c1.avif"],[960,"photos/nutmeg-2.960.2de495c1.avif"],[1280,"photos/nutmeg-2.1280.2de495c1.avif"],[1512,"photos/nutmeg-2.1512.2de495c1.avif"]],"v":[[160,"photos/nutmeg-2.160.2de495c1.jpg"],[320,"photos/nutmeg-2.320.2de495c1.jpg"],[640,"photos/nutmeg-2.640.2de495c1.jpg"],[960,"photos/nutmeg-2.960.2de495c1.jpg"],[1280,"photos/nutmeg-2.1280.2de495c1.jpg"]],"w":1512},"photos/nutmeg-3.jpg":{"a":[[320,"photos/nutmeg-3.320.81d7352f.avif"],[640,"photos/nutmeg-3.640.81d7352f.avif"],[960,"photos/nutmeg-3.960.81d7352f.avif"],[1280,"photos/nutmeg-3.1280.81d7352f.avif"],[1512,"photos/nutmeg-3.1512.81d7352f.avif"]],"v":[[160,"photos/nutmeg-3.160.81d7352f.jpg"],[320,"photos/nutmeg-3.320.81d7352f.jpg"],[640,"photos/nutmeg-3.640.81d7352f.jpg"],[960,"photos/nutmeg-3.960.81d7352f.jpg"],[1280,"photos/nutmeg-3.1280.81d7352f.jpg"]],"w":1512},"photos/nutmeg.jpg":{"a":[[320,"photos/nutmeg.320.62465cae.avif"],[640,"photos/nutmeg.640.62465cae.avif"],[960,"photos/nutmeg.960.62465cae.avif"],[1280,"photos/nutmeg.1280.62465cae.avif"],[1512,"photos/nutmeg.1512.62465cae.avif"]],"v":[[160,"photos/nutmeg.160.62465cae.jpg"],[320,"photos/nutmeg.320.62465cae.jpg"],[640,"photos/nutmeg.640.62465cae.jpg"],[960,"photos/nutmeg.960.62465cae.jpg"],[1280,"photos/nutmeg.1280.62465cae.jpg"]],"w":1512},"photos/pecan.jpg":{"a":[[320,"photos/pecan.320.ffb48d8d.avif"],[640,"photos/pecan.640.ffb48d8d.avif"],[960,"photos/pecan.960.ffb48d8d.avif"],[1280,"photos/pecan.1280.ffb48d8d.avif"],[1600,"photos/pecan.1600.ffb48d8d.avif"]],"v":[[160,"photos/pecan.160.ffb48d8d.jpg"],[320,"photos/pecan.320.ffb48d8d.jpg"],[640,"photos/pecan.640.ffb48d8d.jpg"],[960,"photos/pecan.960.ffb48d8d.jpg"],[1280,"photos/pecan.1280.ffb48d8d.jpg"]],"w":1600},"photos/sundae.jpg":{"a":[[320,"photos/sundae.320.9a03d75c.avif"],[640,"photos/sundae.640.9a03d75c.avif"],[960,"photos/sundae.960.9a03d75c.avif"],[1000,"photos/sundae.1000.9a03d75c.avif"]],"v":[[160,"photos/sundae.160.9a03d75c.jpg"],[320,"photos/sundae.320.9a03d75c.jpg"],[640,"photos/sundae.640.9a03d75c.jpg"],[960,"photos/sundae.960.9a03d75c.jpg"]],"w":1000},"photos/teddy.jpg":{"a":[[320,"photos/teddy.320.9068ff3a.avif"],[640,"photos/teddy.640.9068ff3a.avif"],[960,"photos/teddy.960.9068ff3a.avif"],[1000,"photos/teddy.1000.9068ff3a.avif"]],"v":[[160,"photos/teddy.160.9068ff3a.jpg"],[320,"photos/teddy.320.9068ff3a.jpg"],[640,"photos/teddy.640.9068ff3a.jpg"],[960,"photos/teddy.960.9068ff3a.jpg"]],"w":1000},"photos/toffee.jpg":{"a":[[320,"photos/toffee.320.08091cd6.avif"],[640,"photos/toffee.640.08091cd6.avif"],[960,"photos/toffee.960.08091cd6.avif"],[1280,"photos/toffee.1280.08091cd6.avif"],[1600,"photos/toffee.1600.08091cd6.avif"]],"v":[[160,"photos/toffee.160.08091cd6.jpg"],[320,"photos/toffee.320.08091cd6.jpg"],[640,"photos/toffee.640.08091cd6.jpg"],[960,"photos/toffee.960.08091cd6.jpg"],[1280,"photos/toffee.1280.08091cd6.jpg"]],"w":1600}}</script>
 
 <script id="litterIndex" type="application/json">[{"born":"2026-10-19","count":"Three born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-06","count":"Three born, none raised","kits":[],"line":"Netherland Dwarf","lost":true,"never":false,"no":"Seventh litter","parents":{"mother":"bakalaki"},"roles":["mother"]},{"born":"2026-10-04","count":"Six born, none raised","kits":[],"line":"Holland Lop","lost":true,"never":false,"no":"Sixth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born","kits":[],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
-<script src="rabbits.js?v=ca42e8a0"></script>
+
+<script id="pedArchive" type="application/json">{"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
+<script src="rabbits.js?v=aa1608f5"></script>
 
 <script>
 (function(){
@@ -3692,6 +3863,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var t=ev.target;
       if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
       var vw=document.getElementById('viewer'); if(vw&&vw.classList.contains('open')) return;
+      if(document.documentElement.classList.contains('pedopen')) return;   /* the pedigree sheet (21 Oct 2026) */
       ev.preventDefault();
       if(window.__stopFastScroll){ if(ev.key==='1') return; window.__stopFastScroll(); }
       var a=pills[+ev.key-1], id=(a.getAttribute('href')||'').slice(1), place=(id&&id!=='top')?document.getElementById(id):null;
@@ -4212,6 +4384,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var days=Math.round((t0-d)/86400000);
     return days>=0 && days<NEW_DAYS;
   }
+  function pedPar(k){ return (k&&typeof PARENTS!=='undefined'&&PARENTS&&PARENTS[k])||null; }
+  function pedAnc(k){ return (k&&typeof ANCESTORS!=='undefined'&&ANCESTORS&&ANCESTORS[k])||null; }
+  function pedRec(k){ return pedPar(k)||pedAnc(k); }
+  function pedHasTree(p){ return !!(p&&(pedRec(p.sire)||pedRec(p.dam))); }
+  function pedPurebred(r){
+    var m=pedPar(r&&r.mother), f=pedPar(r&&r.father);
+    return !!(r&&m&&f&&r.breed&&m.breed===r.breed&&f.breed===r.breed&&pedHasTree(m)&&pedHasTree(f));
+  }
+  function pedMarkHTML(r){ return pedPurebred(r)?'<span class="pedmark">Pedigreed</span>':''; }
   function newHTML(r){
     var out='';
     if(isNew(r)) out+='<span class="newmark" data-listed="'+esc(r.listedOn)+'">New</span>';
@@ -4959,7 +5140,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '<div class="bunny-media">'+(pmk&&!planInBody?'<span class="ptags"><span class="planmark">'+pmw+'</span>':'')+(stLabel?'<span class="status '+st[0]+homeMark(r)+'">'+stHTML+'</span>':'')+
         (pmk&&!planInBody?'</span>':'')+newHTML(r)+
         holdImg('<picture>'+avifSource(cover,cardSizes)+'<img src="'+esc(cover)+'"'+sizedAttrs(cover,cardSizes)+' alt="'+esc(r.name)+', a '+esc(r.breed)+'"'+
-        ' loading="lazy"'+(DEEP_LINK?' fetchpriority="low"':'')+' onerror="cardErr(this)"></picture>')+badge+'</div>'+
+        ' loading="lazy"'+(DEEP_LINK?' fetchpriority="low"':'')+' onerror="cardErr(this)"></picture>')+badge+pedMarkHTML(r)+'</div>'+
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
         '<span class="price">'+priceHTML(r)+'</span></div>'+
@@ -5375,6 +5556,205 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vLit.innerHTML=html;
       vLit.hidden=false;
     }
+    var vPed=document.getElementById('viewerPed'),
+        vTags=document.getElementById('viewerTags'),
+        pedSheet=document.getElementById('pedSheet'),
+        pedPage=document.getElementById('pedPage'),
+        pedCloseBtn=document.getElementById('pedClose'),
+        pedPrintBtn=document.getElementById('pedPrint');
+    function pedForParent(key){
+      var p=pedPar(key);
+      if(!p||!pedHasTree(p)) return null;
+      return {kind:'p',id:key,name:p.name||'',breed:p.breed||'',variety:p.variety||'',
+        sex:p.role==='mother'?'doe':'buck',ear:p.ear||'',dob:p.dob||'',weight:null,
+        sire:p.sire||'',dam:p.dam||'',bred:false,href:'#p-'+key,her:p.role==='mother'};
+    }
+    var PED_ARCH=(function(){
+      try{ var el=document.getElementById('pedArchive'); return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
+    })();
+    function pedSex(x){ var sx=String(x||'').toLowerCase(); return /^(doe|female)/.test(sx)?'doe':(/^(buck|male)/.test(sx)?'buck':''); }
+    function pedKept(n){
+      if(!n) return null;
+      return {key:n.key||'',rec:n,href:pedPar(n.key)?'#p-'+n.key:'',sire:pedKept(n.sire),dam:pedKept(n.dam)};
+    }
+    function pedForRabbit(r){
+      var a=r&&PED_ARCH[rslug(r.name)+'|'+(r.dob||'')];
+      if(a) return {kind:'r',id:addrOf(r),name:a.name||r.name||'',breed:a.breed||r.breed||'',variety:a.variety||'',
+        sex:pedSex(a.sex),ear:a.ear||'',dob:a.dob||'',weight:a.weight||null,sire:'',dam:'',bred:true,
+        href:'#r-'+addrOf(r),kept:a.on||'',tree:{sire:pedKept(a.sire),dam:pedKept(a.dam)}};
+      if(!pedPurebred(r)) return null;
+      var ws=(r.weights||[]).filter(function(w){ return w&&((+w.lb)||(+w.oz)); });
+      return {kind:'r',id:addrOf(r),name:r.name||'',breed:r.breed||'',variety:r.colour||'',
+        sex:pedSex(r.sex),
+        ear:r.ear||'',dob:r.dob||'',weight:ws.length?ws[ws.length-1]:null,
+        sire:r.father||'',dam:r.mother||'',bred:true,href:'#r-'+addrOf(r)};
+    }
+    function pedForRabbitId(id){
+      for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===id) return pedForRabbit(RABBITS[i]);
+      return null;
+    }
+    function pedTree(s){
+      if(s.tree) return s.tree;
+      function node(k,g){
+        var rec=pedRec(k); if(!rec) return null;
+        return {key:k,rec:rec,href:pedPar(k)?'#p-'+k:'',
+          sire:g<3?node(rec.sire,g+1):null,dam:g<3?node(rec.dam,g+1):null};
+      }
+      return {sire:node(s.sire,1),dam:node(s.dam,1)};
+    }
+    function pedLegs(r){ var l=+r.legs||0; return l?(l+(l===1?' leg':' legs')):''; }
+    function pedBest(r){ return (r.wins||[]).some(function(w){ return w&&w.award==='Best in Show'; }); }
+    function pedShows(t){
+      var hit=false;
+      (function walk(n){ if(!n||hit) return; if((+n.rec.legs)>0||(n.rec.wins&&n.rec.wins.length)){ hit=true; return; } walk(n.sire); walk(n.dam); })(t.sire);
+      (function walk(n){ if(!n||hit) return; if((+n.rec.legs)>0||(n.rec.wins&&n.rec.wins.length)){ hit=true; return; } walk(n.sire); walk(n.dam); })(t.dam);
+      return hit;
+    }
+    function pedLabels(s,t,p){
+      var L=[];
+      if(s||(p&&p.pedigreed)) L.push('Purebred','Pedigreed');
+      if(s&&t&&pedShows(t)) L.push('Show-winning lines');
+      if((s&&s.ear)||(!s&&p&&p.pedigreed&&p.ear)) L.push('Ear tattooed');
+      if(p&&p.gcParents) L.push('Grand Champion parents');
+      return L;
+    }
+    function paintTags(list){
+      if(!vTags) return;
+      vTags.innerHTML=(list||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
+      vTags.hidden=!(list&&list.length);
+    }
+    function pedWho(n){
+      var nm=esc(n.rec.name||'');
+      return n.href?('<a class="chip ped-go" href="'+esc(n.href)+'">'+nm+'<i class="chev" aria-hidden="true"></i></a>')
+                   :('<b class="ped-who">'+nm+'</b>');
+    }
+    function pedLine(n,rel){
+      var r=n.rec, legs=pedLegs(r);
+      return '<div class="ped-row"><span class="ped-rel">'+rel+'</span><span class="ped-info">'+pedWho(n)+
+        (r.variety?' <span class="ped-what">'+esc(r.variety)+'</span>':'')+
+        (legs?' <span class="ped-what">'+legs+'</span>':'')+
+        (pedBest(r)?' <span class="ped-what ped-best">Best in Show</span>':'')+
+        '</span></div>';
+    }
+    function pedList(n,rel){
+      if(!n) return '';
+      var kids=(n.sire||n.dam)?('<ul>'+pedList(n.sire,'Father')+pedList(n.dam,'Mother')+'</ul>'):'';
+      return '<li>'+pedLine(n,rel)+kids+'</li>';
+    }
+    function paintPed(s){
+      if(!vPed) return;
+      if(!s){ vPed.hidden=true; vPed.innerHTML=''; return; }
+      var t=pedTree(s);
+      vPed.innerHTML='<small>Pedigree</small>'+pedKeptHTML(s)+
+        '<ul class="ped-list">'+pedList(t.sire,'Father')+pedList(t.dam,'Mother')+'</ul>'+
+        '<p class="ped-more"><a class="chip" href="#ped-'+s.kind+'-'+esc(s.id)+'">See the full pedigree<i class="chev" aria-hidden="true"></i></a></p>';
+      vPed.hidden=false;
+    }
+    function pedKeptHTML(s){
+      return s.kept?('<p class="ped-kept">Archived on '+pedWhen(s.kept)+', the day it was sold. Its new owner keeps it up to date from\u00a0there.</p>'):'';
+    }
+    function pedWhen(iso){ return '<time datetime="'+esc(iso)+'">'+esc(niceDate(iso))+'</time>'; }
+    function pedField(label,val,cls){
+      return '<span class="ped-f'+(cls?' '+cls:'')+(val?'':' ped-gap')+'"><b>'+label+'</b> '+(val||'<i class="ped-ln"></i>')+'</span>';
+    }
+    function pedFacts(r){
+      var w=((+r.lb)||(+r.oz))?esc(weightText(r)):'';
+      return '<span class="ped-fs">'+pedField('Ear #',r.ear?esc(r.ear):'')+pedField('Weight',w)+'<span class="ped-br"></span>'+
+        pedField('Variety',r.variety?esc(r.variety):'')+(r.reg?pedField('Reg #',esc(r.reg)):'')+'</span>';
+    }
+    function pedBox(n,rel){
+      if(!n) return '<div class="ped-box ped-none"></div>';
+      return '<div class="ped-box"><span class="ped-rel">'+rel+'</span><span class="ped-nm">'+pedWho(n)+'</span>'+pedFacts(n.rec)+'</div>';
+    }
+    function pedMe(s){
+      var f=[];
+      f.push(pedField('Breed',esc(s.breed)));
+      f.push(pedField('Variety',s.variety?esc(s.variety):''));
+      f.push(pedField('Sex',s.sex?(s.sex==='doe'?'Doe (female)':'Buck (male)'):''));
+      f.push(pedField('Ear #',s.ear?esc(s.ear):''));
+      f.push(s.dob?pedField('Born',pedWhen(s.dob)):pedField('Born',''));
+      f.push(pedField('Weight',s.weight?esc(weightText(s.weight)):''));
+      return '<div class="ped-box ped-me"><span class="ped-nm"><a class="ped-self" href="'+esc(s.href)+'">'+esc(s.name)+
+        '<i class="chev" aria-hidden="true"></i></a></span><span class="ped-fs">'+f.join('')+'</span></div>';
+    }
+    function pedCells(s,t){
+      var out=[];
+      out.push('<div class="ped-cell g0 i0'+((t.sire||t.dam)?' kids':'')+'">'+pedMe(s)+'</div>');
+      (function walk(n,g,i){
+        var kids=g<3&&n&&(n.sire||n.dam);
+        out.push('<div class="ped-cell g'+g+' i'+i+' up'+(kids?' kids':'')+'">'+pedBox(n,i%2?'Mother':'Father')+'</div>');
+        if(g<3){ walk(n&&n.sire,g+1,i*2); walk(n&&n.dam,g+1,i*2+1); }
+      })(t.sire,1,0);
+      (function walk(n,g,i){
+        var kids=g<3&&n&&(n.sire||n.dam);
+        out.push('<div class="ped-cell g'+g+' i'+i+' up'+(kids?' kids':'')+'">'+pedBox(n,i%2?'Mother':'Father')+'</div>');
+        if(g<3){ walk(n&&n.sire,g+1,i*2); walk(n&&n.dam,g+1,i*2+1); }
+      })(t.dam,1,1);
+      return out.join('');
+    }
+    function pedSheetHTML(s){
+      var t=pedTree(s);
+      var foot=pedKeptHTML(s);
+      if(s.bred){
+        foot+='<p class="ped-cert">I certify that this pedigree is correct to the best of my knowledge and\u00a0belief.</p>'+
+          '<div class="ped-sigs"><span class="ped-sig"><b>Signed</b> <i class="ped-ln"></i></span><span class="ped-sig"><b>Date</b> <i class="ped-ln"></i></span></div>'+
+          '<p class="ped-by"><span>Bred by Arizona Rabbits, Tucson, Arizona</span> <span>(520) 270-2827</span> <span>arizonarabbits.com</span></p>';
+      } else {
+        foot+='<p class="ped-src">'+(s.her?'Copied from her breeder’s pedigree\u00a0card.':'Copied from his breeder’s pedigree\u00a0card.')+'</p>';
+      }
+      return '<div class="ped-head"><a class="ped-brand" href="#top">Arizona Rabbits</a>'+
+        '<h2 id="pedTitle" tabindex="-1">'+esc(s.breed)+' pedigree</h2></div>'+
+        '<div class="ped-tree">'+pedCells(s,t)+'</div>'+
+        '<div class="ped-foot">'+foot+'</div>';
+    }
+    var pedOpen=false, pedCameIn=false, pedFor=null;
+    var PED_MARK=(function(){ var m=document.querySelector('header .brand-side'); return m?m.cloneNode(true):null; })();
+    function pedFromHash(){
+      var m=/^#ped-([rp])-([a-z0-9-]+)$/.exec(location.hash||'');
+      return m?{kind:m[1],id:m[2]}:null;
+    }
+    function openPed(kind,id,inPage){
+      var s=kind==='p'?pedForParent(id):pedForRabbitId(id);
+      if(!s||!pedSheet||!pedPage) return false;
+      pedFor=s; pedCameIn=!!inPage;
+      pedPage.innerHTML=pedSheetHTML(s);
+      var slot=pedPage.querySelector('.ped-brand');
+      if(PED_MARK&&slot) slot.insertBefore(PED_MARK.cloneNode(true),slot.firstChild);
+      pedSheet.hidden=false; pedOpen=true;
+      document.documentElement.classList.add('pedopen');
+      pedSheet.scrollTop=0;
+      focusNoScroll(document.getElementById('pedTitle'));
+      return true;
+    }
+    function shutPed(){
+      if(!pedOpen) return;
+      pedOpen=false; pedSheet.hidden=true; pedPage.innerHTML='';
+      document.documentElement.classList.remove('pedopen');
+    }
+    function pedRoute(inPage){
+      var w=pedFromHash();
+      if(w){ if(!openPed(w.kind,w.id,inPage)) shutPed(); }
+      else shutPed();
+    }
+    window.addEventListener('hashchange',function(){ pedRoute(true); });
+    if(pedSheet) pedRoute(false);
+    if(pedCloseBtn) pedCloseBtn.addEventListener('click',function(){
+      if(pedCameIn) history.back();
+      else if(pedFor) location.hash=pedFor.href;
+      else shutPed();
+    });
+    if(pedPrintBtn) pedPrintBtn.addEventListener('click',function(){ try{ window.print(); }catch(e){} });
+    document.addEventListener('keydown',function(ev){
+      if(!pedOpen) return;
+      if(ev.key==='Escape'){ ev.preventDefault(); if(pedCloseBtn) pedCloseBtn.click(); return; }
+      if(ev.key==='Tab'){
+        var f=[].filter.call(pedSheet.querySelectorAll('button:not([disabled]), a[href]'),function(e){ return e.getClientRects().length>0; });
+        if(!f.length) return;
+        var first=f[0], last=f[f.length-1];
+        if(ev.shiftKey&&(document.activeElement===first||!pedSheet.contains(document.activeElement))){ ev.preventDefault(); last.focus(); }
+        else if(!ev.shiftKey&&(document.activeElement===last||!pedSheet.contains(document.activeElement))){ ev.preventDefault(); first.focus(); }
+      }
+    });
     var tileFrom=null;
     if(vParents) vParents.addEventListener('click',function(ev){
       var t=ev.target.closest&&ev.target.closest('.parent');
@@ -5417,6 +5797,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vPair){ vPair.innerHTML=''; vPair.hidden=true; }
       vParents.innerHTML=''; vParents.hidden=true;
       paintLitters(p,key);
+      var pedS=pedForParent(key);
+      paintPed(pedS); paintTags(pedLabels(pedS,pedS?pedTree(pedS):null,p));
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       if(vText) vText.hidden=true;
@@ -5704,6 +6086,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vPair){ vPair.innerHTML=pairHTML(r)||stillHTML(r); vPair.hidden=!vPair.innerHTML; }
       paintMeta(r);
       paintParents(r);
+      var pedS=pedForRabbit(r);
+      paintPed(pedS); paintTags(pedS?pedLabels(pedS,pedTree(pedS),null):[]);
       if(vShare) vShare.hidden=!shareAble;
       vGrow.innerHTML=growHTML(r,true);
       born=r.dob||'';
@@ -5803,7 +6187,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(h===lastRouted) return;
       lastRouted=h;
       if(/^#[rp]-/.test(h)) openFromHash();
-      else if(vw.classList.contains('open')&&!document.documentElement.classList.contains('vtout')) (plain?shut:shutSmooth)();
+      else if(vw.classList.contains('open')&&!document.documentElement.classList.contains('vtout')) ((plain||/^#ped-/.test(h))?shut:shutSmooth)();
     }
 
     function shut(keepAddr){
