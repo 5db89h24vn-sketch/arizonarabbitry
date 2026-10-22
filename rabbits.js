@@ -491,6 +491,7 @@
 const PARENTS = {
   lop: {
     role:   "mother",
+    from:   "start",
     name:   "Cinnamony",
     breed:  "Holland Lop",
     photos: [
@@ -507,6 +508,7 @@ const PARENTS = {
   },
   angora: {
     role:   "father",
+    from:   "start",
     name:   "Frederick",
     breed:  "Satin Angora",
     photos: [
@@ -543,6 +545,7 @@ const PARENTS = {
      litter" read as a litter still in the nest. */
   tango: {
     role:    "mother",
+    from:    "luvmybunns",
     name:    "Tango",
     breed:   "Holland Lop",
     variety: "Broken orange",
@@ -553,6 +556,7 @@ const PARENTS = {
     dam:     "jenny",
     note:    "Pedigreed.",
     photos: [
+      { src: "photos/mother-tango-portrait.jpg", date: "2026-10-04" },   /* her face on the site, the first frame (21 Oct 2026): a square cut of his 4 Oct photo below, her alone, so the circles show her and not the nest box */
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
   },
@@ -569,6 +573,7 @@ const PARENTS = {
      view at the bars, then his face; dated the day they arrived. */
   rootbeer: {
     role:    "father",
+    from:    "luvmybunns",
     name:    "Root Beer",
     breed:   "Holland Lop",
     variety: "Tortoise",
@@ -600,6 +605,7 @@ const PARENTS = {
      archive). */
   smorri: {
     role:    "mother",
+    from:    "luvmybunns",
     name:    "S'Morri",
     breed:   "Holland Lop",
     variety: "Sable point",
@@ -622,6 +628,7 @@ const PARENTS = {
      close up on the cage floor beside the fur she pulled. */
   bakalaki: {
     role:    "mother",
+    from:    "modernfarms",
     name:    "Bakalaki",
     breed:   "Netherland Dwarf",
     variety: "Opal",
@@ -636,6 +643,118 @@ const PARENTS = {
       { src: "photos/mother-bakalaki-portrait.jpg", date: "2026-10-21" },   /* his portrait of her, 21 Oct 2026: her face on the site, the first frame */
       { src: "photos/mother-bakalaki-2.jpg", date: "2026-10-06" },
       { src: "photos/mother-bakalaki.jpg", date: "2026-10-06" }
+    ]
+  },
+  /* THE FIVE OTHER NETHERLAND DWARFS (21 Oct 2026). William, with their six
+     pedigree cards: "this is the pedigree list for every single Netherland
+     dwarf in our rabbitry", and a photo of each; then "let's have a little
+     producers section where people can see all of the does and bucks for our
+     rabbitry". Each from its own card: color, ear number, born, sex, and its
+     line in ANCESTORS below. gcParents only where the card gives both parents
+     a Grand Champion number. */
+  regret: {
+    role:    "mother",
+    from:    "sweetps",
+    name:    "Regret",
+    breed:   "Netherland Dwarf",
+    variety: "Black otter",
+    ear:     "REGRET",
+    dob:     "2024-03-06",
+    pedigreed: true,
+    sire:    "frijoles",
+    dam:     "fritopie-sp",
+    note:    "Pedigreed.",
+    gcParents: true,
+    photos: [
+      { src: "photos/mother-regret-portrait.jpg", date: "2026-10-21" }   /* his photo of her, 21 Oct 2026, cut to her face */
+    ]
+  },
+  tajima: {
+    role:    "mother",
+    from:    "modernfarms",
+    name:    "Tajima",
+    breed:   "Netherland Dwarf",
+    variety: "Broken blue",
+    ear:     "TAJIMA",
+    dob:     "2025-12-09",
+    pedigreed: true,
+    sire:    "doughbird",
+    dam:     "masomenos",
+    note:    "Pedigreed.",
+    photos: [
+      { src: "photos/mother-tajima-portrait.jpg", date: "2026-10-21" }   /* his photo of her, 21 Oct 2026, cut to her face */
+    ]
+  },
+  tesla: {
+    role:    "mother",
+    from:    "modernfarms",
+    name:    "Tesla",
+    breed:   "Netherland Dwarf",
+    variety: "Broken black otter",
+    ear:     "TESLA",
+    dob:     "2026-06-30",
+    pedigreed: true,
+    sire:    "minidito",
+    dam:     "cowboykiller",
+    note:    "Pedigreed.",
+    photos: [
+      { src: "photos/mother-tesla-portrait.jpg", date: "2026-10-21" }   /* his photo of her, 21 Oct 2026, cut to her face */
+    ]
+  },
+  maximo: {
+    role:    "father",
+    from:    "modernfarms",
+    name:    "Maximo",
+    breed:   "Netherland Dwarf",
+    variety: "Black otter",
+    ear:     "MAXIMO",
+    dob:     "2025-12-05",
+    pedigreed: true,
+    sire:    "scoop",
+    dam:     "whirlaway",
+    note:    "Pedigreed.",
+    photos: [
+      { src: "photos/father-maximo-portrait.jpg", date: "2026-10-21" }   /* his photo of him, 21 Oct 2026, cut to his face */
+    ]
+  },
+  odyssey: {
+    role:    "father",
+    from:    "modernfarms",
+    name:    "Odyssey",
+    breed:   "Netherland Dwarf",
+    variety: "Black",
+    ear:     "ODYSSEY",
+    dob:     "2026-03-14",
+    pedigreed: true,
+    sire:    "besitos",
+    dam:     "masomenos",
+    note:    "Pedigreed.",
+    gcParents: true,
+    photos: [
+      { src: "photos/father-odyssey-portrait.jpg", date: "2026-10-21" },   /* his photo of him, 21 Oct 2026, cut to his face */
+      { src: "photos/father-odyssey-2.jpg", date: "2026-10-21" }
+    ]
+  },
+  /* SAFFRON (21 Oct 2026). William: "this rabbit was from our first litter,
+     and it just had its first litter of eight babies ... It's obviously a
+     female ... I need you to come up with a unique name for it ... its father
+     is Frederick and its mother is Cinamini"; then "this rabbit was bred with
+     root beer". The name is Claude's, at his request: her mother Cinnamony is
+     named for a spice, and saffron is the golden-orange one. Born with the
+     first litter (28 June 2026, the litters page), one of its four raised. A
+     cross with no papers: no pedigree, her parents named in the note, each
+     name a doorway to its own view. Her color is not stated, so none is
+     printed. The portrait is cut from his photo of the day her litter was
+     born. */
+  saffron: {
+    role:    "mother",
+    from:    "here",
+    name:    "Saffron",
+    breed:   "Holland Lop cross",
+    dob:     "2026-06-28",
+    note:    "From my first litter: Cinnamony and Frederick's daughter.",
+    photos: [
+      { src: "photos/mother-saffron-portrait.jpg", date: "2026-10-21" }   /* his photo, 21 Oct 2026, cut to her face */
     ]
   }
 };
@@ -748,7 +867,132 @@ const ANCESTORS = {
   blessyourheart:    { name: "Bless Your Heart", variety: "Ruby-eyed white", lb: 2, oz: 4, reg: "D842S", gc: true },
   muenster:          { name: "Muenster", variety: "Black otter", ear: "MUENSTER", lb: 2, oz: 8, reg: "H680R", gc: true, sire: "sweettooth", dam: "gorgonzola" },
   sweettooth:        { name: "Sweet Tooth", variety: "Chocolate otter", ear: "SWEET TOOTH", lb: 2, oz: 6 },
-  gorgonzola:        { name: "Gorgonzola", variety: "Blue silver marten", ear: "ZOLA", lb: 2, oz: 7 }
+  gorgonzola:        { name: "Gorgonzola", variety: "Blue silver marten", ear: "ZOLA", lb: 2, oz: 7 },
+  /* The five other Netherland Dwarfs' lines (21 Oct 2026), from their cards.
+     Rabbits already above (Bzinga, Spook, Swig, Doohicky, Strut, Bless Your
+     Heart, Sweet Tooth) appear on these cards with the same record. Four cards
+     put a whole name in the ear-number box (Certified Freak, Dirty Britches,
+     Eleven Percent, Menace to Society); no ear carries a tattoo that long, so
+     those are left blank, as for Bless Your Heart. */
+  besitos:           { name: "Besitos", variety: "Steel", ear: "BESITOS", reg: "H834U", gc: true, sire: "doohicky", dam: "promise" },
+  promise:           { name: "Promise", variety: "Broken black", ear: "PR", lb: 2, oz: 6, reg: "Z628P", gc: true, award: "Best of Variety, 2017 ARBA convention", sire: "whiteboi", dam: "skat" },
+  whiteboi:          { name: "White Boi", variety: "Ruby-eyed white", ear: "5RW1", lb: 2, oz: 8, legs: 3 },
+  skat:              { name: "Skat", variety: "Black", ear: "SK1", lb: 2, oz: 8, legs: 5 },
+  masomenos:         { name: "Mas O Menos", variety: "Blue", ear: "MAS O MENOS", lb: 2, oz: 8, reg: "H829U", gc: true, sire: "yonkers", dam: "chibia" },
+  yonkers:           { name: "Yonkers", variety: "Broken blue", ear: "YONKERS", lb: 2, oz: 5, reg: "V223S", gc: true, sire: "dagger", dam: "blessyourheart" },
+  dagger:            { name: "Dagger", variety: "Broken black otter", ear: "33", lb: 2, oz: 8, reg: "M867S", gc: true, award: "Best of Variety, 2022 ARBA convention" },
+  chibia:            { name: "Chibia", variety: "Blue", ear: "CHIBIA", lb: 2, oz: 6, reg: "B729U", gc: true, sire: "doohicky", dam: "peaches" },
+  peaches:           { name: "Peaches", variety: "Ruby-eyed white", ear: "PEACHES", lb: 2, oz: 6, reg: "T520S", gc: true },
+  doughbird:         { name: "Dough Bird", variety: "Broken blue", ear: "DOUGH BIRD", lb: 2, oz: 6, sire: "yonkers", dam: "ajax" },
+  ajax:              { name: "Ajax", variety: "Black otter", ear: "AJAX", lb: 2, oz: 4, reg: "V222S", gc: true, award: "Best in Show, SARBA, December 2023", sire: "scoop", dam: "nameless" },
+  scoop:             { name: "Scoop", variety: "Blue otter", ear: "SCOOP", lb: 2, oz: 6, reg: "V201S", gc: true, sire: "bzinga", dam: "swish" },
+  nameless:          { name: "Nameless", variety: "Black otter", ear: "NAMELESS", lb: 2 },
+  swish:             { name: "Swish", variety: "Chestnut", ear: "SWI", lb: 2, oz: 6, reg: "Z624P", gc: true, legs: 28, award: "Best in Show six times", sire: "johnniewalker", dam: "chug" },
+  johnniewalker:     { name: "Johnnie Walker", variety: "Ruby-eyed white", ear: "JW", lb: 2, oz: 8, reg: "N20P", gc: true, legs: 16 },
+  chug:              { name: "Chug", variety: "Chestnut", ear: "CHUG", lb: 2, oz: 6, reg: "R752P" },
+  whirlaway:         { name: "Whirlaway", variety: "Black otter", ear: "WHIRLAWAY", lb: 2, oz: 6, reg: "K341U", sire: "lunchable", dam: "fritopie" },
+  lunchable:         { name: "Lunchable", variety: "Black otter", ear: "LUNCHABLE", lb: 2, oz: 6, reg: "B624U", sire: "potatochip", dam: "sv" },
+  potatochip:        { name: "Potato Chip", variety: "Black otter", ear: "POTATO CHIP", lb: 2, oz: 5, reg: "T531S", gc: true },
+  sv:                { name: "SV", variety: "Chestnut", ear: "SV", lb: 2, oz: 7 },
+  fritopie:          { name: "Frito Pie", variety: "Black otter", ear: "FRITO PIE", lb: 2, oz: 5, reg: "B621U", gc: true, legs: 14, award: "Best of Breed, youth show, 2023 ARBA convention", sire: "potatochip", dam: "churro" },
+  churro:            { name: "Churro", variety: "Chestnut", ear: "CHURRO", lb: 2, oz: 8 },
+  minidito:          { name: "Mi Nidito", variety: "Broken black", ear: "MI NIDITO", reg: "H847U", gc: true, award: "Best Junior of Breed, 2025 ARBA convention", sire: "eljefe", dam: "dirtybritches" },
+  eljefe:            { name: "El Jefe", variety: "Black", ear: "EL JEFE", lb: 2, oz: 6, reg: "H835U", gc: true, sire: "yonkers", dam: "certifiedfreak" },
+  certifiedfreak:    { name: "Certified Freak", variety: "Black", lb: 2, oz: 7 },
+  dirtybritches:     { name: "Dirty Britches", variety: "Broken black", lb: 2, reg: "V224S", gc: true, award: "Best of Group, 2023 ARBA convention", sire: "riot", dam: "elevenpercent" },
+  riot:              { name: "Riot", variety: "Black", ear: "RIOT", lb: 2, oz: 4, reg: "P895S", gc: true },
+  elevenpercent:     { name: "Eleven Percent", variety: "Broken black", lb: 2, oz: 6, reg: "H693R", gc: true },
+  cowboykiller:      { name: "Cowboy Killer", variety: "Black otter", ear: "COWBOYKILLER", lb: 2, oz: 8, sire: "scoop", dam: "fritopie" },
+  /* Regret's card, printed by another rabbitry: its own weights, registration
+     numbers written with a leading zero, birth dates and dated wins */
+  frijoles:          { name: "Frijoles", variety: "Black otter", ear: "FRIJOLES", lb: 2, oz: 5, reg: "B0623U", gc: true, legs: 6, dob: "2022-12-25",
+                       wins: [ { award: "Best Reserve in Show", on: "2024-01-13" }, { award: "Best in Show", on: "2024-01-13" },
+                               { award: "Best in Show", on: "2023-12-09" }, { award: "Best in Show", on: "2023-12-08" } ],
+                       sire: "makeitrain", dam: "muenster-sp" },
+  makeitrain:        { name: "Make It Rain", variety: "Black otter", ear: "MAKE IT RAIN", lb: 2, oz: 4, reg: "D849S", sire: "dean", dam: "ramen" },
+  dean:              { name: "Dean", variety: "Black silver marten", ear: "DEAN", lb: 2, oz: 4, reg: "P904S", gc: true },
+  ramen:             { name: "Ramen", variety: "Black otter", ear: "RAM", lb: 2, oz: 3, reg: "Z636P", gc: true },
+  "muenster-sp":     { name: "Muenster", variety: "Black otter", ear: "MUENSTER", lb: 2, oz: 3, reg: "H680R", gc: true, sire: "sweettooth", dam: "gorgonzola-sp" },
+  "gorgonzola-sp":   { name: "Gorgonzola", variety: "Blue silver marten", ear: "ZOLA", lb: 2, oz: 5 },
+  "fritopie-sp":     { name: "Frito Pie", variety: "Black otter", ear: "FRITO PIE", lb: 2, oz: 5, reg: "B0621U", gc: true, legs: 14, dob: "2023-04-10",
+                       wins: [ { award: "Best of Breed", on: "2023-10-08" }, { award: "Best in Show", on: "2023-10-28" },
+                               { award: "Best in Show", on: "2023-10-21" }, { award: "Best in Show", on: "2023-10-20" } ],
+                       sire: "potatochip-sp", dam: "churro-sp" },
+  "potatochip-sp":   { name: "Potato Chip", variety: "Black otter", ear: "POTATO CHIP", lb: 2, reg: "T0531S", gc: true, legs: 11, dob: "2022-05-22",
+                       wins: [ { award: "Best in Show", on: "2024-02-09" }, { award: "Best in Show", on: "2023-11-10" },
+                               { award: "Best in Show", on: "2023-09-09" }, { award: "Best in Show", on: "2023-05-13" },
+                               { award: "Best in Show", on: "2023-02-10" } ],
+                       sire: "makeitrain", dam: "snak" },
+  snak:              { name: "Snak", variety: "Black otter", ear: "SNAK", lb: 2, oz: 5 },
+  "churro-sp":       { name: "Churro", variety: "Chestnut", ear: "CHURRO", lb: 2, oz: 8, reg: "S368U", dob: "2022-07-03", sire: "doohicky", dam: "menacetosociety" },
+  menacetosociety:   { name: "Menace to Society", variety: "Black otter", lb: 2, oz: 6, reg: "P892S", gc: true }
+};
+
+/* WHERE THE DOES AND BUCKS COME FROM (21 Oct 2026, Round 118). William: "I want
+   to have a lot of pride from where I source my rabbits from, so I have a
+   filter that makes it so that it showcases where their roots are from ... if
+   they click on the rabbit that is from another breeder, it will take them to
+   an information tab with a bunch of details and information of that breeder,
+   how long they've been breeding for, and why their lines are beneficial for
+   us ... their success ultimately rubs onto us"; "Just have it neatly
+   organized". On his list: show the rabbitry names "and link their pages", no
+   message to them first, and "do deep research on each breeder ... see what
+   other people in the community say about them from the professional side".
+   EVERY FACT IS SOURCED: `says` is from the rabbitry's own site as read on 21
+   Oct 2026 (`url`), or from our rabbits' own pedigree cards; the judges' word
+   on their lines is read from ANCESTORS at the page, never typed here. No
+   owner's or family member's name, town, phone or email is printed (two of the
+   sites name a family; the children may be minors). A rabbitry with no site of
+   its own has no link. `from` on each parent in PARENTS names its record.
+     what, when  the line under the name: what they breed, and since when
+                 (Modern Farms: 1995 to 2005, then back since 2016, so "since
+                 2016, first rabbit 1995", never a "since 1995" that hides the
+                 gap); `says` (a paragraph a thought) is their own site's facts in plain words, checked
+                 sentence by sentence on 21 Oct 2026 (their own phrases:
+                 "family-operated", "objective evaluation of structure, type,
+                 and breed quality", "cull diligently" (said plainly: "keep
+                 only their best for breeding"), "150-250 Dwarfs", "6x
+                 BIS ... 20+ BOBs", "2018 ANDRC BOSB"). No town: Modern Farms'
+                 page names one, an owner's, and owners' towns stay off the site.
+     others      what others in the rabbit world say of them, each [{says, where,
+                 url}]: none yet. No review, article or club post about any of
+                 the three could be read on the open web on 21 Oct 2026 (their
+                 community talks on Facebook and Instagram, which cannot be
+                 read from here); the judges' word is the cards' and their
+                 pages', shown in the wins. */
+const SOURCES = {
+  luvmybunns: {
+    name:  "Luv My Bunns",
+    what:  "Holland Lops",
+    when:  "since 2016",
+    says:  ["A family-operated rabbitry raising Holland Lops since 2016, and members of the ARBA, the Holland Lop Specialty Club and the Arizona State Rabbit Breeders Association.",
+            "They show because a judge's eye is an objective check of structure, type and breed quality, and they use what the show table tells them to improve each generation, breeding for sound structure, good health and the sweet, affectionate temperament Holland Lops are known for."],
+    url:   "https://luvmybunnsrabbitry.com/",
+    read:  "2026-10-21"
+  },
+  modernfarms: {
+    name:  "Modern Farms US",
+    what:  "Netherland Dwarfs",
+    when:  "since 2016, first rabbit 1995",
+    says:  ["Their first rabbit was a 4-H project in 1995, and a black otter Netherland Dwarf of their own breeding won Youth Best in Show at the 2002 ARBA Convention.",
+            "Back in rabbits since 2016, they keep 150 to 250 dwarfs, study the ARBA Standard of Perfection, keep only their best for breeding, and show locally, regionally and nationally.",
+            "Their site lists Strut, in Bakalaki's and Odyssey's lines, with six Best in Show wins and more than 20 Best of Breed, and Spook, in Bakalaki's and Maximo's, as Best Opposite Sex of Breed at the 2018 national show of the American Netherland Dwarf Rabbit Club."],
+    url:   "http://www.modernfarms.us/rabbitry.html",
+    read:  "2026-10-21"
+  },
+  sweetps: {
+    name:  "Sweet P's Rabbitry",
+    what:  "Netherland Dwarfs",
+    says:  "Regret's breeder: her pedigree card is theirs. Her father, Frijoles, is from Modern Farms US."
+  },
+  start: {
+    name:  "Where it started",
+    says:  "Cinnamony and Frederick, the pair behind my first litter and every Holland Lop cross since."
+  },
+  here: {
+    name:  "Bred here",
+    says:  "Saffron, from my own first litter, Cinnamony and Frederick's daughter."
+  }
 };
 
 /* THE LITTERS YOU ARE PLANNING (7 Sept 2026). William: "an option to be alerted
