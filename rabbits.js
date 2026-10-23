@@ -1406,7 +1406,7 @@ const RABBITS = [
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
-    sex:    "",
+    sex:    "Doe",                             /* his word, 22 Oct 2026, 11:22am (row 23): "Doe, ready 22 Oct"; the ready day prints next round, with its Spanish */
     colour: "White",
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
@@ -1518,6 +1518,213 @@ const RABBITS = [
     weights: [],
     photo:  "photos/nutmeg.jpg",
     note:   "Tortoise like Mocha, and the two are hard to tell apart: a shade warmer and fluffier in the 15 October photos, one ear down and one out to the side in two of them, sitting up on the brick by the fountain."
+  },
+
+  /* THE SEVEN OF 27 SEPTEMBER, listed 22 Oct 2026: Cinnamony and Frederick's last
+     litter (his word through Codex that day: "Yes. They belong to Frederick &
+     Cinamonia", the question being this litter). Photographed by him at the
+     fountain on 22 Oct, each kit's photos closed by one clip (his grouping rule),
+     18 photos and 7 clips verified by hash from the intake folder. The names are
+     Claude's, at his word that day: "create names for each of these rabbits",
+     "in a creative way, like how we've been doing it recently", "a funny name for
+     that one" with its tongue out, and "names also correlate to their coat color,
+     including any unique markings"; his veto open (row 116). The colour field
+     waits for his word; no sex is printed ("there's no gender" at this age). Each
+     photograph is cut the way the August ones were (listingphoto.py, 4:3, the
+     whole rabbit and the ledge); the clips are the first through the HDR step of
+     video.py. Price $350 each, his word. */
+
+  {
+    name:   "Marmalade",
+    photos: [
+      { src: "photos/marmalade.jpg", date: "2026-10-22" },
+      { src: "photos/marmalade-2.jpg", date: "2026-10-22", note: "Head down on the brick, both ears up." },
+      { video: "videos/marmalade.mp4", poster: "photos/marmalade-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/marmalade.jpg",
+    note:   "The deep golden one of the seven, with a white spot on its forehead. Sitting up on the brick by the fountain in the 22 October photos, ears up, dark eyes; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Coconut",
+    photos: [
+      { src: "photos/coconut.jpg", date: "2026-10-22" },
+      { src: "photos/coconut-2.jpg", date: "2026-10-22", note: "On the brick in front of the spout, head low." },
+      { src: "photos/coconut-3.jpg", date: "2026-10-22", note: "From the side, ears back, flat out." },
+      { video: "videos/coconut.mp4", poster: "photos/coconut-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/coconut.jpg",
+    note:   "White, with pink ears and ruby eyes in the 22 October photos, flat out on the brick by the fountain; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Dollop",
+    photos: [
+      { src: "photos/dollop.jpg", date: "2026-10-22" },
+      { src: "photos/dollop-2.jpg", date: "2026-10-22", note: "Sitting up, one ear up and one down." },
+      { video: "videos/dollop.mp4", poster: "photos/dollop-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/dollop.jpg",
+    note:   "The one with a dab of white on its nose. One ear up and one down in the 22 October photos, flat on the brick by the fountain; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Churro",
+    photos: [
+      { src: "photos/churro.jpg", date: "2026-10-22" },
+      { src: "photos/churro-2.jpg", date: "2026-10-22", note: "Flat on the brick, one ear forward." },
+      { video: "videos/churro.mp4", poster: "photos/churro-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/churro.jpg",
+    note:   "Cinnamon-tan with a sugar-white spot on top of its head (clearest in the clip), which is how it got its name. Sitting up on the brick by the fountain in the 22 October photos, both ears up, dark eyes; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Pancake",
+    photos: [
+      { src: "photos/pancake.jpg", date: "2026-10-22" },
+      { src: "photos/pancake-2.jpg", date: "2026-10-22", note: "From the side, ears up, the spout behind." },
+      { src: "photos/pancake-3.jpg", date: "2026-10-22", note: "Sitting up, both ears up, the brick wall behind." },
+      { video: "videos/pancake.mp4", poster: "photos/pancake-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/pancake.jpg",
+    note:   "Sitting up on the brick by the fountain in the 22 October photos, ears up, one ear darker at the tip; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Oatmeal",
+    photos: [
+      { src: "photos/oatmeal.jpg", date: "2026-10-22" },
+      { src: "photos/oatmeal-2.jpg", date: "2026-10-22", note: "Sitting up, ears up, the brick wall behind." },
+      { src: "photos/oatmeal-3.jpg", date: "2026-10-22", note: "Face on, ears up, on the brick." },
+      { video: "videos/oatmeal.mp4", poster: "photos/oatmeal-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/oatmeal.jpg",
+    note:   "The frosted-looking coat of the seven. Sitting up on the brick by the fountain in the 22 October photos, ears up; in the clip it is picked up and held."
+  },
+
+  {
+    name:   "Snowcone",
+    photos: [
+      { src: "photos/snowcone.jpg", date: "2026-10-22" },
+      { src: "photos/snowcone-2.jpg", date: "2026-10-22", note: "Face on, both ears straight up." },
+      { src: "photos/snowcone-3.jpg", date: "2026-10-22", note: "Flat on the brick, ears back, the spout behind." },
+      { video: "videos/snowcone.mp4", poster: "photos/snowcone-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    breed:  "Holland Lop cross",
+    mother: "lop",
+    father: "angora",
+    sex:    "",
+    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    dob:    "2026-09-27",
+    listedOn: "2026-10-22",
+    ready:  "",
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/snowcone.jpg",
+    note:   "White, with ruby eyes; the one with its tongue out in the 22 October photo, which is how it got its name. Ears straight up in the others; in the clip it is picked up and held."
   }
 
 ];
