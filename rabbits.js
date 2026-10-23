@@ -1620,7 +1620,7 @@ const RABBITS = [
     name:   "Churro",
     photos: [
       { src: "photos/churro.jpg", date: "2026-10-22" },
-      { src: "photos/churro-2.jpg", date: "2026-10-22", note: "Flat on the brick, one ear forward." },
+      { src: "photos/churro-2.jpg", date: "2026-10-22", note: "From the side, ears up, the spout behind." },
       { video: "videos/churro.mp4", poster: "photos/churro-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -1640,7 +1640,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/churro.jpg",
-    note:   "Cinnamon-tan with a sugar-white spot on top of its head (clearest in the clip), which is how it got its name. Sitting up on the brick by the fountain in the 22 October photos, both ears up, dark eyes; in the clip it is picked up and held."
+    note:   "Cinnamon-tan with a sugar-white spot on top of its head (clearest in the clip), which is how it got its name. Flat on the brick by the fountain with one ear forward in the 22 October cover photo, sitting up with both ears up in the other; in the clip it is picked up and held."
   },
 
   {
@@ -1676,7 +1676,7 @@ const RABBITS = [
     photos: [
       { src: "photos/oatmeal.jpg", date: "2026-10-22" },
       { src: "photos/oatmeal-2.jpg", date: "2026-10-22", note: "Sitting up, ears up, the brick wall behind." },
-      { src: "photos/oatmeal-3.jpg", date: "2026-10-22", note: "Face on, ears up, on the brick." },
+      { src: "photos/oatmeal-3.jpg", date: "2026-10-22", note: "From the side, ears up, the spout behind." },
       { video: "videos/oatmeal.mp4", poster: "photos/oatmeal-video.jpg", date: "2026-10-22", note: "Picked up and held at the fountain." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -1696,7 +1696,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/oatmeal.jpg",
-    note:   "The frosted-looking coat of the seven. Sitting up on the brick by the fountain in the 22 October photos, ears up; in the clip it is picked up and held."
+    note:   "The frosted-looking coat of the seven. Face on with its ears up on the brick by the fountain in the 22 October cover photo, from the side in the others; in the clip it is picked up and held."
   },
 
   {
