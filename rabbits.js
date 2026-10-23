@@ -1375,13 +1375,13 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "reserved",
+    status: "sold",                            /* paid in full 23 Oct 2026 (his Receipt #3 to the buyer, 6:41am): paid off and still here is Sold (Round 98) */
     reservedOn: "2026-10-12",                  /* his word, 12 Oct 2026, about 8:55pm Tucson: "make sure you mark pecan as reserved today!!" */
     partsFrom: "2026-10-13",                   /* his word, 20 Oct 2026, 7:40am: "the first 50 was done on 13 October" (until then the plan was dated from her reservation day, 12 Oct, by his earlier rule; his word, 17 Oct, about 9:30pm: "pecan is also being paid in parts, but it hasn't been taken home yet ... it's being paid in parts, which is different from a reservation") */
-    paidOff: "",
-    planPct: 43,                               /* the share of her price received so far (20 Oct 2026, from his word that morning; his rule: a percentage, no amounts and no days) */
+    paidOff: "2026-10-23",                     /* his word, 23 Oct 2026, 6:41am: the third payment, "$0 Due" */
+    planPct: 100,                               /* the share of her price received so far (20 Oct 2026, from his word that morning; his rule: a percentage, no amounts and no days) */
     planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
-    soldOn: "",
+    soldOn: "2026-10-23",                      /* the payoff day; the drop-off he arranged with the buyer stays private until she has gone home and he says so */
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
