@@ -1596,8 +1596,9 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* his word, 23 Oct 2026, 8:41pm Tucson: "Marmalade was sold yesterday" */
+    reservedOn: "2026-10-22",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
+    soldOn: "2026-10-22",                      /* "yesterday" from 23 Oct, Tucson; whether it went home that day is asked */
     ear:    "",
     weights: [],
     photo:  "photos/marmalade.jpg",
@@ -1651,8 +1652,9 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* his word, 23 Oct 2026, about 9:08pm Tucson: "Mark dollop as sold as today" */
+    reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
+    soldOn: "2026-10-23",                      /* whether it went home that day is asked */
     ear:    "",
     weights: [],
     photo:  "photos/dollop.jpg",
@@ -1678,8 +1680,9 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* his word, 23 Oct 2026, 8:12pm Tucson: "Churro just got sold today" */
+    reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
+    soldOn: "2026-10-23",                      /* the day he said it; whether it went home that day is asked */
     ear:    "",
     weights: [],
     photo:  "photos/churro.jpg",
