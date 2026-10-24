@@ -1126,14 +1126,24 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* HER PRICE is $300, printed plain. How it got there (the follower-milestone
-       drops of 19 to 28 Sept 2026) is in RABBITS-HISTORY.md on the Desktop: this
-       file is public, so its notes say how to edit it, never why a price moved. */
+    /* HER PRICE is $260 since 23 Oct 2026, with the $300 struck beside it and the reason
+       said: the markdown for age (his rule of 23 Oct: a rabbit's price comes down as it
+       gets older; the young carry a premium; every rabbit gets the same handling). A
+       markdown that stays (dealStays), this rabbit's own (dealScope), kind "age" (the
+       listing's reason ends with the doorway to the price answer). The News log says
+       "Butterscotch $300 → $260" on the 23rd. */
     /* Listed again on 28 Sept 2026; an available rabbit prints no dates. THIS FILE
        IS PUBLIC (anyone can open arizonarabbits.com/rabbits.js), so nothing about
        any buyer, and no price decision, is ever written in it, not even in a
        note; that history lives in RABBITS-HISTORY.md. */
-    price:  300,
+    price:  260,
+    wasPrice: 300,
+    dealOn:  "2026-10-23",
+    dealKind: "age",
+    dealStays: true,
+    dealScope: "rabbit",
+    dealNote: "Older than the babies",
+    dealTag:  "Older than the babies",
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -1401,8 +1411,39 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  300,                               /* his word, 21 Oct 2026, 1:42pm: "Also make marshmallow $300" (350 from 17 Oct, 375 before) */
-    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 } ],  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct and "$350 → $300" on 21 Oct */
+    /* $180 SINCE 23 OCT 2026, THE $300 STRUCK BESIDE IT, WHILE SHE IS TREATED FOR RINGWORM
+       (his words, 23 Oct 10:50am: "make marshmallow $180 ... I'm currently treating it for
+       ringworm. It's still active ... If anybody wants to buy it, I'll give it at its
+       current price with enough dosage of the ringworm medication that I'm using so that
+       they can self-medicate. However, if I end up curing it, the price will go back up").
+       A health markdown (dealKind "health"): no Sale mark, no end date; it stays until she
+       is healed, by his rule. The box under the price (mark) says it plainly and, behind
+       "Read more", explains ringworm with its sources. Her photographs of the patch come
+       later and belong to this box, never the cover (his word). */
+    price:  180,
+    wasPrice: 300,
+    dealOn:  "2026-10-23",
+    dealKind: "health",
+    dealNote: "A patch of her fur is in treatment",
+    dealTag:  "Patchy fur, in treatment",
+    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 } ],   /* $375 at listing, $350 from 17 Oct, $300 from 21 Oct */
+    mark: {
+      photoComing: true,                       /* his word: the pictures of the patch come later and belong here, never the cover */
+      lead: "A patch of her fur is in treatment.",
+      text: "It stayed patchy longer than usual, which is how ringworm often shows, so I’m treating it for ringworm first; it could also be fur mites. As of 23 October it’s active and it hasn’t spread. Take her home at this price while she’s in treatment and she comes with enough of the medication I’m using to finish the course. If she clears before she’s sold, the price goes back up.",
+      more: [
+        { lead: "It’s not a worm, and it isn’t poor care.", text: "Ringworm is a fungus on the skin. It’s common in rabbits and most often seen in young ones: patchy hair loss, often starting on the head, with skin that can look dry or flaky, and it usually doesn’t itch much." },
+        { lead: "It’s treatable, and a small patch can clear on its own.", text: "An antifungal cream sold over the counter is the usual treatment, and a vet can add an oral antifungal for a stubborn case or confirm which it is with a quick test. In a healthy rabbit a local patch can clear by itself with time; the medication speeds it up. Hers has stalled rather than spread, which is the sign I watch." },
+        { lead: "It can pass to people and other pets.", text: "Through contact, like any ringworm, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
+        { lead: "Ringworm or mites?", text: "The two can look alike, and I haven’t had it tested. I’m treating for ringworm first; if it turns out to be fur mites, that’s a different, equally simple treatment, and a vet can settle it." },
+        { lead: "Photos of the patch are coming.", text: "They’ll show here, in this box." }
+      ],
+      sources: [
+        { name: "Merck Veterinary Manual, Skin Disorders of Rabbits (Laurie Hess, DVM, reviewed July 2026)", url: "https://www.merckvetmanual.com/all-other-pets/rabbits/skin-disorders-of-rabbits" },
+        { name: "FirstVet, Ringworm in Rabbits", url: "https://firstvet.com/us/articles/ringworm-in-rabbits" },
+        { name: "MediRabbit, Fungal Dermatitis (Esther van Praag, PhD)", url: "https://www.medirabbit.com/EN/Skin_diseases/Fungal/Fungal_en.htm" }
+      ]
+    },  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct and "$350 → $300" on 21 Oct */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
