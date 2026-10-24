@@ -1568,7 +1568,7 @@ const RABBITS = [
     soldOn: "",
     ear:    "",
     weights: [],
-    photo:  "photos/nutmeg.jpg",
+    photo:  "photos/nutmeg-3.jpg",                /* the cover by eye (24 Oct 2026, Round 131, his "Fix old listings too"): its first photo had the top of its head on the frame's edge; this one shows all of it, facing right, with room */
     note:   "Tortoise like Mocha, and the two are hard to tell apart: a shade warmer and fluffier in the 15 October photos, one ear down and one out to the side in two of them, sitting up on the brick by the fountain."
   },
 
