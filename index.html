@@ -1689,11 +1689,16 @@ html.js .incl:not(.open) b{margin-bottom:0}
 .whypanel ul{list-style:none;margin:0;padding:0}
 .whypanel li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding:2px 0}
 .whypanel li b{color:var(--ink);font-weight:600}
+
+.whypanel ul.checks li{position:relative;padding:3px 0 3px 22px;font-size:14px;line-height:1.45;font-weight:600;color:var(--ink)}
+.whypanel ul.checks li::before{content:'';position:absolute;left:0;top:6.5px;width:13px;height:13px;background:var(--moss);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
 .whypanel p{font-size:13.5px;line-height:1.5;color:var(--ink-soft);margin-top:7px;padding-top:7px;border-top:1px solid var(--line-soft)}
 
 @media(max-width:360px){
   .whypanel{padding:8px 10px 9px}
   .whypanel li{font-size:13.5px;line-height:1.45;padding:0}
+  .whypanel ul.checks li{font-size:13.5px;padding:2px 0 2px 21px} .whypanel ul.checks li::before{top:5.5px}
   .viewer-terms{margin-top:6px}
   .whypanel p{font-size:13px;line-height:1.45;margin-top:6px;padding-top:6px}
 }
@@ -4058,14 +4063,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <ul class="viewer-tags" id="viewerTags" hidden></ul>
       
       <div class="whypanel" id="viewerWhyPanel" hidden>
-        
-        <ul>
-          <li><b>Handled every day</b> from its first week, and used to new&nbsp;people.</li>
-          <li><b>Weekend delivery</b> anywhere in Arizona, included.</li>
-          <li><b>A health check with you</b>, and your $50 deposit back if it fails.</li>
-          <li><b>Two weeks of its food</b>, bamboo, and a care sheet.</li>
-          <li><b>The whole price.</b> Nothing added at pickup.</li>
-          <li><b>My number</b> for as long as you have it.</li>
+
+        <ul class="checks">
+          <li>Handled every day from week one</li>
+          <li>Weekend delivery in Arizona</li>
+          <li>Healthy at pickup, or $50 back</li>
+          <li>Two weeks of food, a care sheet</li>
+          <li>Nothing added at pickup</li>
+          <li>My number, for life</li>
           
         </ul>
         <p>The rabbit is the smallest part of the cost: a year of keeping one runs <a class="cite"

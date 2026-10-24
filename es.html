@@ -1920,11 +1920,16 @@ html.js .incl:not(.open) b{margin-bottom:0}
 .whypanel ul{list-style:none;margin:0;padding:0}
 .whypanel li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding:2px 0}
 .whypanel li b{color:var(--ink);font-weight:600}
+
+.whypanel ul.checks li{position:relative;padding:3px 0 3px 22px;font-size:14px;line-height:1.45;font-weight:600;color:var(--ink)}
+.whypanel ul.checks li::before{content:'';position:absolute;left:0;top:6.5px;width:13px;height:13px;background:var(--moss);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/contain}
 .whypanel p{font-size:13.5px;line-height:1.5;color:var(--ink-soft);margin-top:7px;padding-top:7px;border-top:1px solid var(--line-soft)}
 
 @media(max-width:360px){
   .whypanel{padding:8px 10px 9px}
   .whypanel li{font-size:13.5px;line-height:1.45;padding:0}
+  .whypanel ul.checks li{font-size:13.5px;padding:2px 0 2px 21px} .whypanel ul.checks li::before{top:5.5px}
   .viewer-terms{margin-top:6px}
   .whypanel p{font-size:13px;line-height:1.45;margin-top:6px;padding-top:6px}
 }
@@ -4103,14 +4108,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <ul class="viewer-tags" id="viewerTags" hidden></ul>
       
       <div class="whypanel" id="viewerWhyPanel" hidden>
-        
-        <ul>
-          <li><b>Cargado todos los días</b> desde su primera semana, y acostumbrado a la gente&nbsp;nueva.</li>
-          <li><b>Entrega en fin de semana</b> en cualquier parte de Arizona, incluida.</li>
-          <li><b>Una revisión de salud junto con usted</b>, y su depósito de $50 de vuelta si no la pasa.</li>
-          <li><b>Dos semanas de su comida</b>, bambú y una hoja de cuidados.</li>
-          <li><b>El precio completo.</b> Nada extra el día que se lo lleva.</li>
-          <li><b>Mi número</b> mientras usted lo tenga.</li>
+
+        <ul class="checks">
+          <li>Cargado a diario desde bebé</li>
+          <li>Entrega en Arizona, fin de semana</li>
+          <li>Sano al recogerlo, o $50 de vuelta</li>
+          <li>2 semanas de comida y una guía</li>
+          <li>Nada extra al recogerlo</li>
+          <li>Mi número, de por vida</li>
           
         </ul>
         <p>El conejo es la parte más pequeña del costo: un año de cuidarlo cuesta <a class="cite"
