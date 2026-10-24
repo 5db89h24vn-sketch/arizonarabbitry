@@ -1093,9 +1093,10 @@ const RABBITS = [
     dob:    "2026-07-28",
     listedOn: "2026-08-24",
     ready:  "22 Sept",
-    status: "sold",
+    status: "adopted",
     reservedOn: "2026-08-28",
     soldOn: "2026-09-07",
+    wentHome: "2026-09-07",                    /* his word, 22 Oct 2026, 11:59am and 9:26pm (rows 37, 50): "Sold and delivered on the same day" */
     ear:    "",
     weights: [],
     photo:  "photos/teddy.jpg",
@@ -1181,12 +1182,12 @@ const RABBITS = [
     dob:    "2026-07-28",
     listedOn: "2026-08-24",
     ready:  "22 Sept",
-    status: "sold",
+    status: "adopted",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
+    wentHome: "2026-08-29",                    /* his tap, 22 Oct 2026, 9:16pm (row 37): home the day it sold, "Yes, the day they sold" */
     ear:    "",
     weights: [],
-    departed: true,
     photo:  "photos/sundae.jpg",
     note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
   },
@@ -1210,12 +1211,12 @@ const RABBITS = [
     dob:    "2026-07-28",
     listedOn: "2026-08-24",
     ready:  "22 Sept",
-    status: "sold",
+    status: "adopted",
     reservedOn: "2026-08-25",
     soldOn: "2026-08-29",
+    wentHome: "2026-08-29",                    /* his tap, 22 Oct 2026, 9:16pm (row 37): home the day it sold, "Yes, the day they sold" */
     ear:    "",
     weights: [],
-    departed: true,
     photo:  "photos/cloud.jpg",
     note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
   },
@@ -1357,9 +1358,10 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "sold",                            /* William, 27 Sept 2026: "sold today, and it was reserved 1 day ago" */
+    status: "adopted",                            /* William, 27 Sept 2026: "sold today, and it was reserved 1 day ago" */
     reservedOn: "2026-09-26",
     soldOn: "2026-09-27",
+    wentHome: "2026-09-27",                    /* his word, 22 Oct 2026, 11:59am and 9:16pm (row 37): home the day she sold, "our standard procedure" */
     ear:    "",
     weights: [],
     photo:  "photos/maple.jpg",
@@ -1447,11 +1449,11 @@ const RABBITS = [
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
-    sex:    "Doe",                             /* his word, 22 Oct 2026, 11:22am (row 23): "Doe, ready 22 Oct"; the ready day prints next round, with its Spanish */
+    sex:    "Doe",                             /* his word, 22 Oct 2026, 11:22am (row 23): "Doe, ready 22 Oct" */
     colour: "White",
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
-    ready:  "",
+    ready:  "22 Oct",                          /* his word, the same tap: eight weeks old on 22 Oct 2026 (Round 125 prints it) */
     status: "available",
     soldOn: "",
     ear:    "",
@@ -1590,7 +1592,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "Fawn",                            /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1618,7 +1620,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "White",                           /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1645,7 +1647,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "Fawn",                            /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1672,7 +1674,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "Fawn",                            /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1700,7 +1702,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "Fawn",                            /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1728,7 +1730,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "Fawn",                            /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
@@ -1756,7 +1758,7 @@ const RABBITS = [
     mother: "lop",
     father: "angora",
     sex:    "",
-    colour: "",                                /* his word only, never read off a photograph; asked 22 Oct (row 118) */
+    colour: "White",                           /* his word, 22 Oct 2026, 9:14pm (row 118): "Yes: two white, five fawn" */
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
