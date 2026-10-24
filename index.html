@@ -18,7 +18,7 @@
 
 <script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
 
-<link rel="preload" as="script" href="rabbits.js?v=f8d99419" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=f7aeed4f" data-fact="data-preload">
 
 <script>document.documentElement.classList.add('boot')</script>
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/marshmallow.1200.6a1cdc34.avif";l.setAttribute("imagesrcset","img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
@@ -766,6 +766,9 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 .bunny-cta{font-size:14.5px;font-weight:600;color:var(--brick);display:flex;
   align-items:center;gap:6px;margin-top:auto;padding-top:2px}
 .bunny-cta .cta-short{display:none}
+
+.bunny p.cta-note{margin:auto 0 6px;font-size:13px;line-height:1.4;color:var(--ink-faint);text-wrap:balance}
+.bunny p.cta-note + .bunny-cta{margin-top:0}
 .bunny-cta svg{width:14px;height:14px;transition:transform .15s}
 .bunny:hover .bunny-cta svg{transform:translateX(3px)}
 
@@ -1649,6 +1652,25 @@ html.vtout::view-transition-new(rabbitphoto){
 .opener.sm{display:inline-flex;width:auto;min-height:0;height:20px;gap:6px;padding:0 8px 0 10px;
   font-size:12.5px;line-height:20px;white-space:nowrap}
 .opener.sm::after{margin:0 1px 0 0}
+
+details.fold{margin:16px 0 0;border:0}
+details.fold>summary{list-style:none;display:flex}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary.opener:hover{color:var(--ink)}
+details.fold>summary.opener::after{position:static;right:auto;top:auto}
+details.fold[open]>summary.opener::after{transform:translateY(2px) rotate(225deg)}
+details.fold>.fold-body{padding-top:12px}
+details.fold>.fold-body>:first-child{margin-top:0}
+
+html.js .incl:not(.open) li small{display:none}
+html.js .incl:not(.open) li{padding-top:11px;padding-bottom:11px} html.js .incl:not(.open) li::before{top:17px}
+html.js .incl:not(.open) b{margin-bottom:0}
+.incl-more{margin-top:14px} html:not(.js) .incl-more{display:none}
+.svc-terms{margin-top:10px}
+
+.svc-terms b{display:block;text-wrap:balance}
+
+.rv-note{margin:8px 0 0;font-size:13px;line-height:1.4;color:var(--ink-faint)}
 
 .mini{display:inline-flex;justify-content:center;min-height:32px;padding:4px 12px;font-size:13px;line-height:1.2;white-space:nowrap}
 
@@ -2631,7 +2653,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   "sameAs":[
     "https://www.instagram.com/arizonarabbits",
     "https://www.tiktok.com/@arizonarabbits",
-    "https://www.facebook.com/share/14oLBrmQCTG/",
+    "https://www.facebook.com/people/Arizona-rabbits/61594441016236/",
     "https://www.snapchat.com/add/arizonarabbits"
   ],
   "address":{"@type":"PostalAddress","addressLocality":"Tucson","addressRegion":"AZ","addressCountry":"US"},
@@ -2829,7 +2851,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       </div>
       <div class="txqr" id="textQR" hidden><svg class="txcode" viewBox="0 0 45 45" role="img" shape-rendering="crispEdges" aria-label="A code for your phone's camera: it opens a text to (520) 270-2827"><path fill="#fff" d="M0 0h45v45H0z"/><path fill="none" stroke="#241F1D" d="M4 4.5h7m6 0h1m1 0h1m2 0h1m1 0h1m2 0h3m2 0h1m1 0h7m-37 1h1m5 0h1m2 0h2m2 0h7m1 0h2m4 0h2m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m3 0h3m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h3m2 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m1 0h1m2 0h1m1 0h1m4 0h1m3 0h1m2 0h3m2 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h2m1 0h1m2 0h3m4 0h1m2 0h1m-25 1h1m1 0h5m3 0h1m3 0h1m3 0h1m1 0h1m1 0h2m1 0h3m2 0h5m-33 1h1m1 0h1m2 0h1m5 0h4m6 0h1m4 0h1m2 0h1m1 0h1m1 0h2m-37 1h2m1 0h1m2 0h1m1 0h2m1 0h4m3 0h1m1 0h3m1 0h2m1 0h1m1 0h8m-37 1h2m1 0h3m1 0h3m3 0h1m2 0h1m4 0h1m7 0h4m2 0h2m-36 1h1m1 0h1m1 0h2m1 0h2m1 0h4m2 0h1m4 0h1m1 0h2m2 0h1m1 0h6m-36 1h1m1 0h1m1 0h2m4 0h3m4 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1m3 0h1m-32 1h1m1 0h4m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m6 0h1m1 0h1m1 0h1m2 0h3m-37 1h1m2 0h2m2 0h1m2 0h1m1 0h3m2 0h2m2 0h3m2 0h2m7 0h2m-36 1h2m1 0h3m1 0h6m1 0h2m2 0h1m2 0h1m2 0h4m1 0h1m1 0h1m3 0h1m-35 1h1m1 0h2m2 0h1m1 0h1m1 0h4m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h1m2 0h1m-37 1h3m3 0h1m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1m3 0h4m1 0h1m2 0h4m-34 1h1m1 0h1m4 0h1m3 0h2m3 0h4m1 0h1m1 0h2m7 0h1m-33 1h2m1 0h1m1 0h1m3 0h2m1 0h5m2 0h2m1 0h1m2 0h1m1 0h5m1 0h1m-35 1h2m3 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m5 0h1m2 0h1m-30 1h2m4 0h2m4 0h5m1 0h1m3 0h1m1 0h2m1 0h2m1 0h4m1 0h2m-37 1h2m1 0h3m4 0h2m3 0h2m4 0h2m1 0h1m3 0h1m1 0h1m1 0h1m-33 1h2m4 0h1m1 0h4m1 0h3m2 0h1m3 0h1m1 0h4m1 0h2m1 0h2m2 0h1m-37 1h2m2 0h1m5 0h1m3 0h3m4 0h1m1 0h1m1 0h1m2 0h1m4 0h4m-37 1h1m3 0h3m1 0h1m2 0h4m3 0h1m2 0h1m2 0h2m1 0h1m2 0h3m2 0h2m-37 1h1m3 0h1m2 0h1m3 0h2m3 0h1m1 0h1m2 0h4m5 0h1m5 0h1m-37 1h1m2 0h1m2 0h1m1 0h2m4 0h1m1 0h2m4 0h1m1 0h1m1 0h7m1 0h1m-27 1h4m4 0h2m1 0h1m3 0h2m3 0h1m3 0h1m1 0h2m-36 1h7m2 0h1m1 0h1m2 0h4m3 0h2m5 0h1m1 0h1m1 0h1m1 0h3m-37 1h1m5 0h1m1 0h4m4 0h3m1 0h3m1 0h1m1 0h3m3 0h2m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h5m3 0h1m2 0h1m3 0h10m1 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m1 0h4m1 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m3 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m-37 1h1m5 0h1m2 0h1m2 0h1m1 0h2m3 0h6m3 0h1m1 0h1m1 0h1m3 0h1m-37 1h7m1 0h2m5 0h1m1 0h1m1 0h1m4 0h3m2 0h2m1 0h1m1 0h3"/></svg><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txnum">Or text (520) 270-2827.</span></p></div>
       
-      <div class="srow hero-srow"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
+      <div class="srow hero-srow"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/people/Arizona-rabbits/61594441016236/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
 
       <div class="facts">
 
@@ -2955,14 +2977,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       before it goes&nbsp;home.</p>
       <p class="lede"><b>That routine is what you're paying for.</b> It makes a rabbit more likely
       to come to&nbsp;people.</p>
-      <p class="lede" id="money"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
-      shows across the country, at thousands each, and fly home with them. Their babies go
-      home here for a fraction of that, and every sale goes into the next&nbsp;line.</p>
-      <p class="lede"><b>Every rabbit gets the same care, whatever its price.</b> The aim is a
-      rabbit good enough for a show table and just as happy on your&nbsp;couch.</p>
+      
       <details class="about-more">
-        <summary>More about the rabbitry</summary>
+        <summary>Where the money goes, and&nbsp;more</summary>
         <div class="faq-body">
+          <p id="money"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
+          shows across the country, at thousands each, and fly home with them. Their babies go
+          home here for a fraction of that, and every sale goes into the next&nbsp;line.</p>
+          <p><b>Every rabbit gets the same care, whatever its price.</b> The aim is a
+          rabbit good enough for a show table and just as happy on your&nbsp;couch.</p>
           <p><b>Some rabbits stay.</b> Each line is bred to get better, and the ones that carry
           it forward stay with me. Every litter is on <a class="litterlink"
           href="/litters">the litters page</a>, <a class="litterlink"
@@ -3057,7 +3080,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <h3>Watch them grow up</h3>
       <p>See it for yourself: photos and video of every&nbsp;stage.</p>
 
-      <p class="owners-lead" id="owners"><b>Bought one here? I'll help it&nbsp;get&nbsp;seen&nbsp;online.</b></p>
+      <details class="fold owners-fold" id="owners">
+        <summary class="opener">Bought one here? I'll help it get&nbsp;seen&nbsp;online</summary>
+        <div class="fold-body">
       <ul class="owners">
         <li><b>It can have its own account, if you'd like.</b><small>Its whole life on camera,
         from the first day.</small></li>
@@ -3067,9 +3092,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         href="https://www.instagram.com/reel/DdpPk2TyFBS/" target="_blank" rel="noopener noreferrer" data-leaves="word">top
         <span class="kw">reel</span><span class="sr-only"> (opens in a new tab)</span></a> reached half a million views.</small></li>
       </ul>
+        </div>
+      </details>
       
       <figure data-fact="reel" class="reel"></figure>
-      <div class="srow rv"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
+      <div class="srow rv"><a class="srow-ig" href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="@arizonarabbits on Instagram, verified, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg><span class="srow-handle">@arizonarabbits</span><svg class="vfd" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path class="vfd-tick" d="m8.6 12.1 2.4 2.4 4.4-4.6"/></svg></a><span class="srow-more"><a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="TikTok, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.facebook.com/people/Arizona-rabbits/61594441016236/" target="_blank" rel="noopener noreferrer" aria-label="Facebook, Arizona Rabbits, opens in a new tab" data-leaves="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a><a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" aria-label="Snapchat, @arizonarabbits, opens in a new tab" data-leaves="mark"><svg class="snap" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(1.25 1.3) scale(.9)" d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg></a></span></div>
     </div>
   </div>
 </section>
@@ -3082,7 +3109,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
       <p class="lede">Their food for <a class="litterlink" href="#faq-home">the first two
       weeks</a> at home, and my help for as long as you want&nbsp;it.</p>
-      <ul class="incl">
+      <ul class="incl" id="inclList">
         <li><b>Two weeks of their current food</b><small>Changing their food suddenly upsets their stomach. Mix the new in slowly.</small></li>
         <li><b>Bamboo to chew on</b><small>It outlasts the two weeks of food. Chewing keeps their teeth worn down.</small></li>
         <li><b>A written care sheet</b><small>Diet, litter habits, and the specific signs that mean call a vet today.</small></li>
@@ -3092,11 +3119,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <li><b>Help getting it seen online</b><small>Its own account if you'd like one, my help with the clips, and some on my story when there's room. <a class="litterlink" href="#owners">How that works</a>.</small></li>
         <li><b>My phone number, yours to keep</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
       </ul>
+      
+      <button type="button" class="opener incl-more" id="inclMore" aria-expanded="false" aria-controls="inclList">What each one is for</button>
     </div>
     <div class="rv">
       
       <img src="img/included.jpg?v=a2a15768" srcset="img/included.160.a2a15768.jpg 160w, img/included.320.a2a15768.jpg 320w, img/included.640.a2a15768.jpg 640w, img/included.jpg?v=a2a15768 800w" sizes="(min-width:921px) 520px, 100vw"
            alt="Three young rabbits inside a mesh travel carrier with a bowl of pellets and fresh hay" width="800" height="1200" loading="lazy">
+      <p class="rv-note">The carrier stays with me.</p>
     </div>
   </div>
 </section>
@@ -3110,6 +3140,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         
         <p class="svc-lede">Your rabbit comes back to the food it knows and the same hands
         that raised&nbsp;it.</p>
+        
+        <p class="svc-lede svc-terms"><b>The first day of every stay is free.</b> My own rabbits only.</p>
+        <details class="fold">
+          <summary class="opener">What a stay is like</summary>
+          <div class="fold-body">
         <ul>
           <li>Hay, pellets, clean bedding and the daily handling they grew up with</li>
           <li>Photos while you're gone, so you're not left wondering</li>
@@ -3124,6 +3159,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
              target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild rabbits, for every rabbit here, yours&nbsp;included.</p>
         </div>
+          </div>
+        </details>
         <a href="#contact" class="btn btn-primary">Ask about dates</a>
       </div>
       <div class="rate">
@@ -3161,8 +3198,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <div class="faq-body">
           <p><b>Send me a text or a note.</b> Tell me about your home and who the rabbit is
           for. I'll tell you which one fits, or if the next litter would suit you&nbsp;better.</p>
-          
-          <p><b>Then come and meet them.</b> The visit is free, and nothing has to be decided
+
+          <p><b>Then come and meet them.</b> My door is open: come whenever you like, and pet and
+          hold any rabbit you want. The visit is free, and nothing has to be decided
           on the day. There's no pressure to buy: a rabbit is a commitment of
           <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
           
@@ -3198,6 +3236,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
             rel="noopener noreferrer" data-leaves="word">comes to people instead of running from <span class="kw">them</span><span class="sr-only"> (opens in a new tab)</span></a>. Each one
             meets new people before it goes&nbsp;home.</li>
             <li><b>A record you can check.</b> Its birth date, its litter from the day it was born, its parents and dated photos, all on this site.</li>
+            
+            <li><b>A purebred's pedigree and ear tattoo, at no charge.</b> I never charge for either.</li>
             <li><b>A health check you watch.</b> Ears, teeth, eyes, weight and coat, checked
             together, and it goes home when it passes <a class="litterlink"
             href="#faq-home">the test</a>. If it doesn't, your $50 deposit comes back.</li>
@@ -3216,7 +3256,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           comes to <a class="cite" href="https://www.chewy.com/education/small-pet/rabbit/how-much-do-rabbits-cost"
           target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">$1,672&nbsp;to&nbsp;$3,354</span><span class="sr-only"> (opens in a new tab)</span></a> on Chewy's vet-reviewed figures,
           and with good care they live <a class="litterlink" href="#faq-life">8&nbsp;to&nbsp;12&nbsp;years</a>.</p>
-          <p><b>10% off for military and first responders.</b> That includes police and firefighters. Say so when you get in touch.</p>
+          
+          <p><b>10% off for military and first responders.</b> That includes police and firefighters. Show your ID at pickup. It works on anything here, boarding too, and stacks with any other offer.</p>
           <p><b>You can buy on a payment plan.</b> If paying all at once is hard, that's what it's for: you pay over time and still take your rabbit home. Text or call me, and we'll work out a plan that fits you.
           <a class="litterlink" href="#faq-pay">How paying works</a>.</p>
           <p><b>Ask any seller the same questions.</b> Here are <a class="litterlink" href="#faq-ask">the eight I'd ask</a>.</p>
@@ -3242,9 +3283,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           href="https://rabbit.org/care/how-to-keep-your-rabbit-cool-in-summer/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">stay under the <span class="kw">mid-80s</span><span class="sr-only"> (opens in a new tab)</span></a>. If a trip isn't safe on
           the day, we move it, and I'll say so.</p>
-          
-          <p><b>Outside Arizona?</b> It has to be coordinated with a ground shipper. Text me first and
-          we'll work it out.</p>
+
+          <p><b>Outside Arizona?</b> It has to go with a ground shipper. Text me first, and we'll set up
+          the transport together and find the quote.</p>
         </div>
       </details>
       <details id="faq-deposit">
@@ -3280,7 +3321,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>Meet them first, then pay.</b> Visits are free, and there's no pressure to buy.
           Come and see them and pay the deposit in cash while you're here, so nothing is at
           stake until you've decided.</p>
-          <p><b>Further away?</b> Only the $50 deposit is paid before you meet it, with a receipt. The rest
+          
+          <p><b>Further away?</b> Before you pay anything, we can do a quick video call with the rabbit.
+          Only the $50 deposit is paid before you meet it, with a receipt. The rest
           can wait until the rabbit is in your hands, <a class="litterlink" href="#faq-delivery">at
           your door</a>.</p>
           <p><b>Zelle, Apple Pay, or cash.</b> The $50 deposit reserves the rabbit. Pay the rest when
@@ -3306,7 +3349,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           that isn't there yet waits, whatever its age.</p>
           <p><b>Eight weeks is when the changeover is done.</b> Babies wean at four to six
           weeks and lose the protection of their mother's milk while their gut is still
-          learning solid food. The House Rabbit Society says <a class="cite"
+          learning solid food. Rabbit.org says <a class="cite"
           href="https://rabbit.org/care/babies/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">not to take them away “until they are a full
           eight weeks of <span class="kw">age”</span><span class="sr-only"> (opens in a new tab)</span></a>. The <a class="cite"
@@ -3435,7 +3478,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           get in touch. If a rabbit isn't right for your home, I'll say so.</p>
           <p><b>They're used to a busy house.</b> Here they hear household noise, spend time
           outside and meet new people. Your home is one more new place, not the&nbsp;first.</p>
-          <p><b>Cats usually settle in.</b> The House Rabbit Society says indoor cats <a class="cite"
+          <p><b>Cats usually settle in.</b> Rabbit.org says indoor cats <a class="cite"
           href="https://rabbit.org/care/rabbits-and-cats/"
           target="_blank" rel="noopener noreferrer" data-leaves="word">typically will peacefully <span class="kw">coexist</span><span class="sr-only"> (opens in a new tab)</span></a> with rabbits after
           proper introductions. Start with the rabbit in a pen the cat can't reach into, and keep
@@ -3473,8 +3516,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>Yes. Two together: the second is 20% off.</b> The second is whichever costs
           less, same litter or not.</p>
           <p><b>Not sure about a second? You have 48 hours.</b> Buy the second, or put a $50 deposit on it, within 48 hours of the first one going home, and the 20% still applies.</p>
-          <p><b>A $50 deposit on the second keeps the pair price for a month.</b> Need longer? Another $50 keeps it going, and every $50 comes off the price. Switching to a different rabbit is free once, and a switch doesn't extend the month. When the month is up I'll check in, and you'll have a
-          week to decide.</p>
+          
+          <p><b>The 20% is for two going home together.</b> A deposit is for a rabbit you're buying, not for
+          holding one. Want a pair, and the next litter is on the way? We'll talk it through: if you buy
+          from that litter right away, I can still honor the 20%.</p>
           
           <p><b>Rabbits are a highly social species.</b> <a class="cite"
           href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/company"
@@ -3524,7 +3569,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           the box keeps them using it. <a class="litterlink" href="#faq-litter">How the box works</a>.</p>
           <p><b>Water, hay and a box to hide in.</b> Fresh water every day and grass hay always
           there. A cardboard box with a doorway cut in it <a class="cite" href="https://rabbit.org/care/how-to-care-for-a-pet-rabbit-a-primer/" target="_blank" rel="noopener noreferrer" data-leaves="word">helps a rabbit feel <span class="kw">safe</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
-          <p><b>Cables out of reach.</b> Rabbits chew them. The House Rabbit Society's advice:
+          <p><b>Cables out of reach.</b> Rabbits chew them. Rabbit.org's advice:
           <a class="cite" href="https://rabbit.org/care/habitat/bunny-proofing-your-space/" target="_blank" rel="noopener noreferrer" data-leaves="word">cords in tubing or out of <span class="kw">reach</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p><b>The food comes with it.</b> Two weeks of what it eats now, bamboo to chew and the
           care sheet. <a class="litterlink" href="#included">Everything that comes with it</a>.</p>
@@ -3546,7 +3591,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <summary>What do they eat?</summary>
         <div class="faq-body">
           <p><b>Mostly hay, as much as it wants.</b> Grass hay like timothy is about 85% of a
-          grown rabbit's diet. The House Rabbit Society: <a class="cite" href="https://rabbit.org/care/food-diet/" target="_blank" rel="noopener noreferrer" data-leaves="word">unlimited fresh hay, every <span class="kw">day</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          grown rabbit's diet. Rabbit.org: <a class="cite" href="https://rabbit.org/care/food-diet/" target="_blank" rel="noopener noreferrer" data-leaves="word">unlimited fresh hay, every <span class="kw">day</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           
           <figure class="act" id="actHay">
             <svg class="act-stage" viewBox="0 2 190 92" role="img" aria-label="A rabbit and some hay." focusable="false"><path class="act-ground" d="M6 90.5H186"/><path class="act-hay" d="M177 90C171 82 166 69 167 59C170 65 174 79 177 90Z"/><path class="act-hay" d="M177 90C175 80 177 70 180 66C184 73 181 84 177 90Z"/><g class="act-rabbit"><path class="act-ink" d="M59 41C53 30 45 13 49 8C50.3 6.9 51.8 7.1 53.3 8.1C58.7 11.7 64.7 26.2 67 34C67 36.3 67 38.7 67 41C64.3 41 61.7 41 59 41ZM23 89C14 88 10 81 11 70C11 70 11 70 11 70C11 70 11 70 11 70C11.5 61.5 14.2 54 18.6 48.6C23 43.2 29 40 36 40C45 40 51 45 55 48C56.3 45.7 57.7 43.3 59 41C63.7 41 68.3 41 73 41C84 42 92 48 92 55C92 62 85 66 78 66C75 67 72 69 70 72C69 73.5 68.5 75.2 68.4 77.1C68.2 79 68.5 81 69 83C70 85 74 85 76 87C78 89 76 90 73 90C69 90 65 90 61 90C58 88 59 85 60 81C61 79 59 77 57 77C55 81 51 83 46 84C47.7 84 49.3 84.2 50.8 84.6C52.3 85 53.6 85.5 54.5 86.1C55.4 86.7 56 87.3 56 88C56 89.5 53 90 50 90C43.3 90 36.7 90 30 90C27 90 25 89.5 23 89ZM67 34C69 24 73 13 78 14C79.3 14.4 80 15.7 80.2 17.4C81.1 23.4 76.1 35.5 73 41C71 41 69 41 67 41C67 38.7 67 36.3 67 34Z"/></g></svg>
@@ -3657,9 +3702,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <details id="faq-life">
         <summary>How long do they live?</summary>
         <div class="faq-body">
-          <p><b>8 to 12 years indoors, with good care.</b> That is the <a class="cite"
+          <p><b>8 to 12 years indoors, with good care.</b> That is <a class="cite"
           href="https://rabbit.org/resources/how-long-do-rabbits-live/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">House Rabbit Society's <span class="kw">range</span><span class="sr-only"> (opens in a new tab)</span></a>. Spayed or
+          target="_blank" rel="noopener noreferrer" data-leaves="word">Rabbit.org's <span class="kw">range</span><span class="sr-only"> (opens in a new tab)</span></a>. Spayed or
           neutered and kept indoors, about ten is typical.</p>
           <p><b>Care makes the difference.</b> A study of 6,349 pet rabbits in England found
           the <a class="cite"
@@ -3670,6 +3715,17 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           target="_blank" rel="noopener noreferrer" data-leaves="word">7 <span class="kw">years</span><span class="sr-only"> (opens in a new tab)</span></a>.
           Flystrike led the causes in England, with not eating next. Not eating is on my
           same-day emergency list, and you keep my number for&nbsp;life.</p>
+        </div>
+      </details>
+      
+      <details id="faq-vaccine">
+        <summary>Are your rabbits vaccinated?</summary>
+        <div class="faq-body">
+          <p><b>No, I don't vaccinate.</b> None of mine are, including every one that has gone home. There is a
+          vaccine for <a class="cite" href="https://content.govdelivery.com/accounts/AZGFD/bulletins/41f7e07"
+          target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">RHDV2</span><span class="sr-only"> (opens in a new tab)</span></a>, a virus in Arizona's wild rabbits:
+          <a class="cite" href="https://rabbit.org/health/single-dose-rhdv2-vaccine-rabbits/"
+          target="_blank" rel="noopener noreferrer" data-leaves="word">ask your vet about <span class="kw">it</span><span class="sr-only"> (opens in a new tab)</span></a> at the first&nbsp;check-up.</p>
         </div>
       </details>
       </details>
@@ -3764,7 +3820,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         
         <li class="first"><a href="https://ig.me/m/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="row"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="rt"><span class="tag">I'm most active here</span><b>Message me on <span class="kw">Instagram</span></b><small>I can put a name to a face, and it all stays in one place.</small></span><span class="sr-only"> (opens in a new tab)</span></a></li>
 
-        <li class="pair"><a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com."><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text</b><span class="num">(520)&nbsp;270-2827</span><small>Fastest. Fine for a first&nbsp;message.</small></span></a><a href="tel:+15202702827" aria-label="Call (520) 270-2827"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.1l1.6 4-2 1.5a12.5 12.5 0 0 0 6.1 6.1l1.5-2 4 1.6v3.1a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 3.4 5.5a1.8 1.8 0 0 1 1.8-2z"/></svg></span><span class="rt"><b>Call</b><span class="num">Same number</span><small>To talk it through.</small></span></a></li>
+        <li class="pair"><a href="sms:+15202702827?&amp;body=Hi%20William%2C%20I%20saw%20your%20rabbits%20on%20arizonarabbits.com."><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg></span><span class="rt"><b>Text</b><span class="num">(520)&nbsp;270-2827</span><small>Fastest. Fine for a first&nbsp;message.</small></span></a><a href="tel:+15202702827" aria-label="Call (520) 270-2827"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.1l1.6 4-2 1.5a12.5 12.5 0 0 0 6.1 6.1l1.5-2 4 1.6v3.1a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 3.4 5.5a1.8 1.8 0 0 1 1.8-2z"/></svg></span><span class="rt"><b>Call</b><span class="num">Same number</span><small>To talk it through. It rings my&nbsp;phone.</small></span></a></li>
         
         <li><!--email_off--><a href="mailto:hello@arizonarabbits.com"><span class="ri"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span><span class="rt"><b>hello@arizonarabbits.com</b><small>For longer questions.</small></span></a><!--/email_off--></li>
       </ul>
@@ -3927,7 +3983,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <!--email_off--><a href="mailto:hello@arizonarabbits.com">hello@arizonarabbits.com</a><!--/email_off-->
           <a href="https://www.instagram.com/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Instagram</span><span class="sr-only"> (opens in a new tab)</span></a>
           <a href="https://www.tiktok.com/@arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">TikTok</span><span class="sr-only"> (opens in a new tab)</span></a>
-          <a href="https://www.facebook.com/share/14oLBrmQCTG/" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Facebook</span><span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.facebook.com/people/Arizona-rabbits/61594441016236/" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Facebook</span><span class="sr-only"> (opens in a new tab)</span></a>
           <a href="https://www.snapchat.com/add/arizonarabbits" target="_blank" rel="noopener noreferrer" data-leaves="word"><span class="kw">Snapchat</span><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
       </div>
@@ -4071,7 +4127,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 <script id="litterIndex" type="application/json">[{"born":"2026-10-21","count":"Eight born","kits":[],"line":"Holland Lop cross","lost":false,"never":false,"no":"Ninth litter","parents":{"mother":"saffron","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-19","count":"Three born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-06","count":"Three born, none raised","kits":[],"line":"Netherland Dwarf","lost":true,"never":false,"no":"Seventh litter","parents":{"mother":"bakalaki"},"roles":["mother"]},{"born":"2026-10-04","count":"Six born, none raised","kits":[],"line":"Holland Lop","lost":true,"never":false,"no":"Sixth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born","kits":[{"addr":"churro","name":"Churro"},{"addr":"coconut","name":"Coconut"},{"addr":"dollop","name":"Dollop"},{"addr":"marmalade","name":"Marmalade"},{"addr":"oatmeal","name":"Oatmeal"},{"addr":"pancake","name":"Pancake"},{"addr":"snowcone","name":"Snowcone"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 
 <script id="pedArchive" type="application/json">{"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
-<script src="rabbits.js?v=f8d99419"></script>
+<script src="rabbits.js?v=f7aeed4f"></script>
 
 <script>
 (function(){
@@ -5522,6 +5578,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         (pmk?'<p class="plan-meta">'+pmh+'</p>':'')+(stLabel?stMeta:'')+
         '<p class="meta">'+meta+'</p>'+dealHTML(r,false)+growHTML(r,false)+
         '<p class="desc">'+esc(r.note)+'</p>'+
+        (open?'<p class="cta-note">Asking is free. $50 reserves&nbsp;it.</p>':'')+
         '<a class="bunny-cta" href="'+href+'">'+cta+arrow+'</a></div></div>';
     }).join('');
     railEl.classList.toggle('few', list.length<=2);
@@ -6615,6 +6672,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var out=[];
       if(p.variety) out.push({label:'Color',text:String(p.variety)});
       if(p.ear) out.push({label:'Ear number',text:String(p.ear)});
+      var pw=lastWeight(p); if(pw) out.push({label:'Weight',text:weightText(pw),iso:pw.on||''});
       if(p.dob){
         out.push({label:'Born',iso:p.dob});
         var age=ageAt(p.dob,todayISO());
@@ -7897,5 +7955,18 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   if(moon) moon.addEventListener('click', function(){ row.classList.remove('say'); open(moon, 1500); });
 })();
 </script>
+<script>(function(){ /* THE FOLDS (Round 126, 23 Oct 2026): behaviour, not a fact, so no data-fact mark. Here at the
+   foot of the page and never inside a generator's block (arrival.py rewrites everything from its comment to
+   its own script, which took this away in build 353). A fold a link lands in opens, then the target is
+   scrolled to; the included list's bar shows and hides the seven lines. */
+  function openFor(h){ var t=h&&h.length>1&&document.getElementById(h.slice(1)); if(!t) return;
+    var d=t.closest('details'), any=false; while(d){ if(!d.open){ d.open=true; any=true; } d=d.parentElement&&d.parentElement.closest('details'); }
+    if(any) setTimeout(function(){ t.scrollIntoView({block:'start'}); },60); }
+  window.addEventListener('hashchange',function(){ openFor(location.hash); });
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) openFor(a.getAttribute('href')); },true);
+  openFor(location.hash);
+  var b=document.getElementById('inclMore'), l=document.getElementById('inclList');
+  if(b&&l) b.addEventListener('click',function(){ var open=l.classList.toggle('open'); b.setAttribute('aria-expanded',open?'true':'false'); });
+})();</script>
 </body>
 </html>

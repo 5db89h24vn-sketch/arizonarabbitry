@@ -81,6 +81,15 @@ b,strong{font-weight:600}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+
+.months{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.months b{width:100%;font-size:13px;font-weight:600;color:var(--ink-faint);letter-spacing:.02em}
+.months a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 16px;border-radius:999px;background:var(--paper-2);
+  color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;transition:background-color .15s}
+.months .chev{flex:none;width:7px;height:7px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);
+  transform:rotate(-45deg);transition:transform .15s,border-color .15s}
+.months a:hover,.months a:focus-visible{background:var(--line-soft)}
+.months a:hover .chev,.months a:focus-visible .chev{border-color:var(--ink);transform:rotate(-45deg) translate(2px,2px)}
 header{padding:16px 0 0}
 
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
@@ -791,5 +800,23 @@ html[data-look="dim"]{color-scheme:dark;
   paint();
 })();
 </script>
+<script>(function(){ /* JUMP TO A MONTH (24 Oct 2026, Round 128; Site Ideas 51, his Do it of 23 Oct, 2:18pm).
+  A row of the months the weekly editions cover, each a link to that month's first week, built from the
+  editions themselves, so a new week needs nothing; with scripts off there is no row (a control that would do
+  nothing is not shown). Behaviour, not a fact: no data-fact mark, and outside every generator's block.
+  Each month wears the right chevron, a child <i class="chev"> (never an ::after, which controltest reads as
+  the caret): the site's grammar for a tap that goes to a block of ours, so it never reads as a filter. */
+  var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var eds=[].slice.call(document.querySelectorAll('main article.edition[data-week]')).filter(function(a){ return !!a.querySelector('h2'); });
+  var seen=[], first={};
+  eds.forEach(function(a){ var k=a.getAttribute('data-week').slice(0,7); if(seen.indexOf(k)<0){ seen.push(k); first[k]=a; } });
+  if(seen.length<2) return;
+  var nav=document.createElement('nav'); nav.className='months'; nav.setAttribute('aria-label','Jump to a month');
+  var lab=document.createElement('b'); lab.textContent='Jump to a month'; nav.appendChild(lab);
+  seen.forEach(function(k){ var a=first[k]; if(!a.id) a.id='m-'+k;
+    var l=document.createElement('a'); l.href='#'+a.id; l.appendChild(document.createTextNode(M[+k.slice(5)-1]));
+    var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true'); l.appendChild(ch); nav.appendChild(l); });
+  eds[0].parentNode.insertBefore(nav, eds[0]);
+})();</script>
 </body>
 </html>

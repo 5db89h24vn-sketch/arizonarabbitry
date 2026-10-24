@@ -6,7 +6,7 @@
 <script data-lang-redirect>(function(){try{if(localStorage.getItem('lang')==='es'&&!/[?&]lang=en\b/.test(location.search)){location.replace('es-litters.html'+location.search+location.hash);}}catch(e){}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang-switch]');if(a){try{localStorage.setItem('lang',a.getAttribute('hreflang'));}catch(x){}}});})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="preload" as="script" href="rabbits.js?v=f8d99419" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=f7aeed4f" data-fact="data-preload">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -335,6 +335,12 @@ body.locked{overflow:hidden}
 .litter .litter-age{margin-left:4px}
 .litter .litter-age[hidden]{display:none}
 
+.litter .lit-state{display:inline-block;font-size:13.5px;font-weight:600;border:1px solid var(--line);border-radius:100px;
+  padding:4px 12px;margin:0 0 12px 4px;white-space:nowrap;background:var(--paper-2);color:var(--ink)}
+.litter .lit-state.open{background:var(--open-tint);border-color:var(--open-line);color:var(--open)}
+.litter .lit-state.hold{background:var(--hold-tint);border-color:var(--hold-line);color:var(--hold)}
+.litter .lit-state.wait{background:transparent;border-style:dashed}
+
 .tile-age{font-size:13px;font-weight:600;color:var(--ink);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .tile{container-type:inline-size}
@@ -482,7 +488,7 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .wt small.homemark{display:flex;align-items:center;gap:5px}
 
 .wt small.wt-plan{color:var(--ink);font-weight:600;padding-bottom:3px}
-@media(max-width:360px){ .wt .yr{display:none} }
+@media(max-width:399px){ .wt .yr{display:none} }   
 
 @media(max-width:340px){ .wt b{font-size:13.5px;letter-spacing:-.01em} }
 .wt small.homemark::before{content:'';flex:none;width:11px;height:11px;background:currentColor;
@@ -789,7 +795,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="parents">
             <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-21">their first litter together</span></small>
             <a class="parent" href="/#p-saffron" data-parent="saffron" aria-label="Mother, Saffron, Holland Lop cross: see her photos and litters">
-              <img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Saffron</b><em data-fact="parent-facts:saffron"><span class="pf">Holland Lop cross</span></em></span>
+              <img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Saffron</b><em data-fact="parent-facts:saffron"><span class="pf">Fawn Holland Lop cross</span></em></span>
             </a>
             <a class="parent" href="/#p-rootbeer" data-parent="rootbeer" aria-label="Father, Root Beer, Holland Lop: see his photos and litters">
               <img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy"><span><small>Father</small><b>Root Beer</b><em data-fact="parent-facts:rootbeer"><span class="pf">Tortoise Holland Lop</span><span class="pf">Ear number TA4T<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
@@ -813,9 +819,8 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
               </figure>
             </div>
           </div>
-          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
-          hears first.<span data-fact="opens:2026-10-21"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <p>Each one can be reserved from the day it's posted on the site, and the
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-21"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
           <div data-fact="alert:2026-10-21"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-21" data-label="the litter born 21 October" data-name="the Holland Lop crosses born 21 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-21"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 21 October (L2026-10-21)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
@@ -866,9 +871,8 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
               </figure>
             </div>
           </div>
-          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
-          hears first.<span data-fact="opens:2026-10-19"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <p>Each one can be reserved from the day it's posted on the site, and the
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-19"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
           
           <div data-fact="alert:2026-10-19"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-19" data-label="the litter born 19 October" data-name="the Holland Lops born 19 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-19"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 19 October (L2026-10-19)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
@@ -964,10 +968,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="parents">
             <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-09-27">their fourth litter together</span></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
-              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Holland Lop</span></em></span>
+              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
             <a class="parent" href="/#p-angora" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and litters">
-              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Satin Angora</span></em></span>
+              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Fawn Satin Angora</span></em></span>
             </a>
           </div>
           <p class="litter-life">A rabbit like these can live
@@ -1004,9 +1008,8 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
               </figure>
             </div>
           </div>
-          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
-          hears first.<span data-fact="opens:2026-09-27"></span> The born and raised numbers both go here once the raised number
+          <p>Each one can be reserved from the day it's posted on the site, and the
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-09-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
           <div data-fact="alert:2026-09-27"></div>
@@ -1038,9 +1041,8 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <a class="xlink" href="/#faq-life">8 to 12 years</a>.</p>
           <p>S'Morri at the hay rack on the day they were born, the fur she pulled in the
           nest box behind her.</p>
-          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
-          hears first.<span data-fact="opens:2026-09-18"></span> The raised number goes here once it
+          <p>Each one can be reserved from the day it's posted on the site, and the
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-09-18"></span> The raised number goes here once it
           is real, same as every litter.</p>
           
           <div data-fact="alert:2026-09-18"></div>
@@ -1062,10 +1064,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="parents">
             <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-08-27">their third litter together</span></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
-              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Holland Lop</span></em></span>
+              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
             <a class="parent" href="/#p-angora" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and litters">
-              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Satin Angora</span></em></span>
+              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Fawn Satin Angora</span></em></span>
             </a>
           </div>
           
@@ -1144,9 +1146,8 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
               <b>Marshmallow</b><small>&nbsp;</small>
             </a>
           </div>
-          <p>I don't take reservations until four weeks, once I can tell you sex honestly.
-          The day reservations open, the <a class="xlink" href="/#waitlist">waitlist</a>
-          hears first.<span data-fact="opens:2026-08-27"></span> The born and raised numbers both go here once the raised number
+          <p>Each one can be reserved from the day it's posted on the site, and the
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-08-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
           
           <div data-fact="alert:2026-08-27"></div>
@@ -1168,10 +1169,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="parents">
             <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-07-28">their second litter together</span></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
-              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Holland Lop</span></em></span>
+              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
             <a class="parent" href="/#p-angora" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and litters">
-              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Satin Angora</span></em></span>
+              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Fawn Satin Angora</span></em></span>
             </a>
           </div>
           
@@ -1223,10 +1224,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="parents">
             <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-06-28">their first litter together</span></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
-              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Holland Lop</span></em></span>
+              <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
             <a class="parent" href="/#p-angora" data-parent="angora" aria-label="Father, Frederick, Satin Angora: see his photos and litters">
-              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Satin Angora</span></em></span>
+              <img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy"><i class="pv" aria-hidden="true"></i><span><small>Father</small><b>Frederick</b><em data-fact="parent-facts:angora"><span class="pf">Fawn Satin Angora</span></em></span>
             </a>
           </div>
           
@@ -1449,7 +1450,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=f8d99419"></script>
+<script src="rabbits.js?v=f7aeed4f"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -1541,6 +1542,24 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       });
       browse.appendChild(wall);
     }
+  }catch(e){}
+  try{
+    var LCW={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,
+             uno:1,una:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12};
+    [].slice.call(document.querySelectorAll('article.litter[id]')).forEach(function(a){
+      var born=a.id.slice(1); if(!/^\d{4}-\d{2}-\d{2}$/.test(born)) return;
+      if(a.querySelector('[data-kits="never-listed"],[data-kits="none-raised"]')) return;
+      var body=a.querySelector('.litter-body'); if(!body) return;
+      var kits=RABBITS.filter(function(r){ return r&&r.dob===born; }), cls, text;
+      if(kits.length){ var n=kits.filter(function(r){ return r.status==='available'; }).length; cls=n?'open':'hold'; text=n?n+' available':'All reserved'; }
+      else{ var h=((a.querySelector('h2')||{}).textContent||'').replace(/\s+/g,' ').trim(),
+          m=/\b(\w+) raised\b/i.exec(h)||/^(\w+) born\b/i.exec(h)||/\bsobrevivieron (\w+)/i.exec(h)||/^Nacieron (\w+)/i.exec(h);
+        var w=m?m[1].toLowerCase():'', c=/^\d+$/.test(w)?+w:(LCW[w]||0); cls='wait'; text=c?c+' coming soon':'Coming soon'; }
+      var at=body.querySelector(':scope > .litter-line:not(:empty)')||body.querySelector(':scope > .litter-age:not([hidden])')||body.querySelector(':scope > time');
+      if(!at) return;
+      var s=document.createElement('span'); s.className='lit-state '+cls; s.textContent=text;
+      at.parentNode.insertBefore(s, at.nextSibling); at.parentNode.insertBefore(document.createTextNode(' '), s);
+    });
   }catch(e){}
   try{
     var FMN=['January','February','March','April','May','June','July','August',

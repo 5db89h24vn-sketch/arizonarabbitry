@@ -117,10 +117,10 @@
       has none, the other rabbits available; the saving, 20% of the
       cheaper of the two; your 48-hour rule (a second bought, or $50 put
       on it, within 48 hours of the first going home, keeps the 20%); and
-      the RSPCA's words on company, linked. The hold rules (a $50 hold
-      keeps the pair price for a month, another $50 renews it, every $50
-      comes off the price, one switch free and a switch does not extend
-      the month) live in the FAQ's pair answer and on the terms sheet. A
+      the RSPCA's words on company, linked. The 20% rules (a deposit is
+      for buying, not holding; none on a payment plan; a pair from a litter
+      coming soon by conversation, 22 Oct 2026) live in the FAQ's pair
+      answer and on the terms sheet. A
       sold or reserved rabbit shows no box.
       A DROP THAT IS STILL COMING (a milestone not yet reached) is written
       the other way round, and the site prints it as a promise: keep price
@@ -494,6 +494,10 @@ const PARENTS = {
     from:   "start",
     name:   "Cinnamony",
     breed:  "Holland Lop",
+    /* 22 Oct 2026, his words on the list: a sable point (row 106); weighed 4 lb (row 74, "4 lb 7 lb",
+       read in the order asked, his to correct), dated the day he said it */
+    variety: "Sable point",
+    weights: [ { on: "2026-10-22", lb: 4 } ],
     photos: [
       /* DATED THE DAY THEY ARRIVED (9 Sept 2026). William, on Frederick's
          listing: "so you have a date on the video, but not on this picture??"
@@ -511,6 +515,9 @@ const PARENTS = {
     from:   "start",
     name:   "Frederick",
     breed:  "Satin Angora",
+    /* 22 Oct 2026: a fawn (row 106); weighed 7 lb (row 74) */
+    variety: "Fawn",
+    weights: [ { on: "2026-10-22", lb: 7 } ],
     photos: [
       /* 7 Sept 2026: his portrait on the brick ledge, the same ledge the kits
          are photographed on, sent with the words "This is the dad!"; the
@@ -751,6 +758,8 @@ const PARENTS = {
     from:    "here",
     name:    "Saffron",
     breed:   "Holland Lop cross",
+    /* 22 Oct 2026: fawn (row 106; her new name is his to give) */
+    variety: "Fawn",
     dob:     "2026-06-28",
     note:    "From my first litter: Cinnamony and Frederick's daughter.",
     photos: [
