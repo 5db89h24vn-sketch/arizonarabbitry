@@ -1443,6 +1443,8 @@ footer{background:var(--band);color:rgba(239,232,222,.58);padding:0 0 44px;font-
   padding:0;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
 .viewer.open{display:flex;align-items:center;justify-content:center}
 
+.viewer.open.anchored{align-items:flex-start}
+
 body.locked .mbar,body.locked .mbar.show{opacity:0;pointer-events:none;
   transition:opacity .18s ease}
 
@@ -7097,6 +7099,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
     function shut(keepAddr){
       openQuiet(vw);   /* (Round 141) a slide under way stops with the listing */
+      unanchor();      /* (Round 142) and a computer's box is centred again */
       releaseCards();
       if(vTextQR) vTextQR.hidden=true;
       if(vTextBig) vTextBig.setAttribute('aria-expanded','false');
@@ -7348,8 +7351,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
 
     var vWhyPanel=document.getElementById('viewerWhyPanel'), vWhyMore=document.getElementById('viewerWhyMore');
-    function whyShut(){ openQuiet(vw); if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
+    function whyShut(){ openQuiet(vw); unanchor(); if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
+    function anchorBox(){
+      if(!vBoxEl||vw.classList.contains('anchored')||getComputedStyle(vw).alignItems!=='center') return;
+      var t=vBoxEl.getBoundingClientRect().top; if(t<=14) return;
+      vw.classList.add('anchored'); vBoxEl.style.marginTop=t+'px'; vBoxEl.style.maxHeight='calc(100dvh - '+Math.round(t+12)+'px)';
+    }
+    function unanchor(){ if(!vBoxEl||!vw.classList.contains('anchored')) return; vw.classList.remove('anchored'); vBoxEl.style.marginTop=''; vBoxEl.style.maxHeight=''; }
+    window.addEventListener('resize',function(){ unanchor(); });
     function vOpen(ctl, panel){
+      anchorBox();
       openHere(ctl,{ isOpen:function(){ return !panel.hidden; },
         show:function(){ panel.hidden=false; }, hide:function(){ panel.hidden=true; },
         parts:function(){ return [panel]; }, sc:vScroller(),
