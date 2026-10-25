@@ -1563,9 +1563,10 @@ const RABBITS = [
     dob:    "2026-09-18",
     listedOn: "2026-10-15",
     ready:  "",
-    status: "reserved",
+    status: "adopted",                         /* his word, 25 Oct 2026, about 12:11am Tucson: "nutmeg was dropped off home and sold on the same day as pancake" (Pancake: the 24th) */
     reservedOn: "2026-10-16",                  /* his word, 16 Oct 2026, 10:07am Tucson: "On the website, I want you to mark nutmeg as reserved" (no date given: the day he said it, as for Honey) */
-    soldOn: "",
+    soldOn: "2026-10-24",                      /* the same day as Pancake, his word */
+    wentHome: "2026-10-24",                    /* "dropped off home ... on the same day as pancake" */
     ear:    "",
     weights: [],
     photo:  "photos/nutmeg-3.jpg",                /* the cover by eye (24 Oct 2026, Round 131, his "Fix old listings too"): its first photo had the top of its head on the frame's edge; this one shows all of it, facing right, with room */
@@ -1718,8 +1719,9 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "sold",                            /* his word, 25 Oct 2026, about 12:07am Tucson: "mark pancake as sold yesterday ... Being the 24th" */
+    reservedOn: "2026-10-24",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
+    soldOn: "2026-10-24",                      /* the day he named; whether it went home that day is asked */
     ear:    "",
     weights: [],
     photo:  "photos/pancake.jpg",
