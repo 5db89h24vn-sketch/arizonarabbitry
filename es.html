@@ -58,10 +58,10 @@
       case 'color': if(!COLOR[l]) throw 0; return COLOR[l];
       case 'colorC': if(!COLOR[l]) throw 0; return cap(COLOR[l]);
       case 'M': return cap(MES[mi(arg)]);
-      case 'wk': return arg+(arg==='1'?' semana':' semanas');
-      case 'dy': return arg+(arg==='1'?' día':' días');
-      case 'mo': return arg+(arg==='1'?' mes':' meses');
-      case 'yr': return arg+(arg==='1'?' año':' años');
+      case 'wk': return arg+(arg==='1'?'\u00a0semana':'\u00a0semanas');
+      case 'dy': return arg+(arg==='1'?'\u00a0día':'\u00a0días');
+      case 'mo': return arg+(arg==='1'?'\u00a0mes':'\u00a0meses');
+      case 'yr': return arg+(arg==='1'?'\u00a0año':'\u00a0años');
       case 'prices': return prices(arg);
       case 'list': return list(arg.split(/, and |, | and /).map(function(x){ var t=tr(x.trim()); if(t==null) throw 0; return t; }));
       case 'tr': var t=tr(arg); if(t==null) throw 0; return t;
@@ -1965,9 +1965,11 @@ details.fold>.fold-body{padding-top:12px}
 details.fold>.fold-body>:first-child{margin-top:0}
 
 html.js .incl:not(.open) li small{display:none}
-html.js .incl:not(.open) li{padding-top:11px;padding-bottom:11px} html.js .incl:not(.open) li::before{top:17px}
-html.js .incl:not(.open) b{margin-bottom:0}
-.incl-more{margin-top:14px} html:not(.js) .incl-more{display:none}
+
+html.js .incl li{padding-top:11px;padding-bottom:11px} html.js .incl li::before{top:17px}
+html.js .incl b{margin-bottom:0}
+html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
+.incl-more{margin-top:20px} .incl-more+.incl{margin-top:10px} html:not(.js) .incl-more{display:none}
 .svc-terms{margin-top:10px}
 
 .svc-terms b{display:block;text-wrap:balance}
@@ -3399,6 +3401,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <h2>Lo que se lleva a casa</h2>
 
       <p class="lede">Su comida para <a class="litterlink" href="#faq-home">las primeras dos semanas</a> en casa, y mi ayuda por el tiempo que la&nbsp;quiera.</p>
+      
+      <button type="button" class="opener incl-more" id="inclMore" aria-expanded="false" aria-controls="inclList">Para qué es cada cosa</button>
       <ul class="incl" id="inclList">
         <li><b>Dos semanas de su comida actual</b><small>Cambiarles la comida de golpe les cae mal al estómago. Mezcle la nueva poco a poco.</small></li>
         <li><b>Bambú para roer</b><small>Dura más que las dos semanas de comida. Roer les desgasta los dientes.</small></li>
@@ -3409,8 +3413,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <li><b>Ayuda para que lo vean en internet</b><small>Su propia cuenta si la quiere, mi ayuda con los videos y algunos en mis historias cuando hay espacio. <a class="litterlink" href="#owners">Cómo funciona</a>.</small></li>
         <li><b>Mi número de teléfono, para siempre</b><small>Sin límite de preguntas y sin fecha de vencimiento. Es la parte que más me importa.</small></li>
       </ul>
-      
-      <button type="button" class="opener incl-more" id="inclMore" aria-expanded="false" aria-controls="inclList">Para qué es cada cosa</button>
     </div>
     <div class="rv">
       
@@ -4263,7 +4265,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
 <script id="litterIndex" type="application/json">[{"born":"2026-10-21","count":"Eight born","kits":[],"line":"Holland Lop cross","lost":false,"never":false,"no":"Ninth litter","parents":{"mother":"saffron","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-19","count":"Three born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-06","count":"Three born, none raised","kits":[],"line":"Netherland Dwarf","lost":true,"never":false,"no":"Seventh litter","parents":{"mother":"bakalaki"},"roles":["mother"]},{"born":"2026-10-04","count":"Six born, none raised","kits":[],"line":"Holland Lop","lost":true,"never":false,"no":"Sixth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born","kits":[{"addr":"churro","name":"Churro"},{"addr":"coconut","name":"Coconut"},{"addr":"dollop","name":"Dollop"},{"addr":"marmalade","name":"Marmalade"},{"addr":"oatmeal","name":"Oatmeal"},{"addr":"pancake","name":"Pancake"},{"addr":"snowcone","name":"Snowcone"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 
-<script id="pedArchive" type="application/json">{"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
+<script id="pedArchive" type="application/json">{"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"},"nutmeg|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Nutmeg","on":"2026-10-24","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
 <script src="rabbits.js?v=f9904b1c"></script>
 
 <script>
@@ -8036,7 +8038,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 })();
 </script>
 
-<script src="count.js?v=6aeedef7" defer></script>
+<script src="count.js?v=23fad05c" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');
@@ -8134,7 +8136,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 <script>(function(){ /* THE FOLDS (Round 126, 23 Oct 2026): behaviour, not a fact, so no data-fact mark. Here at the
    foot of the page and never inside a generator's block (arrival.py rewrites everything from its comment to
    its own script, which took this away in build 353). A fold a link lands in opens, then the target is
-   scrolled to; the included list's bar shows and hides the seven lines. */
+   scrolled to; the included list's bar shows and hides the seven lines. STILL WHEN TAPPED (25 Oct 2026,
+   Round 140): the bar sits above the list now, so the lines open below it; it is pinned where it was
+   tapped all the same (the page's scroll anchoring off for the moment of the change, any shift taken
+   back at once), tap after tap; the lines slide open and shut in 180ms (at once with Reduce Motion);
+   a tap during a slide finishes it first, so every tap is one change. */
   function openFor(h){ var t=h&&h.length>1&&document.getElementById(h.slice(1)); if(!t) return;
     var d=t.closest('details'), any=false; while(d){ if(!d.open){ d.open=true; any=true; } d=d.parentElement&&d.parentElement.closest('details'); }
     if(any) setTimeout(function(){ t.scrollIntoView({block:'start'}); },60); }
@@ -8142,7 +8148,34 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) openFor(a.getAttribute('href')); },true);
   openFor(location.hash);
   var b=document.getElementById('inclMore'), l=document.getElementById('inclList');
-  if(b&&l) b.addEventListener('click',function(){ var open=l.classList.toggle('open'); b.setAttribute('aria-expanded',open?'true':'false'); });
+  if(b&&l){
+    var H=document.documentElement, still=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), pending=null;
+    var jump=function(dy){ var sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollBy(0,dy); H.style.scrollBehavior=sb; };
+    b.addEventListener('click',function(){
+      if(pending) pending();
+      var top0=b.getBoundingClientRect().top, oa=H.style.overflowAnchor, anims=[], over=false;
+      var pin=function(){ var dy=b.getBoundingClientRect().top-top0; if(Math.abs(dy)>0.5) jump(dy); };
+      var lines=[].slice.call(l.querySelectorAll('li small')), opening=!l.classList.contains('open');
+      var done=function(){ if(over) return; over=true; pending=null;
+        anims.forEach(function(a){ try{ a.cancel(); }catch(x){} });
+        if(!opening) l.classList.remove('open');
+        lines.forEach(function(x){ x.style.overflow=''; });
+        pin(); H.style.overflowAnchor=oa; };
+      H.style.overflowAnchor='none';
+      b.setAttribute('aria-expanded',opening?'true':'false');
+      if(opening) l.classList.add('open');
+      pin();
+      if(still||!lines.length||!lines[0].animate){ done(); return; }
+      pending=done;
+      var left=lines.length, shut={height:'0px',opacity:0};
+      lines.forEach(function(x){ var h=x.getBoundingClientRect().height, full={height:h+'px',opacity:1};
+        x.style.overflow='hidden';
+        var a=x.animate(opening?[shut,full]:[full,shut],{duration:180,easing:'ease-out',fill:opening?'none':'forwards'});
+        anims.push(a);
+        a.onfinish=function(){ if(--left===0) done(); };
+      });
+    });
+  }
 })();</script>
 </body>
 </html>

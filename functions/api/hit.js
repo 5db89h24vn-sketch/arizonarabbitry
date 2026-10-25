@@ -17,8 +17,12 @@
    WHAT IS NOT: no cookie, no ID, no IP address, no user agent string, no
    fingerprint, no per-person history. The record has no field that could
    identify anyone, so two visits by one person are two visits. The terms
-   sheet says so in one sentence. A browser sending Global Privacy Control
-   is not counted at all.
+   sheet says so in one sentence. A browser that asks not to be tracked is
+   not counted at all, whichever way it asks: Global Privacy Control
+   (Sec-GPC: 1) or Do Not Track (DNT: 1). The terms say so; until 25 Oct 2026
+   (Round 138, the privacy lines checked against what the site does, his list
+   row 6) only the first was honoured, here and in count.js, so a browser
+   sending Do Not Track alone was counted. optouttest.js holds both halves.
 
    STORAGE: the same Workers KV namespace the waitlist counter uses (bound as
    WAITLIST), one key per visit  v:<day>:<random>  that expires after 45 days.
@@ -117,10 +121,16 @@ async function totalsFor(kv, day) {
   return t;
 }
 
+/* Sec-GPC: 1 (Global Privacy Control) or DNT: 1 (Do Not Track), the two ways
+   a browser asks; a header's name is matched in any case, its value exactly */
+function asksNotToBeTracked(h) {
+  return (h.get('Sec-GPC') || '').trim() === '1' || (h.get('DNT') || '').trim() === '1';
+}
+
 export async function onRequestPost(context) {
   const kv = context.env.WAITLIST;
   if (!kv) return new Response(null, { status: 204 });
-  if (context.request.headers.get('Sec-GPC') === '1') return new Response(null, { status: 204 });
+  if (asksNotToBeTracked(context.request.headers)) return new Response(null, { status: 204 });
   let body = null;
   try {
     const text = await context.request.text();

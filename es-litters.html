@@ -58,10 +58,10 @@
       case 'color': if(!COLOR[l]) throw 0; return COLOR[l];
       case 'colorC': if(!COLOR[l]) throw 0; return cap(COLOR[l]);
       case 'M': return cap(MES[mi(arg)]);
-      case 'wk': return arg+(arg==='1'?' semana':' semanas');
-      case 'dy': return arg+(arg==='1'?' día':' días');
-      case 'mo': return arg+(arg==='1'?' mes':' meses');
-      case 'yr': return arg+(arg==='1'?' año':' años');
+      case 'wk': return arg+(arg==='1'?'\u00a0semana':'\u00a0semanas');
+      case 'dy': return arg+(arg==='1'?'\u00a0día':'\u00a0días');
+      case 'mo': return arg+(arg==='1'?'\u00a0mes':'\u00a0meses');
+      case 'yr': return arg+(arg==='1'?'\u00a0año':'\u00a0años');
       case 'prices': return prices(arg);
       case 'list': return list(arg.split(/, and |, | and /).map(function(x){ var t=tr(x.trim()); if(t==null) throw 0; return t; }));
       case 'tr': var t=tr(arg); if(t==null) throw 0; return t;
@@ -1858,6 +1858,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   });
 
   try{
+    function joinUnits(s){ return String(s).replace(/(\d+) (?=(?:day|week|month|year))/g,'$1\u00a0').replace(/ old$/,'\u00a0old'); }
     function ageAt(dob,when){
       if(!dob||!when) return '';
       var a=Date.parse(dob+'T00:00:00'), b=Date.parse(when+'T00:00:00');
@@ -2251,7 +2252,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
           if(tm&&when){ var age=ageAt(dob,when); if(age){
             var sp=document.createElement('span'); sp.className='age';
             var dot=document.createElement('span'); dot.className='dot'; dot.textContent='\u00B7 ';
-            sp.appendChild(dot); sp.appendChild(document.createTextNode(age));
+            sp.appendChild(dot); sp.appendChild(document.createTextNode(joinUnits(age)));
             tm.parentNode.appendChild(document.createTextNode(' ')); tm.parentNode.appendChild(sp); } }
           (function(idx,el,isClip){
             el.classList.add('opens'); el.setAttribute('role','button'); el.setAttribute('tabindex','0');
@@ -2437,7 +2438,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 })();
 </script>
 
-<script src="count.js?v=6aeedef7" defer></script>
+<script src="count.js?v=23fad05c" defer></script>
 <script>
 (function(){
   var browse=document.getElementById('all'), views=document.getElementById('views'), fams=document.getElementById('families');

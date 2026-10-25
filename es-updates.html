@@ -58,10 +58,10 @@
       case 'color': if(!COLOR[l]) throw 0; return COLOR[l];
       case 'colorC': if(!COLOR[l]) throw 0; return cap(COLOR[l]);
       case 'M': return cap(MES[mi(arg)]);
-      case 'wk': return arg+(arg==='1'?' semana':' semanas');
-      case 'dy': return arg+(arg==='1'?' día':' días');
-      case 'mo': return arg+(arg==='1'?' mes':' meses');
-      case 'yr': return arg+(arg==='1'?' año':' años');
+      case 'wk': return arg+(arg==='1'?'\u00a0semana':'\u00a0semanas');
+      case 'dy': return arg+(arg==='1'?'\u00a0día':'\u00a0días');
+      case 'mo': return arg+(arg==='1'?'\u00a0mes':'\u00a0meses');
+      case 'yr': return arg+(arg==='1'?'\u00a0año':'\u00a0años');
       case 'prices': return prices(arg);
       case 'list': return list(arg.split(/, and |, | and /).map(function(x){ var t=tr(x.trim()); if(t==null) throw 0; return t; }));
       case 'tr': var t=tr(arg); if(t==null) throw 0; return t;
@@ -983,7 +983,7 @@ html[data-look="dim"]{color-scheme:dark;
 })();
 </script>
 
-<script src="count.js?v=6aeedef7" defer></script>
+<script src="count.js?v=23fad05c" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');

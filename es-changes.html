@@ -58,10 +58,10 @@
       case 'color': if(!COLOR[l]) throw 0; return COLOR[l];
       case 'colorC': if(!COLOR[l]) throw 0; return cap(COLOR[l]);
       case 'M': return cap(MES[mi(arg)]);
-      case 'wk': return arg+(arg==='1'?' semana':' semanas');
-      case 'dy': return arg+(arg==='1'?' día':' días');
-      case 'mo': return arg+(arg==='1'?' mes':' meses');
-      case 'yr': return arg+(arg==='1'?' año':' años');
+      case 'wk': return arg+(arg==='1'?'\u00a0semana':'\u00a0semanas');
+      case 'dy': return arg+(arg==='1'?'\u00a0día':'\u00a0días');
+      case 'mo': return arg+(arg==='1'?'\u00a0mes':'\u00a0meses');
+      case 'yr': return arg+(arg==='1'?'\u00a0año':'\u00a0años');
       case 'prices': return prices(arg);
       case 'list': return list(arg.split(/, and |, | and /).map(function(x){ var t=tr(x.trim()); if(t==null) throw 0; return t; }));
       case 'tr': var t=tr(arg); if(t==null) throw 0; return t;
@@ -583,16 +583,35 @@ html[data-look="dim"]{color-scheme:dark;
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-10-25a" aria-labelledby="v2026-10-25a-h">
-  <h2 id="v2026-10-25a-h">La primera camada de S'Morri, en fotos</h2>
+<section class="rel" id="v2026-10-25b" aria-labelledby="v2026-10-25b-h">
+  <h2 id="v2026-10-25b-h">Para qué es cada cosa, y sin rastreo no hay conteo</h2>
   <p class="rel-when"><time datetime="2026-10-25">25 de octubre de 2026</time></p>
+  <p class="rel-ver">Versión del sitio 2026.10.25b</p>
+  <article class="chg" id="c-incl-bar">
+    <p class="chg-lead"><b>«Para qué es cada cosa» abre las líneas de abajo y no se mueve.</b></p>
+    <p>La barra está ahora encima de las siete cosas que se lleva a casa. Un toque abre todas las líneas de abajo, como cualquier barra del sitio, y la barra se queda donde está su dedo.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.10.25b/incl-bar-before-es-780.webp" srcset="changes/2026.10.25b/incl-bar-before-es-390.webp 390w, changes/2026.10.25b/incl-bar-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: Lo que se lleva a casa en un teléfono, con la barra debajo de la lista." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.10.25b/incl-bar-after-es-780.webp" srcset="changes/2026.10.25b/incl-bar-after-es-390.webp 390w, changes/2026.10.25b/incl-bar-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: la misma lista con la barra encima y todas las líneas abiertas debajo." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-count-optout">
+    <p class="chg-lead"><b>Un navegador que pide no ser rastreado no se cuenta, lo pida como lo pida.</b></p>
+    <p>Global Privacy Control o Do Not Track: hasta ahora el conteo solo oía el primero. La página de condiciones ahora nombra los dos y dice qué guarda el conteo.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.10.25b/count-optout-before-es-780.webp" srcset="changes/2026.10.25b/count-optout-before-es-390.webp 390w, changes/2026.10.25b/count-optout-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la página de condiciones en un teléfono, con la frase sobre el conteo que solo nombra los toques y hasta dónde se baja." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.10.25b/count-optout-after-es-780.webp" srcset="changes/2026.10.25b/count-optout-after-es-390.webp 390w, changes/2026.10.25b/count-optout-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: el mismo párrafo, que nombra todo lo que guarda el conteo y las dos maneras en que un navegador pide no ser rastreado." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-num-word">
+    <p class="chg-lead"><b>La edad bajo una foto ya no se corta entre un número y su palabra.</b></p>
+    <p>En inglés, en un teléfono, la edad podía terminar una línea en un número y seguir con su palabra en la siguiente. Ahora un número y su palabra siempre van juntos, también en español.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.10.25b/num-word-before-es-780.webp" srcset="changes/2026.10.25b/num-word-before-es-390.webp 390w, changes/2026.10.25b/num-word-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la primera camada de S&#x27;Morri en un teléfono; en español la edad ya se cortaba antes de «y», nunca después de un número." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.10.25b/num-word-after-es-780.webp" srcset="changes/2026.10.25b/num-word-after-es-390.webp 390w, changes/2026.10.25b/num-word-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: las mismas fotos, cada número en la misma línea que su palabra, como antes en español." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-10-25a">
+  <summary><span class="rel-sum">La primera camada de S'Morri, en fotos</span><time class="rel-date" datetime="2026-10-25">25 de octubre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.10.25a</p>
   <article class="chg" id="c-smorri-strip">
     <p class="chg-lead"><b>La primera camada de S'Morri ya tiene sus fotos.</b></p>
     <p>Latte, Mocha y Nutmeg el 15 de octubre, el día que se publicaron, debajo de la foto de su madre.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.10.25a/smorri-strip-before-es-780.webp" srcset="changes/2026.10.25a/smorri-strip-before-es-390.webp 390w, changes/2026.10.25a/smorri-strip-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la primera camada de S&#x27;Morri en un teléfono, con su única foto." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.10.25a/smorri-strip-after-es-780.webp" srcset="changes/2026.10.25a/smorri-strip-after-es-390.webp 390w, changes/2026.10.25a/smorri-strip-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: la misma camada, con las fotos de Latte, Mocha y Nutmeg del 15 de octubre debajo." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 <details class="rel rel-old" id="v2026-10-24f">
   <summary><span class="rel-sum">Primero, las líneas de raza pura</span><time class="rel-date" datetime="2026-10-24">24 de octubre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.10.24f</p>

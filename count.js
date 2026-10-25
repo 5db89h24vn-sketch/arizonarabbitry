@@ -2,15 +2,20 @@
    for what is stored and why. This file does three things and nothing else:
    remembers which of the site's own controls were tapped on this page, how far
    it was scrolled, and sends ONE small record when the page is left. No
-   cookie, no ID, nothing read from the device beyond "is this a touch screen".
-   It never delays anything: the record goes out with sendBeacon after the
+   cookie, no ID, nothing read from the device beyond "is this a touch screen"
+   and whether the browser asks not to be tracked. It never delays anything: the record goes out with sendBeacon after the
    reader has already moved on. Loaded with defer at the end of every page. */
 (function(){
   'use strict';
   /* an automated browser is not a visitor (4 Oct 2026: a test run of the site
      sent its own visits here; navigator.webdriver is how such a browser says
      what it is, and no person's browser sets it) */
-  if(!window.navigator || navigator.globalPrivacyControl || navigator.webdriver) return;
+  /* A BROWSER THAT ASKS NOT TO BE TRACKED IS NOT COUNTED, whichever way it asks
+     (25 Oct 2026, Round 138, his list row 6: the terms promise it, and only
+     Global Privacy Control was heard here; Do Not Track is the other way, an
+     older setting some browsers still send). functions/api/hit.js drops both
+     again on arrival; optouttest.js holds the two halves. */
+  if(!window.navigator || navigator.globalPrivacyControl || navigator.doNotTrack==='1' || window.doNotTrack==='1' || navigator.webdriver) return;
   if(location.protocol!=='https:' && location.hostname!=='localhost') return;
 
   var path=location.pathname.toLowerCase();

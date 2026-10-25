@@ -58,10 +58,10 @@
       case 'color': if(!COLOR[l]) throw 0; return COLOR[l];
       case 'colorC': if(!COLOR[l]) throw 0; return cap(COLOR[l]);
       case 'M': return cap(MES[mi(arg)]);
-      case 'wk': return arg+(arg==='1'?' semana':' semanas');
-      case 'dy': return arg+(arg==='1'?' día':' días');
-      case 'mo': return arg+(arg==='1'?' mes':' meses');
-      case 'yr': return arg+(arg==='1'?' año':' años');
+      case 'wk': return arg+(arg==='1'?'\u00a0semana':'\u00a0semanas');
+      case 'dy': return arg+(arg==='1'?'\u00a0día':'\u00a0días');
+      case 'mo': return arg+(arg==='1'?'\u00a0mes':'\u00a0meses');
+      case 'yr': return arg+(arg==='1'?'\u00a0año':'\u00a0años');
       case 'prices': return prices(arg);
       case 'list': return list(arg.split(/, and |, | and /).map(function(x){ var t=tr(x.trim()); if(t==null) throw 0; return t; }));
       case 'tr': var t=tr(arg); if(t==null) throw 0; return t;
@@ -584,8 +584,8 @@ html[data-look="dim"]{color-scheme:dark;
   <p>Las respuestas largas, con sus razones, están en las <a class="xlink" href="es.html#faq">preguntas de la página principal</a>.</p>
 
   <h2 id="privacy">Sus datos</h2>
-  
-  <p><b>Lo que recibo es lo que usted escribe.</b> Su nombre, un correo electrónico, un teléfono si me lo da, y su mensaje. Si me escribe o me llama, su número. Sin cuentas, y sin cookies mías. Cloudflare, que aloja el sitio, cuenta las visitas con un programa propio, Cloudflare Web Analytics; según <a class="xlink" href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer" data-leaves="word">la propia <span class="kw">descripción</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a> de Cloudflare no usa cookies y no lo sigue a otros sitios. También cuento, solo como totales, qué botones del sitio se tocan y hasta dónde se baja en cada página: sin cookies, sin identificador, nada que diga quién es usted, y mi conteo deja fuera a cualquier navegador que pida no ser rastreado.</p>
+
+  <p><b>Lo que recibo es lo que usted escribe.</b> Su nombre, un correo electrónico, un teléfono si me lo da, y su mensaje. Si me escribe o me llama, su número. Sin cuentas, y sin cookies mías. Cloudflare, que aloja el sitio, cuenta las visitas con un programa propio, Cloudflare Web Analytics; según <a class="xlink" href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer" data-leaves="word">la propia <span class="kw">descripción</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a> de Cloudflare no usa cookies y no lo sigue a otros sitios. También cuento, solo como totales: qué páginas se visitan, con pantalla táctil o no, y de dónde vino cada visita en una palabra (Instagram, Google, un enlace compartido, nunca la dirección); qué botones se tocan; hasta dónde se baja en cada página. Sin cookies, sin identificador, nada que diga quién es usted. Un navegador que pide no ser rastreado, con Global Privacy Control o Do Not Track, no se cuenta en absoluto.</p>
   <p><b>El formulario y la lista de espera pasan por Formspree a mi correo.</b> Formspree (formspree.io) me los entrega. La lista de espera también guarda su dirección en el servidor del sitio, Cloudflare, con las camadas que eligió y lo que me pidió que le mande, para contarle una sola vez y avisarle de esas camadas.</p>
   
   <p><b>La uso para contestarle, y para nada más.</b> Una dirección de la lista de espera recibe lo que pidió: un correo el día que una camada que eligió sale a la venta y, si pidió todas las novedades, las fotos nuevas de esa camada. No vendo, no comparto ni paso a nadie los datos de nadie, y no hay listas de correo que no haya pedido.</p>
@@ -671,7 +671,7 @@ html[data-look="dim"]{color-scheme:dark;
 })();
 </script>
 
-<script src="count.js?v=6aeedef7" defer></script>
+<script src="count.js?v=23fad05c" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');
