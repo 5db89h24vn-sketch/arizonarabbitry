@@ -1140,7 +1140,7 @@ details[open]>summary::after{transform:translateY(-30%) rotate(225deg)}
 
 .faq-body b{color:var(--ink);font-weight:600}
 
-.about-more{margin-top:26px;border-top:1px solid var(--line)}
+details.fold.about-more{margin-top:26px}
 .about-more .faq-body{max-width:none}
 .faq-body p > b:first-child,.faq-body li > b:first-child,
 .about-story p > b:first-child,.about-head p > b:first-child{
@@ -1693,11 +1693,9 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-sub{display:flow-root;margin-top:-2px}
 .viewer-sub .viewer-meta{overflow:visible;margin:0}
 
-.viewer-sub .opener.why{float:right;margin:0 0 -1px 10px}
-
-.viewer-sub .opener.pay{float:right;clear:right;margin:6px 0 -1px 10px}
-.viewer-sub .opener.why:not([hidden])+.opener.pay::before{top:-3px}
-.viewer-sub:has(.opener.pay:not([hidden])) .opener.why::before{bottom:-3px}
+.viewer-opens{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-top:-2px}
+.viewer-opens[hidden]{display:none}
+.viewer-opens:not([hidden])~.viewer-sub{margin-top:8px}
 .whypanel.paypanel p{margin:0;padding:0;border:0;color:var(--ink)}
 .whypanel.paypanel p:not([hidden])~p:not([hidden]){margin-top:7px}
 .whypanel.paypanel .paynow{color:var(--ink-soft)}
@@ -1730,6 +1728,8 @@ details.fold>summary::-webkit-details-marker{display:none}
 details.fold>summary.opener:hover{color:var(--ink)}
 details.fold>summary.opener::after{position:static;right:auto;top:auto}
 details.fold[open]>summary.opener::after{transform:translateY(2px) rotate(225deg)}
+
+details.fold.shutting[open]>summary.opener::after{transform:translateY(-2px) rotate(45deg)}
 details.fold>.fold-body{padding-top:12px}
 details.fold>.fold-body>:first-child{margin-top:0}
 
@@ -3070,9 +3070,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <p class="lede"><b>That routine is what you're paying for.</b> It makes a rabbit more likely
       to come to&nbsp;people.</p>
       
-      <details class="about-more">
-        <summary>Where the money goes, and&nbsp;more</summary>
-        <div class="faq-body">
+      <details class="fold about-more">
+        <summary class="opener">Where the money goes, and&nbsp;more</summary>
+        <div class="fold-body faq-body">
           <p id="money"><b>Where the money goes.</b> I buy breeding rabbits from winning lines at
           shows across the country, at thousands each, and fly home with them. Their babies go
           home here for a fraction of that, and every sale goes into the next&nbsp;line.</p>
@@ -4147,10 +4147,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       
       <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span></div>
       
-      <div class="viewer-sub"><button type="button" class="opener sm why" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button><button type="button" class="opener sm pay" id="viewerPay" aria-expanded="false" aria-controls="viewerPayPanel" hidden>Payment plans</button><p class="viewer-meta" id="viewerMeta"></p></div>
-      <p class="viewer-from" id="viewerFrom" hidden></p>
-      
-      <ul class="viewer-tags" id="viewerTags" hidden></ul>
+      <div class="viewer-opens" id="viewerOpens" hidden><button type="button" class="opener sm why" id="viewerWhy" aria-expanded="false" aria-controls="viewerWhyPanel" hidden>What you pay for</button><button type="button" class="opener sm pay" id="viewerPay" aria-expanded="false" aria-controls="viewerPayPanel" hidden>Payment plans</button></div>
       
       <div class="whypanel" id="viewerWhyPanel" hidden>
 
@@ -4174,6 +4171,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <a class="litterlink" id="viewerPayMore" href="#faq-pay">How paying works</a>.</p>
         <p class="paynow" id="viewerPayNow" hidden></p>
       </div>
+      
+      <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p></div>
+      <p class="viewer-from" id="viewerFrom" hidden></p>
+      
+      <ul class="viewer-tags" id="viewerTags" hidden></ul>
       
       <p class="deal viewer-deal" id="viewerDeal" hidden></p>
       
@@ -4228,6 +4230,58 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 (function(){
   'use strict';
   document.documentElement.className+=' js';
+  var openBusy=[];   /* [control, finish, stop] for each slide under way */
+  function openFind(ctl){ for(var i=0;i<openBusy.length;i++) if(openBusy[i][0]===ctl) return i; return -1; }
+  function openSettle(ctl, quiet){ var i=openFind(ctl); if(i<0) return; var j=openBusy[i]; openBusy.splice(i,1); (quiet?j[2]:j[1])(); }
+  function openQuiet(within){ openBusy.slice().forEach(function(j){ if(!within||within.contains(j[0])) openSettle(j[0],true); }); }
+  function openHere(ctl, o){
+    openSettle(ctl);
+    var opening=!o.isOpen(), H=document.documentElement, sc=o.sc||null;
+    var still=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var top0=ctl.getBoundingClientRect().top, aim=0, shift=0, oa=H.style.overflowAnchor, os=sc?sc.style.overflowAnchor:'';
+    var by=function(dy){ var e=sc||H, b=e.style.scrollBehavior; e.style.scrollBehavior='auto'; if(sc) sc.scrollTop+=dy; else window.scrollBy(0,dy); e.style.scrollBehavior=b; };
+    var pin=function(){ var dy=ctl.getBoundingClientRect().top-(top0-shift); if(Math.abs(dy)>0.5) by(dy); };
+    H.style.overflowAnchor='none'; if(sc) sc.style.overflowAnchor='none';
+    if(ctl.hasAttribute('aria-expanded')) ctl.setAttribute('aria-expanded',opening?'true':'false');
+    if(o.mark) o.mark(opening);
+    if(opening) o.show();
+    pin();
+    var els=[].filter.call(o.parts()||[],function(x){ return x&&x.getClientRects().length; });
+    if(opening&&els.length){
+      var r=els[0].getBoundingClientRect(), fl=o.floor?o.floor():innerHeight, ce=o.ceil?o.ceil():8;
+      aim=Math.max(0,Math.min(r.top+Math.min(r.height,64)-(fl-8), top0-ce));
+    }
+    var anims=[], raf=0, over=false;
+    var tidy=function(){ if(raf) cancelAnimationFrame(raf); raf=0;
+      anims.forEach(function(a){ try{ a.cancel(); }catch(x){} }); anims=[];
+      els.forEach(function(x){ x.style.overflow=''; });
+      H.style.overflowAnchor=oa; if(sc) sc.style.overflowAnchor=os; };
+    var finish=function(){ if(over) return; over=true; var i=openFind(ctl); if(i>=0) openBusy.splice(i,1);
+      if(!opening) o.hide();
+      tidy(); shift=aim; pin(); if(o.after) o.after(); };
+    var stop=function(){ if(over) return; over=true; tidy(); };
+    if(still||!els.length||!els[0].animate){ finish(); return; }
+    openBusy.push([ctl,finish,stop]);
+    var left=els.length, Z={height:'0px',paddingTop:'0px',paddingBottom:'0px',borderTopWidth:'0px',borderBottomWidth:'0px',marginTop:'0px',marginBottom:'0px',opacity:0};
+    els.forEach(function(x){ var c=getComputedStyle(x),
+        F={height:c.height,paddingTop:c.paddingTop,paddingBottom:c.paddingBottom,borderTopWidth:c.borderTopWidth,borderBottomWidth:c.borderBottomWidth,marginTop:c.marginTop,marginBottom:c.marginBottom,opacity:1};
+      x.style.overflow='hidden';
+      var a=x.animate(opening?[Z,F]:[F,Z],{duration:180,easing:'ease-out',fill:opening?'none':'forwards'});
+      anims.push(a); a.onfinish=function(){ if(--left===0) finish(); }; });
+    if(aim){ var t0=0, step=function(now){ if(over) return; if(!t0) t0=now; var t=Math.min(1,(now-t0)/180); shift=aim*(1-Math.pow(1-t,3)); pin(); if(t<1) raf=requestAnimationFrame(step); };
+      raf=requestAnimationFrame(step); openGuard(els); }
+  }
+  var openLast={x:0,y:0,t:0,kb:true};
+  document.addEventListener('click',function(e){ openLast={x:e.clientX,y:e.clientY,t:Date.now(),kb:e.detail===0}; },true);
+  function openGuard(els){
+    var o0=openLast; if(o0.kb||Date.now()-o0.t>100) return;
+    var until=Date.now()+450, g=function(e){ if(Date.now()>until){ document.removeEventListener('click',g,true); return; }
+      if(Math.abs(e.clientX-o0.x)>24||Math.abs(e.clientY-o0.y)>24) return;
+      for(var i=0;i<els.length;i++) if(els[i].contains(e.target)){ e.preventDefault(); e.stopPropagation(); return; } };
+    document.addEventListener('click',g,true);
+    setTimeout(function(){ document.removeEventListener('click',g,true); },460);
+  }
+  window.openHere=openHere;
   function daysFromToday(s){
     var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!m) return null;
     var d=new Date(+m[1], +m[2]-1, +m[3]);
@@ -7042,6 +7096,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
 
     function shut(keepAddr){
+      openQuiet(vw);   /* (Round 141) a slide under way stops with the listing */
       releaseCards();
       if(vTextQR) vTextQR.hidden=true;
       if(vTextBig) vTextBig.setAttribute('aria-expanded','false');
@@ -7293,18 +7348,18 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
 
     var vWhyPanel=document.getElementById('viewerWhyPanel'), vWhyMore=document.getElementById('viewerWhyMore');
-    function whyShut(){ if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
+    function whyShut(){ openQuiet(vw); if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
+    function vOpen(ctl, panel){
+      openHere(ctl,{ isOpen:function(){ return !panel.hidden; },
+        show:function(){ panel.hidden=false; }, hide:function(){ panel.hidden=true; },
+        parts:function(){ return [panel]; }, sc:vScroller(),
+        floor:function(){ var f=vw.querySelector('.viewer-foot'); return f?f.getBoundingClientRect().top:innerHeight; },
+        ceil:function(){ var s=vScroller(); return (s?s.getBoundingClientRect().top:0)+62; },
+        after:moreBelow });
+    }
     if(vWhy&&vWhyPanel) vWhy.addEventListener('click',function(ev){
       ev.preventDefault();
-      var opening=vWhyPanel.hidden;
-      vWhyPanel.hidden=!opening;
-      vWhy.setAttribute('aria-expanded',opening?'true':'false');
-      if(opening){
-        var sc=vScroller(), pr=vWhyPanel.getBoundingClientRect(), foot=vw.querySelector('.viewer-foot');
-        var limit=foot?foot.getBoundingClientRect().top:innerHeight;
-        if(sc&&pr.bottom>limit) sc.scrollTop+=Math.min(pr.bottom-limit+8, pr.top-sc.getBoundingClientRect().top-62);
-        moreBelow();
-      }
+      vOpen(vWhy, vWhyPanel);
     });
     if(vWhyMore) vWhyMore.addEventListener('click',function(ev){
       ev.preventDefault();
@@ -7323,7 +7378,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       });
       return out;
     }
-    function payShut(){ var pp=document.getElementById('viewerPayPanel'); if(pp) pp.hidden=true; if(vPay) vPay.setAttribute('aria-expanded','false'); }
+    function payShut(){ var pp=document.getElementById('viewerPayPanel'); if(pp) pp.hidden=true; if(vPay) vPay.setAttribute('aria-expanded','false');
+      var row=document.getElementById('viewerOpens'); if(row) row.hidden=!((vWhy&&!vWhy.hidden)||(vPay&&!vPay.hidden)); }
     function payShow(){ var pp=document.getElementById('viewerPayPanel'); if(!pp||!vPay||vPay.hidden) return; pp.hidden=false; vPay.setAttribute('aria-expanded','true'); }
     function payFill(r){
       var plan=document.getElementById('viewerPayPlan'), now=document.getElementById('viewerPayNow');
@@ -7341,15 +7397,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     if(vPay) vPay.addEventListener('click',function(ev){
       ev.preventDefault();
       var pp=document.getElementById('viewerPayPanel'); if(!pp) return;
-      var opening=pp.hidden;
-      pp.hidden=!opening;
-      vPay.setAttribute('aria-expanded',opening?'true':'false');
-      if(opening){
-        var sc=vScroller(), pr=pp.getBoundingClientRect(), foot=vw.querySelector('.viewer-foot');
-        var limit=foot?foot.getBoundingClientRect().top:innerHeight;
-        if(sc&&pr.bottom>limit) sc.scrollTop+=Math.min(pr.bottom-limit+8, pr.top-sc.getBoundingClientRect().top-62);
-        moreBelow();
-      }
+      vOpen(vPay, pp);
     });
     var vPayMore=document.getElementById('viewerPayMore');
     if(vPayMore) vPayMore.addEventListener('click',function(ev){
@@ -7366,10 +7414,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var bt=ev.target.closest&&ev.target.closest('.markmore'); if(!bt||!vMark.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerMarkMore'); if(!panel) return;
-      var opening=panel.hidden;
-      panel.hidden=!opening;
-      bt.setAttribute('aria-expanded',opening?'true':'false');
-      moreBelow();
+      vOpen(bt, panel);
     });
     if(vPair) vPair.addEventListener('click',function(ev){
       var ab=ev.target.closest&&ev.target.closest('.pairask');
@@ -7385,15 +7430,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
-      var opening=panel.hidden;
-      panel.hidden=!opening;
-      bt.setAttribute('aria-expanded',opening?'true':'false');
-      if(opening){
-        var sc=vScroller(), pr=panel.getBoundingClientRect(), foot=vw.querySelector('.viewer-foot');
-        var limit=foot?foot.getBoundingClientRect().top:innerHeight;
-        if(sc&&pr.bottom>limit) sc.scrollTop+=Math.min(pr.bottom-limit+8, pr.top-sc.getBoundingClientRect().top-62);
-      }
-      moreBelow();
+      vOpen(bt, panel);
     });
 
     vClose.addEventListener('click',dismiss);
@@ -7413,8 +7450,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!btn) return;
       var ways=document.getElementById('viewerWays'); if(!ways) return;
       var open=btn.getAttribute('aria-expanded')==='true';
-      btn.setAttribute('aria-expanded', open?'false':'true');
-      ways.hidden=open;
+      vOpen(btn, ways);   /* Round 141: slides open under it, the button where it was */
       if(!open && ev.detail===0){ var first=ways.querySelector('a'); if(first) try{ first.focus({preventScroll:true}); }catch(e){} }
     });
     document.addEventListener('keydown',function(ev){
@@ -8096,42 +8132,31 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
    Round 140): the bar sits above the list now, so the lines open below it; it is pinned where it was
    tapped all the same (the page's scroll anchoring off for the moment of the change, any shift taken
    back at once), tap after tap; the lines slide open and shut in 180ms (at once with Reduce Motion);
-   a tap during a slide finishes it first, so every tap is one change. */
+   a tap during a slide finishes it first, so every tap is one change. ROUND 141 (25 Oct 2026): the same
+   for every opener on the page, through openHere (the main script); see below. */
   function openFor(h){ var t=h&&h.length>1&&document.getElementById(h.slice(1)); if(!t) return;
     var d=t.closest('details'), any=false; while(d){ if(!d.open){ d.open=true; any=true; } d=d.parentElement&&d.parentElement.closest('details'); }
     if(any) setTimeout(function(){ t.scrollIntoView({block:'start'}); },60); }
   window.addEventListener('hashchange',function(){ openFor(location.hash); });
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) openFor(a.getAttribute('href')); },true);
   openFor(location.hash);
+  var O=window.openHere, corner=document.getElementById('corner'), nav=document.getElementById('nav');
+  var floor=function(){ if(corner&&getComputedStyle(corner).position==='fixed'){ var c=corner.getBoundingClientRect(); if(c.height&&c.top<innerHeight) return c.top; } return innerHeight; };
+  var ceil=function(){ var t=0; if(nav&&/sticky|fixed/.test(getComputedStyle(nav).position)){ var n=nav.getBoundingClientRect(); if(n.bottom>0) t=n.bottom; } return t+8; };
   var b=document.getElementById('inclMore'), l=document.getElementById('inclList');
-  if(b&&l){
-    var H=document.documentElement, still=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), pending=null;
-    var jump=function(dy){ var sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollBy(0,dy); H.style.scrollBehavior=sb; };
-    b.addEventListener('click',function(){
-      if(pending) pending();
-      var top0=b.getBoundingClientRect().top, oa=H.style.overflowAnchor, anims=[], over=false;
-      var pin=function(){ var dy=b.getBoundingClientRect().top-top0; if(Math.abs(dy)>0.5) jump(dy); };
-      var lines=[].slice.call(l.querySelectorAll('li small')), opening=!l.classList.contains('open');
-      var done=function(){ if(over) return; over=true; pending=null;
-        anims.forEach(function(a){ try{ a.cancel(); }catch(x){} });
-        if(!opening) l.classList.remove('open');
-        lines.forEach(function(x){ x.style.overflow=''; });
-        pin(); H.style.overflowAnchor=oa; };
-      H.style.overflowAnchor='none';
-      b.setAttribute('aria-expanded',opening?'true':'false');
-      if(opening) l.classList.add('open');
-      pin();
-      if(still||!lines.length||!lines[0].animate){ done(); return; }
-      pending=done;
-      var left=lines.length, shut={height:'0px',opacity:0};
-      lines.forEach(function(x){ var h=x.getBoundingClientRect().height, full={height:h+'px',opacity:1};
-        x.style.overflow='hidden';
-        var a=x.animate(opening?[shut,full]:[full,shut],{duration:180,easing:'ease-out',fill:opening?'none':'forwards'});
-        anims.push(a);
-        a.onfinish=function(){ if(--left===0) done(); };
-      });
-    });
-  }
+  if(O&&b&&l) b.addEventListener('click',function(){
+    O(b,{ isOpen:function(){ return l.classList.contains('open'); },
+      show:function(){ l.classList.add('open'); }, hide:function(){ l.classList.remove('open'); },
+      parts:function(){ return l.querySelectorAll('li small'); }, floor:floor, ceil:ceil });
+  });
+  if(O) document.addEventListener('click',function(e){
+    var s=e.target.closest&&e.target.closest('details.fold>summary'); if(!s) return;
+    var d=s.parentElement; e.preventDefault();
+    O(s,{ isOpen:function(){ return d.open; },
+      show:function(){ d.open=true; }, hide:function(){ d.open=false; d.classList.remove('shutting'); },
+      mark:function(opening){ d.classList.toggle('shutting',!opening); },
+      parts:function(){ return [].filter.call(d.children,function(x){ return x!==s; }); }, floor:floor, ceil:ceil });
+  });
 })();</script>
 </body>
 </html>
