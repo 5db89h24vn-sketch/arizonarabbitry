@@ -198,6 +198,53 @@ html.thumb.at-contact .corner,.corner.away,body.locked .corner{opacity:0;visibil
   border-top:1px solid var(--line)}
 .corner-sheet .chev{flex:none;width:7px;height:7px;margin:0 3px 0 0;border-right:1.5px solid var(--ink-soft);
   border-bottom:1.5px solid var(--ink-soft);transform:rotate(-45deg)}
+
+:root{
+  --ci-top:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 10.5 12 3.8l8.5 6.7'/%3E%3Cpath d='M5.5 9v10.7h13V9'/%3E%3Cpath d='M10 19.7v-5.2h4v5.2'/%3E%3C/svg%3E");
+  --ci-available:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z'/%3E%3Ccircle cx='7.5' cy='7.5' r='1.2'/%3E%3C/svg%3E");
+  --ci-about:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5.5'/%3E%3Cpath d='M12 7.6v.1'/%3E%3C/svg%3E");
+  --ci-producers:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.2 10.3C8.2 6.8 8.4 3.2 9.7 3s2.1 3.5 1.9 7.2'/%3E%3Cpath d='M14.8 10.3c1-3.5.8-7.1-.5-7.3s-2.1 3.5-1.9 7.2'/%3E%3Ccircle cx='12' cy='15.3' r='5.7'/%3E%3C/svg%3E");
+  --ci-raised:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 13C12 9.5 9.5 7 5.5 7c0 3.5 2.5 6 6.5 6z'/%3E%3Cpath d='M12 11c0-3.5 2.5-6 6.5-6 0 3.5-2.5 6-6.5 6z'/%3E%3C/svg%3E");
+  --ci-included:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z'/%3E%3Cpath d='M3.5 7.5 12 12l8.5-4.5'/%3E%3Cpath d='M12 12v9'/%3E%3C/svg%3E");
+  --ci-boarding:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='7.5' width='17' height='12.5' rx='2'/%3E%3Cpath d='M9 7.5V5.2A1.2 1.2 0 0 1 10.2 4h3.6A1.2 1.2 0 0 1 15 5.2v2.3'/%3E%3Cpath d='M3.5 12.5h17'/%3E%3C/svg%3E");
+  --ci-faq:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h16a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 17h-9.5l-4.5 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5z'/%3E%3Cpath d='M10 9.4a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.4'/%3E%3Cpath d='M12 14.6v.1'/%3E%3C/svg%3E");
+  --ci-contact:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='7' y='2.5' width='10' height='19' rx='2.2'/%3E%3Cpath d='M11 18.3h2'/%3E%3C/svg%3E");
+  --ci-litters:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='3.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3C/svg%3E");
+  --ci-news:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='4.5' width='14' height='15' rx='1.5'/%3E%3Cpath d='M17.5 8.5h2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-3 0'/%3E%3Cpath d='M7 8.5h7M7 12h7M7 15.5h4'/%3E%3C/svg%3E");
+  --ck-about:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5.5'/%3E%3Cpath d='M12 7.6v.1'/%3E%3C/svg%3E");
+  --ck-producers:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.2 10.3C8.2 6.8 8.4 3.2 9.7 3s2.1 3.5 1.9 7.2'/%3E%3Cpath d='M14.8 10.3c1-3.5.8-7.1-.5-7.3s-2.1 3.5-1.9 7.2'/%3E%3Ccircle cx='12' cy='15.3' r='5.7'/%3E%3C/svg%3E");
+  --ck-raised:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 13C12 9.5 9.5 7 5.5 7c0 3.5 2.5 6 6.5 6z'/%3E%3Cpath d='M12 11c0-3.5 2.5-6 6.5-6 0 3.5-2.5 6-6.5 6z'/%3E%3C/svg%3E");
+  --ck-included:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z'/%3E%3Cpath d='M3.5 7.5 12 12l8.5-4.5'/%3E%3Cpath d='M12 12v9'/%3E%3C/svg%3E");
+  --ck-boarding:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='7.5' width='17' height='12.5' rx='2'/%3E%3Cpath d='M9 7.5V5.2A1.2 1.2 0 0 1 10.2 4h3.6A1.2 1.2 0 0 1 15 5.2v2.3'/%3E%3Cpath d='M3.5 12.5h17'/%3E%3C/svg%3E");
+  --ck-faq:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5h16a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 20 17h-9.5l-4.5 3.5V17H4a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 4 5z'/%3E%3Cpath d='M10 9.4a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.4'/%3E%3Cpath d='M12 14.6v.1'/%3E%3C/svg%3E");
+  --ck-contact:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='7' y='2.5' width='10' height='19' rx='2.2'/%3E%3Cpath d='M11 18.3h2'/%3E%3C/svg%3E");
+}
+.corner-sheet a{gap:12px}
+.corner-sheet a[href="#top"]::after,.corner-sheet a[href="#available"]::after,.corner-sheet a[href="#about"]::after,.corner-sheet a[href="#producers"]::after,.corner-sheet a[href="#raised"]::after,.corner-sheet a[href="#included"]::after,.corner-sheet a[href="#boarding"]::after,.corner-sheet a[href="#faq"]::after,.corner-sheet a[href="#contact"]::after,.corner-sheet a.corner-page[href*="litters"]::after,.corner-sheet a.corner-page[href*="updates"]::after{content:'';order:-1;flex:none;width:18px;height:18px;margin-left:-1px;background:currentColor;-webkit-mask:var(--ci) center/contain no-repeat;mask:var(--ci) center/contain no-repeat}
+.corner-sheet a[href="#top"]{--ci:var(--ci-top)}
+.corner-sheet a[href="#available"]{--ci:var(--ci-available)}
+.corner-sheet a[href="#about"]{--ci:var(--ci-about)}
+.corner-sheet a[href="#producers"]{--ci:var(--ci-producers)}
+.corner-sheet a[href="#raised"]{--ci:var(--ci-raised)}
+.corner-sheet a[href="#included"]{--ci:var(--ci-included)}
+.corner-sheet a[href="#boarding"]{--ci:var(--ci-boarding)}
+.corner-sheet a[href="#faq"]{--ci:var(--ci-faq)}
+.corner-sheet a[href="#contact"]{--ci:var(--ci-contact)}
+.corner-sheet a.corner-page[href*="litters"]{--ci:var(--ci-litters)}
+.corner-sheet a.corner-page[href*="updates"]{--ci:var(--ci-news)}
+
+.corner-sheet a.corner-page{justify-content:flex-start}
+.corner-sheet a.corner-page .chev{margin-left:auto}
+@media(max-width:980px){
+  html.thumb #about .about-head>.kicker::before,html.thumb #producers>.wrap>.kicker::before,html.thumb #raised>.wrap>.kicker::before,html.thumb #included .split>div>.kicker::before,html.thumb #boarding .svc-main>.kicker::before,html.thumb #faq>.wrap>.kicker::before,html.thumb #contact .form-grid>div>.kicker::before{content:'';display:inline-block;width:15px;height:15px;margin:0 7px 0 0;vertical-align:-3px;background:currentColor;-webkit-mask:var(--ck) center/contain no-repeat;mask:var(--ck) center/contain no-repeat}
+  html.thumb #about .about-head>.kicker{--ck:var(--ck-about)}
+  html.thumb #producers>.wrap>.kicker{--ck:var(--ck-producers)}
+  html.thumb #raised>.wrap>.kicker{--ck:var(--ck-raised)}
+  html.thumb #included .split>div>.kicker{--ck:var(--ck-included)}
+  html.thumb #boarding .svc-main>.kicker{--ck:var(--ck-boarding)}
+  html.thumb #faq>.wrap>.kicker{--ck:var(--ck-faq)}
+  html.thumb #contact .form-grid>div>.kicker{--ck:var(--ck-contact)}
+}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
   font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
@@ -528,6 +575,12 @@ header .brand{color:var(--logo)}
 @media(max-width:359px){ .hero-deliver .truck{display:none} }
 
 @media(min-width:341px) and (max-width:374px){ .hero-deliver{gap:6px} .hero-deliver b{font-size:16px} .hero-deliver .truck{margin-right:.4em} }
+
+.hero-lines{margin:-22px 0 2px}
+.cert{display:inline-block;height:1.15em;width:1.745em;vertical-align:-.24em;margin-right:.48em;color:var(--ink-soft)}
+
+.hero-lines:hover .cert,.hero-lines:focus-visible .cert{color:var(--brick-dk)}
+@media(max-width:359px){ .hero-lines .cert{display:none} }
 
 .facts{border-top:1px solid var(--line);margin-top:26px}
 .facts a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;
@@ -1103,6 +1156,24 @@ details[open]>summary::after{transform:translateY(-30%) rotate(225deg)}
 
 .faq{border-top:0}
 
+.faq-find{display:flex;align-items:center;gap:9px;height:40px;margin:18px 0 14px;padding:0 10px 0 14px;border-radius:20px;
+  background:var(--paper-2);color:var(--ink-soft)}
+.faq-find:focus-within{box-shadow:0 0 0 2px var(--brick)}
+
+.tinted .faq-find{background:var(--paper)}
+.faq-find-i{flex:none;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.faq-q{flex:1 1 auto;min-width:0;height:100%;margin:0;padding:0;border:0;background:transparent;color:var(--ink);
+  font:inherit;font-size:16px;outline:none;-webkit-appearance:none;appearance:none}
+.faq-q::placeholder{color:var(--ink-faint);opacity:1}
+.faq-q::-webkit-search-decoration{display:none}
+
+.faq-q:focus,.faq-q:focus-visible{box-shadow:none;outline:none}
+
+.faq-q::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;width:28px;height:28px;margin:0;cursor:pointer;
+  background:var(--ink-faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M8 8l8 8M16 8l-8 8'/%3E%3C/svg%3E") center/16px no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M8 8l8 8M16 8l-8 8'/%3E%3C/svg%3E") center/16px no-repeat}
+.faq-none{margin:0 0 14px;color:var(--ink-soft);font-size:15px}
+.faq details[hidden]{display:none}
 .faq details.topic>summary{font-family:var(--sans);font-size:16px;font-weight:600;line-height:1.3;color:var(--ink);padding:15px 38px 15px 0}
 .faq details.topic>summary small{display:block;font-weight:400;font-size:13.5px;line-height:1.4;color:var(--ink-soft);margin-top:3px}
 .faq details.topic>summary b{font-weight:600}
@@ -2088,6 +2159,12 @@ body.locked{overflow:hidden}
   .hero .facts a{min-height:0;padding-top:9px;padding-bottom:9px}
   .hero-cta .btn{flex:1 1 auto;padding-left:20px;padding-right:20px}
 }
+@media(orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px){
+  
+  .hero-lines{grid-column:1;grid-row:3;justify-self:start}
+  .hero-sub{grid-row:4} .hero-cta{grid-row:5} .hero .txqr{grid-row:6} .hero-srow{grid-row:7}
+  .hero .facts{grid-row:8} .hero-media{grid-row:1 / 8}
+}
 @media(orientation:landscape) and (max-height:500px) and (min-width:560px){
   
   .hero .facts a span,.hero .facts b,.hero .facts small{display:block}
@@ -2854,6 +2931,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
       <a class="hero-deliver" href="#faq-delivery"><b><svg class="truck" viewBox="0 0 32 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg>Free weekend delivery&nbsp;statewide</b><i class="chev" aria-hidden="true"></i></a>
 
+      <a class="hero-deliver hero-lines" href="#producers"><b><svg class="cert" viewBox="0 0 24 24" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 8.5h7M7 12h4"/><circle cx="16.5" cy="13" r="2.5" fill="currentColor"/><path d="M15.2 15.2 14.5 20l2-1 2 1-.7-4.8"/></g></svg>Purebred lines, with&nbsp;pedigrees</b><i class="chev" aria-hidden="true"></i></a>
       <p class="hero-sub">Handled gently every day from their first week, so they come home used to being&nbsp;held.</p>
       <div class="hero-cta">
         <a href="#available" class="btn btn-primary">See available rabbits</a>
@@ -2929,7 +3007,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <div class="wl-side">
         <form class="wl-form" id="wlform" action="https://formspree.io/f/xppanonl" method="POST">
           
-          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><span class="wl-pic wl-all" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 4 8.5l8 4.5 8-4.5z"/><path d="m4 12.5 8 4.5 8-4.5"/><path d="m4 16.5 8 4.5 8-4.5"/></svg></span><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 21 October" data-name="the Holland Lop crosses born 21 Oct"><input type="checkbox" name="want" value="L2026-10-21"><span class="wl-card"><a class="wl-piclink" href="/litters#L2026-10-21" aria-label="More about the litter born 21 October"><img src="photos/litter-2026-10-21.jpg?v=1f7aa320" srcset="photos/litter-2026-10-21.160.1f7aa320.jpg 160w, photos/litter-2026-10-21.320.1f7aa320.jpg 320w, photos/litter-2026-10-21.640.1f7aa320.jpg 640w, photos/litter-2026-10-21.960.1f7aa320.jpg 960w, photos/litter-2026-10-21.1280.1f7aa320.jpg 1280w, photos/litter-2026-10-21.jpg?v=1f7aa320 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><i class="wl-open" aria-hidden="true"></i></a><span class="wl-t"><b>Born 21 Oct</b><small>Holland Lops · Cross</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 19 October" data-name="the Holland Lops born 19 Oct"><input type="checkbox" name="want" value="L2026-10-19"><span class="wl-card"><a class="wl-piclink" href="/litters#L2026-10-19" aria-label="More about the litter born 19 October"><img src="photos/litter-2026-10-19.jpg?v=671e03d9" srcset="photos/litter-2026-10-19.160.671e03d9.jpg 160w, photos/litter-2026-10-19.320.671e03d9.jpg 320w, photos/litter-2026-10-19.640.671e03d9.jpg 640w, photos/litter-2026-10-19.960.671e03d9.jpg 960w, photos/litter-2026-10-19.1280.671e03d9.jpg 1280w, photos/litter-2026-10-19.jpg?v=671e03d9 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><i class="wl-open" aria-hidden="true"></i></a><span class="wl-t"><b>Born 19 Oct</b><small>Holland Lops · Purebred</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
+          <div data-fact="alert-pick" class="wl-pick" role="group" aria-label="Which litters to hear about"><small>Tell me about</small><span class="wl-lits"><label class="wl-lit" data-label="every litter" data-name="every litter"><input type="checkbox" name="want" value="all" checked><span class="wl-card"><span class="wl-pic wl-all" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 4 8.5l8 4.5 8-4.5z"/><path d="m4 12.5 8 4.5 8-4.5"/><path d="m4 16.5 8 4.5 8-4.5"/></svg></span><span class="wl-t"><b>Every litter</b><small>Future litters too</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 19 October" data-name="the Holland Lops born 19 Oct"><input type="checkbox" name="want" value="L2026-10-19"><span class="wl-card"><a class="wl-piclink" href="/litters#L2026-10-19" aria-label="More about the litter born 19 October"><img src="photos/litter-2026-10-19.jpg?v=671e03d9" srcset="photos/litter-2026-10-19.160.671e03d9.jpg 160w, photos/litter-2026-10-19.320.671e03d9.jpg 320w, photos/litter-2026-10-19.640.671e03d9.jpg 640w, photos/litter-2026-10-19.960.671e03d9.jpg 960w, photos/litter-2026-10-19.1280.671e03d9.jpg 1280w, photos/litter-2026-10-19.jpg?v=671e03d9 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><i class="wl-open" aria-hidden="true"></i></a><span class="wl-t"><b>Born 19 Oct</b><small>Holland Lops · Purebred</small></span><i class="wl-tick" aria-hidden="true"></i></span></label><label class="wl-lit" data-label="the litter born 21 October" data-name="the Holland Lop crosses born 21 Oct"><input type="checkbox" name="want" value="L2026-10-21"><span class="wl-card"><a class="wl-piclink" href="/litters#L2026-10-21" aria-label="More about the litter born 21 October"><img src="photos/litter-2026-10-21.jpg?v=1f7aa320" srcset="photos/litter-2026-10-21.160.1f7aa320.jpg 160w, photos/litter-2026-10-21.320.1f7aa320.jpg 320w, photos/litter-2026-10-21.640.1f7aa320.jpg 640w, photos/litter-2026-10-21.960.1f7aa320.jpg 960w, photos/litter-2026-10-21.1280.1f7aa320.jpg 1280w, photos/litter-2026-10-21.jpg?v=1f7aa320 1400w" sizes="56px" class="wl-pic" alt="" width="56" height="42" loading="lazy" decoding="async"><i class="wl-open" aria-hidden="true"></i></a><span class="wl-t"><b>Born 21 Oct</b><small>Holland Lops · Cross</small></span><i class="wl-tick" aria-hidden="true"></i></span></label></span></div>
           
           <label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label>
           <div class="wl-row">
@@ -3201,6 +3279,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     <p class="lede">If yours isn't here, text me. There's no dumb rabbit question.</p>
   </div>
   <div class="wrap">
+    
+    <div class="faq-find" role="search"><label class="sr-only" for="faqQ">Find an answer</label><svg class="faq-find-i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="faqQ" class="faq-q" type="search" placeholder="Find an answer" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"></div>
+    <p class="faq-none" id="faqNone" role="status" hidden>No answer here has those words. Text me, and I'll answer it.</p>
     <div class="faq" style="text-align:left">
 
       <details class="topic" id="topic-buying">
@@ -7096,6 +7177,30 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           }); });
         });
       });
+    })();
+    (function(){
+      var q=document.getElementById('faqQ'), none=document.getElementById('faqNone'), faq=document.querySelector('#faq .faq');
+      if(!q||!faq) return;
+      var topics=[].slice.call(faq.querySelectorAll('details.topic'));
+      var fold=function(t){ return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' '); };
+      var rows=[], was=null;
+      topics.forEach(function(t){ [].slice.call(t.children).forEach(function(d){ if(d.tagName==='DETAILS') rows.push({t:t,d:d,x:''}); }); });
+      function read(){ rows.forEach(function(r){ r.x=fold(r.d.textContent); }); }
+      function find(){
+        var words=fold(q.value).split(' ').filter(function(w){ return w.length>1; });
+        if(!words.length){
+          rows.forEach(function(r){ r.d.hidden=false; });
+          topics.forEach(function(t,i){ t.hidden=false; if(was) t.open=was[i]; });
+          was=null; if(none) none.hidden=true; return;
+        }
+        if(!was){ was=topics.map(function(t){ return t.open; }); read(); }
+        var n=0;
+        rows.forEach(function(r){ var ok=words.every(function(w){ return r.x.indexOf(w)>=0; }); r.d.hidden=!ok; if(ok) n++; });
+        topics.forEach(function(t){ var any=rows.some(function(r){ return r.t===t&&!r.d.hidden; }); t.hidden=!any; if(any) t.open=true; });
+        if(none) none.hidden=n>0;
+      }
+      q.addEventListener('input',find);
+      q.addEventListener('search',find);
     })();
     document.addEventListener('click',function(ev){
       var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
