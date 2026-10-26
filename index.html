@@ -6061,6 +6061,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var shown=null;
     var shots=[], at=0, lastFocus=null;
     var parentOpen=false, shareAble=false;
+    function footClear(){
+      if(vBuy){ vBuy.hidden=true; vBuy.textContent=''; vBuy.setAttribute('href','#contact'); }
+      if(vCta.parentNode) vCta.parentNode.classList.remove('buy2');
+      vCta.removeAttribute('data-ask');
+    }
     var vBody=vw.querySelector('.viewer-body'), vBoxEl=vw.querySelector('.viewer-box');
     function vScroller(){
       if(vBoxEl){ var o=getComputedStyle(vBoxEl).overflowY; if(o==='auto'||o==='scroll') return vBoxEl; }
@@ -6698,7 +6703,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       nh.hidden=fc;
       gs.querySelector('.gs-err').hidden=true; gs.querySelector('.gs-copy').hidden=true;
     }
-    function gsShow(r,opt,how){
+    function gsShow(r,opt,how,from){
       if(r?!gsCan(r):opt!=='visit') return false;     /* no rabbit named: only a visit (#visit) */
       gsBuild(); if(gsR!==r||gs.hidden) gsStamp=null; gsR=r||null;
       gsMode=(opt==='buy'||opt==='plan'||opt==='visit')?opt:'reserve';
@@ -6732,7 +6737,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gs.querySelector('.gs-done').hidden=true; f.hidden=false;
       gsPaintMode(false);
       var h=r?('#r-'+addrOf(r)+'~'+gsMode):'#visit';
-      if(how==='tap'){ gsFrom=document.activeElement; writeAddr(h); gsPushed=true; }
+      if(how==='tap'){ gsFrom=from||document.activeElement; writeAddr(h); gsPushed=true; }   /* (Round 149) the control itself: WebKit does not focus a tapped link */
       if(gs.hidden){
         gs.hidden=false;
         gs.classList.remove('gs-in-anim'); void gs.offsetWidth; gs.classList.add('gs-in-anim');
@@ -6745,6 +6750,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!gs||gs.hidden) return;
       gs.hidden=true;
       var back=gsFrom; gsFrom=null;
+      var lst=!!(gsR&&shown&&!parentOpen&&vw.classList.contains('open')&&addrOf(shown)===addrOf(gsR));
+      if(lst&&(!back||!vw.contains(back)||!back.getClientRects().length))
+        back=((gsMode==='buy'||gsMode==='plan')&&vBuy&&!vBuy.hidden)?vBuy:vCta;
+      if(!gsR&&!back){ var vl=document.querySelector('#visit a[href="#visit"]'); if(vl&&vl.getClientRects().length) back=vl; }
       if(back&&document.documentElement.contains(back)&&(vw.classList.contains('open')||!gsR)) focusNoScroll(back);
     }
     function gsClose(){
@@ -6779,13 +6788,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function gsTap(a,ev){
       var to=a.getAttribute('href')||'', x=gsAddr(to);
       if(!x||!shown||addrOf(shown)!==x||!vw.classList.contains('open')) return false;
-      ev.preventDefault(); gsShow(shown,gsOptOf(to),'tap'); return true;
+      ev.preventDefault(); gsShow(shown,gsOptOf(to),'tap',a); return true;
     }
     if(vBuy) vBuy.addEventListener('click',function(ev){ gsTap(vBuy,ev); });
     document.addEventListener('click',function(ev){
       if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
       var a=ev.target.closest&&ev.target.closest('a[href="#visit"]'); if(!a) return;
-      ev.preventDefault(); gsShow(null,'visit','tap');
+      ev.preventDefault(); gsShow(null,'visit','tap',a);
     });
     if(location.hash==='#visit') setTimeout(function(){ gsShow(null,'visit','route'); },0);
     function gsWhen(){
@@ -7253,6 +7262,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       paintLitters(p,key);
       var pedS=pedForParent(key);
       paintPed(pedS); paintTags(pedLabels(pedS,pedS?pedTree(pedS):null,p));
+      footClear();   /* (Round 149) the rabbit that led here keeps its buttons: a parent's view has one, and no price */
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
       if(vText) vText.hidden=true;
@@ -7561,6 +7571,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vSale) vSale.hidden=!hasSale(r);
       var openNow=(r.status==='available');
       var anyOpen=RABBITS.some(function(x){ return x.status==='available'; });
+      footClear();   /* (Round 149) both slots from nothing, then this rabbit's */
       var sell=gsCan(r), p=+priceOf(r), a='#r-'+addrOf(r);
       vCta.textContent=sell?'Reserve \u00B7 $50':openNow?('Ask about '+r.name):(anyOpen?'See who is available':'See the next litter first');
       vCta.setAttribute('href',sell?(a+'~reserve'):openNow?'#contact':(anyOpen?'#available':'#waitlist'));
