@@ -627,6 +627,32 @@ const PARENTS = {
       { src: "photos/mother-catalina.jpg", date: "2026-09-18" }
     ]
   },
+  /* FOX, a purebred Holland Lop doe (25 Oct 2026). William, about 7:10pm: "Fox made a litter yesterday and it
+     had three babies"; "This is also her first litter, and she is a pure bred lop"; with her pedigree card, "Her
+     pairing should be root beer" and "she is a pure Holland lop"; then her photo. The card's own facts print as
+     her record (Orange, Ear # CJ1S, DOB March 4, 2024, Sex Doe), her registered name without the breeder's
+     prefix, as for Tango, Root Beer and S'Morri; what it leaves blank is not printed or implied; the breeder's
+     name, town and number on it stay off the site. Her card's parents are Goldie's (Root Beer's mother): the
+     same sire and dam and the same birth date, so the two are littermates, and the generation above them comes
+     from her card. Her photos are dated the day they arrived; the portrait is a square cut of her photo, her
+     face. The clip of her three, picked up and held, is hers to show: her first litter. */
+  fox: {
+    role:    "mother",
+    from:    "luvmybunns",
+    name:    "Fox",
+    breed:   "Holland Lop",
+    variety: "Orange",
+    ear:     "CJ1S",
+    dob:     "2024-03-04",
+    pedigreed: true,
+    sire:    "chimnickchonga",        /* the father, in ANCESTORS below */
+    dam:     "cylindrical",
+    note:    "Pedigreed.",
+    photos: [
+      { src: "photos/mother-fox-portrait.jpg", date: "2026-10-25" },   /* her face on the site, the first frame: a square cut of his photo below */
+      { src: "photos/mother-fox.jpg", date: "2026-10-25" }
+    ]
+  },
   /* BAKALAKI, the purebred Netherland Dwarf doe, mother of the first
      Netherland Dwarf litter (born 6 Oct 2026). From her pedigree card: Opal,
      born 21 June 2025, ear number BAKALAKI; her name without her breeder's
@@ -824,8 +850,24 @@ const ANCESTORS = {
                        wins: [ { award: "Best in Show", on: "2020-01-18" }, { award: "Best Reserve in Show", on: "2020-01-18" },
                                { award: "Best Opposite Sex", on: "2020-01-18" }, { award: "Best of Breed", on: "2019-07-26" } ],
                        sire: "martin", dam: "lyzza" },
-  martin:            { name: "Martin", variety: "Black tortoise", ear: "X23", lb: 3, legs: 6 },
-  lyzza:             { name: "Lyzza", variety: "Black tortoise", ear: "RZLZ", lb: 3, oz: 4, legs: 1 },
+  martin:            { name: "Martin", variety: "Black tortoise", ear: "X23", lb: 3, legs: 6, dob: "2017-11-08",
+                       wins: [ { award: "Best of Breed", on: "2019-02-17" }, { award: "First place in a class of 11", on: "2018-05-06" },
+                               { award: "Best Opposite Sex of Breed", on: "2018-03-17" }, { award: "Best Opposite Sex of Variety", on: "2018-03-17" },
+                               { award: "First place in a class of 12", on: "2018-02-24" } ],
+                       sire: "titan", dam: "melania" },
+  lyzza:             { name: "Lyzza", variety: "Black tortoise", ear: "RZLZ", lb: 3, oz: 4, legs: 1, dob: "2016-02-28",
+                       wins: [ { award: "Best Opposite Sex", on: "2017-04-30" } ],
+                       sire: "landon", dam: "khalista" },
+  /* (25 Oct 2026) Fox's card goes a generation further than Root Beer's on her mother's line and his: the
+     parents of Martin, Lyzza, Jefferson and Apple Juice. Titan and Landon each carry a Grand Champion number on
+     it (gc) and a registration number (reg). Douglas is on it twice, the father of Jefferson and of Apple Juice. */
+  titan:             { name: "Titan", variety: "Tortoise", ear: "FTTN", lb: 3, oz: 8, legs: 8, reg: "W317P", gc: true },
+  melania:           { name: "Melania", variety: "Black tortoise", ear: "MEL", lb: 3, oz: 9, legs: 9 },
+  landon:            { name: "Landon", variety: "Broken tortoise", ear: "LD", lb: 3, oz: 4, legs: 3, reg: "B61M", gc: true },
+  khalista:          { name: "Khalista", variety: "Broken tortoise", ear: "RR745", lb: 3, oz: 1, legs: 1 },
+  douglas:           { name: "Douglas", variety: "Broken black tortoise", ear: "DDV", lb: 3 },
+  bebe:              { name: "Bebe", variety: "Black", ear: "BE", lb: 3, legs: 5 },
+  orangejuice:       { name: "Orange Juice", variety: "Broken orange", ear: "RR158", lb: 4 },
   gem:               { name: "Gem", variety: "Broken", ear: "LFT1", dob: "2020-11-12", sire: "bruce", dam: "corona" },
   bruce:             { name: "Bruce", variety: "Broken", ear: "FTBF", lb: 3, oz: 12, legs: 8 },
   corona:            { name: "Corona", variety: "Black tortoise", ear: "CORONA" },
@@ -838,8 +880,8 @@ const ANCESTORS = {
   /* Root Beer's mother's side */
   goldie:            { name: "Goldie", variety: "Orange", ear: "CJ2S", dob: "2024-03-04", sire: "chimnickchonga", dam: "cylindrical" },
   cylindrical:       { name: "Cylindrical", variety: "Broken chinchilla", lb: 2, dob: "2020-09-09", sire: "jefferson", dam: "applejuice" },
-  jefferson:         { name: "Jefferson", variety: "Broken black", ear: "JEFF", lb: 3, legs: 6 },
-  applejuice:        { name: "Apple Juice", variety: "Broken black tortoise", ear: "APL" },
+  jefferson:         { name: "Jefferson", variety: "Broken black", ear: "JEFF", lb: 3, legs: 6, dob: "2019-12-17", sire: "douglas", dam: "bebe" },
+  applejuice:        { name: "Apple Juice", variety: "Broken black tortoise", ear: "APL", dob: "2019-09-30", sire: "douglas", dam: "orangejuice" },
   /* S'Morri's father's side */
   mrstealyogirl:     { name: "Mr Steal Yo Girl", variety: "Tortoise", ear: "CR4S", dob: "2024-03-11", sire: "thad", dam: "rose" },
   thad:              { name: "Thad", variety: "Orange", ear: "TH", dob: "2022-06-27", sire: "heavenlystarlight", dam: "tequilasunrise" },
@@ -1748,8 +1790,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "adopted",                         /* his word, 25 Oct 2026, about 6:24pm Tucson: "oatmeal was purchased today", and "whenever I tell you a rabbit was purchased, that also means it went home" */
+    reservedOn: "2026-10-25",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
+    soldOn: "2026-10-25",                      /* purchased that day, his word */
+    wentHome: "2026-10-25",                    /* purchased means it went home, his rule of the same message */
     ear:    "",
     weights: [],
     photo:  "photos/oatmeal.jpg",
