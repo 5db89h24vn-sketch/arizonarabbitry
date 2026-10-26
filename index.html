@@ -5738,12 +5738,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   }
   function gsCardHTML(r){
     var a=esc(addrOf(r)), n=esc(r.name), p=+priceOf(r), now=gsNow(r);
-    var lead=now?'<a class="btn btn-primary bget-b" href="#r-'+a+'~buy" aria-label="Take home '+n+' for $'+p+'">Take home</a>'
-                :'<a class="btn btn-primary bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve</a>';
-    var next=now?'<a class="btn btn-tonal bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve</a>'
-                :'<a class="btn btn-tonal bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy</a>';
     return '<p class="bget-note">'+(now?'Ready to go home.':'$50 reserves it.')+' First come, first served.</p>'+
-      '<div class="bget">'+lead+next+'</div>';
+      '<div class="bget"><a class="btn btn-primary bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve</a>'+
+      '<a class="btn btn-tonal bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy</a></div>';
   }
   function planWord(r){
     if(!r || r.status==='available' || !r.partsFrom) return '';
@@ -6715,7 +6712,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(r){
         gs.querySelector('.gs-buyset legend').textContent='How do you want to get '+r.name+'?';
         gs.querySelector('.gs-say-reserve').textContent='$50 now, $'+(p-50)+' at pickup (Zelle or cash).';
-        gs.querySelector('.gs-buyword').textContent=now?'Take home':'Buy';
+        gs.querySelector('.gs-buyword').textContent='Buy';   /* (Round 148) one word for one action; the line under it says when */
         gs.querySelector('.gs-say-buy').textContent=now?'Ready now: home as soon as today.':'All of it now. It goes home on the day I say it’s ready.';
         gs.querySelector('.gs-price').textContent='$'+p;
         gs.querySelector('.gs-vtitle').textContent='Meet '+r.name+' first';
@@ -6806,15 +6803,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function gsTelOK(v){ var d=String(v||'').replace(/\D/g,''); if(d.length===11&&d.charAt(0)==='1') d=d.slice(1); return d.length===10?d:''; }
     function gsTelWords(d){ return '('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6); }
     function gsMessage(){
-      var f=gs.querySelector('form'), r=gsR, p=r?+priceOf(r):0, es=gsES(), m=gsMode, now=gsNow(r);
+      var f=gs.querySelector('form'), r=gsR, p=r?+priceOf(r):0, es=gsES(), m=gsMode;
       if(!gsStamp) gsStamp=gsWhen();      /* one code for this sheet: the text, the email and a second try */
       var w=gsStamp, tel=gsTelWords(gsTelOK(f.elements.tel.value)), nm=f.elements.name.value.trim(), note=f.elements.note.value.trim();
       var zel=f.elements.zelle.value.trim(), when=f.elements.when.value.trim();
       var fc=gsVals.how==='facetime', who=r?r.name:'';
       var meet=es?(fc?'FaceTime: conocer a '+(r?who:'los conejos')+' (videollamada)':'Visita: conocer a '+(r?who:'los conejos')+' (en persona)')
                  :(fc?'FaceTime: meet '+(r?who:'the rabbits')+' (video call)':'Visit: meet '+(r?who:'the rabbits')+' (in person)');
-      var what=!r?meet:es?{reserve:'Reservar a '+r.name+' ($50 ahora, $'+p+' en total)',buy:(now?'Llevar a casa a ':'Comprar a ')+r.name+' ($'+p+')',plan:'Plan de pagos para '+r.name+' ($'+p+')',visit:meet}[m]
-                 :{reserve:'Reserve '+r.name+' ($50 now, $'+p+' in all)',buy:(now?'Take '+r.name+' home':'Buy '+r.name)+' ($'+p+')',plan:'Payment plan for '+r.name+' ($'+p+')',visit:meet}[m];
+      var what=!r?meet:es?{reserve:'Reservar a '+r.name+' ($50 ahora, $'+p+' en total)',buy:'Comprar a '+r.name+' ($'+p+')',plan:'Plan de pagos para '+r.name+' ($'+p+')',visit:meet}[m]
+                 :{reserve:'Reserve '+r.name+' ($50 now, $'+p+' in all)',buy:'Buy '+r.name+' ($'+p+')',plan:'Payment plan for '+r.name+' ($'+p+')',visit:meet}[m];
       var lines=[w.code+' · '+what,(es?'Nombre: ':'Name: ')+nm];
       if(m==='visit') lines.push(fc?(es?'Teléfono (llamadas y FaceTime):':'Phone (calls and FaceTime):'):(es?'Teléfono para llamarme:':'Callback phone:'),tel);
       else if(zel&&zel.replace(/\D/g,'')!==gsTelOK(f.elements.tel.value)) lines.push(es?'Teléfono (llamadas):':'Phone (calls):',tel,es?'Zelle (pedir el pago a):':'Zelle (request from):',zel);
@@ -7564,10 +7561,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vSale) vSale.hidden=!hasSale(r);
       var openNow=(r.status==='available');
       var anyOpen=RABBITS.some(function(x){ return x.status==='available'; });
-      var sell=gsCan(r), now=gsNow(r), p=+priceOf(r), a='#r-'+addrOf(r);
-      vCta.textContent=sell?(now?'Take home \u00B7 $'+p:'Reserve \u00B7 $50'):openNow?('Ask about '+r.name):(anyOpen?'See who is available':'See the next litter first');
-      vCta.setAttribute('href',sell?(a+(now?'~buy':'~reserve')):openNow?'#contact':(anyOpen?'#available':'#waitlist'));
-      if(vBuy){ vBuy.hidden=!sell; if(sell){ vBuy.textContent=now?'Reserve \u00B7 $50':'Buy \u00B7 $'+p; vBuy.setAttribute('href',a+(now?'~reserve':'~buy')); } }
+      var sell=gsCan(r), p=+priceOf(r), a='#r-'+addrOf(r);
+      vCta.textContent=sell?'Reserve \u00B7 $50':openNow?('Ask about '+r.name):(anyOpen?'See who is available':'See the next litter first');
+      vCta.setAttribute('href',sell?(a+'~reserve'):openNow?'#contact':(anyOpen?'#available':'#waitlist'));
+      if(vBuy){ vBuy.hidden=!sell; if(sell){ vBuy.textContent='Buy \u00B7 $'+p; vBuy.setAttribute('href',a+'~buy'); } }
       if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell);
       if(openNow&&!sell) vCta.setAttribute('data-ask',r.name);
       else vCta.removeAttribute('data-ask');
