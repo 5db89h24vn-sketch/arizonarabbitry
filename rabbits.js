@@ -769,7 +769,7 @@ const PARENTS = {
       { src: "photos/father-odyssey-2.jpg", date: "2026-10-21" }
     ]
   },
-  /* SAFFRON (21 Oct 2026). William: "this rabbit was from our first litter,
+  /* PRALINE, NAMED SAFFRON UNTIL 27 OCT 2026 (21 Oct 2026). William: "this rabbit was from our first litter,
      and it just had its first litter of eight babies ... It's obviously a
      female ... I need you to come up with a unique name for it ... its father
      is Frederick and its mother is Cinamini"; then "this rabbit was bred with
@@ -777,15 +777,15 @@ const PARENTS = {
      named for a spice, and saffron is the golden-orange one. Born with the
      first litter (28 June 2026, the litters page), one of its four raised. A
      cross with no papers: no pedigree, her parents named in the note, each
-     name a doorway to its own view. Her color is not stated, so none is
-     printed. The portrait is cut from his photo of the day her litter was
+     name a doorway to its own view. Her colour came on 22 Oct (fawn, below);
+     until then none was printed. The portrait is cut from his photo of the day her litter was
      born. */
   saffron: {
     role:    "mother",
     from:    "here",
-    name:    "Saffron",
+    name:    "Praline",                       /* named Praline on 27 Oct 2026 at his word (26 Oct 8:33pm, list row 106: "Just come up with something better"); Saffron until then, the name he had asked me for on 21 Oct. Her key, address and photos keep "saffron". */
     breed:   "Holland Lop cross",
-    /* 22 Oct 2026: fawn (row 106; her new name is his to give) */
+    /* 22 Oct 2026: fawn (row 106) */
     variety: "Fawn",
     dob:     "2026-06-28",
     note:    "From my first litter: Cinnamony and Frederick's daughter.",
@@ -1043,7 +1043,7 @@ const SOURCES = {
   },
   here: {
     name:  "Bred here",
-    says:  "Saffron, from my own first litter, Cinnamony and Frederick's daughter."
+    says:  "Praline, from my own first litter, Cinnamony and Frederick's daughter."
   }
 };
 
@@ -1323,17 +1323,9 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* William, 5 Oct 2026: "discount biscuit by $100 ... I'm not sure how the
-       ear got like that, but my guess is that one of its litter mates or
-       potentially the mom was grooming this rabbit and nicked a part of its
-       ear out. It is all simply cosmetic ... because it's not a perfect
-       rabbit, I can't have a perfect price ... all the discounts on the
-       website can still be applied ... it received the same amount of care
-       that every other rabbit has received ... as the rabbit gets bigger, the
-       ear will also get bigger, so the bite mark will actually be less and
-       less noticeable." The price is its own (dealScope), said under the
-       price with the saving worked out, and the ear is shown and explained
-       in the mark block right under that, in his words. */
+    /* The nick in one ear (5 Oct 2026): cosmetic, shown and explained in the mark block below in his words.
+       The price is its own (dealScope), said under the price with the saving worked out. His words behind the
+       price are in RABBITS-HISTORY.md. */
     price:  250,
     wasPrice: 350,
     dealNote: "One ear has a small nick",
@@ -1355,12 +1347,12 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "sold",                            /* William, 6 Oct 2026: "Mark biscuit as sold", paid for that day (his answer) */
+    status: "adopted",                         /* William, 6 Oct 2026: "Mark biscuit as sold", paid for that day (his answer); home the same day (his tap, 26 Oct 2026, 8:37pm: "Yes, both, the day they sold") */
     reservedOn: "2026-10-06",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
     soldOn: "2026-10-06",
+    wentHome: "2026-10-06",
     ear:    "",
     weights: [],
-    departed: true,
     photo:  "photos/biscuit-car.jpg",
     note:   "The fluffiest coat of the fawn ones, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
   },
@@ -1383,9 +1375,10 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "sold",                            /* William, 4 Oct 2026: "Mark toffee as both sold and reserved today" */
+    status: "adopted",                         /* William, 4 Oct 2026: "Mark toffee as both sold and reserved today"; home the same day (his tap, 26 Oct 2026, 8:37pm: "Yes, both, the day they sold") */
     reservedOn: "2026-10-04",
     soldOn: "2026-10-04",
+    wentHome: "2026-10-04",
     ear:    "",
     weights: [],
     photo:  "photos/toffee.jpg",
@@ -1431,12 +1424,10 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* AVAILABLE AGAIN FROM 26 OCT 2026 AT $100 (his word, 26 Oct about 5:10pm: "bring back pecan and make pecan
-       $100 dollars"), the $350 she was listed at struck beside it: a health markdown, as Marshmallow's is (his
-       word the same minute: "For both marshmallow and pecan, I'm thinking it's either Fermites or the other one
-       that people commonly get confused with"). Her listing day stays 19 Sept. THIS FILE IS PUBLIC (anyone can
-       open arizonarabbits.com/rabbits.js), so nothing about any buyer, and no price decision, is ever written
-       in it; that history lives in RABBITS-HISTORY.md. */
+    /* AVAILABLE AGAIN FROM 26 OCT 2026, the $350 she was listed at struck beside her price: a health markdown,
+       as Marshmallow's is; fur mites or ringworm, not tested (his words in RABBITS-HISTORY.md). Her listing day
+       stays 19 Sept. THIS FILE IS PUBLIC (anyone can open arizonarabbits.com/rabbits.js), so nothing about any
+       buyer, and no price decision, is ever written in it. */
     price:  100,
     wasPrice: 350,
     dealOn:  "2026-10-26",
@@ -1491,17 +1482,11 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* $180 SINCE 23 OCT 2026, THE $300 STRUCK BESIDE IT, WHILE SHE IS TREATED FOR RINGWORM
-       (his words, 23 Oct 10:50am: "make marshmallow $180 ... I'm currently treating it for
-       ringworm. It's still active ... If anybody wants to buy it, I'll give it at its
-       current price with enough dosage of the ringworm medication that I'm using so that
-       they can self-medicate. However, if I end up curing it, the price will go back up").
-       A health markdown (dealKind "health"): no Sale mark, no end date; it stays until she
-       is healed, by his rule. The box under the price (mark) says it plainly and, behind
-       "Read more", explains ringworm with its sources. Her photographs of the patch come
-       later and belong to this box, never the cover (his word). */
-    /* $150 SINCE 26 OCT 2026 (his word, 26 Oct about 5:08pm: "Make marshmallow $150"), the $180 struck beside
-       it: still the health markdown, her fur still in treatment. $180 from 23 Oct (a step below), $300 before. */
+    /* A HEALTH MARKDOWN (dealKind "health"): her fur is in treatment. No Sale mark and no end date; it stays
+       until she is healed, by his rule. The box under the price (mark) says it plainly and, behind "Read more",
+       explains ringworm and fur mites with their sources; her close photos of 26 Oct are in it and in her strip,
+       never the cover. Each step of her price is in repriced below; his words behind them are in
+       RABBITS-HISTORY.md. */
     price:  150,
     wasPrice: 180,
     dealOn:  "2026-10-26",
@@ -1680,7 +1665,7 @@ const RABBITS = [
     ready:  "",
     status: "sold",                            /* his word, 23 Oct 2026, 8:41pm Tucson: "Marmalade was sold yesterday" */
     reservedOn: "2026-10-22",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
-    soldOn: "2026-10-22",                      /* "yesterday" from 23 Oct, Tucson; whether it went home that day is asked */
+    soldOn: "2026-10-22",
     ear:    "",
     weights: [],
     photo:  "photos/marmalade.jpg",
@@ -1736,7 +1721,7 @@ const RABBITS = [
     ready:  "",
     status: "sold",                            /* his word, 23 Oct 2026, about 9:08pm Tucson: "Mark dollop as sold as today" */
     reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
-    soldOn: "2026-10-23",                      /* whether it went home that day is asked */
+    soldOn: "2026-10-23",
     ear:    "",
     weights: [],
     photo:  "photos/dollop.jpg",
@@ -1764,7 +1749,7 @@ const RABBITS = [
     ready:  "",
     status: "sold",                            /* his word, 23 Oct 2026, 8:12pm Tucson: "Churro just got sold today" */
     reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
-    soldOn: "2026-10-23",                      /* the day he said it; whether it went home that day is asked */
+    soldOn: "2026-10-23",
     ear:    "",
     weights: [],
     photo:  "photos/churro.jpg",
