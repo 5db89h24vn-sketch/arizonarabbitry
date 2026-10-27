@@ -24,12 +24,13 @@
       date you typed.
 
    ── THE READY DATE ──
-      ready: "22 Sept"  is the date you expect that rabbit to be ready.
-      It is printed as typed, on the Ready line, in an AVAILABLE
-      rabbit's listing only. The site says eight weeks is what you AIM
-      for (your words, 22 Sept 2026) and that the readiness test decides,
-      kit by kit; it promises no age, so leave the date out for a rabbit
-      you have not dated and the site says nothing.
+      ready: "22 Oct"  is the day you have said that rabbit is ready to go
+      home. It is printed as typed, on the Ready line, in an AVAILABLE
+      rabbit's listing only, and the line over its buttons says "Ready to
+      go home." once the day has come in Tucson. Each rabbit goes home on
+      the day you say (your "A", 25 Oct 2026): the site names no age and
+      no countdown, and the readiness test decides, kit by kit. Leave it
+      out for a rabbit you have not dated, and the site says nothing.
       The card under each photo shows how old the rabbit is today,
       worked out from dob on every visit, so it is never stale.
 
@@ -1422,13 +1423,42 @@ const RABBITS = [
     name:   "Pecan",
     photos: [
       { src: "photos/pecan.jpg", date: "2026-09-18" },
+      { src: "photos/pecan-patch-2.jpg", date: "2026-10-26", note: "Her face close up: the thin patches by her eye and on her nose." },
+      { src: "photos/pecan-patch-1.jpg", date: "2026-10-26", note: "Under her chin: thin, pink patches of skin." },
       { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,
+    /* AVAILABLE AGAIN FROM 26 OCT 2026 AT $100 (his word, 26 Oct about 5:10pm: "bring back pecan and make pecan
+       $100 dollars"), the $350 she was listed at struck beside it: a health markdown, as Marshmallow's is (his
+       word the same minute: "For both marshmallow and pecan, I'm thinking it's either Fermites or the other one
+       that people commonly get confused with"). Her listing day stays 19 Sept. THIS FILE IS PUBLIC (anyone can
+       open arizonarabbits.com/rabbits.js), so nothing about any buyer, and no price decision, is ever written
+       in it; that history lives in RABBITS-HISTORY.md. */
+    price:  100,
+    wasPrice: 350,
+    dealOn:  "2026-10-26",
+    dealKind: "health",
+    dealNote: "Her fur is patchy in places",
+    dealTag:  "Patchy fur",
+    mark: {
+      src:  "photos/pecan-patch-2.jpg",         /* his photos of 26 Oct: here and in her strip, never the cover */
+      alt:  "The thin patches by her eye and on her nose, 26 October",
+      lead: "Her fur is patchy in places.",
+      text: "I think it’s fur mites or ringworm, which can look alike; I haven’t had it tested. Her price is lower because of it.",
+      more: [
+        { lead: "Fur mites or ringworm?", text: "Fur mites live on the skin and can look like moving flakes of dandruff; ringworm is a fungus that leaves patchy hair loss, often starting on the head. A vet can tell which it is with a test, and the treatments differ." },
+        { lead: "Both can pass to people and other pets.", text: "Ringworm can spread to people and other animals, and fur mites can mildly irritate people’s skin, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
+        { lead: "The patches on 26 October.", text: "Two close photos are in her photos above, the closer one here." }
+      ],
+      sources: [
+        { name: "Merck Veterinary Manual, Skin Disorders of Rabbits (Laurie Hess, DVM, reviewed July 2026)", url: "https://www.merckvetmanual.com/all-other-pets/rabbits/skin-disorders-of-rabbits" },
+        { name: "FirstVet, Ringworm in Rabbits", url: "https://firstvet.com/us/articles/ringworm-in-rabbits" },
+        { name: "MediRabbit, Fungal Dermatitis (Esther van Praag, PhD)", url: "https://www.medirabbit.com/EN/Skin_diseases/Fungal/Fungal_en.htm" }
+      ]
+    },
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -1438,13 +1468,7 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "sold",                            /* paid in full 23 Oct 2026 (his Receipt #3 to the buyer, 6:41am): paid off and still here is Sold (Round 98) */
-    reservedOn: "2026-10-12",                  /* his word, 12 Oct 2026, about 8:55pm Tucson: "make sure you mark pecan as reserved today!!" */
-    partsFrom: "2026-10-13",                   /* his word, 20 Oct 2026, 7:40am: "the first 50 was done on 13 October" (until then the plan was dated from her reservation day, 12 Oct, by his earlier rule; his word, 17 Oct, about 9:30pm: "pecan is also being paid in parts, but it hasn't been taken home yet ... it's being paid in parts, which is different from a reservation") */
-    paidOff: "2026-10-23",                     /* his word, 23 Oct 2026, 6:41am: the third payment, "$0 Due" */
-    planPct: 100,                               /* the share of her price received so far (20 Oct 2026, from his word that morning; his rule: a percentage, no amounts and no days) */
-    planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
-    soldOn: "2026-10-23",                      /* the payoff day; the drop-off he arranged with the buyer stays private until she has gone home and he says so */
+    status: "available",
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
@@ -1459,6 +1483,9 @@ const RABBITS = [
     photos: [
       { src: "photos/marshmallow.jpg", date: "2026-09-18" },
       { src: "photos/marshmallow-2.jpg", date: "2026-09-18", note: "Flat out on the brick, eyes shut." },
+      { src: "photos/marshmallow-patch-3.jpg", date: "2026-10-26", note: "Close up: the patch beside her nose." },
+      { src: "photos/marshmallow-patch-1.jpg", date: "2026-10-26", note: "The patch across her nose, from the side." },
+      { src: "photos/marshmallow-patch-2.jpg", date: "2026-10-26", note: "Her face from above, held still: the patch on her nose." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -1473,23 +1500,26 @@ const RABBITS = [
        is healed, by his rule. The box under the price (mark) says it plainly and, behind
        "Read more", explains ringworm with its sources. Her photographs of the patch come
        later and belong to this box, never the cover (his word). */
-    price:  180,
-    wasPrice: 300,
-    dealOn:  "2026-10-23",
+    /* $150 SINCE 26 OCT 2026 (his word, 26 Oct about 5:08pm: "Make marshmallow $150"), the $180 struck beside
+       it: still the health markdown, her fur still in treatment. $180 from 23 Oct (a step below), $300 before. */
+    price:  150,
+    wasPrice: 180,
+    dealOn:  "2026-10-26",
     dealKind: "health",
     dealNote: "A patch of her fur is in treatment",
     dealTag:  "Patchy fur, in treatment",
-    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 } ],   /* $375 at listing, $350 from 17 Oct, $300 from 21 Oct */
+    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 }, { on: "2026-10-23", was: 300 } ],   /* $375 at listing, $350 from 17 Oct, $300 from 21 Oct, $180 from 23 Oct */
     mark: {
-      photoComing: true,                       /* his word: the pictures of the patch come later and belong here, never the cover */
+      src:  "photos/marshmallow-patch-3.jpg",   /* his photos of 26 Oct ("our little pictures for describing how it currently looks"): here and in her strip, never the cover */
+      alt:  "The patch beside her nose, 26 October",
       lead: "A patch of her fur is in treatment.",
       text: "It stayed patchy longer than usual, which is how ringworm often shows, so I’m treating it for ringworm first; it could also be fur mites. As of 23 October it’s active and it hasn’t spread. Take her home at this price while she’s in treatment and she comes with enough of the medication I’m using to finish the course. If she clears before she’s sold, the price goes back up.",
       more: [
         { lead: "It’s not a worm, and it isn’t poor care.", text: "Ringworm is a fungus on the skin. It’s common in rabbits and most often seen in young ones: patchy hair loss, often starting on the head, with skin that can look dry or flaky, and it usually doesn’t itch much." },
         { lead: "It’s treatable, and a small patch can clear on its own.", text: "An antifungal cream sold over the counter is the usual treatment, and a vet can add an oral antifungal for a stubborn case or confirm which it is with a quick test. In a healthy rabbit a local patch can clear by itself with time; the medication speeds it up. Hers has stalled rather than spread, which is the sign I watch." },
-        { lead: "It can pass to people and other pets.", text: "Through contact, like any ringworm, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
-        { lead: "Ringworm or mites?", text: "The two can look alike, and I haven’t had it tested. I’m treating for ringworm first; if it turns out to be fur mites, that’s a different, equally simple treatment, and a vet can settle it." },
-        { lead: "Photos of the patch are coming.", text: "They’ll show here, in this box." }
+        { lead: "It can pass to people and other pets.", text: "Ringworm can spread to people and other animals through contact, and fur mites can mildly irritate people’s skin, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
+        { lead: "Ringworm or mites?", text: "The two can look alike, and I haven’t had it tested; as of 26 October I think it’s one or the other. I’m treating for ringworm first; if it turns out to be fur mites, that’s a different, equally simple treatment, and a vet can settle it." },
+        { lead: "The patch on 26 October.", text: "Three close photos are in her photos above, the closest one here." }
       ],
       sources: [
         { name: "Merck Veterinary Manual, Skin Disorders of Rabbits (Laurie Hess, DVM, reviewed July 2026)", url: "https://www.merckvetmanual.com/all-other-pets/rabbits/skin-disorders-of-rabbits" },

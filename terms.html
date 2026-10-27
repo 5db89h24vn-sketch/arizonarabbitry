@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 
-<script data-lang-redirect>(function(){try{if(localStorage.getItem('lang')==='es'&&!/[?&]lang=en\b/.test(location.search)){location.replace('es-terms.html'+location.search+location.hash);}}catch(e){}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang-switch]');if(a){try{localStorage.setItem('lang',a.getAttribute('hreflang'));}catch(x){}}});})();</script>
+<script data-lang-redirect>(function(){try{if(localStorage.getItem('lang')==='es'&&!/[?&]lang=en\b/.test(location.search)){location.replace('es-terms.html'+location.search+location.hash);}}catch(e){}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang-switch]');if(a){try{localStorage.setItem('lang',a.getAttribute('hreflang'));}catch(x){}try{var w=location.hash||'',h=(/^#([rp]-[a-z0-9-]+|L\d{4}-\d{2}-\d{2})/.exec(w)||[''])[0];if(!h){var ss=document.querySelectorAll('section[id]'),y=innerHeight/3,t=1e9,d='';for(var i=0;i<ss.length;i++){var r=ss[i].getBoundingClientRect();if(!r.height)continue;if(r.top>=-1&&r.top<=y&&r.top<t){t=r.top;h='#'+ss[i].id;}if(r.top<=y&&r.bottom>y)d='#'+ss[i].id;}h=h||d||(w==='#families'?w:'');if(h==='#top')h='';}if(h)a.setAttribute('href',a.getAttribute('href').split('#')[0]+h);}catch(x){}}});})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
