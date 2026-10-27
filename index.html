@@ -671,6 +671,8 @@ html:not(.js) .ages-note{display:none}
   scroll-behavior:smooth;padding:6px 6px 8px;margin:0 -6px;
   scrollbar-width:none;-ms-overflow-style:none}
 .bunnies::-webkit-scrollbar{display:none}
+.rail-fail{flex:1 1 100%;grid-column:1/-1}
+.rail-fail p+p{margin-top:14px}
 .bunny{flex:0 0 300px;scroll-snap-align:start}
 
 html.boot:not(.js) #count,html.boot:not(.js) .rail-btn{visibility:hidden}
@@ -5987,10 +5989,18 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     })();
   } else {
     if(countEl) countEl.textContent='Call or text for current litters';
-    if(railEl && !railEl.querySelector('.bunny'))
-      railEl.innerHTML='<p class="lede" style="max-width:46ch">The listings didn\'t load. '+
-        'Call or text me on <a href="tel:+15202702827">(520) 270-2827</a> and I\'ll tell you '+
-        'what I have.</p>';
+    if(railEl && !railEl.querySelector('.bunny')){
+      railEl.innerHTML='<div class="rail-fail"><p class="lede" style="max-width:46ch">The listings didn\'t load. '+
+        'Call or text me on <a href="tel:+15202702827" style="white-space:nowrap">(520) 270-2827</a> and I\'ll tell you '+
+        'what I have.</p><p><button type="button" class="btn btn-tonal">Reload</button></p></div>';
+      var reloadBtn=railEl.querySelector('.rail-fail button');
+      if(reloadBtn) reloadBtn.addEventListener('click',function(){
+        var st=document.querySelector('script[src^="rabbits.js"]'), src=st ? st.getAttribute('src') : 'rabbits.js';
+        var go=function(){ location.reload(); };
+        setTimeout(go, 4000);
+        try{ fetch(src,{cache:'reload'}).then(go,go); }catch(e){ go(); }
+      });
+    }
   }
 
   (function(){
