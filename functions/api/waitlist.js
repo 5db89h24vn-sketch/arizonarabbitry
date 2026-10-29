@@ -14,7 +14,8 @@
    William's inbox and his Outlook rules see each one; only when Formspree has
    accepted it does the browser tell this API, which records it and counts it.
    If this API is down, or not switched on yet, a signup still reaches the
-   inbox and the page simply shows no number.
+   inbox and the page simply shows no number (a signup with no store answers
+   ok:false and 503, since nothing was recorded here: Round 158, 27 Oct 2026).
 
    7 Oct 2026, William: "let them select multiple" and "have it be more of an
    update tracker where they get notified for all the updates or just when it
@@ -345,7 +346,8 @@ export async function onRequestPost(context) {
   const level = levelOf(body.level);
   const want = wants[0];
   if (body.dry === true || body.dry === 'true') return json({ ok: true, dry: true, want, wants, level, on: !!kv });
-  if (!kv) return json({ ok: true, want, wants, level, fresh: null, count: null, why: 'not switched on' });
+  /* no store: nothing was saved, so it says so (27 Oct 2026, Round 158; Codex's catch: it used to answer ok:true) */
+  if (!kv) return json({ ok: false, want, wants, level, fresh: null, count: null, why: 'not switched on: no WAITLIST binding' }, 503);
   /* one record per list; the number answered is the first list's, the one
      the page's count line follows */
   let fresh = false, count = null;

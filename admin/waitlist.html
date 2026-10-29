@@ -19,6 +19,10 @@
      kept nowhere. The page is plain HTML, so with scripts off it says
      so and nothing else.
 
+     Since 27 Oct 2026 (Round 158, his list row 112) it also holds the site's own
+     mail test: one button that sends two emails through Resend, both to
+     hello@arizonarabbits.com and nobody else (functions/api/mailtest.js).
+
      Cloudflare serves this address with X-Robots-Tag: noindex and
      Cache-Control: no-store (_headers), so it is never indexed and
      never cached.
@@ -94,6 +98,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
       <div class="row" style="margin-top:9px"><button class="btn primary" type="submit">Add them to the every-litter list</button></div>
     </form>
     <p class="said" id="imported" hidden></p>
+  </section>
+
+  <section id="mailbox" hidden>
+    <h2>The site's own mail</h2>
+    <p>A test of the mail the site will send, before it sends anything to anyone else: two emails, both to
+    <b>hello@arizonarabbits.com</b>. The first is an enquiry as it will reach you (a made-up buyer, Sam, with a
+    Text button); the second is the thank-you a buyer would get, for your yes or your changes.</p>
+    <div class="row"><button class="btn primary" type="button" id="mailtest">Send me the two test emails</button></div>
+    <p class="said" id="mailsaid" hidden></p>
   </section>
 
   <section id="setup" hidden>
@@ -189,7 +202,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
     });
     var allUpdates=all.filter(function(x){ return x.f==='all'; }).map(function(x){ return x.email; });
     lists.appendChild(card('Every litter', all.length, 'These people asked to hear about every litter. They count on every litter above.', all, 'Copy the addresses', allEmails, allUpdates));
-    lists.hidden=false; importBox.hidden=false; setup.hidden=true;
+    lists.hidden=false; importBox.hidden=false; setup.hidden=true; mailBox.hidden=false;
   }
   function load(){
     var key=keyEl.value.trim(); if(!key){ say('Type your key first.', true); return; }
@@ -204,6 +217,27 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
     }).catch(function(){ say('Could not reach the site. Try again in a minute.', true); });
   }
   document.getElementById('keyform').addEventListener('submit',function(ev){ ev.preventDefault(); load(); });
+  /* THE SITE'S OWN MAIL, TRIED (27 Oct 2026, Round 158): one press sends the two test emails to
+     hello@arizonarabbits.com; the answer says what Resend said, word for word */
+  var mailBox=document.getElementById('mailbox'), mailSaid=document.getElementById('mailsaid'), mailBtn=document.getElementById('mailtest');
+  function mailSay(t, bad){ mailSaid.textContent=t; mailSaid.hidden=!t; mailSaid.classList.toggle('bad',!!bad); }
+  mailBtn.addEventListener('click',function(){
+    var key=keyEl.value.trim(); if(!key){ mailSay('Type your key first.', true); return; }
+    mailBtn.disabled=true; mailSay('Sending...');
+    fetch('/api/mailtest',{method:'POST',headers:{'Authorization':'Bearer '+key},cache:'no-store'}).then(function(r){
+      return r.text().then(function(t){ var d=null; try{ d=JSON.parse(t); }catch(e){} return {status:r.status, d:d}; });
+    }).then(function(x){
+      mailBtn.disabled=false; var d=x.d;
+      /* an answer that is not the site's own JSON (Cloudflare's error page, a cut-off body): the request may have
+         reached the site and both emails may have gone (Codex's review, 28 Oct 2026): the Inbox first, never "try again" */
+      if(!d||typeof d!=='object'){ mailSay('The site answered '+x.status+' but not in its own words, so the test may or may not have gone. Look in your Inbox for \u201c[Test]\u201d first; a new press after that is a new test.', true); return; }
+      if(x.status===200&&d.ok){ mailSay('Resend accepted both at '+d.at+', for '+d.to+'. Now look in your Inbox for \u201c[Test] Sam\u201d and \u201c[Test] Thanks, Sam\u201d (accepted is not yet delivered). Request '+d.code+'.'); return; }
+      if(x.status===401){ mailSay('That key is not the one set in Cloudflare.', true); return; }
+      if(x.status===429||x.status===503){ mailSay(d.why||('The site answered '+x.status), true); return; }
+      var acc=(d.accepted||[]).map(function(e){ return e.what; }), unk=(d.unknown||[]).map(function(e){ return e.what; }), ref=(d.refused||[]).map(function(e){ return e.what+': '+e.why; });
+      mailSay((acc.length?'Accepted: '+acc.join(' and ')+'. ':'')+(ref.length?'Resend refused '+ref.join('; ')+'. ':'')+(unk.length?'No answer for '+unk.join(' and ')+': it may have gone, so look in your Inbox before pressing again; a new press is a new test. ':'')+(!acc.length&&!ref.length&&!unk.length?'The site answered '+x.status+'.':'')+(d.code?' Request '+d.code+'.':''), true);
+    }).catch(function(){ mailBtn.disabled=false; mailSay('No answer came back, so the test may or may not have gone. Look in your Inbox for \u201c[Test]\u201d first; a new press after that is a new test.', true); });
+  });
   document.getElementById('importform').addEventListener('submit',function(ev){
     ev.preventDefault();
     var key=keyEl.value.trim(); if(!key){ say('Type your key first.', true); return; }

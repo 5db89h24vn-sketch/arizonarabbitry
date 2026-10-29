@@ -564,7 +564,7 @@ const PARENTS = {
     dam:     "jenny",
     note:    "Pedigreed.",
     photos: [
-      { src: "photos/mother-tango-portrait.jpg", date: "2026-10-04" },   /* her face on the site, the first frame (21 Oct 2026): a square cut of his 4 Oct photo below, her alone, so the circles show her and not the nest box */
+      { src: "photos/mother-tango-portrait2.jpg" },   /* her face on the site, the first frame (27 Oct 2026): his photo sent 22 Oct, named Tango at his word of 27 Oct, 9:21am; the day it was taken was not given, so it carries no date. Until then her face was a square cut of the 4 Oct photo below. */
       { src: "photos/mother-orange.jpg", date: "2026-10-04" }
     ]
   },
@@ -1122,7 +1122,7 @@ const HOMES = [
    pens and nothing has changed. Set it to today's date, commit, and the
    stamp on the live site moves within a minute -- the page reads it, no
    build needed. (Since 11 Sept 2026; the weekly calendar asks after 7 days.) */
-const CHECKED = "";
+const CHECKED = "2026-10-27";   /* his tap on his list, 27 Oct 2026, 11:52am Tucson: "Looked: nothing changed" */
 
 const RABBITS = [
 
@@ -1561,9 +1561,10 @@ const RABBITS = [
     dob:    "2026-09-18",
     listedOn: "2026-10-15",
     ready:  "",
-    status: "sold",
+    status: "adopted",                         /* sold 17 Oct; home the same day (his rule, 27 Oct 2026, about 12:20pm Tucson: "the moment I tell you a rabbit was sold is also meaning it went home") */
     reservedOn: "2026-10-15",                  /* his word, 15 Oct 2026, evening: "latte was reserved on the 15th. so make sure you mark that" */
     soldOn: "2026-10-17",                      /* his word, 17 Oct 2026, early afternoon: "Mark latte as sold" (no day given: the day he said it) */
+    wentHome: "2026-10-17",
     ear:    "",
     weights: [],
     photo:  "photos/latte.jpg",
@@ -1590,12 +1591,12 @@ const RABBITS = [
     dob:    "2026-09-18",
     listedOn: "2026-10-15",
     ready:  "",
-    status: "sold",
+    status: "adopted",                         /* sold 16 Oct; home the same day (his rule, 27 Oct 2026, about 12:20pm Tucson: "the moment I tell you a rabbit was sold is also meaning it went home"); until then "departed", with no day printed */
     reservedOn: "2026-10-16",                  /* sold outright, so reserved the same day (his rule, 7 Oct 2026) */
     soldOn: "2026-10-16",                      /* his word, 16 Oct 2026, afternoon: "Mocha has just been sold!! I'm delivering it right now" */
+    wentHome: "2026-10-16",
     ear:    "",
     weights: [],
-    departed: true,                            /* delivered the day it was sold, so off the rail at once; no went-home date is printed */
     photo:  "photos/mocha.jpg",
     note:   "Tortoise: a warm brown coat with smoky grey-brown on the face, the ears and the haunches, the darker of the two torts. Both ears down in the 15 October photos, settled on the brick, eyes shut for the face-on one."
   },
@@ -1663,9 +1664,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "sold",                            /* his word, 23 Oct 2026, 8:41pm Tucson: "Marmalade was sold yesterday" */
+    status: "adopted",                         /* his word, 23 Oct 2026, 8:41pm Tucson: "Marmalade was sold yesterday"; home the same day (his word, 26 Oct 2026, 8:36pm), shown at his tap of 27 Oct, 9:23am: "Show the day they went home" */
     reservedOn: "2026-10-22",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
     soldOn: "2026-10-22",
+    wentHome: "2026-10-22",
     ear:    "",
     weights: [],
     photo:  "photos/marmalade.jpg",
@@ -1719,9 +1721,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "sold",                            /* his word, 23 Oct 2026, about 9:08pm Tucson: "Mark dollop as sold as today" */
+    status: "adopted",                         /* his word, 23 Oct 2026, about 9:08pm Tucson: "Mark dollop as sold as today"; home the same day (his word, 26 Oct 2026, 8:36pm), shown at his tap of 27 Oct, 9:23am: "Show the day they went home" */
     reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
     soldOn: "2026-10-23",
+    wentHome: "2026-10-23",
     ear:    "",
     weights: [],
     photo:  "photos/dollop.jpg",
@@ -1747,9 +1750,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "sold",                            /* his word, 23 Oct 2026, 8:12pm Tucson: "Churro just got sold today" */
+    status: "adopted",                         /* his word, 23 Oct 2026, 8:12pm Tucson: "Churro just got sold today"; home the same day (his word, 26 Oct 2026, 8:36pm), shown at his tap of 27 Oct, 9:23am: "Show the day they went home" */
     reservedOn: "2026-10-23",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
     soldOn: "2026-10-23",
+    wentHome: "2026-10-23",
     ear:    "",
     weights: [],
     photo:  "photos/churro.jpg",
@@ -1776,9 +1780,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "sold",                            /* his word, 25 Oct 2026, about 12:07am Tucson: "mark pancake as sold yesterday ... Being the 24th" */
+    status: "adopted",                         /* his word, 25 Oct 2026, about 12:07am Tucson: "mark pancake as sold yesterday ... Being the 24th"; home the same day (his rule, 27 Oct 2026, about 12:20pm Tucson: "the moment I tell you a rabbit was sold is also meaning it went home") */
     reservedOn: "2026-10-24",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026); written by the build */
-    soldOn: "2026-10-24",                      /* the day he named; whether it went home that day is asked */
+    soldOn: "2026-10-24",                      /* the day he named */
+    wentHome: "2026-10-24",
     ear:    "",
     weights: [],
     photo:  "photos/pancake.jpg",
