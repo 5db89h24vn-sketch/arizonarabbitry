@@ -501,6 +501,13 @@ h2{font-size:clamp(27px,3.5vw,37px);margin-bottom:14px;letter-spacing:-.022em}
 .lede{font-size:clamp(16.5px,1.6vw,18px);color:var(--ink-soft);line-height:1.65;max-width:56ch}
 .kicker{font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
   color:var(--ink-faint);margin-bottom:12px}
+
+.kicker.ck-play::before{animation:ckNod 520ms cubic-bezier(.05,.7,.1,1) both;transform-origin:50% 70%}
+@keyframes ckNod{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-3px) rotate(-6deg)}75%{transform:translateY(.5px) rotate(.8deg)}}
+.cert .ck-seal{transform-box:fill-box;transform-origin:center}
+.cert.ck-play .ck-seal{animation:ckStamp 450ms cubic-bezier(.05,.7,.1,1) both}
+@keyframes ckStamp{0%,100%{transform:scale(1)}35%{transform:scale(1.35)}70%{transform:scale(.94)}}
+@media(prefers-reduced-motion:reduce){.kicker.ck-play::before,.cert.ck-play .ck-seal{animation:none}}
 .center{text-align:center}
 .center .lede{margin-left:auto;margin-right:auto}
 
@@ -3311,7 +3318,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
       <a class="hero-deliver" href="#faq-delivery"><b><svg class="truck" viewBox="-14 0 46 22" aria-hidden="true" focusable="false"><g class="tk-rig" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g class="tk-streaks" opacity="0" stroke-width="1.4"><path d="M-1.5 6.5h-5"/><path d="M-1.5 10h-8"/><path d="M-1.5 13.5h-5"/></g><g class="tk-body"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/></g><g class="tk-wheel"><circle cx="8" cy="17.6" r="2.3"/></g><g class="tk-wheel"><circle cx="24" cy="17.6" r="2.3"/></g></g></svg>Entrega gratis, cualquier día<span class="hd-when">Los viajes largos van en fin de&nbsp;semana</span></b><i class="chev" aria-hidden="true"></i></a>
 
-      <a class="hero-deliver hero-lines" href="#producers"><b><svg class="cert" viewBox="-14 0 46 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="28" height="14" rx="2"/><path d="M6.5 8h11M6.5 11.5h7"/><circle cx="24.5" cy="12.8" r="2.6" fill="currentColor"/><path d="M23.2 15 22.5 20l2-1 2 1-.7-5"/></g></svg>De raza pura, con&nbsp;pedigrí</b><i class="chev" aria-hidden="true"></i></a>
+      <a class="hero-deliver hero-lines" href="#producers"><b><svg class="cert" viewBox="-14 0 46 22" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="28" height="14" rx="2"/><path d="M6.5 8h11M6.5 11.5h7"/><g class="ck-seal"><circle cx="24.5" cy="12.8" r="2.6" fill="currentColor"/><path d="M23.2 15 22.5 20l2-1 2 1-.7-5"/></g></g></svg>De raza pura, con&nbsp;pedigrí</b><i class="chev" aria-hidden="true"></i></a>
       <script data-fact="truck-arrival">(function(){
   if (!window.matchMedia || !window.requestAnimationFrame) return;
   var RM = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -8932,6 +8939,71 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       mark:function(opening){ d.classList.toggle('shutting',!opening); },
       parts:function(){ return [].filter.call(d.children,function(x){ return x!==s; }); }, floor:floor, ceil:ceil });
   });
+})();</script>
+<script data-fact="kicker-nod">(function(){
+  if (!window.matchMedia || !window.IntersectionObserver || !window.MutationObserver) return;
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var SEL = ['#about .about-head>.kicker', '#producers>.wrap>.kicker', '#raised>.wrap>.kicker', '#included .split>div>.kicker',
+             '#boarding .svc-main>.kicker', '#faq>.wrap>.kicker', '#contact .form-grid>div>.kicker'];
+  var AWAY = 10000, marks = [], playing = null;
+  SEL.forEach(function (s) { var el = document.querySelector(s); if (el) marks.push({ el: el, dur: 520, armed: true, inView: false, off: false, away: 0, end: 0 }); });
+  var cert = document.querySelector('.hero-lines svg.cert');
+  if (cert && cert.querySelector('.ck-seal')) marks.push({ el: cert, dur: 450, armed: true, inView: false, off: false, away: 0, end: 0, seal: true });
+  if (!marks.length) return;
+  function covered() {   // a dialog over the page (a listing, a parent, a pedigree, a source, a kit's card): the viewer locks the body, the sheets are aria-modal
+    if (document.body.classList.contains('locked')) return true;
+    var ds = document.querySelectorAll('[aria-modal="true"]'), i;
+    for (i = 0; i < ds.length; i++) if (!ds[i].hidden && ds[i].getClientRects().length) return true;
+    return false;
+  }
+  var truck = document.querySelector('.hero-deliver svg.truck'), brand = document.querySelector('header .brand-side');
+  function busy() { return !!((truck && truck.hasAttribute('data-running')) || (brand && brand.hasAttribute('data-arriving'))); }
+  function looked() { return document.visibilityState !== 'hidden'; }
+  function stop(m) { m.el.classList.remove('ck-play'); if (m.end) { clearTimeout(m.end); m.end = 0; } if (playing === m) playing = null; }
+  function eligible(m) {
+    if (m.seal && truck && (truck.hasAttribute('data-waiting') || truck.hasAttribute('data-running'))) return false;   // the seal's first press comes after the truck has revved: rabbit, truck, seal, one beat each
+    return !playing && m.armed && m.inView && !RM.matches && looked() && !covered() && !busy();
+  }
+  function play(m) {
+    m.armed = false; playing = m; m.el.classList.add('ck-play');
+    m.end = setTimeout(function () { stop(m); next(); }, m.dur + 60);   // the class comes off a moment after the animation's own end; 'both' holds the rest frame till then
+  }
+  function next() {   // when a piece ends: the one mark now wholly in view and still armed may play; nothing else is owed
+    if (playing || RM.matches) return;
+    for (var i = 0; i < marks.length; i++) if (eligible(marks[i])) { play(marks[i]); return; }
+  }
+  // THE TEN SECONDS AWAY: the count runs only while the mark is wholly off the screen and the tab is looked at; any part of it
+  // coming back, or the tab hidden, ends the count; it starts again from nothing; at its end the same two things are asked again
+  function stopAway(m) { if (m.away) { clearTimeout(m.away); m.away = 0; } }
+  function startAway(m) {
+    if (m.away || m.armed || !m.off || !looked()) return;
+    m.away = setTimeout(function () { m.away = 0; if (m.off && looked() && !m.armed) m.armed = true; }, AWAY);
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var m = null, i; for (i = 0; i < marks.length; i++) if (marks[i].el === e.target) m = marks[i];
+      if (!m) return;
+      var whole = e.isIntersecting && e.intersectionRatio >= 0.999;
+      m.off = !e.isIntersecting;
+      if (!m.off) stopAway(m);   // any part on the screen, a sliver included: not away
+      if (whole) { m.inView = true; if (eligible(m)) play(m); }
+      else { m.inView = false; if (m.off) startAway(m); }   // partly on the screen: neither in nor away
+    });
+  }, { threshold: [0, 1] });
+  marks.forEach(function (m) { io.observe(m.el); });
+  // the pieces around it: the truck's end and the rabbit's end free the next mark; a listing or a sheet opening stops one mid-gesture
+  if (truck) new MutationObserver(function () { if (truck.hasAttribute('data-running')) { if (playing) stop(playing); } else setTimeout(next, 900); }).observe(truck, { attributes: true, attributeFilter: ['data-running'] });   // a beat after the truck parks
+  if (brand) new MutationObserver(function () { if (!brand.hasAttribute('data-arriving')) next(); }).observe(brand, { attributes: true, attributeFilter: ['data-arriving'] });
+  function sheets() { if (playing && covered()) stop(playing); else if (!playing && !covered()) next(); }
+  new MutationObserver(sheets).observe(document.body, { attributes: true, attributeFilter: ['class'] });                       // the listing (body.locked)
+  new MutationObserver(sheets).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });            // the source sheet (html.src-open)
+  new MutationObserver(sheets).observe(document.body, { attributes: true, attributeFilter: ['hidden'], subtree: true });      // the sheets shown by dropping hidden (a parent, a pedigree, a source, a kit's card, the request sheet), made later or not
+  document.addEventListener('visibilitychange', function () {
+    if (!looked()) { if (playing) stop(playing); marks.forEach(stopAway); }
+    else { marks.forEach(function (m) { if (m.off) startAway(m); }); next(); }
+  });
+  if (RM.addEventListener) RM.addEventListener('change', function () { if (RM.matches && playing) stop(playing); });
+  window.__kickerMarks = marks;   // for the checks only
 })();</script>
 </body>
 </html>
