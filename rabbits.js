@@ -215,13 +215,19 @@
       page says "Paying since 10 Oct 2026", and its record says
       "Payments started 10 Oct 2026" in place of Reserved. No amount and
       no name, ever: only the words and the days.
-      HOW FAR ALONG (19 Oct 2026, your words: "a percentage of completion
-      for the payment without additional details on when payments have
-      been paid"):
-      set      planPct: 43        the share of the price received so far,
-                                  a whole number from 0 to 100; the record
-                                  says "Paid so far 43%". Leave it out and
-                                  the record says nothing of it.
+      HOW FAR ALONG, IN DOLLARS, WITH A BAR (30 Oct 2026, your words:
+      "have a progress bar on honey, basically paid so far and full payment
+      amount", and "the same payment progress bar for every rabbit"):
+      set      planPaid: 150      the dollars received so far; the record
+                                  says "Paid so far $150 of $350 · $200 to
+                                  go" with a bar under it, the whole being
+                                  the rabbit's price (or planTotal: 300
+                                  when the plan is for another figure, a
+                                  pair's price say). Change it each time a
+                                  payment comes in.
+      (Before 30 Oct, at your word of 19 Oct, a plan said only a share:
+      planPct: 43 still prints "Paid so far 43%" on a record with no
+      planPaid.)
       THE DAY IT SHOULD END ("tie in a projected completion payment date"):
       set      planDue: "2026-12-10"   the day you expect the last payment;
                                   the record says "Paid off by 10 Dec
@@ -1354,9 +1360,9 @@ const RABBITS = [
     reservedOn: "2026-10-10",                  /* his word, 10 Oct 2026, 2:25pm Tucson: "Mark honey as reserved" */
     soldOn: "",
     wentHome: "2026-10-16",                    /* his word, 16 Oct 2026, 8:10pm Tucson: picked up "around the middle of the day" that day */
-    partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no amount, no name */
+    partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no name, ever */
     paidOff: "",                               /* the day the last payment comes in: then "Paid off <date>" in its record */
-    planPct: 43,                               /* the share of her price received so far (19 Oct 2026, his rule: a percentage, no amounts and no days) */
+    planPaid: 150,                             /* his word, 30 Oct 2026, 10:01pm: "honey only has $150 put down so far ... Honey's original price is $350"; the record says "$150 of $350 · $200 to go" with the bar (his 10:02pm ask); it replaces planPct: 43, the same share */
     planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
     ear:    "",
     weights: [],
@@ -1530,6 +1536,7 @@ const RABBITS = [
     name:   "Marshmallow",
     photos: [
       { src: "photos/marshmallow.jpg", date: "2026-09-18" },
+      { src: "photos/marshmallow-2026-10-30.jpg", date: "2026-10-30", note: "Cured, sitting on my desk." },
       { src: "photos/marshmallow-2.jpg", date: "2026-09-18", note: "Flat out on the brick, eyes shut." },
       { src: "photos/marshmallow-patch-3.jpg", date: "2026-10-26", note: "Close up: the patch beside her nose." },
       { src: "photos/marshmallow-patch-1.jpg", date: "2026-10-26", note: "The patch across her nose, from the side." },
@@ -1539,39 +1546,28 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* A HEALTH MARKDOWN (dealKind "health"): her fur is in treatment. No Sale mark and no end date; it stays
-       until she is healed, by his rule. The box under the price (mark) says it plainly and, behind "Read more",
-       explains ringworm and fur mites with their sources; her close photos of 26 Oct are in it and in her strip,
-       never the cover. Each step of her price is in repriced below; his words behind them are in
-       RABBITS-HISTORY.md. */
-    price:  150,
+    /* CURED, AND $200 (31 Oct 2026; William, 30 Oct about 9:36pm, with a photo of her on his desk: "Also make sure that
+       marshmallow goes to $200 and it's marked as cured"). His rule of 23 Oct: a medical markdown stays until the rabbit is
+       healed; she is healed, so the health markdown ends. His rule of 30 Oct: a markdown is from the first price, with its
+       reason, and "an older rabbit with no health issues gets marked down because it's an older rabbit": so $400 stays
+       struck, the reason her age (born 27 Aug, a month before the September litter for sale beside her), a price that
+       stays (dealStays, this rabbit's own: no Sale mark). The box keeps the record: cured, his 30 Oct photo in it; the
+       26 Oct close-ups stay in her photos. Her steps: $400 on 19 Sept, $375 from 24 Sept, $350 from 17 Oct, $300 from
+       21 Oct, $180 from 23 Oct, $150 from 26 Oct (the fur, in treatment), $200 from 31 Oct (cured). */
+    price:  200,
     wasPrice: 400,
-    dealOn:  "2026-10-26",
-    dealKind: "health",
-    dealNote: "A patch of her fur is in treatment",
-    dealTag:  "Patchy fur, in treatment",
-    /* THE $400 SHE WAS FIRST LISTED AT IS THE PRICE STRUCK (30 Oct 2026, his rule: a markdown is always from the
-       first price the rabbit was ever listed at, with its reason; the $180 of 23 Oct was struck until then). Her
-       steps: $400 on 19 Sept, $375 from 24 Sept, $350 from 17 Oct, $300 from 21 Oct, $180 from 23 Oct, $150 from
-       26 Oct, the health markdown the box below explains. */
-    repriced: [ { on: "2026-09-24", was: 400 }, { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 }, { on: "2026-10-23", was: 300 }, { on: "2026-10-26", was: 180 } ],
+    dealOn:  "2026-10-31",
+    dealKind: "age",
+    dealStays: true,
+    dealScope: "rabbit",
+    dealNote: "She’s a month older than the September litter",
+    dealTag:  "A month older, fur cured",
+    repriced: [ { on: "2026-09-24", was: 400 }, { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 }, { on: "2026-10-23", was: 300 }, { on: "2026-10-26", was: 180 }, { on: "2026-10-31", was: 150 } ],
     mark: {
-      src:  "photos/marshmallow-patch-3.jpg",   /* his photos of 26 Oct ("our little pictures for describing how it currently looks"): here and in her strip, never the cover */
-      alt:  "The patch beside her nose, 26 October",
-      lead: "A patch of her fur is in treatment.",
-      text: "It stayed patchy longer than usual, which is how ringworm often shows, so I’m treating it for ringworm first; it could also be fur mites. As of 23 October it’s active and it hasn’t spread. Take her home at this price while she’s in treatment and she comes with enough of the medication I’m using to finish the course. If she clears before she’s sold, the price goes back up.",
-      more: [
-        { lead: "It’s not a worm, and it isn’t poor care.", text: "Ringworm is a fungus on the skin. It’s common in rabbits and most often seen in young ones: patchy hair loss, often starting on the head, with skin that can look dry or flaky, and it usually doesn’t itch much." },
-        { lead: "It’s treatable, and a small patch can clear on its own.", text: "An antifungal cream sold over the counter is the usual treatment, and a vet can add an oral antifungal for a stubborn case or confirm which it is with a quick test. In a healthy rabbit a local patch can clear by itself with time; the medication speeds it up. Hers has stalled rather than spread, which is the sign I watch." },
-        { lead: "It can pass to people and other pets.", text: "Ringworm can spread to people and other animals through contact, and fur mites can mildly irritate people’s skin, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
-        { lead: "Ringworm or mites?", text: "The two can look alike, and I haven’t had it tested; as of 26 October I think it’s one or the other. I’m treating for ringworm first; if it turns out to be fur mites, that’s a different, equally simple treatment, and a vet can settle it." },
-        { lead: "The patch on 26 October.", text: "Three close photos are in her photos above, the closest one here." }
-      ],
-      sources: [
-        { name: "Merck Veterinary Manual, Skin Disorders of Rabbits (Laurie Hess, DVM, reviewed July 2026)", url: "https://www.merckvetmanual.com/all-other-pets/rabbits/skin-disorders-of-rabbits" },
-        { name: "FirstVet, Ringworm in Rabbits", url: "https://firstvet.com/us/articles/ringworm-in-rabbits" },
-        { name: "MediRabbit, Fungal Dermatitis (Esther van Praag, PhD)", url: "https://www.medirabbit.com/EN/Skin_diseases/Fungal/Fungal_en.htm" }
-      ]
+      src:  "photos/marshmallow-2026-10-30.jpg",   /* his photo of 30 Oct, cured: here and in her strip, never the cover */
+      alt:  "Marshmallow on 30 October, cured, sitting on a desk",
+      lead: "Her fur patch is cured.",
+      text: "In late October a patch of fur beside her nose was treated, for ringworm first; it could also have been fur mites, and it wasn’t tested. It has cleared: the photo here is from 30 October. The close photos of the patch from 26 October stay in her photos, as the record."
     },  /* listed at $375 on 19 Sep: the News log keeps that day, and says "Marshmallow $375 → $350" on 17 Oct and "$350 → $300" on 21 Oct */
     breed:  "Holland Lop cross",
     mother: "lop",
@@ -1729,6 +1725,10 @@ const RABBITS = [
     reservedOn: "2026-10-22",                  /* no reservation date was given: sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
     soldOn: "2026-10-22",
     wentHome: "2026-10-22",
+    partsFrom: "2026-10-22",                   /* his word, 30 Oct 2026, 10:06pm: "marmalade is on a payment plan too, only $50 has been put down"; the day the $50 came in was not said: the day it was sold and went home, the first day it could have been (his veto open) */
+    paidOff: "",
+    planPaid: 50,                              /* the same message: $50 of its $350 so far */
+    planDue: "2026-11-12",                     /* his word, 30 Oct 2026, 10:17pm: "Marmalade is projected to finish on November 12. for the payments"; the record says "Paid off by 12 Nov 2026" */
     ear:    "",
     weights: [],
     photo:  "photos/marmalade.jpg",
