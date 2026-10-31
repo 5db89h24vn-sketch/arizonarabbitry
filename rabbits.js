@@ -27,12 +27,17 @@
       ready: "22 Oct"  is the day you have said that rabbit is ready to go
       home. It is printed as typed, on the Ready line, in an AVAILABLE
       rabbit's listing only, and the line over its buttons says "Ready to
-      go home." once the day has come in Tucson. Each rabbit goes home on
-      the day you say (your "A", 25 Oct 2026): the site names no age and
-      no countdown, and the readiness test decides, kit by kit. Leave it
-      out for a rabbit you have not dated, and the site says nothing.
-      The card under each photo shows how old the rabbit is today,
-      worked out from dob on every visit, so it is never stale.
+      go home." once the day has come in Tucson. A rabbit for sale with NO
+      ready day is ready now (your word of 27 Oct 2026, list rows 139 and
+      147: "every rabbit posted and able to be reserved can be taken home
+      now"; R157-2 and R157-5), past the build's four-week typo guard,
+      which every rabbit for sale is; its card says "Ready to go home." and
+      its listing "Ready now". A dated one counts from its day. The site
+      names no age and no countdown (your "A" of 25 Oct 2026 stands for
+      the dated ones); the hero's button says "ready now" only while every
+      rabbit for sale is (Round 166). The card under each photo shows how
+      old the rabbit is today, worked out from dob on every visit, so it
+      is never stale.
 
    ── TO RUN A PRICE DROP THAT PEOPLE CAN SEE (19 Sept 2026) ──
       set      price:    300          (what they pay now)
@@ -84,6 +89,23 @@
       this rabbit, not a sale." instead of "for this line"; everything else
       is the same (the struck old price, the reason with the saving worked
       out, no SALE mark). Leave it out for a line-wide price.
+
+   ── EVERY MARKDOWN IS FROM THE FIRST PRICE, WITH ITS REASON (30 Oct 2026,
+      your rule, on Pecan at $40): "whenever we mark down a rabbit, I always
+      want you to mark it down from its original price that we ever had it
+      listed at. Don't only show the previous markdown because that doesn't
+      really say much. And whenever we mark down a rabbit, always have a
+      clear reason as to why it got marked down ... an older rabbit with no
+      health issues gets marked down because it's an older rabbit ... a
+      rabbit with actual issues will always be displayed with the issues."
+      So   wasPrice   is the price the rabbit was FIRST listed at, never the
+      step before; the steps between go in repriced (below), each with its
+      day, so the News log says each change on its own day; dealNote says
+      the reason in a sentence and dealKind names it ("age" for an older
+      rabbit with no health issue, "health" for one with an issue, whose box
+      (mark) shows the issue with its photos). The build refuses a markdown
+      with no reason. A rabbit priced at the $50 deposit or under is bought
+      outright: Buy is its one button, no reservation and no plan.
 
    ── TO CHANGE A PRICE, WITH NO STRIKE (17 Oct 2026, Marshmallow) ──
       set      price:    350          (the new price: the card and the
@@ -223,6 +245,20 @@
           "Went home 16 Oct 2026")
       A rabbit on a plan stays on the front page until it is paid off,
       then three days, like a sale.
+
+   ── TO KEEP ONE AS A PRODUCER (30 Oct 2026, your word on Butterscotch:
+      "remove butterscotch from our available rabbits for sale. I'm using
+      butterscotch as a producer") ──
+      change   status: "available"
+      to       status: "kept"
+      and set  keptOn: "2026-10-30"     (the day you decided)
+      add      producer: "butterscotch" (its handle in PARENTS below, where
+                                         you add it like any parent)
+      and delete its price lines (a producer has no price). Its card leaves
+      the front page at once and it counts in nothing for sale; its listing
+      stays, as every rabbit's does, with a STAYS HERE badge and a "Stays
+      here 30 Oct 2026" line in its record, and its one button opens its
+      producer view. Its tile on the litters page says "Stays here".
 
    ── THE PEDIGREE FIELDS: EAR NUMBER AND WEIGHT ──
       8 Sept 2026, William: "I want this website to paint the full timeline,
@@ -398,6 +434,13 @@
       and weight print in its own, so a pedigreed parent reads as one; the
       litters page prints the same facts under the parent's tile (sweep.py
       parent-facts). Leave out what the card leaves blank.
+      A PRODUCER NO LONGER BREEDING HERE (30 Oct 2026, Praline): add
+        until: "2026-10-30"   (the day you decided)
+      and it leaves the Producers section; its own view stays, since its
+      litters name it, with "Producer until 30 Oct 2026" in its record.
+      A PRODUCER THAT WAS LISTED FOR SALE (Butterscotch): its entry here
+      names its listing,  listing: "butterscotch",  so the view links the
+      record, and the listing (status "kept", above) links back.
 
    ── A REEL IS A FRAME THAT OPENS INSTAGRAM (23 Sept 2026) ──
       Every reel you post of a rabbit belongs in that rabbit's photos list
@@ -788,9 +831,35 @@ const PARENTS = {
     /* 22 Oct 2026: fawn (row 106) */
     variety: "Fawn",
     dob:     "2026-06-28",
+    /* NO LONGER A PRODUCER (30 Oct 2026, William, 7:51am: "Saffron is gonna no longer be a producer, but
+       Scotch is going to be a replacement because it has better lop ears"; 7:52am, with her view on his
+       screen: "this is the one that's being replaced. I forgot we changed the name"). She leaves the
+       Producers section; her view stays, since her litter names her, and says so in her record. The
+       father of that litter is Odyssey, his word the same minute: "the father is not root beer but it's
+       Odyssey, the Netherlands dwarf" (the litters page said Root Beer from 21 to 30 Oct). */
+    until:   "2026-10-30",
     note:    "From my first litter: Cinnamony and Frederick's daughter.",
     photos: [
       { src: "photos/mother-saffron-portrait.jpg", date: "2026-10-21" }   /* his photo, 21 Oct 2026, cut to her face */
+    ]
+  },
+  /* BUTTERSCOTCH, KEPT (30 Oct 2026). The fawn doe of the second litter (28 July 2026), listed for sale
+     from 24 Aug and again from 28 Sept, kept on 30 Oct in Praline's place, his word: "because it has
+     better lop ears". Her listing above (status "kept") is her record as a kit for sale; this is her
+     producer view, and the two link each other. Her portrait is a square cut of her 23 August photo
+     (the brick ledge, one ear up), until he sends one of her today. */
+  butterscotch: {
+    role:    "mother",
+    from:    "here",
+    name:    "Butterscotch",
+    breed:   "Holland Lop cross",
+    variety: "Fawn",
+    dob:     "2026-07-28",
+    listing: "butterscotch",
+    note:    "From my second litter: Cinnamony and Frederick's daughter, and Teddy's sister. Kept for her ears.",
+    photos: [
+      { src: "photos/mother-butterscotch-portrait.jpg", date: "2026-08-23" },   /* her 23 August photo, cut to her face */
+      { src: "photos/butterscotch.jpg", date: "2026-08-23" }
     ]
   }
 };
@@ -1043,7 +1112,7 @@ const SOURCES = {
   },
   here: {
     name:  "Bred here",
-    says:  "Praline, from my own first litter, Cinnamony and Frederick's daughter."
+    says:  "Butterscotch, from my own second litter, Cinnamony and Frederick's daughter."   /* Praline, from the first, until 30 Oct 2026 */
   }
 };
 
@@ -1172,47 +1241,29 @@ const RABBITS = [
       { src: "photos/butterscotch-bumble.jpg",
         insta: "https://www.instagram.com/reel/Ddm45DLPAhr/",
         date: "2026-09-22",   /* the day it went up, read from the reel's own link by the build; type your own to say a different day */
-        note: "Meet the bumblebunny" },
-      { src: "photos/coming-soon-2.png", note: "Full body from the side, standing." },
-      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big she really is." },
-      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
-      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
-      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+        note: "Meet the bumblebunny" }
     ],
-    /* HER PRICE is $260 since 23 Oct 2026, with the $300 struck beside it and the reason
-       said: the markdown for age (his rule of 23 Oct: a rabbit's price comes down as it
-       gets older; the young carry a premium; every rabbit gets the same handling). A
-       markdown that stays (dealStays), this rabbit's own (dealScope), kind "age" (the
-       listing's reason ends with the doorway to the price answer). The News log says
-       "Butterscotch $300 → $260" on the 23rd. */
-    /* Listed again on 28 Sept 2026; an available rabbit prints no dates. THIS FILE
-       IS PUBLIC (anyone can open arizonarabbits.com/rabbits.js), so nothing about
-       any buyer, and no price decision, is ever written in it, not even in a
-       note; that history lives in RABBITS-HISTORY.md. */
-    price:  260,
-    wasPrice: 300,
-    dealOn:  "2026-10-23",
-    dealKind: "age",
-    dealStays: true,
-    dealScope: "rabbit",
-    dealNote: "Older than the babies",
-    dealTag:  "Older than the babies",
+    /* KEPT AS A PRODUCER (30 Oct 2026, William, 7:50am: "remove butterscotch from our
+       available rabbits for sale. I'm using butterscotch as a producer"; 7:52am: she
+       takes Praline's place "because it has better lop ears"). Her price lines came
+       off with the sale she is no longer for; the listing stays as her record, her
+       producer view is PARENTS.butterscotch below. Listed 24 Aug 2026, again 28 Sept;
+       her price history is in RABBITS-HISTORY.md, never here (THIS FILE IS PUBLIC). */
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
     sex:    "Doe",
     colour: "Fawn",
     dob:    "2026-07-28",
-    listedOn: "2026-09-28",                    /* relisted the day she came back (first listed 24 Aug 2026); the NEW mark says she is a fresh posting for three days */
-    /* ready: "22 Sept" came off on relisting: the day he expected has passed and
-       she is past eight weeks, so the growth row says her age and the record
-       says no date. His to give again if he wants one printed. */
-    status: "available",
+    listedOn: "2026-09-28",                    /* relisted the day she came back (first listed 24 Aug 2026) */
+    status: "kept",
+    keptOn: "2026-10-30",
+    producer: "butterscotch",
     ear:    "",
     weights: [],
     photo:  "photos/butterscotch.jpg",
     hero:   "img/hero-brick.jpg",              /* the brick shot that led the site from June to 27 Sept 2026; feature: true moved to Marshmallow with the sale */
-    note:   "Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts."
+    note:   "Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts. She stays here as one of my producers."
   },
 
   {
@@ -1424,21 +1475,27 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    /* AVAILABLE AGAIN FROM 26 OCT 2026, the $350 she was listed at struck beside her price: a health markdown,
-       as Marshmallow's is; fur mites or ringworm, not tested (his words in RABBITS-HISTORY.md). Her listing day
-       stays 19 Sept. THIS FILE IS PUBLIC (anyone can open arizonarabbits.com/rabbits.js), so nothing about any
-       buyer, and no price decision, is ever written in it. */
-    price:  100,
-    wasPrice: 350,
-    dealOn:  "2026-10-26",
+    /* $40 SINCE 30 OCT 2026 (his word, 30 Oct about 9:05am), THE $375 SHE WAS FIRST LISTED AT STRUCK BESIDE IT:
+       his rule of the same minute, "whenever we mark down a rabbit, I always want you to mark it down from its
+       original price that we ever had it listed at. Don't only show the previous markdown because that doesn't
+       really say much", and "always have a clear reason as to why it got marked down ... a rabbit with actual
+       issues will always be displayed with the issues". A health markdown (fur mites or ringworm, not tested;
+       the box below shows it), and the price is low on purpose: the difference is for the vet. Her steps are in
+       repriced: $375 on 19 Sept, $350 from 24 Sept, $100 from 26 Oct (listed again). THIS FILE IS PUBLIC (anyone
+       can open arizonarabbits.com/rabbits.js), so nothing about any buyer is ever written in it. At $40 she is
+       bought outright: no $50 deposit on a rabbit under the deposit (gsOne in index.html). */
+    price:  40,
+    wasPrice: 375,
+    dealOn:  "2026-10-30",
     dealKind: "health",
-    dealNote: "Her fur is patchy in places",
-    dealTag:  "Patchy fur",
+    dealNote: "Her fur is patchy in places, so the price is low: the difference is for the vet",
+    dealTag:  "Patchy fur, priced for the vet",
+    repriced: [ { on: "2026-09-24", was: 375 }, { on: "2026-10-26", was: 350 }, { on: "2026-10-30", was: 100 } ],
     mark: {
       src:  "photos/pecan-patch-2.jpg",         /* his photos of 26 Oct: here and in her strip, never the cover */
       alt:  "The thin patches by her eye and on her nose, 26 October",
       lead: "Her fur is patchy in places.",
-      text: "I think it’s fur mites or ringworm, which can look alike; I haven’t had it tested. Her price is lower because of it.",
+      text: "I think it’s fur mites or ringworm, which can look alike; I haven’t had it tested. Her price is $40, down from the $375 she was first listed at, so that a vet visit is paid for out of the difference.",
       more: [
         { lead: "Fur mites or ringworm?", text: "Fur mites live on the skin and can look like moving flakes of dandruff; ringworm is a fungus that leaves patchy hair loss, often starting on the head. A vet can tell which it is with a test, and the treatments differ." },
         { lead: "Both can pass to people and other pets.", text: "Ringworm can spread to people and other animals, and fur mites can mildly irritate people’s skin, so wash your hands after handling her and keep her bedding and brushes to herself until it’s gone." },
@@ -1488,12 +1545,16 @@ const RABBITS = [
        never the cover. Each step of her price is in repriced below; his words behind them are in
        RABBITS-HISTORY.md. */
     price:  150,
-    wasPrice: 180,
+    wasPrice: 400,
     dealOn:  "2026-10-26",
     dealKind: "health",
     dealNote: "A patch of her fur is in treatment",
     dealTag:  "Patchy fur, in treatment",
-    repriced: [ { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 }, { on: "2026-10-23", was: 300 } ],   /* $375 at listing, $350 from 17 Oct, $300 from 21 Oct, $180 from 23 Oct */
+    /* THE $400 SHE WAS FIRST LISTED AT IS THE PRICE STRUCK (30 Oct 2026, his rule: a markdown is always from the
+       first price the rabbit was ever listed at, with its reason; the $180 of 23 Oct was struck until then). Her
+       steps: $400 on 19 Sept, $375 from 24 Sept, $350 from 17 Oct, $300 from 21 Oct, $180 from 23 Oct, $150 from
+       26 Oct, the health markdown the box below explains. */
+    repriced: [ { on: "2026-09-24", was: 400 }, { on: "2026-10-17", was: 375 }, { on: "2026-10-21", was: 350 }, { on: "2026-10-23", was: 300 }, { on: "2026-10-26", was: 180 } ],
     mark: {
       src:  "photos/marshmallow-patch-3.jpg",   /* his photos of 26 Oct ("our little pictures for describing how it currently looks"): here and in her strip, never the cover */
       alt:  "The patch beside her nose, 26 October",
