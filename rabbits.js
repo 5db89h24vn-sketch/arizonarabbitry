@@ -252,6 +252,30 @@
       A rabbit on a plan stays on the front page until it is paid off,
       then three days, like a sale.
 
+   ── TWO RABBITS, ONE PLAN, AS A PAIR (31 Oct 2026, your words: "Marshmallow
+      was taken by the same person who is currently paying for honey ... add
+      both of them with separate meters in just one single listing ... Honey,
+      will be the first meter, and then all the other money left over will
+      just fill up marshmallows $200 meter ... a little diagonal line between
+      the two of them, showcasing that it's a pair paying overtime"; then
+      "preserve their original posts for archive purposes ... when you click
+      on that, it serves as a folder and you see 2x listings in one") ──
+      on the FIRST of the two (the one paid off first), next to planPaid:
+      set      planNext: "Marshmallow"   the second rabbit's name
+      planPaid on the first is then the dollars the pair has received so far:
+      it fills the first one's meter up to its price, and whatever is over
+      fills the second one's, up to the second one's price. Type planPaid
+      only on the first; the second takes the plan as any rabbit does
+      (partsFrom, status, wentHome). On the front page the two are one card
+      at the end of the rail: both photographs with a slanted line between
+      them, the two meters side by side with the same slanted line between
+      them, and "See both listings": a tap opens it like a folder onto the two
+      rabbits' own cards, each opening its own listing as before. Nothing of
+      either listing goes: its photos, price, record and address stay (the
+      archive). Each listing's record says who it is paid with, a link. When
+      one of the two leaves the rail (paid off and three days on), the other
+      goes back to a card of its own.
+
    ── TO KEEP ONE AS A PRODUCER (30 Oct 2026, your word on Butterscotch:
       "remove butterscotch from our available rabbits for sale. I'm using
       butterscotch as a producer") ──
@@ -1364,6 +1388,7 @@ const RABBITS = [
     paidOff: "",                               /* the day the last payment comes in: then "Paid off <date>" in its record */
     planPaid: 150,                             /* his word, 30 Oct 2026, 10:01pm: "honey only has $150 put down so far ... Honey's original price is $350"; the record says "$150 of $350 · $200 to go" with the bar (his 10:02pm ask); it replaces planPct: 43, the same share */
     planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
+    planNext: "Marshmallow",                   /* A PAIR ON ONE PLAN (his words, 31 Oct 2026, afternoon: "Marshmallow was taken by the same person who is currently paying for honey ... Honey, will be the first meter, and then all the other money left over will just fill up marshmallows $200 meter"): planPaid above is the pair's dollars; Honey's $350 fills first, whatever is over fills Marshmallow's $200. One card for the two on the front page, opening like a folder onto both listings ("you see 2x listings in one"); both listings stay as they are ("preserve their original posts for archive purposes") */
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
@@ -1577,12 +1602,16 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "22 Oct",                          /* his word, the same tap: eight weeks old on 22 Oct 2026 (Round 125 prints it) */
-    status: "available",
+    status: "adopted",                         /* his word, 31 Oct 2026, afternoon: "Marshmallow was taken by the same person who is currently paying for honey" (his rule of 25 and 27 Oct: sold means it went home, the same day; no day given, the day he said it) */
+    reservedOn: "2026-10-31",
     soldOn: "",
+    wentHome: "2026-10-31",
+    partsFrom: "2026-10-31",                   /* on Honey's plan from the day she went home; her meter fills after Honey's (Honey's planNext); no amount typed here: the pair's dollars are on Honey */
+    paidOff: "",
     ear:    "",
     weights: [],
     photo:  "photos/marshmallow.jpg",
-    feature: true,                             /* the hero since 27 Sept 2026, when Butterscotch sold: the dearest rabbit available, first on the rail, settled on the brick with nothing holding her */
+    /* feature: true came off on 31 Oct 2026 when she went home; she led the front page from 27 Sept (Butterscotch sold). The lead passed to Coconut by the same rule: the dearest rabbit available, first on the rail, settled on the brick with nothing holding it. */
     note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
   },
 
@@ -1760,6 +1789,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/coconut.jpg",
+    feature: true,                             /* the hero from 31 Oct 2026, when Marshmallow went home: by the rule she was chosen by (27 Sept), the dearest rabbit available ($350, with Snowcone), first on the rail, settled on the brick with nothing holding it (its 22 Oct photo, flat out by the fountain) */
     note:   "White, with pink ears and ruby eyes in the 22 October photos, flat out on the brick by the fountain; in the clip it is picked up and held."
   },
 

@@ -18,10 +18,10 @@
 
 <script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
 
-<link rel="preload" as="script" href="rabbits.js?v=3ada96e1" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=ceb66395" data-fact="data-preload">
 
 <script>document.documentElement.classList.add('boot')</script>
-<script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/marshmallow.1200.6a1cdc34.avif";l.setAttribute("imagesrcset","img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
+<script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/coconut.1200.e871a8f2.avif";l.setAttribute("imagesrcset","img/coconut.800.e871a8f2.avif 800w, img/coconut.1200.e871a8f2.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
 
 <link rel="canonical" href="https://arizonarabbits.com/">
 <link rel="alternate" hreflang="en" href="https://arizonarabbits.com/">
@@ -710,6 +710,50 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
   
   .bunny{flex:0 0 78vw}
 }
+
+.pairfold{position:relative;grid-column:1/-1;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--lift-1);overflow:hidden;display:flex;flex-direction:column;flex:0 0 618px;scroll-snap-align:start}
+@media(min-width:880px){ .bunnies:not(.few) > .pairfold{grid-column:span 2} }
+@media(max-width:600px){ .bunnies > .pairfold{flex:0 0 calc(156vw + 12px)} }
+.pf-head{position:relative}
+
+.pf-hit{position:absolute;inset:0;z-index:1;cursor:pointer;border-radius:inherit;-webkit-tap-highlight-color:transparent}
+.pf-media{position:relative;overflow:hidden;aspect-ratio:2/1;background:var(--paper-2)}
+.pf-pic{position:absolute;top:0;bottom:0;width:50%}
+.pf-pic.pf-a{left:0} .pf-pic.pf-b{right:0}
+.pf-pic picture,.pf-pic img{display:block;width:100%;height:100%}
+.pf-pic img{object-fit:cover;opacity:.55;filter:saturate(.75)}
+.pf-seam{position:absolute;top:-10%;bottom:-10%;left:50%;width:4px;margin-left:-2px;background:var(--card);
+  transform:rotate(14deg);z-index:1}
+.pf-body{padding:16px 17px 15px;display:flex;flex-direction:column;gap:9px}
+.pf-body h3{font-size:20px}
+.pf-sub{margin:0;font-size:13px;line-height:1.4;color:var(--ink-soft)}
+.pf-body .plan-meta{margin:-4px 0 0;font-size:12.5px;line-height:1.4;color:var(--ink-soft)}
+.pf-meters{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);align-items:stretch;margin-top:2px}
+.pf-m{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.pf-n{z-index:2}
+.pf-v{margin-top:6px;font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pf-m .plan-bar{width:100%;max-width:none;margin:5px 0 0}
+.pf-slash{justify-self:center;align-self:end;width:2px;height:34px;margin-bottom:-3px;border-radius:1px;background:var(--hold);transform:skewX(-24deg)}
+.pf-open{position:relative;z-index:2;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;min-height:30px;margin:4px 0 0;
+  padding:0 10px 0 12px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:inherit;font-weight:600;font-size:13.5px;
+  white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pf-open::before{content:'';position:absolute;left:-2px;right:-2px;top:-7px;bottom:-7px}
+.pf-open:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+.pf-open::after{content:'';flex:none;width:7px;height:7px;margin:0 1px 0 0;border-right:1.5px solid var(--ink-soft);
+  border-bottom:1.5px solid var(--ink-soft);transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.pf-open[aria-expanded="true"]::after{transform:translateY(2px) rotate(225deg)}
+.pf-w2,.pairfold.open .pf-w1{display:none}
+.pairfold.open .pf-w2{display:inline}
+.pairfold:hover .pf-open{background:var(--line)}
+.pf-in{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:4px 12px 12px;border-top:1px solid var(--line)}
+.pf-in[hidden]{display:none}
+.rec-pair{display:inline}
+.viewer-when .rec-pair a.chip{color:var(--ink)}
+.viewer-when .rec-pair a.chip{min-height:22px;padding:0 8px 0 10px;font-size:12.5px;margin-right:2px}
+.viewer-when .rec-pair a.chip::before{top:-6px;bottom:-6px}
+.pf-in .bunny{flex:none;max-width:none;scroll-snap-align:none}
+@media (prefers-reduced-motion:reduce){ .pf-open::after{transition:none} }
 
 .bunny{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
   overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;
@@ -2268,6 +2312,9 @@ body.locked{overflow:hidden}
   .bunny .newmark{padding-top:4px;padding-bottom:4px}   
   .ptags{top:8px;left:8px;gap:5px}
   .planmark{font-size:10px;padding:3px 7px}   
+  .pf-body{padding:13px;gap:8px}
+  .pf-body h3{font-size:17px}
+  .pf-in{gap:10px;padding:10px 10px 10px}
 
   .split img{aspect-ratio:3/2}
   .split{gap:22px}
@@ -2295,6 +2342,7 @@ body.locked{overflow:hidden}
 
 @media(max-width:359px){
   .bunnies{grid-template-columns:1fr}
+  .pf-in{grid-template-columns:1fr}
   .bunny-media img{aspect-ratio:16/10}
 }
 
@@ -2929,7 +2977,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 {"@context":"https://schema.org","@type":"WebSite","name":"Arizona Rabbits","alternateName":"Arizona Rabbitry","url":"https://arizonarabbits.com/"}
 </script>
 
-<script type="application/ld+json" id="ldRabbits">{"@context":"https://schema.org","@type":"ItemList","name":"Rabbits available in Tucson","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Pecan","description":"Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick.","image":"https://arizonarabbits.com/photos/pecan.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-pecan","offers":{"@type":"Offer","price":"40","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-pecan","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Marshmallow","description":"The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other.","image":"https://arizonarabbits.com/photos/marshmallow.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-marshmallow","offers":{"@type":"Offer","price":"200","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-marshmallow","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Coconut","description":"White, with pink ears and ruby eyes in the 22 October photos, flat out on the brick by the fountain; in the clip it is picked up and held.","image":"https://arizonarabbits.com/photos/coconut.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-coconut","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-coconut","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Snowcone","description":"White, with ruby eyes; the one with its tongue out in the 22 October photo, which is how it got its name. Ears straight up in the others; in the clip it is picked up and held.","image":"https://arizonarabbits.com/photos/snowcone.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-snowcone","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-snowcone","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}}]}</script>
+<script type="application/ld+json" id="ldRabbits">{"@context":"https://schema.org","@type":"ItemList","name":"Rabbits available in Tucson","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Pecan","description":"Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick.","image":"https://arizonarabbits.com/photos/pecan.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-pecan","offers":{"@type":"Offer","price":"40","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-pecan","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Coconut","description":"White, with pink ears and ruby eyes in the 22 October photos, flat out on the brick by the fountain; in the clip it is picked up and held.","image":"https://arizonarabbits.com/photos/coconut.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-coconut","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-coconut","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Snowcone","description":"White, with ruby eyes; the one with its tongue out in the 22 October photo, which is how it got its name. Ears straight up in the others; in the clip it is picked up and held.","image":"https://arizonarabbits.com/photos/snowcone.jpg","category":"Holland Lop cross rabbit","url":"https://arizonarabbits.com/#r-snowcone","offers":{"@type":"Offer","price":"350","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://arizonarabbits.com/#r-snowcone","seller":{"@type":"LocalBusiness","name":"Arizona Rabbits"}}}}]}</script>
 </head>
 <body>
 
@@ -3094,9 +3142,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <div class="photo-chips"><button type="button" class="look-chip" data-look-switch><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M5.4 18.6l1.5-1.5M17.1 6.9l1.5-1.5"/></svg><span class="look-off">Dark mode</span><span class="look-on">Light mode</span></button><a class="lang-chip" href="es.html" hreflang="es" lang="es" data-lang-switch><svg class="globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.7 5.6 3.7 9s-1.3 6.4-3.7 9c-2.4-2.6-3.7-5.6-3.7-9s1.3-6.4 3.7-9z"/></svg><span class="cw">Español</span></a></div>
       
       <picture class="hero-pic">
-      <source type="image/avif" srcset="img/marshmallow.800.6a1cdc34.avif 800w, img/marshmallow.1200.6a1cdc34.avif 1200w" sizes="(max-width:920px) 100vw, 45vw">
-      <img class="hero-img" src="img/marshmallow.1200.6a1cdc34.jpg?v=fbf567df" srcset="img/marshmallow.800.6a1cdc34.jpg 800w, img/marshmallow.1200.6a1cdc34.jpg 1200w" sizes="(max-width:920px) 100vw, 45vw"
-           alt="Marshmallow, a white Holland Lop cross" width="1200" height="900" data-hero="photos/marshmallow.jpg">
+      <source type="image/avif" srcset="img/coconut.800.e871a8f2.avif 800w, img/coconut.1200.e871a8f2.avif 1200w" sizes="(max-width:920px) 100vw, 45vw">
+      <img class="hero-img" src="img/coconut.1200.e871a8f2.jpg?v=98c3b2b6" srcset="img/coconut.800.e871a8f2.jpg 800w, img/coconut.1200.e871a8f2.jpg 1200w" sizes="(max-width:920px) 100vw, 45vw"
+           alt="Coconut, a white Holland Lop cross" width="1200" height="900" data-hero="photos/coconut.jpg">
       </picture>
     </div>
     <div>
@@ -3286,7 +3334,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     </div>
 
     <div class="doors" role="group" aria-label="The news and the litters">
-      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-31">31 Oct</time>. Marshmallow is cured. Two litters, new photos.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-10-31">31 Oct</time>. Marshmallow, cured, went home.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">Eleven so far. The newest was born 28 October.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -3611,7 +3659,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>The price on the photo is the price you pay.</b> No fee to visit, no booking
           fee, nothing added at pickup, and <a class="litterlink" href="#faq-delivery">delivery
           anywhere in Arizona</a> is free, any day; long drives go on a&nbsp;weekend.</p>
-          <p><b>Each rabbit has its own price.</b> <span data-fact="prices-now">Right now Coconut and Snowcone are $350 each, Marshmallow is $200, down from $400, and Pecan is $40, down from $375.</span> <a class="litterlink" href="#available">Every one is above</a>, with its photos and record.</p>
+          <p><b>Each rabbit has its own price.</b> <span data-fact="prices-now">Right now <a class="litterlink" href="#r-coconut">Coconut</a> and <a class="litterlink" href="#r-snowcone">Snowcone</a> are $350 each, and <a class="litterlink" href="#r-pecan">Pecan</a> is $40, down from $375.</span> <a class="litterlink" href="#available">Every one is above</a>, with its photos and record.</p>
 
           <p><b>A price comes down for two reasons, and the listing says which.</b> Younger rabbits
           carry a premium, so a rabbit's price comes down as it gets older; every rabbit here
@@ -4537,7 +4585,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 <script id="litterIndex" type="application/json">[{"born":"2026-10-28","count":"Eight born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eleventh litter","parents":{"mother":"lop","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-24","count":"Three born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Tenth litter","parents":{"mother":"fox","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-21","count":"Eight born","kits":[],"line":"Netherland Dwarf cross","lost":false,"never":false,"no":"Ninth litter","parents":{"mother":"saffron","father":"odyssey"},"roles":["father","mother"]},{"born":"2026-10-19","count":"Three born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-06","count":"Three born, none raised","kits":[],"line":"Netherland Dwarf","lost":true,"never":false,"no":"Seventh litter","parents":{"mother":"bakalaki"},"roles":["mother"]},{"born":"2026-10-04","count":"Six born, none raised","kits":[],"line":"Holland Lop","lost":true,"never":false,"no":"Sixth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born, seven raised","kits":[{"addr":"churro","name":"Churro"},{"addr":"coconut","name":"Coconut"},{"addr":"dollop","name":"Dollop"},{"addr":"marmalade","name":"Marmalade"},{"addr":"oatmeal","name":"Oatmeal"},{"addr":"pancake","name":"Pancake"},{"addr":"snowcone","name":"Snowcone"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born, three raised","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born, six raised","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 
 <script id="pedArchive" type="application/json">{"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"},"nutmeg|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Nutmeg","on":"2026-10-24","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
-<script src="rabbits.js?v=3ada96e1"></script>
+<script src="rabbits.js?v=ceb66395"></script>
 
 <script>
 (function(){
@@ -5884,6 +5932,27 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     })();
   }
   function addrOf(r){ return (r && r.addr) || rslug(r && r.name); }
+  function planNextOf(r){
+    if(!r||!r.planNext||typeof RABBITS==='undefined') return null;
+    var want=rslug(String(r.planNext));
+    for(var i=0;i<RABBITS.length;i++){ var x=RABBITS[i]; if(x&&x!==r&&addrOf(x)===want) return x; }
+    return null;
+  }
+  function planFirstOf(r){
+    if(!r||typeof RABBITS==='undefined') return null;
+    for(var i=0;i<RABBITS.length;i++){ var x=RABBITS[i]; if(x&&x!==r&&typeof x.planPaid==='number'&&planNextOf(x)===r) return x; }
+    return null;
+  }
+  function pairPaidOf(r){
+    if(!r) return null;
+    var h=(typeof r.planPaid==='number')?r:planFirstOf(r);
+    if(!h||!(h.planPaid>=0)) return null;
+    var of=+r.planTotal||+r.price||0; if(!(of>0)) return null;
+    var got=Math.round(h.planPaid);
+    if(h!==r){ var first=+h.planTotal||+h.price||0; if(!(first>0)) return null; got=Math.max(0,got-first); }
+    var paid=Math.min(got,of);
+    return {paid:paid, of:of, left:of-paid, pct:Math.round(paid*100/of)};
+  }
   function partsLine(r){
     return (r && r.status==='available') ? 'Payment plans' : '';
   }
@@ -6091,8 +6160,51 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         (open?'<p class="cta-note">Asking is free. $50 reserves&nbsp;it.</p>':'')+
         '<a class="bunny-cta" href="'+href+'">'+cta+arrow+'</a>')+'</div></div>';
     };
-    railEl.innerHTML=list.map(function(r){ return cardFor(r); }).join('');
-    railEl.classList.toggle('few', list.length<=2);
+    var pairs=[], inPair={};
+    list.forEach(function(r){
+      var b=planNextOf(r);
+      if(!b||typeof r.planPaid!=='number'||list.indexOf(b)<0||inPair[addrOf(r)]||inPair[addrOf(b)]) return;
+      pairs.push([r,b]); inPair[addrOf(r)]=1; inPair[addrOf(b)]=1;
+    });
+    var esR=document.documentElement.lang==='es';
+    var pairCardFor=function(p){
+      var a=p[0], b=p[1], id='pf-'+addrOf(a)+'-'+addrOf(b);
+      var names=esc(a.name)+(esR?' y ':' and ')+esc(b.name);
+      var photoOf=function(r){ var sh=galleryFor(r); return r.photo||(sh[0]&&sh[0].src)||PLACEHOLDER; };
+      var PSIZES=cardSizes;   /* each half is a card wide */
+      var pic=function(r,cls){ var c=photoOf(r);
+        return '<span class="pf-pic '+cls+'">'+holdImg('<picture>'+avifSource(c,PSIZES)+'<img src="'+esc(c)+'"'+sizedAttrs(c,PSIZES)+' alt="'+esc(r.name)+'" loading="lazy" onerror="cardErr(this)"></picture>')+'</span>'; };
+      var meter=function(r){ var m=pairPaidOf(r), href='#r-'+esc(addrOf(r));
+        var out='<span class="pf-m"><a class="chip pf-n" href="'+href+'">'+esc(r.name)+'<i class="chev" aria-hidden="true"></i></a>';
+        if(m){ var t='$'+m.paid+(esR?' de $':' of $')+m.of;
+          out+='<span class="pf-v">'+t+'</span><span class="plan-bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+m.of+'" aria-valuenow="'+m.paid+'" aria-valuetext="'+esc(t)+'" aria-label="'+esc(r.name)+'">'+(m.paid>0?'<i style="width:'+m.pct+'%"></i>':'')+'</span>'; }
+        return out+'</span>'; };
+      var say=(esR?'Una pareja en un solo plan de\u00a0pagos':'A pair on one payment\u00a0plan');
+      return '<div class="pairfold" data-pair="'+esc(addrOf(a)+' '+addrOf(b))+'">'+
+        '<div class="pf-head">'+
+        '<span class="pf-hit" aria-hidden="true"></span>'+
+        '<div class="pf-media"><span class="ptags"><span class="planmark">'+planWordHTML(a)+'</span></span>'+pic(a,'pf-a')+pic(b,'pf-b')+'<i class="pf-seam" aria-hidden="true"></i></div>'+
+        '<div class="pf-body">'+
+        '<h3>'+say+'</h3>'+
+        (planMarkHTML(a)?'<p class="plan-meta">'+planMarkHTML(a)+'</p>':'')+
+        '<div class="pf-meters">'+meter(a)+'<i class="pf-slash" aria-hidden="true"></i>'+meter(b)+'</div>'+
+        '<button type="button" class="pf-open" aria-expanded="false" aria-controls="'+id+'"><span class="pf-w1">'+(esR?'Ver las dos fichas':'See both listings')+'</span><span class="pf-w2">'+(esR?'Cerrar las fichas':'Close the listings')+'</span></button>'+
+        '</div></div>'+
+        '<div class="pf-in" id="'+id+'" hidden>'+cardFor(a)+cardFor(b)+'</div>'+
+        '</div>';
+    };
+    railEl.innerHTML=list.filter(function(r){ return !inPair[addrOf(r)]; }).map(function(r){ return cardFor(r); }).join('')+
+      pairs.map(pairCardFor).join('');
+    railEl.classList.toggle('few', (list.length)<=2);
+    if(!railEl.__pf){ railEl.__pf=1;
+      railEl.addEventListener('click',function(ev){
+        var t=ev.target.closest&&ev.target.closest('.pf-open, .pf-hit'); if(!t) return;
+        var f=t.closest('.pairfold'), bt=f&&f.querySelector('.pf-open'), inn=f&&f.querySelector('.pf-in'); if(!bt||!inn) return;
+        var open=bt.getAttribute('aria-expanded')!=='true';
+        bt.setAttribute('aria-expanded',open?'true':'false'); inn.hidden=!open; f.classList.toggle('open',open);
+        if(open&&typeof releaseCards==='function') releaseCards();
+      });
+    }
     focusIn(railEl);
     if(!railEl.__kb){ railEl.__kb=1;
       railEl.addEventListener('focusin',function(ev){
@@ -7646,12 +7758,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         out.push({label:'Record',text:(p.role==='mother'?'Her':'His')+' listing',href:'#r-'+p.listing,title:'The record of '+(p.name||'this rabbit')+' as a baby, with its photos'});
       return out;
     }
-    function planPaidOf(r){
-      if(!r||typeof r.planPaid!=='number'||!(r.planPaid>=0)) return null;
-      var of=+r.planTotal||+r.price||0; if(!(of>0)) return null;
-      var paid=Math.min(Math.round(r.planPaid),of);
-      return {paid:paid, of:of, left:of-paid, pct:Math.round(paid*100/of)};
-    }
+    function planPaidOf(r){ return pairPaidOf(r); }
     function paintRecord(rec){
       vWhen.textContent='';
       rec.forEach(function(x,i){
@@ -7661,9 +7768,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var v;
         if(x.href){
           v=document.createElement('a');
-          v.className='litterlink'; v.href=x.href;
+          v.className=x.chip?'chip':'litterlink'; v.href=x.href;
           v.title=x.title||''; if(x.aria) v.setAttribute('aria-label',x.aria);
           if(x.iso) v.appendChild(timeEl(x.iso)); else v.textContent=x.text;
+          if(x.chip){ var cv=document.createElement('i'); cv.className='chev'; cv.setAttribute('aria-hidden','true'); v.appendChild(cv); }
+          if(x.tail){ var wr=document.createElement('span'); wr.className='rec-pair'; wr.appendChild(v); wr.appendChild(document.createTextNode(' '+x.tail)); v=wr; }
           if(x.after){
             v.appendChild(document.createTextNode(' '));
             var sfx=document.createElement('span'); sfx.className='rec-door';
@@ -7675,7 +7784,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
             var pb=document.createElement('span'); pb.className='plan-bar'; pb.setAttribute('role','progressbar');
             pb.setAttribute('aria-valuemin','0'); pb.setAttribute('aria-valuemax',String(x.bar.of)); pb.setAttribute('aria-valuenow',String(x.bar.paid));
             pb.setAttribute('aria-valuetext',x.text); pb.setAttribute('aria-label',x.label);
-            var pf=document.createElement('i'); pf.style.width=x.bar.pct+'%'; pb.appendChild(pf); v.appendChild(pb);
+            if(x.bar.paid>0){ var pf=document.createElement('i'); pf.style.width=x.bar.pct+'%'; pb.appendChild(pf); } v.appendChild(pb);
           }
           if(x.iso){
             v.appendChild(document.createTextNode(' · '));
@@ -7706,6 +7815,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         out.push({label:'Paid so far',text:Math.round(r.planPct)+(document.documentElement.lang==='es'?' %':'%')});
       }
       if(r.partsFrom&&!r.paidOff&&r.status!=='available'&&r.planDue){ out.push({label:'Paid off by',iso:r.planDue}); }
+      var pmate=planNextOf(r)||planFirstOf(r);
+      if(pmate&&r.partsFrom&&!r.paidOff&&r.status!=='available'){
+        var pfirst=planNextOf(r)?r:pmate, pof=+pfirst.planTotal||+pfirst.price||0;
+        out.push({label:esP?'Pagado en pareja':'Paid as a pair',text:pmate.name,href:'#r-'+addrOf(pmate),chip:true,
+          title:(esP?'La ficha de ':'The listing of ')+pmate.name,
+          tail:pof?(esP?'\u00b7 primero los $'+pof+' de '+pfirst.name:'\u00b7 '+pfirst.name+'\u2019s $'+pof+' first'):''});
+      }
       if(r.ear) out.push({label:'Ear number',text:String(r.ear)});
       var w=lastWeight(r);
       if(w) out.push({label:'Weight',text:weightText(w),iso:w.on||''});
