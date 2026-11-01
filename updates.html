@@ -795,8 +795,16 @@ html[data-look="dim"]{color-scheme:dark;
           try{ h.focus({preventScroll:true}); }catch(x){ h.focus(); } } }
     }
     btn.addEventListener('click',function(){ openAll(true); });
-    var t=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if(t&&older.some(function(e){ return e.contains(t); })) openAll(false);
+    function reveal(scroll){
+      var id=location.hash&&decodeURIComponent(location.hash.slice(1)), t=id&&document.getElementById(id);
+      if(!t||!older.some(function(e){ return e.contains(t); })) return;
+      var shut=btn.getAttribute('aria-expanded')!=='true';
+      if(shut) openAll(false);
+      if(shut&&scroll){ try{ t.scrollIntoView({block:'start'}); }catch(x){ t.scrollIntoView(); } }
+    }
+    reveal(false);
+    document.addEventListener('DOMContentLoaded',function(){ reveal(true); });
+    window.addEventListener('hashchange',function(){ reveal(true); });
   }
   var all=[].slice.call(document.querySelectorAll('article.edition'));
   fold(all.filter(function(e){ return !e.closest('#changes'); }));

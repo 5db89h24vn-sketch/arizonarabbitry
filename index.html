@@ -1233,6 +1233,13 @@ details.fold.about-more{margin-top:26px}
   background:var(--ink-faint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M8 8l8 8M16 8l-8 8'/%3E%3C/svg%3E") center/16px no-repeat;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M8 8l8 8M16 8l-8 8'/%3E%3C/svg%3E") center/16px no-repeat}
 .faq-none{margin:0 0 14px;color:var(--ink-soft);font-size:15px}
+
+.owner-back{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:14px 0 0;font-size:15px;line-height:1.4;color:var(--ink)}
+.owner-back b{font-weight:600;flex:0 0 auto}
+.owner-back .chip{min-height:32px;padding:0 10px 0 12px;font-size:14px}   
+
+.faq-near{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 14px;color:var(--ink-soft);font-size:15px;line-height:1.4}
+.faq-near[hidden]{display:none}
 .faq details[hidden]{display:none}
 .faq details.topic>summary{font-family:var(--sans);font-size:16px;font-weight:600;line-height:1.3;color:var(--ink);padding:15px 38px 15px 0}
 .faq details.topic>summary small{display:block;font-weight:400;font-size:13.5px;line-height:1.4;color:var(--ink-soft);margin-top:3px}
@@ -3555,6 +3562,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <li><b>Help getting it seen online</b><small>Its own account if you'd like one, my help with the clips, and some on my story when there's room. <a class="litterlink" href="#owners">How that works</a>.</small></li>
         <li><b>My phone number, yours to keep</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
       </ul>
+      
+      <p class="owner-back"><b>Already have one of mine?</b> <a class="chip" href="#faq-after">If something's wrong<i class="chev" aria-hidden="true"></i></a> <a class="chip" href="#topic-care">Everyday care<i class="chev" aria-hidden="true"></i></a></p>
     </div>
     <div class="rv">
       
@@ -3625,6 +3634,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     
     <div class="faq-find" role="search"><label class="sr-only" for="faqQ">Find an answer</label><svg class="faq-find-i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="faqQ" class="faq-q" type="search" placeholder="Find an answer" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"></div>
     <p class="faq-none" id="faqNone" role="status" hidden>No answer here has those words. Text me, and I'll answer it.</p>
+    
+    <p class="faq-near" id="faqNear" hidden><span id="faqNearSay" role="status"></span> <button type="button" class="mini" id="faqExact">Use my exact words</button></p>
     <div class="faq" style="text-align:left">
 
       <details class="topic" id="topic-buying">
@@ -3645,7 +3656,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <p><b>A $50 deposit reserves the one you choose.</b> It comes off the price, and you get a receipt
           from me. A rabbit is open to reserve from the day it's listed.</p>
 
-          <p><b>Pickup is when the rabbit is ready.</b> Its listing shows the day once I've set it. We go
+          <p><b>Pickup is when the rabbit is ready.</b> A rabbit listed for sale is ready now, unless its listing shows a later day. We go
           through the care sheet together and you leave with <a class="litterlink" href="#included">everything that comes with it</a>.</p>
           <p><b>Or I bring it to you.</b> <a class="litterlink" href="#faq-delivery">Free delivery
           anywhere in Arizona, any day</a> (long drives go on a&nbsp;weekend), and I bring others along, so you can still choose
@@ -3787,7 +3798,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <summary>When can I take one home?</summary>
         <div class="faq-body">
 
-          <p><b>On the day I say it's ready.</b> You can reserve or buy one from the day it's listed, and its listing shows its Ready day once I've set it.</p>
+          <p><b>On the day I say it's ready.</b> A rabbit listed for sale is ready now, unless its listing shows a later day. You can reserve or buy one from the day it's listed.</p>
           <p><b>The test is the same every time.</b> Off milk and eating hay and pellets on its
           own. Eating and drinking well, on the same food, for at least seven days. Holding
           or gaining weight when I weigh it, with nothing wrong with it that I can find. One
@@ -4419,6 +4430,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <a href="#boarding">Boarding</a>
           <a href="#faq">FAQ</a>
           
+          <a href="#topic-after">After it's home</a>
+          
           <a href="/litters">Litters</a>
           <a href="/updates">News</a>
           <a href="/terms">Terms and privacy</a>
@@ -4564,7 +4577,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Ask about this rabbit</a><a class="btn btn-tonal" id="viewerBuy" href="#contact" hidden>Buy</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Text</span><span class="tx-l">Text (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Text</button></div>
         <div class="txqr" id="viewerTextQR" hidden><p class="txsay"><b>Scan this with your phone's camera.</b>It opens a text to me with a hello already written.<span class="txwho"></span><span class="txnum">Or text (520) 270-2827.</span></p></div>
 
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b>A $50 deposit reserves it.</b> <a class="litterlink chip" href="/terms">The terms<i class="chev" aria-hidden="true"></i></a></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span></p></div>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">A $50 deposit reserves it.</b><b class="vt-one" hidden>No deposit at this price.</b> <a class="litterlink chip" href="/terms">The terms<i class="chev" aria-hidden="true"></i></a></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span></p></div>
     </div>
   </div>
 </div>
@@ -5758,8 +5771,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var openHTML='';
     if(r.status==='available'&&days!==null){
       if(gsOne(r)) openHTML=full
-        ?'<span class="grow-open"><b>Bought outright.</b> No deposit at this price: it is yours the day you pay. <a class="stagelink chip" href="#topic-buying">How buying works<i class="chev" aria-hidden="true"></i></a></span>'
-        :'<span class="grow-txt grow-open"><b>Bought outright</b></span>';
+        ?'<span class="grow-open"><b>Buy outright.</b> No deposit at this price: it is yours the day you pay. <a class="stagelink chip" href="#topic-buying">How buying works<i class="chev" aria-hidden="true"></i></a></span>'
+        :'<span class="grow-txt grow-open"><b>Buy outright</b></span>';   /* (Round 170) "Bought" read as already sold */
       else openHTML=full
         ?'<span class="grow-open"><b>Open to reserve.</b> A $50 deposit reserves it for you. <a class="stagelink chip" href="#topic-buying">How buying works<i class="chev" aria-hidden="true"></i></a></span>'
         :'<span class="grow-txt grow-open"><b>Open to reserve</b></span>';
@@ -7970,6 +7983,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(who) who.textContent=openNow?('Say it\u2019s about '+r.name+'.'):'';
       }
       if(vTerms) vTerms.hidden=!openNow;
+      if(vTerms){ var vDep=vTerms.querySelector('.vt-dep'), vOne=vTerms.querySelector('.vt-one'); if(vDep) vDep.hidden=one; if(vOne) vOne.hidden=!one; }
       vStrip.innerHTML=shots.length<2?'':shots.map(function(s,n){
         return '<button type="button" aria-label="'+((s.video||s.reel)?'Video ':'Photo ')+(n+1)+
           (s.date?(', '+niceDate(s.date)):'')+'"><img src="'+esc(s.src)+'"'+sizedAttrs(s.src,'64px')+' alt=""'+
@@ -8204,7 +8218,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!q||!faq) return;
       var topics=[].slice.call(faq.querySelectorAll('details.topic'));
       var fold=function(t){ return String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' '); };
-      var rows=[], was=null;
+      var rows=[], was=null, exact=false;
+      var near=document.getElementById('faqNear'), nearSay=document.getElementById('faqNearSay'), exactBtn=document.getElementById('faqExact');
+      var EVERYDAY={"en":{"faq-vaccine":["shot","shots","jab","jabs","booster","boosters","immunization","immunizations","immunisation","vaccines","vaccinations"],"faq-vet":["fixed","desex","desexed","sterilize","sterilized","sterilise","sterilised","veterinarian","checkup"],"faq-litter":["potty","toilet","house trained","housetrained","house train","poop","pee","litter trained","litter train"],"faq-pets":["kitten","kittens","puppy","puppies"],"faq-delivery":["shipping","drop off","dropoff"],"faq-pay":["installments","instalments","layaway","venmo","paypal","cash app","cashapp","credit card","debit card"],"faq-deposit":["down payment"],"faq-home":["pick up","collect","old enough"],"faq-life":["lifespan","life span","life expectancy"],"faq-indoors":["yard","backyard","garage","patio"],"faq-food":["feeding","veggies","vegetables"],"faq-grooming":["brushing","shedding","molt","moult","nail trim","bathe"],"faq-boarding":["sitter","pet sitter","pet sitting","vacation","holiday","kennel"],"faq-pair":["buddy"],"faq-first":["beginner","beginners"],"faq-price":["expensive","cheap","cheaper"],"faq-after faq-vet":["sick","emergency","stopped eating","wont eat","dying","hurt","injured","lethargic"]},"es":{"faq-vaccine":["inyeccion","inyecciones","vacunas","refuerzo"],"faq-vet":["esterilizada","castrada","veterinaria"],"faq-litter":["arenero","pipi"],"faq-pets":["gatito","gatitos","cachorro","cachorros","perrito","perritos"],"faq-delivery":["envio","enviar","envian"],"faq-pay":["abonos","tarjeta","venmo","paypal"],"faq-deposit":["apartado","enganche","anticipo"],"faq-home":["recogida"],"faq-life":["esperanza de vida","anos de vida"],"faq-indoors":["patio","jardin","cochera","garaje"],"faq-food":["alimentar","premios"],"faq-boarding":["vacaciones","cuidador","guarderia"],"faq-pair":["companero"],"faq-first":["principiante","primera vez"],"faq-price":["caro","barato"],"faq-after faq-vet":["enfermo","enferma","enfermos","emergencia","herido","herida","decaido","decaida","dejo de comer"]}};
+      var esF=document.documentElement.lang==='es';
+      function everyday(){
+        var t=' '+fold(q.value).replace(/[^a-z0-9]+/g,' ').trim()+' ', table=EVERYDAY[esF?'es':'en'], ids={};
+        Object.keys(table).forEach(function(k){ table[k].forEach(function(w){ if(t.indexOf(' '+w+' ')>=0) k.split(' ').forEach(function(id){ ids[id]=1; }); }); });
+        return rows.filter(function(r){ return ids[r.d.id]; });
+      }
+      function asked(r){ var sm=r.d.querySelector('summary'); return sm?sm.textContent.replace(/\s+/g,' ').trim():''; }
       topics.forEach(function(t){ [].slice.call(t.children).forEach(function(d){ if(d.tagName==='DETAILS') rows.push({t:t,d:d,x:''}); }); });
       function read(){ rows.forEach(function(r){ r.x=fold(r.d.textContent); }); }
       function find(){
@@ -8212,16 +8235,23 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(!words.length){
           rows.forEach(function(r){ r.d.hidden=false; });
           topics.forEach(function(t,i){ t.hidden=false; if(was) t.open=was[i]; });
-          was=null; if(none) none.hidden=true; return;
+          was=null; if(none) none.hidden=true; if(near) near.hidden=true; return;
         }
         if(!was){ was=topics.map(function(t){ return t.open; }); read(); }
         var n=0;
         rows.forEach(function(r){ var ok=words.every(function(w){ return r.x.indexOf(w)>=0; }); r.d.hidden=!ok; if(ok) n++; });
+        var shown=(!n&&!exact)?everyday():[];
+        if(shown.length){ rows.forEach(function(r){ r.d.hidden=shown.indexOf(r)<0; }); n=shown.length;
+          var qs=shown.map(function(r){ return '\u201c'+asked(r)+'\u201d'; });
+          nearSay.textContent=(esF?(qs.length>1?'Mostrando las respuestas a ':'Mostrando la respuesta a '):(qs.length>1?'Showing the answers to ':'Showing the answer to '))+
+            (qs.length>1?qs.slice(0,-1).join(', ')+(esF?' y ':' and ')+qs[qs.length-1]:qs[0]); }
+        if(near) near.hidden=!shown.length;
         topics.forEach(function(t){ var any=rows.some(function(r){ return r.t===t&&!r.d.hidden; }); t.hidden=!any; if(any) t.open=true; });
         if(none) none.hidden=n>0;
       }
-      q.addEventListener('input',find);
-      q.addEventListener('search',find);
+      q.addEventListener('input',function(){ exact=false; find(); });
+      q.addEventListener('search',function(){ exact=false; find(); });
+      if(exactBtn) exactBtn.addEventListener('click',function(){ exact=true; find(); q.focus(); });
     })();
     document.addEventListener('click',function(ev){
       var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
