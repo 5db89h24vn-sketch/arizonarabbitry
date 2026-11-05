@@ -856,7 +856,7 @@ const PARENTS = {
   saffron: {
     role:    "mother",
     from:    "here",
-    name:    "Praline",                       /* named Praline on 27 Oct 2026 at his word (26 Oct 8:33pm, list row 106: "Just come up with something better"); Saffron until then, the name he had asked me for on 21 Oct. Her key, address and photos keep "saffron". */
+    name:    "Saffron",                       /* Saffron again from 3 Nov 2026, his word: "I'm already used to saffron" (the name Praline dropped). Named Praline on 27 Oct 2026 at his word (26 Oct 8:33pm, list row 106: "Just come up with something better"); Saffron until then, the name he had asked me for on 21 Oct. Her key, address and photos keep "saffron". */
     breed:   "Holland Lop cross",
     /* 22 Oct 2026: fawn (row 106) */
     variety: "Fawn",
@@ -1547,7 +1547,10 @@ const RABBITS = [
     dob:    "2026-08-27",
     listedOn: "2026-09-19",
     ready:  "",
-    status: "available",
+    status: "adopted",                         /* his word, 4 Nov 2026, about 9:24pm Tucson: "Pecan was purchased today"; home the same day (his rule, 27 Oct 2026, about 12:20pm Tucson: "the moment I tell you a rabbit was sold is also meaning it went home") */
+    reservedOn: "2026-11-04",                  /* bought outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
+    soldOn: "2026-11-04",
+    wentHome: "2026-11-04",
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
@@ -1755,8 +1758,8 @@ const RABBITS = [
     soldOn: "2026-10-22",
     wentHome: "2026-10-22",
     partsFrom: "2026-10-22",                   /* his word, 30 Oct 2026, 10:06pm: "marmalade is on a payment plan too, only $50 has been put down"; the day the $50 came in was not said: the day it was sold and went home, the first day it could have been (his veto open) */
-    paidOff: "",
-    planPaid: 50,                              /* the same message: $50 of its $350 so far */
+    paidOff: "2026-11-04",                     /* his word, 4 Nov 2026, about 9:24pm Tucson: "Marmalade was paid off today" (ahead of the 12 Nov projection) */
+    planPaid: 350,                             /* paid in full on 4 Nov 2026 (was $50 of its $350, his word of 30 Oct) */
     planDue: "2026-11-12",                     /* his word, 30 Oct 2026, 10:17pm: "Marmalade is projected to finish on November 12. for the payments"; the record says "Paid off by 12 Nov 2026" */
     ear:    "",
     weights: [],
