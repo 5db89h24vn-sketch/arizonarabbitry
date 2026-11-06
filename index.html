@@ -2041,9 +2041,11 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .bget{position:relative;z-index:2;display:flex;gap:6px;margin:0}
 .bget .btn{flex:1 1 auto;min-width:0;min-height:44px;padding:0 6px;font-size:15px;white-space:nowrap}
 
-@container bcard (max-width:175px){ .bget{flex-direction:column} .bget .btn{flex:none} }
-@container bcard (max-width:197px){ html[lang="es"] .bget{flex-direction:column} html[lang="es"] .bget .btn{flex:none} }
+@container bcard (max-width:216px){ .bget{flex-direction:column} .bget .btn{flex:none} }
+@container bcard (max-width:256px){ html[lang="es"] .bget{flex-direction:column} html[lang="es"] .bget .btn{flex:none} }
 .bunny p.bget-note{margin:auto 0 8px;font-size:12.5px;line-height:1.35;color:var(--ink-faint);text-wrap:balance}
+
+.bunny p.bget-after{margin:7px 0 0;font-size:12.5px;line-height:1.35;color:var(--ink-faint);text-wrap:balance}
 
 html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #viewerBuy{flex:1 1 auto;min-width:0;width:auto;
   font-size:16px;padding-left:10px;padding-right:10px;white-space:nowrap;overflow:visible;text-overflow:clip}
@@ -5702,7 +5704,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var more=ends?('$'+now+' until '+longDay(ends,true)):(r.dealStays?'the new price':'');
       var html=units.map(function(t){ return '<span class="deal-why">'+esc(t)+'</span>'; }).join(' ');
       if(more) html+=' <span class="deal-why">· '+esc(more)+'</span>';
-      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+PAIR_GLYPH+'$'+esc(bundleOf(r,bm))+' the pair</span>';   /* Round 172 */
+      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+PAIR_GLYPH+'$'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm.name)+'</span>';
       return '<p class="deal">'+html+'</p>';
     }
     if(hasPromise(r)){
@@ -5718,7 +5720,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }
       return '<p class="deal"><span class="deal-why">$'+esc(to)+' when '+esc(when)+'</span></p>';
     }
-    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+PAIR_GLYPH+'$'+esc(bundleOf(r,bm2))+' the pair</span></p>'; }
+    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+PAIR_GLYPH+'$'+esc(bundleOf(r,bm2))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm2.name)+'</span></p>'; }
     return '';
   }
   var MARK_SIZES='96px';
@@ -6093,11 +6095,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   }
   function gsCardHTML(r){
     var a=esc(addrOf(r)), n=esc(r.name), p=+priceOf(r), now=gsNow(r), one=gsOne(r);
-    if(one) return '<p class="bget-note">'+(now?'Ready to go home.':'Home on the day I say.')+' First come, first served.</p>'+
-      '<div class="bget bget-one"><a class="btn btn-primary bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy</a></div>';
-    return '<p class="bget-note">'+(now?'Ready to go home.':'$50 reserves it.')+' First come, first served.</p>'+
-      '<div class="bget"><a class="btn btn-primary bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve</a>'+
-      '<a class="btn btn-tonal bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy</a></div>';
+    var note='<p class="bget-note">'+(now?'Ready to go home.':'Home on the day I say.')+' First come, first served.</p>';
+    if(one) return note+'<div class="bget bget-one"><a class="btn btn-primary bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy \u00B7 $'+p+'</a></div>'+
+      '<p class="bget-after">Yours the day you pay, no\u00a0deposit.</p>';
+    return note+'<div class="bget"><a class="btn btn-primary bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve \u00B7 $50</a>'+
+      '<a class="btn btn-tonal bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy \u00B7 $'+p+'</a></div>'+
+      '<p class="bget-after">$50 reserves it and comes off the\u00a0price.</p>';
   }
   function planWord(r){
     if(!r || r.status==='available' || !r.partsFrom) return '';
@@ -9130,7 +9133,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   }
   function noOrphans(root){
     if(!root) return;
-    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3';
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t';
     var els=root.querySelectorAll(sel);
     for(var i=0;i<els.length;i++){
       var el=els[i];

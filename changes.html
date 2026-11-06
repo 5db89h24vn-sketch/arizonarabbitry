@@ -1076,6 +1076,20 @@ html[data-look="dim"]{color-scheme:dark;
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.10.12d/pc-up-before-780.webp" srcset="changes/2026.10.12d/pc-up-before-390.webp 390w, changes/2026.10.12d/pc-up-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the lower right of the front page on a computer, beside a photo, with no button there." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.10.12d/pc-up-after-780.webp" srcset="changes/2026.10.12d/pc-up-after-390.webp 390w, changes/2026.10.12d/pc-up-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same view, with a round Back to top button in the corner." loading="lazy" decoding="async"></figure></div>
   </article>
 </details>
+<details class="rel rel-old" id="v2026-11-06a">
+  <summary><span class="rel-sum">The buttons say what they cost, and what the $50 does</span><time class="rel-date" datetime="2026-11-06">6 November 2026</time></summary>
+  <p class="rel-ver">Site version 2026.11.06a</p>
+  <article class="chg" id="c-card-amounts">
+    <p class="chg-lead"><b>Each card's buttons say what they cost.</b></p>
+    <p>Reserve · $50 and Buy · $285, as the listing's own two have said since October, and one line under them: $50 reserves it and comes off the price. A rabbit bought outright has Buy and its price.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.11.06a/card-amounts-before-780.webp" srcset="changes/2026.11.06a/card-amounts-before-390.webp 390w, changes/2026.11.06a/card-amounts-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: Reserve and Buy, the words alone, and nothing under them." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.11.06a/card-amounts-after-780.webp" srcset="changes/2026.11.06a/card-amounts-after-390.webp 390w, changes/2026.11.06a/card-amounts-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: Reserve · $50 and Buy · $285, and under them: $50 reserves it and comes off the price." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-pair-mate">
+    <p class="chg-lead"><b>The pair special names the other rabbit.</b></p>
+    <p>Coconut's card says $500 with Snowcone, and Snowcone's says $500 with Coconut, so the special is never vague once more rabbits are listed.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.11.06a/pair-mate-before-780.webp" srcset="changes/2026.11.06a/pair-mate-before-390.webp 390w, changes/2026.11.06a/pair-mate-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: Making room · $500 the pair." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.11.06a/pair-mate-after-780.webp" srcset="changes/2026.11.06a/pair-mate-after-390.webp 390w, changes/2026.11.06a/pair-mate-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: Making room · $500 with Snowcone." loading="lazy" decoding="async"></figure></div>
+  </article>
+</details>
 
 </main>
 
@@ -1141,7 +1155,7 @@ html[data-look="dim"]{color-scheme:dark;
   }
   function noOrphans(root){
     if(!root) return;
-    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3';
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t';
     var els=root.querySelectorAll(sel);
     for(var i=0;i<els.length;i++){
       var el=els[i];

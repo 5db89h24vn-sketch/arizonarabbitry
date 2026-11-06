@@ -2442,7 +2442,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   }
   function noOrphans(root){
     if(!root) return;
-    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3';
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t';
     var els=root.querySelectorAll(sel);
     for(var i=0;i<els.length;i++){
       var el=els[i];
