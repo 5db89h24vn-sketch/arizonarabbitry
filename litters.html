@@ -6,7 +6,7 @@
 <script data-lang-redirect>(function(){try{if(localStorage.getItem('lang')==='es'&&!/[?&]lang=en\b/.test(location.search)){location.replace('es-litters.html'+location.search+location.hash);}}catch(e){}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang-switch]');if(a){try{localStorage.setItem('lang',a.getAttribute('hreflang'));}catch(x){}try{var w=location.hash||'',h=(/^#([rp]-[a-z0-9-]+|L\d{4}-\d{2}-\d{2})/.exec(w)||[''])[0];if(!h){var ss=document.querySelectorAll('section[id]'),y=innerHeight/3,t=1e9,d='';for(var i=0;i<ss.length;i++){var r=ss[i].getBoundingClientRect();if(!r.height)continue;if(r.top>=-1&&r.top<=y&&r.top<t){t=r.top;h='#'+ss[i].id;}if(r.top<=y&&r.bottom>y)d='#'+ss[i].id;}h=h||d||(w==='#families'?w:'');if(h==='#top')h='';}if(h)a.setAttribute('href',a.getAttribute('href').split('#')[0]+h);}catch(x){}}});})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="preload" as="script" href="rabbits.js?v=b6ca40d9" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=c570a06c" data-fact="data-preload">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -373,6 +373,8 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .alert-lead{font-size:15px;color:var(--ink-soft);margin:0 0 10px}
 .alert-lead b{color:var(--ink)}
 .alert-row{display:flex;gap:9px}
+
+.alert-row input::placeholder{color:var(--ink-faint);opacity:1}
 .alert-row[hidden],.alert-lead[hidden]{display:none}
 .alert-row input[type=email]{flex:1;min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);
   font:inherit;font-size:16px;background:var(--card)}
@@ -1670,7 +1672,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=b6ca40d9"></script>
+<script src="rabbits.js?v=c570a06c"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -1908,8 +1910,9 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       return y+' year'+(y===1?'':'s')+(rm?(', '+rm+' month'+(rm===1?'':'s')):'')+' old';
     }
     function todayISO(){
-      var n=new Date();
-      return n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);
+      try{ var t=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Phoenix',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+           if(/^\d{4}-\d{2}-\d{2}$/.test(t)) return t; }catch(e){}
+      return new Date(Date.now()-7*3600000).toISOString().slice(0,10);
     }
     function noneRaised(born){
       var a=document.getElementById('L'+born);
