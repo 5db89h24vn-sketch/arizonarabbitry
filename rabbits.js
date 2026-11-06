@@ -1223,6 +1223,22 @@ const HOMES = [
    build needed. (Since 11 Sept 2026; the weekly calendar asks after 7 days.) */
 const CHECKED = "2026-10-27";   /* his tap on his list, 27 Oct 2026, 11:52am Tucson: "Looked: nothing changed" */
 
+/* TWO NAMED RABBITS AT ONE PRICE, BOUGHT AT THE SAME TIME (5 Nov 2026, your words 9:50pm: "if they're bought
+   together as a pair at the same time, it will be $500 for the bundle!"). A bundle names two rabbits and the price
+   of the two together; while both are available, each one's listing says so in its pair box ("Both together:
+   $500. Bought at the same time, you save $100."), the pair row and "Ask about both" carry that figure, and the mail
+   William gets says it. Any other two keep the usual rule (the second 20% off). To end a bundle, delete its line.
+      names:  the two, exactly as their name: lines read
+      price:  what the two cost together
+      why:    the reason, in your words (the listing says "A special, not the 20% pair rule: <why>.")
+      on:     the day it began, for the record
+   It is advertised as a special of its own, with its own mark (the two rings), never as the pair rule: your words,
+   10:19pm, "make sure it's obvious that the $500 pair price is different from the 20%, and it's a separate special
+   offer because of stock being tight on my end, and make sure it's advertised as well with its own unique icon". */
+const BUNDLES = [
+  { names: ["Coconut", "Snowcone"], price: 500, why: "making room for the babies on the way", on: "2026-11-05" }
+];
+
 const RABBITS = [
 
   {
@@ -1256,7 +1272,7 @@ const RABBITS = [
        will develop. Ear carriage in a young lop is not certain, and a buyer who is
        told it will happen and then finds it did not has been misled about the one
        feature the breed is named for. Say what is true today and what is usual. */
-    note:   "Solid fawn all over, like a little bear. In the 23 August photo both ears stand up. Most lop over the following weeks, and I only ever describe what the dated photo shows."
+    note:   "Solid fawn, like a little bear. Both ears stand up in the 23 August photo; most lop over the following weeks."
   },
 
   {
@@ -1293,7 +1309,7 @@ const RABBITS = [
     weights: [],
     photo:  "photos/butterscotch.jpg",
     hero:   "img/hero-brick.jpg",              /* the brick shot that led the site from June to 27 Sept 2026; feature: true moved to Marshmallow with the sale */
-    note:   "Same fawn as her sister Teddy, but a shade deeper in the sun. One ear up and one ear down in the 23 August photo, which is exactly how the lop starts. She stays here as one of my producers."
+    note:   "Teddy's sister, a shade deeper fawn. One ear up and one down on 23 August. She stays here as a producer."
   },
 
   {
@@ -1322,7 +1338,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/sundae.jpg",
-    note:   "A sable point, so the cream body carries darker ears and nose. Those points keep deepening as he grows. First of the four with both ears fully lopped."
+    note:   "Sable point: cream with darker ears and nose, deepening as he grows. First of the four with both ears lopped."
   },
 
   {
@@ -1351,7 +1367,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/cloud.jpg",
-    note:   "The palest of the litter and the other sable point. Same darker ears and nose as his brother, just a lighter body behind them."
+    note:   "The palest of the litter, the other sable point: the same darker ears and nose as his brother on a lighter body."
   },
 
   /* THE AUGUST FIVE: born 27 August 2026, the third litter; five of the six,
@@ -1392,7 +1408,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/honey.jpg",
-    note:   "The one under my hand in the 18 September photo, flat to the brick and happy to stay there. Fawn all over, short coat, one ear up that day."
+    note:   "Fawn, short coat, one ear up on 18 September: the one under my hand in that photo, flat to the brick and happy to stay."
   },
   {
     name:   "Biscuit",
@@ -1436,7 +1452,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/biscuit-car.jpg",
-    note:   "The fluffiest coat of the fawn ones, already wavy at three weeks. Sat up on the brick for the 18 September photo with both ears up; on the 5 October one, out in the car."
+    note:   "The fluffiest fawn coat, wavy at three weeks. Both ears up on the brick on 18 September; out in the car on 5 October."
   },
   {
     name:   "Toffee",
@@ -1464,7 +1480,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/toffee.jpg",
-    note:   "The sleekest coat in the litter, short and close. Tucked up on the brick like a loaf for the 18 September photo, ears up and back."
+    note:   "The sleekest coat in the litter, short and close. Tucked up like a loaf on 18 September, ears up and back."
   },
   {
     name:   "Maple",
@@ -1492,7 +1508,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/maple.jpg",
-    note:   "A fluffy coat and a shade darker across the back than the others. Ears laid back along the body in the 18 September photo."
+    note:   "A fluffy coat, a shade darker across the back than the others. Ears laid back along the body on 18 September."
   },
   {
     name:   "Pecan",
@@ -1554,7 +1570,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/pecan.jpg",
-    note:   "Long wavy coat, the woolliest of the fawn ones. Ears up and forward in the 18 September photo, chin down on the brick."
+    note:   "Long wavy coat, the woolliest of the fawn ones. Ears up and forward on 18 September, chin down on the brick."
   },
 
   /* MARSHMALLOW, the sixth, listed 19 Sept 2026. Two photographs from the same
@@ -1615,7 +1631,7 @@ const RABBITS = [
     weights: [],
     photo:  "photos/marshmallow.jpg",
     /* feature: true came off on 31 Oct 2026 when she went home; she led the front page from 27 Sept (Butterscotch sold). The lead passed to Coconut by the same rule: the dearest rabbit available, first on the rail, settled on the brick with nothing holding it. */
-    note:   "The white one of the six, with a pink nose and ruby eyes. Both ears down in the 18 September photos, sitting up for one and flat out on the brick with eyes shut for the other."
+    note:   "The white one of the six: pink nose, ruby eyes. Both ears down on 18 September; eyes shut in one of the photos."
   },
 
   /* THE FIRST PUREBREDS, listed 15 Oct 2026: S'Morri and Root Beer's three,
@@ -1657,7 +1673,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/latte.jpg",
-    note:   "The pale one of the three: a cream coat with the ears, nose and feet shaded grey-brown, which is what sable point means. Both ears down in the 15 October photos, settled on the brick by the fountain, flat out with eyes shut in two of them."
+    note:   "The pale one of the three: cream with grey-brown ears, nose and feet, a sable point. Both ears down on 15 October."
   },
 
   {
@@ -1687,7 +1703,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/mocha.jpg",
-    note:   "Tortoise: a warm brown coat with smoky grey-brown on the face, the ears and the haunches, the darker of the two torts. Both ears down in the 15 October photos, settled on the brick, eyes shut for the face-on one."
+    note:   "Tortoise, the darker tort: warm brown with smoky grey-brown face, ears and haunches. Both ears down on 15 October."
   },
 
   {
@@ -1717,7 +1733,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/nutmeg-3.jpg",                /* the cover by eye (24 Oct 2026, Round 131, his "Fix old listings too"): its first photo had the top of its head on the frame's edge; this one shows all of it, facing right, with room */
-    note:   "Tortoise like Mocha, and the two are hard to tell apart: a shade warmer and fluffier in the 15 October photos, one ear down and one out to the side in two of them, sitting up on the brick by the fountain."
+    note:   "Tortoise like Mocha and hard to tell apart: a shade warmer and fluffier on 15 October, one ear down and one out to the side."
   },
 
   /* THE SEVEN OF 27 SEPTEMBER, listed 22 Oct 2026: Cinnamony and Frederick's last
@@ -1764,7 +1780,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/marmalade.jpg",
-    note:   "The deep golden one of the seven, with a white spot on its forehead. Sitting up on the brick by the fountain in the 22 October photos, ears up, dark eyes; in the clip it is picked up and held."
+    note:   "Deep golden, a white spot on its forehead. Sitting up on 22 October with ears up and dark eyes; held in the clip."
   },
 
   {
@@ -1778,7 +1794,14 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    price:  285,                               /* his word, 5 Nov 2026, 10:23pm: "make both white rabbits $285 each" (9:50pm: $300) */
+    wasPrice: 350,                             /* the first price, 22 Oct 2026 ("Make every single one 350") */
+    dealOn:   "2026-11-05",
+    dealTag:  "Making room",
+    /* A SPECIAL, HIS WORDS 5 Nov 2026, 9:50pm and 9:51pm: "both of our white rabbits go down to $300 each ...
+       This is basically a special because I need to clear up stock for all of these upcoming babies." No last
+       day given, so none is printed; the SALE mark says it is a special. The two together are $500: BUNDLES, above. */
+    dealNote: "Making room for the babies on the way",
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -1793,7 +1816,7 @@ const RABBITS = [
     weights: [],
     photo:  "photos/coconut.jpg",
     feature: true,                             /* the hero from 31 Oct 2026, when Marshmallow went home: by the rule she was chosen by (27 Sept), the dearest rabbit available ($350, with Snowcone), first on the rail, settled on the brick with nothing holding it (its 22 Oct photo, flat out by the fountain) */
-    note:   "White, with pink ears and ruby eyes in the 22 October photos, flat out on the brick by the fountain; in the clip it is picked up and held."
+    note:   "White, with pink ears and ruby eyes; flat out on the brick on 22 October, and picked up and held in the clip."
   },
 
   {
@@ -1822,7 +1845,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/dollop.jpg",
-    note:   "The one with a dab of white on its nose. One ear up and one down in the 22 October photos, flat on the brick by the fountain; in the clip it is picked up and held."
+    note:   "A dab of white on its nose; one ear up, one down on 22 October, flat on the brick. Picked up and held in the clip."
   },
 
   {
@@ -1851,7 +1874,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/churro.jpg",
-    note:   "Cinnamon-tan with a sugar-white spot on top of its head (clearest in the clip), which is how it got its name. Flat on the brick by the fountain with one ear forward in the 22 October cover photo, sitting up with both ears up in the other; in the clip it is picked up and held."
+    note:   "Cinnamon-tan, a sugar-white spot on its head (clearest in the clip): that's the name. One ear forward on 22 October."
   },
 
   {
@@ -1881,7 +1904,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/pancake.jpg",
-    note:   "Sitting up on the brick by the fountain in the 22 October photos, ears up, one ear darker at the tip; in the clip it is picked up and held."
+    note:   "Sitting up on the brick by the fountain on 22 October, ears up, one ear darker at the tip; picked up and held in the clip."
   },
 
   {
@@ -1911,7 +1934,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/oatmeal.jpg",
-    note:   "The frosted-looking coat of the seven. Face on with its ears up on the brick by the fountain in the 22 October cover photo, from the side in the others; in the clip it is picked up and held."
+    note:   "The frosted-looking coat of the seven. Face on, ears up, on the 22 October cover; held in the clip."
   },
 
   {
@@ -1925,7 +1948,14 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  350,                               /* his word, 22 Oct 2026, 6:28pm: "Make every single one 350" */
+    price:  285,                               /* his word, 5 Nov 2026, 10:23pm: "make both white rabbits $285 each" (9:50pm: $300) */
+    wasPrice: 350,                             /* the first price, 22 Oct 2026 ("Make every single one 350") */
+    dealOn:   "2026-11-05",
+    dealTag:  "Making room",
+    /* A SPECIAL, HIS WORDS 5 Nov 2026, 9:50pm and 9:51pm: "both of our white rabbits go down to $300 each ...
+       This is basically a special because I need to clear up stock for all of these upcoming babies." No last
+       day given, so none is printed; the SALE mark says it is a special. The two together are $500: BUNDLES, above. */
+    dealNote: "Making room for the babies on the way",
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -1939,7 +1969,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/snowcone.jpg",
-    note:   "White, with ruby eyes; the one with its tongue out in the 22 October photo, which is how it got its name. Ears straight up in the others; in the clip it is picked up and held."
+    note:   "White, with ruby eyes; the one with its tongue out on 22 October: that's the name. Ears straight up in the other photos."
   }
 
 ];
