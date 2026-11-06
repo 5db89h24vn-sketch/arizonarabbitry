@@ -2089,6 +2089,12 @@ html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #vi
 .gs-pick .opt em{flex:none;font-style:normal;font-weight:600;font-size:15.5px;margin-left:8px}
 .gs-pick .opt:has(input:checked){border-color:var(--brick-fill);background:var(--brick-tint);box-shadow:inset 0 0 0 1px var(--brick-fill)}
 
+.gs-with .opt em{font-size:14px;font-weight:500;color:var(--ink-soft)}
+.gs-with .opt:has(input:checked) em{color:var(--ink);font-weight:600}
+.gs-sum{margin:-6px 0 14px;font-size:13.5px;line-height:1.45;color:var(--ink-soft)}
+.gs-sum b{color:var(--ink);font-weight:600}
+.gs-sum .pairg{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:3px;fill:none;stroke:currentColor;stroke-width:1.9}
+
 .gs-buyset .opt[hidden]{display:none}
 .gs-visit-head,.gs-photos-head{margin:0 0 14px}
 .gs-visit-head b,.gs-photos-head b{display:block;font-size:16px;font-weight:600;margin:0 0 3px}
@@ -7029,8 +7035,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
     var gs=null, gsR=null, gsPushed=false, gsFrom=null, gsMode='reserve', gsStamp=null, gsVals={name:'',tel:'',zelle:'',note:'',when:'',how:'person'};
     var GS_TEL='+15202702827', GS_TEL_WORDS='(520) 270-2827', GS_MAIL='hello@'+'arizonarabbits.com';
-    function gsAddr(h){ var m=/^#r-(.+?)~(?:reserve|buy|plan|visit|photos)$/.exec(h||''); return m?rslug(decodeURIComponent(m[1])):null; }
-    function gsOptOf(h){ var m=/~(reserve|buy|plan|visit|photos)$/.exec(h||''); return m?m[1]:'reserve'; }
+    var gsWith='';
+    function gsAddr(h){ var m=/^#r-(.+?)~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?rslug(decodeURIComponent(m[1])):null; }
+    function gsOptOf(h){ var m=/~(reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?m[1]:'reserve'; }
+    function gsWithOf(h){ var m=/~(?:reserve|buy|plan)\+([a-z0-9-]+)$/.exec(h||''); return m?m[1]:''; }
+    function gsSuffix(mode){ return '~'+mode+((gsWith&&gsKind(mode)==='buy')?'+'+gsWith:''); }
+    function gsPairOff(){ return (typeof window.PAIR_OFF==='number')?window.PAIR_OFF:20; }
+    function gsMates(r){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[], out=[]; for(var i=0;i<R.length;i++){ var x=R[i]; if(x&&r&&x!==r&&x.name!==r.name&&gsCan(x)&&!gsOne(x)) out.push(x); } return out; }
+    function gsMate(){ if(!gsR||!gsWith) return null; var m=gsMates(gsR); for(var i=0;i<m.length;i++) if(addrOf(m[i])===gsWith) return m[i]; return null; }
+    function gsQuote(a,b){ var p=+priceOf(a), q=+priceOf(b), bd=bundleOf(a,b), off=bd?(p+q-bd):Math.round(Math.min(p,q)*gsPairOff()/100); return {two:bd||(p+q-off), off:off, bundle:!!bd, sum:p+q}; }
     function gsKind(m){ return m==='visit'?'visit':m==='photos'?'photos':'buy'; }
     function gsES(){ return document.documentElement.lang==='es'; }
     function gsScreen(){ return document.documentElement.classList.contains('txscreen'); }
@@ -7048,6 +7061,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           '<label class="opt"><input type="radio" name="gsopt" value="buy"><span><b class="gs-buyword">Buy</b><small class="gs-say-buy"></small></span><em class="gs-price"></em></label>'+
           '<label class="opt"><input type="radio" name="gsopt" value="plan"><span><b>Payment plan</b><small>Pay over time. We set it up together.</small></span></label>'+
         '</div></fieldset>'+
+        '<fieldset class="gs-pick gs-with" hidden><legend>Taking two?</legend><div class="opts"></div></fieldset>'+
+        '<p class="gs-sum" hidden></p>'+
         '<p class="gs-visit-head"><b class="gs-vtitle"></b><span>Free: no deposit, and no pressure to buy.</span></p>'+
         '<p class="gs-photos-head"><b class="gs-ptitle"></b><span>Free. I take them the next time I’m with the rabbit, and send them to you.</span></p>'+
         '<fieldset class="gs-pick gs-how"><legend>How would you like to meet?</legend><div class="opts">'+
@@ -7096,6 +7111,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       f.addEventListener('change',function(ev){
         if(ev.target.name==='gsopt') gsMove(ev.target.value,true);
         if(ev.target.name==='gshow'){ gsVals.how=ev.target.value==='facetime'?'facetime':'person'; gsPaintMode(true); }
+        if(ev.target.name==='gswith'){ gsWith=ev.target.value; gsStamp=null; gsMove(gsMode,true); }   /* (Round 174) two is a new message */
       });
       f.addEventListener('input',function(ev){ if(ev.target.name in gsVals) gsVals[ev.target.name]=ev.target.value; var er=gs.querySelector('.gs-err'); if(!er.hidden) er.hidden=true; });
       gs.addEventListener('keydown',function(ev){
@@ -7117,7 +7133,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gsMode=mode; gsPaintMode(fromRadio);
       var f=gs.querySelector('form'); if(f.hidden){ f.hidden=false; gs.querySelector('.gs-done').hidden=true; }   /* a new choice is a new message */
       if(!gsR) return;
-      var h='#r-'+addrOf(gsR)+'~'+mode; try{ history.replaceState(history.state,'',h); }catch(e){} lastRouted=location.hash||h;
+      var h='#r-'+addrOf(gsR)+gsSuffix(mode); try{ history.replaceState(history.state,'',h); }catch(e){} lastRouted=location.hash||h;
     }
     function gsPaintMode(fromRadio){
       var f=gs.querySelector('form'), r=gsR, visit=gsMode==='visit', photos=gsMode==='photos';
@@ -7135,14 +7151,37 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       nh.textContent=visit?'Your rabbit is welcome too, to see which of mine it gets along with.':'So I can plan the delivery, and a missed call doesn’t cost you your place.';
       nh.hidden=fc||photos;
       gs.querySelector('.gs-err').hidden=true; gs.querySelector('.gs-copy').hidden=true;
+      gsPaintMoney();
     }
-    function gsShow(r,opt,how,from){
+    function gsPaintMoney(){
+      var r=gsR, f=gs.querySelector('form'), wb=gs.querySelector('.gs-with'), sm=gs.querySelector('.gs-sum');
+      if(!r||!wb) return;
+      var visit=gsMode==='visit', photos=gsMode==='photos', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
+      wb.hidden=visit||photos||!wb.querySelector('.opts').children.length;
+      var radios=f.querySelectorAll('input[name="gswith"]'); for(var i=0;i<radios.length;i++) radios[i].checked=(radios[i].value===gsWith);
+      gs.querySelector('.gs-buyset legend').textContent=one?(r.name+' is bought outright: no deposit at this price.'):('How do you want to get '+r.name+(mate?' and '+mate.name:'')+'?');
+      gs.querySelector('.gs-say-reserve').textContent=q?('$100 now ($50 each), $'+(q.two-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(p-50)+' at pickup (Zelle or cash).');
+      var rem=gs.querySelector('.gs-buyset input[value="reserve"]'); rem=rem&&rem.closest('.opt').querySelector('em'); if(rem) rem.textContent=q?'$100':'$50';
+      gs.querySelector('.gs-price').textContent='$'+(q?q.two:p);
+      if(q&&!wb.hidden){
+        sm.hidden=false;
+        sm.innerHTML=(gsMode==='plan')?'Two on one plan: we set it up\u00a0together.'
+          :((q.bundle&&typeof PAIR_GLYPH!=='undefined'?PAIR_GLYPH:'')+'<b>'+esc(r.name)+' and '+esc(mate.name)+' together: $'+q.two+'.</b> '+
+            (q.bundle?'Bought at the same time, you save\u00a0$'+q.off+'.':'The second '+gsPairOff()+'% off: you save\u00a0$'+q.off+'.'));
+      } else { sm.hidden=true; sm.innerHTML=''; }
+    }
+    function gsShow(r,opt,how,from,withAddr){
       if(r?!gsCan(r):opt!=='visit') return false;     /* no rabbit named: only a visit (#visit) */
       gsBuild(); if(gsR!==r||gs.hidden) gsStamp=null; gsR=r||null;
       gsMode=(opt==='buy'||opt==='plan'||opt==='visit'||opt==='photos')?opt:'reserve';
       var p=r?+priceOf(r):0, f=gs.querySelector('form'), now=gsNow(r), one=!!(r&&gsOne(r));
       if(one&&(gsMode==='reserve'||gsMode==='plan')) gsMode='buy';   /* at or under the deposit: bought outright (Round 167) */
       [].forEach.call(gs.querySelectorAll('.gs-buyset .opt'),function(l){ var v=(l.querySelector('input')||{}).value; l.hidden=one&&v!=='buy'; });
+      var mates=(r&&!one)?gsMates(r):[], wopts=gs.querySelector('.gs-with .opts');
+      wopts.innerHTML=mates.length?('<label class="opt"><input type="radio" name="gswith" value=""><span><b>Just '+esc(r.name)+'</b></span></label>'+
+        mates.map(function(x){ var q=gsQuote(r,x); return '<label class="opt"><input type="radio" name="gswith" value="'+esc(addrOf(x))+'"><span><b>With '+esc(x.name)+'</b><small>'+
+          (q.bundle?'The two for $'+q.two+', a\u00a0special.':'The two for $'+q.two+': the second '+gsPairOff()+'%\u00a0off.')+'</small></span><em>$'+q.two+'</em></label>'; }).join('')):'';
+      gsWith=String(withAddr||''); if(!gsMate()) gsWith='';
       gs.querySelector('.gs-tobuy').textContent=one?'Buy instead':'Reserve instead';
       if(r) gs.removeAttribute('data-general'); else gs.setAttribute('data-general','');
       var hn=(r&&r.dealKind==='health')?String(r.dealNote||'').trim():'', hb=gs.querySelector('.gs-health');
@@ -7151,11 +7190,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gs.querySelector('#gsName').textContent=r?r.name:'Meet the rabbits';
       gs.querySelector('.gs-sub').textContent=r?[r.breed,r.colour,'$'+p].filter(Boolean).join(' · '):'Free: no deposit, and no pressure to buy.';
       if(r){
-        gs.querySelector('.gs-buyset legend').textContent=one?(r.name+' is bought outright: no deposit at this price.'):('How do you want to get '+r.name+'?');
-        gs.querySelector('.gs-say-reserve').textContent='$50 now, $'+(p-50)+' at pickup (Zelle or cash).';
         gs.querySelector('.gs-buyword').textContent='Buy';   /* (Round 148) one word for one action; the line under it says when */
         gs.querySelector('.gs-say-buy').textContent=now?'Ready now: home as soon as today.':'All of it now. It goes home on the day I say it’s ready.';
-        gs.querySelector('.gs-price').textContent='$'+p;
         gs.querySelector('.gs-vtitle').textContent='Meet '+r.name+' first';
         gs.querySelector('.gs-vhold').textContent='Meeting first doesn’t hold '+r.name+': someone else can still reserve first.';
         gs.querySelector('.gs-ptitle').textContent='New photos of '+r.name;
@@ -7174,7 +7210,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gsReady(null);
       gs.querySelector('.gs-done').hidden=true; f.hidden=false;
       gsPaintMode(false);
-      var h=r?('#r-'+addrOf(r)+'~'+gsMode):'#visit';
+      var h=r?('#r-'+addrOf(r)+gsSuffix(gsMode)):'#visit';
       if(how==='tap'){ gsFrom=from||document.activeElement; writeAddr(h); gsPushed=true; }   /* (Round 149) the control itself: WebKit does not focus a tapped link */
       if(gs.hidden){
         gs.hidden=false;
@@ -7200,7 +7236,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(gsPushed&&(gsAddr(h)||(!gsR&&h==='#visit'))){ gsPushed=false; history.back(); return; }
       gsPushed=false;
       if(!gsR){ if(h==='#visit'){ try{ history.replaceState(history.state,'',location.pathname+location.search); }catch(e){} lastRouted=''; } gsHide(); return; }
-      var base=h.replace(/~(?:reserve|buy|plan|visit|photos)$/,'');
+      var base=h.replace(/~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/,'');
       if(base!==h){ try{ history.replaceState(history.state,'',base); }catch(e){} lastRouted=location.hash||base; }
       gsHide();
     }
@@ -7209,7 +7245,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(gs&&!gs.hidden&&!gsR){ gsPushed=false; gsHide(); if(!/^#[rp]-/.test(h)) return true; }
       var a=gsAddr(h), open=vw.classList.contains('open')&&!parentOpen&&shown;
       if(a){
-        if(open&&addrOf(shown)===a){ gsShow(shown,gsOptOf(h),'route'); return true; }
+        if(open&&addrOf(shown)===a){ gsShow(shown,gsOptOf(h),'route',null,gsWithOf(h)); return true; }
         gsHide(); return false;           /* the router opens the listing; gsSync opens the sheet over it */
       }
       if(gs&&!gs.hidden){
@@ -7221,12 +7257,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function gsSync(){
       var a=gsAddr(location.hash);
-      if(a&&shown&&addrOf(shown)===a&&vw.classList.contains('open')&&!parentOpen) gsShow(shown,gsOptOf(location.hash),'route');
+      if(a&&shown&&addrOf(shown)===a&&vw.classList.contains('open')&&!parentOpen) gsShow(shown,gsOptOf(location.hash),'route',null,gsWithOf(location.hash));
     }
     function gsTap(a,ev){
       var to=a.getAttribute('href')||'', x=gsAddr(to);
       if(!x||!shown||addrOf(shown)!==x||!vw.classList.contains('open')) return false;
-      ev.preventDefault(); gsShow(shown,gsOptOf(to),'tap',a); return true;
+      ev.preventDefault(); gsShow(shown,gsOptOf(to),'tap',a,gsWithOf(to)); return true;
     }
     if(vBuy) vBuy.addEventListener('click',function(ev){ gsTap(vBuy,ev); });
     function todayHTML(r){
@@ -7242,6 +7278,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function histHTML(r){
       if(!r||!hasDeal(r)||!r.listedOn) return '';
       var steps=(r.repriced||[]).filter(function(x){ return x&&x.on&&x.was!=null; });
+      if(!steps.length&&r.dealOn&&+r.wasPrice>0) steps=[{on:r.dealOn,was:+r.wasPrice}];
       if(!steps.length) return '';
       var now=+priceOf(r), parts=['<span>Listed '+esc(niceDate(r.listedOn))+' at $'+esc(steps[0].was)+'</span>'];
       steps.forEach(function(x,i){ var to=(i+1<steps.length)?steps[i+1].was:now; parts.push('<span>$'+esc(to)+' from '+esc(dayMon(x.on))+'</span>'); });
@@ -7278,6 +7315,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var w=gsStamp, tel=gsTelWords(gsTelOK(f.elements.tel.value)), nm=f.elements.name.value.trim(), note=f.elements.note.value.trim();
       var zel=f.elements.zelle.value.trim(), when=f.elements.when.value.trim();
       var fc=gsVals.how==='facetime', who=r?r.name:(es?'los conejos':'the rabbits'), say, cost='', subj;
+      var mate=(gsKind(m)==='buy')?gsMate():null, q=mate?gsQuote(r,mate):null, both=r?(mate?(r.name+(es?' y ':' and ')+mate.name):r.name):'';   /* (Round 174) */
       if(m==='photos'&&r){
         say=es?'Me gustaría fotos nuevas de '+r.name+'.':'I’d like new photos of '+r.name+'.';
         subj=es?'Fotos nuevas de '+r.name:'New photos of '+r.name;
@@ -7286,11 +7324,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
               :(fc?'I’d like to meet '+who+' on FaceTime.':'I’d like to come and meet '+who+' in person.');
         subj=es?(fc?'Conocer a '+who+' por FaceTime':'Conocer a '+who+' en persona'):(fc?'Meet '+who+' on FaceTime':'Meet '+who+' in person');
       } else {
-        say=es?{reserve:'Me gustaría reservar a '+r.name+'.',buy:'Me gustaría comprar a '+r.name+'.',plan:'Me gustaría un plan de pagos para '+r.name+'.'}[m]
-              :{reserve:'I’d like to reserve '+r.name+'.',buy:'I’d like to buy '+r.name+'.',plan:'I’d like a payment plan for '+r.name+'.'}[m];
-        cost=m==='reserve'?(es?'$50 ahora, $'+p+' en total.':'$50 now, $'+p+' in all.'):(es?'$'+p+' en total.':'$'+p+' in all.');
-        subj=es?{reserve:'Reservar a '+r.name,buy:'Comprar a '+r.name,plan:'Plan de pagos para '+r.name}[m]
-               :{reserve:'Reserve '+r.name,buy:'Buy '+r.name,plan:'Payment plan for '+r.name}[m];
+        say=es?{reserve:'Me gustaría reservar a '+both+'.',buy:'Me gustaría comprar a '+both+'.',plan:'Me gustaría un plan de pagos para '+both+'.'}[m]
+              :{reserve:'I’d like to reserve '+both+'.',buy:'I’d like to buy '+both+'.',plan:'I’d like a payment plan for '+both+'.'}[m];
+        cost=q?(m==='reserve'?(es?'$100 ahora, $'+q.two+' en total por los dos.':'$100 now, $'+q.two+' in all for the two.')
+                :m==='buy'?(es?'$'+q.two+' en total por los dos.':'$'+q.two+' in all for the two.'):(es?'$'+q.sum+' en total.':'$'+q.sum+' in all.'))
+              :(m==='reserve'?(es?'$50 ahora, $'+p+' en total.':'$50 now, $'+p+' in all.'):(es?'$'+p+' en total.':'$'+p+' in all.'));
+        subj=es?{reserve:'Reservar a '+both,buy:'Comprar a '+both,plan:'Plan de pagos para '+both}[m]
+               :{reserve:'Reserve '+both,buy:'Buy '+both,plan:'Payment plan for '+both}[m];
       }
       var lines=[(es?'¡Hola, William! ':'Hi William! ')+say];
       if(cost) lines.push(cost);
@@ -8252,7 +8292,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
 
     function rabbitFromHash(){
-      var m=/^#r-(.+?)(?:~(?:reserve|buy|plan|visit))?$/.exec(location.hash||'');   /* (Round 145) ~reserve: its sheet */
+      var m=/^#r-(.+?)(?:~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?)?$/.exec(location.hash||'');   /* (Round 145) ~reserve: its sheet; (Round 174) +coconut: the second rabbit */
       if(!m) return null;
       var want=rslug(decodeURIComponent(m[1]));
       for(var i=0;i<RABBITS.length;i++)
@@ -8515,9 +8555,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       ev.preventDefault();
       if(vWhyPanel&&vWhyPanel.hidden&&vWhy) vWhy.click();   /* the row opens as a tap on it would; never shut from here */
       setTimeout(function(){
+        if(vWhy) openSettle(vWhy);
         var t=(vHist&&!vHist.hidden&&vHist.textContent.trim())?vHist:vDeal; if(!t) return;
         var sc=vScroller(), foot=vw.querySelector('.viewer-foot'), fl=foot?foot.getBoundingClientRect().top:innerHeight;
-        var dy=t.getBoundingClientRect().bottom-(fl-12); if(dy>0){ if(sc) sc.scrollTop+=dy; else window.scrollBy(0,dy); }
+        var dy=t.getBoundingClientRect().bottom-(fl-12);
+        if(dy>0){ var e=sc||document.documentElement, b=e.style.scrollBehavior; e.style.scrollBehavior='auto'; if(sc) sc.scrollTop+=dy; else window.scrollBy(0,dy); e.style.scrollBehavior=b; }
         t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(e){}
       }, 320);
     });
