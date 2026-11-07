@@ -1975,6 +1975,10 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pairrec b{font-weight:600;color:var(--ink)}
 .pairrec .pairlead b{display:block}
 
+.pairlead .pair-two{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.pairlead .pair-two .faces{padding-left:0}
+.pairlead .pair-two b{display:block;min-width:0}
+
 .pairrec .pairmore{margin:8px 0 0;padding-left:8px;font-size:13.5px;white-space:normal}
 .pairrec .pairmore .pm-t{text-wrap:balance}
 
@@ -5823,7 +5827,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var label='The price of every pair';
     var bundled=all.filter(function(x){ return bundleOf(r,x)>0; });
     var lead=(bundled.length&&bundled.length===all.length)
-      ? '<b>Both together: $'+bundleOf(r,bundled[0])+'.</b> A special of its own, not the usual 20% off the second'+(bundleRec(r,bundled[0]).why?': '+esc(String(bundleRec(r,bundled[0]).why).replace(/[.!]+$/,'')):'')+'. Bought at the same time, you\u00a0save\u00a0$'+(mine+priceOf(bundled[0])-bundleOf(r,bundled[0]))+'.'
+      ? '<span class="pair-two"><span class="faces" aria-hidden="true">'+faceImg(r,26)+faceImg(bundled[0],26)+'</span><b>With '+esc(bundled[0].name)+': $'+bundleOf(r,bundled[0])+' for the\u00a0two.</b></span> A special of its own, not the usual 20% off the second'+(bundleRec(r,bundled[0]).why?': '+esc(String(bundleRec(r,bundled[0]).why).replace(/[.!]+$/,'')):'')+'. Bought at the same time, you\u00a0save\u00a0$'+(mine+priceOf(bundled[0])-bundleOf(r,bundled[0]))+'.'
       : '<b>Two together: the second is '+PAIR_OFF+'% off.</b> Any two qualify. You\u00a0save\u00a0'+saving.replace(/ /g,'\u00a0')+'.'+
         (bundled.length?(' '+esc(r.name)+' and '+esc(bundled[0].name)+' at the same\u00a0time: $'+bundleOf(r,bundled[0])+'.'):'');
     var kick=(bundled.length&&bundled.length===all.length)?('<small class="pair-kick"><span class="pair-mark">'+PAIR_GLYPH+'A pair special</span></small>'):'<small>A pair</small>';
