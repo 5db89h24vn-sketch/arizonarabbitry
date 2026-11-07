@@ -1239,7 +1239,8 @@ const CHECKED = "2026-10-27";   /* his tap on his list, 27 Oct 2026, 11:52am Tuc
    10:19pm, "make sure it's obvious that the $500 pair price is different from the 20%, and it's a separate special
    offer because of stock being tight on my end, and make sure it's advertised as well with its own unique icon". */
 const BUNDLES = [
-  { names: ["Coconut", "Snowcone"], price: 500, why: "making room for the babies on the way", on: "2026-11-05" }
+  /* (7 Nov 2026, 3:20pm, his words: "make this special $440 now. I feel like that's a more compelling special and looks better on paper") $500 from 5 Nov to 7 Nov */
+  { names: ["Coconut", "Snowcone"], price: 440, why: "making room for the babies on the way", on: "2026-11-07" }
 ];
 
 const RABBITS = [

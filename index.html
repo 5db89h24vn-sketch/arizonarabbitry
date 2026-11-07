@@ -1999,6 +1999,15 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pairmath .pm-sum{border-top:1px solid var(--line);margin-top:4px;padding-top:7px;font-weight:600}
 .pairmath .pm-sum small{font-weight:500}
 .pairmath .pm-sum .sparkg{width:13px;height:13px;vertical-align:-2px;margin-right:3px}
+
+.pairmath .pm-sub{border-top:1px dashed var(--line);margin-top:4px;padding-top:7px;color:var(--ink-soft)}
+.pairmath .pm-disc .pm-amt{color:var(--brick-dk);font-weight:600}
+.pairmath .pm-disc .sparkg{width:13px;height:13px;vertical-align:-2px;margin-right:4px;color:var(--brick-dk)}
+.pairmath .pm-total{border-top:1px solid var(--line);margin-top:4px;padding-top:7px;font-weight:700;font-size:15.5px}
+.pairmath .pm-compare{margin:8px 0 2px;padding-top:6px;border-top:1px dashed var(--line)}
+.pairmath .pm-usual{color:var(--ink-soft);font-size:13.5px}
+.pairmath .pm-this{font-size:13.5px;font-weight:600}
+.pairmath .pm-why{margin:4px 0 0;font-size:13px;line-height:1.4;color:var(--brick-dk);font-weight:600}
 .vmoney .vtwo[hidden],.vmoney .vtwo-b[hidden],.pickbar[hidden]{display:none}   
 .sparkg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
 .deal .deal-pair .sparkg{display:inline-block;width:14px;height:14px;vertical-align:-3px;margin:0 3px 0 1px}
@@ -2016,7 +2025,29 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pairhero[hidden],.viewer.vpair .viewer-stage,.viewer.vpair .viewer-gallery{display:none}
 .viewer.vpair .viewer-media{background:var(--paper-2)}
 .pairhero .ph-row{display:flex;align-items:flex-start;justify-content:center;gap:6px;max-width:420px;margin:0 auto}
-.pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none}
+.pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pairhero .ph-one:focus-visible .ph-face{outline:2px solid var(--brick-dk);outline-offset:4px}
+
+.qlook{position:fixed;inset:0;z-index:140;display:flex;align-items:flex-end;justify-content:center;background:rgba(24,20,18,.55)}
+.qlook[hidden]{display:none}
+.qlook-card{position:relative;width:100%;max-width:560px;max-height:90vh;overflow:auto;overscroll-behavior:contain;background:var(--paper);color:var(--ink);border-radius:20px 20px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.25);padding-bottom:max(18px,env(safe-area-inset-bottom))}
+@media(min-width:761px){ .qlook{align-items:center} .qlook-card{border-radius:20px;max-height:86vh} }
+.qlook .ql-strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:var(--paper-2)}
+.qlook .ql-strip::-webkit-scrollbar{display:none}
+.qlook .ql-strip img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;scroll-snap-align:start;display:block}
+.qlook .ql-dots{display:flex;justify-content:center;gap:6px;margin:10px 0 0}
+.qlook .ql-dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.qlook .ql-dots i.on{background:var(--ink-soft)}
+.qlook .ql-body{padding:12px 20px 0}
+.qlook .ql-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.qlook .ql-name{margin:0;font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15}
+.qlook .ql-price{font-family:var(--serif);font-size:20px;white-space:nowrap}
+.qlook .ql-price s{color:var(--ink-faint);font-size:.8em;margin-right:4px}
+.qlook .ql-meta{margin:6px 0 0;color:var(--ink-soft);font-size:15px;line-height:1.4}
+.qlook .ql-meta .u{white-space:nowrap}
+.qlook .ql-note{margin:10px 0 0;font-size:16px;line-height:1.5}
+.qlook .ql-more{margin:14px 0 0}
+.qlook .ql-x{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(253,250,245,.92);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .pairhero .ph-face{display:block;width:min(128px,34vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--paper),0 6px 18px rgba(0,0,0,.18);background:var(--paper)}
 .pairhero .ph-face img,.pairhero .ph-face .face-none{display:block;width:100%;height:100%;object-fit:cover}
 .pairhero .ph-name{margin:10px 0 0;font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.2}
@@ -3512,7 +3543,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     </div>
 
     <div class="doors" role="group" aria-label="The news and the litters">
-      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-11-06">6 Nov</time>. Two whites, $500 together. Pecan went home.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-11-07">7 Nov</time>. Two whites, now $440 together.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">Twelve so far. The newest was born 5 November.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
@@ -5893,6 +5924,39 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function faceImg(r,px){ var s=faceSrc(r);
     return s?'<img src="'+esc(s)+'"'+sizedAttrs(s,px+'px')+' alt="" loading="lazy" width="'+px+'" height="'+px+'">'
             :'<i class="face-none"></i>'; }
+
+(function(){ function qlInit(){
+  var ql=document.getElementById('qlook'); if(!ql) return;
+  var strip=document.getElementById('qlStrip'), dots=document.getElementById('qlDots'), x=document.getElementById('qlX'), last=null;
+  function es(){ return document.documentElement.lang==='es'; }
+  function shut(){ if(ql.hidden) return; ql.hidden=true; strip.innerHTML=''; if(last&&last.focus) last.focus(); }
+  function open(r){
+    var pics=(Array.isArray(r.photos)?r.photos:[]).map(function(p){ return p&&p.src; }).filter(function(s){ return s&&realPhoto(s); });
+    if(!pics.length&&faceSrc(r)) pics=[faceSrc(r)];
+    strip.innerHTML=pics.map(function(s,i){ return '<img src="'+esc(s)+'"'+sizedAttrs(s,'(min-width:761px) 560px, 100vw')+' alt="'+esc(r.name+(pics.length>1?(' '+(i+1)+'/'+pics.length):''))+'"'+(i?' loading="lazy"':'')+'>'; }).join('');
+    dots.innerHTML=pics.length>1?pics.map(function(_,i){ return '<i'+(i?'':' class="on"')+'></i>'; }).join(''):'';
+    strip.scrollLeft=0;
+    document.getElementById('qlName').textContent=r.name;
+    document.getElementById('qlPrice').innerHTML=priceHTML(r);
+    var age=r.dob?ageAt(r.dob,todayISO()):'';
+    document.getElementById('qlMeta').innerHTML=[r.breed].concat(String(sexColour(r)||'').split(' · ')).concat(age?[age]:[]).filter(Boolean).map(function(f,i){ return '<span class="u">'+(i?'· ':'')+esc(f)+'</span>'; }).join(' ');
+    var n=document.getElementById('qlNote'); n.textContent=r.note||''; n.hidden=!r.note;
+    var m=document.getElementById('qlMore'); m.setAttribute('href','#r-'+addrOf(r)); m.firstChild.nodeValue=es()?('El anuncio de '+r.name):('All about '+r.name);
+    ql.hidden=false; x.focus();
+  }
+  strip.addEventListener('scroll',function(){ var w=strip.clientWidth||1, k=Math.round(strip.scrollLeft/w), d=dots.children; for(var i=0;i<d.length;i++) d[i].className=(i===k)?'on':''; },{passive:true});
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('#viewerPairHero .ph-one[data-ql]');
+    if(b){ e.preventDefault(); var a=b.getAttribute('data-ql'), r=null;
+      for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===a){ r=RABBITS[i]; break; }
+      if(r){ last=b; open(r); } return; }
+    if(!ql.hidden&&(e.target===ql||e.target===x)){ e.preventDefault(); shut(); }
+    if(!ql.hidden&&e.target.closest&&e.target.closest('#qlMore')){ ql.hidden=true; strip.innerHTML=''; }
+  });
+  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ql.hidden){ e.stopPropagation(); e.preventDefault(); shut(); } },true);
+  window.addEventListener('hashchange',function(){ if(!ql.hidden){ ql.hidden=true; strip.innerHTML=''; } });
+  } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',qlInit); else qlInit(); })();
+
   function bundleRec(a,b){
     if(typeof BUNDLES==='undefined'||!BUNDLES||!a||!b||a.status!=='available'||b.status!=='available') return null;
     for(var i=0;i<BUNDLES.length;i++){ var n=BUNDLES[i].names||[];
@@ -8213,7 +8277,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vw) vw.classList.toggle('vpair',!!vWith);
       if(ph){ ph.hidden=!vWith;
         if(vWith){ var es2=gsES(), pa=+priceOf(r), pb=+priceOf(vWith), q2=gsQuote(r,vWith), cutX=q2.bundle?null:((pb<pa)?vWith:((pa<pb)?r:vWith));
-          var one=function(x,px){ var c=(cutX===x); return '<a class="ph-one" href="#r-'+addrOf(x)+(x===r?'':'+'+addrOf(r))+'"><span class="ph-face">'+faceImg(x,128)+'</span><span class="ph-name">'+esc(x.name)+'</span><span class="ph-price">'+(c?('<s>$'+px+'</s> $'+(px-q2.off)):('$'+px))+'</span>'+(c?'<span class="ph-tag">'+(es2?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</a>'; };
+          var one=function(x,px){ var c=(cutX===x); return '<button type="button" class="ph-one" data-ql="'+esc(addrOf(x))+'" aria-label="'+esc((es2?'Ver a ':'A closer look at ')+x.name)+'"><span class="ph-face">'+faceImg(x,128)+'</span><span class="ph-name">'+esc(x.name)+'</span><span class="ph-price">'+(c?('<s>$'+px+'</s> $'+(px-q2.off)):('$'+px))+'</span>'+(c?'<span class="ph-tag">'+(es2?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</button>'; };
           var mid=q2.bundle?('<span class="ph-mid ph-special">'+SPECIAL_GLYPH+'<small>'+(es2?'Oferta especial':'Special')+'</small></span>'):'<span class="ph-mid"><svg class="pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>';
           ph.innerHTML='<div class="ph-row">'+one(r,pa)+mid+one(vWith,pb)+'</div>'; } }
       if(vCtl) vCtl.setAttribute('data-name',r.name);
@@ -8729,11 +8793,17 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(pm){ pm.hidden=!(sell&&mate);
           if(!pm.hidden){ var es1=gsES(), first=vConfirm?vConfirm:r, second=vConfirm?r:vWith, pA=+priceOf(first), pB=+priceOf(second), q1=gsQuote(first,second);
             var cut=q1.bundle?null:((pB<pA)?second:((pA<pB)?first:second));
-            var tagCut=es1?('20%\u00a0menos, '+((pA===pB)?'el segundo':'el precio menor')):('20%\u00a0off, '+((pA===pB)?'the second':'the lower price'));
-            var off20=Math.round(Math.min(pA,pB)*gsPairOff()/100);   /* ROUND 181b (R181b-2): with a special neither takes the 20%; the line says what the 20% would have been */
-            var tagSum=q1.bundle?(es1?('Oferta especial, $'+q1.off+' menos.'+(off20!==q1.off?' El '+gsPairOff()+'% en uno serían $'+off20+'.':'')):('A special, $'+q1.off+' off.'+(off20!==q1.off?' '+gsPairOff()+'% off one would be $'+off20+'.':''))):(es1?('Ahorra $'+q1.off):('You save $'+q1.off));
-            var pmRow=function(x,px){ var here=(cut===x); return '<p class="pm-row'+(here?' pm-cut':'')+'"><span class="pm-name">'+esc(x.name)+(here?'<small>'+tagCut+'</small>':'')+'</span><span class="pm-amt">'+(here?('<s>$'+px+'</s> $'+(px-q1.off)):('$'+px))+'</span></p>'; };
-            pm.innerHTML=pmRow(first,pA)+pmRow(second,pB)+'<p class="pm-row pm-sum"><span class="pm-name">'+(es1?'Juntos':'Together')+'<small>'+(q1.bundle?SPECIAL_GLYPH:'')+tagSum+'</small></span><span class="pm-amt"><s>$'+q1.sum+'</s> $'+q1.two+'</span></p>'; } }
+            var off20=Math.round(Math.min(pA,pB)*gsPairOff()/100), same=(pA===pB);
+            var pmRow=function(x,px){ return '<p class="pm-row"><span class="pm-name">'+esc(x.name)+'</span><span class="pm-amt">$'+px+'</span></p>'; };
+            var discName=q1.bundle?(SPECIAL_GLYPH+(es1?'La oferta especial de los dos':'The special for the two'))
+              :(es1?('20% menos en '+(cut?esc(cut.name):'')+', '+(same?'el segundo':'el precio menor')):('20% off '+(cut?esc(cut.name):'')+', '+(same?'the second':'the lower price')));
+            pm.innerHTML=pmRow(first,pA)+pmRow(second,pB)
+              +'<p class="pm-row pm-sub"><span class="pm-name">'+(es1?'Los dos a precio completo':'Both at full price')+'</span><span class="pm-amt">$'+q1.sum+'</span></p>'
+              +'<p class="pm-row pm-disc'+(cut?' pm-cut':'')+'"><span class="pm-name">'+discName+'</span><span class="pm-amt">−$'+q1.off+'</span></p>'
+              +'<p class="pm-row pm-total"><span class="pm-name">'+(es1?'Usted paga':'You pay')+'</span><span class="pm-amt">$'+q1.two+'</span></p>'
+              +((q1.bundle&&off20<q1.off)?('<div class="pm-compare"><p class="pm-row pm-usual"><span class="pm-name">'+(es1?('Con el '+gsPairOff()+'% de siempre en uno'):('With the usual '+gsPairOff()+'% off one'))+'</span><span class="pm-amt">$'+(q1.sum-off20)+'</span></p>'
+                +'<p class="pm-row pm-this"><span class="pm-name">'+(es1?'Con esta oferta especial':'With this special')+'</span><span class="pm-amt">$'+q1.two+'</span></p>'
+                +'<p class="pm-why">'+(es1?('La oferta especial le ahorra $'+(q1.off-off20)+' más.'):('The special saves you $'+(q1.off-off20)+' more.'))+'</p></div>'):''); } }
         var bmSell=!!(bm&&gsCan(bm));
         if(tw&&twb&&adb){
           var twt=twb.querySelector('.vtwo-t')||twb, adt=adb.querySelector('.vtwo-t')||adb;
@@ -9646,5 +9716,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   if (RM.addEventListener) RM.addEventListener('change', function () { if (RM.matches && playing) stop(playing); });
   window.__kickerMarks = marks;   // for the checks only
 })();</script>
+
+<div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><button type="button" class="ql-x" id="qlX" aria-label="Close">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">Full listing<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
 </body>
 </html>
