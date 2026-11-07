@@ -1988,6 +1988,17 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .vmoney .vtwo-b .vti{flex:none;width:18px;height:18px;color:currentColor}
 
 .vmoney .vtwo{display:flex;flex-direction:column;gap:8px}
+
+.vmoney .pairmath{margin:0 0 10px;padding:9px 12px 8px;border-radius:10px;background:var(--paper-2)}
+.vmoney .pairmath[hidden]{display:none}
+.pairmath .pm-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0;padding:3px 0;font-size:14px;line-height:1.35;color:var(--ink)}
+.pairmath .pm-name{min-width:0}
+.pairmath .pm-name small{display:block;font-size:12px;line-height:1.3;color:var(--ink-soft)}
+.pairmath .pm-amt{flex:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pairmath .pm-amt s{color:var(--ink-faint);margin-right:2px}
+.pairmath .pm-sum{border-top:1px solid var(--line);margin-top:4px;padding-top:7px;font-weight:600}
+.pairmath .pm-sum small{font-weight:500}
+.pairmath .pm-sum .sparkg{width:13px;height:13px;vertical-align:-2px;margin-right:3px}
 .vmoney .vtwo[hidden],.vmoney .vtwo-b[hidden],.pickbar[hidden]{display:none}   
 .sparkg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
 .deal .deal-pair .sparkg{display:inline-block;width:14px;height:14px;vertical-align:-3px;margin:0 3px 0 1px}
@@ -1996,7 +2007,10 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .viewer-head .vtwo-faces img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--paper);position:relative;flex:none}
 .viewer-head .vtwo-faces img+img{margin-left:-10px}
 .vprice .fortwo{display:block;font-size:.72rem;font-weight:500;color:var(--ink-soft);letter-spacing:0}
-.pickbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--paper-2)}
+.pickbar{display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--paper-2)}   
+.pickbar .pickbar-in{flex:0 0 auto;width:100%}   
+.chip .chev.left{transform:rotate(135deg);margin:0 0 0 1px}
+.chip:hover .chev.left,.chip:focus-visible .chev.left{transform:rotate(135deg) translate(2px,2px)}
 .pickbar-in{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 240px}
 .pickbar-in .vti{flex:none;width:22px;height:22px;color:var(--brick-dk)}
 .pickbar-t{margin:0;font-weight:600;color:var(--ink);line-height:1.3}
@@ -3441,8 +3455,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
 <section id="available" style="padding-top:0">
   <div class="wrap">
-    
-    <div class="pickbar" id="pickbar" hidden><div class="pickbar-in"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><p class="pickbar-t" id="pickbarT" tabindex="-1"></p></div><a class="chip pickbar-no" id="pickbarNo" href="#available">Never mind<i class="chev" aria-hidden="true"></i></a></div>
+
+    <div class="pickbar" id="pickbar" hidden><a class="chip pickbar-no" id="pickbarNo" href="#available"><i class="chev left" aria-hidden="true"></i>Back</a><div class="pickbar-in"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><p class="pickbar-t" id="pickbarT" tabindex="-1"></p></div></div>
     <div class="avail-head">
       <div>
         <h2 style="margin-bottom:8px">Meet the rabbits</h2>
@@ -4653,6 +4667,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <p class="vready" id="viewerReady" hidden></p>
       <div class="viewer-mark" id="viewerMark" hidden></div>
       <div class="vmoney" id="viewerMoney" hidden>
+        
+        <div class="pairmath" id="viewerPairMath" hidden></div>
         <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">The $50 deposit counts toward the price.</b><b class="vt-one" hidden>No deposit at this price.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Two together:</b> the second is 20%&nbsp;off.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
 
         <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span class="vtwo-t">A special</span></a><a class="btn btn-tonal vtwo-b" id="viewerAddB" href="#contact" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Add a second rabbit</span></a></p>
@@ -8364,7 +8380,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       pickFor=r;
       var root=document.documentElement, bar=document.getElementById('pickbar'), bt=document.getElementById('pickbarT'), no=document.getElementById('pickbarNo');
       root.classList.add('pick'); root.setAttribute('data-pick',addrOf(r));
-      if(bar){ bar.hidden=false; if(bt) bt.textContent=gsES()?('Elija un segundo conejo para ir con '+r.name+'. El segundo tiene '+gsPairOff()+'% de descuento.'):('Pick a second rabbit to go with '+r.name+'. The second is '+gsPairOff()+'% off.'); if(no){ no.setAttribute('href','#r-'+addrOf(r)); no.firstChild.nodeValue=gsES()?'Mejor no':'Never mind'; } }
+      if(bar){ bar.hidden=false; if(bt) bt.textContent=gsES()?('Elija un segundo conejo para ir con '+r.name+'. El segundo tiene '+gsPairOff()+'% de descuento.'):('Pick a second rabbit to go with '+r.name+'. The second is '+gsPairOff()+'% off.'); if(no){ no.setAttribute('href','#r-'+addrOf(r)); no.innerHTML='<i class="chev left" aria-hidden="true"></i>'+esc(gsES()?('Volver a '+r.name):('Back to '+r.name)); } }   /* ROUND 181 (R181-1): the way back says where it goes */
       var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
       for(var i=0;i<cards.length;i++){ var c=cards[i], x=rabbitByAddr(c.getAttribute('data-rid')), lk=c.querySelector('.bunny-link'), old=c.querySelector('.pickbtn'), oldu=c.querySelector('.pick-after');
         if(old) old.parentNode.removeChild(old); if(oldu) oldu.parentNode.removeChild(oldu);
@@ -8665,18 +8681,27 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var sell=gsCan(r), one=gsOne(r);
         vMoney.hidden=!avail;
         var dep=vMoney.querySelector('.vt-dep'), onep=vMoney.querySelector('.vt-one');
-        if(dep) dep.textContent=(sell&&vWith)?('The $100 deposit for the two counts toward the $'+gsQuote(r,vWith).two+'.'):sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.';   /* (Round 180) $50 each */
+        var mate=vWith||vConfirm;   /* ROUND 181: a pair context, the two-rabbit listing or the Confirm listing */
+        if(dep) dep.textContent=(sell&&mate)?('The $100 deposit for the two counts toward the $'+gsQuote(r,mate).two+'.'):sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.';   /* (Round 180) $50 each; (Round 181) the two's on the Confirm listing too */
         if(onep) onep.textContent='No deposit: one payment of $'+p+'.';
         if(vStep) vStep.hidden=!sell;
         if(vHow){ vHow.hidden=!sell; if(!sell&&vHowPanel){ vHowPanel.hidden=true; vHow.setAttribute('aria-expanded','false'); } }
         if(vHowS) vHowS.textContent=(one?'Buy':'Reserve or Buy')+' sends a request; I call you.';
         var vb=vMoney.querySelector('#viewerBundle'), bm=avail?bundleMate(r):null;
-        if(vb){ vb.hidden=!bm;
+        if(vb){ vb.hidden=!bm||!!(sell&&mate);   /* (Round 181) the table says it in a pair context */
           if(bm){ var bd=bundleRec(r,bm), bl=vb.querySelector('.vt-bl'), bs=vb.querySelector('.vt-bs');
             if(bl) bl.innerHTML='With '+esc(bm.name)+': <s>$'+(+priceOf(r)+ +priceOf(bm))+'</s> $'+(+bd.price)+' for the\u00a0two.';   /* (Round 180, his words of 7:21am) the two single prices added up, struck, beside the special's; (R180-9) the pair box's own sentence, one line in his car's column in both languages (listingroomtest); the sparkle says "a special", the button under says the two */
             if(bs) bs.textContent=''; } }
         var mates=(avail&&sell&&!one)?gsMates(r):[], pr=vMoney.querySelector('#viewerPairRule'), tw=vMoney.querySelector('#viewerTwo'), twb=vMoney.querySelector('#viewerTwoB'), adb=vMoney.querySelector('#viewerAddB'), vset=vMoney.querySelector('#viewerPairSet');
-        if(pr) pr.hidden=!(mates.length&&!bm);
+        if(pr) pr.hidden=!(mates.length&&!bm)||!!(sell&&mate);   /* (Round 181) the table says it in a pair context */
+        var pm=vMoney.querySelector('#viewerPairMath');
+        if(pm){ pm.hidden=!(sell&&mate);
+          if(!pm.hidden){ var es1=gsES(), first=vConfirm?vConfirm:r, second=vConfirm?r:vWith, pA=+priceOf(first), pB=+priceOf(second), q1=gsQuote(first,second);
+            var cut=q1.bundle?null:((pB<pA)?second:((pA<pB)?first:second));
+            var tagCut=es1?('20%\u00a0menos, '+((pA===pB)?'el segundo':'el precio menor')):('20%\u00a0off, '+((pA===pB)?'the second':'the lower price'));
+            var tagSum=q1.bundle?(es1?('Oferta especial, $'+q1.off+' menos'):('A special, $'+q1.off+' off')):(es1?('Ahorra $'+q1.off):('You save $'+q1.off));
+            var pmRow=function(x,px){ var here=(cut===x); return '<p class="pm-row'+(here?' pm-cut':'')+'"><span class="pm-name">'+esc(x.name)+(here?'<small>'+tagCut+'</small>':'')+'</span><span class="pm-amt">'+(here?('<s>$'+px+'</s> $'+(px-q1.off)):('$'+px))+'</span></p>'; };
+            pm.innerHTML=pmRow(first,pA)+pmRow(second,pB)+'<p class="pm-row pm-sum"><span class="pm-name">'+(es1?'Juntos':'Together')+'<small>'+(q1.bundle?SPECIAL_GLYPH:'')+tagSum+'</small></span><span class="pm-amt"><s>$'+q1.sum+'</s> $'+q1.two+'</span></p>'; } }
         var bmSell=!!(bm&&gsCan(bm));
         if(tw&&twb&&adb){
           var twt=twb.querySelector('.vtwo-t')||twb, adt=adb.querySelector('.vtwo-t')||adb;
