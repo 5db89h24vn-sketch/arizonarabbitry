@@ -866,8 +866,11 @@ const PARENTS = {
        screen: "this is the one that's being replaced. I forgot we changed the name"). She leaves the
        Producers section; her view stays, since her litter names her, and says so in her record. The
        father of that litter is Odyssey, his word the same minute: "the father is not root beer but it's
-       Odyssey, the Netherlands dwarf" (the litters page said Root Beer from 21 to 30 Oct). */
-    until:   "2026-10-30",
+       Odyssey, the Netherlands dwarf" (the litters page said Root Beer from 21 to 30 Oct).
+       A PRODUCER AGAIN (ROUND 178, 6 Nov 2026): bred to Hot Pants on 6 Nov (his word, 2:13pm: "saffron and hot
+       pants are making a baby today"), and at 7:21pm, with the Producers section on his phone: "make sure that
+       saffron is on here, since she's a producer". The until day of 30 Oct comes off; she is back on the roster
+       beside Butterscotch. */
     note:    "From my first litter: Cinnamony and Frederick's daughter.",
     photos: [
       { src: "photos/mother-saffron-portrait.jpg", date: "2026-10-21" }   /* his photo, 21 Oct 2026, cut to her face */
