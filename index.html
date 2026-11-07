@@ -5855,7 +5855,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     return kick+
       '<p class="pairlead">'+lead+'</p>'+
       ((bundled.length&&bundled.length===all.length)
-        ? '<p class="pairbuy"><a class="btn btn-tonal pairbuy-b" href="#r-'+esc(addrOf(r))+'~buy+'+esc(addrOf(bundled[0]))+'">Buy the two\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'
+        ? '<p class="pairbuy"><a class="btn btn-tonal pairbuy-b" href="#r-'+esc(addrOf(r))+'~buy+'+esc(addrOf(bundled[0]))+'">'+esc(r.name)+' and '+esc(bundled[0].name)+'\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'   /* ROUND 179c: the two names, not "the two" */
         : '')+
       '<button type="button" class="opener pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
         '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
@@ -8593,7 +8593,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(tw&&twb){
           tw.hidden=!mates.length;
           var twt=twb.querySelector('.vtwo-t')||twb;   /* ROUND 179b: the words beside the rings mark */
-          if(mates.length===1){ var q2=gsQuote(r,mates[0]); twt.textContent='Take both\u00a0\u00b7\u00a0$'+q2.two; twb.setAttribute('href','#r-'+addrOf(r)+'~buy+'+addrOf(mates[0])); }
+          if(mates.length===1){ var q2=gsQuote(r,mates[0]); twt.textContent=r.name+' and '+mates[0].name+'\u00a0\u00b7\u00a0$'+q2.two; twb.setAttribute('href','#r-'+addrOf(r)+'~buy+'+addrOf(mates[0])); }
           else if(mates.length){ twt.textContent='Take two\u00a0\u00b7\u00a0the second '+gsPairOff()+'%\u00a0off'; twb.setAttribute('href','#r-'+addrOf(r)+'~reserve+two'); }
         }
         if(sell){
