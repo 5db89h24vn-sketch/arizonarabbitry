@@ -1979,6 +1979,9 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pairlead .pair-two .faces{padding-left:0}
 .pairlead .pair-two b{display:block;min-width:0}
 
+.pairrec .pairbuy{margin:8px 0 0}
+.pairrec .pairbuy-b{font-weight:600}
+
 .pairrec .pairmore{margin:8px 0 0;padding-left:8px;font-size:13.5px;white-space:normal}
 .pairrec .pairmore .pm-t{text-wrap:balance}
 
@@ -5833,6 +5836,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var kick=(bundled.length&&bundled.length===all.length)?('<small class="pair-kick"><span class="pair-mark">'+PAIR_GLYPH+'A pair special</span></small>'):'<small>A pair</small>';
     return kick+
       '<p class="pairlead">'+lead+'</p>'+
+      ((bundled.length&&bundled.length===all.length)
+        ? '<p class="pairbuy"><a class="chip pairbuy-b" href="#r-'+esc(addrOf(r))+'~buy+'+esc(addrOf(bundled[0]))+'">Buy the two\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'
+        : '')+
       '<button type="button" class="opener pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
         '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
         '<span class="pm-t">'+label+'</span></button>'+
@@ -8638,6 +8644,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         askLater([me,them]);   /* ROUND 176b: the frame the lock needs, then the form (his tap of 4:23pm) */
         return;
       }
+      var pb=ev.target.closest&&ev.target.closest('.pairbuy-b');
+      if(pb&&vPair.contains(pb)){ gsTap(pb,ev); return; }
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
