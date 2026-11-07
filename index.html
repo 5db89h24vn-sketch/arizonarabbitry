@@ -2114,6 +2114,10 @@ html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #vi
 .gs[data-mode="visit"] .gs-tovisit,.gs[data-mode="buy"] .gs-tobuy{display:none}
 .gs[data-general] .gs-visit-head,.gs[data-general] .gs-tobuy,.gs[data-general] .gs-tovisit{display:none}
 .gs-face img[src$=".svg"]{object-fit:contain;padding:8px;background:var(--paper-2)}
+
+.gs-face.two{width:auto;height:auto;border-radius:0;background:none;overflow:visible;display:flex;align-items:center}
+.gs-face.two img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--paper);position:relative;flex:none}
+.gs-face.two img+img{margin-left:-12px}
 .gs-form .field{margin-bottom:12px}
 .gs-form label{margin-bottom:5px}
 .gs-form input[type=text],.gs-form input[type=tel]{padding:11px 13px}
@@ -7169,6 +7173,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gs.querySelector('.gs-say-reserve').textContent=q?('$100 now ($50 each), $'+(q.two-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(p-50)+' at pickup (Zelle or cash).');
       var rem=gs.querySelector('.gs-buyset input[value="reserve"]'); rem=rem&&rem.closest('.opt').querySelector('em'); if(rem) rem.textContent=q?'$100':'$50';
       gs.querySelector('.gs-price').textContent='$'+(q?q.two:p);
+      var two=(q&&!visit&&!photos)?mate:null, fh=gs.querySelector('.gs-face'), nm=gs.querySelector('#gsName'), sb=gs.querySelector('.gs-sub');
+      if(two){
+        fh.classList.add('two'); fh.innerHTML=faceImg(r,44)+faceImg(two,44);
+        nm.textContent=r.name+(gsES()?' y ':' and ')+two.name;
+        var breeds=[r.breed,two.breed].filter(Boolean).filter(function(b,i,a){ return a.indexOf(b)===i; }).join(' and ');
+        sb.textContent=[breeds,'$'+q.two+' for the two'].filter(Boolean).join(' · ');   /* no colour: the faces show it, and the line stays one line */
+      } else if(fh.classList.contains('two')){
+        fh.classList.remove('two'); fh.innerHTML=faceImg(r,52);
+        nm.textContent=r.name; sb.textContent=[r.breed,r.colour,'$'+p].filter(Boolean).join(' · ');
+      }
       if(q&&!wb.hidden){
         sm.hidden=false;
         sm.innerHTML=(gsMode==='plan')?'Two on one plan: we set it up\u00a0together.'
