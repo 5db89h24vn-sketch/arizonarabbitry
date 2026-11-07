@@ -1986,6 +1986,30 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .viewer-terms .vt-row[hidden]{display:none}   
 .vmoney .vtwo{margin:10px 0 0}
 .vmoney .vtwo-b .vti{flex:none;width:18px;height:18px;color:currentColor}
+
+.vmoney .vtwo{display:flex;flex-direction:column;gap:8px}
+.vmoney .vtwo[hidden],.vmoney .vtwo-b[hidden],.pickbar[hidden]{display:none}   
+.sparkg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.deal .deal-pair .sparkg{display:inline-block;width:14px;height:14px;vertical-align:-3px;margin:0 3px 0 1px}
+.vmoney .vset{flex-direction:row;flex-wrap:wrap;gap:8px}
+.viewer-head .vtwo-faces{display:inline-flex;align-items:center;vertical-align:middle;margin:0 10px 4px 0}
+.viewer-head .vtwo-faces img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--paper);position:relative;flex:none}
+.viewer-head .vtwo-faces img+img{margin-left:-10px}
+.vprice .fortwo{display:block;font-size:.72rem;font-weight:500;color:var(--ink-soft);letter-spacing:0}
+.pickbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--paper-2)}
+.pickbar-in{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 240px}
+.pickbar-in .vti{flex:none;width:22px;height:22px;color:var(--brick-dk)}
+.pickbar-t{margin:0;font-weight:600;color:var(--ink);line-height:1.3}
+.pickbar-t:focus{outline:none}
+.bunny .pickbtn{display:none}
+html.pick .bunny .bget,html.pick .bunny .bget-note,html.pick .bunny .bget-after,html.pick .bunny .bunny-cta{display:none}
+html.pick .bunny .pickbtn{display:flex;position:relative;z-index:2;margin:10px 0 0;width:100%;box-sizing:border-box;padding:12px 16px;font-weight:600;font-size:15.5px}
+html.pick #main>section:not(#available),html.pick footer,html.pick .mnav,html.pick #nav .nav-links,html.pick #available .avail-head,html.pick #available .waitbox,html.pick #available .avail-foot{display:none}
+html.pick #available{padding-top:12px}
+html.pick .bunny[data-pickhide],html.pick #available .pairfold,html.pick #available .doors,html.pick #available .wl,html.pick #available .rail .lede,html.pick .dock{display:none}   
+html.pick .corner{display:none!important}   
+html.pick #nav .btn,html.pick .bunny .parts{display:none}   
+
 @media(max-width:359px){ .pairrec .pairbuy-b,.vmoney .vtwo-b{font-size:14px;padding:11px 10px} }
 .gs-with.pick{border-radius:10px}
 .gs-with.pick legend{color:var(--brick-dk);font-weight:600}
@@ -2042,6 +2066,7 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
   .pairrec .pairtab thead th{letter-spacing:.06em}
   .pairrec{padding-left:8px;padding-right:8px}
   .pairrec .pairtab .two b{font-size:13px}
+  .pairlead .pair-two b{font-size:12.5px}   
   .kit.kit-face{padding-right:8px}
   .kit span{margin-left:4px}
 }
@@ -3412,6 +3437,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
 <section id="available" style="padding-top:0">
   <div class="wrap">
+    
+    <div class="pickbar" id="pickbar" hidden><div class="pickbar-in"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><p class="pickbar-t" id="pickbarT" tabindex="-1"></p></div><a class="chip pickbar-no" id="pickbarNo" href="#available">Never mind<i class="chev" aria-hidden="true"></i></a></div>
     <div class="avail-head">
       <div>
         <h2 style="margin-bottom:8px">Meet the rabbits</h2>
@@ -4622,9 +4649,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <p class="vready" id="viewerReady" hidden></p>
       <div class="viewer-mark" id="viewerMark" hidden></div>
       <div class="vmoney" id="viewerMoney" hidden>
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">The $50 deposit counts toward the price.</b><b class="vt-one" hidden>No deposit at this price.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Two together:</b> the second is 20%&nbsp;off.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">The $50 deposit counts toward the price.</b><b class="vt-one" hidden>No deposit at this price.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>10%&nbsp;off</b> for military and first&nbsp;responders.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Two together:</b> the second is 20%&nbsp;off.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
 
-        <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Taking two?</span></a></p>
+        <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span class="vtwo-t">A special</span></a><a class="btn btn-tonal vtwo-b" id="viewerAddB" href="#contact" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Add a second rabbit</span></a></p>
+        
+        <p class="vtwo vset" id="viewerPairSet" hidden><a class="chip" id="vsetJust" href="#contact">Just</a><a class="chip" id="vsetChange" href="#contact">Change the second rabbit</a><a class="chip" id="vsetAbout" href="#contact">About</a></p>
       </div>
       
       <p class="viewer-note" id="viewerNote"></p>
@@ -5731,7 +5760,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var more=ends?('$'+now+' until '+longDay(ends,true)):(r.dealStays?'the new price':'');
       var html=units.map(function(t){ return '<span class="deal-why">'+esc(t)+'</span>'; }).join(' ');
       if(more) html+=' <span class="deal-why">· '+esc(more)+'</span>';
-      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+PAIR_GLYPH+'$'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm.name)+'</span>';
+      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+SPECIAL_GLYPH+'<s>$'+esc(priceOf(r)+priceOf(bm))+'</s> $'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm.name)+'</span>';
       return '<p class="deal">'+html+'</p>';
     }
     if(hasPromise(r)){
@@ -5747,7 +5776,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }
       return '<p class="deal"><span class="deal-why">$'+esc(to)+' when '+esc(when)+'</span></p>';
     }
-    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+PAIR_GLYPH+'$'+esc(bundleOf(r,bm2))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm2.name)+'</span></p>'; }
+    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+SPECIAL_GLYPH+'<s>$'+esc(priceOf(r)+priceOf(bm2))+'</s> $'+esc(bundleOf(r,bm2))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm2.name)+'</span></p>'; }
     return '';
   }
   var MARK_SIZES='96px';
@@ -5828,6 +5857,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function bundleOf(a,b){ var bd=bundleRec(a,b); return bd?+bd.price:0; }
   function bundleMate(r){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[]; for(var i=0;i<R.length;i++){ var x=R[i]; if(x&&x!==r&&x.name!==r.name&&bundleRec(r,x)) return x; } return null; }
   var PAIR_GLYPH='<svg class="pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg>';
+  var SPECIAL_GLYPH='<svg class="pairg sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>';
   function bundleByName(x,y){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[];
     var a=R.filter(function(r){ return r&&r.name===x; })[0], b=R.filter(function(r){ return r&&r.name===y; })[0]; return bundleOf(a,b); }
   window.bundleByName=bundleByName;   /* the form's pair figure (pairQuote) reads it */
@@ -5848,14 +5878,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var label='The price of every pair';
     var bundled=all.filter(function(x){ return bundleOf(r,x)>0; });
     var lead=(bundled.length&&bundled.length===all.length)
-      ? '<span class="pair-two"><span class="faces" aria-hidden="true">'+faceImg(r,26)+faceImg(bundled[0],26)+'</span><b>With '+esc(bundled[0].name)+': $'+bundleOf(r,bundled[0])+' for the\u00a0two.</b></span> A special of its own, not the usual 20% off the second'+(bundleRec(r,bundled[0]).why?': '+esc(String(bundleRec(r,bundled[0]).why).replace(/[.!]+$/,'')):'')+'. Bought at the same time, you\u00a0save\u00a0$'+(mine+priceOf(bundled[0])-bundleOf(r,bundled[0]))+'.'
+      ? '<span class="pair-two"><span class="faces" aria-hidden="true">'+faceImg(r,26)+faceImg(bundled[0],26)+'</span><b>With '+esc(bundled[0].name)+': <s>$'+(priceOf(r)+priceOf(bundled[0]))+'</s> $'+bundleOf(r,bundled[0])+' for the\u00a0two.</b></span> A special of its own, not the usual 20% off the second'+(bundleRec(r,bundled[0]).why?': '+esc(String(bundleRec(r,bundled[0]).why).replace(/[.!]+$/,'')):'')+'. Bought at the same time, you\u00a0save\u00a0$'+(mine+priceOf(bundled[0])-bundleOf(r,bundled[0]))+'.'
       : '<b>Two together: the second is '+PAIR_OFF+'% off.</b> Any two qualify. You\u00a0save\u00a0'+saving.replace(/ /g,'\u00a0')+'.'+
         (bundled.length?(' '+esc(r.name)+' and '+esc(bundled[0].name)+' at the same\u00a0time: $'+bundleOf(r,bundled[0])+'.'):'');
     var kick=(bundled.length&&bundled.length===all.length)?('<small class="pair-kick"><span class="pair-mark">'+PAIR_GLYPH+'A pair special</span></small>'):'<small>A pair</small>';
     return kick+
       '<p class="pairlead">'+lead+'</p>'+
       ((bundled.length&&bundled.length===all.length)
-        ? '<p class="pairbuy"><a class="btn btn-tonal pairbuy-b" href="#r-'+esc(addrOf(r))+'~buy+'+esc(addrOf(bundled[0]))+'">'+esc(r.name)+' and '+esc(bundled[0].name)+'\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'   /* ROUND 179c: the two names, not "the two" */
+        ? '<p class="pairbuy"><a class="btn btn-tonal pairbuy-b" href="#r-'+esc(addrOf(r))+'+'+esc(addrOf(bundled[0]))+'">'+SPECIAL_GLYPH+esc(r.name)+' and '+esc(bundled[0].name)+'\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'   /* ROUND 179c: the two names, not "the two"; ROUND 180: the sparkle, and to the two-rabbit listing */
         : '')+
       '<button type="button" class="opener pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
         '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
@@ -7200,7 +7230,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(q&&!wb.hidden){
         sm.hidden=false;
         sm.innerHTML=(gsMode==='plan')?'Two on one plan: we set it up\u00a0together.'
-          :((q.bundle&&typeof PAIR_GLYPH!=='undefined'?PAIR_GLYPH:'')+'<b>'+esc(r.name)+' and '+esc(mate.name)+' together: $'+q.two+'.</b> '+
+          :((q.bundle&&typeof SPECIAL_GLYPH!=='undefined'?SPECIAL_GLYPH:'')+'<b>'+esc(r.name)+' and '+esc(mate.name)+' together: <s>$'+q.sum+'</s> $'+q.two+'.</b> '+
             (q.bundle?'Bought at the same time, you save\u00a0$'+q.off+'.':'The second '+gsPairOff()+'% off: you save\u00a0$'+q.off+'.'));
       } else { sm.hidden=true; sm.innerHTML=''; }
     }
@@ -7287,7 +7317,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }
       if(gs&&!gs.hidden){
         var m=/^#r-(.+)$/.exec(h||'');
-        if(m&&open&&addrOf(shown)===rslug(decodeURIComponent(m[1]))){ gsPushed=false; gsHide(); return true; }
+        if(m&&open&&addrOf(shown)===listAddr(h)&&!viewModeOf(h)){ gsPushed=false; gsHide(); return true; }   /* (Round 180) the two-rabbit listing under its sheet stays as it is */
         gsHide();
       }
       return false;
@@ -7302,7 +7332,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       ev.preventDefault(); gsShow(shown,gsOptOf(to),'tap',a,gsWithOf(to)); return true;
     }
     if(vBuy) vBuy.addEventListener('click',function(ev){ gsTap(vBuy,ev); });
-    if(vTwoB) vTwoB.addEventListener('click',function(ev){ gsTap(vTwoB,ev); });   /* ROUND 179: "Take both" / "Taking two?" */
     function todayHTML(r){
       if(!r||!gsCan(r)) return '';
       var a=addrOf(r), d='';
@@ -8125,15 +8154,19 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     window.addEventListener('resize',function(){ if(vw.classList.contains('open')) fitGal(); });
 
     function openFor(r, force){
+      if(!vFromHash){ vWith=null; vConfirm=null; } vFromHash=false;
       shots=galleryFor(r);
       if(shots.length<2 && !force) return false;
       if(!shots.length) shots=[{src:(r.photo||PLACEHOLDER)}];
       var cover=r.photo||shots[0].src;
       lastFocus=document.activeElement;
       parentOpen=false;
-      vName.textContent=r.name;
+      var pq=vWith?gsQuote(r,vWith):null;
+      var oldFaces=vName.parentNode&&vName.parentNode.querySelector('.vtwo-faces'); if(oldFaces) oldFaces.parentNode.removeChild(oldFaces);
+      vName.textContent=vWith?(r.name+(gsES()?' y ':' and ')+vWith.name):r.name;
+      if(vWith){ var fc=document.createElement('span'); fc.className='vtwo-faces'; fc.setAttribute('aria-hidden','true'); fc.innerHTML=faceImg(r,34)+faceImg(vWith,34); vName.parentNode.insertBefore(fc,vName); }
       if(vCtl) vCtl.setAttribute('data-name',r.name);
-      vPrice.innerHTML=(r.status==='kept')?'':priceHTML(r);   /* a producer has no price (Round 167): the price line is empty, never "$0" */
+      vPrice.innerHTML=(r.status==='kept')?'':(pq?('<s>$'+pq.sum+'</s> $'+pq.two+'<small class="fortwo">'+(gsES()?'por los dos':'for the two')+'</small>'):priceHTML(r));   /* a producer has no price (Round 167): the price line is empty, never "$0" */
       if(vPlan){ vPlan.innerHTML=planMarkHTML(r); vPlan.hidden=!vPlan.textContent; }
       if(vWhy) vWhy.hidden=!(r.status==='available' && priceOf(r));
       whyShut();
@@ -8177,11 +8210,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vCta.textContent=sell?(one?('Buy \u00B7 $'+p):'Reserve \u00B7 $50'):openNow?('Ask about '+r.name):keptHere?('See '+objPronoun(r)+' as a producer'):(anyOpen?'See who is available':'See the next litter first');
       vCta.setAttribute('href',sell?(a+(one?'~buy':'~reserve')):openNow?'#contact':keptHere?('#p-'+r.producer):(anyOpen?'#available':'#waitlist'));
       if(vBuy){ vBuy.hidden=!sell||one; if(sell&&!one){ vBuy.textContent='Buy \u00B7 $'+p; vBuy.setAttribute('href',a+'~buy'); } }
-      if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell&&!one);
+      if(sell&&vWith&&pq){ vCta.textContent='Reserve \u00B7 $100'; vCta.setAttribute('href',a+'~reserve+'+addrOf(vWith)); if(vBuy){ vBuy.hidden=false; vBuy.textContent='Buy \u00B7 $'+pq.two; vBuy.setAttribute('href',a+'~buy+'+addrOf(vWith)); } }
+      if(sell&&vConfirm){ var cq=gsQuote(vConfirm,r); vCta.textContent=(gsES()?'Confirmar a ':'Confirm ')+r.name+'\u00a0\u00b7\u00a0$'+cq.two+(gsES()?' por los dos':' for the two'); vCta.setAttribute('href','#r-'+addrOf(vConfirm)+'+'+addrOf(r)); if(vBuy){ vBuy.hidden=true; } }
+      if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell&&!one&&!vConfirm);
       if(openNow&&!sell) vCta.setAttribute('data-ask',r.name);
       else vCta.removeAttribute('data-ask');
       if(vText){
-        vText.hidden=!openNow||(sell&&!one);
+        vText.hidden=!openNow||(sell&&!one)||!!vConfirm;   /* (Round 180) the Confirm listing has one button */
         if(openNow) vText.setAttribute('href','sms:+15202702827?&body='+encodeURIComponent('Hi William, I\u2019d like to ask about '+r.name+'.'));
       }
       if(vTextBig){ vTextBig.hidden=!openNow||(sell&&!one); vTextBig.setAttribute('aria-expanded','false'); }
@@ -8204,7 +8239,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vw.classList.toggle('solo', shots.length < 2);
       shown = r;
       if(vShare) vShare.setAttribute('aria-label', 'Share ' + r.name);
-      if(gsAddr(location.hash)!==addrOf(r)) writeAddr('#r-' + addrOf(r));   /* (Round 145) its sheet's address names it already */
+      if(listAddr(location.hash)!==addrOf(r)) writeAddr('#r-' + addrOf(r));   /* (Round 145) its sheet's address names it already; (Round 180) so do +mate, ~pick and ~confirm */
       setTimeout(gsSync,0);
       vw.classList.add('open');
       document.body.classList.add('locked');
@@ -8223,6 +8258,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
 
     var lastRouted=location.hash||'', closeOnPop=false, popTimer=0;
+    var vWith=null, vConfirm=null, vFromHash=false;   /* ROUND 180: the mate of a two-rabbit listing; the rabbit a Confirm listing is being paired with; set by the address */
     function writeAddr(addr){
       if(location.hash===addr) return;
       var d=(history.state&&history.state.rv)|0;
@@ -8259,6 +8295,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(kpRoute(h)) return;   /* (Round 144) a baby's card over its parent's page: only the card moves */
       if(gsRoute(h)) return;   /* (Round 145) the sheet over a listing: only the sheet moves */
       if(/^#[rp]-/.test(h)){ pedPop=(ev&&ev.type==='popstate'&&ev.state&&ev.state.ped)?ev.state:null; openFromHash(); }
+      else if(pickFor){ pickClose(); }   /* ROUND 180: any address that is not a listing's leaves the picker (the listing is already shut) */
       else if(vw.classList.contains('open')&&!document.documentElement.classList.contains('vtout')) ((plain||/^#(?:ped|from)-/.test(h))?shut:shutSmooth)();
     }
 
@@ -8318,8 +8355,42 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }catch(e){ clear(); shut(); }
     }
 
+    var pickFor=null;
+    function pickOpen(r){
+      pickFor=r;
+      var root=document.documentElement, bar=document.getElementById('pickbar'), bt=document.getElementById('pickbarT'), no=document.getElementById('pickbarNo');
+      root.classList.add('pick'); root.setAttribute('data-pick',addrOf(r));
+      if(bar){ bar.hidden=false; if(bt) bt.textContent=gsES()?('Elija un segundo conejo para ir con '+r.name+'. El segundo tiene '+gsPairOff()+'% de descuento.'):('Pick a second rabbit to go with '+r.name+'. The second is '+gsPairOff()+'% off.'); if(no){ no.setAttribute('href','#r-'+addrOf(r)); no.firstChild.nodeValue=gsES()?'Mejor no':'Never mind'; } }
+      var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
+      for(var i=0;i<cards.length;i++){ var c=cards[i], x=rabbitByAddr(c.getAttribute('data-rid')), lk=c.querySelector('.bunny-link'), old=c.querySelector('.pickbtn');
+        if(old) old.parentNode.removeChild(old);
+        if(!x||x===r||!gsCan(x)){ c.setAttribute('data-pickhide','1'); c.hidden=true; continue; }
+        var q=gsQuote(r,x), to='#r-'+addrOf(x)+'~confirm+'+addrOf(r);
+        if(lk){ if(!lk.getAttribute('data-home')) lk.setAttribute('data-home',lk.getAttribute('href')); lk.setAttribute('href',to); }
+        var b=document.createElement('a'); b.className='btn btn-tonal pickbtn'; b.setAttribute('href',to); b.innerHTML=esc(x.name)+'\u00a0\u00b7\u00a0<s>$'+q.sum+'</s> $'+q.two+(gsES()?' por los dos':' for the two');
+        var anchor=c.querySelector('.bget-after')||c.querySelector('.bget'); if(anchor&&anchor.parentNode) anchor.parentNode.insertBefore(b,anchor.nextSibling); else c.appendChild(b);
+      }
+      document.body.classList.remove('locked');
+      try{ var html=document.documentElement; var was=html.style.scrollBehavior; html.style.scrollBehavior='auto'; document.getElementById('available').scrollIntoView({block:'start'}); html.style.scrollBehavior=was; }catch(e){}
+      if(bt){ try{ bt.focus({preventScroll:true}); }catch(e){} }
+      return true;
+    }
+    function pickClose(){
+      if(!pickFor) return;
+      pickFor=null;
+      var root=document.documentElement, bar=document.getElementById('pickbar');
+      root.classList.remove('pick'); root.removeAttribute('data-pick');
+      if(bar) bar.hidden=true;
+      var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
+      for(var i=0;i<cards.length;i++){ var c=cards[i], lk=c.querySelector('.bunny-link'), b=c.querySelector('.pickbtn');
+        if(c.getAttribute('data-pickhide')){ c.removeAttribute('data-pickhide'); c.hidden=false; }
+        if(lk&&lk.getAttribute('data-home')){ lk.setAttribute('href',lk.getAttribute('data-home')); lk.removeAttribute('data-home'); }
+        if(b) b.parentNode.removeChild(b);
+      }
+    }
     railEl.addEventListener('click',function(ev){
       var card=ev.target.closest('.bunny[data-shots]'); if(!card) return;
+      if(pickFor){ var pl=card.querySelector('.bunny-link'); if(pl){ ev.preventDefault(); stepTo(pl.getAttribute('href')); } return; }
       if(ev.target.closest('.bunny-cta')) return;     /* Ask goes to the form */
       var gbuy=ev.target.closest('.bget a'); if(gbuy) writeAddr(gbuy.getAttribute('href'));   /* (Round 145) */
       var rid=card.getAttribute('data-rid');
@@ -8330,7 +8401,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
 
     function rabbitFromHash(){
-      var m=/^#r-(.+?)(?:~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?)?$/.exec(location.hash||'');   /* (Round 145) ~reserve: its sheet; (Round 174) +coconut: the second rabbit */
+      var m=/^#r-(.+?)(?:\+[a-z0-9-]+)?(?:~(?:reserve|buy|plan|visit|photos|pick|confirm)(?:\+[a-z0-9-]+)?)?$/.exec(location.hash||'');   /* (Round 145) ~reserve: its sheet; (Round 174) +coconut: the second rabbit; (Round 180) #r-me+mate the two-rabbit listing, ~pick the picker, ~confirm+me the Confirm listing */
       if(!m) return null;
       var want=rslug(decodeURIComponent(m[1]));
       for(var i=0;i<RABBITS.length;i++)
@@ -8340,6 +8411,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       pool.sort(function(a,b){ return String(a.dob||'').localeCompare(String(b.dob||'')); });
       return pool[0];
     }
+    function listAddr(h){ var m=/^#r-([^~+]+)/.exec(h||''); return m?rslug(decodeURIComponent(m[1])):null; }
+    function viewModeOf(h){ var m=/~(pick|confirm)(?:\+([a-z0-9-]+))?$/.exec(h||''); return m?{mode:m[1],with:m[2]||''}:null; }
+    function pairWithOf(h){ var m=/^#r-[^~+]+\+([a-z0-9-]+)$/.exec(h||''); return m?m[1]:''; }
+    function rabbitByAddr(a){ for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===a) return RABBITS[i]; return null; }
     function parentFromHash(){
       var m=/^#p-([a-z0-9-]+)(?:~[a-z0-9-]+)?$/.exec(location.hash||'');   /* (Round 144) ~<baby>: its card over the parent's page */
       if(!m) return null;
@@ -8354,7 +8429,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(vw.classList.contains('open')) shut();
         return false;
       }
+      var vm=viewModeOf(location.hash||'');
+      if(vm&&vm.mode==='pick'&&gsCan(r)){ if(vw.classList.contains('open')) shut(true); return pickOpen(r); }
+      pickClose();
+      vWith=null; vConfirm=null;
+      if(vm&&vm.mode==='confirm'){ var cw=rabbitByAddr(vm.with); if(cw&&cw!==r&&gsCan(cw)&&gsCan(r)) vConfirm=cw; }
+      else { var pw=rabbitByAddr(pairWithOf(location.hash||'')); if(pw&&pw!==r&&gsCan(pw)&&gsCan(r)) vWith=pw; }
       if(vw.classList.contains('open')) shut(true);
+      vFromHash=true;
       return openFor(r,true);
     }
     if(!openFromHash()) releaseCards();
@@ -8578,7 +8660,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var sell=gsCan(r), one=gsOne(r);
         vMoney.hidden=!avail;
         var dep=vMoney.querySelector('.vt-dep'), onep=vMoney.querySelector('.vt-one');
-        if(dep) dep.textContent=sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.';
+        if(dep) dep.textContent=(sell&&vWith)?('The $100 deposit for the two counts toward the $'+gsQuote(r,vWith).two+'.'):sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.';   /* (Round 180) $50 each */
         if(onep) onep.textContent='No deposit: one payment of $'+p+'.';
         if(vStep) vStep.hidden=!sell;
         if(vHow){ vHow.hidden=!sell; if(!sell&&vHowPanel){ vHowPanel.hidden=true; vHow.setAttribute('aria-expanded','false'); } }
@@ -8586,15 +8668,24 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         var vb=vMoney.querySelector('#viewerBundle'), bm=avail?bundleMate(r):null;
         if(vb){ vb.hidden=!bm;
           if(bm){ var bd=bundleRec(r,bm), bl=vb.querySelector('.vt-bl'), bs=vb.querySelector('.vt-bs');
-            if(bl) bl.textContent='$'+(+bd.price)+' for the two';   /* the bold short, so it never breaks (orphantest at 360) */
-            if(bs) bs.textContent='with '+bm.name+', a\u00a0special.'; } }   /* one line on a computer and in his car (listingroomtest); the pair box says the rest */
-        var mates=(avail&&sell&&!one)?gsMates(r):[], pr=vMoney.querySelector('#viewerPairRule'), tw=vMoney.querySelector('#viewerTwo'), twb=vMoney.querySelector('#viewerTwoB');
+            if(bl) bl.innerHTML='With '+esc(bm.name)+': <s>$'+(+priceOf(r)+ +priceOf(bm))+'</s> $'+(+bd.price)+' for the\u00a0two.';   /* (Round 180, his words of 7:21am) the two single prices added up, struck, beside the special's; (R180-9) the pair box's own sentence, one line in his car's column in both languages (listingroomtest); the sparkle says "a special", the button under says the two */
+            if(bs) bs.textContent=''; } }
+        var mates=(avail&&sell&&!one)?gsMates(r):[], pr=vMoney.querySelector('#viewerPairRule'), tw=vMoney.querySelector('#viewerTwo'), twb=vMoney.querySelector('#viewerTwoB'), adb=vMoney.querySelector('#viewerAddB'), vset=vMoney.querySelector('#viewerPairSet');
         if(pr) pr.hidden=!(mates.length&&!bm);
-        if(tw&&twb){
-          tw.hidden=!mates.length;
-          var twt=twb.querySelector('.vtwo-t')||twb;   /* ROUND 179b: the words beside the rings mark */
-          if(mates.length===1){ var q2=gsQuote(r,mates[0]); twt.textContent=r.name+' and '+mates[0].name+'\u00a0\u00b7\u00a0$'+q2.two; twb.setAttribute('href','#r-'+addrOf(r)+'~buy+'+addrOf(mates[0])); }
-          else if(mates.length){ twt.textContent='Take two\u00a0\u00b7\u00a0the second '+gsPairOff()+'%\u00a0off'; twb.setAttribute('href','#r-'+addrOf(r)+'~reserve+two'); }
+        var bmSell=!!(bm&&gsCan(bm));
+        if(tw&&twb&&adb){
+          var twt=twb.querySelector('.vtwo-t')||twb, adt=adb.querySelector('.vtwo-t')||adb;
+          twb.hidden=!(bmSell&&!vWith&&!vConfirm); adb.hidden=!(mates.length&&!vWith&&!vConfirm);
+          tw.hidden=twb.hidden&&adb.hidden;
+          if(!twb.hidden){ twt.textContent=r.name+(gsES()?' y ':' and ')+bm.name+'\u00a0\u00b7\u00a0$'+bundleOf(r,bm); twb.setAttribute('href','#r-'+addrOf(r)+'+'+addrOf(bm)); }
+          if(!adb.hidden){ adt.textContent=gsES()?('Un segundo conejo\u00a0\u00b7\u00a0'+gsPairOff()+'%\u00a0menos'):('Add a second rabbit\u00a0\u00b7\u00a0'+gsPairOff()+'%\u00a0off'); adb.setAttribute('href','#r-'+addrOf(r)+'~pick'); }
+        }
+        if(vset){
+          vset.hidden=!(vWith&&sell);
+          if(!vset.hidden){ var sj=vset.querySelector('#vsetJust'), sc=vset.querySelector('#vsetChange'), sa=vset.querySelector('#vsetAbout');
+            sj.innerHTML=esc(gsES()?('Solo '+r.name):('Just '+r.name))+'<i class="chev" aria-hidden="true"></i>'; sj.setAttribute('href','#r-'+addrOf(r));
+            sc.innerHTML=(gsES()?'Cambiar el segundo conejo':'Change the second rabbit')+'<i class="chev" aria-hidden="true"></i>'; sc.setAttribute('href','#r-'+addrOf(r)+'~pick');
+            sa.innerHTML=esc(gsES()?('Sobre '+vWith.name):('About '+vWith.name))+'<i class="chev" aria-hidden="true"></i>'; sa.setAttribute('href','#r-'+addrOf(vWith)+'+'+addrOf(r)); }
         }
         if(sell){
           if(vStep) vStep.textContent='Choose '+(one?'Buy':'Reserve or Buy')+' to start your request. Send it by text or email; I’ll call to confirm payment.';
@@ -8684,8 +8775,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         askLater([me,them]);   /* ROUND 176b: the frame the lock needs, then the form (his tap of 4:23pm) */
         return;
       }
-      var pb=ev.target.closest&&ev.target.closest('.pairbuy-b');
-      if(pb&&vPair.contains(pb)){ gsTap(pb,ev); return; }
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
@@ -8698,6 +8787,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     vNext.addEventListener('click',function(){paint(at+1)});
     vCta.addEventListener('click',function(ev){
       if(gsTap(vCta,ev)) return;          /* (Round 145) the sheet over this listing */
+      if(/^#r-/.test(vCta.getAttribute('href')||'')){ ev.preventDefault(); stepTo(vCta.getAttribute('href')); return; }
       var n=vCta.getAttribute('data-ask');
       ev.preventDefault();
       if(!n){ leaveFor(vCta.getAttribute('href')||'#contact'); return; }
