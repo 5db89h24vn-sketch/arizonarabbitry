@@ -2241,6 +2241,29 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pickbar{display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--paper-2)}   
 .pickbar .pickbar-in{flex:0 0 auto;width:100%}   
 .chip .chev.left{transform:rotate(135deg);margin:0 0 0 1px}
+
+.pairhero{background:var(--paper-2);padding:64px 16px 20px}
+.pairmath .pm-name small{text-wrap:balance}
+.pairhero[hidden],.viewer.vpair .viewer-stage,.viewer.vpair .viewer-gallery{display:none}
+.viewer.vpair .viewer-media{background:var(--paper-2)}
+.pairhero .ph-row{display:flex;align-items:flex-start;justify-content:center;gap:6px;max-width:420px;margin:0 auto}
+.pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none}
+.pairhero .ph-face{display:block;width:min(128px,34vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--paper),0 6px 18px rgba(0,0,0,.18);background:var(--paper)}
+.pairhero .ph-face img,.pairhero .ph-face .face-none{display:block;width:100%;height:100%;object-fit:cover}
+.pairhero .ph-name{margin:10px 0 0;font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.2}
+.pairhero .ph-price{margin:3px 0 0;font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pairhero .ph-price s{color:var(--ink-faint);margin-right:3px}
+.pairhero .ph-tag{margin:6px 0 0;padding:2px 9px;border-radius:999px;background:var(--brick-tone,var(--paper));color:var(--brick-dk);font-size:12.5px;font-weight:600}
+.pairhero .ph-mid{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:calc(min(128px,34vw)/2 - 14px);color:var(--brick-dk)}
+.pairhero .ph-mid svg{width:28px;height:28px}
+.pairhero .ph-mid .pairg{fill:none;stroke:currentColor;stroke-width:1.8}
+.pairhero .ph-mid small{font-size:11.5px;font-weight:600;letter-spacing:.02em}
+@media(min-width:761px){ .viewer.vpair .viewer-media{justify-content:center} .pairhero{padding:72px 24px 40px} }
+@media(max-width:359px){ .pairhero{padding-top:78px} }   
+.viewer.vpair .viewer-sub{display:none}   
+
+html.pick #available{padding-top:20px!important}   
+@media(min-width:761px){ html.pick #available{padding-top:28px!important} }
 .chip:hover .chev.left,.chip:focus-visible .chev.left{transform:rotate(135deg) translate(2px,2px)}
 .pickbar-in{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 240px}
 .pickbar-in .vti{flex:none;width:22px;height:22px;color:var(--brick-dk)}
@@ -4665,6 +4688,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     
     <span class="vtags"><span class="planmark vplan" id="viewerPlan" hidden></span><span class="status vstatus" id="viewerStatus" hidden></span><span class="newmark vnew" id="viewerNew" hidden>Nuevo</span><span class="newmark salemark vnew" id="viewerSale" hidden>Oferta</span></span>
     <div class="viewer-media">
+    
+    <div class="pairhero" id="viewerPairHero" hidden></div>
     <div class="viewer-stage">
       
       <div class="viewer-frame">
@@ -8223,7 +8248,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var pq=vWith?gsQuote(r,vWith):null;
       var oldFaces=vName.parentNode&&vName.parentNode.querySelector('.vtwo-faces'); if(oldFaces) oldFaces.parentNode.removeChild(oldFaces);
       vName.textContent=vWith?(r.name+(gsES()?' y ':' and ')+vWith.name):r.name;
-      if(vWith){ var fc=document.createElement('span'); fc.className='vtwo-faces'; fc.setAttribute('aria-hidden','true'); fc.innerHTML=faceImg(r,34)+faceImg(vWith,34); vName.parentNode.insertBefore(fc,vName); }
+      var ph=document.getElementById('viewerPairHero');
+      if(vw) vw.classList.toggle('vpair',!!vWith);
+      if(ph){ ph.hidden=!vWith;
+        if(vWith){ var es2=gsES(), pa=+priceOf(r), pb=+priceOf(vWith), q2=gsQuote(r,vWith), cutX=q2.bundle?null:((pb<pa)?vWith:((pa<pb)?r:vWith));
+          var one=function(x,px){ var c=(cutX===x); return '<a class="ph-one" href="#r-'+addrOf(x)+(x===r?'':'+'+addrOf(r))+'"><span class="ph-face">'+faceImg(x,128)+'</span><span class="ph-name">'+esc(x.name)+'</span><span class="ph-price">'+(c?('<s>$'+px+'</s> $'+(px-q2.off)):('$'+px))+'</span>'+(c?'<span class="ph-tag">'+(es2?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</a>'; };
+          var mid=q2.bundle?('<span class="ph-mid ph-special">'+SPECIAL_GLYPH+'<small>'+(es2?'Oferta especial':'Special')+'</small></span>'):'<span class="ph-mid"><svg class="pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>';
+          ph.innerHTML='<div class="ph-row">'+one(r,pa)+mid+one(vWith,pb)+'</div>'; } }
       if(vCtl) vCtl.setAttribute('data-name',r.name);
       vPrice.innerHTML=(r.status==='kept')?'':(pq?('<s>$'+pq.sum+'</s> $'+pq.two+'<small class="fortwo">'+(gsES()?'por los dos':'for the two')+'</small>'):priceHTML(r));   /* a producer has no price (Round 167): the price line is empty, never "$0" */
       if(vPlan){ vPlan.innerHTML=planMarkHTML(r); vPlan.hidden=!vPlan.textContent; }
@@ -8738,7 +8769,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(!pm.hidden){ var es1=gsES(), first=vConfirm?vConfirm:r, second=vConfirm?r:vWith, pA=+priceOf(first), pB=+priceOf(second), q1=gsQuote(first,second);
             var cut=q1.bundle?null:((pB<pA)?second:((pA<pB)?first:second));
             var tagCut=es1?('20%\u00a0menos, '+((pA===pB)?'el segundo':'el precio menor')):('20%\u00a0off, '+((pA===pB)?'the second':'the lower price'));
-            var tagSum=q1.bundle?(es1?('Oferta especial, $'+q1.off+' menos'):('A special, $'+q1.off+' off')):(es1?('Ahorra $'+q1.off):('You save $'+q1.off));
+            var off20=Math.round(Math.min(pA,pB)*gsPairOff()/100);   /* ROUND 181b (R181b-2): with a special neither takes the 20%; the line says what the 20% would have been */
+            var tagSum=q1.bundle?(es1?('Oferta especial, $'+q1.off+' menos.'+(off20!==q1.off?' El '+gsPairOff()+'% en uno serían $'+off20+'.':'')):('A special, $'+q1.off+' off.'+(off20!==q1.off?' '+gsPairOff()+'% off one would be $'+off20+'.':''))):(es1?('Ahorra $'+q1.off):('You save $'+q1.off));
             var pmRow=function(x,px){ var here=(cut===x); return '<p class="pm-row'+(here?' pm-cut':'')+'"><span class="pm-name">'+esc(x.name)+(here?'<small>'+tagCut+'</small>':'')+'</span><span class="pm-amt">'+(here?('<s>$'+px+'</s> $'+(px-q1.off)):('$'+px))+'</span></p>'; };
             pm.innerHTML=pmRow(first,pA)+pmRow(second,pB)+'<p class="pm-row pm-sum"><span class="pm-name">'+(es1?'Juntos':'Together')+'<small>'+(q1.bundle?SPECIAL_GLYPH:'')+tagSum+'</small></span><span class="pm-amt"><s>$'+q1.sum+'</s> $'+q1.two+'</span></p>'; } }
         var bmSell=!!(bm&&gsCan(bm));
