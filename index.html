@@ -2003,7 +2003,11 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pickbar-t:focus{outline:none}
 .bunny .pickbtn{display:none}
 html.pick .bunny .bget,html.pick .bunny .bget-note,html.pick .bunny .bget-after,html.pick .bunny .bunny-cta{display:none}
-html.pick .bunny .pickbtn{display:flex;position:relative;z-index:2;margin:10px 0 0;width:100%;box-sizing:border-box;padding:12px 16px;font-weight:600;font-size:15.5px}
+
+html.pick .bunny .pickbtn{display:flex;position:relative;z-index:2;margin:10px 0 0;width:100%;box-sizing:border-box;min-height:44px;padding:0 6px;font-size:15px;line-height:1.2;white-space:normal;text-wrap:balance}
+@media(max-width:760px){ html.pick .bunny .pickbtn{padding:11px 8px;font-size:13.5px} }   
+.bunny p.pick-after{display:none;margin:7px 0 0;font-size:12.5px;line-height:1.35;color:var(--ink-faint);text-wrap:balance}
+html.pick .bunny p.pick-after{display:block}
 html.pick #main>section:not(#available),html.pick footer,html.pick .mnav,html.pick #nav .nav-links,html.pick #available .avail-head,html.pick #available .waitbox,html.pick #available .avail-foot{display:none}
 html.pick #available{padding-top:12px}
 html.pick .bunny[data-pickhide],html.pick #available .pairfold,html.pick #available .doors,html.pick #available .wl,html.pick #available .rail .lede,html.pick .dock{display:none}   
@@ -5760,7 +5764,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var more=ends?('$'+now+' until '+longDay(ends,true)):(r.dealStays?'the new price':'');
       var html=units.map(function(t){ return '<span class="deal-why">'+esc(t)+'</span>'; }).join(' ');
       if(more) html+=' <span class="deal-why">· '+esc(more)+'</span>';
-      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+SPECIAL_GLYPH+'<s>$'+esc(priceOf(r)+priceOf(bm))+'</s> $'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm.name)+'</span>';
+      var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+SPECIAL_GLYPH+'$'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm.name)+'</span>';
       return '<p class="deal">'+html+'</p>';
     }
     if(hasPromise(r)){
@@ -5776,7 +5780,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       }
       return '<p class="deal"><span class="deal-why">$'+esc(to)+' when '+esc(when)+'</span></p>';
     }
-    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+SPECIAL_GLYPH+'<s>$'+esc(priceOf(r)+priceOf(bm2))+'</s> $'+esc(bundleOf(r,bm2))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm2.name)+'</span></p>'; }
+    if(!full&&r.status==='available'){ var bm2=bundleMate(r); if(bm2) return '<p class="deal"><span class="deal-why deal-pair">'+SPECIAL_GLYPH+'$'+esc(bundleOf(r,bm2))+'</span> <span class="deal-why deal-mate">with\u00a0'+esc(bm2.name)+'</span></p>'; }
     return '';
   }
   var MARK_SIZES='96px';
@@ -8362,13 +8366,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       root.classList.add('pick'); root.setAttribute('data-pick',addrOf(r));
       if(bar){ bar.hidden=false; if(bt) bt.textContent=gsES()?('Elija un segundo conejo para ir con '+r.name+'. El segundo tiene '+gsPairOff()+'% de descuento.'):('Pick a second rabbit to go with '+r.name+'. The second is '+gsPairOff()+'% off.'); if(no){ no.setAttribute('href','#r-'+addrOf(r)); no.firstChild.nodeValue=gsES()?'Mejor no':'Never mind'; } }
       var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
-      for(var i=0;i<cards.length;i++){ var c=cards[i], x=rabbitByAddr(c.getAttribute('data-rid')), lk=c.querySelector('.bunny-link'), old=c.querySelector('.pickbtn');
-        if(old) old.parentNode.removeChild(old);
+      for(var i=0;i<cards.length;i++){ var c=cards[i], x=rabbitByAddr(c.getAttribute('data-rid')), lk=c.querySelector('.bunny-link'), old=c.querySelector('.pickbtn'), oldu=c.querySelector('.pick-after');
+        if(old) old.parentNode.removeChild(old); if(oldu) oldu.parentNode.removeChild(oldu);
         if(!x||x===r||!gsCan(x)){ c.setAttribute('data-pickhide','1'); c.hidden=true; continue; }
         var q=gsQuote(r,x), to='#r-'+addrOf(x)+'~confirm+'+addrOf(r);
         if(lk){ if(!lk.getAttribute('data-home')) lk.setAttribute('data-home',lk.getAttribute('href')); lk.setAttribute('href',to); }
-        var b=document.createElement('a'); b.className='btn btn-tonal pickbtn'; b.setAttribute('href',to); b.innerHTML=esc(x.name)+'\u00a0\u00b7\u00a0<s>$'+q.sum+'</s> $'+q.two+(gsES()?' por los dos':' for the two');
+        var b=document.createElement('a'); b.className='btn btn-tonal pickbtn'; b.setAttribute('href',to); b.innerHTML='<span class="pickbtn-t">'+(gsES()?'Elegir a ':'Pick ')+esc(x.name)+'</span>';
         var anchor=c.querySelector('.bget-after')||c.querySelector('.bget'); if(anchor&&anchor.parentNode) anchor.parentNode.insertBefore(b,anchor.nextSibling); else c.appendChild(b);
+        var u=document.createElement('p'); u.className='pick-after'; u.innerHTML='<s>$'+q.sum+'</s> $'+q.two+(gsES()?' por los dos':' for the two'); b.parentNode.insertBefore(u,b.nextSibling);
       }
       document.body.classList.remove('locked');
       try{ var html=document.documentElement; var was=html.style.scrollBehavior; html.style.scrollBehavior='auto'; document.getElementById('available').scrollIntoView({block:'start'}); html.style.scrollBehavior=was; }catch(e){}
@@ -8382,10 +8387,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       root.classList.remove('pick'); root.removeAttribute('data-pick');
       if(bar) bar.hidden=true;
       var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
-      for(var i=0;i<cards.length;i++){ var c=cards[i], lk=c.querySelector('.bunny-link'), b=c.querySelector('.pickbtn');
+      for(var i=0;i<cards.length;i++){ var c=cards[i], lk=c.querySelector('.bunny-link'), b=c.querySelector('.pickbtn'), u=c.querySelector('.pick-after');
         if(c.getAttribute('data-pickhide')){ c.removeAttribute('data-pickhide'); c.hidden=false; }
         if(lk&&lk.getAttribute('data-home')){ lk.setAttribute('href',lk.getAttribute('data-home')); lk.removeAttribute('data-home'); }
-        if(b) b.parentNode.removeChild(b);
+        if(b) b.parentNode.removeChild(b); if(u) u.parentNode.removeChild(u);   /* ROUND 180b: the line under goes with it */
       }
     }
     railEl.addEventListener('click',function(ev){
