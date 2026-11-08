@@ -56,8 +56,12 @@ textarea{width:100%;min-height:120px;resize:vertical}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:var(--r);
   font-weight:500;font-size:15.5px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;font-family:inherit}
 .btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
-.btn:hover{border-color:var(--brick);color:var(--brick-dk)}
-.btn.primary:hover{background:var(--brick-dk);color:#fff}
+/* A COLOUR FOR A MOUSE, NOT FOR A TAP (8 Nov 2026, Round 182d; William, 6:05am, a picture of an orange ring left on the
+   listing's Share button after a tap). A phone keeps :hover on what was tapped until the next tap, so every :hover on
+   this page sits in @media(hover:hover), where its rule was: the same on a computer, never on a phone. The front
+   page's note has the whole of it; hovertest.js holds every page. */
+@media(hover:hover){.btn:hover{border-color:var(--brick);color:var(--brick-dk)}}
+@media(hover:hover){.btn.primary:hover{background:var(--brick-dk);color:#fff}}
 .btn.sm{min-height:38px;padding:0 14px;font-size:14px}
 .note{font-size:14px;color:var(--ink-faint)}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:12px}

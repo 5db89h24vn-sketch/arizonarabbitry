@@ -98,25 +98,25 @@ header{padding:16px 0 0}
 .brand-side{display:inline-block;height:.732em;width:auto;aspect-ratio:82.18/83.01;vertical-align:baseline;margin-right:.307em;overflow:visible}
 .topbar-right{display:flex;align-items:center;gap:14px}
 .tel{text-decoration:none;font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
-.tel:hover,.tel:active{color:var(--brick)}
+.tel:active{color:var(--brick)}@media(hover:hover){.tel:hover{color:var(--brick)}}
 
 .cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 13px;
   border-radius:var(--r);background:var(--brick-fill);color:var(--on-brick);text-decoration:none;font-weight:500;
   font-size:14.5px;white-space:nowrap;box-shadow:var(--lift-brick);
   transition:background .15s,transform .18s cubic-bezier(.34,1.56,.64,1)}
-.cta:hover{background:var(--brick-fill-dk)}
+@media(hover:hover){.cta:hover{background:var(--brick-fill-dk)}}
 .cta:active{transform:scale(.96);box-shadow:var(--lift-brick-press);transition-duration:.15s,.09s}
 @media(max-width:480px){.tel{display:none}}
 .back{display:inline-flex;align-items:center;gap:7px;min-height:44px;margin-top:8px;
   color:var(--brick-dk);text-decoration:none;font-weight:500;font-size:15px}
-.back:hover{text-decoration:underline}
+@media(hover:hover){.back:hover{text-decoration:underline}}
 
 .subnav{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
 
 .subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);
   border-radius:100px;background:var(--card);font-size:14px;font-weight:500;
   color:var(--ink-soft);text-decoration:none;white-space:nowrap}
-.subnav a:hover,.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
+.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}@media(hover:hover){.subnav a:hover{color:var(--brick-dk);border-color:var(--brick)}}
 
 @media(max-width:480px){
   .subnav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-22px;padding:3px 22px 3px 0;
@@ -145,7 +145,7 @@ h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;le
 .sheet ul{margin:8px 0 0 20px;color:var(--ink-soft)}
 .sheet li{margin-bottom:6px}
 .xlink{color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted var(--link-line);padding-bottom:1px}
-.xlink:hover{border-bottom-style:solid;color:var(--brick)}
+@media(hover:hover){.xlink:hover{border-bottom-style:solid;color:var(--brick)}}
 
 a[data-leaves] .kw{white-space:nowrap}
 a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
@@ -161,7 +161,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-betw
 .foot-nav a{color:var(--ink-soft);text-decoration:none;min-height:24px;display:inline-flex;align-items:center}
 .foot-nav .foot-top{gap:6px;white-space:nowrap}
 .foot-nav .foot-top svg{flex:none}
-.foot-nav a:hover,.foot-nav a:active{color:var(--brick)}
+.foot-nav a:active{color:var(--brick)}@media(hover:hover){.foot-nav a:hover{color:var(--brick)}}
 p,li,small,summary,figcaption{text-wrap:pretty}
 h1,h2,h3{text-wrap:balance}
 
@@ -177,7 +177,7 @@ html[data-look="dim"] .moon{display:none}
 .look-cap{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:34px;margin:0;padding:0 13px 0 11px;
   border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:inherit;font-size:14px;font-weight:600;
   line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.look-cap:hover,.look-cap:focus-visible{background:var(--line)}
+.look-cap:focus-visible{background:var(--line)}@media(hover:hover){.look-cap:hover{background:var(--line)}}
 .look-cap::before{content:'';position:absolute;left:-4px;right:-4px;top:-5px;bottom:-5px}
 .subnav .look-cap{min-height:44px;padding:0 15px 0 13px;font-size:inherit}
 

@@ -66,8 +66,9 @@ p{color:var(--ink-soft);margin-bottom:26px;text-wrap:pretty}
   background:var(--paper-2);color:var(--ink)}
 
 .btn.primary{background:var(--brick-fill);border-color:var(--brick-fill);color:var(--on-brick)}
-.btn:hover{border-color:var(--line-soft);background:var(--line-soft);color:var(--ink)}
-.btn.primary:hover{background:var(--brick-fill-dk);color:var(--on-brick)}
+
+@media(hover:hover){.btn:hover{border-color:var(--line-soft);background:var(--line-soft);color:var(--ink)}}
+@media(hover:hover){.btn.primary:hover{background:var(--brick-fill-dk);color:var(--on-brick)}}
 small{display:block;margin-top:22px;font-size:13.5px;color:var(--ink-faint)}
 
 .look-on{display:none}
@@ -77,7 +78,7 @@ html[data-look="dim"] .look-off{display:none}
 .look-mini{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:4px 12px;
   margin:0;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:inherit;font-size:13px;line-height:1.2;
   white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.look-mini:hover,.look-mini:focus-visible{background:var(--line)}
+.look-mini:focus-visible{background:var(--line)}@media(hover:hover){.look-mini:hover{background:var(--line)}}
 .look-mini::before{content:'';position:absolute;left:-4px;right:-4px;top:-6px;bottom:-6px}
 </style>
 <style data-dim>
