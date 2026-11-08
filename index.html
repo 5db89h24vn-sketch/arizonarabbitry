@@ -865,6 +865,11 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 
 .viewer-hist{margin:4px 0 0;font-size:12.5px;line-height:1.45;color:var(--ink-faint)}
 .viewer-hist[hidden]{display:none}
+
+#viewerHist:focus,#viewerDeal:focus{outline:none}
+.hist-flash{animation:histflash 1.6s ease-out;border-radius:6px}
+@keyframes histflash{0%,35%{background:color-mix(in srgb,var(--brick) 20%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 20%,transparent)}100%{background:transparent;box-shadow:0 0 0 6px transparent}}
+@media (prefers-reduced-motion:reduce){ .hist-flash{animation:none;background:color-mix(in srgb,var(--brick) 16%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 16%,transparent)} }
 .viewer-hist span{white-space:nowrap}
 
 .meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
@@ -1836,17 +1841,19 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-strip button.on{border-color:var(--brick)}
 
 .viewer-strip button:focus-visible{box-shadow:0 0 0 3px var(--card)}
-.viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.viewer-head{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:baseline}
+
+.viewer-head h2{grid-column:1;grid-row:1;min-width:0}
 
 .viewer-head h2{font-size:21px;margin-bottom:0;letter-spacing:-.015em}
 #viewer-name:focus{outline:none}
 .viewer-head .price{font-size:18px}
 
-.viewer-head .vprice{display:block;flex:none;text-align:right}
+.viewer-head .vprice{display:block;grid-column:2;grid-row:1;text-align:right;white-space:nowrap}
 .viewer-head .vprice .price{display:block}
 
-.viewer-head .vprice .vhistlink{display:inline-block;margin-top:3px;font-size:13px;line-height:1.35;color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted var(--link-line);padding-bottom:1px;white-space:nowrap}
-.viewer-head .vprice .vhistlink[hidden]{display:none}
+.viewer-head .vhistlink{grid-column:1;grid-row:2;justify-self:start;display:inline-block;margin-top:4px;font-size:13px;line-height:1.35;color:var(--brick-dk);text-decoration:none;border-bottom:1px dotted var(--link-line);padding-bottom:1px;white-space:nowrap}
+.viewer-head .vhistlink[hidden]{display:none}
 
 .viewer-sub{display:flow-root;margin-top:-2px}
 .viewer-sub .viewer-meta{overflow:visible;margin:0}
@@ -2015,7 +2022,7 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .viewer-head .vtwo-faces{display:inline-flex;align-items:center;vertical-align:middle;margin:0 10px 4px 0}
 .viewer-head .vtwo-faces img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--paper);position:relative;flex:none}
 .viewer-head .vtwo-faces img+img{margin-left:-10px}
-.vprice .fortwo{display:block;font-size:.72rem;font-weight:500;color:var(--ink-soft);letter-spacing:0}
+.vprice .fortwo{display:inline;margin-left:5px;font-size:.72rem;font-weight:500;color:var(--ink-soft);letter-spacing:0}   
 .pickbar{display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--paper-2)}   
 .pickbar .pickbar-in{flex:0 0 auto;width:100%}   
 .chip .chev.left{transform:rotate(135deg);margin:0 0 0 1px}
@@ -2025,6 +2032,20 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pairhero[hidden],.viewer.vpair .viewer-stage,.viewer.vpair .viewer-gallery{display:none}
 .viewer.vpair .viewer-media{background:var(--paper-2)}
 .pairhero .ph-row{display:flex;align-items:flex-start;justify-content:center;gap:6px;max-width:420px;margin:0 auto}
+
+.pairhero .ph-cell{position:relative;flex:1 1 0;min-width:0;display:flex;--face:min(128px,34vw)}
+.pairhero .ph-edit{position:absolute;top:calc(var(--face) - 38px);left:calc(50% + var(--face) / 2 - 36px);z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out}
+.pairhero .ph-edit::after{content:"";position:absolute;inset:-4px;border-radius:50%}   
+.pairhero .ph-edit svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.pairhero .ph-edit:hover{border-color:var(--brick);color:var(--brick)}
+.pairhero .ph-edit:active{transform:scale(.94)}
+.pairhero .ph-edit:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+.pchange .pc-card{max-width:420px;padding:22px 20px max(20px,env(safe-area-inset-bottom))}
+@media(min-width:761px){ .pchange .pc-card{border-radius:20px} }
+.pchange .pc-t{margin:0;font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2}
+.pchange .pc-b{margin:8px 0 0;font-size:16px;line-height:1.45;color:var(--ink-soft)}
+.pchange .pc-btns{display:flex;flex-direction:column;gap:10px;margin:18px 0 0}
+.pchange .pc-btns .btn{width:100%;justify-content:center}
 .pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .pairhero .ph-one:focus-visible .ph-face{outline:2px solid var(--brick-dk);outline-offset:4px}
 
@@ -2047,7 +2068,10 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .qlook .ql-meta .u{white-space:nowrap}
 .qlook .ql-note{margin:10px 0 0;font-size:16px;line-height:1.5}
 .qlook .ql-more{margin:14px 0 0}
-.qlook .ql-x{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(253,250,245,.92);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.qlook .ql-x{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:19px;line-height:1;cursor:pointer;box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out}   
+.qlook .ql-x:hover{border-color:var(--brick);color:var(--brick)}
+.qlook .ql-x:active{transform:scale(.94)}
+.qlook .ql-x:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
 .pairhero .ph-face{display:block;width:min(128px,34vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--paper),0 6px 18px rgba(0,0,0,.18);background:var(--paper)}
 .pairhero .ph-face img,.pairhero .ph-face .face-none{display:block;width:100%;height:100%;object-fit:cover}
 .pairhero .ph-name{margin:10px 0 0;font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.2}
@@ -4717,7 +4741,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     </div>
     <div class="viewer-body">
       
-      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a></span></div>
+      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a></div>
 
       <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p></div>
       <p class="vready" id="viewerReady" hidden></p>
@@ -5944,8 +5968,28 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var m=document.getElementById('qlMore'); m.setAttribute('href','#r-'+addrOf(r)); m.firstChild.nodeValue=es()?('El anuncio de '+r.name):('All about '+r.name);
     ql.hidden=false; x.focus();
   }
+  var pc=document.getElementById('pchange'), pcT=document.getElementById('pcT'), pcB=document.getElementById('pcB'), pcGo=document.getElementById('pcGo'), pcKeep=document.getElementById('pcKeep'), pcLast=null;
+  function pcShut(){ if(pc.hidden) return; pc.hidden=true; if(pcLast&&pcLast.focus) pcLast.focus(); }
+  function pcOpen(el){
+    var nm=el.getAttribute('data-name'), on=el.getAttribute('data-other-name'), a=el.getAttribute('data-change'), oa=el.getAttribute('data-other'), n=+el.getAttribute('data-alts')||0, e2=es();
+    pcLast=el; pcT.textContent=e2?('\u00bfCambiar a '+nm+'?'):('Change '+nm+'?');
+    if(n>0){ pcB.textContent=e2?('Elegir\u00e1 otro conejo para ir con '+on+'.'):('You will pick another rabbit to go with '+on+'.');
+      pcGo.textContent=e2?('Cambiar a '+nm):('Change '+nm); pcGo.setAttribute('href','#r-'+oa+'~pick+'+a); pcGo.removeAttribute('data-stay');
+      pcKeep.textContent=e2?('Quedarse con '+nm):('Keep '+nm); }
+    else { pcB.textContent=e2?(on+' y '+nm+' son los \u00fanicos dos en venta ahora, as\u00ed que no hay otro conejo para cambiar.'):(on+' and '+nm+' are the only two for sale right now, so there is no other rabbit to swap in.');
+      pcGo.textContent=e2?'Quedarse con los dos':'Keep both'; pcGo.setAttribute('href','#r-'+oa+'+'+a); pcGo.setAttribute('data-stay','1');
+      pcKeep.textContent=e2?('Solo '+on):('Just '+on); pcKeep.setAttribute('data-to','#r-'+oa); }
+    if(n>0) pcKeep.removeAttribute('data-to');
+    pc.hidden=false; pcGo.focus();
+  }
+  document.addEventListener('click',function(e){ var ch=e.target.closest&&e.target.closest('#viewerPairHero .ph-edit[data-change], #vsetChange[data-change]'); if(ch){ e.preventDefault(); e.stopPropagation(); pcOpen(ch); return; }
+    var ab=e.target.closest&&e.target.closest('#vsetAbout[data-ql]'); if(ab){ e.preventDefault(); e.stopPropagation(); var aa=ab.getAttribute('data-ql'); for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===aa){ last=ab; open(RABBITS[i]); break; } } },true);
+  pcKeep.addEventListener('click',function(ev){ var to=pcKeep.getAttribute('data-to'); if(to){ ev.preventDefault(); ev.stopPropagation(); pc.hidden=true; location.hash=to; } });
+  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!pc.hidden){ e.stopPropagation(); e.preventDefault(); pcShut(); } },true);
+  window.addEventListener('hashchange',function(){ if(!pc.hidden) pc.hidden=true; });
   strip.addEventListener('scroll',function(){ var w=strip.clientWidth||1, k=Math.round(strip.scrollLeft/w), d=dots.children; for(var i=0;i<d.length;i++) d[i].className=(i===k)?'on':''; },{passive:true});
   document.addEventListener('click',function(e){
+    if(!pc.hidden){ if(e.target===pc||e.target===pcKeep||e.target.closest('#pcKeep')){ e.preventDefault(); pcShut(); return; } if(e.target.closest('#pcGo')&&pcGo.getAttribute('data-stay')){ e.preventDefault(); pcShut(); return; } }
     var b=e.target.closest&&e.target.closest('#viewerPairHero .ph-one[data-ql]');
     if(b){ e.preventDefault(); var a=b.getAttribute('data-ql'), r=null;
       for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===a){ r=RABBITS[i]; break; }
@@ -8277,7 +8321,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vw) vw.classList.toggle('vpair',!!vWith);
       if(ph){ ph.hidden=!vWith;
         if(vWith){ var es2=gsES(), pa=+priceOf(r), pb=+priceOf(vWith), q2=gsQuote(r,vWith), cutX=q2.bundle?null:((pb<pa)?vWith:((pa<pb)?r:vWith));
-          var one=function(x,px){ var c=(cutX===x); return '<button type="button" class="ph-one" data-ql="'+esc(addrOf(x))+'" aria-label="'+esc((es2?'Ver a ':'A closer look at ')+x.name)+'"><span class="ph-face">'+faceImg(x,128)+'</span><span class="ph-name">'+esc(x.name)+'</span><span class="ph-price">'+(c?('<s>$'+px+'</s> $'+(px-q2.off)):('$'+px))+'</span>'+(c?'<span class="ph-tag">'+(es2?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</button>'; };
+          var alts=function(x,o){ var R=RABBITS, n=0; for(var i=0;i<R.length;i++){ var z=R[i]; if(z&&z!==x&&z!==o&&gsCan(z)) n++; } return n; };
+          var one=function(x,px){ var c=(cutX===x), o=(x===r)?vWith:r; return '<div class="ph-cell"><button type="button" class="ph-one" data-ql="'+esc(addrOf(x))+'" aria-label="'+esc((es2?'Ver a ':'A closer look at ')+x.name)+'"><span class="ph-face">'+faceImg(x,128)+'</span><span class="ph-name">'+esc(x.name)+'</span><span class="ph-price">'+(c?('<s>$'+px+'</s> $'+(px-q2.off)):('$'+px))+'</span>'+(c?'<span class="ph-tag">'+(es2?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</button><button type="button" class="ph-edit" data-change="'+esc(addrOf(x))+'" data-name="'+esc(x.name)+'" data-other="'+esc(addrOf(o))+'" data-other-name="'+esc(o.name)+'" data-alts="'+alts(x,o)+'" aria-label="'+esc((es2?'Cambiar a ':'Change ')+x.name)+'"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20h4.2L18.6 9.6a2.2 2.2 0 0 0-3.1-3.1L5 16.9V20z"/><path d="M14 8.1l1.9 1.9"/></svg></button></div>'; };
           var mid=q2.bundle?('<span class="ph-mid ph-special">'+SPECIAL_GLYPH+'<small>'+(es2?'Oferta especial':'Special')+'</small></span>'):'<span class="ph-mid"><svg class="pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>';
           ph.innerHTML='<div class="ph-row">'+one(r,pa)+mid+one(vWith,pb)+'</div>'; } }
       if(vCtl) vCtl.setAttribute('data-name',r.name);
@@ -8471,7 +8516,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
 
     var pickFor=null;
-    function pickOpen(r){
+    function pickOpen(r,excl){   /* (Round 181d) excl: the rabbit being changed, left out of the choice */
       pickFor=r;
       var root=document.documentElement, bar=document.getElementById('pickbar'), bt=document.getElementById('pickbarT'), no=document.getElementById('pickbarNo');
       root.classList.add('pick'); root.setAttribute('data-pick',addrOf(r));
@@ -8479,7 +8524,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var cards=railEl?railEl.querySelectorAll('.bunny[data-rid]'):[];
       for(var i=0;i<cards.length;i++){ var c=cards[i], x=rabbitByAddr(c.getAttribute('data-rid')), lk=c.querySelector('.bunny-link'), old=c.querySelector('.pickbtn'), oldu=c.querySelector('.pick-after');
         if(old) old.parentNode.removeChild(old); if(oldu) oldu.parentNode.removeChild(oldu);
-        if(!x||x===r||!gsCan(x)){ c.setAttribute('data-pickhide','1'); c.hidden=true; continue; }
+        if(!x||x===r||!gsCan(x)||(excl&&addrOf(x)===excl)){ c.setAttribute('data-pickhide','1'); c.hidden=true; continue; }
         var q=gsQuote(r,x), to='#r-'+addrOf(x)+'~confirm+'+addrOf(r);
         if(lk){ if(!lk.getAttribute('data-home')) lk.setAttribute('data-home',lk.getAttribute('href')); lk.setAttribute('href',to); }
         var b=document.createElement('a'); b.className='btn btn-tonal pickbtn'; b.setAttribute('href',to); b.innerHTML='<span class="pickbtn-t">'+(gsES()?'Elegir a ':'Pick ')+esc(x.name)+'</span>';
@@ -8546,7 +8591,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         return false;
       }
       var vm=viewModeOf(location.hash||'');
-      if(vm&&vm.mode==='pick'&&gsCan(r)){ if(vw.classList.contains('open')) shut(true); return pickOpen(r); }
+      if(vm&&vm.mode==='pick'&&gsCan(r)){ if(vw.classList.contains('open')) shut(true); return pickOpen(r,vm.with||''); }
       pickClose();
       vWith=null; vConfirm=null;
       if(vm&&vm.mode==='confirm'){ var cw=rabbitByAddr(vm.with); if(cw&&cw!==r&&gsCan(cw)&&gsCan(r)) vConfirm=cw; }
@@ -8770,7 +8815,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vWhyS) vWhyS.textContent=(gsCan(r)?'What the $'+p+' covers':'What the price covers')+(hasDeal(r)?'\u00a0\u00b7\u00a0the price\u00a0history':'');   /* the dot never starts a line (listingroomtest at 320) */
       if(vPayS) vPayS.textContent=(r.status==='available')?'Pay the rest over time.':'Being paid in parts.';
       if(vHistLink){ var hh=!!((vHist&&!vHist.hidden&&vHist.textContent.trim())||(vDeal&&!vDeal.hidden&&vDeal.textContent.trim()));
-        vHistLink.hidden=!(hh&&vWhy&&!vWhy.hidden&&r.status!=='kept'); }
+        vHistLink.hidden=!(hh&&vWhy&&!vWhy.hidden&&r.status!=='kept')||!!vWith; }   /* (Round 181d) not on the listing for two: the receipt says its price */
       if(vAbout&&vAboutPanel){ vAboutPanel.hidden=avail; vAbout.setAttribute('aria-expanded',avail?'false':'true'); }
       if(vMoney){
         var sell=gsCan(r), one=gsOne(r);
@@ -8816,8 +8861,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           vset.hidden=!(vWith&&sell);
           if(!vset.hidden){ var sj=vset.querySelector('#vsetJust'), sc=vset.querySelector('#vsetChange'), sa=vset.querySelector('#vsetAbout');
             sj.innerHTML=esc(gsES()?('Solo '+r.name):('Just '+r.name))+'<i class="chev" aria-hidden="true"></i>'; sj.setAttribute('href','#r-'+addrOf(r));
-            sc.innerHTML=(gsES()?'Cambiar el segundo conejo':'Change the second rabbit')+'<i class="chev" aria-hidden="true"></i>'; sc.setAttribute('href','#r-'+addrOf(r)+'~pick');
-            sa.innerHTML=esc(gsES()?('Sobre '+vWith.name):('About '+vWith.name))+'<i class="chev" aria-hidden="true"></i>'; sa.setAttribute('href','#r-'+addrOf(vWith)+'+'+addrOf(r)); }
+            sc.innerHTML=(gsES()?'Cambiar el segundo conejo':'Change the second rabbit')+'<i class="chev" aria-hidden="true"></i>'; sc.setAttribute('href','#r-'+addrOf(r)+'~pick+'+addrOf(vWith));
+            var scAlts=0; for(var si=0;si<RABBITS.length;si++){ var sz=RABBITS[si]; if(sz&&sz!==vWith&&sz!==r&&gsCan(sz)) scAlts++; }
+            sc.setAttribute('data-change',addrOf(vWith)); sc.setAttribute('data-name',vWith.name); sc.setAttribute('data-other',addrOf(r)); sc.setAttribute('data-other-name',r.name); sc.setAttribute('data-alts',String(scAlts));
+            sa.innerHTML=esc(gsES()?('Sobre '+vWith.name):('About '+vWith.name))+'<i class="chev" aria-hidden="true"></i>'; sa.setAttribute('href','#r-'+addrOf(vWith)); sa.setAttribute('data-ql',addrOf(vWith)); }   /* (Round 181d) the closer look of that rabbit, over the listing for two (its own listing without the script) */
         }
         if(sell){
           if(vStep) vStep.textContent='Choose '+(one?'Buy':'Reserve or Buy')+' to start your request. Send it by text or email; I’ll call to confirm payment.';
@@ -8833,9 +8880,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(vWhy) openSettle(vWhy);
         var t=(vHist&&!vHist.hidden&&vHist.textContent.trim())?vHist:vDeal; if(!t) return;
         var sc=vScroller(), foot=vw.querySelector('.viewer-foot'), fl=foot?foot.getBoundingClientRect().top:innerHeight;
-        var dy=t.getBoundingClientRect().bottom-(fl-12);
-        if(dy>0){ var e=sc||document.documentElement, b=e.style.scrollBehavior; e.style.scrollBehavior='auto'; if(sc) sc.scrollTop+=dy; else window.scrollBy(0,dy); e.style.scrollBehavior=b; }
+        var ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
+        var head=vWhy||t, dy=head.getBoundingClientRect().top-(topLine+10);
+        if(t.getBoundingClientRect().bottom-dy>fl-12) dy=t.getBoundingClientRect().top-(topLine+10);   /* a very tall row: the steps themselves at the top */
+        var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(Math.abs(dy)>2){ if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); }
         t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(e){}
+        t.classList.remove('hist-flash'); void t.offsetWidth; t.classList.add('hist-flash'); setTimeout(function(){ t.classList.remove('hist-flash'); },1700);
       }, 320);
     });
     if(vWhy&&vWhyPanel) vWhy.addEventListener('click',function(ev){
@@ -9718,5 +9769,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 })();</script>
 
 <div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><button type="button" class="ql-x" id="qlX" aria-label="Close">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">Full listing<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
+
+<div class="qlook pchange" id="pchange" hidden role="dialog" aria-modal="true" aria-labelledby="pcT"><div class="qlook-card pc-card"><h3 class="pc-t" id="pcT"></h3><p class="pc-b" id="pcB"></p><div class="pc-btns"><a class="btn btn-primary" id="pcGo" href="#available"></a><button type="button" class="btn btn-tonal" id="pcKeep"></button></div></div></div>
 </body>
 </html>
