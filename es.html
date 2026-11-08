@@ -2276,6 +2276,7 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pchange .pc-t{margin:0;font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2}
 .pchange .pc-b{margin:8px 0 0;font-size:16px;line-height:1.45;color:var(--ink-soft)}
 .pchange .pc-btns{display:flex;flex-direction:column;gap:10px;margin:18px 0 0}
+.pchange .pc-btns [hidden]{display:none}
 .pchange .pc-btns .btn{width:100%;justify-content:center}
 .pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .pairhero .ph-one:focus-visible .ph-face{outline:2px solid var(--brick-dk);outline-offset:4px}
@@ -6011,20 +6012,24 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function pcShut(){ if(pc.hidden) return; pc.hidden=true; if(pcLast&&pcLast.focus) pcLast.focus(); }
   function pcOpen(el){
     var nm=el.getAttribute('data-name'), on=el.getAttribute('data-other-name'), a=el.getAttribute('data-change'), oa=el.getAttribute('data-other'), n=+el.getAttribute('data-alts')||0, e2=es();
-    pcLast=el; pcT.textContent=e2?('\u00bfCambiar a '+nm+'?'):('Change '+nm+'?');
-    if(n>0){ pcB.textContent=e2?('Elegir\u00e1 otro conejo para ir con '+on+'.'):('You will pick another rabbit to go with '+on+'.');
-      pcGo.textContent=e2?('Cambiar a '+nm):('Change '+nm); pcGo.setAttribute('href','#r-'+oa+'~pick+'+a); pcGo.removeAttribute('data-stay');
-      pcKeep.textContent=e2?('Quedarse con '+nm):('Keep '+nm); }
-    else { pcB.textContent=e2?(on+' y '+nm+' son los \u00fanicos dos en venta ahora, as\u00ed que no hay otro conejo para cambiar.'):(on+' and '+nm+' are the only two for sale right now, so there is no other rabbit to swap in.');
-      pcGo.textContent=e2?'Quedarse con los dos':'Keep both'; pcGo.setAttribute('href','#r-'+oa+'+'+a); pcGo.setAttribute('data-stay','1');
-      pcKeep.textContent=e2?('Solo '+on):('Just '+on); pcKeep.setAttribute('data-to','#r-'+oa); }
-    if(n>0) pcKeep.removeAttribute('data-to');
+    pcLast=el;
+    if(n>0){ pcT.textContent=e2?('\u00bfCambiar a '+nm+'?'):('Change '+nm+'?');
+      pcB.textContent=e2?('Elegir\u00e1 otro conejo para ir con '+on+'.'):('You will pick another rabbit to go with '+on+'.');
+      pcGo.textContent=e2?('Cambiar a '+nm):('Change '+nm); pcGo.setAttribute('href','#r-'+oa+'~pick+'+a); pcGo.removeAttribute('data-stay'); pcGo.removeAttribute('role');
+      pcKeep.textContent=e2?('Quedarse con '+nm):('Keep '+nm); pcKeep.removeAttribute('data-to'); pcKeep.hidden=false; }
+    else {
+      var hn=document.querySelectorAll('#viewerPairHero .ph-edit[data-name]'), two=(hn.length===2)?[hn[0].getAttribute('data-name'),hn[1].getAttribute('data-name')]:[on,nm];
+      pcT.textContent=e2?'Solo estos dos por ahora':'Only these two right now';
+      pcB.textContent=e2?(two[0]+' y '+two[1]+' son los \u00fanicos conejos a la venta en este momento, as\u00ed que no hay otro para cambiar.'):(two[0]+' and '+two[1]+' are the only rabbits for sale at the moment, so there\'s no one else to swap in.');
+      pcGo.textContent=e2?'Entendido':'Got it'; pcGo.setAttribute('href',location.hash||'#available'); pcGo.setAttribute('data-stay','1'); pcGo.setAttribute('role','button');
+      pcKeep.hidden=true; pcKeep.removeAttribute('data-to'); }
     pc.hidden=false; pcGo.focus();
   }
   document.addEventListener('click',function(e){ var ch=e.target.closest&&e.target.closest('#viewerPairHero .ph-edit[data-change], #vsetChange[data-change]'); if(ch){ e.preventDefault(); e.stopPropagation(); pcOpen(ch); return; }
     var ab=e.target.closest&&e.target.closest('#vsetAbout[data-ql]'); if(ab){ e.preventDefault(); e.stopPropagation(); var aa=ab.getAttribute('data-ql'); for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===aa){ last=ab; open(RABBITS[i]); break; } } },true);
   pcKeep.addEventListener('click',function(ev){ var to=pcKeep.getAttribute('data-to'); if(to){ ev.preventDefault(); ev.stopPropagation(); pc.hidden=true; location.hash=to; } });
   window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!pc.hidden){ e.stopPropagation(); e.preventDefault(); pcShut(); } },true);
+  pcGo.addEventListener('keydown',function(e){ if((e.key===' '||e.key==='Spacebar')&&pcGo.getAttribute('data-stay')){ e.preventDefault(); pcShut(); } });
   window.addEventListener('hashchange',function(){ if(!pc.hidden) pc.hidden=true; });
   strip.addEventListener('scroll',function(){ var w=strip.clientWidth||1, k=Math.round(strip.scrollLeft/w), d=dots.children; for(var i=0;i<d.length;i++) d[i].className=(i===k)?'on':''; },{passive:true});
   document.addEventListener('click',function(e){
