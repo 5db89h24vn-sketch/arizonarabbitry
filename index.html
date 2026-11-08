@@ -8502,7 +8502,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       });
       vw.classList.toggle('solo', shots.length < 2);
       shown = r;
-      if(vShare) vShare.setAttribute('aria-label', 'Share ' + r.name);
+      if(vShare) vShare.setAttribute('aria-label', 'Share ' + r.name + (vWith?(gsES()?' y ':' and ')+vWith.name:''));   /* (Round 182c) the listing for two shares the two */
       if(listAddr(location.hash)!==addrOf(r)) writeAddr('#r-' + addrOf(r));   /* (Round 145) its sheet's address names it already; (Round 180) so do +mate, ~pick and ~confirm */
       setTimeout(gsSync,0);
       vw.classList.add('open'); trailPaint();
@@ -8818,17 +8818,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(d&&d.tagName==='DETAILS') d.open=true;
     });
 
+    function sharePair(){ if(!shown||!vWith||!vw.classList.contains('vpair')) return null; return addrOf(shown)<addrOf(vWith)?[shown,vWith]:[vWith,shown]; }
     function shareUrl(r){
+      var two=sharePair(); if(two) return 'https://arizonarabbits.com/r/'+addrOf(two[0])+'-and-'+addrOf(two[1]);   /* (Round 182c) */
       return 'https://arizonarabbits.com/r/' + addrOf(r);
     }
-    function shareText(){
-      var bits = [ (vName.textContent || '').trim() ];
-      var meta = (vMeta.textContent || '').replace(/\s+/g, ' ').trim();
-      if (meta) bits.push(meta);
-      if (shown && shown.status === 'available' && priceOf(shown))
-        bits.push('$' + priceOf(shown));
-      return bits.join(' \u00B7 ');
-    }
+    function shareTitle(){ var two=sharePair();
+      return (two?(two[0].name+(gsES()?' y ':' and ')+two[1].name):((vName.textContent||'Arizona Rabbits').trim()))+' \u00B7 Arizona Rabbits'; }
     var canShare = !!(navigator.share),
         canCopy  = !!(navigator.clipboard && navigator.clipboard.writeText);
     shareAble = canShare || canCopy;
@@ -8838,11 +8834,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if (!shown) return;
         var url = shareUrl(shown);
         if (canShare) {
-          navigator.share({
-            title: (vName.textContent || 'Arizona Rabbits').trim() + ' \u00B7 Arizona Rabbits',
-            text:  shareText(),
-            url:   url
-          })["catch"](function(){ /* the reader closed the sheet; not an error */ });
+          navigator.share({ title: shareTitle(), url: url })["catch"](function(){ /* the reader closed the sheet; not an error */ });   /* (Round 182c) the title and the link, no text */
           return;
         }
         navigator.clipboard.writeText(url).then(function(){
