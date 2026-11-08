@@ -4084,22 +4084,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           own. Eating and drinking well, on the same food, for at least seven days. Holding
           or gaining weight when I weigh it, with nothing wrong with it that I can find. One
           that isn't there yet waits, whatever its age.</p>
-          <p><b>What the welfare guides say.</b> Babies wean at four to six
-          weeks and lose the protection of their mother's milk while their gut is still
-          learning solid food. Rabbit.org says <a class="cite"
-          href="https://rabbit.org/care/babies/"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">not to take them away “until they are a full
-          eight weeks of <span class="kw">age”</span><span class="sr-only"> (opens in a new tab)</span></a>. The <a class="cite"
-          href="https://www.rspca.org.uk/adviceandwelfare/pets/rabbits/health/pregnancy"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">RSPCA <span class="kw">agrees</span><span class="sr-only"> (opens in a new tab)</span></a>: eight weeks, “fully weaned
-          and independent”.</p>
-          <p><b>The risk is in those weeks.</b> The <a class="cite"
-          href="https://www.merckvetmanual.com/exotic-and-laboratory-animals/rabbits/bacterial-and-mycotic-diseases-of-rabbits"
-          target="_blank" rel="noopener noreferrer" data-leaves="word">Merck Veterinary <span class="kw">Manual</span><span class="sr-only"> (opens in a new tab)</span></a> puts enterotoxaemia, a
-          severe gut disease, “primarily” in rabbits “4–8 weeks
-          old”, and names diet and the stress of weaning. A new house and new food
-          land in that same window. So the younger a rabbit goes, the more room there is for
-          something to go wrong.</p>
+          
           <p><b>They go home eating what they eat here.</b> Two weeks of that food goes in the
           bag. Nothing changes on day one.</p>
           <p><b>A Ready date on a listing is the day I've said it's ready.</b> You'll get
@@ -7313,8 +7298,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var gsWith='', gsPair=null;   /* (Round 182b, R182b-2) gsPair: the two the sheet opened with, in the listing's order */
     function gsAddr(h){ var m=/^#r-(.+?)~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?rslug(decodeURIComponent(m[1])):null; }
     function gsOptOf(h){ var m=/~(reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?m[1]:'reserve'; }
-    function gsWithOf(h){ var m=/~(?:reserve|buy|plan)\+([a-z0-9-]+)$/.exec(h||''); return m?m[1]:''; }
-    function gsSuffix(mode){ return '~'+mode+((gsWith&&gsKind(mode)==='buy')?'+'+gsWith:''); }
+    function gsWithOf(h){ var m=/~(?:reserve|buy|plan|visit|photos)\+([a-z0-9-]+)$/.exec(h||''); return m?m[1]:''; }   /* (Round 183) a visit or photos for the two carries the second too */
+    function gsSuffix(mode){ return '~'+mode+(gsWith?'+'+gsWith:''); }   /* (Round 183) every kind of request with two taken names the second */
     function gsPairOff(){ return (typeof window.PAIR_OFF==='number')?window.PAIR_OFF:20; }
     function gsMates(r){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[], out=[]; for(var i=0;i<R.length;i++){ var x=R[i]; if(x&&r&&x!==r&&x.name!==r.name&&gsCan(x)&&!gsOne(x)) out.push(x); } return out; }
     function gsMate(){ if(!gsR||!gsWith) return null; var m=gsMates(gsR); for(var i=0;i<m.length;i++) if(addrOf(m[i])===gsWith) return m[i]; return null; }
@@ -7447,9 +7432,19 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gs.querySelector('.gs-err').hidden=true; gs.querySelector('.gs-copy').hidden=true;
       gsPaintMoney();
     }
+    function gsPaintVisit(){
+      var r=gsR; if(!r||!gs) return;
+      var m=gsMate(), two=m?(r.name+(gsES()?' y ':' and ')+m.name):r.name, who=m?'them':r.name;
+      gs.querySelector('.gs-vtitle').textContent='Meet '+two+' first';
+      gs.querySelector('.gs-vhold').textContent='Meeting first doesn’t hold '+who+': someone else can still reserve first.';
+      gs.querySelector('.gs-ptitle').textContent='New photos of '+two;
+      gs.querySelector('.gs-phold').textContent='Asking doesn’t hold '+who+': someone else can still reserve first.';
+      gs.querySelector('.gs-tovisit').textContent='Rather meet '+who+' first? Visit or FaceTime';
+    }
     function gsPaintMoney(){
       var r=gsR, f=gs.querySelector('form'), wb=gs.querySelector('.gs-with'), sm=gs.querySelector('.gs-sum');
       if(!r||!wb) return;
+      gsPaintVisit();   /* (Round 183) */
       var visit=gsMode==='visit', photos=gsMode==='photos', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
       wb.hidden=visit||photos||!wb.querySelector('.opts').children.length;
       var radios=f.querySelectorAll('input[name="gswith"]'), won=gsPair?(gsWith?'both':'just:'+addrOf(r)):gsWith;   /* (Round 182b) the two's rows: Both, or Just <this one> */
@@ -7458,7 +7453,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gs.querySelector('.gs-say-reserve').textContent=q?('$100 now ($50 each), $'+(q.two-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(p-50)+' at pickup (Zelle or cash).');
       var rem=gs.querySelector('.gs-buyset input[value="reserve"]'); rem=rem&&rem.closest('.opt').querySelector('em'); if(rem) rem.textContent=q?'$100':'$50';
       gs.querySelector('.gs-price').textContent='$'+(q?q.two:p);
-      var two=(q&&!visit&&!photos)?mate:null, fh=gs.querySelector('.gs-face'), nm=gs.querySelector('#gsName'), sb=gs.querySelector('.gs-sub');
+      var two=q?mate:null, fh=gs.querySelector('.gs-face'), nm=gs.querySelector('#gsName'), sb=gs.querySelector('.gs-sub');
       if(two){
         fh.classList.add('two'); fh.innerHTML=faceImg(r,44)+faceImg(two,44);
         nm.textContent=r.name+(gsES()?' y ':' and ')+two.name;
@@ -7507,11 +7502,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(r){
         gs.querySelector('.gs-buyword').textContent='Buy';   /* (Round 148) one word for one action; the line under it says when */
         gs.querySelector('.gs-say-buy').textContent=now?'Ready now: home as soon as today.':'All of it now. It goes home on the day I say it’s ready.';
-        gs.querySelector('.gs-vtitle').textContent='Meet '+r.name+' first';
-        gs.querySelector('.gs-vhold').textContent='Meeting first doesn’t hold '+r.name+': someone else can still reserve first.';
-        gs.querySelector('.gs-ptitle').textContent='New photos of '+r.name;
-        gs.querySelector('.gs-phold').textContent='Asking doesn’t hold '+r.name+': someone else can still reserve first.';
-        gs.querySelector('.gs-tovisit').textContent='Rather meet '+r.name+' first? Visit or FaceTime';
+        gsPaintVisit();   /* (Round 183) the visit's and the photo request's words, for one rabbit or for the two */
       } else gs.querySelector('.gs-vhold').textContent='Meeting first doesn’t hold a rabbit: someone else can still reserve first.';
       if(how!=='pick'){   /* (Round 182b) a pick between the two leaves the fields as the buyer has them, an open Zelle row included */
         f.elements.name.value=gsVals.name; f.elements.tel.value=gsVals.tel; f.elements.zelle.value=gsVals.zelle;
@@ -7591,10 +7582,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var a=addrOf(r), d='';
       (r.photos||[]).forEach(function(s){ if(s&&s.date&&!s.video&&!s.reel&&s.date>d) d=s.date; });
       var say=(d?('<b>Newest photo '+esc(niceDate(d))+'.</b> '):'')+'How '+esc(r.name)+' looks today:';
-      return '<p class="vt-say"><span class="vt-lead">Meet '+esc(r.name)+' first, no commitment:</span> '+
-        '<span class="vt-ways"><a class="litterlink vt-visit" href="#r-'+a+'~visit" data-how="person">a visit</a>, '+
-        '<a class="litterlink vt-call" href="#r-'+a+'~visit" data-how="facetime">a video call</a> or\u00a0'+
-        '<a class="litterlink vt-photos" href="#r-'+a+'~photos">new photos</a>.</span></p>';
+      var w=(vWith&&vWith!==r&&gsCan(vWith))?vWith:null, ws=w?'+'+addrOf(w):'';
+      return '<p class="vt-say"><span class="vt-lead">Meet '+(w?'them':esc(r.name))+' first, no commitment:</span> '+
+        '<span class="vt-ways"><a class="litterlink vt-visit" href="#r-'+a+'~visit'+ws+'" data-how="person">a visit</a>, '+
+        '<a class="litterlink vt-call" href="#r-'+a+'~visit'+ws+'" data-how="facetime">a video call</a> or\u00a0'+
+        '<a class="litterlink vt-photos" href="#r-'+a+'~photos'+ws+'">new photos</a>.</span></p>';
     }
     function histHTML(r){
       if(!r||!hasDeal(r)||!r.listedOn) return '';
@@ -7635,11 +7627,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!gsStamp) gsStamp=gsWhen();      /* one code for this sheet: the text, the email and a second try */
       var w=gsStamp, tel=gsTelWords(gsTelOK(f.elements.tel.value)), nm=f.elements.name.value.trim(), note=f.elements.note.value.trim();
       var zel=f.elements.zelle.value.trim(), when=f.elements.when.value.trim();
-      var fc=gsVals.how==='facetime', who=r?r.name:(es?'los conejos':'the rabbits'), say, cost='', subj;
+      var fc=gsVals.how==='facetime', vm=(r&&(m==='visit'||m==='photos'))?gsMate():null, say, cost='', subj;
+      var who=r?(vm?(r.name+(es?' y ':' and ')+vm.name):r.name):(es?'los conejos':'the rabbits');   /* (Round 183) a visit or photos for the two names both */
       var mate=(gsKind(m)==='buy')?gsMate():null, q=mate?gsQuote(r,mate):null, both=r?(mate?(r.name+(es?' y ':' and ')+mate.name):r.name):'';   /* (Round 174) */
       if(m==='photos'&&r){
-        say=es?'Me gustaría fotos nuevas de '+r.name+'.':'I’d like new photos of '+r.name+'.';
-        subj=es?'Fotos nuevas de '+r.name:'New photos of '+r.name;
+        say=es?'Me gustaría fotos nuevas de '+who+'.':'I’d like new photos of '+who+'.';
+        subj=es?'Fotos nuevas de '+who:'New photos of '+who;
       } else if(m==='visit'||!r){
         say=es?(fc?'Me gustaría conocer a '+who+' por FaceTime.':'Me gustaría ir a conocer a '+who+' en persona.')
               :(fc?'I’d like to meet '+who+' on FaceTime.':'I’d like to come and meet '+who+' in person.');
