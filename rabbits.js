@@ -592,6 +592,10 @@ const PARENTS = {
     /* 22 Oct 2026: a fawn (row 106); weighed 7 lb (row 74) */
     variety: "Fawn",
     weights: [ { on: "2026-10-22", lb: 7 } ],
+    /* (8 Nov 2026, Round 184; list row 182) his word of 2 Nov: Frederick was born 30 October 2025, the seller's reply
+       "10/30/25", which he identified as Frederick's. His record prints Born and his age, like the other producers';
+       no pedigree is claimed by it. */
+    dob:     "2025-10-30",
     photos: [
       /* 7 Sept 2026: his portrait on the brick ledge, the same ledge the kits
          are photographed on, sent with the words "This is the dad!"; the
