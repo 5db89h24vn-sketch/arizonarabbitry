@@ -592,9 +592,9 @@ header .brand{color:var(--logo)}
 .hero-lines:hover .cert,.hero-lines:focus-visible .cert{color:var(--brick-dk)}
 
 .facts{border-top:1px solid var(--line);margin-top:26px}
-.facts a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;
+.facts>details>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:46px;
   padding:11px 2px 11px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none;cursor:pointer}
-.facts a span{display:flex;align-items:baseline;gap:10px;min-width:0}
+.facts>details>summary span{display:flex;align-items:baseline;gap:10px;min-width:0}
 .facts b{font-weight:600;font-size:15px;color:var(--ink);line-height:1.3;white-space:nowrap;transition:color .15s}
 .facts small{font-size:14px;color:var(--ink-faint);line-height:1.45;white-space:nowrap;transition:color .15s}
 .stage-lit small .age{display:block}
@@ -602,9 +602,9 @@ header .brand{color:var(--logo)}
 .facts .chev,.doors .chev,.stage-lit .chev,.hero-deliver .chev{flex:none;width:10px;height:10px;margin-right:4px;
   border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);
   transform:rotate(-45deg);transition:border-color .15s,transform .15s}
-.facts a:hover b,.facts a:focus-visible b,.doors a:hover b,.doors a:focus-visible b,.hero-deliver:hover b,.hero-deliver:focus-visible b{color:var(--brick-dk)}
-.facts a:hover small,.facts a:focus-visible small,.doors a:hover small,.doors a:focus-visible small{color:var(--ink-soft)}
-.facts a:hover .chev,.facts a:focus-visible .chev,.doors a:hover .chev,.doors a:focus-visible .chev,.stage-lit:hover .chev,.stage-lit:focus-visible .chev,.hero-deliver:hover .chev,.hero-deliver:focus-visible .chev{border-color:var(--brick-dk);transform:rotate(-45deg) translate(2px,2px)}
+.facts>details>summary:hover b,.facts>details>summary:focus-visible b,.doors a:hover b,.doors a:focus-visible b,.hero-deliver:hover b,.hero-deliver:focus-visible b{color:var(--brick-dk)}
+.facts>details>summary:hover small,.facts>details>summary:focus-visible small,.doors a:hover small,.doors a:focus-visible small{color:var(--ink-soft)}
+.facts>details>summary:hover .chev,.facts>details>summary:focus-visible .chev,.doors a:hover .chev,.doors a:focus-visible .chev,.stage-lit:hover .chev,.stage-lit:focus-visible .chev,.hero-deliver:hover .chev,.hero-deliver:focus-visible .chev{border-color:var(--brick-dk);transform:rotate(-45deg) translate(2px,2px)}
 
 .doors{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin-top:28px}
 .doors a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;
@@ -2046,6 +2046,47 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .pchange .pc-b{margin:8px 0 0;font-size:16px;line-height:1.45;color:var(--ink-soft)}
 .pchange .pc-btns{display:flex;flex-direction:column;gap:10px;margin:18px 0 0}
 .pchange .pc-btns [hidden]{display:none}
+
+.asheet .as-card{max-width:620px}
+.asheet .as-body{padding:20px 22px 4px}
+.asheet .as-back{display:inline-flex;align-items:center;gap:8px;max-width:calc(100% - 52px);margin:0 0 8px -6px;padding:6px 10px 6px 8px;border:0;border-radius:999px;background:none;color:var(--ink-soft);font:inherit;font-size:14px;line-height:1.3;text-align:left;cursor:pointer}
+.asheet .as-back[hidden]{display:none}
+.asheet .as-back:hover,.asheet .as-back:focus-visible{color:var(--brick-dk);background:var(--paper-2)}
+.asheet .as-back .chev{flex:none;width:7px;height:7px;margin-left:3px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(135deg)}
+.asheet .as-t{margin:0 52px 0 0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;text-wrap:balance;outline:none}
+.asheet .as-a{margin-top:10px;max-width:none;padding-bottom:18px}
+.asheet .as-a>details:last-child{border-bottom:0}
+.vback{margin:0 0 10px}
+.vback[hidden]{display:none}
+.askback{margin:0 0 8px}
+.askback[hidden]{display:none}
+.backpill{position:fixed;z-index:92;left:max(12px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));display:flex;align-items:center;height:48px;max-width:var(--bpmax,calc(100vw - 24px));box-sizing:border-box;border-radius:999px;color:var(--ink);background:var(--glass-solid);border:1px solid var(--glass-rim);
+  box-shadow:0 0 0 .5px rgba(36,31,29,.1),0 8px 22px rgba(36,31,29,.15),0 1px 3px rgba(36,31,29,.1);opacity:0;transform:translateY(10px);transition:opacity .2s,transform .26s cubic-bezier(.2,.9,.25,1.1)}
+.backpill.on{opacity:1;transform:none}
+.backpill[hidden]{display:none}
+.backpill .bp-go{display:flex;align-items:center;gap:9px;min-width:0;height:100%;padding:0 4px 0 16px;color:inherit;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2}
+.backpill .bp-go .chev{flex:none;width:8px;height:8px;border-right:1.75px solid currentColor;border-bottom:1.75px solid currentColor;transform:rotate(135deg);margin-left:2px}
+.backpill .bp-t{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.backpill.short .bp-pre{display:none}
+.backpill .bp-x{flex:none;width:40px;height:40px;margin:0 3px 0 0;border:0;border-radius:50%;background:none;color:var(--ink-soft);font-size:19px;line-height:1;cursor:pointer}
+.backpill .bp-go:hover,.backpill .bp-go:focus-visible{color:var(--brick-dk)}
+.backpill .bp-x:hover,.backpill .bp-x:focus-visible{color:var(--ink);background:var(--paper-2)}
+.backpill .bp-go:focus-visible,.backpill .bp-x:focus-visible{outline:2px solid var(--brick-dk);outline-offset:-2px;border-radius:999px}
+body.locked .backpill,html.at-contact .backpill,html.pick .backpill{opacity:0;visibility:hidden;pointer-events:none}
+@media(min-width:981px){ .backpill{left:24px;bottom:24px;height:44px} }
+@media(prefers-reduced-motion:reduce){ .backpill{transition:opacity .2s linear;transform:none} }
+@media(prefers-reduced-transparency:reduce){ .backpill{background:var(--paper);border-color:var(--line)} }
+.facts>details.fact{border-bottom:1px solid var(--line)}
+.hero .facts>details.fact>summary{border-bottom:0;padding-right:34px;font-family:var(--sans);font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit}
+.hero .facts>details.fact>summary:hover{color:inherit}
+.hero .facts>details.fact>summary::after{right:4px}
+.hero .facts>details.fact>summary:active{padding-right:42px}
+.facts .factpanel{margin:2px 0 12px}
+.facts .factpanel p a.chip{display:inline-flex;justify-content:flex-start;gap:6px;min-height:26px;padding:0 8px 0 10px;border-bottom:0;margin:0;background:var(--paper-2);border-radius:999px}
+.facts .factpanel p a.chip:active{margin:0;padding:0 8px 0 10px}
+.facts .factpanel p a.chip .chev{width:7px;height:7px;margin:0 1px 0 0;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft)}
+.facts .factpanel p a.chip:hover .chev,.facts .factpanel p a.chip:focus-visible .chev{border-color:var(--ink)}
+.hero .facts{align-items:start}
 .pchange .pc-btns .btn{width:100%;justify-content:center}
 .pairhero .ph-one{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .pairhero .ph-one:focus-visible .ph-face{outline:2px solid var(--brick-dk);outline-offset:4px}
@@ -2509,14 +2550,14 @@ body.locked{overflow:hidden}
   @media(max-width:479px){ .hero-cta .btn{flex-basis:100%} }
 
   .facts{margin-top:16px}
-  .facts a{gap:14px;min-height:54px;padding:10px 4px 10px 0}
-  .facts a span{display:block}
+  .facts>details>summary{gap:14px;min-height:54px;padding:10px 4px 10px 0}
+  .facts>details>summary span{display:block}
   .facts b{display:block}
   .facts small{display:block;margin-top:2px;font-size:13.5px}
   
   .facts b,.facts small{white-space:normal;text-wrap:balance}
   .facts .chev{margin-right:3px}
-  .facts a:active{background:var(--paper-2);margin:0 -8px;padding-left:8px;padding-right:12px;border-radius:6px}
+  .facts>details>summary:active{background:var(--paper-2);margin:0 -8px;padding-left:8px;padding-right:12px;border-radius:6px}
   .doors a{min-height:56px;padding:10px 4px 10px 0}
   .doors small{font-size:13.5px}
   .doors .chev{margin-right:3px}
@@ -2603,12 +2644,12 @@ body.locked{overflow:hidden}
   .hero-media{grid-column:2;grid-row:1 / 7;position:relative;min-height:0}
   .hero-go{position:absolute;inset:0}
   .hero-img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
-  .hero .facts a span,.hero .facts b,.hero .facts small{display:block}
+  .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
   .hero .facts small{margin-top:2px;white-space:normal}
   
   .hero-srow{margin-bottom:0}
   .hero .facts{margin-top:14px}
-  .hero .facts a{min-height:0;padding-top:9px;padding-bottom:9px}
+  .hero .facts>details>summary{min-height:0;padding-top:9px;padding-bottom:9px}
   .hero-cta .btn{flex:1 1 auto;padding-left:20px;padding-right:20px}
 }
 @media(orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px){
@@ -2619,7 +2660,7 @@ body.locked{overflow:hidden}
 }
 @media(orientation:landscape) and (max-height:500px) and (min-width:560px){
   
-  .hero .facts a span,.hero .facts b,.hero .facts small{display:block}
+  .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
   .hero .facts small{margin-top:2px;white-space:normal}
   .hero{padding:12px 0 24px}
   .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:24px;align-items:start}
@@ -3520,14 +3561,25 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
       <div class="facts">
 
-        <a href="#faq-price"><span><b>What you pay for</b><small>Handling, food, a health check</small></span><i class="chev" aria-hidden="true"></i></a>
+        <details class="fact"><summary><span><b>What you pay for</b><small>Handling, food, a health check</small></span></summary><div class="whypanel factpanel" id="fact-price"><ul class="checks"><li>Handled every day from week one</li><li>Free delivery in AZ, weekends if far</li><li>Healthy at pickup, or $50 back</li><li>Two weeks of food, a care sheet</li><li>Nothing added at pickup</li><li>My number, for life</li></ul><p><a class="litterlink chip" href="#faq-price">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
 
-        <a href="#faq-pay"><span><b>Meet them before you pay</b><small>For delivery, a $50 deposit first</small></span><i class="chev" aria-hidden="true"></i></a>
+        <details class="fact"><summary><span><b>Meet them before you pay</b><small>For delivery, a $50 deposit first</small></span></summary><div class="whypanel factpanel" id="fact-pay"><ul class="checks"><li>Visits are free, no pressure to buy</li><li>Far away? A FaceTime call first</li><li>Only $50 before you meet</li><li>The rest when it's in your hands</li><li>Zelle or cash, or a payment plan</li></ul><p><a class="litterlink chip" href="#faq-pay">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
         
-        <a href="#faq-first"><span><b>First-timers welcome</b><small>Time, space, cats and dogs</small></span><i class="chev" aria-hidden="true"></i></a>
-        <a href="#faq-pair"><span><b>20% off a second rabbit</b><small>When you take two</small></span><i class="chev" aria-hidden="true"></i></a>
-        
+        <details class="fact"><summary><span><b>First-timers welcome</b><small>Time, space, cats and dogs</small></span></summary><div class="whypanel factpanel" id="fact-first"><ul class="checks"><li>Time every day is what it takes</li><li>A care sheet and two weeks of food</li><li>My number, for life</li><li>Cats or dogs? Often fine, slowly</li><li>Kids do well, an adult in charge</li></ul><p><a class="litterlink chip" href="#faq-first">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
+        <details class="fact"><summary><span><b>20% off a second rabbit</b><small>When you take two</small></span></summary><div class="whypanel factpanel" id="fact-pair"><ul class="checks"><li>The second is whichever costs less</li><li>Same litter or not</li><li>Not sure yet? You have 48 hours</li><li>Littermates already get along</li></ul><p><a class="litterlink chip" href="#faq-pair">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
+
       </div>
+      <script>(function(){
+        var box=document.querySelector('.hero .facts'); if(!box) return;
+        var ds=[].slice.call(box.querySelectorAll(':scope>details.fact')), pin=null;
+        box.addEventListener('click',function(ev){ var sm=ev.target.closest&&ev.target.closest('summary'); if(sm&&sm.parentElement&&sm.parentElement.parentElement===box) pin={s:sm,top:sm.getBoundingClientRect().top}; },true);
+        ds.forEach(function(d){ d.addEventListener('toggle',function(){
+          if(!pin||pin.s.parentElement!==d) return;
+          if(d.open) ds.forEach(function(o){ if(o!==d&&o.open) o.open=false; });
+          var dy=pin.s.getBoundingClientRect().top-pin.top; pin=null;
+          if(Math.abs(dy)>=1){ var h=document.documentElement, b=h.style.scrollBehavior; h.style.scrollBehavior='auto'; window.scrollBy(0,dy); requestAnimationFrame(function(){ h.style.scrollBehavior=b; }); }
+        }); });
+      })();</script>
     </div>
   </div>
 </section>
@@ -4524,6 +4576,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="askabout" id="askAbout" tabindex="-1">
+            <p class="askback" id="askBack" hidden><a class="chip" id="askBackA" href="#"><i class="chev left" aria-hidden="true"></i><span id="askBackT"></span></a></p>
             <p class="ask-lead">Asking about <b id="askName"></b></p>
             <div class="rpick" id="askPick" role="group" aria-label="Which rabbits"></div>
 
@@ -4742,6 +4795,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     </div>
     <div class="viewer-body">
       
+      <p class="vback" id="viewerBackP" hidden><a class="chip" id="viewerBack" href="#"><i class="chev left" aria-hidden="true"></i><span id="viewerBackT"></span></a></p>
       <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a></div>
 
       <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p></div>
@@ -7967,6 +8021,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function openParentNow(key){
       var p=HAVE_PARENTS&&PARENTS[key]; if(!p) return false;
+      vWith=null; vConfirm=null; vw.classList.remove('vpair');
+      var ph0=document.getElementById('viewerPairHero'), ps0=document.getElementById('viewerPairSet'); if(ph0) ph0.hidden=true; if(ps0) ps0.hidden=true;
       shots=framesOf(p.photos);
       if(!shots.length) return false;
       lastFocus=document.activeElement;
@@ -8031,7 +8087,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vShare){ vShare.hidden=true; }
       setTimeout(kpSync,0);   /* (Round 144) an address naming one of its babies (#p-<key>~<baby>) opens that baby's card */
       writeAddr(parentFromHash()===key?location.hash:'#p-'+key);
-      vw.classList.add('open');
+      vw.classList.add('open'); trailPaint();
       document.body.classList.add('locked');
       fitBlocks();
       fitCaption();
@@ -8406,7 +8462,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vShare) vShare.setAttribute('aria-label', 'Share ' + r.name);
       if(listAddr(location.hash)!==addrOf(r)) writeAddr('#r-' + addrOf(r));   /* (Round 145) its sheet's address names it already; (Round 180) so do +mate, ~pick and ~confirm */
       setTimeout(gsSync,0);
-      vw.classList.add('open');
+      vw.classList.add('open'); trailPaint();
       document.body.classList.add('locked');
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
       fitCaption();
@@ -8448,6 +8504,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function route(ev){
       var h=location.hash||'', plain=!!(ev&&ev.hasUAVisualTransition);
+      if(/^#[rp]-/.test(h)){ if(ev&&ev.type==='popstate') trailStepping=true; } else { vTrail=[]; trailStepping=false; }
       if(closeOnPop){
         closeOnPop=false; clearTimeout(popTimer);
         if(/^#[rp]-/.test(h)){ try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} h=location.hash||''; }
@@ -8615,7 +8672,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       ev.preventDefault();
       var to=a.getAttribute('href');
       if(location.hash===to){ if(!vw.classList.contains('open')) openFromHash(); return; }
-      stepTo(to);
+      stepFrom(to);
     });
 
     var ALIASES={'faq-why':'faq-price','faq-distance':'faq-delivery'};
@@ -8710,6 +8767,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(exactBtn) exactBtn.addEventListener('click',function(){ exact=true; find(); q.focus(); });
     })();
     document.addEventListener('click',function(ev){
+      if(ev.defaultPrevented) return;   /* ROUND 182: taken by a drop-down or a sheet, the answer below stays as it was */
       var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"]');
       if(!a) return;
       var id=a.getAttribute('href').slice(1);
@@ -8758,12 +8816,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
 
     function askLater(who){
+      trailLeave('#contact');   /* ROUND 182 (R182-2): the form says how to get back to the rabbits it asks about */
       requestAnimationFrame(function(){
         lastRouted='#contact'; location.hash='#contact';
         document.dispatchEvent(new CustomEvent('rabbit:ask',{detail:who}));
       });
     }
     function leaveFor(to){
+      if(asOpen(to, document.activeElement, 'new')) return;   /* ROUND 182 (R182-1): an answer comes over the listing */
+      trailLeave(to);                                          /* (R182-2) and anything else leaves the way back */
       shut(true);
       requestAnimationFrame(function(){
         if(location.hash===to){
@@ -8787,6 +8848,219 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       ev.preventDefault();
       leaveFor(to);
     });
+
+    var AS=null, asCard=null, asT=null, asA=null, asBack=null, asBackT=null, asX=null, asStack=[], asCur=null, asFrom=null, asLocked=false,
+        vTrail=[], trailStepping=false, vBackP=null, vBack=null, vBackT=null,
+        BP=null, bpGo=null, bpName=null, bpPre=null, bpX=null, bpTrail=null, AB=null, abA=null, abT=null, abTrail=null,
+        PL=null, plT=null, plB=null, plStay=null, plGo=null, plDo=null, plOnce='';
+    function asES(){ return document.documentElement.lang==='es'; }
+    function asTarget(id){
+      id=ALIASES[id]||id;
+      var d=document.getElementById(id); if(!d||d.closest('#viewer,#asheet')) return null;
+      if(d.tagName==='DETAILS') return d;
+      if(/^stage-w/.test(id)&&d.querySelector('h3')) return d;
+      return null;
+    }
+    function asContent(d){
+      var title='', box=document.createElement('div'), i, c;
+      if(d.tagName==='DETAILS'){
+        var sm=null, fb=null;
+        for(i=0;i<d.children.length;i++){ c=d.children[i]; if(c.tagName==='SUMMARY'&&!sm) sm=c; if(c.classList&&c.classList.contains('faq-body')&&!fb) fb=c; }
+        var bb=sm&&sm.querySelector('b');
+        title=((d.classList.contains('topic')&&bb)?bb.textContent:(sm?sm.textContent:'')).replace(/\s+/g,' ').trim();
+        if(d.classList.contains('topic')){ for(i=0;i<d.children.length;i++){ c=d.children[i]; if(c.tagName==='DETAILS'&&!c.hidden){ var k=c.cloneNode(true); k.open=false; box.appendChild(k); } } }
+        else { if(!fb) return null; box.innerHTML=fb.innerHTML; }
+      } else {
+        var hd=d.querySelector('h3'), cl=d.cloneNode(true), hh=cl.querySelector('h3');
+        title=hd?hd.textContent.replace(/\s+/g,' ').trim():'';
+        if(hh) hh.parentNode.removeChild(hh);
+        box.innerHTML=cl.innerHTML;
+      }
+      if(!title||!box.textContent.replace(/\s+/g,'')||box.querySelector('button,input,select,textarea,form,video,iframe')) return null;
+      [].slice.call(box.querySelectorAll('[id]')).forEach(function(e){ e.removeAttribute('id'); });
+      return {title:title, html:box.innerHTML};
+    }
+    function asOpen(to, from, mode){
+      var m=/^#([a-z0-9-]+)$/.exec(to||''); if(!m||!AS) return false;
+      if(!/^(?:faq|topic)-|^stage-w/.test(m[1])) return false;
+      var d=asTarget(m[1]); if(!d) return false;
+      var c=asContent(d); if(!c) return false;
+      mode=mode||'new';
+      if(mode==='push'&&asCur) asStack.push(asCur);
+      if(mode==='new'){ asStack=[]; asFrom=from||document.activeElement; }
+      asCur={to:to, title:c.title};
+      asT.textContent=c.title; asA.innerHTML=c.html;
+      var prev=asStack[asStack.length-1];
+      asBack.hidden=!prev; if(prev) asBackT.textContent=prev.title;
+      if(AS.hidden){ AS.hidden=false; if(!document.body.classList.contains('locked')){ document.body.classList.add('locked'); asLocked=true; } }
+      if(asCard) asCard.scrollTop=0;
+      try{ (mode==='new'?asX:asT).focus({preventScroll:true}); }catch(e){}
+      return true;
+    }
+    function asShut(){
+      if(!AS||AS.hidden) return;
+      AS.hidden=true; asA.innerHTML=''; asStack=[]; asCur=null;
+      if(asLocked){ document.body.classList.remove('locked'); asLocked=false; }
+      var f=asFrom; asFrom=null;
+      if(f&&f.focus&&document.documentElement.contains(f)) focusNoScroll(f);
+    }
+    function goPlace(h){ if(vw.classList.contains('open')) leaveFor(h); else { jumpNote(h); location.hash=h; } }
+    function asClick(ev){
+      if(ev.target===AS||(ev.target.closest&&ev.target.closest('#asX'))){ ev.preventDefault(); asShut(); return; }
+      if(ev.target.closest&&ev.target.closest('#asBack')){ ev.preventDefault(); var p=asStack.pop(); if(p) asOpen(p.to,null,'back'); return; }
+      var a=ev.target.closest&&ev.target.closest('a[href]'); if(!a) return;
+      if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var h=a.getAttribute('href')||'';
+      if(/^#(?:faq|topic)-[a-z]+$|^#stage-w[0-9]+$/.test(h)){ ev.preventDefault(); if(asOpen(h,null,'push')) return; asShut(); goPlace(h); return; }
+      if(a.target==='_blank'||/^(?:sms|tel|mailto):/.test(h)) return;   /* a new tab or the phone: the answer stays */
+      asShut();
+      if(/^#[rp]-/.test(h)) return;   /* the page's own handler steps to that rabbit, and the trail remembers this one */
+      if(h.charAt(0)==='#'){ ev.preventDefault(); goPlace(h); }
+    }
+    window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&AS&&!AS.hidden){ e.stopPropagation(); e.preventDefault(); asShut(); } },true);
+    window.addEventListener('hashchange',function(){ if(AS&&!AS.hidden) asShut(); });
+    document.addEventListener('click',function(ev){
+      if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var a=ev.target.closest&&ev.target.closest('a[href^="#faq-"],a[href^="#topic-"]'); if(!a) return;
+      if(a.closest('#faq,#asheet,#viewer,.factpanel,header,nav,footer,.mnav,.corner,#dock,.gs')) return;
+      if(asOpen(a.getAttribute('href'),a,'new')) ev.preventDefault();
+    },true);
+
+    function trailLabel(){ return (vName.textContent||'').replace(/\s+/g,' ').trim(); }
+    function trailPush(){ vTrail.push({hash:location.hash||'', label:trailLabel(), rv:(history.state&&history.state.rv)|0}); }
+    function stepFrom(to){ if(vw.classList.contains('open')&&/^#[rp]-/.test(location.hash||'')) trailPush(); trailStepping=true; stepTo(to); }
+    function trailPaint(){
+      var h=location.hash||'';
+      if(!trailStepping) vTrail=[];
+      trailStepping=false;
+      while(vTrail.length&&vTrail[vTrail.length-1].hash===h) vTrail.pop();
+      var t=vTrail[vTrail.length-1];
+      if(vBackP){ vBackP.hidden=!t; if(t){ vBackT.textContent=(asES()?'Volver a ':'Back to ')+t.label; vBack.setAttribute('href',t.hash); } }
+      pillOff(); askBackOff();   /* a listing on screen: the page's way back has done its work */
+    }
+    function vBackClick(ev){
+      ev.preventDefault(); var t=vTrail[vTrail.length-1]; if(!t) return;
+      trailStepping=true;
+      if(((history.state&&history.state.rv)|0)===t.rv+1) history.back(); else stepTo(t.hash);
+    }
+
+    function bpFit(){
+      if(!BP||BP.hidden) return;
+      var max=innerWidth-24, cp=document.querySelector('.corner-pill'), co=document.querySelector('.corner');
+      if(cp&&co){ var cs=getComputedStyle(co), r=cp.getBoundingClientRect(); if(cs.display!=='none'&&cs.visibility!=='hidden'&&+cs.opacity>0.5&&r.width>0) max=Math.floor(r.left)-(parseFloat(getComputedStyle(BP).left)||12)-10; }
+      BP.style.setProperty('--bpmax',Math.max(120,max)+'px');
+      BP.classList.remove('short');
+      var t=BP.querySelector('.bp-t'); if(t&&t.scrollWidth>t.clientWidth+1) BP.classList.add('short');
+    }
+    function pillOn(t){
+      if(!BP) return;
+      bpTrail=t; bpName.textContent=t.label;
+      bpPre.textContent=t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to ');
+      bpGo.setAttribute('aria-label',(t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to '))+t.label);
+      bpGo.setAttribute('href',t.kind==='listing'?t.hash:('#'+(t.sec||'top')));
+      BP.hidden=false; BP.classList.remove('on'); bpFit();
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(bpTrail===t) BP.classList.add('on'); }); });
+    }
+    function pillOff(){ if(!BP||BP.hidden) return; BP.classList.remove('on'); BP.hidden=true; bpTrail=null; }
+    function askBackOff(){ if(AB){ AB.hidden=true; abTrail=null; } }
+    function trailLeave(to){   /* a listing left for a place on the page */
+      if(!/^#[rp]-/.test(location.hash||'')) return;
+      var t={kind:'listing', hash:location.hash, label:trailLabel(), to:to};
+      if(to==='#contact'&&AB){ abTrail=t; abT.textContent=(asES()?'Volver a ':'Back to ')+t.label; abA.setAttribute('href',t.hash); AB.hidden=false; }
+      setTimeout(function(){ pillOn(t); },0);
+    }
+    function goBackTo(t){
+      if(!t) return;
+      if(t.kind==='listing'){
+        if(location.hash===t.to&&!history.state){ history.back(); return; }   /* the listing's own entry is right behind */
+        stepTo(t.hash); return;
+      }
+      var y=t.y;
+      if(location.hash===t.to&&location.hash!==t.hash){ history.back(); setTimeout(function(){ if(Math.abs(scrollY-y)>40) window.scrollTo({top:y}); },400); }
+      else window.scrollTo({top:y});
+    }
+    window.addEventListener('resize',function(){ bpFit(); });
+    function whereLabel(){
+      var mid=innerHeight*0.35, best=null;
+      [].slice.call(document.querySelectorAll('main > section[id]')).forEach(function(sx){ var r=sx.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid) best=sx; });
+      if(!best||best.id==='top') return {label:(asES()?'arriba':'the top'), top:true, sec:'top'};
+      var n=document.querySelector('.mnav a[href="#'+best.id+'"]');
+      return {label:n?n.textContent.replace(/\s+/g,' ').trim():(asES()?'donde estaba':'where you were'), top:false, sec:best.id};
+    }
+    function jumpNote(to){
+      var y0=scrollY, w=whereLabel(), h0=location.hash||'';
+      if(w.top) return;   /* from the top, the corner's own Back to top is the way back (a second one beside it was a twin) */
+      setTimeout(function(){
+        if(vw.classList.contains('open')||Math.abs(scrollY-y0)<innerHeight*1.5) return;   /* a short hop needs no way back */
+        pillOn({kind:'page', y:y0, hash:h0, to:to, label:w.label, top:w.top, sec:w.sec});
+      },900);
+    }
+    document.addEventListener('click',function(ev){
+      if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var a=ev.target.closest&&ev.target.closest('a[href^="#"]'); if(!a) return;
+      var h=a.getAttribute('href'); if(h.length<2||/^#(?:[rp]|ped|from)-/.test(h)) return;
+      if(a.closest('header,nav,footer,.mnav,.corner,#dock,#viewer,#asheet,#pleave,#pchange,#qlook,.gs,#backPill,.hero-cta,.pickbar')) return;   /* the menus go where they say */
+      if(vw.classList.contains('open')||document.documentElement.classList.contains('pick')) return;
+      jumpNote(h);
+    });
+
+    function plAsk(a,h){
+      var e2=asES(), nm=trailLabel();
+      plT.textContent=e2?('¿Dejar a '+nm+' por ahora?'):('Leave '+nm+' for now?');
+      plB.textContent=e2?'Siguen elegidos, y Volver le trae justo aquí.':'They stay picked, and Back brings you right here.';
+      plStay.textContent=e2?'Quedarme aquí':'Stay here';
+      plGo.textContent=e2?'Salir por ahora':'Leave for now';
+      plDo={a:a,h:h}; PL.hidden=false;
+      try{ plStay.focus({preventScroll:true}); }catch(e){}
+    }
+    function plShut(){ if(!PL||PL.hidden) return; PL.hidden=true; var d=plDo; plDo=null; if(d&&d.a&&d.a.focus&&document.documentElement.contains(d.a)) focusNoScroll(d.a); }
+    document.addEventListener('click',function(ev){
+      if(!PL||ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var twoHere=!!pairWithOf(location.hash||'')||((viewModeOf(location.hash||'')||{}).mode==='confirm');   /* the address says when two are picked */
+      if(!twoHere||!(vWith||vConfirm)||!vw.classList.contains('open')||plOnce===(location.hash||'')) return;
+      var a=ev.target.closest&&ev.target.closest('a[href]'); if(!a) return;
+      var ql=document.getElementById('qlook');
+      if(!(vw.contains(a)||(AS&&AS.contains(a))||(ql&&!ql.hidden&&ql.contains(a)))) return;
+      var h=a.getAttribute('href')||'';
+      if(!h||h==='#'||h==='#contact'||a.target==='_blank'||/^(?:sms|tel|mailto):/.test(h)) return;   /* Ask carries the two to the form; a new tab and the phone leave nothing */
+      if(a.hasAttribute('data-ql')||a.hasAttribute('data-change')||a.id==='viewerBack'||a.closest('.pc-btns')) return;   /* the two's own controls */
+      if(/^#(?:faq|topic)-|^#stage-w/.test(h)&&asTarget(h.slice(1))) return;   /* answers come over the listing */
+      if(/^#r-/.test(h)){   /* the two's own way forward and back: Just, the request, the picker, Confirm */
+        var me=listAddr(location.hash), mt=(vWith||vConfirm)?addrOf(vWith||vConfirm):'', to=listAddr(h);
+        if(to===me||/~(?:pick|confirm|buy|reserve|visit|photos)/.test(h)||(to===mt&&me&&h.indexOf('+'+me)>-1)) return;
+      }
+      if(h===location.hash) return;
+      ev.preventDefault(); ev.stopPropagation();
+      plAsk(a,h);
+    },true);
+    function plGoClick(){
+        var d=plDo; plDo=null; PL.hidden=true; if(!d) return;
+        plOnce=location.hash||'';   /* asked once for these two; the next way out goes without asking */
+        var ql=document.getElementById('qlook'), qx=document.getElementById('qlX'); if(ql&&!ql.hidden&&qx) qx.click();
+        asShut();
+        var h=d.h;
+        if(/^#[rp]-/.test(h)){ stepFrom(h); return; }
+        if(h.charAt(0)==='#'){ leaveFor(h); return; }
+        location.href=d.a.href;   /* another page: the browser's own Back comes back to this listing, its address kept */
+    }
+    window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&PL&&!PL.hidden){ e.stopPropagation(); e.preventDefault(); plShut(); } },true);
+    function r182init(){
+      var g=function(i){ return document.getElementById(i); };
+      AS=g('asheet'); asCard=AS&&AS.querySelector('.as-card'); asT=g('asT'); asA=g('asA'); asBack=g('asBack'); asBackT=g('asBackT'); asX=g('asX');
+      vBackP=g('viewerBackP'); vBack=g('viewerBack'); vBackT=g('viewerBackT');
+      BP=g('backPill'); bpGo=g('bpGo'); bpName=g('bpName'); bpPre=g('bpPre'); bpX=g('bpX');
+      AB=g('askBack'); abA=g('askBackA'); abT=g('askBackT');
+      PL=g('pleave'); plT=g('plT'); plB=g('plB'); plStay=g('plStay'); plGo=g('plGo');
+      if(AS) AS.addEventListener('click',asClick);
+      if(vBack) vBack.addEventListener('click',vBackClick);
+      if(bpGo) bpGo.addEventListener('click',function(ev){ ev.preventDefault(); var t=bpTrail; pillOff(); goBackTo(t); });
+      if(bpX) bpX.addEventListener('click',function(){ pillOff(); });
+      if(abA) abA.addEventListener('click',function(ev){ ev.preventDefault(); var t=abTrail; askBackOff(); pillOff(); goBackTo(t); });
+      if(PL){ PL.addEventListener('click',function(ev){ if(ev.target===PL) plShut(); }); plStay.addEventListener('click',function(){ plShut(); }); plGo.addEventListener('click',plGoClick); }
+      if(window.ResizeObserver){ var cpo=document.querySelector('.corner-pill'); if(cpo) new ResizeObserver(function(){ bpFit(); }).observe(cpo); }
+      if(window.MutationObserver) new MutationObserver(function(){ bpFit(); }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+    }
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',r182init); else r182init();
 
     var vWhyPanel=document.getElementById('viewerWhyPanel'), vWhyMore=document.getElementById('viewerWhyMore');
     function whyShut(){ openQuiet(vw); unanchor(); if(vWhyPanel) vWhyPanel.hidden=true; if(vWhy) vWhy.setAttribute('aria-expanded','false'); }
@@ -9687,7 +9961,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var d=t.closest('details'), any=false; while(d){ if(!d.open){ d.open=true; any=true; } d=d.parentElement&&d.parentElement.closest('details'); }
     if(any) setTimeout(function(){ t.scrollIntoView({block:'start'}); },60); }
   window.addEventListener('hashchange',function(){ openFor(location.hash); });
-  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) openFor(a.getAttribute('href')); },true);
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a) return; var h=a.getAttribute('href'); setTimeout(function(){ if(!e.defaultPrevented) openFor(h); },0); },true);
   openFor(location.hash);
   var O=window.openHere, corner=document.getElementById('corner'), nav=document.getElementById('nav');
   var floor=function(){ if(corner&&getComputedStyle(corner).position==='fixed'){ var c=corner.getBoundingClientRect(); if(c.height&&c.top<innerHeight) return c.top; } return innerHeight; };
@@ -9775,6 +10049,11 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 
 <div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><button type="button" class="ql-x" id="qlX" aria-label="Close">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">Full listing<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
 
+<div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><button type="button" class="ql-x" id="asX" aria-label="Close">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><i class="chev" aria-hidden="true"></i><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
+
+<div class="qlook pchange pleave" id="pleave" hidden role="dialog" aria-modal="true" aria-labelledby="plT"><div class="qlook-card pc-card"><h3 class="pc-t" id="plT"></h3><p class="pc-b" id="plB"></p><div class="pc-btns"><button type="button" class="btn btn-primary" id="plStay"></button><button type="button" class="btn btn-tonal" id="plGo"></button></div></div></div>
+
+<div class="backpill" id="backPill" hidden><a class="bp-go" id="bpGo" href="#"><i class="chev" aria-hidden="true"></i><span class="bp-t"><span class="bp-pre" id="bpPre">Back to </span><span id="bpName"></span></span></a><button type="button" class="bp-x" id="bpX" aria-label="Hide">&#215;</button></div>
 <div class="qlook pchange" id="pchange" hidden role="dialog" aria-modal="true" aria-labelledby="pcT"><div class="qlook-card pc-card"><h3 class="pc-t" id="pcT"></h3><p class="pc-b" id="pcB"></p><div class="pc-btns"><a class="btn btn-primary" id="pcGo" href="#available"></a><button type="button" class="btn btn-tonal" id="pcKeep"></button></div></div></div>
 </body>
 </html>
