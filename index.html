@@ -262,6 +262,11 @@ p{margin:0}
 
 .quiet-focus:focus{outline:none}
 
+html.ptr :focus-visible{outline:none!important}
+html.ptr .pairhero .ph-one:focus-visible .ph-face,html.ptr .wl-pick>label>input:focus-visible+span,
+html.ptr .wl-lit input:focus-visible+.wl-card,html.ptr .wl-more input:focus-visible+.wl-tick{outline:none!important}
+html.ptr .bunny:has(> .bunny-link:focus-visible){outline:none!important}
+
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
 section{padding:60px 0}
 
@@ -1686,6 +1691,9 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-close:focus-visible,.viewer-share:focus-visible,.viewer-nav:focus-visible,.ig-play:focus-visible{
   outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px var(--card)}
 
+html.ptr .viewer-close:focus-visible,html.ptr .viewer-share:focus-visible,html.ptr .viewer-nav:focus-visible{box-shadow:var(--lift-photo)!important}
+html.ptr .ig-play:focus-visible{box-shadow:var(--lift-2)!important}
+
 .viewer-body{--vx:18px;--vb:18px;padding:15px var(--vx) 0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--sp);
   
   scroll-padding-bottom:150px}
@@ -1841,6 +1849,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-strip button.on{border-color:var(--brick)}
 
 .viewer-strip button:focus-visible{box-shadow:0 0 0 3px var(--card)}
+html.ptr .viewer-strip button:focus-visible{box-shadow:none!important}   
 .viewer-head{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:baseline}
 
 .viewer-head h2{grid-column:1;grid-row:1;min-width:0}
@@ -2081,6 +2090,8 @@ body.locked .backpill,html.at-contact .backpill,html.pick .backpill{opacity:0;vi
 .hero .facts>details.fact>summary:hover{color:inherit}
 .hero .facts>details.fact>summary::after{right:4px}
 .hero .facts>details.fact>summary:active{padding-right:42px}
+
+.hero .facts>details.fact.shutting[open]>summary::after{transform:translateY(-70%) rotate(45deg)}
 .facts .factpanel{margin:2px 0 12px}
 .facts .factpanel p a.chip{display:inline-flex;justify-content:flex-start;gap:6px;min-height:26px;padding:0 8px 0 10px;border-bottom:0;margin:0;background:var(--paper-2);border-radius:999px}
 .facts .factpanel p a.chip:active{margin:0;padding:0 8px 0 10px}
@@ -2864,6 +2875,7 @@ html.src-open,html.src-open body{overflow:hidden}
 .src-x:hover{border-color:var(--brick);color:var(--brick)}
 .src-x:active{transform:scale(.94)}
 .src-x:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px var(--card)}
+html.ptr .src-x:focus-visible{box-shadow:none!important}   
 .src-page{max-width:680px;margin:0 auto;padding:24px 16px calc(52px + env(safe-area-inset-bottom,0px))}
 .src-page h2{margin:0;font-size:32px;line-height:1.15;letter-spacing:-.015em;text-wrap:balance;outline:none}
 .src-what{margin:8px 0 0;font-size:14px;font-weight:500;line-height:1.45;color:var(--ink-soft)}
@@ -3008,6 +3020,7 @@ html.pedopen,html.pedopen body{overflow:hidden}
 .ped-close:hover{border-color:var(--brick);color:var(--brick)}
 .ped-close:active{transform:scale(.94)}
 .ped-close:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px var(--card)}
+html.ptr .ped-close:focus-visible{box-shadow:none!important}   
 .ped-page{max-width:1180px;margin:0 auto;padding:18px 16px calc(44px + env(safe-area-inset-bottom,0px))}
 .ped-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:4px 18px;
   margin:0 0 16px;padding:0 0 12px;border-bottom:1.5px solid var(--ink-soft)}
@@ -3569,17 +3582,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <details class="fact"><summary><span><b>20% off a second rabbit</b><small>When you take two</small></span></summary><div class="whypanel factpanel" id="fact-pair"><ul class="checks"><li>The second is whichever costs less</li><li>Same litter or not</li><li>Not sure yet? You have 48 hours</li><li>Littermates already get along</li></ul><p><a class="litterlink chip" href="#faq-pair">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
 
       </div>
-      <script>(function(){
-        var box=document.querySelector('.hero .facts'); if(!box) return;
-        var ds=[].slice.call(box.querySelectorAll(':scope>details.fact')), pin=null;
-        box.addEventListener('click',function(ev){ var sm=ev.target.closest&&ev.target.closest('summary'); if(sm&&sm.parentElement&&sm.parentElement.parentElement===box) pin={s:sm,top:sm.getBoundingClientRect().top}; },true);
-        ds.forEach(function(d){ d.addEventListener('toggle',function(){
-          if(!pin||pin.s.parentElement!==d) return;
-          if(d.open) ds.forEach(function(o){ if(o!==d&&o.open) o.open=false; });
-          var dy=pin.s.getBoundingClientRect().top-pin.top; pin=null;
-          if(Math.abs(dy)>=1){ var h=document.documentElement, b=h.style.scrollBehavior; h.style.scrollBehavior='auto'; window.scrollBy(0,dy); requestAnimationFrame(function(){ h.style.scrollBehavior=b; }); }
-        }); });
-      })();</script>
+      
     </div>
   </div>
 </section>
@@ -4892,6 +4895,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 (function(){
   'use strict';
   document.documentElement.className+=' js';
+  (function(){ var R=document.documentElement;
+    var on=function(){ if(!R.classList.contains('ptr')) R.classList.add('ptr'); };
+    var off=function(e){ if(e.metaKey||e.ctrlKey||e.altKey) return; if(R.classList.contains('ptr')) R.classList.remove('ptr'); };
+    window.addEventListener('pointerdown',on,true); window.addEventListener('mousedown',on,true);
+    window.addEventListener('touchstart',on,{capture:true,passive:true}); window.addEventListener('keydown',off,true);
+  })();
   var openBusy=[];   /* [control, finish, stop] for each slide under way */
   function openFind(ctl){ for(var i=0;i<openBusy.length;i++) if(openBusy[i][0]===ctl) return i; return -1; }
   function openSettle(ctl, quiet){ var i=openFind(ctl); if(i<0) return; var j=openBusy[i]; openBusy.splice(i,1); (quiet?j[2]:j[1])(); }
@@ -4911,7 +4920,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var els=[].filter.call(o.parts()||[],function(x){ return x&&x.getClientRects().length; });
     if(opening&&els.length){
       var r=els[0].getBoundingClientRect(), fl=o.floor?o.floor():innerHeight, ce=o.ceil?o.ceil():8;
-      aim=Math.max(0,Math.min(r.top+Math.min(r.height,64)-(fl-8), top0-ce));
+      aim=Math.max(0,Math.min(r.top+(o.whole?r.height:Math.min(r.height,64))-(fl-8), top0-ce));
     }
     var anims=[], raf=0, over=false;
     var tidy=function(){ if(raf) cancelAnimationFrame(raf); raf=0;
@@ -5611,6 +5620,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var t=e.target;
       if(!t || t===document.body || !t.getBoundingClientRect || box.contains(t)) return;
       try{ if(!t.matches(':focus-visible')) return; }catch(x){ return; }
+      if(document.documentElement.classList.contains('ptr')) return;
       requestAnimationFrame(function(){ requestAnimationFrame(function(){
         if(document.activeElement!==t) return;
         var r=t.getBoundingClientRect(), hit=false;
@@ -7301,7 +7311,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     });
     var gs=null, gsR=null, gsPushed=false, gsFrom=null, gsMode='reserve', gsStamp=null, gsVals={name:'',tel:'',zelle:'',note:'',when:'',how:'person'};
     var GS_TEL='+15202702827', GS_TEL_WORDS='(520) 270-2827', GS_MAIL='hello@'+'arizonarabbits.com';
-    var gsWith='';
+    var gsWith='', gsPair=null;   /* (Round 182b, R182b-2) gsPair: the two the sheet opened with, in the listing's order */
     function gsAddr(h){ var m=/^#r-(.+?)~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?rslug(decodeURIComponent(m[1])):null; }
     function gsOptOf(h){ var m=/~(reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/.exec(h||''); return m?m[1]:'reserve'; }
     function gsWithOf(h){ var m=/~(?:reserve|buy|plan)\+([a-z0-9-]+)$/.exec(h||''); return m?m[1]:''; }
@@ -7377,7 +7387,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       f.addEventListener('change',function(ev){
         if(ev.target.name==='gsopt') gsMove(ev.target.value,true);
         if(ev.target.name==='gshow'){ gsVals.how=ev.target.value==='facetime'?'facetime':'person'; gsPaintMode(true); }
-        if(ev.target.name==='gswith'){ gsWith=ev.target.value; gsStamp=null; gsMove(gsMode,true); }   /* (Round 174) two is a new message */
+        if(ev.target.name==='gswith'){ var wv=ev.target.value; gsStamp=null;   /* (Round 174) two is a new message; (Round 182b) one of the two is too */
+          if(gsPair&&(wv==='both'||wv.indexOf('just:')===0)){ var to=(wv==='both'||wv.slice(5)===addrOf(gsPair[0]))?gsPair[0]:gsPair[1], tw=(wv==='both')?addrOf(gsPair[1]):'';
+            gsSteady(ev.target,function(){ gsShow(to,gsMode,'pick',null,tw); }); }
+          else { gsWith=wv; gsSteady(ev.target,function(){ gsMove(gsMode,true); }); } }
       });
       f.addEventListener('input',function(ev){ if(ev.target.name in gsVals) gsVals[ev.target.name]=ev.target.value; var er=gs.querySelector('.gs-err'); if(!er.hidden) er.hidden=true; });
       gs.addEventListener('keydown',function(ev){
@@ -7393,6 +7406,22 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       });
       return gs;
     }
+    var gsInset=0;
+    function gsSteady(el,fn){
+      var sc=gs&&gs.firstElementChild, lab=el&&el.closest?(el.closest('label')||el):null, t0=lab?lab.getBoundingClientRect().top:0;
+      fn();
+      if(!sc||!lab||!lab.isConnected) return;
+      var dy=lab.getBoundingClientRect().top-t0;
+      if(Math.abs(dy)<=0.5) return;
+      var al=getComputedStyle(gs).alignItems, fk=(al==='center')?2:(al==='flex-end'||al==='end')?1:0;   /* how far the top moves for each px off the height */
+      var b=sc.style.scrollBehavior; sc.style.scrollBehavior='auto';
+      if(dy>0&&gsInset>0&&fk){ var k=Math.min(dy,gsInset); gsInset-=k; sc.style.maxHeight=gsInset?(sc.clientHeight+k*fk)+'px':''; dy=lab.getBoundingClientRect().top-t0; }
+      if(dy>0.5||(dy<-0.5&&sc.scrollTop>0)){ sc.scrollTop=sc.scrollTop+dy; dy=lab.getBoundingClientRect().top-t0; }
+      if(dy<-0.5&&fk&&sc.scrollHeight>sc.clientHeight){ gsInset+=-dy; sc.style.maxHeight=(sc.clientHeight+dy*fk)+'px'; }
+      sc.style.scrollBehavior=b;
+    }
+    function gsUninset(){ if(gs&&gsInset){ gsInset=0; gs.firstElementChild.style.maxHeight=''; } }
+    window.addEventListener('resize',gsUninset);
     function gsMove(mode,fromRadio){
       if(!gs) return;
       if(gsKind(mode)!==gsKind(gsMode)) gsStamp=null;     /* a visit, a purchase and a photo request are three requests */
@@ -7424,7 +7453,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!r||!wb) return;
       var visit=gsMode==='visit', photos=gsMode==='photos', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
       wb.hidden=visit||photos||!wb.querySelector('.opts').children.length;
-      var radios=f.querySelectorAll('input[name="gswith"]'); for(var i=0;i<radios.length;i++) radios[i].checked=(radios[i].value===gsWith);
+      var radios=f.querySelectorAll('input[name="gswith"]'), won=gsPair?(gsWith?'both':'just:'+addrOf(r)):gsWith;   /* (Round 182b) the two's rows: Both, or Just <this one> */
+      for(var i=0;i<radios.length;i++) radios[i].checked=(radios[i].value===won);
       gs.querySelector('.gs-buyset legend').textContent=one?(r.name+' is bought outright: no deposit at this price.'):('How do you want to get '+r.name+(mate?' and '+mate.name:'')+'?');
       gs.querySelector('.gs-say-reserve').textContent=q?('$100 now ($50 each), $'+(q.two-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(p-50)+' at pickup (Zelle or cash).');
       var rem=gs.querySelector('.gs-buyset input[value="reserve"]'); rem=rem&&rem.closest('.opt').querySelector('em'); if(rem) rem.textContent=q?'$100':'$50';
@@ -7439,6 +7469,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         fh.classList.remove('two'); fh.innerHTML=faceImg(r,52);
         nm.textContent=r.name; sb.textContent=[r.breed,r.colour,'$'+p].filter(Boolean).join(' · ');
       }
+      if(!visit&&!photos){ var rdy=gsNow(r)&&(!two||gsNow(two));
+        gs.querySelector('.gs-say-buy').textContent=rdy?'Ready now: home as soon as today.':two?'All of it now. They go home on the day I say they’re ready.':'All of it now. It goes home on the day I say it’s ready.'; }
       if(q&&!wb.hidden){
         sm.hidden=false;
         sm.innerHTML=(gsMode==='plan')?'Two on one plan: we set it up\u00a0together.'
@@ -7454,9 +7486,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(one&&(gsMode==='reserve'||gsMode==='plan')) gsMode='buy';   /* at or under the deposit: bought outright (Round 167) */
       [].forEach.call(gs.querySelectorAll('.gs-buyset .opt'),function(l){ var v=(l.querySelector('input')||{}).value; l.hidden=one&&v!=='buy'; });
       var mates=(r&&!one)?gsMates(r):[], wopts=gs.querySelector('.gs-with .opts');
-      wopts.innerHTML=mates.length?('<label class="opt"><input type="radio" name="gswith" value=""><span><b>Just '+esc(r.name)+'</b></span></label>'+
+      if(how!=='pick'){ var wm=null; if(r&&withAddr&&withAddr!=='two') for(var mi=0;mi<mates.length;mi++) if(addrOf(mates[mi])===String(withAddr)) wm=mates[mi]; gsPair=wm?[r,wm]:null; }
+      if(gsPair){ var pA=gsPair[0], pB=gsPair[1], pq=gsQuote(pA,pB), pk='two:'+addrOf(pA)+'+'+addrOf(pB);
+        if(wopts.getAttribute('data-for')!==pk){ wopts.setAttribute('data-for',pk);
+          wopts.innerHTML='<label class="opt"><input type="radio" name="gswith" value="both"><span><b>Both</b><small>'+
+            (pq.bundle?'The two for $'+pq.two+', a\u00a0special.':'The two for $'+pq.two+': the second '+gsPairOff()+'%\u00a0off.')+'</small></span><em>$'+pq.two+'</em></label>'+
+            [pA,pB].map(function(x){ return '<label class="opt"><input type="radio" name="gswith" value="just:'+esc(addrOf(x))+'"><span><b>Just '+esc(x.name)+'</b></span><em>$'+(+priceOf(x))+'</em></label>'; }).join(''); }
+      } else { wopts.setAttribute('data-for','one:'+(r?addrOf(r):''));
+        wopts.innerHTML=mates.length?('<label class="opt"><input type="radio" name="gswith" value=""><span><b>Just '+esc(r.name)+'</b></span><em>$'+p+'</em></label>'+
         mates.map(function(x){ var q=gsQuote(r,x); return '<label class="opt"><input type="radio" name="gswith" value="'+esc(addrOf(x))+'"><span><b>With '+esc(x.name)+'</b><small>'+
-          (q.bundle?'The two for $'+q.two+', a\u00a0special.':'The two for $'+q.two+': the second '+gsPairOff()+'%\u00a0off.')+'</small></span><em>$'+q.two+'</em></label>'; }).join('')):'';
+          (q.bundle?'The two for $'+q.two+', a\u00a0special.':'The two for $'+q.two+': the second '+gsPairOff()+'%\u00a0off.')+'</small></span><em>$'+q.two+'</em></label>'; }).join('')):''; }
       gsWith=String(withAddr||''); if(!gsMate()) gsWith='';
       var pick=(String(withAddr||'')==='two'&&mates.length>0);   /* ROUND 179: arrived by "Taking two?" (+two): the question is the frame */
       gs.querySelector('.gs-tobuy').textContent=one?'Buy instead':'Reserve instead';
@@ -7475,9 +7514,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         gs.querySelector('.gs-phold').textContent='Asking doesn’t hold '+r.name+': someone else can still reserve first.';
         gs.querySelector('.gs-tovisit').textContent='Rather meet '+r.name+' first? Visit or FaceTime';
       } else gs.querySelector('.gs-vhold').textContent='Meeting first doesn’t hold a rabbit: someone else can still reserve first.';
-      f.elements.name.value=gsVals.name; f.elements.tel.value=gsVals.tel; f.elements.zelle.value=gsVals.zelle;
-      f.elements.note.value=gsVals.note; f.elements.when.value=gsVals.when;
-      gs.querySelector('#gsZelle').hidden=!gsVals.zelle; gs.querySelector('.gs-zlink').setAttribute('aria-expanded',String(!!gsVals.zelle));
+      if(how!=='pick'){   /* (Round 182b) a pick between the two leaves the fields as the buyer has them, an open Zelle row included */
+        f.elements.name.value=gsVals.name; f.elements.tel.value=gsVals.tel; f.elements.zelle.value=gsVals.zelle;
+        f.elements.note.value=gsVals.note; f.elements.when.value=gsVals.when;
+        gs.querySelector('#gsZelle').hidden=!gsVals.zelle; gs.querySelector('.gs-zlink').setAttribute('aria-expanded',String(!!gsVals.zelle)); }
       var scr=gsScreen(), bt=gs.querySelector('.gs-text'), bm=gs.querySelector('.gs-mail'), bc=gs.querySelector('.gs-copyb');
       bt.hidden=scr; bc.hidden=!scr;
       bm.className='btn '+(scr?'btn-primary':'btn-tonal')+' gs-mail';
@@ -7489,7 +7529,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gsPaintMode(false);
       var h=r?('#r-'+addrOf(r)+gsSuffix(gsMode)):'#visit';
       if(how==='tap'){ gsFrom=from||document.activeElement; writeAddr(h); gsPushed=true; }   /* (Round 149) the control itself: WebKit does not focus a tapped link */
+      if(how==='pick'&&r){ try{ history.replaceState(history.state,'',h); }catch(e){} lastRouted=location.hash||h; }   /* (Round 182b) the pick between the two, in place */
       if(gs.hidden){
+        gsUninset();   /* (Round 182b) a sheet opens at its full height */
         gs.hidden=false;
         gs.classList.remove('gs-in-anim'); void gs.offsetWidth; gs.classList.add('gs-in-anim');
         gs.firstElementChild.scrollTop=0;
@@ -7501,9 +7543,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function gsHide(){
       if(!gs||gs.hidden) return;
-      gs.hidden=true;
+      gs.hidden=true; gsUninset();
       var back=gsFrom; gsFrom=null;
-      var lst=!!(gsR&&shown&&!parentOpen&&vw.classList.contains('open')&&addrOf(shown)===addrOf(gsR));
+      var lst=!!(gsR&&shown&&!parentOpen&&vw.classList.contains('open')&&addrOf(shown)===addrOf(gsPair?gsPair[0]:gsR));   /* (Round 182b) the two's listing is the first's */
       if(lst&&(!back||!vw.contains(back)||!back.getClientRects().length))
         back=((gsMode==='buy'||gsMode==='plan')&&vBuy&&!vBuy.hidden)?vBuy:vCta;
       if(!gsR&&!back){ var vl=document.querySelector('#visit a[href="#visit"]'); if(vl&&vl.getClientRects().length) back=vl; }
@@ -7516,6 +7558,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       gsPushed=false;
       if(!gsR){ if(h==='#visit'){ try{ history.replaceState(history.state,'',location.pathname+location.search); }catch(e){} lastRouted=''; } gsHide(); return; }
       var base=h.replace(/~(?:reserve|buy|plan|visit|photos)(?:\+[a-z0-9-]+)?$/,'');
+      if(shown&&vw.classList.contains('open')&&!parentOpen&&(listAddr(base)!==addrOf(shown)||vWith)) base='#r-'+addrOf(shown)+(vWith?'+'+addrOf(vWith):'');
       if(base!==h){ try{ history.replaceState(history.state,'',base); }catch(e){} lastRouted=location.hash||base; }
       gsHide();
     }
@@ -9973,9 +10016,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       parts:function(){ return l.querySelectorAll('li small'); }, floor:floor, ceil:ceil });
   });
   if(O) document.addEventListener('click',function(e){
-    var s=e.target.closest&&e.target.closest('details.fold>summary'); if(!s) return;
+    var s=e.target.closest&&e.target.closest('details.fold>summary, .hero .facts>details.fact>summary'); if(!s) return;
     var d=s.parentElement; e.preventDefault();
-    O(s,{ isOpen:function(){ return d.open; },
+    O(s,{ isOpen:function(){ return d.open; }, whole:d.classList.contains('fact'),
       show:function(){ d.open=true; }, hide:function(){ d.open=false; d.classList.remove('shutting'); },
       mark:function(opening){ d.classList.toggle('shutting',!opening); },
       parts:function(){ return [].filter.call(d.children,function(x){ return x!==s; }); }, floor:floor, ceil:ceil });
