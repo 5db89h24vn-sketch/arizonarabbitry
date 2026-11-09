@@ -2371,6 +2371,116 @@ body.locked .backpill,html.at-contact .backpill,html.pick .backpill{opacity:0;vi
 @media(hover:hover){.qlook .ql-x:hover{border-color:var(--brick);color:var(--brick)}}
 .qlook .ql-x:active{transform:scale(.94)}
 .qlook .ql-x:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+
+.lsh{margin:26px 0 6px;min-width:0}
+.lsh[hidden]{display:none}
+html.pick .lsh{display:none!important}
+.lsh-head{display:flex;align-items:center;gap:10px;margin:0 0 9px}
+.lsh-t{margin:0;flex:1 1 auto;min-width:0;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;letter-spacing:-.01em}
+.lsh-go{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 15px 0 12px;border:0;border-radius:100px;
+  background:var(--paper-2);color:var(--ink);font:600 14px/1 var(--sans);cursor:pointer;white-space:nowrap}
+.lsh-go svg{width:17px;height:17px;flex:none}
+.lsh-go.on{background:var(--brick-tint);box-shadow:inset 0 0 0 2px var(--brick-fill);color:var(--brick-dk)}
+@media(hover:hover){.lsh-go:hover{background:var(--line)} .lsh-go.on:hover{background:var(--brick-tint)}}
+.lsh-go:active{transform:scale(.97)}
+:where(html:not(.ptr)) .lsh-go:focus-visible,:where(html:not(.ptr)) .lsh-chip:focus-visible,:where(html:not(.ptr)) .lsh-open:focus-visible,
+:where(html:not(.ptr)) .lsh-bell:focus-visible,:where(html:not(.ptr)) .lsh-arr:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+
+.lsh-bar{display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.lsh-chips{display:flex;flex-wrap:nowrap;gap:6px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;padding:2px;margin:-2px}
+.lsh-chips::-webkit-scrollbar{display:none}
+.lsh-chip{display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:0 12px;border:0;border-radius:100px;background:var(--paper-2);
+  color:var(--ink);font:600 13.5px/1 var(--sans);cursor:pointer;white-space:nowrap}
+.lsh-chip .c{font-weight:500;color:var(--ink-soft)}
+.lsh-chip[aria-pressed="true"]{background:var(--brick-tint);box-shadow:inset 0 0 0 2px var(--brick-fill);color:var(--brick-dk)}
+.lsh-chip[aria-pressed="true"] .c{color:var(--brick-dk)}
+@media(hover:hover){.lsh-chip:hover{background:var(--line)} .lsh-chip[aria-pressed="true"]:hover{background:var(--brick-tint)}}
+.lsh-arrs{display:none;gap:6px;flex:none}
+@media(hover:hover) and (pointer:fine){.lsh-arrs{display:flex}}
+.lsh-arr{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.lsh-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2}
+.lsh-arr[disabled]{opacity:.35;cursor:default}
+@media(hover:hover){.lsh-arr:not([disabled]):hover{border-color:var(--brick);color:var(--brick)}}
+.lsh-row{list-style:none;margin:0;padding:3px 2px 6px;display:grid;grid-auto-flow:column;gap:8px;
+  grid-auto-columns:calc((100% - 16px) / 2.1);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.lsh-row::-webkit-scrollbar{display:none}
+
+@media(min-width:360px){.lsh-row{grid-auto-columns:calc((100% - 20px) / 2.3);gap:10px}}
+@media(min-width:520px){.lsh-row{grid-auto-columns:calc((100% - 30px) / 3.3)}}
+@media(min-width:600px){.lsh-row{grid-auto-columns:calc((100% - 36px) / 3.3);gap:12px}}
+@media(min-width:760px){.lsh-row{grid-auto-columns:calc((100% - 48px) / 4.3)}}
+.lsh-row>li{scroll-snap-align:start;min-width:0;display:flex}
+.lsh-card{position:relative;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;border:1px dashed var(--ink-faint);border-radius:var(--r);
+  background:var(--card);overflow:hidden}
+@media(hover:hover){.lsh-card:hover{border-color:var(--brick)}}
+.lsh-open{display:flex;flex-direction:column;flex:1 1 auto;width:100%;margin:0;padding:0;border:0;background:var(--card);color:inherit;text-align:left;cursor:pointer;font:inherit}   
+.lsh-pic{display:block;position:relative;background:var(--paper-2)}
+.lsh-pic img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.lsh-none{display:block;width:100%;aspect-ratio:4/3;background:var(--paper-2)}   
+.lsh-b{display:block;padding:7px 8px 9px}
+@media(min-width:600px){.lsh-b{padding:7px 10px 9px}}
+.lsh-age{display:block;font-size:13.5px;font-weight:600;line-height:1.28;color:var(--ink);text-wrap:balance}
+.lsh-kind{display:block;margin-top:1px;font-size:12.5px;line-height:1.3;color:var(--ink-soft);text-wrap:balance}
+.lsh-sale{display:block;margin-top:3px;font-size:12.5px;line-height:1.3;color:var(--ink-soft);text-wrap:balance}
+.lsh-sale.set{color:var(--moss-dk);font-weight:600}
+@media(max-width:359px){.lsh-kind,.lsh-sale{font-size:12px}}   
+
+.lsh-tag{position:absolute;top:6px;left:6px;z-index:1;padding:3px 7px;border-radius:4px;border:1px solid var(--line);background:var(--card);
+  color:var(--ink-soft);font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;line-height:1.25;box-shadow:var(--lift-photo)}
+.lsh-stamp{position:absolute;left:6px;bottom:6px;z-index:1;max-width:calc(100% - 12px);padding:3px 8px;border-radius:100px;background:rgba(24,20,18,.72);
+  color:#fff;font-size:11px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.lsh-end{text-decoration:none;color:inherit}
+.lsh-end .lsh-pic{display:grid;place-items:center;aspect-ratio:4/3;color:var(--ink-soft)}
+.lsh-end .lsh-pic svg{width:34%;height:auto}
+.lsh-end .chev{display:inline-block;width:7px;height:7px;margin:0 0 1px 6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg)}
+:where(html:not(.ptr)) .lsh-end:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+.lsh-acts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.lsh-acts .lsh-go{margin:0}
+.lsh-bell{position:absolute;top:6px;right:6px;z-index:2;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--paper);
+  color:var(--ink);display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:var(--lift-1)}
+.lsh-bell::before{content:'';position:absolute;inset:-5px}
+.lsh-bell svg{width:17px;height:17px}
+.lsh-bell.on{background:var(--brick-fill);border-color:var(--brick-fill);color:var(--on-brick)}
+@media(hover:hover){.lsh-bell:hover{border-color:var(--brick);color:var(--brick)} .lsh-bell.on:hover{color:var(--on-brick)}}
+.lsh-bell:active{transform:scale(.94)}
+.lsh-empty{margin:0 0 6px;padding:16px;border:1px dashed var(--ink-faint);border-radius:var(--r);background:var(--card);font-size:14.5px;line-height:1.45;color:var(--ink)}
+.lsh-empty[hidden]{display:none}
+
+.litsheet .ls-sub{margin:4px 0 0;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.litsheet .ls-sub a{color:var(--brick-dk);text-decoration:underline dotted;text-underline-offset:3px}
+.litsheet .ql-strip:focus-visible{outline:2px solid var(--brick-dk);outline-offset:-2px}
+.litsheet .ls-pics{position:relative}
+.litsheet .ls-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:none;place-items:center;padding:0;cursor:pointer;box-shadow:var(--lift-1)}
+.litsheet .ls-arr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2}
+.litsheet .ls-arr[disabled]{opacity:.35;cursor:default}
+.litsheet .ls-arr.l{left:10px} .litsheet .ls-arr.r{right:10px}
+@media(hover:hover) and (pointer:fine){.litsheet .ls-arr:not([hidden]){display:grid}}
+.litsheet .ls-why{margin:8px 0 0;font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+.litsheet .ls-ready{margin:10px 0 0;font-size:15.5px;line-height:1.45;color:var(--ink)}
+.litsheet .ls-ready b{color:var(--moss-dk)}
+.litsheet .ls-wait{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
+.litsheet .ls-wait[hidden]{display:none}
+.litsheet .ls-acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 4px}
+.litsheet .ls-acts .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.litsheet .ls-acts .btn svg{width:18px;height:18px}
+.litsheet .ql-meta a{color:var(--brick-dk);text-decoration:underline dotted;text-underline-offset:3px}
+
+.alsheet .al-body{padding:18px 20px 4px}
+.alsheet .al-t{margin:0 52px 4px 0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2}
+.alsheet .al-s{margin:0 0 14px;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.alsheet .al-kept{margin:10px 0 0;font-size:13px;color:var(--ink-soft)}
+.alsheet .al-kept[hidden]{display:none}
+.alsheet .wl-form{gap:12px}
+
+.alsheet .wl-lits{display:flex;flex-direction:column;gap:6px}
+
+.alsheet .wl-lit.al-incl{opacity:.6}
+.alsheet .wl-lit.al-incl .wl-card{cursor:default}
+.alsheet .al-ok{margin:6px 0 0;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.alsheet .al-ok[hidden]{display:none}
+.alsheet .al-done{margin:14px 0 6px}
 .pairhero .ph-face{display:block;width:min(128px,34vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--paper),0 6px 18px rgba(0,0,0,.18);background:var(--paper)}
 .pairhero .ph-face img,.pairhero .ph-face .face-none{display:block;width:100%;height:100%;object-fit:cover}
 .pairhero .ph-name{margin:10px 0 0;font-family:var(--serif,Georgia,serif);font-size:19px;line-height:1.2}
@@ -3915,6 +4025,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       </button>
     </div>
 
+    <div class="lsh" id="litterShelf" role="region" hidden aria-labelledby="lshT">
+      <div class="lsh-head"><h3 class="lsh-t" id="lshT"></h3><button type="button" class="lsh-go" id="lshGo" aria-haspopup="dialog"></button></div>
+      <div class="lsh-bar"><div class="lsh-chips" id="lshChips" role="group"></div><div class="lsh-arrs"><button type="button" class="lsh-arr" id="lshPrev"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="lsh-arr" id="lshNext"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
+      <ul class="lsh-row" id="lshRow"></ul>
+      <div class="lsh-empty" id="lshEmpty" hidden></div>
+    </div>
+    
     <div class="doors" role="group" aria-label="Las noticias y las camadas">
       <a href="es-updates.html"><span><b>Noticias</b><small data-fact="news-row">Actualizado <time datetime="2026-11-07">7 nov</time>. Dos blancos, ahora $440 juntos.</small></span><i class="chev" aria-hidden="true"></i></a>
       <a href="es-litters.html"><span><b>Todas las camadas</b><small data-fact="litters-row">Doce hasta ahora. La más reciente nació el 5&nbsp;de&nbsp;noviembre.</small></span><i class="chev" aria-hidden="true"></i></a>
@@ -9718,6 +9835,284 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   }
 
   (function(){
+    var shelf=document.getElementById('litterShelf'); if(!shelf) return;
+    var ES=document.documentElement.lang==='es';
+    var LITS=[]; try{ var li=document.getElementById('litterIndex'); LITS=li?(JSON.parse(li.textContent||'[]')||[]):[]; }catch(e){ LITS=[]; }
+    var PAR=(typeof PARENTS!=='undefined'&&PARENTS)?PARENTS:{};
+    var PLAN=(typeof PLANNED!=='undefined'&&Array.isArray(PLANNED))?PLANNED:[];
+    var READY=(typeof LITTER_READY!=='undefined'&&LITTER_READY&&typeof LITTER_READY==='object')?LITTER_READY:{};
+    var MONE=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MONS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    var MONLE=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var MONLS=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    var DAYE=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], DAYS=['dom','lun','mar','mié','jue','vie','sáb'];
+    var NB=' ';
+    function tie(t){ return String(t||'').replace(/ (\S+)$/,NB+'$1'); }
+    function ymd(s){ var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); return m?[+m[1],+m[2],+m[3]]:null; }
+    function dShort(s){ var d=ymd(s); return d?(d[2]+NB+(ES?MONS:MONE)[d[1]-1]):''; }
+    function dLong(s){ var d=ymd(s); return d?(ES?(d[2]+' de '+MONLS[d[1]-1]):(d[2]+' '+MONLE[d[1]-1])):''; }
+    function dWeek(s){ var d=ymd(s); if(!d) return ''; var w=new Date(d[0],d[1]-1,d[2],12).getDay(); return (ES?DAYS:DAYE)[w]+' '+dShort(s); }
+    function between(a,b){ var x=Date.parse(a+'T00:00:00'), y=Date.parse(b+'T00:00:00'); return (isNaN(x)||isNaN(y))?NaN:Math.round((y-x)/86400000); }
+    function days(s){ return between(s,todayISO()); }
+    function ageWords(born){
+      var d=days(born); if(isNaN(d)||d<0) return '';
+      var t;
+      if(!ES) t=ageAt(born,todayISO());
+      else if(d===0) t='nacidos hoy';
+      else if(d<14) t=d+(d===1?' día':' días');
+      else if(d<56){ var w=Math.floor(d/7), r=d%7; t=w+(w===1?' semana':' semanas')+(r?' y '+r+(r===1?' día':' días'):''); }
+      else { var h=Math.round(d/30.44*2)/2, wh=Math.floor(h); t=(h>wh?wh+'½':String(wh))+(h===1?' mes':' meses'); }
+      if(!ES&&t==='the day it was born') t='born today';
+      return tie(t);
+    }
+    function saleCome(s){ var d=days(s); return !isNaN(d)&&d>=0; }
+    function saleText(w){ if(!w.sale) return ES?'Sin fecha de venta':'Sale day not set'; if(saleCome(w.sale)) return ES?'A la venta muy pronto':'Going on sale soon'; return (ES?'A la venta el ':'For sale ')+dWeek(w.sale); }
+    function kindOf(line){ line=String(line||''); return /\scross$/i.test(line)?'x':(line==='Holland Lop'?'hl':(line==='Netherland Dwarf'?'nd':'o')); }
+    function breedWords(line){ var b=String(line||'').replace(/\s+cross$/i,''); return ES?b:(b?b+'s':''); }
+    function pureWord(k){ return k==='x'?(ES?'Cruza':'Cross'):(ES?'De raza pura':'Purebred'); }
+    function kindWords(w){ var b=breedWords(w.l.line); return b?(b+' · '+pureWord(w.kind)):''; }
+    function pName(key){ return (key&&PAR[key]&&PAR[key].name)||''; }
+    function photosOf(born){
+      var pre='photos/litter-'+born+'-', out=[], tile='photos/litter-'+born+'.jpg';
+      for(var k in PHOTO_SIZES){ if(Object.prototype.hasOwnProperty.call(PHOTO_SIZES,k)&&k.indexOf(pre)===0){ var m=/^photos\/litter-\d{4}-\d{2}-\d{2}-(\d{4}-\d{2}-\d{2})/.exec(k); if(m) out.push({src:k,day:m[1],video:/-video\.jpg$/.test(k)}); } }
+      out.sort(function(a,b){ return a.day<b.day?1:(a.day>b.day?-1:(a.video===b.video?0:(a.video?1:-1))); });
+      if(PHOTO_SIZES[tile]) out.push({src:tile,day:born,tile:true});
+      return out;
+    }
+    function photoAt(w){
+      if(!w.pic||w.pic.tile) return '';
+      var pa=between(w.born,w.pic.day), now=days(w.born); if(isNaN(pa)||isNaN(now)||now-pa<=7) return '';
+      if(pa<=0) return ES?'Foto al nacer':'Photo at birth';
+      if(pa===1) return ES?'Foto al día de nacer':'Photo at 1 day';
+      if(pa<14) return ES?('Foto a los '+pa+' días'):('Photo at '+pa+' days');
+      var wk=Math.floor(pa/7); return ES?('Foto a las '+wk+' semanas'):('Photo at '+wk+' weeks');
+    }
+    function picHTML(src,sizes){ return '<picture>'+avifSource(src,sizes)+'<img src="'+esc(src)+'"'+sizedAttrs(src,sizes)+' alt="" loading="lazy" decoding="async" width="400" height="300" onerror="cardErr(this)"></picture>'; }
+    var waiting=LITS.filter(function(l){ return l&&l.born&&!(l.kits&&l.kits.length)&&!l.lost&&!l.never; }).map(function(l){
+      var ph=photosOf(l.born); return {id:'L'+l.born, born:l.born, l:l, kind:kindOf(l.line), sale:(typeof READY[l.born]==='string'&&ymd(READY[l.born]))?READY[l.born]:'', photos:ph, pic:ph[0]||null};
+    });
+    waiting.sort(function(a,b){ if(a.sale&&b.sale) return a.sale<b.sale?-1:(a.sale>b.sale?1:(a.born<b.born?-1:1)); if(a.sale||b.sale) return a.sale?-1:1; return a.born<b.born?-1:(a.born>b.born?1:0); });
+    PLAN.forEach(function(q){ if(q&&q.key&&q.name){ var n=String(q.name), k=/cross/i.test(n)?'x':(/netherland dwarf/i.test(n)?'nd':(/holland lop/i.test(n)?'hl':'o')); waiting.push({id:'P'+q.key, plan:q, kind:k, sale:'', photos:[], pic:null}); } });
+    if(!waiting.length) return;
+    var BELL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+    var BELLF=BELL.replace('fill="none"','fill="currentColor"');
+    var CARD_SIZES='(min-width:1000px) 260px, (min-width:600px) 22vw, 36vw';
+    function sget(k,d){ try{ var v=sessionStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+    function sset(k,v){ try{ if(v===null) sessionStorage.removeItem(k); else sessionStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+    function lget(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+    function lset(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+    var mine=lget('arAlerts',null);
+    function onList(id){ return !!(mine&&Array.isArray(mine.want)&&(mine.want.indexOf('all')>=0||mine.want.indexOf(id)>=0)); }
+    var filter=sget('arShelfFilter','all'); if(['all','hl','nd','x'].indexOf(filter)<0) filter='all';
+    var T={
+      title: function(k){ return ES?('Próximamente: '+k+(k===1?' camada':' camadas')):(k===1?'1 litter coming soon':k+' litters coming soon'); },
+      go: ES?'Avisarme':'Get alerts', goOn: ES?'Mis avisos':'Your alerts',
+      chip: {all:ES?'Todas':'All', hl:'Holland Lop', nd:'Netherland Dwarf', x:ES?'Cruzas':'Crosses'},
+      kindName: {hl:'Holland Lop', nd:'Netherland Dwarf', x:ES?'cruzas':'cross'},
+      chipsLabel: ES?'Mostrar':'Show',
+      prev: ES?'Camadas anteriores':'Earlier litters', next: ES?'Más camadas':'More litters',
+      notBorn: ES?'Aún no nacen':'Not born yet',
+      allLit: function(n){ return ES?('Ver las '+n+' camadas'):('See all '+n+' litters'); }, allSub: ES?'La página de camadas':'The litters page',
+      bellOff: function(n){ return ES?('Avisarme de '+n):('Get alerts for '+n); },
+      bellOn: function(n){ return ES?('Ya tiene avisos de '+n+'; ver sus avisos'):('You get alerts for '+n+'; see your alerts'); },
+      litterOf: function(s){ return ES?('la camada nacida el '+dLong(s)):('the litter born '+dLong(s)); }
+    };
+    var head=document.getElementById('lshT'), go=document.getElementById('lshGo'),
+        chips=document.getElementById('lshChips'), row=document.getElementById('lshRow'), empty=document.getElementById('lshEmpty'),
+        prev=document.getElementById('lshPrev'), next=document.getElementById('lshNext');
+    head.textContent=tie(T.title(waiting.length));
+    chips.setAttribute('aria-label',T.chipsLabel);
+    prev.setAttribute('aria-label',T.prev); next.setAttribute('aria-label',T.next);
+    function countOf(k){ return k==='all'?waiting.length:waiting.filter(function(w){ return w.kind===k; }).length; }
+    var order=['hl','nd','x'].map(function(k,i){ return [k,countOf(k),i]; }).sort(function(a,b){ return (b[1]>0)-(a[1]>0)||b[1]-a[1]||a[2]-b[2]; }).map(function(x){ return x[0]; });
+    chips.innerHTML=['all'].concat(order).map(function(k){ return '<button type="button" class="lsh-chip" data-k="'+k+'" aria-pressed="'+(k===filter?'true':'false')+'">'+esc(T.chip[k])+'<span class="c">'+countOf(k)+'</span></button>'; }).join('');
+    function paintGo(){ var on=!!(mine&&mine.want&&mine.want.length); go.className='lsh-go'+(on?' on':''); go.innerHTML=(on?BELLF:BELL)+'<span>'+esc(on?T.goOn:T.go)+'</span>'; }
+    function nameOf(w){ return w.plan?String(w.plan.name):T.litterOf(w.born); }
+    function cardHTML(w){
+      var on=onList(w.id), nm=nameOf(w), stamp=photoAt(w);
+      var pic=w.pic?picHTML(w.pic.src,CARD_SIZES):'<span class="lsh-none" aria-hidden="true"></span>';
+      var tag=w.plan?'':'<span class="lsh-tag">'+esc(pureWord(w.kind))+'</span>';
+      var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(ageWords(w.born));
+      var kind=w.plan?esc(T.notBorn):esc(tie(String(w.l.line||'').replace(/\s+cross$/i,'')));   /* the breed as the chips name it: Holland Lop, Netherland Dwarf ("Netherland Dwarfs" ran past a phone's card) */
+      var sale=w.plan?'':'<span class="lsh-sale'+(w.sale?' set':'')+'">'+esc(tie(saleText(w)))+'</span>';
+      return '<li data-id="'+esc(w.id)+'" data-k="'+w.kind+'"><div class="lsh-card">'+
+        '<button type="button" class="lsh-open" aria-haspopup="dialog">'+
+        '<span class="lsh-pic">'+pic+tag+(stamp?'<span class="lsh-stamp">'+esc(stamp)+'</span>':'')+'</span><span class="lsh-b"><span class="lsh-age">'+top+'</span><span class="lsh-kind">'+kind+'</span>'+sale+'</span></button>'+
+        '<button type="button" class="lsh-bell'+(on?' on':'')+'" aria-haspopup="dialog" aria-label="'+esc(on?T.bellOn(nm):T.bellOff(nm))+'">'+(on?BELLF:BELL)+'</button>'+
+        '</div></li>';
+    }
+    function endHTML(){
+      var n=LITS.length;
+      return '<li data-id="litters" data-k="all"><a class="lsh-card lsh-end" href="'+(ES?'es-litters.html':'/litters')+'">'+
+        '<span class="lsh-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span>'+
+        '<span class="lsh-b"><span class="lsh-age">'+esc(tie(T.allLit(n)))+'<i class="chev" aria-hidden="true"></i></span><span class="lsh-kind">'+esc(tie(T.allSub))+'</span></span></a></li>';
+    }
+    function emptyHTML(){
+      var k=filter, kn=T.kindName[k]||'', out='';
+      var ndx=k==='nd'?waiting.filter(function(w){ return w.kind==='x'&&/^Netherland Dwarf/i.test(String(w.l&&w.l.line||'')); }):[];
+      if(k==='x') out=ES?'No hay cruzas próximamente.':'No cross litter is coming soon.';
+      else out=ES?('No hay camadas de '+kn+' de raza pura próximamente.'):('No purebred '+kn+' litter is coming soon.');
+      if(ndx.length) out+=' '+(ES?(ndx.length===1?'Hay 1 cruza de Netherland Dwarf, nacida el '+dShort(ndx[0].born)+'.':'Hay '+ndx.length+' cruzas de Netherland Dwarf.'):(ndx.length===1?'There is 1 Netherland Dwarf cross, born '+dShort(ndx[0].born)+'.':'There are '+ndx.length+' Netherland Dwarf crosses.'));
+      out+=' '+(ES?'Los avisos de todas las camadas incluyen la próxima, y también las demás.':'Alerts for every litter include the next one, and every other litter too.');
+      return '<p style="margin:0">'+esc(out)+'</p><div class="lsh-acts">'+(ndx.length?'<button type="button" class="lsh-go" data-show="x">'+esc(ES?'Ver las cruzas':'Show crosses')+'</button>':'')+
+        '<button type="button" class="lsh-go" data-every="1" aria-haspopup="dialog">'+BELL+'<span>'+esc(T.go)+'</span></button></div>';
+    }
+    function paint(){
+      var list=waiting.filter(function(w){ return filter==='all'||w.kind===filter; });
+      row.innerHTML=list.map(cardHTML).join('')+(list.length?endHTML():'');
+      row.hidden=!list.length;
+      if(!list.length){ empty.innerHTML=emptyHTML(); empty.hidden=false; }
+      else { empty.hidden=true; empty.innerHTML=''; }
+      [].forEach.call(chips.querySelectorAll('.lsh-chip'),function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-k')===filter?'true':'false'); });
+      paintGo(); arrows();
+    }
+    function arrows(){ var max=row.scrollWidth-row.clientWidth-2; prev.disabled=row.scrollLeft<=2; next.disabled=row.scrollLeft>=max; }
+    row.addEventListener('scroll',function(){ arrows(); sset('arShelfX',row.scrollLeft); },{passive:true});
+    function smooth(){ return (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth'; }
+    function step(d){ var li=row.querySelector('li'); var w=li?li.getBoundingClientRect().width+12:200; var n=Math.max(1,Math.floor(row.clientWidth/w)); row.scrollBy({left:d*n*w,behavior:smooth()}); }
+    prev.addEventListener('click',function(){ step(-1); }); next.addEventListener('click',function(){ step(1); });
+    function setFilter(k){ filter=k; sset('arShelfFilter',filter); row.scrollLeft=0; paint(); }
+    chips.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('.lsh-chip'); if(b) setFilter(b.getAttribute('data-k')); });
+    paint();
+    var x0=sget('arShelfX',0); if(x0) row.scrollLeft=x0;
+    shelf.hidden=false;
+
+    function trap(box,ev){ if(ev.key!=='Tab') return; var f=[].filter.call(box.querySelectorAll('button:not([disabled]),a[href],input:not([type="hidden"]):not([disabled]),[tabindex="0"]'),function(e){ return e.getClientRects().length>0; }); if(!f.length) return;
+      var a=f[0], z=f[f.length-1]; if(ev.shiftKey&&document.activeElement===a){ ev.preventDefault(); z.focus(); } else if(!ev.shiftKey&&document.activeElement===z){ ev.preventDefault(); a.focus(); } }
+    function sheet(el,onClose){
+      var back=null;
+      function open(from){ back=from||document.activeElement; el.hidden=false; document.documentElement.classList.add('lsh-sheet'); var x=el.querySelector('.ql-x'); if(x) x.focus({preventScroll:true}); }
+      function shut(){ if(el.hidden) return; el.hidden=true; document.documentElement.classList.remove('lsh-sheet'); if(onClose) onClose(); if(back&&document.documentElement.contains(back)){ try{ back.focus({preventScroll:true}); }catch(e){} } }
+      el.addEventListener('click',function(ev){ if(ev.target===el) shut(); });
+      el.querySelector('.ql-x').addEventListener('click',shut);
+      el.addEventListener('keydown',function(ev){ if(ev.key==='Escape'){ ev.preventDefault(); ev.stopPropagation(); shut(); return; } trap(el.firstElementChild,ev); });
+      return {open:open,shut:shut,el:el};
+    }
+    var LS=null, ls=null, lsNow=null;
+    function litInit(){
+      if(ls) return ls; LS=document.getElementById('litSheet'); if(!LS) return null; ls=sheet(LS);
+      document.getElementById('lsX').setAttribute('aria-label',ES?'Cerrar':'Close');
+      var strip=document.getElementById('lsStrip');
+      strip.setAttribute('tabindex','0'); strip.setAttribute('aria-label',ES?'Fotos de la camada':'Photos of the litter');
+      var at=function(){ return Math.round(strip.scrollLeft/Math.max(1,strip.clientWidth)); };
+      var go2=function(i){ var n=strip.children.length; i=Math.max(0,Math.min(n-1,i)); strip.scrollTo({left:i*strip.clientWidth,behavior:smooth()}); };
+      strip.addEventListener('scroll',function(){ var i=at(); [].forEach.call(document.querySelectorAll('#lsDots i'),function(d,k){ d.className=k===i?'on':''; }); lsArr(); },{passive:true});
+      strip.addEventListener('keydown',function(ev){ if(ev.key==='ArrowLeft'||ev.key==='ArrowRight'){ ev.preventDefault(); go2(at()+(ev.key==='ArrowLeft'?-1:1)); } });
+      document.getElementById('lsPrev').addEventListener('click',function(){ go2(at()-1); });
+      document.getElementById('lsNext').addEventListener('click',function(){ go2(at()+1); });
+      document.getElementById('lsPrev').setAttribute('aria-label',ES?'Foto anterior':'Previous photo');
+      document.getElementById('lsNext').setAttribute('aria-label',ES?'Foto siguiente':'Next photo');
+      document.getElementById('lsAlert').addEventListener('click',function(){ var w=lsNow; ls.shut(); if(w) openAlerts(w.id,go); });
+      document.getElementById('lsSub').addEventListener('click',function(ev){ var a=ev.target.closest&&ev.target.closest('a[href^="#p-"]'); if(a) ls.shut(); });
+      return ls;
+    }
+    function lsArr(){ var s=document.getElementById('lsStrip'), n=s.children.length, i=Math.round(s.scrollLeft/Math.max(1,s.clientWidth)); var p=document.getElementById('lsPrev'), q=document.getElementById('lsNext');
+      p.hidden=q.hidden=n<2; p.disabled=i<=0; q.disabled=i>=n-1; }
+    function openLitter(w,from){
+      if(!litInit()) return; lsNow=w;
+      var strip=document.getElementById('lsStrip'), dots=document.getElementById('lsDots');
+      var ph=w.photos.length?w.photos:[];
+      strip.innerHTML=ph.map(function(p){ var pa=between(w.born,p.day); var alt=(ES?'La camada ':'The litter ')+(isNaN(pa)?'':(pa<=0?(ES?'al nacer':'at birth'):(ES?('a los '+pa+' días'):('at '+pa+' days old')))); return '<img src="'+esc(p.src)+'"'+sizedAttrs(p.src,'(min-width:761px) 560px, 100vw')+' alt="'+esc(alt)+'" loading="lazy" decoding="async">'; }).join('');
+      dots.innerHTML=ph.length>1?ph.map(function(_,i){ return '<i'+(i?'':' class="on"')+'></i>'; }).join(''):'';
+      strip.scrollLeft=0; lsArr();
+      document.getElementById('lsName').textContent=tie(ES?('Nacidos el '+dLong(w.born)):('Born '+dLong(w.born)));
+      document.getElementById('lsMeta').textContent=ageWords(w.born).replace(/ /g,' ')+' · '+kindWords(w);
+      var mo=pName(w.l.parents&&w.l.parents.mother), fa=pName(w.l.parents&&w.l.parents.father), sub='';
+      if(mo||fa) sub=(mo?(ES?'Madre ':'Mother ')+'<a href="#p-'+esc(w.l.parents.mother)+'">'+esc(mo)+'</a>':'')+(mo&&fa?(ES?', padre ':', father '):(fa?(ES?'Padre ':'Father '):''))+(fa?'<a href="#p-'+esc(w.l.parents.father)+'">'+esc(fa)+'</a>':'');
+      document.getElementById('lsSub').innerHTML=sub;
+      var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy');
+      if(w.sale&&saleCome(w.sale)){ rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'; }
+      else if(w.sale){ rd.innerHTML=(ES?'A la venta el ':'For sale ')+'<b>'+esc(dWeek(w.sale))+'</b>.'; why.textContent=ES?'Ese día salen a la venta en esta página, y le aviso si está en la lista.':'That day they go on sale on this page, and I email you if you’re on the list.'; }
+      else { rd.textContent=ES?'Fecha de venta aún sin fijar.':'Sale day not set yet.'; why.textContent=ES?'Cada uno se publica cuando ya lo fotografié y revisé que está sano; con los avisos, se entera ese mismo día.':'Each one is listed once it’s photographed and I’ve checked it’s in good health; with alerts, you hear the same day.'; }
+      var wt=document.getElementById('lsWait'); wt.hidden=true; wt.textContent='';
+      if(typeof fetchWaiting==='function') fetchWaiting(w.id, wt, T.litterOf(w.born), onList(w.id));
+      var on=onList(w.id), b=document.getElementById('lsAlert');
+      b.innerHTML=(on?BELLF:BELL)+'<span>'+esc(on?(ES?'En su lista · sus avisos':'On your list · your alerts'):(ES?'Avisarme de esta camada':'Get alerts for this litter'))+'</span>';
+      var pg=document.getElementById('lsPage'); pg.setAttribute('href',(ES?'es-litters.html':'/litters')+'#'+w.id); pg.innerHTML=esc(ES?'La página de la camada':'The litter’s page')+'<i class="chev" aria-hidden="true"></i>';
+      ls.open(from);
+    }
+    var AL=null, al=null, af=null, every=null, named=[], held={};
+    function alInit(){ if(al) return al; AL=document.getElementById('alertSheet'); if(!AL) return null; al=sheet(AL,function(){ saveDraft(); }); return al; }
+    var src=document.getElementById('wlform');
+    var tpl=src?src.cloneNode(true):null;
+    function draft(){ return sget('arAlertDraft',null); }
+    function state(){ return {every:!!(every&&every.checked), named:named.filter(function(i){ return every&&every.checked?held[i.value]:i.checked; }).map(function(i){ return i.value; }),
+      level:(af.querySelector('input[name="level"]')||{}).checked?'all':'sale', email:(af.querySelector('input[name="email"]')||{}).value||''}; }
+    function saveDraft(){ if(!af||af.style.display==='none') return; sset('arAlertDraft',state()); }
+    function paintEvery(){ var on=!!(every&&every.checked);
+      named.forEach(function(i){ var l=i.closest('label'); if(on){ if(!l.classList.contains('al-incl')) held[i.value]=i.checked; i.checked=true; i.disabled=true; l.classList.add('al-incl'); }
+        else if(l.classList.contains('al-incl')){ i.checked=!!held[i.value]; i.disabled=false; l.classList.remove('al-incl'); } }); }
+    function buildForm(){
+      if(af||!tpl) return af;
+      af=tpl.cloneNode(true); af.id='alertForm'; af.removeAttribute('style');
+      [].forEach.call(af.querySelectorAll('[id]'),function(e){ e.id='al-'+e.id; });
+      [].forEach.call(af.querySelectorAll('label[for]'),function(e){ e.setAttribute('for','al-'+e.getAttribute('for')); });
+      [].forEach.call(af.querySelectorAll('[aria-labelledby],[aria-describedby]'),function(e){ ['aria-labelledby','aria-describedby'].forEach(function(a){ var v=e.getAttribute(a); if(v) e.setAttribute(a,v.split(/\s+/).map(function(x){ return 'al-'+x; }).join(' ')); }); });
+      [].forEach.call(af.querySelectorAll('a.wl-piclink'),function(a){ var im=a.querySelector('img'); if(im) a.parentNode.insertBefore(im,a); a.parentNode.removeChild(a); });
+      document.getElementById('alFormBox').appendChild(af);
+      var lits=af.querySelector('.wl-lits');
+      if(lits){ waiting.slice().reverse().forEach(function(w){ var inp=lits.querySelector('input[name="want"][value="'+w.id+'"]'); var lab=inp&&inp.closest('label'); if(!lab) return;
+          var ev0=lits.querySelector('input[value="all"]'), first=ev0?ev0.closest('label').nextSibling:lits.firstChild; lits.insertBefore(lab,first);
+          var im=lab.querySelector('img.wl-pic'); if(im&&w.pic){ im.removeAttribute('srcset'); im.setAttribute('src',w.pic.src); var sa=sizedAttrs(w.pic.src,'56px'); var m=/srcset="([^"]*)"/.exec(sa); if(m) im.setAttribute('srcset',m[1]); im.setAttribute('sizes','56px'); } }); }
+      var boxes=[].slice.call(af.querySelectorAll('input[name="want"]')); every=boxes.filter(function(i){ return i.value==='all'; })[0]||null; named=boxes.filter(function(i){ return i.value!=='all'; });
+      if(every) every.checked=false; named.forEach(function(i){ i.checked=false; held[i.value]=false; });   /* the waitlist's own default (Every litter) is for its own form; here a bell asks for one litter */
+      boxes.forEach(function(b){ b.addEventListener('change',function(){ if(b===every) paintEvery(); else held[b.value]=b.checked; var e=document.getElementById('alErr'); if(e) e.classList.remove('show'); saveDraft(); kept(); }); });
+      af.addEventListener('input',function(){ saveDraft(); kept(); });
+      af.addEventListener('change',function(){ saveDraft(); kept(); });
+      af.addEventListener('submit',function(ev){
+        ev.preventDefault();
+        var st=state(), chosen=st.every?[every]:named.filter(function(i){ return st.named.indexOf(i.value)>=0; });
+        if(!chosen.length){ sayError(af,'alErr',ES?'Elija al menos una camada, o Todas las camadas.':'Pick at least one litter, or Every litter.'); return; }
+        var picks=chosen.map(function(inp){ var l=inp.closest('label'); return {want:inp.value,label:(l&&l.getAttribute('data-label'))||'',name:(l&&l.getAttribute('data-name'))||''}; });
+        var wants=picks.map(function(p){ return p.want; }), level=st.level;
+        var a=af.getAttribute('action')||'', email=st.email;
+        var btn=af.querySelector('button[type="submit"],button:not([type])'); if(btn) btn.disabled=true;
+        var done=function(){ if(btn) btn.disabled=false; };
+        if(a.indexOf('[[')!==-1||!a){ done(); sayError(af,'alErr',ES?'El formulario aún no está activo. Mándeme un mensaje al (520) 270-2827 y lo apunto yo.':'The signup isn’t switched on yet. Text me at (520) 270-2827 and I’ll add you myself.'); return; }
+        fetch(a,{method:'POST',body:waitFields(af,email,picks,level),headers:{'Accept':'application/json'}})
+          .then(function(r){ if(!r.ok) throw 0; done();
+            var prevWant=(mine&&Array.isArray(mine.want))?mine.want:[]; var all=wants.indexOf('all')>=0?['all']:prevWant.filter(function(x){ return x!=='all'; }).concat(wants.filter(function(x){ return prevWant.indexOf(x)<0; }));
+            mine={want:all,level:level,at:todayISO()}; lset('arAlerts',mine); sset('arAlertDraft',null);
+            af.style.display='none';   /* .wl-form is display:flex, which a hidden attribute does not beat (the waitlist's own form hides the same way) */
+            var ok=document.getElementById('alOk'); ok.textContent=thanksFor(picks,level).replace(/(\d+) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\b/g,'$1'+NB+'$2').replace(/ (\S+)$/,NB+'$1'); ok.hidden=false;
+            document.getElementById('alKept').hidden=true;
+            var dn=document.createElement('button'); dn.type='button'; dn.className='btn btn-primary al-done'; dn.textContent=ES?'Listo':'Done'; dn.addEventListener('click',function(){ al.shut(); });
+            ok.parentNode.insertBefore(dn,ok.nextSibling); dn.focus({preventScroll:true});
+            paint(); recordWaiting(email,wants,level,function(){}); })
+          .catch(function(){ done(); sayError(af,'alErr',ES?'No se envió. <a href="sms:+15202702827">Mándeme un mensaje</a> y lo apunto yo, o inténtelo de nuevo.':'That didn’t send. <a href="sms:+15202702827">Text me</a> and I’ll add you myself, or try again.'); });
+      });
+      return af;
+    }
+    function kept(){ var k=document.getElementById('alKept'); if(!k||!af) return; var d=draft(); var any=d&&((d.email&&d.email.length)||(d.named&&d.named.length)||d.level==='all');
+      k.textContent=ES?'Lo que elija se guarda aunque cierre esto.':'What you choose here is kept if you close this.'; k.hidden=!any; }
+    function openAlerts(id,from){
+      if(!alInit()||!buildForm()) return;
+      var ok=document.getElementById('alOk'), dn=AL.querySelector('.al-done'); if(dn) dn.parentNode.removeChild(dn); ok.hidden=true; af.style.display='';
+      document.getElementById('alT').textContent=ES?'Avisos de camadas':'Litter alerts';
+      document.getElementById('alS').textContent=ES?'Un correo el día que una camada salga a la venta. Nada más, a menos que lo pida.':'One email the day a litter goes on sale. Nothing else unless you ask.';
+      document.getElementById('alX').setAttribute('aria-label',ES?'Cerrar':'Close');
+      var d=draft(), base=d||(mine?{every:mine.want.indexOf('all')>=0, named:mine.want.filter(function(x){ return x!=='all'; }), level:mine.level, email:''}:null);
+      if(base){ if(every){ every.checked=false; paintEvery(); } named.forEach(function(i){ i.checked=base.named.indexOf(i.value)>=0; held[i.value]=i.checked; });
+        var lv=af.querySelector('input[name="level"]'); if(lv) lv.checked=base.level==='all'; var em=af.querySelector('input[name="email"]'); if(em&&base.email) em.value=base.email;
+        if(every){ every.checked=!!base.every; paintEvery(); } }
+      if((id==='all'||(!id&&!base))&&every&&!every.checked){ every.checked=true; paintEvery(); }
+      else if(id&&id!=='all'){ var t=named.filter(function(b){ return b.value===id; })[0]; if(t){ held[id]=true; if(!(every&&every.checked)) t.checked=true; } }
+      saveDraft(); kept();
+      al.open(from);
+      var lab=id&&af.querySelector('input[name="want"][value="'+id+'"]'); if(lab){ var l=lab.closest('label'); if(l&&l.scrollIntoView) l.scrollIntoView({block:'nearest'}); }
+    }
+    go.addEventListener('click',function(){ openAlerts(null,go); });
+    shelf.addEventListener('click',function(ev){
+      var t=ev.target, bell=t.closest&&t.closest('.lsh-bell'), li=t.closest&&t.closest('li[data-id]');
+      if(bell&&li){ ev.preventDefault(); openAlerts(li.getAttribute('data-id'),bell); return; }
+      var show=t.closest&&t.closest('[data-show]'); if(show){ setFilter(show.getAttribute('data-show')); return; }
+      var ev1=t.closest&&t.closest('[data-every]'); if(ev1){ openAlerts('all',ev1); return; }
+      var op=t.closest&&t.closest('.lsh-open');
+      if(op&&li){ var id=li.getAttribute('data-id'); var w=waiting.filter(function(x){ return x.id===id; })[0]; if(w&&!w.plan) openLitter(w,op); else if(w) openAlerts(id,op); }
+    });
+    window.addEventListener('hashchange',function(){ if(ls&&LS&&!LS.hidden) ls.shut(); if(al&&AL&&!AL.hidden) al.shut(); });
+  })();
+
+  (function(){
     var mq=window.matchMedia?window.matchMedia('(hover:hover) and (pointer:fine) and (min-width:601px)'):null;
     var root=document.documentElement;
     function shutAll(){
@@ -10323,6 +10718,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   window.__kickerMarks = marks;   // for the checks only
 })();</script>
 
+<div class="qlook litsheet" id="litSheet" hidden role="dialog" aria-modal="true" aria-labelledby="lsName"><div class="qlook-card"><button type="button" class="ql-x" id="lsX">&#215;</button><div class="ls-pics"><div class="ql-strip" id="lsStrip"></div><button type="button" class="ls-arr l" id="lsPrev" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ls-arr r" id="lsNext" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div><div class="ql-dots" id="lsDots" aria-hidden="true"></div><div class="ql-body"><h3 class="ql-name" id="lsName"></h3><p class="ql-meta" id="lsMeta"></p><p class="ls-sub" id="lsSub"></p><p class="ls-ready" id="lsReady"></p><p class="ls-why" id="lsWhy"></p><p class="ls-wait" id="lsWait" hidden></p><div class="ls-acts"><button type="button" class="btn btn-primary" id="lsAlert" aria-haspopup="dialog"></button><a class="chip ls-page" id="lsPage" href="es-litters.html"></a></div></div></div></div>
+<div class="qlook alsheet" id="alertSheet" hidden role="dialog" aria-modal="true" aria-labelledby="alT"><div class="qlook-card"><button type="button" class="ql-x" id="alX">&#215;</button><div class="al-body"><h3 class="al-t" id="alT"></h3><p class="al-s" id="alS"></p><div id="alFormBox"></div><p class="al-ok" id="alOk" hidden></p><p class="al-kept" id="alKept" hidden></p></div></div></div>
 <div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><button type="button" class="ql-x" id="qlX" aria-label="Cerrar">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">El anuncio<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
 
 <div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><button type="button" class="ql-x" id="asX" aria-label="Cerrar">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><i class="chev" aria-hidden="true"></i><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
