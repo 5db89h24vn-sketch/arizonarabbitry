@@ -336,13 +336,16 @@ body.locked{overflow:hidden}
   overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .litter-body{padding:22px 24px 20px}
 
-.litter-body>time,.litter .litter-no,.litter .litter-age,.litter .litter-line{display:inline-block;font-size:13.5px;font-weight:600;
+.litter-body>time,.litter .litter-no,.litter .litter-age,.litter .litter-line,.litter .litter-ready{display:inline-block;font-size:13.5px;font-weight:600;
   color:var(--ink);background:var(--paper-2);border:1px solid var(--line);
   border-radius:100px;padding:4px 12px;margin-bottom:12px;white-space:nowrap}
-.litter .litter-no{margin-right:4px}
+.litter .litter-no{display:none}   
 
 .litter .litter-line{margin-left:4px}
 .litter .litter-line:empty{display:none}
+
+.litter .litter-ready{margin-left:4px}
+.litter .litter-ready:empty{display:none}
 
 .litter .litter-age{margin-left:4px}
 .litter .litter-age[hidden]{display:none}
@@ -371,8 +374,9 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .tile-parents .tp{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;min-width:0}
 .tile-parents .tp img{width:20px;height:20px;aspect-ratio:1/1;border-radius:50%;object-fit:cover;
   flex:none;background:var(--paper-2)}
-.tile-pair{font-size:12.5px;color:var(--ink-faint);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tile-line:empty,.tile-parents:empty,.tile-pair:empty{display:none}
+
+.tile-ready{font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-top:5px;line-height:1.3;text-wrap:balance}
+.tile-line:empty,.tile-parents:empty,.tile-ready:empty{display:none}
 
 @container (max-width:170px){ .tile-line{font-size:11px;letter-spacing:-.01em} }
 .litter-life{color:var(--ink-soft)}
@@ -419,7 +423,8 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .alert-form .wl-more[hidden]{display:none}
 .alert-form .err{color:var(--alert);font-size:13px;margin:8px 0 0}
 .alert-count[hidden],.alert-ok[hidden]{display:none}
-.tile-no{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+
+.tile-born{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-faint);line-height:1.3;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .litter h2{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:8px}
 
@@ -806,10 +811,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Tango, an orange and white Holland Lop, sitting beside her metal nest box the day her litter was born, hay and pulled white fur inside it"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-11-05" class="litter-no">Twelfth litter</span> <time datetime="2026-11-05">Born 5 November 2026</time> <span class="litter-age" data-born="2026-11-05" hidden></span> <span data-fact="line:2026-11-05" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-11-05" hidden class="litter-no">Twelfth litter</span> <time datetime="2026-11-05">Born 5 November 2026</time> <span class="litter-age" data-born="2026-11-05" hidden></span> <span data-fact="line:2026-11-05" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-11-05" class="litter-ready">Ready date not set</span>
           <h2>Four born</h2>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-11-05">their second litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-tango" data-parent="tango" aria-label="Mother, Tango, Holland Lop: see her photos and litters">
               <img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Tango</b><em data-fact="parent-facts:tango"><span class="pf">Broken orange Holland Lop</span><span class="pf">Ear number RJ1T<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -850,10 +855,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Newborn rabbits huddled together in a nest of hay and pulled fur"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-28" class="litter-no">Eleventh litter</span> <time datetime="2026-10-28">Born 28 October 2026</time> <span class="litter-age" data-born="2026-10-28" hidden></span> <span data-fact="line:2026-10-28" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-10-28" hidden class="litter-no">Eleventh litter</span> <time datetime="2026-10-28">Born 28 October 2026</time> <span class="litter-age" data-born="2026-10-28" hidden></span> <span data-fact="line:2026-10-28" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-28" class="litter-ready">Ready date not set</span>
           <h2>Eight born</h2>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-28">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
@@ -894,10 +899,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="A newborn rabbit lying in an open hand, its eyes shut and its ears folded back"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-24" class="litter-no">Tenth litter</span> <time datetime="2026-10-24">Born 24 October 2026</time> <span class="litter-age" data-born="2026-10-24" hidden></span> <span data-fact="line:2026-10-24" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-10-24" hidden class="litter-no">Tenth litter</span> <time datetime="2026-10-24">Born 24 October 2026</time> <span class="litter-age" data-born="2026-10-24" hidden></span> <span data-fact="line:2026-10-24" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-24" class="litter-ready">Ready date not set</span>
           <h2>Three born</h2>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-24">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-fox" data-parent="fox" aria-label="Mother, Fox, Holland Lop: see her photos and litters">
               <img src="photos/mother-fox-portrait.jpg?v=bebbcb93" srcset="photos/mother-fox-portrait.160.bebbcb93.jpg 160w, photos/mother-fox-portrait.320.bebbcb93.jpg 320w, photos/mother-fox-portrait.640.bebbcb93.jpg 640w, photos/mother-fox-portrait.jpg?v=bebbcb93 800w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Fox</b><em data-fact="parent-facts:fox"><span class="pf">Orange Holland Lop</span><span class="pf">Ear number CJ1S<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -942,10 +947,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Saffron, a Holland Lop cross mother with one ear up and one ear down, in her cage the day her first litter was born, the hay of her nest box behind her"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-21" class="litter-no">Ninth litter</span> <time datetime="2026-10-21">Born 21 October 2026</time> <span class="litter-age" data-born="2026-10-21" hidden></span> <span data-fact="line:2026-10-21" class="litter-line">Netherland Dwarf crosses</span>
+          <span data-fact="litter-no:2026-10-21" hidden class="litter-no">Ninth litter</span> <time datetime="2026-10-21">Born 21 October 2026</time> <span class="litter-age" data-born="2026-10-21" hidden></span> <span data-fact="line:2026-10-21" class="litter-line">Netherland Dwarf crosses</span> <span data-fact="ready:2026-10-21" class="litter-ready">Ready date not set</span>
           <h2>Eight born</h2>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-21">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-saffron" data-parent="saffron" aria-label="Mother, Saffron, Holland Lop cross: see her photos and litters">
               <img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Saffron</b><em data-fact="parent-facts:saffron"><span class="pf">Fawn Holland Lop cross</span></em></span>
             </a>
@@ -1007,10 +1012,10 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="S'Morri, a Holland Lop mother, in front of her metal nest box the day her second litter was born, the fur she pulled showing in the hay behind her and another rabbit sitting on the box's lid"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-19" class="litter-no">Eighth litter</span> <time datetime="2026-10-19">Born 19 October 2026</time> <span class="litter-age" data-born="2026-10-19" hidden></span> <span data-fact="line:2026-10-19" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-10-19" hidden class="litter-no">Eighth litter</span> <time datetime="2026-10-19">Born 19 October 2026</time> <span class="litter-age" data-born="2026-10-19" hidden></span> <span data-fact="line:2026-10-19" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-19" class="litter-ready">Ready date not set</span>
           <h2>Three born</h2>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-19">their second litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-smorri" data-parent="smorri" aria-label="Mother, S'Morri, Holland Lop: see her photos and litters">
               <img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>S'Morri</b><em data-fact="parent-facts:smorri"><span class="pf">Sable point Holland Lop</span><span class="pf">Ear number SB1T<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -1059,7 +1064,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                fetchpriority="high" alt="Bakalaki, an opal Netherland Dwarf, sitting in her metal nest box in the fur she pulled, the day her litter was born">
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-06" class="litter-no">Seventh litter</span> <time datetime="2026-10-06">Born 6 October 2026</time> <span class="litter-age" data-born="2026-10-06" hidden></span> <span data-fact="line:2026-10-06" class="litter-line">Purebred Netherland Dwarfs</span>
+          <span data-fact="litter-no:2026-10-06" hidden class="litter-no">Seventh litter</span> <time datetime="2026-10-06">Born 6 October 2026</time> <span class="litter-age" data-born="2026-10-06" hidden></span> <span data-fact="line:2026-10-06" class="litter-line">Purebred Netherland Dwarfs</span> <span data-fact="ready:2026-10-06" class="litter-ready"></span>
           <h2>Three born, none raised</h2>
 
           <p class="litter-last" data-kits="none-raised"><b>None of the three made it.</b> The first
@@ -1072,7 +1077,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <a class="xlink" href="https://pubmed.ncbi.nlm.nih.gov/27986804/" target="_blank" rel="noopener noreferrer" data-leaves="word">The <span class="kw">research</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           <p>The third did not make it either.</p>
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-06"></span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-bakalaki" data-parent="bakalaki" aria-label="Mother, Bakalaki, Netherland Dwarf: see her photos and litters">
               <img src="photos/mother-bakalaki-portrait.jpg?v=ca6f9a10" srcset="photos/mother-bakalaki-portrait.160.ca6f9a10.jpg 160w, photos/mother-bakalaki-portrait.320.ca6f9a10.jpg 320w, photos/mother-bakalaki-portrait.640.ca6f9a10.jpg 640w, photos/mother-bakalaki-portrait.960.ca6f9a10.jpg 960w, photos/mother-bakalaki-portrait.jpg?v=ca6f9a10 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Bakalaki</b><em data-fact="parent-facts:bakalaki"><span class="pf">Opal Netherland Dwarf</span><span class="pf">Ear number BAKALAKI<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -1094,7 +1099,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Tango, a broken orange Holland Lop, beside her metal nest box"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-04" class="litter-no">Sixth litter</span> <time datetime="2026-10-04">Born 4 October 2026</time> <span class="litter-age" data-born="2026-10-04" hidden></span> <span data-fact="line:2026-10-04" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-10-04" hidden class="litter-no">Sixth litter</span> <time datetime="2026-10-04">Born 4 October 2026</time> <span class="litter-age" data-born="2026-10-04" hidden></span> <span data-fact="line:2026-10-04" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-04" class="litter-ready"></span>
           <h2>Six born, none raised</h2>
 
           <p class="litter-last" data-kits="none-raised"><b>None of the six made it.</b> The second
@@ -1107,7 +1112,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <a class="xlink" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0033553" target="_blank" rel="noopener noreferrer" data-leaves="word">The <span class="kw">research</span><span class="sr-only"> (opens in a new tab)</span></a>.</p>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-10-04">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-tango" data-parent="tango" aria-label="Mother, Tango, Holland Lop: see her photos and litters">
               <img src="photos/mother-tango-portrait.jpg?v=982b966b" srcset="photos/mother-tango-portrait.160.982b966b.jpg 160w, photos/mother-tango-portrait.320.982b966b.jpg 320w, photos/mother-tango-portrait.640.982b966b.jpg 640w, photos/mother-tango-portrait.jpg?v=982b966b 800w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Tango</b><em data-fact="parent-facts:tango"><span class="pf">Broken orange Holland Lop</span><span class="pf">Ear number RJ1T<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -1130,14 +1135,14 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Seven newborn rabbits curled together in a metal nest box on hay, with pulled fur around them"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-09-27" class="litter-no">Fifth litter</span> <time datetime="2026-09-27">Born 27 September 2026</time> <span class="litter-age" data-born="2026-09-27" hidden></span> <span data-fact="line:2026-09-27" class="litter-line">Holland Lop crosses</span>
+          <span data-fact="litter-no:2026-09-27" hidden class="litter-no">Fifth litter</span> <time datetime="2026-09-27">Born 27 September 2026</time> <span class="litter-age" data-born="2026-09-27" hidden></span> <span data-fact="line:2026-09-27" class="litter-line">Holland Lop crosses</span> <span data-fact="ready:2026-09-27" class="litter-ready">Confirmed ready 22 Oct</span>
           <h2>Seven born, seven raised</h2>
           
           <p class="litter-last"><b>The last litter from Cinnamony and Frederick.</b> Frederick goes
           on to pure angora lines once I find an angora doe&nbsp;(female) for him.</p>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-09-27">their fourth litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
@@ -1196,11 +1201,11 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="S'Morri, a Holland Lop mother, at the hay rack of her cage, with pulled fur in the hay of the nest box behind her"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-09-18" class="litter-no">Fourth litter</span> <time datetime="2026-09-18">Born 18 September 2026</time> <span class="litter-age" data-born="2026-09-18" hidden></span> <span data-fact="line:2026-09-18" class="litter-line">Purebred Holland Lops</span>
+          <span data-fact="litter-no:2026-09-18" hidden class="litter-no">Fourth litter</span> <time datetime="2026-09-18">Born 18 September 2026</time> <span class="litter-age" data-born="2026-09-18" hidden></span> <span data-fact="line:2026-09-18" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-09-18" class="litter-ready">Confirmed ready 16 Oct</span>
           <h2>Three born, three raised</h2>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-09-18">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-smorri" data-parent="smorri" aria-label="Mother, S'Morri, Holland Lop: see her photos and litters">
               <img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>S'Morri</b><em data-fact="parent-facts:smorri"><span class="pf">Sable point Holland Lop</span><span class="pf">Ear number SB1T<span class="pf-ped"><span class="dot"> · </span>Pedigreed</span></span></em></span>
             </a>
@@ -1253,11 +1258,11 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Six newborn rabbits curled together in a wooden nest box lined with wood shavings and pulled fur"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-08-27" class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time> <span class="litter-age" data-born="2026-08-27" hidden></span> <span data-fact="line:2026-08-27" class="litter-line">Holland Lop crosses</span>
+          <span data-fact="litter-no:2026-08-27" hidden class="litter-no">Third litter</span> <time datetime="2026-08-27">Born 27 August 2026</time> <span class="litter-age" data-born="2026-08-27" hidden></span> <span data-fact="line:2026-08-27" class="litter-line">Holland Lop crosses</span> <span data-fact="ready:2026-08-27" class="litter-ready">Confirmed ready 27 Sep</span>
           <h2>Six born, six raised</h2>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-08-27">their third litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
@@ -1358,11 +1363,11 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Newborn rabbits curled together in a hay and fur nest box, with a month-old fawn rabbit from the previous litter beside them"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-07-28" class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time> <span class="litter-age" data-born="2026-07-28" hidden></span> <span data-fact="line:2026-07-28" class="litter-line">Holland Lop crosses</span>
+          <span data-fact="litter-no:2026-07-28" hidden class="litter-no">Second litter</span> <time datetime="2026-07-28">Born 28 July 2026</time> <span class="litter-age" data-born="2026-07-28" hidden></span> <span data-fact="line:2026-07-28" class="litter-line">Holland Lop crosses</span> <span data-fact="ready:2026-07-28" class="litter-ready">Confirmed ready 29 Aug</span>
           <h2>Six born, four raised</h2>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-07-28">their second litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
@@ -1413,11 +1418,11 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="A newborn rabbit in William's hand above a metal tray lined with pulled fur, inside a green cage"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-06-28" class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time> <span class="litter-age" data-born="2026-06-28" hidden></span> <span data-fact="line:2026-06-28" class="litter-line">Holland Lop crosses</span>
+          <span data-fact="litter-no:2026-06-28" hidden class="litter-no">First litter</span> <time datetime="2026-06-28">Born 28 June 2026</time> <span class="litter-age" data-born="2026-06-28" hidden></span> <span data-fact="line:2026-06-28" class="litter-line">Holland Lop crosses</span> <span data-fact="ready:2026-06-28" class="litter-ready">Homed before this site existed</span>
           <h2>Five born, four raised</h2>
           
           <div class="parents">
-            <small class="parents-head"><b>Parents</b> <span data-fact="pair-note:2026-06-28">their first litter together</span></small>
+            <small class="parents-head"><b>Parents</b></small>
             <a class="parent" href="/#p-lop" data-parent="lop" aria-label="Mother, Cinnamony, Holland Lop: see her photos and litters">
               <img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy"><span><small>Mother</small><b>Cinnamony</b><em data-fact="parent-facts:lop"><span class="pf">Sable point Holland Lop</span></em></span>
             </a>
@@ -1473,91 +1478,91 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-11-05.320.ca00839e.avif 320w, photos/litter-2026-11-05.640.ca00839e.avif 640w, photos/litter-2026-11-05.960.ca00839e.avif 960w, photos/litter-2026-11-05.1280.ca00839e.avif 1280w, photos/litter-2026-11-05.1400.ca00839e.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-11-05.jpg?v=ca00839e" srcset="photos/litter-2026-11-05.160.ca00839e.jpg 160w, photos/litter-2026-11-05.320.ca00839e.jpg 320w, photos/litter-2026-11-05.640.ca00839e.jpg 640w, photos/litter-2026-11-05.960.ca00839e.jpg 960w, photos/litter-2026-11-05.1280.ca00839e.jpg 1280w, photos/litter-2026-11-05.jpg?v=ca00839e 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Tango beside her nest box the day her litter was born"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-11-05" class="tile-no">Twelfth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">5 Nov 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">4 born</div>
             <div data-fact="line:2026-11-05" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-11-05" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy">Tango</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-11-05" class="tile-pair">Their second litter</div>
+            <div data-fact="ready:2026-11-05" class="tile-ready">Ready date not set</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-28">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-28.320.d56c1cb1.avif 320w, photos/litter-2026-10-28.640.d56c1cb1.avif 640w, photos/litter-2026-10-28.960.d56c1cb1.avif 960w, photos/litter-2026-10-28.1280.d56c1cb1.avif 1280w, photos/litter-2026-10-28.1400.d56c1cb1.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-28.jpg?v=d56c1cb1" srcset="photos/litter-2026-10-28.160.d56c1cb1.jpg 160w, photos/litter-2026-10-28.320.d56c1cb1.jpg 320w, photos/litter-2026-10-28.640.d56c1cb1.jpg 640w, photos/litter-2026-10-28.960.d56c1cb1.jpg 960w, photos/litter-2026-10-28.1280.d56c1cb1.jpg 1280w, photos/litter-2026-10-28.jpg?v=d56c1cb1 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Cinnamony and Root Beer's eight, newborn, in the nest"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-28" class="tile-no">Eleventh litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">28 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">8 born</div>
             <div data-fact="line:2026-10-28" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-28" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-10-28" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-10-28" class="tile-ready">Ready date not set</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-24">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-24.320.7d18fd48.avif 320w, photos/litter-2026-10-24.640.7d18fd48.avif 640w, photos/litter-2026-10-24.960.7d18fd48.avif 960w, photos/litter-2026-10-24.1280.7d18fd48.avif 1280w, photos/litter-2026-10-24.1400.7d18fd48.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-24.jpg?v=7d18fd48" srcset="photos/litter-2026-10-24.160.7d18fd48.jpg 160w, photos/litter-2026-10-24.320.7d18fd48.jpg 320w, photos/litter-2026-10-24.640.7d18fd48.jpg 640w, photos/litter-2026-10-24.960.7d18fd48.jpg 960w, photos/litter-2026-10-24.1280.7d18fd48.jpg 1280w, photos/litter-2026-10-24.jpg?v=7d18fd48 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="One of Fox's three, a newborn, held in an open hand"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-24" class="tile-no">Tenth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">24 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">3 born</div>
             <div data-fact="line:2026-10-24" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-24" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-fox-portrait.jpg?v=bebbcb93" srcset="photos/mother-fox-portrait.160.bebbcb93.jpg 160w, photos/mother-fox-portrait.320.bebbcb93.jpg 320w, photos/mother-fox-portrait.640.bebbcb93.jpg 640w, photos/mother-fox-portrait.jpg?v=bebbcb93 800w" sizes="40px" alt="" loading="lazy">Fox</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-10-24" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-10-24" class="tile-ready">Ready date not set</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-21">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-21.320.1f7aa320.avif 320w, photos/litter-2026-10-21.640.1f7aa320.avif 640w, photos/litter-2026-10-21.960.1f7aa320.avif 960w, photos/litter-2026-10-21.1280.1f7aa320.avif 1280w, photos/litter-2026-10-21.1400.1f7aa320.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-21.jpg?v=1f7aa320" srcset="photos/litter-2026-10-21.160.1f7aa320.jpg 160w, photos/litter-2026-10-21.320.1f7aa320.jpg 320w, photos/litter-2026-10-21.640.1f7aa320.jpg 640w, photos/litter-2026-10-21.960.1f7aa320.jpg 960w, photos/litter-2026-10-21.1280.1f7aa320.jpg 1280w, photos/litter-2026-10-21.jpg?v=1f7aa320 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Saffron in her cage the day her first litter was born"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-21" class="tile-no">Ninth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">21 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">8 born</div>
             <div data-fact="line:2026-10-21" class="tile-line">Netherland Dwarf crosses</div>
             <div data-fact="tile-parents:2026-10-21" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy">Saffron</span> <span class="tp"><img src="photos/father-odyssey-portrait.jpg?v=5490ba47" srcset="photos/father-odyssey-portrait.160.5490ba47.jpg 160w, photos/father-odyssey-portrait.320.5490ba47.jpg 320w, photos/father-odyssey-portrait.640.5490ba47.jpg 640w, photos/father-odyssey-portrait.960.5490ba47.jpg 960w, photos/father-odyssey-portrait.jpg?v=5490ba47 1200w" sizes="40px" alt="" loading="lazy">Odyssey</span></div>
-            <div data-fact="pair-no:2026-10-21" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-10-21" class="tile-ready">Ready date not set</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-19">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-19.320.671e03d9.avif 320w, photos/litter-2026-10-19.640.671e03d9.avif 640w, photos/litter-2026-10-19.960.671e03d9.avif 960w, photos/litter-2026-10-19.1280.671e03d9.avif 1280w, photos/litter-2026-10-19.1400.671e03d9.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-19.jpg?v=671e03d9" srcset="photos/litter-2026-10-19.160.671e03d9.jpg 160w, photos/litter-2026-10-19.320.671e03d9.jpg 320w, photos/litter-2026-10-19.640.671e03d9.jpg 640w, photos/litter-2026-10-19.960.671e03d9.jpg 960w, photos/litter-2026-10-19.1280.671e03d9.jpg 1280w, photos/litter-2026-10-19.jpg?v=671e03d9 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="S'Morri in front of her metal nest box the day her second litter was born"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-19" class="tile-no">Eighth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">19 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">3 born</div>
             <div data-fact="line:2026-10-19" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-19" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy">S'Morri</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-10-19" class="tile-pair">Their second litter</div>
+            <div data-fact="ready:2026-10-19" class="tile-ready">Ready date not set</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-06">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-06.320.894bf330.avif 320w, photos/litter-2026-10-06.640.894bf330.avif 640w, photos/litter-2026-10-06.960.894bf330.avif 960w, photos/litter-2026-10-06.1280.894bf330.avif 1280w, photos/litter-2026-10-06.1400.894bf330.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-06.jpg?v=894bf330" srcset="photos/litter-2026-10-06.160.894bf330.jpg 160w, photos/litter-2026-10-06.320.894bf330.jpg 320w, photos/litter-2026-10-06.640.894bf330.jpg 640w, photos/litter-2026-10-06.960.894bf330.jpg 960w, photos/litter-2026-10-06.1280.894bf330.jpg 1280w, photos/litter-2026-10-06.jpg?v=894bf330 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Bakalaki in her metal nest box the day her litter was born"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-06" class="tile-no">Seventh litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">6 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">3 born, none raised</div>
             <div data-fact="line:2026-10-06" class="tile-line">Purebred Netherland Dwarfs</div>
             <div data-fact="tile-parents:2026-10-06" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-bakalaki-portrait.jpg?v=ca6f9a10" srcset="photos/mother-bakalaki-portrait.160.ca6f9a10.jpg 160w, photos/mother-bakalaki-portrait.320.ca6f9a10.jpg 320w, photos/mother-bakalaki-portrait.640.ca6f9a10.jpg 640w, photos/mother-bakalaki-portrait.960.ca6f9a10.jpg 960w, photos/mother-bakalaki-portrait.jpg?v=ca6f9a10 1200w" sizes="40px" alt="" loading="lazy">Bakalaki</span></div>
-            <div data-fact="pair-no:2026-10-06" class="tile-pair"></div>
+            <div data-fact="ready:2026-10-06" class="tile-ready"></div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-04">
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-10-04.320.144c329d.avif 320w, photos/litter-2026-10-04.640.144c329d.avif 640w, photos/litter-2026-10-04.960.144c329d.avif 960w, photos/litter-2026-10-04.1280.144c329d.avif 1280w, photos/litter-2026-10-04.1400.144c329d.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-10-04.jpg?v=144c329d" srcset="photos/litter-2026-10-04.160.144c329d.jpg 160w, photos/litter-2026-10-04.320.144c329d.jpg 320w, photos/litter-2026-10-04.640.144c329d.jpg 640w, photos/litter-2026-10-04.960.144c329d.jpg 960w, photos/litter-2026-10-04.1280.144c329d.jpg 1280w, photos/litter-2026-10-04.jpg?v=144c329d 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Tango beside her nest box the day her litter was born"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-10-04" class="tile-no">Sixth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">4 Oct 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">6 born, none raised</div>
             <div data-fact="line:2026-10-04" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-04" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy">Tango</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-10-04" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-10-04" class="tile-ready"></div>
           </div>
         </a>
 
@@ -1565,13 +1570,13 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-09-27.320.14c29a12.avif 320w, photos/litter-2026-09-27.640.14c29a12.avif 640w, photos/litter-2026-09-27.960.14c29a12.avif 960w, photos/litter-2026-09-27.1280.14c29a12.avif 1280w, photos/litter-2026-09-27.1400.14c29a12.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-09-27.jpg?v=14c29a12" srcset="photos/litter-2026-09-27.160.14c29a12.jpg 160w, photos/litter-2026-09-27.320.14c29a12.jpg 320w, photos/litter-2026-09-27.640.14c29a12.jpg 640w, photos/litter-2026-09-27.960.14c29a12.jpg 960w, photos/litter-2026-09-27.1280.14c29a12.jpg 1280w, photos/litter-2026-09-27.jpg?v=14c29a12 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Seven newborn rabbits in a metal nest box on hay and pulled fur"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-09-27" class="tile-no">Fifth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">27 Sep 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">7 born, 7 raised</div>
             <div data-fact="line:2026-09-27" class="tile-line">Holland Lop crosses</div>
             <div data-fact="tile-parents:2026-09-27" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
-            <div data-fact="pair-no:2026-09-27" class="tile-pair">Their fourth litter</div>
+            <div data-fact="ready:2026-09-27" class="tile-ready">Confirmed ready 22 Oct</div>
           </div>
         </a>
 
@@ -1579,13 +1584,13 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-09-18.320.db5251c4.avif 320w, photos/litter-2026-09-18.640.db5251c4.avif 640w, photos/litter-2026-09-18.960.db5251c4.avif 960w, photos/litter-2026-09-18.1280.db5251c4.avif 1280w, photos/litter-2026-09-18.1400.db5251c4.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-09-18.jpg?v=db5251c4" srcset="photos/litter-2026-09-18.160.db5251c4.jpg 160w, photos/litter-2026-09-18.320.db5251c4.jpg 320w, photos/litter-2026-09-18.640.db5251c4.jpg 640w, photos/litter-2026-09-18.960.db5251c4.jpg 960w, photos/litter-2026-09-18.1280.db5251c4.jpg 1280w, photos/litter-2026-09-18.jpg?v=db5251c4 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="S'Morri, a Holland Lop mother, at the hay rack with pulled fur in the nest box behind her"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-09-18" class="tile-no">Fourth litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">18 Sep 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">3 born, 3 raised</div>
             <div data-fact="line:2026-09-18" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-09-18" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy">S'Morri</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="pair-no:2026-09-18" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-09-18" class="tile-ready">Confirmed ready 16 Oct</div>
           </div>
         </a>
 
@@ -1593,13 +1598,13 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-08-27.320.bcb889d9.avif 320w, photos/litter-2026-08-27.640.bcb889d9.avif 640w, photos/litter-2026-08-27.960.bcb889d9.avif 960w, photos/litter-2026-08-27.1280.bcb889d9.avif 1280w, photos/litter-2026-08-27.1400.bcb889d9.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-08-27.jpg?v=bcb889d9" srcset="photos/litter-2026-08-27.160.bcb889d9.jpg 160w, photos/litter-2026-08-27.320.bcb889d9.jpg 320w, photos/litter-2026-08-27.640.bcb889d9.jpg 640w, photos/litter-2026-08-27.960.bcb889d9.jpg 960w, photos/litter-2026-08-27.1280.bcb889d9.jpg 1280w, photos/litter-2026-08-27.jpg?v=bcb889d9 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Six newborn rabbits in a nest of wood shavings and pulled fur"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-08-27" class="tile-no">Third litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">27 Aug 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">6 born, 6 raised</div>
             <div data-fact="line:2026-08-27" class="tile-line">Holland Lop crosses</div>
             <div data-fact="tile-parents:2026-08-27" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
-            <div data-fact="pair-no:2026-08-27" class="tile-pair">Their third litter</div>
+            <div data-fact="ready:2026-08-27" class="tile-ready">Confirmed ready 27 Sep</div>
           </div>
         </a>
 
@@ -1607,13 +1612,13 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-07-28.320.36389c88.avif 320w, photos/litter-2026-07-28.640.36389c88.avif 640w, photos/litter-2026-07-28.960.36389c88.avif 960w, photos/litter-2026-07-28.1280.36389c88.avif 1280w, photos/litter-2026-07-28.1400.36389c88.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-07-28.jpg?v=36389c88" srcset="photos/litter-2026-07-28.160.36389c88.jpg 160w, photos/litter-2026-07-28.320.36389c88.jpg 320w, photos/litter-2026-07-28.640.36389c88.jpg 640w, photos/litter-2026-07-28.960.36389c88.jpg 960w, photos/litter-2026-07-28.1280.36389c88.jpg 1280w, photos/litter-2026-07-28.jpg?v=36389c88 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="Newborn rabbits curled together in a hay and fur nest box"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-07-28" class="tile-no">Second litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">28 Jul 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">6 born, 4 raised</div>
             <div data-fact="line:2026-07-28" class="tile-line">Holland Lop crosses</div>
             <div data-fact="tile-parents:2026-07-28" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
-            <div data-fact="pair-no:2026-07-28" class="tile-pair">Their second litter</div>
+            <div data-fact="ready:2026-07-28" class="tile-ready">Confirmed ready 29 Aug</div>
           </div>
         </a>
 
@@ -1621,13 +1626,13 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <picture class="av"><source type="image/avif" srcset="photos/litter-2026-06-28.320.5816cb81.avif 320w, photos/litter-2026-06-28.640.5816cb81.avif 640w, photos/litter-2026-06-28.960.5816cb81.avif 960w, photos/litter-2026-06-28.1280.5816cb81.avif 1280w, photos/litter-2026-06-28.1400.5816cb81.avif 1400w" sizes="(min-width:700px) 275px, 36vw"><img src="photos/litter-2026-06-28.jpg?v=5816cb81" srcset="photos/litter-2026-06-28.160.5816cb81.jpg 160w, photos/litter-2026-06-28.320.5816cb81.jpg 320w, photos/litter-2026-06-28.640.5816cb81.jpg 640w, photos/litter-2026-06-28.960.5816cb81.jpg 960w, photos/litter-2026-06-28.1280.5816cb81.jpg 1280w, photos/litter-2026-06-28.jpg?v=5816cb81 1400w" sizes="(min-width:700px) 275px, 36vw" width="1400" height="1050" loading="lazy"
                alt="A newborn rabbit in a hand above a tray lined with pulled fur"></picture>
           <div class="tile-body">
-            <small data-fact="litter-no:2026-06-28" class="tile-no">First litter</small>
+            <small class="tile-born">Born</small>
             <div class="tile-date">28 Jun 2026</div>
             <div class="tile-age" hidden></div>
             <div class="tile-sub">5 born, 4 raised</div>
             <div data-fact="line:2026-06-28" class="tile-line">Holland Lop crosses</div>
             <div data-fact="tile-parents:2026-06-28" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
-            <div data-fact="pair-no:2026-06-28" class="tile-pair">Their first litter</div>
+            <div data-fact="ready:2026-06-28" class="tile-ready">Homed before this site existed</div>
           </div>
         </a>
 
@@ -1735,8 +1740,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         var lid='L'+d, hasLitter=!!document.getElementById(lid);
         if(dobs.length>1){
           var head=document.createElement('p');head.className='wallhead';
-          var noEl=hasLitter?document.querySelector('#'+lid+' .litter-no'):null;
-          var lead=(noEl&&noEl.textContent.trim())?(noEl.textContent.trim()+' \u00B7 '):'';
+          var lead='';
           if(hasLitter){
             var la=document.createElement('a');la.href='#'+lid;
             la.textContent=lead+'Born '+full(d);head.appendChild(la);
@@ -2198,13 +2202,14 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       var a=document.activeElement;
       shots=set; born=dob;
       lastFocus=(a&&a!==document.body&&a!==document.documentElement&&!vw.contains(a))?a:(opener||null);
-      var no=art.querySelector('.litter-no'), h=art.querySelector('h2'), line=art.querySelector('.litter-line');
-      var name=(no&&no.textContent.trim())||(h&&h.textContent.trim())||'Litter';
-      label=name; vName.textContent=name; vCtl.setAttribute('data-name',name);
+      var tm=art.querySelector('.litter-body > time'), h=art.querySelector('h2'), line=art.querySelector('.litter-line'), rdy=art.querySelector('.litter-ready');
+      var tdate=document.querySelector('.grid a.tile[href="#'+art.id+'"] .tile-date');
+      var name=(tm&&tm.textContent.trim())||(h&&h.textContent.trim())||'Litter';
+      label=name; vName.textContent=name; vCtl.setAttribute('data-name',(tdate&&tdate.textContent.trim())||name);
       var facts=[];
       if(line&&line.textContent.trim()) facts.push(line.textContent.trim());
-      if(dob) facts.push('Born '+nice(dob));
       if(h&&h.textContent.trim()) facts.push(h.textContent.trim());
+      if(rdy&&rdy.textContent.trim()) facts.push(rdy.textContent.trim());
       vMeta.textContent='';
       facts.forEach(function(x,k){
         var u=document.createElement('span'); u.className='u'; u.textContent=(k?'· ':'')+x;

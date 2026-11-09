@@ -2191,14 +2191,39 @@ html.pick .lsh{display:none!important}
 @media(min-width:600px){.lsh-b{padding:7px 10px 9px}}
 .lsh-age{display:block;font-size:13.5px;font-weight:600;line-height:1.28;color:var(--ink);text-wrap:balance}
 .lsh-kind{display:block;margin-top:1px;font-size:12.5px;line-height:1.3;color:var(--ink-soft);text-wrap:balance}
-.lsh-sale{display:block;margin-top:3px;font-size:12.5px;line-height:1.3;color:var(--ink-soft);text-wrap:balance}
-.lsh-sale.set{color:var(--moss-dk);font-weight:600}
-@media(max-width:359px){.lsh-kind,.lsh-sale{font-size:12px}}   
+.lsh-ready{display:block;margin-top:3px;font-size:12.5px;line-height:1.3;color:var(--ink-soft);text-wrap:balance}
+.lsh-ready b{font-weight:600;color:var(--ink);white-space:nowrap}
+.lsh-ready.set,.lsh-ready.set b{color:var(--moss-dk);font-weight:600}   
+@media(max-width:359px){.lsh-kind,.lsh-ready{font-size:12px}}   
 
-.lsh-tag{position:absolute;top:6px;left:6px;z-index:1;padding:3px 7px;border-radius:4px;border:1px solid var(--line);background:var(--card);
+.lsh-card{--lshp:84px;--lshf:42px}
+.lsh-pg{display:block;flex:none;height:var(--lshp)}
+.lsh-par{position:absolute;left:0;right:0;top:0;z-index:1;padding-top:75%;pointer-events:none}
+.lsh-par-in{position:relative;display:grid;grid-template-columns:1fr 1fr;height:var(--lshp);border-bottom:1px solid var(--line)}
+
+.lsh-par-in.two::before{content:'';position:absolute;top:calc(6px + var(--lshf) / 2);left:calc(25% + var(--lshf) / 2 + 3px);right:calc(25% + var(--lshf) / 2 + 3px);border-top:1.5px solid var(--ink-faint)}
+.lsh-par-in.two::after{content:'';position:absolute;top:0;left:calc(50% - .75px);height:calc(6px + var(--lshf) / 2);border-left:1.5px solid var(--ink-faint)}
+.lsh-p{pointer-events:auto;display:flex;flex-direction:column;align-items:center;min-width:0;padding:6px 1px 0;color:inherit;text-decoration:none;text-align:center;-webkit-tap-highlight-color:transparent}
+.lsh-p img,.lsh-p .lsh-face-none{display:block;flex:none;width:var(--lshf);height:var(--lshf);border-radius:50%;object-fit:cover;background:var(--paper-2);box-shadow:0 0 0 2px var(--card),0 0 0 3px var(--line)}
+.lsh-p small{display:block;margin-top:4px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.2;color:var(--ink-soft)}
+.lsh-p b{display:block;max-width:100%;font-size:12px;font-weight:600;line-height:1.3;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lsh-p.none{pointer-events:none}
+@media(min-width:760px){.lsh-card{--lshp:92px;--lshf:50px}}   
+@media(hover:hover){.lsh-p:hover b{color:var(--brick-dk)} .lsh-p:hover img{box-shadow:0 0 0 2px var(--card),0 0 0 3px var(--brick)}}
+:where(html:not(.ptr)) .lsh-p:focus-visible{outline:2px solid var(--brick-dk);outline-offset:-3px;border-radius:10px}
+
+.lsh-tag{position:absolute;top:6px;left:6px;z-index:1;max-width:calc(100% - 52px);padding:3px 7px;border-radius:4px;border:1px solid var(--line);background:var(--card);
   color:var(--ink-soft);font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;line-height:1.25;box-shadow:var(--lift-photo)}
-.lsh-stamp{position:absolute;left:6px;bottom:6px;z-index:1;max-width:calc(100% - 12px);padding:3px 8px;border-radius:100px;background:rgba(24,20,18,.72);
-  color:#fff;font-size:11px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.lsh-p b,.lsh-tag{transition:none}
+
+.lsh-stamp{position:absolute;left:6px;bottom:6px;z-index:1;display:inline-flex;align-items:center;gap:4px;max-width:calc(100% - 12px);padding:3px 8px 3px 7px;
+  border-radius:100px;background:rgba(24,20,18,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;line-height:1.3;white-space:nowrap;
+  -webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
+@media(prefers-reduced-transparency:reduce){.lsh-stamp{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
+.lsh-stamp svg{width:11px;height:11px;flex:none;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.lsh-stamp .t{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ls-stamp[hidden]{display:none}   
 
 .lsh-end{text-decoration:none;color:inherit}
 .lsh-end .lsh-pic{display:grid;place-items:center;aspect-ratio:4/3;color:var(--ink-soft)}
@@ -2229,6 +2254,7 @@ html.pick .lsh{display:none!important}
 .litsheet .ls-why{margin:8px 0 0;font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
 .litsheet .ls-ready{margin:10px 0 0;font-size:15.5px;line-height:1.45;color:var(--ink)}
 .litsheet .ls-ready b{color:var(--moss-dk)}
+.litsheet .ls-ready b.est{color:var(--ink)}   
 .litsheet .ls-wait{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
 .litsheet .ls-wait[hidden]{display:none}
 .litsheet .ls-acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 4px}
@@ -3808,7 +3834,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     
     <div class="doors" role="group" aria-label="The news and the litters">
       <a href="/updates"><span><b>News</b><small data-fact="news-row">Updated <time datetime="2026-11-07">7 Nov</time>. Two whites, now $440 together.</small></span><i class="chev" aria-hidden="true"></i></a>
-      <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">Twelve so far. The newest was born 5 November.</small></span><i class="chev" aria-hidden="true"></i></a>
+      <a href="/litters"><span><b>Every litter</b><small data-fact="litters-row">The newest was born 5 November.</small></span><i class="chev" aria-hidden="true"></i></a>
     </div>
 
     <div class="wl" id="waitlist">
@@ -3950,7 +3976,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     
     <p class="lede">The whole routine, from their first days until the day they go&nbsp;home.</p>
     
-    <p data-fact="routine-now" class="routine-now">Twelfth litter was born <time datetime="2026-11-05">5 November</time>.</p>
+    <p data-fact="routine-now" class="routine-now">The youngest litter here was born <time datetime="2026-11-05">5 November</time>.</p>
     <div class="stages">
       
       <div class="stage" data-weeks="1-2" data-now="being handled in short, gentle sessions">
@@ -6423,7 +6449,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var c=litterCount(l);
       return {cls:'wait', text:c?c+' coming soon':'Coming soon'};
     }
-    function litterName(l){ return l.no || ('Litter born '+dayMon(l.born)); }
+    function litterName(l){ return 'Litter born '+dayMon(l.born); }
     function markStageNow(){
       var here={};
       littersInRoutine().forEach(function(l){ (here[l.id]=here[l.id]||[]).push(l); });
@@ -6449,8 +6475,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(st){ var pill=document.createElement('span'); pill.className='lit-state '+st.cls; pill.textContent=st.text; tx.appendChild(pill); }
           var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
           a.appendChild(tx); a.appendChild(ch);
-          a.setAttribute('aria-label',litterName(l)+(l.line?', '+l.line:'')+', born '+niceDate(l.born)+
-            ', '+l.age+'.'+(st?' '+st.text+'.':'')+' Open it in the litter archive.');
+          a.setAttribute('aria-label','Litter born '+niceDate(l.born)+(l.line?', '+l.line:'')+
+            ', '+l.age+'.'+(st?' '+st.text+'.':'')+' Open it in the litter archive.');   /* the words on screen first: "Litter born 5 Nov" (WCAG 2.5.3) */
           tag.appendChild(a);
         });
         var when=el.querySelector('.stage-when');
@@ -6467,7 +6493,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         rn.hidden=false;
         var NUM=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine'];
         rn.innerHTML=(here.length===1)
-          ? 'The <a class="litterlink" href="/litters#L'+esc(here[0].born)+'">'+esc(litterName(here[0]).toLowerCase())+
+          ? 'The <a class="litterlink" href="/litters#L'+esc(here[0].born)+'">'+esc('litter born '+dayMon(here[0].born))+
             '</a> is growing up here now, shown at its week&nbsp;below.'
           : '<b>'+(NUM[here.length]||here.length)+' litters</b> are growing up here now, each shown at its week&nbsp;below.';
       }
@@ -7465,9 +7491,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       i=((i%chips.length)+chips.length)%chips.length;
       var c=chips[i], addr=c.getAttribute('data-kit'), r=recByAddr(addr); if(!r) return false;
       kpBuild(); kpAt=i;
-      var row=c.closest('.litrow'), lit=row&&row.querySelector('.litrow-main small'),
+      var row=c.closest('.litrow'), lit=row&&row.querySelector('.litrow-main time'),
           mates=row?[].slice.call(row.querySelectorAll('a.kit[data-kit]')):[c];
-      kp.querySelector('.kpop-lit').textContent=lit?lit.textContent:'';
+      kp.querySelector('.kpop-lit').textContent=lit?('Born '+dayMon(lit.getAttribute('datetime')||'')):'';   /* (Round 191 c3) the day, no year: one line in both languages, the arrows still */
       kp.querySelector('.kpop-n').textContent=(mates.indexOf(c)+1)+' of '+mates.length;
       var html=''; cardPop=true; try{ html=cardFor(r); } catch(e){ html=''; } cardPop=false;
       if(!html) return false;
@@ -7988,10 +8014,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         } else { vMate.hidden=true; }
       }
       var whose=(p.role==='mother')?'Her':'His';
-      var ORDW=['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth'];
-      var ownNo={};
-      mine.slice().sort(function(a,b){ return a.born<b.born?-1:(a.born>b.born?1:0); })
-        .forEach(function(l,i){ ownNo[l.born]=whose+' '+(ORDW[i]||((i+1)+'th'))+' litter'; });
       var html='<small>'+whose+' litters</small>';
       mine.forEach(function(l){
         var age=(l.born&&!l.lost)?ageAt(l.born, todayISO()):'';
@@ -7999,7 +8021,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         html+='<div class="litrow">'+
           '<a class="litrow-main" href="/litters#L'+esc(l.born)+'"'+
           ' title="See this litter, with the photo from the day it was born">'+
-          '<small>'+esc(ownNo[l.born]||l.no||'')+'</small>'+
           '<b><time datetime="'+esc(l.born)+'">Born '+esc(niceDate(l.born))+'</time>'+
             (age&&age!=='the day it was born'?('<span>'+esc(age)+'</span>'):'')+'</b>'+
           (l.count?('<span>'+esc(l.count)+'</span>'):'')+
@@ -9794,6 +9815,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var PAR=(typeof PARENTS!=='undefined'&&PARENTS)?PARENTS:{};
     var PLAN=(typeof PLANNED!=='undefined'&&Array.isArray(PLANNED))?PLANNED:[];
     var READY=(typeof LITTER_READY!=='undefined'&&LITTER_READY&&typeof LITTER_READY==='object')?LITTER_READY:{};
+    var FIRM_DAYS=2;   /* his day loses "Projected" two days (48 hours) before it: his 11:09am, the window left to Claude (R191-7) */
     var MONE=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MONS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
     var MONLE=['January','February','March','April','May','June','July','August','September','October','November','December'];
     var MONLS=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
@@ -9817,12 +9839,24 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!ES&&t==='the day it was born') t='born today';
       return tie(t);
     }
-    function saleCome(s){ var d=days(s); return !isNaN(d)&&d>=0; }
-    function saleText(w){ if(!w.sale) return ES?'Sin fecha de venta':'Sale day not set'; if(saleCome(w.sale)) return ES?'A la venta muy pronto':'Going on sale soon'; return (ES?'A la venta el ':'For sale ')+dWeek(w.sale); }
+    function nowWords(born){
+      var d=days(born), a=ageWords(born); if(!a) return '';
+      if(d===0) return ES?'Nacidos hoy':'Born today';
+      return (ES?'Ahora tienen ':'Now ')+a.replace(/(\d+½?) /g,'$1'+NB);
+    }
+    function dayCome(s){ var d=days(s); return !isNaN(d)&&d>=0; }
+    function readyParts(w){
+      if(!w.day) return {label:ES?'Listos en fecha por definir':'Ready date not set', date:'', unset:true};
+      var togo=-days(w.day); if(isNaN(togo)) return null;
+      if(togo<=0) return {label:ES?'A la venta muy pronto':'Going on sale soon', date:'', firm:true};
+      if(togo<=FIRM_DAYS) return {label:ES?'Listos el':'Ready', date:dWeek(w.day), firm:true};
+      return {label:ES?'Listos hacia el':'Projected ready', date:dWeek(w.day)};
+    }
+    function readyText(w){ var r=readyParts(w); return r?(r.label+(r.date?' '+r.date:'')):''; }
     function kindOf(line){ line=String(line||''); return /\scross$/i.test(line)?'x':(line==='Holland Lop'?'hl':(line==='Netherland Dwarf'?'nd':'o')); }
     function breedWords(line){ var b=String(line||'').replace(/\s+cross$/i,''); return ES?b:(b?b+'s':''); }
-    function pureWord(k){ return k==='x'?(ES?'Cruza':'Cross'):(ES?'De raza pura':'Purebred'); }
-    function kindWords(w){ var b=breedWords(w.l.line); return b?(b+' · '+pureWord(w.kind)):''; }
+    function pureWord(k){ return k==='x'?(ES?'Cruza':'Cross'):(ES?'De raza'+NB+'pura':'Purebred'); }
+    function kindWords(w){ var b=breedWords(w.l.line); return b?(b+NB+'·'+NB+pureWord(w.kind)):''; }   /* held together (candidate 6): "Holland Lops · / Purebred" left one word alone on the litter opened */
     function pName(key){ return (key&&PAR[key]&&PAR[key].name)||''; }
     function photosOf(born){
       var pre='photos/litter-'+born+'-', out=[], tile='photos/litter-'+born+'.jpg';
@@ -9831,20 +9865,28 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(PHOTO_SIZES[tile]) out.push({src:tile,day:born,tile:true});
       return out;
     }
-    function photoAt(w){
-      if(!w.pic||w.pic.tile) return '';
-      var pa=between(w.born,w.pic.day), now=days(w.born); if(isNaN(pa)||isNaN(now)||now-pa<=7) return '';
-      if(pa<=0) return ES?'Foto al nacer':'Photo at birth';
-      if(pa===1) return ES?'Foto al día de nacer':'Photo at 1 day';
-      if(pa<14) return ES?('Foto a los '+pa+' días'):('Photo at '+pa+' days');
-      var wk=Math.floor(pa/7); return ES?('Foto a las '+wk+' semanas'):('Photo at '+wk+' weeks');
+    var CAM='<svg class="vcam" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.6"/><path d="M8.6 7l1.3-2.3h4.2L15.4 7"/><circle cx="12" cy="13.6" r="3.2"/></svg>';
+    var FILM='<svg class="vfilm" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor" stroke="none"/></svg>';
+    function photoAge(born,p){
+      if(!p||p.tile) return null; var pa=between(born,p.day); if(isNaN(pa)) return null;
+      var lab=p.video?(ES?'Grabado':'Filmed'):(ES?'Foto tomada':'Photo taken'), val, v2;   /* "Grabado": the site's own word for filmed (the reel's line, es.json) */
+      if(pa<=0){ val=ES?'Al nacer':'At birth'; v2=ES?'al nacer':'at birth'; return {val:val, lab:lab, full:lab+' '+v2, sr:lab+' '}; }
+      if(pa===1) val=ES?('1'+NB+'día'):('1'+NB+'day'+NB+'old');
+      else if(pa<56) val=ES?(pa+NB+'días'):(pa+NB+'days'+NB+'old');
+      else if(ES){ var h=Math.round(pa/30.44*2)/2, wh=Math.floor(h); val=(h>wh?wh+'½':String(wh))+NB+(h===1?'mes':'meses'); }
+      else val=String(ageAt(born,p.day)).replace(/ /g,NB);
+      lab+=ES?' con':' at';
+      return {val:val, lab:lab, full:lab+' '+val, sr:lab+' '};
     }
+    function stampHTML(w){ var a=photoAge(w.born,w.pic); if(!a) return '';
+      return '<span class="lsh-stamp'+(w.pic.video?' film':'')+'">'+(w.pic.video?FILM:CAM)+'<span class="t"><span class="sr-only">'+esc(a.sr)+'</span>'+esc(a.val)+'</span></span>'; }
     function picHTML(src,sizes){ return '<picture>'+avifSource(src,sizes)+'<img src="'+esc(src)+'"'+sizedAttrs(src,sizes)+' alt="" loading="lazy" decoding="async" width="400" height="300" onerror="cardErr(this)"></picture>'; }
     var waiting=LITS.filter(function(l){ return l&&l.born&&!(l.kits&&l.kits.length)&&!l.lost&&!l.never; }).map(function(l){
-      var ph=photosOf(l.born); return {id:'L'+l.born, born:l.born, l:l, kind:kindOf(l.line), sale:(typeof READY[l.born]==='string'&&ymd(READY[l.born]))?READY[l.born]:'', photos:ph, pic:ph[0]||null};
+      var ph=photosOf(l.born), his=(typeof READY[l.born]==='string'&&ymd(READY[l.born]))?READY[l.born]:'';
+      return {id:'L'+l.born, born:l.born, l:l, kind:kindOf(l.line), his:!!his, day:his, photos:ph, pic:ph[0]||null};
     });
-    waiting.sort(function(a,b){ if(a.sale&&b.sale) return a.sale<b.sale?-1:(a.sale>b.sale?1:(a.born<b.born?-1:1)); if(a.sale||b.sale) return a.sale?-1:1; return a.born<b.born?-1:(a.born>b.born?1:0); });
-    PLAN.forEach(function(q){ if(q&&q.key&&q.name){ var n=String(q.name), k=/cross/i.test(n)?'x':(/netherland dwarf/i.test(n)?'nd':(/holland lop/i.test(n)?'hl':'o')); waiting.push({id:'P'+q.key, plan:q, kind:k, sale:'', photos:[], pic:null}); } });
+    waiting.sort(function(a,b){ if(a.day&&b.day&&a.day!==b.day) return a.day<b.day?-1:1; if(!!a.day!==!!b.day) return a.day?-1:1; return a.born<b.born?-1:(a.born>b.born?1:0); });
+    PLAN.forEach(function(q){ if(q&&q.key&&q.name){ var n=String(q.name), k=/cross/i.test(n)?'x':(/netherland dwarf/i.test(n)?'nd':(/holland lop/i.test(n)?'hl':'o')); waiting.push({id:'P'+q.key, plan:q, kind:k, his:false, day:'', photos:[], pic:null}); } });
     if(!waiting.length) return;
     var BELL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
     var BELLF=BELL.replace('fill="none"','fill="currentColor"');
@@ -9864,7 +9906,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       chipsLabel: ES?'Mostrar':'Show',
       prev: ES?'Camadas anteriores':'Earlier litters', next: ES?'Más camadas':'More litters',
       notBorn: ES?'Aún no nacen':'Not born yet',
-      allLit: function(n){ return ES?('Ver las '+n+' camadas'):('See all '+n+' litters'); }, allSub: ES?'La página de camadas':'The litters page',
+      allLit: ES?'Ver todas las camadas':'See every litter', allSub: ES?'La página de camadas':'The litters page',
+      mother: ES?'Madre':'Mother', father: ES?'Padre':'Father',
+      parentOpen: function(role,n){ return ES?((role==='mother'?'Madre, ':'Padre, ')+n+': ver sus fotos y camadas'):((role==='mother'?'Mother, ':'Father, ')+n+(role==='mother'?': see her photos and litters':': see his photos and litters')); },
       bellOff: function(n){ return ES?('Avisarme de '+n):('Get alerts for '+n); },
       bellOn: function(n){ return ES?('Ya tiene avisos de '+n+'; ver sus avisos'):('You get alerts for '+n+'; see your alerts'); },
       litterOf: function(s){ return ES?('la camada nacida el '+dLong(s)):('the litter born '+dLong(s)); }
@@ -9880,24 +9924,39 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     chips.innerHTML=['all'].concat(order).map(function(k){ return '<button type="button" class="lsh-chip" data-k="'+k+'" aria-pressed="'+(k===filter?'true':'false')+'">'+esc(T.chip[k])+'<span class="c">'+countOf(k)+'</span></button>'; }).join('');
     function paintGo(){ var on=!!(mine&&mine.want&&mine.want.length); go.className='lsh-go'+(on?' on':''); go.innerHTML=(on?BELLF:BELL)+'<span>'+esc(on?T.goOn:T.go)+'</span>'; }
     function nameOf(w){ return w.plan?String(w.plan.name):T.litterOf(w.born); }
+    function faceOf(key){ var p=PAR[key]; if(!p) return ''; var s=p.photo||(Array.isArray(p.photos)&&p.photos[0]&&(p.photos[0].src||p.photos[0]))||''; return (s&&String(s).indexOf('coming-soon')<0)?String(s):''; }
+    function parentHTML(role,key){
+      var p=PAR[key]; if(!p||!p.name) return '<span class="lsh-p none" aria-hidden="true"></span>';
+      var src=faceOf(key);
+      var face=src?'<img src="'+esc(src)+'"'+sizedAttrs(src,'44px')+' alt="" loading="lazy" decoding="async" width="44" height="44">':'<i class="lsh-face-none"></i>';
+      return '<a class="lsh-p" href="#p-'+esc(key)+'" data-parent="'+esc(key)+'" aria-label="'+esc(T.parentOpen(role,p.name))+'">'+face+
+        '<small>'+esc(role==='mother'?T.mother:T.father)+'</small><b>'+esc(p.name)+'</b></a>';
+    }
+    function parentsHTML(w){
+      var pr=(w.l&&w.l.parents)||{}; if(!pr.mother&&!pr.father) return '';
+      var two=!!(PAR[pr.mother]&&PAR[pr.mother].name&&PAR[pr.father]&&PAR[pr.father].name);   /* the pair's line only between two parents */
+      return '<span class="lsh-par"><span class="lsh-par-in'+(two?' two':'')+'">'+parentHTML('mother',pr.mother)+parentHTML('father',pr.father)+'</span></span>';
+    }
     function cardHTML(w){
-      var on=onList(w.id), nm=nameOf(w), stamp=photoAt(w);
+      var on=onList(w.id), nm=nameOf(w), stamp=w.plan?'':stampHTML(w);
       var pic=w.pic?picHTML(w.pic.src,CARD_SIZES):'<span class="lsh-none" aria-hidden="true"></span>';
       var tag=w.plan?'':'<span class="lsh-tag">'+esc(pureWord(w.kind))+'</span>';
-      var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(ageWords(w.born));
+      var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(nowWords(w.born));
       var kind=w.plan?esc(T.notBorn):esc(tie(String(w.l.line||'').replace(/\s+cross$/i,'')));   /* the breed as the chips name it: Holland Lop, Netherland Dwarf ("Netherland Dwarfs" ran past a phone's card) */
-      var sale=w.plan?'':'<span class="lsh-sale'+(w.sale?' set':'')+'">'+esc(tie(saleText(w)))+'</span>';
+      var rp=w.plan?null:readyParts(w);
+      var ready=rp?'<span class="lsh-ready'+(rp.firm?' set':'')+(rp.unset?' none':'')+'">'+esc(tie(rp.label))+(rp.date?' <b>'+esc(rp.date).replace(/ /g,NB)+'</b>':'')+'</span>':'';
+      var par=w.plan?'':parentsHTML(w);
       return '<li data-id="'+esc(w.id)+'" data-k="'+w.kind+'"><div class="lsh-card">'+
         '<button type="button" class="lsh-open" aria-haspopup="dialog">'+
-        '<span class="lsh-pic">'+pic+tag+(stamp?'<span class="lsh-stamp">'+esc(stamp)+'</span>':'')+'</span><span class="lsh-b"><span class="lsh-age">'+top+'</span><span class="lsh-kind">'+kind+'</span>'+sale+'</span></button>'+
+        '<span class="lsh-pic">'+pic+tag+stamp+'</span>'+(par?'<span class="lsh-pg" aria-hidden="true"></span>':'')+
+        '<span class="lsh-b"><span class="lsh-age">'+top+'</span><span class="lsh-kind">'+kind+'</span>'+ready+'</span></button>'+par+
         '<button type="button" class="lsh-bell'+(on?' on':'')+'" aria-haspopup="dialog" aria-label="'+esc(on?T.bellOn(nm):T.bellOff(nm))+'">'+(on?BELLF:BELL)+'</button>'+
         '</div></li>';
     }
     function endHTML(){
-      var n=LITS.length;
       return '<li data-id="litters" data-k="all"><a class="lsh-card lsh-end" href="'+(ES?'es-litters.html':'/litters')+'">'+
         '<span class="lsh-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span>'+
-        '<span class="lsh-b"><span class="lsh-age">'+esc(tie(T.allLit(n)))+'<i class="chev" aria-hidden="true"></i></span><span class="lsh-kind">'+esc(tie(T.allSub))+'</span></span></a></li>';
+        '<span class="lsh-b"><span class="lsh-age">'+esc(tie(T.allLit))+'<i class="chev" aria-hidden="true"></i></span><span class="lsh-kind">'+esc(tie(T.allSub))+'</span></span></a></li>';
     }
     function emptyHTML(){
       var k=filter, kn=T.kindName[k]||'', out='';
@@ -9916,8 +9975,15 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(!list.length){ empty.innerHTML=emptyHTML(); empty.hidden=false; }
       else { empty.hidden=true; empty.innerHTML=''; }
       [].forEach.call(chips.querySelectorAll('.lsh-chip'),function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-k')===filter?'true':'false'); });
-      paintGo(); arrows();
+      paintGo(); arrows(); fitNames();
     }
+    function fitNames(){ if(!row.clientWidth) return;
+      [].forEach.call(row.querySelectorAll('.lsh-p b'),function(b){ b.style.fontSize=''; var f=parseFloat(getComputedStyle(b).fontSize)||12;
+        while(b.scrollWidth>b.clientWidth+0.5&&f>10){ f-=0.5; b.style.fontSize=f+'px'; } });
+      [].forEach.call(row.querySelectorAll('.lsh-tag'),function(t){ t.style.fontSize=''; var f=parseFloat(getComputedStyle(t).fontSize)||10.5;
+        while(t.scrollWidth>t.clientWidth+0.5&&f>9.5){ f-=0.5; t.style.fontSize=f+'px'; } }); }
+    var fitRO=false; if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fitNames(); }).observe(row); fitRO=true; }catch(e){} }
+    if(!fitRO){ var fitT=0; window.addEventListener('resize',function(){ clearTimeout(fitT); fitT=setTimeout(fitNames,120); }); }
     function arrows(){ var max=row.scrollWidth-row.clientWidth-2; prev.disabled=row.scrollLeft<=2; next.disabled=row.scrollLeft>=max; }
     row.addEventListener('scroll',function(){ arrows(); sset('arShelfX',row.scrollLeft); },{passive:true});
     function smooth(){ return (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth'; }
@@ -9927,14 +9993,22 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     chips.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('.lsh-chip'); if(b) setFilter(b.getAttribute('data-k')); });
     paint();
     var x0=sget('arShelfX',0); if(x0) row.scrollLeft=x0;
-    shelf.hidden=false;
+    shelf.hidden=false; fitNames();
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitNames);   /* the names measured again in the site's own type */
 
     function trap(box,ev){ if(ev.key!=='Tab') return; var f=[].filter.call(box.querySelectorAll('button:not([disabled]),a[href],input:not([type="hidden"]):not([disabled]),[tabindex="0"]'),function(e){ return e.getClientRects().length>0; }); if(!f.length) return;
       var a=f[0], z=f[f.length-1]; if(ev.shiftKey&&document.activeElement===a){ ev.preventDefault(); z.focus(); } else if(!ev.shiftKey&&document.activeElement===z){ ev.preventDefault(); a.focus(); } }
+    function keyOf(e){ if(!e||!e.closest) return null; var li=e.closest('#lshRow li[data-id]');
+      if(li) return {id:li.getAttribute('data-id'), bell:!!(e.classList&&e.classList.contains('lsh-bell'))};
+      return (e.closest('#lshEmpty')&&e.hasAttribute&&e.hasAttribute('data-every'))?{every:true}:null; }
+    function refind(k){ if(!k) return null; if(k.every) return empty.querySelector('[data-every]');
+      var hit=null; [].forEach.call(row.querySelectorAll('li[data-id]'),function(li){ if(li.getAttribute('data-id')===k.id) hit=li; });
+      return hit?hit.querySelector(k.bell?'.lsh-bell':'.lsh-open'):null; }
     function sheet(el,onClose){
-      var back=null;
-      function open(from){ back=from||document.activeElement; el.hidden=false; document.documentElement.classList.add('lsh-sheet'); var x=el.querySelector('.ql-x'); if(x) x.focus({preventScroll:true}); }
-      function shut(){ if(el.hidden) return; el.hidden=true; document.documentElement.classList.remove('lsh-sheet'); if(onClose) onClose(); if(back&&document.documentElement.contains(back)){ try{ back.focus({preventScroll:true}); }catch(e){} } }
+      var back=null, backKey=null;
+      function open(from){ back=from||document.activeElement; backKey=keyOf(back); el.hidden=false; document.documentElement.classList.add('lsh-sheet'); var x=el.querySelector('.ql-x'); if(x) x.focus({preventScroll:true}); }
+      function shut(){ if(el.hidden) return; el.hidden=true; document.documentElement.classList.remove('lsh-sheet'); if(onClose) onClose();
+        var b=(back&&document.documentElement.contains(back))?back:refind(backKey); if(b){ try{ b.focus({preventScroll:true}); }catch(e){} } }
       el.addEventListener('click',function(ev){ if(ev.target===el) shut(); });
       el.querySelector('.ql-x').addEventListener('click',shut);
       el.addEventListener('keydown',function(ev){ if(ev.key==='Escape'){ ev.preventDefault(); ev.stopPropagation(); shut(); return; } trap(el.firstElementChild,ev); });
@@ -9948,7 +10022,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       strip.setAttribute('tabindex','0'); strip.setAttribute('aria-label',ES?'Fotos de la camada':'Photos of the litter');
       var at=function(){ return Math.round(strip.scrollLeft/Math.max(1,strip.clientWidth)); };
       var go2=function(i){ var n=strip.children.length; i=Math.max(0,Math.min(n-1,i)); strip.scrollTo({left:i*strip.clientWidth,behavior:smooth()}); };
-      strip.addEventListener('scroll',function(){ var i=at(); [].forEach.call(document.querySelectorAll('#lsDots i'),function(d,k){ d.className=k===i?'on':''; }); lsArr(); },{passive:true});
+      var pin=document.createElement('span'); pin.className='vborn ls-stamp'; pin.id='lsStamp'; pin.hidden=true;
+      pin.innerHTML=CAM+FILM+'<span class="vline"><span class="vwhat"></span><span class="t"></span></span>';
+      LS.querySelector('.ls-pics').appendChild(pin);
+      strip.addEventListener('scroll',function(){ var i=at(); [].forEach.call(document.querySelectorAll('#lsDots i'),function(d,k){ d.className=k===i?'on':''; }); lsArr(); lsStampAt(i); },{passive:true});
       strip.addEventListener('keydown',function(ev){ if(ev.key==='ArrowLeft'||ev.key==='ArrowRight'){ ev.preventDefault(); go2(at()+(ev.key==='ArrowLeft'?-1:1)); } });
       document.getElementById('lsPrev').addEventListener('click',function(){ go2(at()-1); });
       document.getElementById('lsNext').addEventListener('click',function(){ go2(at()+1); });
@@ -9960,22 +10037,29 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function lsArr(){ var s=document.getElementById('lsStrip'), n=s.children.length, i=Math.round(s.scrollLeft/Math.max(1,s.clientWidth)); var p=document.getElementById('lsPrev'), q=document.getElementById('lsNext');
       p.hidden=q.hidden=n<2; p.disabled=i<=0; q.disabled=i>=n-1; }
+    function lsStampAt(i){ var st=document.getElementById('lsStamp'); if(!st) return; var w=lsNow, p=w&&w.photos[i], a=p?photoAge(w.born,p):null;
+      if(!a){ st.hidden=true; return; }
+      st.hidden=false; st.className='vborn ls-stamp'+(p.video?' film':'');
+      st.querySelector('.vwhat').textContent=a.lab+' '; st.querySelector('.t').textContent=a.lab===a.full?'':a.full.slice(a.lab.length+1); }
     function openLitter(w,from){
       if(!litInit()) return; lsNow=w;
       var strip=document.getElementById('lsStrip'), dots=document.getElementById('lsDots');
       var ph=w.photos.length?w.photos:[];
       strip.innerHTML=ph.map(function(p){ var pa=between(w.born,p.day); var alt=(ES?'La camada ':'The litter ')+(isNaN(pa)?'':(pa<=0?(ES?'al nacer':'at birth'):(ES?('a los '+pa+' días'):('at '+pa+' days old')))); return '<img src="'+esc(p.src)+'"'+sizedAttrs(p.src,'(min-width:761px) 560px, 100vw')+' alt="'+esc(alt)+'" loading="lazy" decoding="async">'; }).join('');
       dots.innerHTML=ph.length>1?ph.map(function(_,i){ return '<i'+(i?'':' class="on"')+'></i>'; }).join(''):'';
-      strip.scrollLeft=0; lsArr();
+      strip.scrollLeft=0; lsArr(); lsStampAt(0);
       document.getElementById('lsName').textContent=tie(ES?('Nacidos el '+dLong(w.born)):('Born '+dLong(w.born)));
-      document.getElementById('lsMeta').textContent=ageWords(w.born).replace(/ /g,' ')+' · '+kindWords(w);
+      document.getElementById('lsMeta').textContent=nowWords(w.born)+' · '+kindWords(w);
       var mo=pName(w.l.parents&&w.l.parents.mother), fa=pName(w.l.parents&&w.l.parents.father), sub='';
       if(mo||fa) sub=(mo?(ES?'Madre ':'Mother ')+'<a href="#p-'+esc(w.l.parents.mother)+'">'+esc(mo)+'</a>':'')+(mo&&fa?(ES?', padre ':', father '):(fa?(ES?'Padre ':'Father '):''))+(fa?'<a href="#p-'+esc(w.l.parents.father)+'">'+esc(fa)+'</a>':'');
       document.getElementById('lsSub').innerHTML=sub;
       var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy');
-      if(w.sale&&saleCome(w.sale)){ rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'; }
-      else if(w.sale){ rd.innerHTML=(ES?'A la venta el ':'For sale ')+'<b>'+esc(dWeek(w.sale))+'</b>.'; why.textContent=ES?'Ese día salen a la venta en esta página, y le aviso si está en la lista.':'That day they go on sale on this page, and I email you if you’re on the list.'; }
-      else { rd.textContent=ES?'Fecha de venta aún sin fijar.':'Sale day not set yet.'; why.textContent=ES?'Cada uno se publica cuando ya lo fotografié y revisé que está sano; con los avisos, se entera ese mismo día.':'Each one is listed once it’s photographed and I’ve checked it’s in good health; with alerts, you hear the same day.'; }
+      var LISTED=ES?'Cada uno se publica cuando ya lo fotografié y revisé que está sano; con los avisos, se entera ese mismo día.':'Each one is listed once it’s photographed and I’ve checked it’s in good health; with alerts, you hear the same day.';
+      var rp=readyParts(w)||{unset:true};
+      if(rp.unset){ rd.textContent=tie(ES?'Listos en fecha por definir.':'Ready date not set yet.'); why.textContent=tie(LISTED); }   /* plain: an absence is not moss (candidate 5); the last two words held (candidate 6) */
+      else if(rp.firm&&!rp.date){ rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=tie(ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'); }
+      else if(rp.firm){ rd.innerHTML=(ES?'Listos el ':'Ready ')+'<b>'+esc(rp.date)+'</b>.'; why.textContent=tie(ES?'Ese día salen a la venta en esta página y pueden irse a casa; le aviso si está en la lista.':'That day they go on sale on this page and can go home, and I email you if you’re on the list.'); }
+      else { rd.innerHTML=(ES?'Listos hacia el ':'Projected ready ')+'<b class="est">'+esc(rp.date)+'</b>.'; why.textContent=tie(ES?'Es mi estimado y aún puede moverse un poco. Ese día salen a la venta en esta página y pueden irse a casa; le aviso si está en la lista.':'My estimate, and it can still move a little. That day they go on sale on this page and can go home, and I email you if you’re on the list.'); }   /* a projected date in ink, as on its card (candidate 6): moss is a firm day */
       var wt=document.getElementById('lsWait'); wt.hidden=true; wt.textContent='';
       if(typeof fetchWaiting==='function') fetchWaiting(w.id, wt, T.litterOf(w.born), onList(w.id));
       var on=onList(w.id), b=document.getElementById('lsAlert');
@@ -10036,12 +10120,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       return af;
     }
     function kept(){ var k=document.getElementById('alKept'); if(!k||!af) return; var d=draft(); var any=d&&((d.email&&d.email.length)||(d.named&&d.named.length)||d.level==='all');
-      k.textContent=ES?'Lo que elija se guarda aunque cierre esto.':'What you choose here is kept if you close this.'; k.hidden=!any; }
+      k.textContent=tie(ES?'Lo que elija se guarda aunque cierre esto.':'What you choose here is kept if you close this.'); k.hidden=!any; }
     function openAlerts(id,from){
       if(!alInit()||!buildForm()) return;
       var ok=document.getElementById('alOk'), dn=AL.querySelector('.al-done'); if(dn) dn.parentNode.removeChild(dn); ok.hidden=true; af.style.display='';
       document.getElementById('alT').textContent=ES?'Avisos de camadas':'Litter alerts';
-      document.getElementById('alS').textContent=ES?'Un correo el día que una camada salga a la venta. Nada más, a menos que lo pida.':'One email the day a litter goes on sale. Nothing else unless you ask.';
+      document.getElementById('alS').textContent=tie(ES?'Un correo el día que una camada salga a la venta. Nada más, a menos que lo pida.':'One email the day a litter goes on sale. Nothing else unless you ask.');
       document.getElementById('alX').setAttribute('aria-label',ES?'Cerrar':'Close');
       var d=draft(), base=d||(mine?{every:mine.want.indexOf('all')>=0, named:mine.want.filter(function(x){ return x!=='all'; }), level:mine.level, email:''}:null);
       if(base){ if(every){ every.checked=false; paintEvery(); } named.forEach(function(i){ i.checked=base.named.indexOf(i.value)>=0; held[i.value]=i.checked; });
