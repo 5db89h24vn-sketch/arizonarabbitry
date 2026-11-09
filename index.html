@@ -2211,42 +2211,32 @@ html.pick #nav .btn,html.pick .bunny .parts{display:none}
 .pairrec .pairtab .kit .kn+span{flex:none}
 .pairrec .pairtab+p{margin-top:6px}
 
-.pairrec .qv{margin:0}
 .pairrec .qv-mil{margin:0 0 10px;padding:9px 11px;gap:10px}
 .pairrec .qv-mil .gs-mil-t b{font-size:14px}
 .pairrec .qv-mil .gs-mil-t small{font-size:12.5px}
-.pairrec .pairtab.qvt thead th{text-align:right;white-space:nowrap;letter-spacing:.05em}
-.pairrec .pairtab.qvt thead th.qv-name{text-transform:none;letter-spacing:0;font-size:11.5px;color:var(--ink-soft)}
-.pairrec .pairtab.qvt thead th:first-child{text-align:left}
-.pairrec .pairtab.qvt tbody th{padding:5px 0}
-.pairrec .pairtab.qvt .num{text-align:right;padding-left:7px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pairrec .pairtab.qvt tbody .num{font-size:13.5px;color:var(--ink)}
-.pairrec .pairtab.qvt .qv-cut{display:inline-flex;flex-direction:column;align-items:flex-end;line-height:1.12}
-.pairrec .pairtab.qvt .qv-cut s{font-size:11px;color:var(--ink-faint);text-decoration-thickness:1px}
-.pairrec .pairtab.qvt .qv-cut b{font-weight:600;color:var(--brick-dk)}
-.pairrec .pairtab.qvt .qv-cut b svg{display:inline-block;width:11px;height:11px;vertical-align:-1px;margin-right:2px}
-.pairrec .pairtab.qvt .qv-tot b{display:block;font-weight:700;font-size:14px;line-height:1.15;color:var(--ink)}
-.pairrec .pairtab.qvt .qv-tot b,.pairrec .pairtab.qvt .qv-tot small{white-space:nowrap}
-.pairrec .pairtab.qvt .qv-tot small{display:block;font-size:11px;line-height:1.2;color:var(--ink-soft)}
-.pairrec .pairtab.qvt tr.qv-sp>*{background:var(--brick-tint)}
-.pairrec .pairtab.qvt tr.qv-sp>:first-child{border-radius:10px 0 0 10px;padding-left:4px}
-.pairrec .pairtab.qvt tr.qv-sp>:last-child{border-radius:0 10px 10px 0;padding-right:6px}
-.pairrec .pairtab.qvt tr.qv-sp .qv-tot small{color:var(--brick-dk);font-weight:600}
-.pairrec .pairtab.qvt .qv-tot small svg{display:inline-block;width:11px;height:11px;vertical-align:-1.5px;margin-right:2px}
-.pairrec .qv-pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 0}
-.pairrec .qv-pager .chip{min-width:44px;min-height:36px;justify-content:center;padding:0 12px}
-.pairrec .qv-pager .chip[aria-disabled="true"]{opacity:.38;pointer-events:none}
-.pairrec .qv-of{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
-.pairrec .qv-note{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:var(--ink-soft);text-wrap:balance}
-.pairrec .qv-note svg{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin:0 4px 0 0}
-.pairrec .qv-note .qv-k{display:block;padding-left:16px;text-indent:-16px}   
-@media(max-width:374px){
-  .pairrec .pairtab.qvt .num{padding-left:6px}
-  .pairrec .pairtab.qvt tbody .num{font-size:13px}
-  .pairrec .pairtab.qvt .kit.kit-face{padding-right:8px}
-  .pairrec .pairtab.qvt .kit .face{width:24px;height:24px;margin-right:5px}
-}
 
+.pairrec .pc{margin:0}
+.pairrec .pc-head{margin:0 0 8px;font-size:14px;line-height:1.35;color:var(--ink-soft);text-wrap:balance}
+.pairrec .pc-chips{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 0 12px}
+.pairrec .pc-item{display:inline-flex;align-items:center;gap:4px;max-width:100%;min-width:0}
+.pairrec .pc .kit{max-width:none}
+.pairrec .pc-pick{min-height:40px}
+.pairrec .pc-pick .sparkg{width:13px;height:13px;margin-left:4px;color:var(--brick-dk);flex:none}
+.pairrec .pc-pick[aria-checked="true"]{background:var(--brick-tint);box-shadow:inset 0 0 0 2px var(--brick-fill)}
+.pairrec .pc-info{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:var(--paper-2);color:var(--ink-soft);position:relative}
+.pairrec .pc-info::before{content:'';position:absolute;inset:-7px}
+.pairrec .pc-info svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.pairrec .pc .qv-mil{margin:0 0 10px}
+.pairrec .pc-out{min-height:22px}
+.pairrec .pc-hint{margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+.pairrec .pc-math{margin:0 0 10px;padding:9px 12px 8px;border-radius:10px;background:var(--paper-2)}
+.pairrec .pc-math .pm-disc .pairg{width:13px;height:13px;vertical-align:-2px;margin-right:4px;color:var(--brick-dk)}
+.pairrec .pc-save{margin:6px 0 0;font-size:13.5px;font-weight:600;color:var(--brick-dk)}
+.pairrec .pc-go{display:flex;width:100%;justify-content:center;align-items:center;gap:6px}
+.gs-mil .gs-mil-n{display:flex;align-items:flex-start;gap:6px}
+.gs-mil .gs-mil-n .milg{flex:none;width:17px;height:17px;margin:1px 0 0;color:var(--brick-dk)}
+.pairrec .qv-mil .gs-mil-n .milg{width:16px;height:16px}
+.pairrec .pc-go .chev{flex:none;width:9px;height:9px;margin-left:4px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(-45deg)}
 .kit.kit-face{padding-left:4px;padding-right:10px}
 .kit .face{flex:none;width:28px;height:28px;margin:0 7px 0 0;border-radius:50%;overflow:hidden;background:var(--paper-2)}
 .kit .face img,.kit .face .face-none{display:block;width:100%;height:100%;object-fit:cover}
@@ -4857,7 +4847,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <div class="vmoney" id="viewerMoney" hidden>
         
         <div class="pairmath" id="viewerPairMath" hidden></div>
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">The $50 deposit counts toward the price.</b><b class="vt-one" hidden>No deposit at this price.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>5%&nbsp;off</b> for military and first&nbsp;responders.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Two together:</b> the second is 20%&nbsp;off.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">The $50 deposit counts toward the price.</b><b class="vt-one" hidden>No deposit at this price.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Free delivery</b> in AZ; long drives on&nbsp;weekends.</span></span><span class="vt-row vt-more"><svg class="vti milg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path fill="currentColor" stroke="none" d="M12 7 13.15 10.12 16.47 10.25 13.85 12.3 14.76 15.5 12 13.65 9.24 15.5 10.15 12.3 7.53 10.25 10.85 10.12z"/></svg><span><b>5%&nbsp;off</b> for military and first&nbsp;responders.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Two together:</b> the second is 20%&nbsp;off.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
 
         <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span class="vtwo-t">A special</span></a><a class="btn btn-tonal vtwo-b" id="viewerAddB" href="#contact" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Add a second rabbit</span></a></p>
         
@@ -6131,6 +6121,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function bundleMate(r){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[]; for(var i=0;i<R.length;i++){ var x=R[i]; if(x&&x!==r&&x.name!==r.name&&bundleRec(r,x)) return x; } return null; }
   var PAIR_GLYPH='<svg class="pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg>';
   var SPECIAL_GLYPH='<svg class="pairg sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg>';
+  var MIL_GLYPH='<svg class="pairg milg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path fill="currentColor" stroke="none" d="M12 7 13.15 10.12 16.47 10.25 13.85 12.3 14.76 15.5 12 13.65 9.24 15.5 10.15 12.3 7.53 10.25 10.85 10.12z"/></svg>';
   function bundleByName(x,y){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[];
     var a=R.filter(function(r){ return r&&r.name===x; })[0], b=R.filter(function(r){ return r&&r.name===y; })[0]; return bundleOf(a,b); }
   window.bundleByName=bundleByName;   /* the form's pair figure (pairQuote) reads it */
@@ -6158,7 +6149,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '<span class="faces" aria-hidden="true">'+qvOrder(r).slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+   /* ROUND 186: the table's order */
         '<span class="pm-t">'+label+'</span></button>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
-      qvHTML(r)+   /* ROUND 186 (R186-1, R186-2): the switch, the table, the pages, the key */
+      pcHTML(r)+   /* ROUND 187 (R187-1): the pair calculator (his words of 5:06pm); Round 186's table gave way to it */
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second within 48 hours, or put a $'+DEPOSIT+' deposit on one, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">More about pairs</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
@@ -6166,53 +6157,50 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         'Just one? <a class="litterlink" href="#faq-one">Then you are its company</a>.</p>'+
       '</div>';
   }
-  var QV_PER=4;
   function qvOrder(r){ var all=pairAll(r).filter(function(x){ return +priceOf(x)>0; });   /* a price to show, or no row */
     return all.filter(function(x){ return bundleOf(r,x)>0; }).concat(all.filter(function(x){ return !(bundleOf(r,x)>0); })); }
   function qvMil(){ return (typeof gsVals!=='undefined'&&gsVals&&gsVals.mil)?true:false; }
-  function qvBody(r,page){
-    var es=document.documentElement.lang==='es', mine=+priceOf(r), list=qvOrder(r), pages=Math.max(1,Math.ceil(list.length/QV_PER));
-    page=Math.max(0,Math.min(pages-1,page|0));
-    var mil=qvMil(), cutm=function(n){ return mil?(n-Math.round(n*MIL_OFF/100)):n; };
-    var cell=function(full,now){ return (now<full)?('<span class="qv-cut"><s>$'+full+'</s><b>'+PAIR_GLYPH+'$'+now+'</b></span>'):('$'+full); };
-    var rows=list.slice(page*QV_PER,page*QV_PER+QV_PER).map(function(x){
-      var other=+priceOf(x), bd=bundleOf(r,x), meCut=!bd&&mine<other, otCut=!bd&&!(mine<other);
-      var meNow=meCut?(mine-Math.round(mine*PAIR_OFF/100)):mine, otNow=otCut?(other-Math.round(other*PAIR_OFF/100)):other;
-      var two=bd||(meNow+otNow), tot=cutm(two), save=mine+other-tot;
-      var to=(gsCan(r)&&gsCan(x))?('#r-'+addrOf(r)+'+'+addrOf(x)):('#r-'+addrOf(x));
-      return '<tr class="pairone'+(bd?' qv-sp':'')+'"><th scope="row"><a class="kit kit-face qv-who" href="'+esc(to)+'" aria-label="'+esc((es?(r.name+' y '+x.name+': $'+tot+' los dos'):(r.name+' and '+x.name+': $'+tot+' together')))+'">'+
-          '<span class="face" aria-hidden="true">'+faceImg(x,28)+'</span><span class="kn">'+esc(x.name)+'</span></a></th>'+
-        '<td class="num qv-it"><span class="sr-only">'+esc(x.name)+': </span>'+cell(other,otNow)+'</td><td class="num qv-me">'+cell(mine,meNow)+'</td>'+
-        '<td class="num qv-tot"><b>$'+tot+'</b><small>'+(bd?SPECIAL_GLYPH:'')+(es?'ahorra $':'save $')+save+'</small></td></tr>';   /* every row says what the two save (his "how much money it would actually be"); a special's with the sparkle, the 20%'s rings on the price that takes it */
+  var PC_INFO='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 11.2v5M12 7.9h.01"/></svg>';
+  function pcES(){ return document.documentElement.lang==='es'; }
+  function pcTie(t){ var w=String(t).split(' '); return w.length<4?t:w.slice(0,-3).join(' ')+' '+w.slice(-3).join('\u00a0'); }
+  function pcHTML(r){
+    var es=pcES(), list=qvOrder(r), mil=qvMil();
+    var chips=list.map(function(x){ var sp=bundleOf(r,x)>0;
+      return '<span class="pc-item"><button type="button" class="kit kit-face pc-pick'+(sp?' pc-sp':'')+'" role="radio" aria-checked="false" data-pc="'+esc(addrOf(x))+'">'+
+        '<span class="face" aria-hidden="true">'+faceImg(x,28)+'</span><span class="kn">'+esc(x.name)+'</span>'+(sp?SPECIAL_GLYPH:'')+'</button>'+
+        '<a class="pc-info" href="#r-'+esc(addrOf(x))+'" aria-label="'+esc(es?('Ver a '+x.name):('See '+x.name))+'">'+PC_INFO+'</a></span>';
     }).join('');
-    var from=page*QV_PER+1, to2=Math.min(list.length,page*QV_PER+QV_PER);
-    var pager=(pages>1)?('<div class="qv-pager"><button type="button" class="chip qv-prev"'+(page===0?' aria-disabled="true"':'')+' aria-label="'+(es?'Conejos anteriores':'Previous rabbits')+'"><i class="chev left" aria-hidden="true"></i></button>'+
-        '<span class="qv-of" aria-live="polite">'+from+'\u2013'+to2+(es?' de ':' of ')+list.length+'</span>'+
-        '<button type="button" class="chip qv-next"'+(page>=pages-1?' aria-disabled="true"':'')+' aria-label="'+(es?'Más conejos':'More rabbits')+'"><i class="chev" aria-hidden="true"></i></button></div>'):'';
-    return '<table class="pairtab qvt"><caption class="sr-only">'+esc(es?(r.name+' con cada conejo a la venta: el precio de cada uno, el 20% en el que cuesta menos y los dos juntos'):(r.name+' with each rabbit for sale: each one\u2019s price, the 20% on the one that costs less, and the two together'))+'</caption>'+
-      '<thead><tr><th scope="colgroup" colspan="2">'+(es?'Con':'With')+'</th><th scope="col" class="num qv-name">'+esc(r.name)+'</th><th scope="col" class="num">Total</th></tr></thead>'+   /* his word of 4:52pm: "instead of Price it makes a lot more sense to have the actual rabbit, like Snowcone, Latte, Mocha, Teddy": each price stands beside its own rabbit under With, as Coconut's under Coconut */
-      '<tbody>'+rows+'</tbody></table>'+pager;
-  }
-  function qvHTML(r){
-    var es=document.documentElement.lang==='es', list=qvOrder(r), sp=list.some(function(x){ return bundleOf(r,x)>0; }), mil=qvMil();
-    var said=es?'No está garantizado hasta que vea su identificación al\u00a0recogerlos.':'Not guaranteed until I see your ID at\u00a0pickup.';
-    return '<div class="qv" data-r="'+esc(addrOf(r))+'" data-page="0">'+
-      '<label class="opt gs-mil qv-mil"><span class="gs-mil-t"><b id="qvMilB">'+(es?'Militar o personal\u00a0de\u00a0emergencias':'Military or\u00a0first\u00a0responder')+'</b>'+
-        '<small id="qvMilS"><span class="gs-mil-a">'+(es?(MIL_OFF+'% menos en cada\u00a0total.'):(MIL_OFF+'% off every\u00a0total.'))+'</span> <span class="gs-mil-b">'+said+'</span></small></span>'+
+    return '<div class="pc" data-r="'+esc(addrOf(r))+'">'+
+      '<p class="pc-head" id="pcHead">'+pcTie(es?('Elija uno para juntar con '+esc(r.name)+'.'):('Pick one to pair with '+esc(r.name)+'.'))+'</p>'+
+      '<div class="pc-chips" role="radiogroup" aria-labelledby="pcHead">'+chips+'</div>'+
+      '<label class="opt gs-mil qv-mil"><span class="gs-mil-t"><span class="gs-mil-n">'+MIL_GLYPH+'<b id="qvMilB">'+(es?'Militar o personal\u00a0de\u00a0emergencias':'Military or\u00a0first\u00a0responder')+'</b></span>'+
+        '<small id="qvMilS"><span class="gs-mil-a">'+(es?(MIL_OFF+'% menos en el\u00a0total.'):(MIL_OFF+'% off the\u00a0total.'))+'</span> <span class="gs-mil-b">'+(es?'No está garantizado hasta que vea su identificación al\u00a0recogerlos.':'Not guaranteed until I see your ID at\u00a0pickup.')+'</span></small></span>'+
         '<input type="checkbox" name="qvmil" class="sw-in" role="switch" aria-labelledby="qvMilB" aria-describedby="qvMilS"'+(mil?' checked':'')+'><i class="sw" aria-hidden="true"></i></label>'+
-      '<div class="qv-body">'+qvBody(r,0)+'</div>'+
-      '<p class="qv-note"><span class="qv-k">'+PAIR_GLYPH+(es?'El que cuesta menos tiene '+PAIR_OFF+'% de\u00a0descuento.':'The one that costs less is '+PAIR_OFF+'%\u00a0off.')+'</span>'+
-        (sp?(' <span class="qv-k">'+SPECIAL_GLYPH+(es?'Una oferta especial es un precio propio para los\u00a0dos.':'A special is its own price for the\u00a0two.')+'</span>'):'')+'</p>'+
+      '<div class="pc-out" aria-live="polite"><p class="pc-hint">'+pcTie(es?'Toque un conejo para ver el precio de los dos.':'Tap a rabbit to see the price for the two.')+'</p></div>'+
       '</div>';
   }
-  function qvPaint(qv,page){
-    if(!qv) return; var RR=(typeof RABBITS!=='undefined'&&RABBITS)||[], ad=qv.getAttribute('data-r'), r=RR.filter(function(x){ return x&&addrOf(x)===ad; })[0]; if(!r) return;
-    var pages=Math.max(1,Math.ceil(qvOrder(r).length/QV_PER)); page=Math.max(0,Math.min(pages-1,page|0));
-    qv.setAttribute('data-page',String(page));
-    var b=qv.querySelector('.qv-body'); if(b) b.innerHTML=qvBody(r,page);
-    var sw=qv.querySelector('input[name="qvmil"]'); if(sw) sw.checked=qvMil();
+  function pcReceipt(r,x){
+    var es=pcES(), pA=+priceOf(r), pB=+priceOf(x), bd=bundleOf(r,x), off=bd?(pA+pB-bd):Math.round(Math.min(pA,pB)*PAIR_OFF/100), two=bd||(pA+pB-off), sum=pA+pB;
+    var cut=bd?null:((pB<pA)?x:((pA<pB)?r:x)), same=(pA===pB), mil=qvMil(), T=mil?(two-Math.round(two*MIL_OFF/100)):two;
+    var row=function(n,a,c,g){ return '<p class="pm-row'+(c?' '+c:'')+'"><span class="pm-name">'+(g||'')+pcTie(n)+'</span><span class="pm-amt">'+a+'</span></p>'; };
+    var disc=bd?(es?'La oferta especial de los dos':'The special for the two')
+      :(es?('20% menos en '+esc(cut.name)+', '+(same?'el segundo':'el precio menor')):('20% off '+esc(cut.name)+', '+(same?'the second':'the lower price'))), mark=bd?SPECIAL_GLYPH:PAIR_GLYPH;
+    var to=(gsCan(r)&&gsCan(x))?('#r-'+addrOf(r)+'+'+addrOf(x)):('#r-'+addrOf(x));
+    return '<div class="pairmath pc-math">'+row(esc(r.name),'$'+pA)+row(esc(x.name),'$'+pB)+
+      row(es?'Los dos a precio completo':'Both at full price','$'+sum,'pm-sub')+row(disc,'\u2212$'+off,'pm-disc',mark)+
+      (mil?row(es?(MIL_OFF+'% para militares y personal de emergencias'):(MIL_OFF+'% off, military or first responder'),'\u2212$'+(two-T),'pm-disc pc-mil',MIL_GLYPH):'')+
+      row(es?'Usted paga':'You pay','$'+T,'pm-total')+
+      '<p class="pc-save">'+pcTie(es?('Ahorra $'+(sum-T)+' con los dos.'):('You save $'+(sum-T)+' with the two.'))+'</p></div>'+
+      '<a class="btn btn-tonal pairbuy-b pc-go" href="'+esc(to)+'">'+(es?'Seguir con los dos':'Continue with the two')+' · $'+T+'<i class="chev" aria-hidden="true"></i></a>';
   }
-  window.qvPaint=qvPaint;
+  function pcPaint(pc){
+    if(!pc) return; var RR=(typeof RABBITS!=='undefined'&&RABBITS)||[], ad=pc.getAttribute('data-r'), r=RR.filter(function(x){ return x&&addrOf(x)===ad; })[0]; if(!r) return;
+    var on=pc.getAttribute('data-pick')||'', x=on?RR.filter(function(y){ return y&&addrOf(y)===on; })[0]:null, es=pcES();
+    Array.prototype.forEach.call(pc.querySelectorAll('.pc-pick'),function(b){ b.setAttribute('aria-checked',b.getAttribute('data-pc')===on?'true':'false'); });
+    var out=pc.querySelector('.pc-out'); if(out) out.innerHTML=x?pcReceipt(r,x):('<p class="pc-hint">'+pcTie(es?'Toque un conejo para ver el precio de los dos.':'Tap a rabbit to see the price for the two.')+'</p>');
+    var sw=pc.querySelector('input[name="qvmil"]'); if(sw) sw.checked=qvMil();
+  }
+  window.pcPaint=pcPaint;
   function stillHTML(r){
     if(r.status==='available') return '';
     var m=pairMates(r); if(!m.list.length) return '';
@@ -7432,7 +7420,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '</div></fieldset>'+
         '<fieldset class="gs-pick gs-with" hidden><legend>Taking two?</legend><div class="opts"></div></fieldset>'+
         '<p class="gs-sum" hidden></p>'+
-        '<label class="opt gs-mil"><span class="gs-mil-t"><b id="gsMilB"></b><small id="gsMilS"></small></span>'+
+        '<label class="opt gs-mil"><span class="gs-mil-t"><span class="gs-mil-n">'+MIL_GLYPH+'<b id="gsMilB"></b></span><small id="gsMilS"></small></span>'+
           '<input type="checkbox" name="gsmil" class="sw-in" role="switch" aria-labelledby="gsMilB" aria-describedby="gsMilS"><i class="sw" aria-hidden="true"></i></label>'+
         '<p class="gs-visit-head"><b class="gs-vtitle"></b><span>Free: no deposit, and no pressure to buy.</span></p>'+
         '<p class="gs-photos-head"><b class="gs-ptitle"></b><span>Free. I take them the next time I’m with the rabbit, and send them to you.</span></p>'+
@@ -7483,7 +7471,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(ev.target.name==='gsopt') gsMove(ev.target.value,true);
         if(ev.target.name==='gshow'){ gsVals.how=ev.target.value==='facetime'?'facetime':'person'; gsPaintMode(true); }
         if(ev.target.name==='gsmil'){ gsVals.mil=!!ev.target.checked; gsSteady(ev.target,function(){ gsRows(gsR); gsPaintMoney(); });   /* ROUND 185 (R185-3) */
-          var qv0=document.querySelector('#viewerPair .qv'); if(qv0&&window.qvPaint) window.qvPaint(qv0,+qv0.getAttribute('data-page')||0); }   /* ROUND 186 (R186-2): the table under the sheet follows it */
+          var pc0=document.querySelector('#viewerPair .pc'); if(pc0&&window.pcPaint) window.pcPaint(pc0); }   /* ROUND 187: the calculator under the sheet follows it */   /* ROUND 186 (R186-2): the table under the sheet follows it */
         if(ev.target.name==='gswith'){ var wv=ev.target.value; gsStamp=null;   /* (Round 174) two is a new message; (Round 182b) one of the two is too */
           if(gsPair&&(wv==='both'||wv.indexOf('just:')===0)){ var to=(wv==='both'||wv.slice(5)===addrOf(gsPair[0]))?gsPair[0]:gsPair[1], tw=(wv==='both')?addrOf(gsPair[1]):'';
             gsSteady(ev.target,function(){ gsShow(to,gsMode,'pick',null,tw); }); }
@@ -9405,12 +9393,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vOpen(bt, panel);
     });
     if(vPair) vPair.addEventListener('click',function(ev){
-      var pg=ev.target.closest&&ev.target.closest('.qv-prev,.qv-next');
-      if(pg&&vPair.contains(pg)){
-        ev.preventDefault(); if(pg.getAttribute('aria-disabled')==='true') return;
-        var qv=pg.closest('.qv'); if(qv) qvPaint(qv,(+qv.getAttribute('data-page')||0)+(pg.classList.contains('qv-next')?1:-1));
-        return;
-      }
+      var pk=ev.target.closest&&ev.target.closest('.pc-pick');
+      if(pk&&vPair.contains(pk)){ ev.preventDefault(); var pc=pk.closest('.pc'); if(pc){ pc.setAttribute('data-pick',pk.getAttribute('data-pc')||''); pcPaint(pc); } return; }
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
@@ -9419,7 +9403,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     if(vPair) vPair.addEventListener('change',function(ev){
       var t=ev.target; if(!t||t.name!=='qvmil') return;
       if(typeof gsVals!=='undefined') gsVals.mil=!!t.checked;
-      var qv=t.closest('.qv'); if(qv) qvPaint(qv,+qv.getAttribute('data-page')||0);
+      var pc=t.closest('.pc'); if(pc) pcPaint(pc);
     });
 
     vClose.addEventListener('click',dismiss);
