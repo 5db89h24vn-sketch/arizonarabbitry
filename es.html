@@ -2442,16 +2442,41 @@ html.pick #nav .btn,html.pick .bunny .parts{display:none}
 .pairrec .pairtab .kit .kn+span{flex:none}
 .pairrec .pairtab+p{margin-top:6px}
 
-.pairrec .pairtab a.duo{padding:3px 12px 3px 3px;border-radius:22px;white-space:normal;max-width:100%;min-width:0}
-.pairrec .pairtab a.duo .faces{display:flex;flex:none;padding-left:0;margin:0 7px 0 0}
-.pairrec .pairtab a.duo .faces img,.pairrec .pairtab a.duo .faces .face-none{width:28px;height:28px;margin-left:-9px;box-shadow:0 0 0 2px var(--card)}
-.pairrec .pairtab a.duo .faces>:first-child{margin-left:0}
-.pairrec .pairtab a.duo .duo-n{display:flex;flex-direction:column;min-width:0;margin-left:0;font-size:12.5px;line-height:1.18;color:var(--ink);font-weight:500}
-.pairrec .pairtab a.duo .dn{display:block;margin-left:0;color:inherit;font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pairrec .pairtab .off .amt{display:block}
-.pairrec .pairtab .off .psrc{display:block;margin-top:1px;font-size:10.5px;line-height:1.2;color:var(--ink-faint);white-space:nowrap}
-.pairrec .pairtab .off .psrc.sp{color:var(--brick-dk)}
-.pairrec .pairtab .off .psrc svg{display:inline-block;width:11px;height:11px;vertical-align:-1.5px;margin-right:2px}
+.pairrec .qv{margin:0}
+.pairrec .qv-mil{margin:0 0 10px;padding:9px 11px;gap:10px}
+.pairrec .qv-mil .gs-mil-t b{font-size:14px}
+.pairrec .qv-mil .gs-mil-t small{font-size:12.5px}
+.pairrec .pairtab.qvt thead th{text-align:right;white-space:nowrap;letter-spacing:.05em}
+.pairrec .pairtab.qvt thead th.qv-name{text-transform:none;letter-spacing:0;font-size:11.5px;color:var(--ink-soft)}
+.pairrec .pairtab.qvt thead th:first-child{text-align:left}
+.pairrec .pairtab.qvt tbody th{padding:5px 0}
+.pairrec .pairtab.qvt .num{text-align:right;padding-left:7px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pairrec .pairtab.qvt tbody .num{font-size:13.5px;color:var(--ink)}
+.pairrec .pairtab.qvt .qv-cut{display:inline-flex;flex-direction:column;align-items:flex-end;line-height:1.12}
+.pairrec .pairtab.qvt .qv-cut s{font-size:11px;color:var(--ink-faint);text-decoration-thickness:1px}
+.pairrec .pairtab.qvt .qv-cut b{font-weight:600;color:var(--brick-dk)}
+.pairrec .pairtab.qvt .qv-cut b svg{display:inline-block;width:11px;height:11px;vertical-align:-1px;margin-right:2px}
+.pairrec .pairtab.qvt .qv-tot b{display:block;font-weight:700;font-size:14px;line-height:1.15;color:var(--ink)}
+.pairrec .pairtab.qvt .qv-tot b,.pairrec .pairtab.qvt .qv-tot small{white-space:nowrap}
+.pairrec .pairtab.qvt .qv-tot small{display:block;font-size:11px;line-height:1.2;color:var(--ink-soft)}
+.pairrec .pairtab.qvt tr.qv-sp>*{background:var(--brick-tint)}
+.pairrec .pairtab.qvt tr.qv-sp>:first-child{border-radius:10px 0 0 10px;padding-left:4px}
+.pairrec .pairtab.qvt tr.qv-sp>:last-child{border-radius:0 10px 10px 0;padding-right:6px}
+.pairrec .pairtab.qvt tr.qv-sp .qv-tot small{color:var(--brick-dk);font-weight:600}
+.pairrec .pairtab.qvt .qv-tot small svg{display:inline-block;width:11px;height:11px;vertical-align:-1.5px;margin-right:2px}
+.pairrec .qv-pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0 0}
+.pairrec .qv-pager .chip{min-width:44px;min-height:36px;justify-content:center;padding:0 12px}
+.pairrec .qv-pager .chip[aria-disabled="true"]{opacity:.38;pointer-events:none}
+.pairrec .qv-of{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.pairrec .qv-note{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:var(--ink-soft);text-wrap:balance}
+.pairrec .qv-note svg{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin:0 4px 0 0}
+.pairrec .qv-note .qv-k{display:block;padding-left:16px;text-indent:-16px}   
+@media(max-width:374px){
+  .pairrec .pairtab.qvt .num{padding-left:6px}
+  .pairrec .pairtab.qvt tbody .num{font-size:13px}
+  .pairrec .pairtab.qvt .kit.kit-face{padding-right:8px}
+  .pairrec .pairtab.qvt .kit .face{width:24px;height:24px;margin-right:5px}
+}
 
 .kit.kit-face{padding-left:4px;padding-right:10px}
 .kit .face{flex:none;width:28px;height:28px;margin:0 7px 0 0;border-radius:50%;overflow:hidden;background:var(--paper-2)}
@@ -6164,16 +6189,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var lo=Math.min.apply(null,offs), hi=Math.max.apply(null,offs);
     var saving=(lo===hi)?('$'+lo):('$'+lo+' to $'+hi);
     var esP=document.documentElement.lang==='es';
-    var rows=all.map(function(x){
-      var other=priceOf(x), bd=bundleOf(r,x), off=bd?(mine+other-bd):Math.round(Math.min(mine,other)*PAIR_OFF/100), two=bd||(mine+other-off);
-      var to=(gsCan(r)&&gsCan(x))?('#r-'+addrOf(r)+'+'+addrOf(x)):('#r-'+addrOf(x));
-      var src=bd?('<small class="psrc sp">'+SPECIAL_GLYPH+(esP?'especial':'special')+'</small>'):('<small class="psrc">'+PAIR_GLYPH+PAIR_OFF+(esP?'%\u00a0menos':'%\u00a0off')+'</small>');
-      return '<tr class="pairone"><th scope="row"><a class="kit duo" href="'+esc(to)+'"><span class="faces" aria-hidden="true">'+faceImg(r,28)+faceImg(x,28)+'</span>'+
-          '<span class="duo-n"><span class="dn">'+esc(r.name)+(esP?' y':' and')+'</span> <span class="dn kn">'+esc(x.name)+'</span></span></a></th>'+
-        '<td class="two"><b>$'+two+'</b></td><td class="off"><span class="amt">$'+off+'</span>'+src+'</td>'+
-        '<td class="ask"><button type="button" class="mini pairask" data-pair="'+esc(x.name)+'" '+
-          'aria-label="'+esc('Ask about '+r.name+' and '+x.name+', $'+two+' for the two')+'">Ask</button></td></tr>';
-    }).join('');
     var label='The price of every pair';
     var bundled=all.filter(function(x){ return bundleOf(r,x)>0; });
     var lead=(bundled.length&&bundled.length===all.length)
@@ -6187,11 +6202,10 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         ? '<p class="pairbuy"><a class="btn btn-tonal pairbuy-b" href="#r-'+esc(addrOf(r))+'+'+esc(addrOf(bundled[0]))+'">'+SPECIAL_GLYPH+esc(r.name)+' and '+esc(bundled[0].name)+'\u00a0\u00b7\u00a0$'+bundleOf(r,bundled[0])+'</a></p>'   /* ROUND 179c: the two names, not "the two"; ROUND 180: the sparkle, and to the two-rabbit listing */
         : '')+
       '<button type="button" class="opener pairmore" aria-expanded="false" aria-controls="viewerPairMore">'+
-        '<span class="faces" aria-hidden="true">'+all.slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+
+        '<span class="faces" aria-hidden="true">'+qvOrder(r).slice(0,4).map(function(x){ return faceImg(x,26); }).join('')+'</span>'+   /* ROUND 186: the table's order */
         '<span class="pm-t">'+label+'</span></button>'+
       '<div class="pairmore-panel" id="viewerPairMore" hidden>'+
-      '<table class="pairtab"><thead><tr><th scope="col"><span class="sr-only">'+(esP?'Los dos':'The two')+'</span></th><th scope="col" class="two">Total</th>'+
-        '<th scope="col" class="off">Save</th><th scope="col"><span class="sr-only">Ask</span></th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      qvHTML(r)+   /* ROUND 186 (R186-1, R186-2): the switch, the table, the pages, the key */
       '<p><b>Not sure about a second?</b> Take one home first. Buy a second within 48 hours, or put a $'+DEPOSIT+' deposit on one, and it\u2019s still '+PAIR_OFF+'% off. '+
         '<a class="litterlink" href="#faq-pair">More about pairs</a>.</p>'+
       '<p><b>Two keep each other company.</b> Rabbits are '+
@@ -6199,6 +6213,53 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         'Just one? <a class="litterlink" href="#faq-one">Then you are its company</a>.</p>'+
       '</div>';
   }
+  var QV_PER=4;
+  function qvOrder(r){ var all=pairAll(r).filter(function(x){ return +priceOf(x)>0; });   /* a price to show, or no row */
+    return all.filter(function(x){ return bundleOf(r,x)>0; }).concat(all.filter(function(x){ return !(bundleOf(r,x)>0); })); }
+  function qvMil(){ return (typeof gsVals!=='undefined'&&gsVals&&gsVals.mil)?true:false; }
+  function qvBody(r,page){
+    var es=document.documentElement.lang==='es', mine=+priceOf(r), list=qvOrder(r), pages=Math.max(1,Math.ceil(list.length/QV_PER));
+    page=Math.max(0,Math.min(pages-1,page|0));
+    var mil=qvMil(), cutm=function(n){ return mil?(n-Math.round(n*MIL_OFF/100)):n; };
+    var cell=function(full,now){ return (now<full)?('<span class="qv-cut"><s>$'+full+'</s><b>'+PAIR_GLYPH+'$'+now+'</b></span>'):('$'+full); };
+    var rows=list.slice(page*QV_PER,page*QV_PER+QV_PER).map(function(x){
+      var other=+priceOf(x), bd=bundleOf(r,x), meCut=!bd&&mine<other, otCut=!bd&&!(mine<other);
+      var meNow=meCut?(mine-Math.round(mine*PAIR_OFF/100)):mine, otNow=otCut?(other-Math.round(other*PAIR_OFF/100)):other;
+      var two=bd||(meNow+otNow), tot=cutm(two), save=mine+other-tot;
+      var to=(gsCan(r)&&gsCan(x))?('#r-'+addrOf(r)+'+'+addrOf(x)):('#r-'+addrOf(x));
+      return '<tr class="pairone'+(bd?' qv-sp':'')+'"><th scope="row"><a class="kit kit-face qv-who" href="'+esc(to)+'" aria-label="'+esc((es?(r.name+' y '+x.name+': $'+tot+' los dos'):(r.name+' and '+x.name+': $'+tot+' together')))+'">'+
+          '<span class="face" aria-hidden="true">'+faceImg(x,28)+'</span><span class="kn">'+esc(x.name)+'</span></a></th>'+
+        '<td class="num qv-it"><span class="sr-only">'+esc(x.name)+': </span>'+cell(other,otNow)+'</td><td class="num qv-me">'+cell(mine,meNow)+'</td>'+
+        '<td class="num qv-tot"><b>$'+tot+'</b><small>'+(bd?SPECIAL_GLYPH:'')+(es?'ahorra $':'save $')+save+'</small></td></tr>';   /* every row says what the two save (his "how much money it would actually be"); a special's with the sparkle, the 20%'s rings on the price that takes it */
+    }).join('');
+    var from=page*QV_PER+1, to2=Math.min(list.length,page*QV_PER+QV_PER);
+    var pager=(pages>1)?('<div class="qv-pager"><button type="button" class="chip qv-prev"'+(page===0?' aria-disabled="true"':'')+' aria-label="'+(es?'Conejos anteriores':'Previous rabbits')+'"><i class="chev left" aria-hidden="true"></i></button>'+
+        '<span class="qv-of" aria-live="polite">'+from+'\u2013'+to2+(es?' de ':' of ')+list.length+'</span>'+
+        '<button type="button" class="chip qv-next"'+(page>=pages-1?' aria-disabled="true"':'')+' aria-label="'+(es?'Más conejos':'More rabbits')+'"><i class="chev" aria-hidden="true"></i></button></div>'):'';
+    return '<table class="pairtab qvt"><caption class="sr-only">'+esc(es?(r.name+' con cada conejo a la venta: el precio de cada uno, el 20% en el que cuesta menos y los dos juntos'):(r.name+' with each rabbit for sale: each one\u2019s price, the 20% on the one that costs less, and the two together'))+'</caption>'+
+      '<thead><tr><th scope="colgroup" colspan="2">'+(es?'Con':'With')+'</th><th scope="col" class="num qv-name">'+esc(r.name)+'</th><th scope="col" class="num">Total</th></tr></thead>'+   /* his word of 4:52pm: "instead of Price it makes a lot more sense to have the actual rabbit, like Snowcone, Latte, Mocha, Teddy": each price stands beside its own rabbit under With, as Coconut's under Coconut */
+      '<tbody>'+rows+'</tbody></table>'+pager;
+  }
+  function qvHTML(r){
+    var es=document.documentElement.lang==='es', list=qvOrder(r), sp=list.some(function(x){ return bundleOf(r,x)>0; }), mil=qvMil();
+    var said=es?'No está garantizado hasta que vea su identificación al\u00a0recogerlos.':'Not guaranteed until I see your ID at\u00a0pickup.';
+    return '<div class="qv" data-r="'+esc(addrOf(r))+'" data-page="0">'+
+      '<label class="opt gs-mil qv-mil"><span class="gs-mil-t"><b id="qvMilB">'+(es?'Militar o personal\u00a0de\u00a0emergencias':'Military or\u00a0first\u00a0responder')+'</b>'+
+        '<small id="qvMilS"><span class="gs-mil-a">'+(es?(MIL_OFF+'% menos en cada\u00a0total.'):(MIL_OFF+'% off every\u00a0total.'))+'</span> <span class="gs-mil-b">'+said+'</span></small></span>'+
+        '<input type="checkbox" name="qvmil" class="sw-in" role="switch" aria-labelledby="qvMilB" aria-describedby="qvMilS"'+(mil?' checked':'')+'><i class="sw" aria-hidden="true"></i></label>'+
+      '<div class="qv-body">'+qvBody(r,0)+'</div>'+
+      '<p class="qv-note"><span class="qv-k">'+PAIR_GLYPH+(es?'El que cuesta menos tiene '+PAIR_OFF+'% de\u00a0descuento.':'The one that costs less is '+PAIR_OFF+'%\u00a0off.')+'</span>'+
+        (sp?(' <span class="qv-k">'+SPECIAL_GLYPH+(es?'Una oferta especial es un precio propio para los\u00a0dos.':'A special is its own price for the\u00a0two.')+'</span>'):'')+'</p>'+
+      '</div>';
+  }
+  function qvPaint(qv,page){
+    if(!qv) return; var RR=(typeof RABBITS!=='undefined'&&RABBITS)||[], ad=qv.getAttribute('data-r'), r=RR.filter(function(x){ return x&&addrOf(x)===ad; })[0]; if(!r) return;
+    var pages=Math.max(1,Math.ceil(qvOrder(r).length/QV_PER)); page=Math.max(0,Math.min(pages-1,page|0));
+    qv.setAttribute('data-page',String(page));
+    var b=qv.querySelector('.qv-body'); if(b) b.innerHTML=qvBody(r,page);
+    var sw=qv.querySelector('input[name="qvmil"]'); if(sw) sw.checked=qvMil();
+  }
+  window.qvPaint=qvPaint;
   function stillHTML(r){
     if(r.status==='available') return '';
     var m=pairMates(r); if(!m.list.length) return '';
@@ -7468,7 +7529,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       f.addEventListener('change',function(ev){
         if(ev.target.name==='gsopt') gsMove(ev.target.value,true);
         if(ev.target.name==='gshow'){ gsVals.how=ev.target.value==='facetime'?'facetime':'person'; gsPaintMode(true); }
-        if(ev.target.name==='gsmil'){ gsVals.mil=!!ev.target.checked; gsSteady(ev.target,function(){ gsRows(gsR); gsPaintMoney(); }); }   /* ROUND 185 (R185-3) */
+        if(ev.target.name==='gsmil'){ gsVals.mil=!!ev.target.checked; gsSteady(ev.target,function(){ gsRows(gsR); gsPaintMoney(); });   /* ROUND 185 (R185-3) */
+          var qv0=document.querySelector('#viewerPair .qv'); if(qv0&&window.qvPaint) window.qvPaint(qv0,+qv0.getAttribute('data-page')||0); }   /* ROUND 186 (R186-2): the table under the sheet follows it */
         if(ev.target.name==='gswith'){ var wv=ev.target.value; gsStamp=null;   /* (Round 174) two is a new message; (Round 182b) one of the two is too */
           if(gsPair&&(wv==='both'||wv.indexOf('just:')===0)){ var to=(wv==='both'||wv.slice(5)===addrOf(gsPair[0]))?gsPair[0]:gsPair[1], tw=(wv==='both')?addrOf(gsPair[1]):'';
             gsSteady(ev.target,function(){ gsShow(to,gsMode,'pick',null,tw); }); }
@@ -9390,19 +9452,21 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vOpen(bt, panel);
     });
     if(vPair) vPair.addEventListener('click',function(ev){
-      var ab=ev.target.closest&&ev.target.closest('.pairask');
-      if(ab&&vPair.contains(ab)){
-        ev.preventDefault();
-        var me=vCta.getAttribute('data-ask')||(shown&&gsCan(shown)?shown.name:null), them=ab.getAttribute('data-pair');   /* (Round 145) the two buttons carry no Ask name */
-        if(!me||!them) return;
-        shut(true);
-        askLater([me,them]);   /* ROUND 176b: the frame the lock needs, then the form (his tap of 4:23pm) */
+      var pg=ev.target.closest&&ev.target.closest('.qv-prev,.qv-next');
+      if(pg&&vPair.contains(pg)){
+        ev.preventDefault(); if(pg.getAttribute('aria-disabled')==='true') return;
+        var qv=pg.closest('.qv'); if(qv) qvPaint(qv,(+qv.getAttribute('data-page')||0)+(pg.classList.contains('qv-next')?1:-1));
         return;
       }
       var bt=ev.target.closest&&ev.target.closest('.pairmore'); if(!bt||!vPair.contains(bt)) return;
       ev.preventDefault();
       var panel=document.getElementById('viewerPairMore'); if(!panel) return;
       vOpen(bt, panel);
+    });
+    if(vPair) vPair.addEventListener('change',function(ev){
+      var t=ev.target; if(!t||t.name!=='qvmil') return;
+      if(typeof gsVals!=='undefined') gsVals.mil=!!t.checked;
+      var qv=t.closest('.qv'); if(qv) qvPaint(qv,+qv.getAttribute('data-page')||0);
     });
 
     vClose.addEventListener('click',dismiss);
