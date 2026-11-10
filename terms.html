@@ -393,9 +393,13 @@ html[data-look="dim"]{color-scheme:dark;
   own <span class="kw">description</span><span class="sr-only"> (opens in a new tab)</span></a> it sets no cookie and does not follow you to other sites. I also count,
   as totals only: which pages are visited, on a touch screen or not, and where each visit
   came from in one word (Instagram, Google, a shared link, never the address); which buttons
-  get tapped; how far each page is scrolled. No cookie, no ID, nothing that says who you
-  are. A browser that asks not to be tracked, by Global Privacy Control or Do Not Track,
-  isn't counted at all.</p>
+  get tapped; how far each page is scrolled and about how long it stayed on screen; and
+  whether a visit looks like a person's or an automated one (did anything touch the page,
+  does the browser call itself a bot, did it come from a hosting company's network: a yes
+  or a no each, never the browser's name or its address). So that one visitor isn't counted
+  twice, your browser remembers the day it was last counted; that date stays on your device
+  and is never sent. No cookie, no ID, nothing that says who you are. A browser that asks
+  not to be tracked, by Global Privacy Control or Do Not Track, isn't counted at all.</p>
   <p><b>The form and the waitlist go through Formspree to my email.</b> Formspree
   (formspree.io) delivers them to me. The waitlist also keeps your address on the site's
   host, Cloudflare, with the litters you picked and what you asked me to send, so you are
@@ -490,7 +494,7 @@ html[data-look="dim"]{color-scheme:dark;
 })();
 </script>
 
-<script src="count.js?v=23fad05c" defer></script>
+<script src="count.js?v=138787c3" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');

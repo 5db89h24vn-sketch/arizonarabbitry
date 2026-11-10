@@ -17,6 +17,31 @@
      again on arrival; optouttest.js holds the two halves. */
   if(!window.navigator || navigator.globalPrivacyControl || navigator.doNotTrack==='1' || window.doNotTrack==='1' || navigator.webdriver) return;
   if(location.protocol!=='https:' && location.hostname!=='localhost') return;
+  /* HIS OWN DEVICES ARE NOT VISITORS (Round 192, 9 Nov 2026; William: "I just wanna be able to differentiate real human
+     visits from bot visits"). His own visits, and Claude's checks of the live site in his browser, were counted with
+     everybody else's. Opening the site once with ?me=1 marks that browser as his: one word kept on that device, nothing
+     sent anywhere; ?me=0 takes it off. A marked browser sends no record. No visitor's browser is ever marked. */
+  try{
+    var q=location.search||'';
+    if(/[?&]me=1(&|$)/.test(q)) localStorage.setItem('arMe','1');
+    else if(/[?&]me=0(&|$)/.test(q)) localStorage.removeItem('arMe');
+    if(localStorage.getItem('arMe')==='1') return;
+  }catch(e){}
+  /* A VISITOR COUNTED ONCE (Round 192; William, 9 Nov, 2:07pm: "Is there anyway we can track unique visitors?"). The
+     browser remembers one thing, the day it was last counted: a date kept on the device and never sent. The record says
+     only how new this visit is, in letters: d, the first today; w, the first this week (Monday to Sunday); m, the first
+     this month; n, the first ever from this browser; none when it was already counted today; x when the browser keeps
+     nothing, so it cannot say. No number and no name of any kind is made, so there is nothing to follow anyone by. The
+     days are Tucson's, as the count's own. A browser that asks not to be tracked, and his own, never get this far. */
+  var fresh='x';
+  try{
+    var dayNow=new Date(Date.now()-7*3600*1000).toISOString().slice(0,10), was=localStorage.getItem('arSeen')||'';
+    var monday=function(s){ var t=new Date(s+'T00:00:00Z'); t.setUTCDate(t.getUTCDate()-((t.getUTCDay()+6)%7)); return t.toISOString().slice(0,10); };
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(was)) fresh='nmwd';
+    else if(was===dayNow) fresh='';
+    else fresh=(was.slice(0,7)!==dayNow.slice(0,7)?'m':'')+(monday(was)!==monday(dayNow)?'w':'')+'d';
+    localStorage.setItem('arSeen',dayNow);
+  }catch(e){ fresh='x'; }
 
   var path=location.pathname.toLowerCase();
   /* both forms of each address (2 Oct 2026, the fifth outside pass): Cloudflare
@@ -64,6 +89,12 @@
     /* the card is a div since 2 Oct 2026: its overlay link opens the listing,
        and its Ask line is a link of its own */
     if(a.classList.contains('bunny')||a.classList.contains('bunny-link')) return 'listing';
+    /* the litters coming soon (Round 190) and the listing's Buy, unnamed until Round 192 */
+    if(a.classList.contains('lsh-open')) return 'litter-card';
+    if(a.classList.contains('lsh-bell')||a.classList.contains('lsh-go')) return 'alerts';
+    if(a.classList.contains('lsh-chip')) return 'shelf-filter';
+    if(a.classList.contains('lsh-p')) return 'parent';
+    if(a.id==='viewerBuy') return 'buy';
     if(a.classList.contains('bunny-cta')) return 'ask';
     if(a.classList.contains('hero-go')) return 'see-rabbits';
     if(a.classList.contains('parent')) return 'parent';
@@ -95,6 +126,7 @@
     if(f.id==='wlform') tap('waitlist');
     else if(f.id==='lead') tap('form');
     else if(f.classList.contains('alert-form')) tap('waitlist-litter');
+    else if(f.id==='alertForm') tap('waitlist');   /* the shelf's alerts: the waitlist's own form, opened over the page */
   },true);
 
   var ticking=false;
@@ -109,16 +141,26 @@
   measure();
 
   function bucket(p){ return p>=98?100:p>=75?75:p>=50?50:p>=25?25:0; }
+  /* HOW LONG IT WAS ON SCREEN, AND WHETHER ANYONE TOUCHED IT (Round 192). The seconds the page was really showing (a tab
+     left in the background does not count), kept as one of seven steps and never the figure; and one yes or no: did a
+     real touch, click, key or wheel reach the page (isTrusted: an event a script makes up is not one). Nothing here says
+     who: the same two facts are true of anybody who stayed a minute and tapped. */
+  var clock=function(){ return (window.performance&&performance.now)?performance.now():Date.now(); };
+  var shown=0, since=(document.visibilityState==='hidden')?0:clock(), human=0;
+  function settle(){ if(since){ shown+=clock()-since; since=0; } }
+  function step(ms){ var s=ms/1000; return s>=600?600:s>=180?180:s>=60?60:s>=30?30:s>=10?10:s>=3?3:0; }
+  ['pointerdown','touchstart','keydown','wheel'].forEach(function(type){
+    document.addEventListener(type,function(ev){ if(ev&&ev.isTrusted) human=1; },{capture:true,passive:true}); });
   function send(){
-    if(sent) return; sent=true;
-    var body=JSON.stringify({p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps});
+    if(sent) return; sent=true; settle();
+    var body=JSON.stringify({p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps, t:step(shown), h:human, u:fresh});
     try{
       if(navigator.sendBeacon){ navigator.sendBeacon('/api/hit', new Blob([body],{type:'text/plain'})); return; }
     }catch(e){}
     try{ fetch('/api/hit',{method:'POST',body:body,keepalive:true,headers:{'Content-Type':'text/plain'}}); }catch(e){}
   }
-  document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') send(); });
+  document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') send(); else if(!since&&!sent) since=clock(); });   /* a page opened in a background tab starts its clock when it is first shown (Round 192) */
   window.addEventListener('pagehide',send);
   /* back from the bfcache is a new visit */
-  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; maxScroll=0; measure(); } });
+  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; maxScroll=0; shown=0; since=clock(); human=0; measure(); } });
 })();

@@ -1230,6 +1230,27 @@ const HOMES = [
    build needed. (Since 11 Sept 2026; the weekly calendar asks after 7 days.) */
 const CHECKED = "2026-10-27";   /* his tap on his list, 27 Oct 2026, 11:52am Tucson: "Looked: nothing changed" */
 
+/* A LITTER'S READY DAY, FROM YOU (Round 192, 9 Nov 2026). Every growing litter's ready day is worked out from your
+   own litters (the average age they were first ready to go home, by line once a line has two finished litters). A line
+   here is your word on one litter, and your word always wins over the average. The key is the day the litter was born.
+      "<born>": { day: "<the day>", checked: "<the day you confirmed it>" }
+           your check: the card says "Ready <day>" after your check mark, and the litter opened says
+           "I checked this date myself on <the day you confirmed it>"
+      "<born>": { day: "<the day>" }
+           your estimate: "Projected ready <day>", and "My estimate, and it can still move a little"
+      or: "<a second day>"   beside day, when you name two days ("Wednesday or Thursday"): the card says
+           "Ready Wed 11 or Thu 12 Nov", and both days hold until the second has come
+   Every date YYYY-MM-DD. Never typed without your word. Delete a line and that litter goes back to the average.
+   The build reads this (sweep.py writes readyModel into the front page and the litters page), so a change here shows
+   after the next build. */
+const LITTER_READY = {
+  /* (8 Nov 2026, 10:24pm, his words: "the Holland lop litter that we just got will be ready this Wednesday"; his tap on
+     his list, 9 Nov 2026, 2:17pm Tucson, row 208: "S'Morri x Root Beer, born 19 Oct (23 days old on Wednesday)"; his
+     words, 9 Nov 2026, 4:07pm Tucson: "Also have it so that the Holland lop litter that is upcoming says Wednesday or
+     Thursday of this week") */
+  "2026-10-19": { day: "2026-11-11", or: "2026-11-12", checked: "2026-11-09" }
+};
+
 /* TWO NAMED RABBITS AT ONE PRICE, BOUGHT AT THE SAME TIME (5 Nov 2026, your words 9:50pm: "if they're bought
    together as a pair at the same time, it will be $500 for the bundle!"). A bundle names two rabbits and the price
    of the two together; while both are available, each one's listing says so in its pair box ("Both together:

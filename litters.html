@@ -12,7 +12,7 @@
   window.addEventListener('pointerdown',on,true); window.addEventListener('mousedown',on,true);
   window.addEventListener('touchstart',on,{capture:true,passive:true}); window.addEventListener('keydown',off,true);
 })();</script>
-<link rel="preload" as="script" href="rabbits.js?v=06b6f9c9" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=17d8267b" data-fact="data-preload">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -656,6 +656,34 @@ html[data-look="dim"] .moon{display:none}
 .subnav .look-cap{min-height:44px;padding:0 15px 0 13px;font-size:inherit}
 
 @media(max-width:480px){ .subnav .look-cap{flex:0 0 auto} .subnav .look-cap:focus-visible{outline-offset:-3px} }
+
+.vchk{display:inline-flex;vertical-align:-2px;margin-right:4px;color:var(--moss-dk)}
+.vchk svg{width:13px;height:13px;flex:none}
+.vchk circle{fill:currentColor}
+.vchk path{fill:none;stroke:var(--card);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ready-math{margin:14px 0 4px}
+.ready-math[hidden]{display:none}
+.ready-math>details{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}   
+.ready-math summary{padding:13px 38px 13px 0;cursor:pointer;list-style:none;position:relative;font-family:var(--sans);font-size:15.5px;font-weight:600;line-height:1.3;color:var(--ink)}
+.ready-math summary::-webkit-details-marker{display:none}
+@media(hover:hover){.ready-math summary:hover{color:var(--brick)}}
+.ready-math summary::after{content:'';position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.ready-math details[open]>summary::after{transform:translateY(-30%) rotate(225deg)}
+.ready-math summary small{display:block;font-weight:400;font-size:13.5px;line-height:1.4;color:var(--ink-soft);margin-top:3px}
+.ready-math .whypanel{padding:0 0 12px}
+.ready-math .ls-rows{margin:2px 0 8px;padding:0;list-style:none;font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+.ready-math .ls-rows li{padding:3px 0}
+.ready-math .ls-rows b{color:var(--ink);font-weight:600}
+.ready-math p{margin:4px 0;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+.ready-math .ls-sum,.ready-math .ls-add{color:var(--ink);font-weight:600}
+
+.ready-math .ls-all{border:0;margin:8px 0 0}
+.ready-math .ls-all>summary{padding:8px 30px 8px 0;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.ready-math .ls-all>summary::after{width:8px;height:8px}
+.ready-math .ls-all>summary{cursor:pointer;list-style:none;position:relative}
+.ready-math .ls-all>summary::-webkit-details-marker{display:none}
+.ready-math .ls-all>summary::after{content:'';position:absolute;right:6px;top:50%;border-right:1.5px solid var(--ink-faint);border-bottom:1.5px solid var(--ink-faint);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.ready-math .ls-all[open]>summary::after{transform:translateY(-30%) rotate(225deg)}
 </style>
 <style data-dim>
 
@@ -811,7 +839,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Tango, an orange and white Holland Lop, sitting beside her metal nest box the day her litter was born, hay and pulled white fur inside it"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-11-05" hidden class="litter-no">Twelfth litter</span> <time datetime="2026-11-05">Born 5 November 2026</time> <span class="litter-age" data-born="2026-11-05" hidden></span> <span data-fact="line:2026-11-05" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-11-05" class="litter-ready">Ready date not set</span>
+          <span data-fact="litter-no:2026-11-05" hidden class="litter-no">Twelfth litter</span> <time datetime="2026-11-05">Born 5 November 2026</time> <span class="litter-age" data-born="2026-11-05" hidden></span> <span data-fact="line:2026-11-05" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-11-05" class="litter-ready">Projected ready 4 Dec</span>
           <h2>Four born</h2>
           <div class="parents">
             <small class="parents-head"><b>Parents</b></small>
@@ -857,8 +885,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             </div>
           </div>
           <p>Each one can be reserved from the day it's posted on the site, and the
-          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-11-05"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-11-05"> For this litter the day is projected, not set: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-11-05" hidden></div>
           
           <div data-fact="alert:2026-11-05"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-11-05" data-label="the November litter" data-name="the Holland Lops born 5 Nov"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-11-05"><input type="hidden" name="_subject" value="Waitlist signup: the November litter (L2026-11-05)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
@@ -873,7 +902,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Newborn rabbits huddled together in a nest of hay and pulled fur"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-28" hidden class="litter-no">Eleventh litter</span> <time datetime="2026-10-28">Born 28 October 2026</time> <span class="litter-age" data-born="2026-10-28" hidden></span> <span data-fact="line:2026-10-28" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-28" class="litter-ready">Ready date not set</span>
+          <span data-fact="litter-no:2026-10-28" hidden class="litter-no">Eleventh litter</span> <time datetime="2026-10-28">Born 28 October 2026</time> <span class="litter-age" data-born="2026-10-28" hidden></span> <span data-fact="line:2026-10-28" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-28" class="litter-ready">Projected ready 26 Nov</span>
           <h2>Eight born</h2>
           <div class="parents">
             <small class="parents-head"><b>Parents</b></small>
@@ -901,8 +930,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             </div>
           </div>
           <p>Each one can be reserved from the day it's posted on the site, and the
-          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-28"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-28"> For this litter the day is projected, not set: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-10-28" hidden></div>
           
           <div data-fact="alert:2026-10-28"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-28" data-label="the litter born 28 October" data-name="the Holland Lops born 28 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-28"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 28 October (L2026-10-28)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
@@ -917,7 +947,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="A newborn rabbit lying in an open hand, its eyes shut and its ears folded back"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-24" hidden class="litter-no">Tenth litter</span> <time datetime="2026-10-24">Born 24 October 2026</time> <span class="litter-age" data-born="2026-10-24" hidden></span> <span data-fact="line:2026-10-24" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-24" class="litter-ready">Ready date not set</span>
+          <span data-fact="litter-no:2026-10-24" hidden class="litter-no">Tenth litter</span> <time datetime="2026-10-24">Born 24 October 2026</time> <span class="litter-age" data-born="2026-10-24" hidden></span> <span data-fact="line:2026-10-24" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-24" class="litter-ready">Projected ready 22 Nov</span>
           <h2>Three born</h2>
           <div class="parents">
             <small class="parents-head"><b>Parents</b></small>
@@ -949,8 +979,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             </div>
           </div>
           <p>Each one can be reserved from the day it's posted on the site, and the
-          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-24"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-24"> For this litter the day is projected, not set: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-10-24" hidden></div>
           
           <div data-fact="alert:2026-10-24"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-24" data-label="the litter born 24 October" data-name="the Holland Lops born 24 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-24"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 24 October (L2026-10-24)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
@@ -965,7 +996,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="Saffron, a Holland Lop cross mother with one ear up and one ear down, in her cage the day her first litter was born, the hay of her nest box behind her"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-21" hidden class="litter-no">Ninth litter</span> <time datetime="2026-10-21">Born 21 October 2026</time> <span class="litter-age" data-born="2026-10-21" hidden></span> <span data-fact="line:2026-10-21" class="litter-line">Netherland Dwarf crosses</span> <span data-fact="ready:2026-10-21" class="litter-ready">Ready date not set</span>
+          <span data-fact="litter-no:2026-10-21" hidden class="litter-no">Ninth litter</span> <time datetime="2026-10-21">Born 21 October 2026</time> <span class="litter-age" data-born="2026-10-21" hidden></span> <span data-fact="line:2026-10-21" class="litter-line">Netherland Dwarf crosses</span> <span data-fact="ready:2026-10-21" class="litter-ready">Projected ready 19 Nov</span>
           <h2>Eight born</h2>
           <div class="parents">
             <small class="parents-head"><b>Parents</b></small>
@@ -1014,8 +1045,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             </div>
           </div>
           <p>Each one can be reserved from the day it's posted on the site, and the
-          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-21"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-21"> For this litter the day is projected, not set: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-10-21" hidden></div>
           
           <div data-fact="alert:2026-10-21"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-21" data-label="the litter born 21 October" data-name="the Netherland Dwarf crosses born 21 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-21"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 21 October (L2026-10-21)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
@@ -1030,7 +1062,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
                loading="lazy" alt="S'Morri, a Holland Lop mother, in front of her metal nest box the day her second litter was born, the fur she pulled showing in the hay behind her and another rabbit sitting on the box's lid"></picture>
         </div>
         <div class="litter-body">
-          <span data-fact="litter-no:2026-10-19" hidden class="litter-no">Eighth litter</span> <time datetime="2026-10-19">Born 19 October 2026</time> <span class="litter-age" data-born="2026-10-19" hidden></span> <span data-fact="line:2026-10-19" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-19" class="litter-ready">Ready date not set</span>
+          <span data-fact="litter-no:2026-10-19" hidden class="litter-no">Eighth litter</span> <time datetime="2026-10-19">Born 19 October 2026</time> <span class="litter-age" data-born="2026-10-19" hidden></span> <span data-fact="line:2026-10-19" class="litter-line">Purebred Holland Lops</span> <span data-fact="ready:2026-10-19" class="litter-ready"><i class="vchk" title="Checked by William"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.4l2.4 2.4 4.8-5"/></svg><i class="sr-only">Checked by William</i></i>Ready 11 or 12 Nov</span>
           <h2>Three born</h2>
           <div class="parents">
             <small class="parents-head"><b>Parents</b></small>
@@ -1093,8 +1125,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             </div>
           </div>
           <p>Each one can be reserved from the day it's posted on the site, and the
-          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-19"> For this litter there's no set day: each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
+          <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-10-19"> I've checked this litter's two days myself; each one is listed once it's photographed and I've checked it's in good health.</span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-10-19" hidden></div>
           
           <div data-fact="alert:2026-10-19"><form class="alert-form" action="https://formspree.io/f/xppanonl" method="POST" data-want="L2026-10-19" data-label="the litter born 19 October" data-name="the Holland Lops born 19 Oct"><p class="alert-lead"><b>Hear about this litter.</b> I’ll email you the day they go on sale.</p><label class="wl-more"><input type="checkbox" name="level" value="all"><i class="wl-tick" aria-hidden="true"></i><span>Also send me new photos as they&nbsp;grow</span></label><span class="alert-row"><input type="email" name="email" placeholder="Your email" aria-label="Your email address, to hear first about this litter" required><input type="hidden" name="want" value="L2026-10-19"><input type="hidden" name="_subject" value="Waitlist signup: the litter born 19 October (L2026-10-19)"><input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="alert-btn">Tell me first</button></span><p class="alert-count" hidden></p><p class="alert-ok" hidden>You’re on the list for this litter.</p><p class="alert-privacy">This comes to me and nowhere else. <a class="xlink" href="/terms#privacy">How I keep your details</a>.</p></form></div>
         </div>
@@ -1232,6 +1265,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <p>Each one can be reserved from the day it's posted on the site, and the
           <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-09-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-09-27" hidden></div>
           
           <div data-fact="alert:2026-09-27"></div>
         </div>
@@ -1289,6 +1323,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <p>Each one can be reserved from the day it's posted on the site, and the
           <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-09-18"></span> The raised number goes here once it
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-09-18" hidden></div>
           
           <div data-fact="alert:2026-09-18"></div>
         </div>
@@ -1394,6 +1429,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <p>Each one can be reserved from the day it's posted on the site, and the
           <a class="xlink" href="/#waitlist">waitlist</a> hears first.<span data-fact="opens:2026-08-27"></span> The born and raised numbers both go here once the raised number
           is real, same as every litter.</p>
+          <div class="facts ready-math" data-math="2026-08-27" hidden></div>
           
           <div data-fact="alert:2026-08-27"></div>
         </div>
@@ -1529,7 +1565,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             <div class="tile-sub">4 born</div>
             <div data-fact="line:2026-11-05" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-11-05" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy">Tango</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="ready:2026-11-05" class="tile-ready">Ready date not set</div>
+            <div data-fact="ready:2026-11-05" class="tile-ready">Projected ready 4 Dec</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-28">
@@ -1542,7 +1578,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             <div class="tile-sub">8 born</div>
             <div data-fact="line:2026-10-28" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-28" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="ready:2026-10-28" class="tile-ready">Ready date not set</div>
+            <div data-fact="ready:2026-10-28" class="tile-ready">Projected ready 26 Nov</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-24">
@@ -1555,7 +1591,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             <div class="tile-sub">3 born</div>
             <div data-fact="line:2026-10-24" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-24" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-fox-portrait.jpg?v=bebbcb93" srcset="photos/mother-fox-portrait.160.bebbcb93.jpg 160w, photos/mother-fox-portrait.320.bebbcb93.jpg 320w, photos/mother-fox-portrait.640.bebbcb93.jpg 640w, photos/mother-fox-portrait.jpg?v=bebbcb93 800w" sizes="40px" alt="" loading="lazy">Fox</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="ready:2026-10-24" class="tile-ready">Ready date not set</div>
+            <div data-fact="ready:2026-10-24" class="tile-ready">Projected ready 22 Nov</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-21">
@@ -1568,7 +1604,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             <div class="tile-sub">8 born</div>
             <div data-fact="line:2026-10-21" class="tile-line">Netherland Dwarf crosses</div>
             <div data-fact="tile-parents:2026-10-21" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy">Saffron</span> <span class="tp"><img src="photos/father-odyssey-portrait.jpg?v=5490ba47" srcset="photos/father-odyssey-portrait.160.5490ba47.jpg 160w, photos/father-odyssey-portrait.320.5490ba47.jpg 320w, photos/father-odyssey-portrait.640.5490ba47.jpg 640w, photos/father-odyssey-portrait.960.5490ba47.jpg 960w, photos/father-odyssey-portrait.jpg?v=5490ba47 1200w" sizes="40px" alt="" loading="lazy">Odyssey</span></div>
-            <div data-fact="ready:2026-10-21" class="tile-ready">Ready date not set</div>
+            <div data-fact="ready:2026-10-21" class="tile-ready">Projected ready 19 Nov</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-19">
@@ -1581,7 +1617,7 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
             <div class="tile-sub">3 born</div>
             <div data-fact="line:2026-10-19" class="tile-line">Purebred Holland Lops</div>
             <div data-fact="tile-parents:2026-10-19" class="tile-parents"><span class="sr-only">Parents: </span><span class="tp"><img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy">S'Morri</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
-            <div data-fact="ready:2026-10-19" class="tile-ready">Ready date not set</div>
+            <div data-fact="ready:2026-10-19" class="tile-ready"><i class="vchk" title="Checked by William"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.4l2.4 2.4 4.8-5"/></svg><i class="sr-only">Checked by William</i></i>Ready 11 or 12 Nov</div>
           </div>
         </a>
         <a class="tile" href="#L2026-10-06">
@@ -1734,7 +1770,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var parts=e.v.map(function(v){return v[1]+' '+v[0]+'w'}); parts.push(s+' '+e.w+'w');
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
-<script src="rabbits.js?v=06b6f9c9"></script>
+<script src="rabbits.js?v=17d8267b"></script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
@@ -2529,7 +2565,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
 })();
 </script>
 
-<script src="count.js?v=23fad05c" defer></script>
+<script src="count.js?v=138787c3" defer></script>
 <script>
 (function(){
   var browse=document.getElementById('all'), views=document.getElementById('views'), fams=document.getElementById('families');
@@ -2659,6 +2695,53 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   });
   paint();
 })();
+</script>
+<script id="readyModel" type="application/json">{"min":2,"all":{"days":29,"avg":29.0,"n":4,"sum":116,"from":[["2026-07-28","2026-08-29",32],["2026-08-27","2026-09-27",31],["2026-09-18","2026-10-16",28],["2026-09-27","2026-10-22",25]]},"lines":{"Holland Lop":{"days":28,"avg":28.0,"n":1,"sum":28,"from":[["2026-09-18","2026-10-16",28]]},"Holland Lop cross":{"days":29,"avg":29.3,"n":3,"sum":88,"from":[["2026-07-28","2026-08-29",32],["2026-08-27","2026-09-27",31],["2026-09-27","2026-10-22",25]]}},"litters":{"2026-11-05":{"day":"2026-12-04","kind":"auto","basis":"all","line":"Holland Lop"},"2026-10-28":{"day":"2026-11-26","kind":"auto","basis":"all","line":"Holland Lop"},"2026-10-24":{"day":"2026-11-22","kind":"auto","basis":"all","line":"Holland Lop"},"2026-10-21":{"day":"2026-11-19","kind":"auto","basis":"all","line":"Netherland Dwarf cross"},"2026-10-19":{"day":"2026-11-11","kind":"checked","line":"Holland Lop","checked":"2026-11-09","or":"2026-11-12"}}}</script>
+<script>
+  (function(){
+    var el=document.getElementById('readyModel'); if(!el) return;
+    var M; try{ M=JSON.parse(el.textContent||'{}')||{}; }catch(e){ return; }
+    var L=M.litters||{}; if(!Object.keys(L).length) return;
+    var ES=document.documentElement.lang==='es', NB=' ';
+    var MONE=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MONS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    function today(){ try{ var t=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Phoenix',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); if(/^\d{4}-\d{2}-\d{2}$/.test(t)) return t; }catch(e){}
+      var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+    function togo(day){ var a=Date.parse(today()+'T00:00:00'), b=Date.parse(day+'T00:00:00'); return Math.round((b-a)/86400000); }
+    function tie(t){ return String(t||'').replace(/ (\S+)$/,NB+'$1'); }   /* the last two words held together (the hanging-word rule) */
+    function short(s){ var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); return m?(+m[3])+NB+(ES?MONS:MONE)[+m[2]-1]:''; }
+    function short2(a,b){ var x=/^(\d{4})-(\d{2})-(\d{2})$/.exec(a||''), y=/^(\d{4})-(\d{2})-(\d{2})$/.exec(b||''); if(!x||!y) return short(a);
+      return ((x[1]===y[1]&&x[2]===y[2])?String(+x[3]):short(a))+NB+(ES?'o'+NB+'el':'or')+NB+short(b); }
+    var CHECKED=ES?'Comprobado por William':'Checked by William';
+    var VCHK='<i class="vchk" title="'+CHECKED+'"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.4l2.4 2.4 4.8-5"/></svg><i class="sr-only">'+CHECKED+'</i></i>';   /* the litters page's own badge, as sweep.py writes it (<i>: a ready region is a span) */
+    function words(r){ var two=!!(r.kind!=='auto'&&r.or&&r.or>r.day), g=togo(two?r.or:r.day); if(isNaN(g)) return null;   /* his two days hold until the second has come */
+      var d=two?short2(r.day,r.or):short(r.day);
+      if(r.kind==='checked') return g<=0?{t:ES?'A la venta muy pronto':'Going on sale soon'}:{t:(ES?'Listos'+NB+'el ':'Ready ')+d, chk:true};
+      return g<=0?{t:ES?'Listos muy pronto':'Ready soon'}:{t:(ES?'Listos'+NB+'hacia'+NB+'el ':'Projected'+NB+'ready ')+d}; }
+    var LINEN={'Holland Lop':['purebred Holland Lop','Holland Lop de raza pura'],'Netherland Dwarf':['purebred Netherland Dwarf','Netherland Dwarf de raza pura'],'Holland Lop cross':['Holland Lop cross','cruza de Holland Lop'],'Netherland Dwarf cross':['Netherland Dwarf cross','cruza de Netherland Dwarf']};
+    var DAYE=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], DAYS=['dom','lun','mar','mié','jue','vie','sáb'];
+    function week(s){ var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!m) return ''; var d=new Date(+m[1],+m[2]-1,+m[3],12).getDay(); return (ES?DAYS:DAYE)[d]+' '+short(s); }
+    function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    var MONLE=['January','February','March','April','May','June','July','August','September','October','November','December'], MONLS=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    function math(born,r,line){
+      var g=r.basis==='line'?(M.lines||{})[line]:M.all; if(!g||!g.from||!g.from.length) return '';
+      var DY=ES?'días':'days', LT=g.n===1?(ES?'camada':'litter'):(ES?'camadas':'litters'), rows;   /* "1 litter", never "1 litters" */
+      if(g.from.length<=8) rows=g.from.map(function(x){ return '<li>'+(ES?'Nacidos el ':'Born ')+esc(short(x[0]))+(ES?', listos el ':', first ready ')+esc(short(x[1]))+': <b>'+x[2]+NB+DY+'</b></li>'; }).join('');
+      else { var mo={}, order=[]; g.from.forEach(function(x){ var k=x[0].slice(0,7); if(!mo[k]){ mo[k]={n:0,t:0}; order.push(k); } mo[k].n++; mo[k].t+=x[2]; });
+        rows=order.map(function(k){ var m=mo[k], d=k.split('-'), av=Math.round(m.t/m.n*10)/10; return '<li>'+(ES?MONLS:MONLE)[+d[1]-1]+' '+d[0]+': '+m.n+NB+(m.n===1?(ES?'camada':'litter'):LT)+', <b>'+String(av).replace('.',ES?',':'.')+NB+DY+'</b>'+(ES?' en'+NB+'promedio':' on'+NB+'average')+'</li>'; }).join(''); }
+      var avg=Math.round(g.sum/g.n*10)/10, exact=(avg===g.days);
+      if(Math.round(avg)!==g.days) avg=Math.round(g.sum/g.n*100)/100;   /* 28.45 is shown as 28.45, so "so 28" never follows a figure that reads as 29 */
+      var sum=(ES?'Edad promedio a la que mis camadas estuvieron listas: ':'The average age my litters were first ready: ')+g.sum+NB+DY+' ÷ '+g.n+NB+LT+' = '+(exact?g.days+NB+DY+'.':(String(avg).replace('.',ES?',':'.')+NB+DY+(ES?', es decir, ':', so ')+g.days+'.'));
+      var add=(ES?'Nacidos el ':'Born ')+short(born)+' + '+g.days+NB+DY+' = '+week(r.day)+'.';
+      var ln=LINEN[line]||[line,line], have=((M.lines||{})[line]||{}).n||0, why;
+      if(r.basis==='line') why=ES?('Esto cuenta solo mis camadas de '+ln[1]+': una línea cuenta las suyas cuando han terminado dos.'):('This counts only my '+ln[0]+' litters: a line counts its own once two have finished.');
+      else why=(have?(ES?('Aquí solo ha terminado una camada de '+ln[1]+', '):('Only one '+ln[0]+' litter has finished here so far, ')):(ES?('Aquí aún no ha terminado ninguna camada de '+ln[1]+', '):('No '+ln[0]+' litter has finished here yet, ')))+(ES?'así que esto cuenta todas mis camadas. Cuando terminen dos, contará solo las suyas.':'so this counts all my litters. Once two have, it counts only theirs.');
+      return '<details class="fact"><summary><span><b>'+(ES?'Cómo se calcula esta'+NB+'fecha':'How this date is worked'+NB+'out')+'</b><small>'+g.days+NB+(ES?'días en promedio, ':'days on average, ')+g.n+NB+LT+'</small></span></summary><div class="whypanel factpanel"><p class="ls-sum">'+esc(tie(sum))+'</p><p class="ls-add">'+esc(tie(add))+'</p><p class="ls-group">'+esc(tie(why))+'</p><details class="ls-all"><summary>'+(ES?'Cada camada que cuenta'+NB+'('+g.n+')':'Every litter it counts'+NB+'('+g.n+')')+'</summary><ul class="ls-rows">'+rows+'</ul></details></div></details>';
+    }
+    [].forEach.call(document.querySelectorAll('.ready-math[data-math]'),function(box){ var born=box.getAttribute('data-math'), r=L[born];
+      var h=(r&&r.kind==='auto'&&togo(r.day)>0)?math(born,r,r.line||''):''; box.innerHTML=h; box.hidden=!h; });
+    Object.keys(L).forEach(function(born){ var w=words(L[born]); if(!w) return;
+      [].forEach.call(document.querySelectorAll('[data-fact="ready:'+born+'"]'),function(n){ n.textContent=w.t; if(w.chk) n.insertAdjacentHTML('afterbegin',VCHK); }); });
+  })();
 </script>
 </body>
 </html>

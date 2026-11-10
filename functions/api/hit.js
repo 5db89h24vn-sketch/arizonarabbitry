@@ -46,6 +46,40 @@ const DEVS = new Set(['phone', 'desktop']);
 const SCROLLS = new Set([0, 25, 50, 75, 100]);
 const EVENT = /^[a-z][a-z0-9-]{0,23}$/;
 const MAX_EVENTS = 24;
+/* ROUND 192 (9 Nov 2026; William: "how long they were on the website for"; "I just wanna be able to differentiate real
+   human visits from bot visits"). Two more fields from the page, and one label made here:
+     t    seconds on screen, as one of seven steps (0, 3, 10, 30, 60, 180, 600: at least that many), never the figure
+     h    1 when a real touch, click, key or wheel reached the page, else 0
+     k    made here from the request and then the request's words are thrown away: b, the browser says it is a bot, a
+          preview or a monitor, or Cloudflare vouches it is a known one; d, it came from a hosting company's network,
+          where programs live and people rarely browse (Apple's Private Relay and the phone carriers are not on that
+          list). The browser's name for itself and its network are never stored.
+   A visit's kind is worked out when a day is summed (kindOf): people, a real input and at least three seconds on screen;
+   automated, it says so, or it came from a hosting network with no input; can't tell, the rest (opened and left); old,
+   sent by the counter as it was before this round. No kind is a claim about a person: it is about a page view. */
+const TIMES = new Set([0, 3, 10, 30, 60, 180, 600]);
+/* u, how new the visit is, from one date the browser keeps on its own device (count.js): d the first today, w this week,
+   m this month, n ever; '' already counted today; x the browser keeps nothing. Never a number or a name: unique visitors
+   are counted by adding these up, with nothing that could follow anyone. */
+const FRESH = new Set(['', 'd', 'wd', 'md', 'mwd', 'nmwd', 'x']);
+const CONTACT = new Set(['ask', 'buy', 'text', 'call', 'email', 'form', 'waitlist', 'waitlist-litter']);
+const SAYS_BOT = /bot\b|bot[\/;) ]|crawl|spider|slurp|preview|monitor|headless|lighthouse|pingdom|uptime|scrape|python|curl\/|wget|go-http|okhttp|java\/|httpclient|axios|node-fetch|facebookexternalhit|whatsapp|telegram|discord|slack|embedly|inspectiontool|gptbot|claudebot|anthropic|perplexity|bytespider|amazonbot|applebot|yandex|baidu|duckduck|semrush|ahrefs|mj12|dotbot|petal/i;
+const HOSTING = /amazon|aws\b|google cloud|google llc|microsoft|azure|digitalocean|ovh|hetzner|linode|akamai connected cloud|vultr|choopa|oracle|alibaba|tencent|contabo|scaleway|leaseweb|m247|datacamp|hostinger|godaddy|ionos|rackspace|colocrossing|psychz|quadranet|servermania|hostwinds/i;
+
+function labelOf(request) {
+  const ua = request.headers.get('User-Agent') || '';
+  const cf = request.cf || {};
+  if (SAYS_BOT.test(ua) || cf.verifiedBotCategory || (cf.botManagement && cf.botManagement.verifiedBot)) return 'b';
+  if (HOSTING.test(String(cf.asOrganization || ''))) return 'd';
+  return '';
+}
+
+function kindOf(v) {
+  if (v.k === 'b') return 'auto';
+  if (v.t === undefined) return 'old';
+  if (v.h === 1 && v.t >= 3) return 'people';
+  return v.k === 'd' ? 'auto' : 'unknown';
+}
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -59,7 +93,7 @@ function tucsonDay(ms) {
   return new Date(ms - 7 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
-function cleanVisit(body) {
+function cleanVisit(body, stored) {
   if (!body || typeof body !== 'object') return null;
   const p = PAGES.has(body.p) ? body.p : null;
   if (!p) return null;
@@ -73,7 +107,11 @@ function cleanVisit(body) {
       if (ev.length >= MAX_EVENTS) break;
     }
   }
-  return { p, d, ref, s, ev };
+  const v = { p, d, ref, s, ev };
+  if (TIMES.has(body.t)) { v.t = body.t; v.h = body.h === 1 ? 1 : 0; v.u = FRESH.has(body.u) ? body.u : 'x'; }
+  /* the label is this function's own: read back from the store, never taken from a browser */
+  if (stored && (body.k === 'b' || body.k === 'd')) v.k = body.k;
+  return v;
 }
 
 async function listAll(kv, prefix) {
@@ -89,7 +127,18 @@ async function listAll(kv, prefix) {
 }
 
 function emptyTotals(day) {
-  return { day, visits: 0, pages: {}, devices: {}, refs: {}, scroll: {}, taps: {} };
+  return { day, visits: 0, pages: {}, devices: {}, refs: {}, scroll: {}, taps: {},
+    kinds: { people: 0, auto: 0, unknown: 0, old: 0 }, time: {}, fresh: { day: 0, week: 0, month: 0, ever: 0, unknown: 0 },
+    people: { scroll: { 25: 0, 50: 0, 75: 0, 100: 0 }, opened: 0, contact: 0, refs: {}, devices: {}, time: {}, fresh: { day: 0, week: 0, month: 0, ever: 0, unknown: 0 } } };
+}
+
+function addFresh(f, u) {
+  if (u === undefined) return;
+  if (u === 'x') { f.unknown += 1; return; }
+  if (u.includes('d')) f.day += 1;
+  if (u.includes('w')) f.week += 1;
+  if (u.includes('m')) f.month += 1;
+  if (u.includes('n')) f.ever += 1;
 }
 
 /* the visit's record rides in the key's metadata, so summing a day is one
@@ -102,22 +151,46 @@ function addVisit(t, v) {
   const sc = t.scroll[v.p] || (t.scroll[v.p] = { 25: 0, 50: 0, 75: 0, 100: 0 });
   for (const b of [25, 50, 75, 100]) if (v.s >= b) sc[b] += 1;
   for (const e of v.ev) t.taps[e] = (t.taps[e] || 0) + 1;
+  const kind = kindOf(v);
+  t.kinds[kind] += 1;
+  if (v.t !== undefined) t.time[v.t] = (t.time[v.t] || 0) + 1;
+  addFresh(t.fresh, v.u);
+  if (kind === 'people') {
+    const q = t.people;
+    for (const b of [25, 50, 75, 100]) if (v.s >= b) q.scroll[b] += 1;
+    if (v.ev.includes('listing')) q.opened += 1;
+    if (v.ev.some((e) => CONTACT.has(e))) q.contact += 1;
+    q.refs[v.ref] = (q.refs[v.ref] || 0) + 1;
+    q.devices[v.d] = (q.devices[v.d] || 0) + 1;
+    q.time[v.t] = (q.time[v.t] || 0) + 1;
+    addFresh(q.fresh, v.u);
+  }
 }
 
 async function totalsFor(kv, day) {
   const done = day < tucsonDay(Date.now());
   if (done) {
-    const kept = await kv.get('vd:' + day, { type: 'json' });
+    const kept = await kv.get('vd2:' + day, { type: 'json' });
     if (kept && typeof kept.visits === 'number') return kept;
   }
   const t = emptyTotals(day);
   const keys = await listAll(kv, 'v:' + day + ':');
   for (const k of keys) {
-    const v = k.metadata && cleanVisit(k.metadata);
+    const v = k.metadata && cleanVisit(k.metadata, true);
     if (v) addVisit(t, v);
   }
+  /* a day summed before Round 192 and whose visits have since expired (45 days) is still on record under its old name:
+     its totals stand, every visit of it "old" */
+  if (done && t.visits === 0) {
+    const was = await kv.get('vd:' + day, { type: 'json' });
+    if (was && typeof was.visits === 'number' && was.visits > 0) {
+      const o = Object.assign(emptyTotals(day), was);
+      o.kinds = { people: 0, auto: 0, unknown: 0, old: was.visits };
+      return o;
+    }
+  }
   t.countedAt = new Date().toISOString();
-  if (done) await kv.put('vd:' + day, JSON.stringify(t), { expirationTtl: 400 * 24 * 3600 });
+  if (done) await kv.put('vd2:' + day, JSON.stringify(t), { expirationTtl: 400 * 24 * 3600 });
   return t;
 }
 
@@ -137,8 +210,10 @@ export async function onRequestPost(context) {
     if (text.length > 2000) return new Response(null, { status: 204 });
     body = JSON.parse(text);
   } catch (e) { return new Response(null, { status: 204 }); }
-  const v = cleanVisit(body);
+  const v = cleanVisit(body, false);
   if (!v) return new Response(null, { status: 204 });
+  const label = labelOf(context.request);
+  if (label) v.k = label;
   const day = tucsonDay(Date.now());
   const key = 'v:' + day + ':' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   try {
