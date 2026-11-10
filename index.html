@@ -753,6 +753,26 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
 @media(hover:hover){.pairfold:hover .pf-open{background:var(--line)}}
 .pf-in{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:4px 12px 12px;border-top:1px solid var(--line)}
 .pf-in[hidden]{display:none}
+
+.pf-head{display:grid;grid-template-columns:208px minmax(0,1fr);column-gap:16px;align-items:center;padding:12px 12px 13px}
+.pf-media{grid-column:1;grid-row:1;border-radius:calc(var(--r) - 3px)}
+.pf-body{grid-column:2;grid-row:1;padding:0;gap:7px}
+.pf-top{display:flex;flex-wrap:wrap;align-items:center;gap:5px 9px;min-width:0}
+.pf-pic img{opacity:1;filter:none}   
+.pf-top .planmark{display:inline-flex;align-items:center;gap:6px;box-shadow:none}
+.pf-top h3{margin:0;font-size:17px;line-height:1.25}
+.pf-body .plan-meta{margin:-3px 0 0}
+.pf-meters{margin-top:0}
+.pf-open{margin:1px 0 0}
+@media(max-width:600px){
+  .pf-head{grid-template-columns:128px minmax(0,1fr);column-gap:14px;row-gap:9px;align-items:start}
+  .pf-media{grid-row:1/span 2;align-self:center}
+  .pf-body{display:contents}
+  .pf-top{grid-column:2;grid-row:1;align-self:end}
+  .pf-body .plan-meta{grid-column:2;grid-row:2;align-self:start;margin:0}
+  .pf-meters{grid-column:1/-1;grid-row:3}
+  .pf-open{grid-column:1/-1;grid-row:4;justify-self:start}
+}
 .rec-pair{display:inline}
 .viewer-when .rec-pair a.chip{color:var(--ink)}
 .viewer-when .rec-pair a.chip{min-height:22px;padding:0 8px 0 10px;font-size:12.5px;margin-right:2px}
@@ -958,6 +978,8 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
 .wl-open::after{content:'';position:absolute;left:5px;top:5.5px;width:5px;height:5px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:rotate(-45deg)}
 .wl-lit input:checked+.wl-card .wl-open::after{border-color:var(--brick-dk)}
 .wl-t{flex:1;min-width:0}
+
+@media(min-width:640px){#wlform .wl-lit .wl-t{align-self:flex-start;margin-top:calc((42px - 15px*1.3 - 12.5px*1.35)/2)}}
 .wl-t b{display:block;font-size:15px;font-weight:500;color:var(--ink);line-height:1.3}
 
 .wl-t small{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.35}
@@ -1102,6 +1124,23 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
   @keyframes stageArrive{0%{background:var(--moss-tint)}100%{background:transparent}}
 }
 .stage p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+
+@media(min-width:561px){
+  @supports (grid-template-rows:subgrid){
+    .stages{row-gap:0;margin-bottom:-24px}
+    .stages>.stage{display:grid;grid-row:span 4;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);margin-bottom:24px}
+    .stage>.stage-when{grid-row:1}
+    .stage>h3{grid-row:2}
+    .stage>p{grid-row:3}
+    .stage>.stage-now{grid-row:4;margin:12px 0 0}
+  }
+}
+@media(min-width:561px) and (max-width:760px){
+  @supports (grid-template-rows:subgrid){
+    .stages{margin-bottom:-18px}
+    .stages>.stage{margin-bottom:18px}
+  }
+}
 
 .grow{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:10px}
 .bunny .grow-txt{white-space:normal;overflow:visible;text-overflow:clip}
@@ -1642,6 +1681,9 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-strip button{position:relative}
 .viewer-strip .pv{width:22px;height:22px;left:50%;top:50%;transform:translate(-50%,-50%)}
 .parent .pv{width:18px;height:18px;left:29px;top:29px;transform:none}
+
+a.parent{align-items:flex-start}
+.parent .pv{top:27px}
 .parent .pv::before{border-width:4px 0 4px 6px;margin-left:1px}
 .shots .play{width:0;height:0;border-style:solid;border-color:transparent transparent transparent currentColor;
   border-width:4.5px 0 4.5px 7px;margin-left:2px}
@@ -2237,7 +2279,16 @@ html.pick .lsh{display:none!important}
 @media(prefers-reduced-transparency:reduce){.lsh-stamp{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .lsh-stamp svg{width:11px;height:11px;flex:none;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .lsh-stamp .t{min-width:0;overflow:hidden;text-overflow:ellipsis}
-.ls-stamp[hidden]{display:none}   
+.ls-stamp[hidden]{display:none}
+
+.lsh-count{position:absolute;right:6px;bottom:6px;z-index:1;display:inline-flex;align-items:baseline;gap:3px;padding:3px 9px 3px 8px;
+  border-radius:100px;background:rgba(24,20,18,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;line-height:1.3;white-space:nowrap;overflow:hidden;
+  -webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
+.lsh-count b{font-size:13px;font-weight:700;letter-spacing:0;line-height:1}
+@media(prefers-reduced-transparency:reduce){.lsh-count{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+.lsh-pic.has-count{container-type:inline-size}
+@container (max-width:200px){ .lsh-count{right:auto;left:6px;bottom:30px} }      
 
 .lsh-end{text-decoration:none;color:inherit}
 .lsh-end .lsh-pic{display:grid;place-items:center;aspect-ratio:4/3;color:var(--ink-soft)}
@@ -3080,6 +3131,15 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
   .pro-face{max-width:100px}
 }
 
+.pro-face{min-height:0}
+@media(max-width:359px){.pro-card b{font-size:13px}}
+@supports (grid-template-rows:subgrid){
+  .pro-grid>.pro-card:not([hidden]){display:grid;grid-row:span 3;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:2px;justify-items:center;align-items:start}
+  .pro-card>.pro-face{grid-row:1}
+  .pro-card>b{grid-row:2}
+  .pro-card>.pro-what{grid-row:3}
+}
+
 .pro-views{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
 .pro-views[hidden]{display:none}
 .pro-views button{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);
@@ -3187,6 +3247,18 @@ html.ptr .src-x:focus-visible{box-shadow:none!important}
 .ped-col{min-width:0;border:1px solid var(--line);border-top:4px solid var(--ped-sire-edge);border-radius:var(--r);
   background:var(--card);padding:8px 8px 4px}
 .ped-col.side-dam{border-top-color:var(--ped-dam)}
+
+.ped-cols .ped-card{align-items:flex-start}
+@media (min-width:600px){
+  @supports (grid-template-rows:subgrid){
+    .ped-cols{row-gap:0}
+    .ped-cols>.ped-col{display:grid;grid-row:span 4;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);align-self:stretch}
+    .ped-col>.ped-card{grid-row:1}
+    .ped-col>.ped-rec{grid-row:2}
+    .ped-col>.chip{grid-row:3;justify-self:start}
+    .ped-col>.ped-fam{grid-row:4;align-self:start}
+  }
+}
 
 @media (max-width:599px){
   .ped-cols{row-gap:4px}
@@ -6861,9 +6933,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       return '<div class="pairfold" data-pair="'+esc(addrOf(a)+' '+addrOf(b))+'">'+
         '<div class="pf-head">'+
         '<span class="pf-hit" aria-hidden="true"></span>'+
-        '<div class="pf-media"><span class="ptags"><span class="planmark">'+planWordHTML(a)+'</span></span>'+pic(a,'pf-a')+pic(b,'pf-b')+'<i class="pf-seam" aria-hidden="true"></i></div>'+
+        '<div class="pf-media">'+pic(a,'pf-a')+pic(b,'pf-b')+'<i class="pf-seam" aria-hidden="true"></i></div>'+
         '<div class="pf-body">'+
-        '<h3>'+say+'</h3>'+
+        '<div class="pf-top"><span class="planmark">'+planWordHTML(a)+'</span><h3>'+say+'</h3></div>'+
         (planMarkHTML(a)?'<p class="plan-meta">'+planMarkHTML(a)+'</p>':'')+
         '<div class="pf-meters">'+meter(a)+'<i class="pf-slash" aria-hidden="true"></i>'+meter(b)+'</div>'+
         '<button type="button" class="pf-open" aria-expanded="false" aria-controls="'+id+'"><span class="pf-w1">'+(esR?'Ver las dos fichas':'See both listings')+'</span><span class="pf-w2">'+(esR?'Cerrar las fichas':'Close the listings')+'</span></button>'+
@@ -10043,6 +10115,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var on=onList(w.id), nm=nameOf(w), stamp=w.plan?'':stampHTML(w);
       var pic=w.pic?picHTML(w.pic.src,CARD_SIZES):'<span class="lsh-none" aria-hidden="true"></span>';
       var tag=w.plan?'':'<span class="lsh-tag">'+esc(pureWord(w.kind))+'</span>';
+      var nb=w.plan?0:(function(c){ var m=/\b(\w+) raised\b/i.exec(c)||/^(\w+) born\b/i.exec(c); if(!m) return 0; var x=m[1].toLowerCase();
+        return /^\d+$/.test(x)?+x:({one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12}[x]||0); })(String((w.l&&w.l.count)||''));
+      var count=nb?'<span class="lsh-count"><b>'+nb+'</b> '+(ES?(nb===1?'bebé':'bebés'):(nb===1?'baby':'babies'))+'</span>':'';
       var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(nowWords(w.born));
       var kind=w.plan?esc(T.notBorn):esc(tie(String(w.l.line||'').replace(/\s+cross$/i,'')));   /* the breed as the chips name it: Holland Lop, Netherland Dwarf ("Netherland Dwarfs" ran past a phone's card) */
       var rp=w.plan?null:readyParts(w);
@@ -10050,7 +10125,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var par=w.plan?'':parentsHTML(w);
       return '<li data-id="'+esc(w.id)+'" data-k="'+w.kind+'"><div class="lsh-card">'+
         '<button type="button" class="lsh-open" aria-haspopup="dialog">'+
-        '<span class="lsh-pic">'+pic+tag+stamp+'</span>'+(par?'<span class="lsh-pg" aria-hidden="true"></span>':'')+
+        '<span class="lsh-pic'+(count?' has-count':'')+'">'+pic+tag+stamp+count+'</span>'+(par?'<span class="lsh-pg" aria-hidden="true"></span>':'')+
         '<span class="lsh-b"><span class="lsh-age">'+top+'</span><span class="lsh-kind">'+kind+'</span>'+ready+'</span></button>'+par+
         '<button type="button" class="lsh-bell'+(on?' on':'')+'" aria-haspopup="dialog" aria-label="'+esc(on?T.bellOn(nm):T.bellOff(nm))+'">'+(on?BELLF:BELL)+'</button>'+
         '</div></li>';

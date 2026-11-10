@@ -588,10 +588,10 @@ body.locked{overflow:hidden}
 
 .tile-age{font-size:13px;font-weight:600;color:var(--ink);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-.tile{container-type:inline-size}
-@container (max-width:170px){ .tile-age{font-size:12px;letter-spacing:-.005em} }
+.tile-agebox,.tile-linebox{container-type:inline-size}
+@container (max-width:146px){ .tile-age{font-size:12px;letter-spacing:-.005em} }
 
-@container (max-width:153px){ .tile-age{font-size:11px;letter-spacing:-.01em} }
+@container (max-width:129px){ .tile-age{font-size:11px;letter-spacing:-.01em} }
 .tile-age[hidden],.tile-age:empty{display:none}
 
 html.js .tile-age[hidden],html.js .tile-age:empty{display:block;visibility:hidden}
@@ -608,7 +608,23 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .tile-ready{font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-top:5px;line-height:1.3;text-wrap:balance}
 .tile-line:empty,.tile-parents:empty,.tile-ready:empty{display:none}
 
-@container (max-width:170px){ .tile-line{font-size:11px;letter-spacing:-.01em} }
+@container (max-width:146px){ .tile-line{font-size:11px;letter-spacing:-.01em} }
+
+.tile-parents{flex-direction:column;flex-wrap:nowrap;align-items:flex-start}
+.tile>picture>source{display:none}
+@supports (grid-template-rows:subgrid){
+  #all>.grid{row-gap:0;margin-top:-12px}
+  #all>.grid>.tile:not([hidden]){display:grid;grid-row:span 8;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);margin-top:12px}
+  .tile>.tile-pic,.tile>img,.tile>picture>img{grid-row:1}
+  .tile>.tile-body{display:grid;grid-row:2/span 7;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr)}
+  .tile-born{grid-row:1}
+  .tile-date{grid-row:2}
+  .tile-agebox{grid-row:3}
+  .tile-sub{grid-row:4}
+  .tile-linebox{grid-row:5}
+  .tile-parents{grid-row:6;align-self:start}
+  .tile-ready{grid-row:7}
+}
 .litter-life{color:var(--ink-soft)}
 
 .litter-last > b:first-child{display:block;text-wrap:balance;line-height:1.35;margin-bottom:3px}
@@ -684,6 +700,9 @@ html.js .tile-age:empty::before{content:'\00a0'}
 .pv::before{content:'';display:block;width:0;height:0;border-style:solid;border-color:transparent transparent transparent #fff;
   border-width:5px 0 5px 8px;margin-left:2px}
 .parent .pv{width:18px;height:18px;left:29px;top:29px}
+
+a.parent{align-items:flex-start}
+.parent .pv{top:27px}
 .parent .pv::before{border-width:4px 0 4px 6px;margin-left:1px}
 .parent span{display:block;min-width:0}
 
@@ -711,6 +730,15 @@ html.js .tile-age:empty::before{content:'\00a0'}
 
 .litter-body p time{white-space:nowrap}
 .litter-set figure p{padding:3px 11px 11px;margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+
+.litter-set .frames>figure>picture>source{display:none}
+@supports (grid-template-rows:subgrid){
+  .litter-set .frames{row-gap:0;margin-bottom:-12px}
+  .litter-set .frames>figure:not([hidden]){display:grid;grid-row:span 3;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);margin-bottom:12px}
+  .litter-set .frames>figure>img,.litter-set .frames>figure>picture>img,.litter-set .frames>figure>.clip{grid-row:1}
+  .litter-set .frames>figure>figcaption{grid-row:2}
+  .litter-set .frames>figure>p{grid-row:3}
+}
 
 .litter-set figure .clip{position:relative;display:block}
 .litter-set figure .pv{width:44px;height:44px;left:50%;top:50%;transform:translate(-50%,-50%)}
@@ -758,6 +786,20 @@ html.js .tile-age:empty::before{content:'\00a0'}
   color:var(--brick-dk);text-decoration:none}
 .wt-lit{transition:color .15s,background .15s}
 @media(hover:hover){.wt-lit:hover{color:var(--brick)}}
+
+.wt-main>picture>source,.whograph>a.wt>picture>source{display:none}
+.wt small.homemark{align-items:flex-start}
+.wt small.homemark::before{margin-top:3px}
+@supports (grid-template-rows:subgrid){
+  .whograph{row-gap:0;margin-bottom:-12px}
+  .whograph>.wt:not([hidden]){display:grid;grid-row:span 5;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);margin-bottom:12px}
+  .wt>.wt-main{display:grid;grid-row:1/span 4;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr)}
+  .wt-main>img,.wt-main>picture>img,.whograph>a.wt>img,.whograph>a.wt>picture>img{grid-row:1}
+  .wt-main>b,.whograph>a.wt>b{grid-row:2}
+  .wt-main>small.wt-plan,.whograph>a.wt>small.wt-plan{grid-row:3}
+  .wt-main>small:not(.wt-plan),.whograph>a.wt>small:not(.wt-plan){grid-row:4}
+  .wt>.wt-lit{grid-row:5}
+}
 .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .who a,.who span{display:inline-flex;align-items:center;min-height:38px;
   font-size:14.5px;font-weight:500;padding:0 13px;border-radius:100px;
@@ -828,6 +870,20 @@ html:not(.js) .views{display:none}
 .fam-when{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
 .fam-dates{font-weight:600;font-size:14px;margin:2px 0 10px}
 .fam-head{display:flex;gap:11px;align-items:center;margin-bottom:10px;min-width:0}
+
+.fam-head{align-items:flex-start}
+@media(min-width:700px){
+  @supports (grid-template-rows:subgrid){
+    .fams{row-gap:0;margin-bottom:-6px}
+    .fams>.fam:not([hidden]){display:grid;grid-row:span 6;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);margin-bottom:12px}
+    .fam>.fam-when{grid-row:1}
+    .fam>.fam-dates{grid-row:2}
+    .fam>.fam-head{grid-row:3}
+    .fam>.parents{grid-row:4}
+    .fam>.fam-toggle{grid-row:5;align-self:start}
+    .fam>.fam-list{grid-row:6}
+  }
+}
 .fam-pic{width:64px;height:48px;border-radius:6px;object-fit:cover;flex:none;background:var(--paper-2)}
 .fam-name{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.15;margin:0;overflow-wrap:anywhere}
 .fam-sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
@@ -1720,9 +1776,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">5 nov 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">4 nacidos</div>
-            <div data-fact="line:2026-11-05" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-11-05" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-11-05" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy">Tango</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-11-05" class="tile-ready">Listos hacia el 4 dic</div>
           </div>
@@ -1733,9 +1789,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">28 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">8 nacidos</div>
-            <div data-fact="line:2026-10-28" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-28" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-10-28" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-10-28" class="tile-ready">Listos hacia el 26 nov</div>
           </div>
@@ -1746,9 +1802,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">24 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">3 nacidos</div>
-            <div data-fact="line:2026-10-24" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-24" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-10-24" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-fox-portrait.jpg?v=bebbcb93" srcset="photos/mother-fox-portrait.160.bebbcb93.jpg 160w, photos/mother-fox-portrait.320.bebbcb93.jpg 320w, photos/mother-fox-portrait.640.bebbcb93.jpg 640w, photos/mother-fox-portrait.jpg?v=bebbcb93 800w" sizes="40px" alt="" loading="lazy">Fox</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-10-24" class="tile-ready">Listos hacia el 22 nov</div>
           </div>
@@ -1759,9 +1815,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">21 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">8 nacidos</div>
-            <div data-fact="line:2026-10-21" class="tile-line">cruzas de Netherland Dwarf</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-21" class="tile-line">cruzas de Netherland Dwarf</div></div>
             <div data-fact="tile-parents:2026-10-21" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-saffron-portrait.jpg?v=9f0cacc4" srcset="photos/mother-saffron-portrait.160.9f0cacc4.jpg 160w, photos/mother-saffron-portrait.320.9f0cacc4.jpg 320w, photos/mother-saffron-portrait.640.9f0cacc4.jpg 640w, photos/mother-saffron-portrait.960.9f0cacc4.jpg 960w, photos/mother-saffron-portrait.jpg?v=9f0cacc4 1200w" sizes="40px" alt="" loading="lazy">Saffron</span> <span class="tp"><img src="photos/father-odyssey-portrait.jpg?v=5490ba47" srcset="photos/father-odyssey-portrait.160.5490ba47.jpg 160w, photos/father-odyssey-portrait.320.5490ba47.jpg 320w, photos/father-odyssey-portrait.640.5490ba47.jpg 640w, photos/father-odyssey-portrait.960.5490ba47.jpg 960w, photos/father-odyssey-portrait.jpg?v=5490ba47 1200w" sizes="40px" alt="" loading="lazy">Odyssey</span></div>
             <div data-fact="ready:2026-10-21" class="tile-ready">Listos hacia el 19 nov</div>
           </div>
@@ -1772,9 +1828,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">19 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">3 nacidos</div>
-            <div data-fact="line:2026-10-19" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-19" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-10-19" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy">S'Morri</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-10-19" class="tile-ready"><i class="vchk" title="Comprobado por William"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8"/><path d="M4.4 8.4l2.4 2.4 4.8-5"/></svg><i class="sr-only">Comprobado por William</i></i>Listos el 11 o el 12 nov</div>
           </div>
@@ -1785,9 +1841,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">6 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">3 nacidos, ninguno sobrevivió</div>
-            <div data-fact="line:2026-10-06" class="tile-line">Netherland Dwarf de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-06" class="tile-line">Netherland Dwarf de pura raza</div></div>
             <div data-fact="tile-parents:2026-10-06" class="tile-parents"><span class="sr-only">Madre: </span><span class="tp"><img src="photos/mother-bakalaki-portrait.jpg?v=ca6f9a10" srcset="photos/mother-bakalaki-portrait.160.ca6f9a10.jpg 160w, photos/mother-bakalaki-portrait.320.ca6f9a10.jpg 320w, photos/mother-bakalaki-portrait.640.ca6f9a10.jpg 640w, photos/mother-bakalaki-portrait.960.ca6f9a10.jpg 960w, photos/mother-bakalaki-portrait.jpg?v=ca6f9a10 1200w" sizes="40px" alt="" loading="lazy">Bakalaki</span></div>
             <div data-fact="ready:2026-10-06" class="tile-ready"></div>
           </div>
@@ -1798,9 +1854,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">4 oct 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">6 nacidos, ninguno sobrevivió</div>
-            <div data-fact="line:2026-10-04" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-10-04" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-10-04" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-tango-portrait2.jpg?v=e762cdb8" srcset="photos/mother-tango-portrait2.160.e762cdb8.jpg 160w, photos/mother-tango-portrait2.320.e762cdb8.jpg 320w, photos/mother-tango-portrait2.640.e762cdb8.jpg 640w, photos/mother-tango-portrait2.960.e762cdb8.jpg 960w, photos/mother-tango-portrait2.jpg?v=e762cdb8 1200w" sizes="40px" alt="" loading="lazy">Tango</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-10-04" class="tile-ready"></div>
           </div>
@@ -1812,9 +1868,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">27 sep 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">7 nacidos, 7 sobrevivieron</div>
-            <div data-fact="line:2026-09-27" class="tile-line">cruzas de Holland Lop</div>
+            <div class="tile-linebox"><div data-fact="line:2026-09-27" class="tile-line">cruzas de Holland Lop</div></div>
             <div data-fact="tile-parents:2026-09-27" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
             <div data-fact="ready:2026-09-27" class="tile-ready">Listos desde el 22 oct</div>
           </div>
@@ -1826,9 +1882,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">18 sep 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">3 nacidos, 3 sobrevivieron</div>
-            <div data-fact="line:2026-09-18" class="tile-line">Holland Lop de pura raza</div>
+            <div class="tile-linebox"><div data-fact="line:2026-09-18" class="tile-line">Holland Lop de pura raza</div></div>
             <div data-fact="tile-parents:2026-09-18" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother-smorri-portrait.jpg?v=1c7b6d3e" srcset="photos/mother-smorri-portrait.160.1c7b6d3e.jpg 160w, photos/mother-smorri-portrait.320.1c7b6d3e.jpg 320w, photos/mother-smorri-portrait.640.1c7b6d3e.jpg 640w, photos/mother-smorri-portrait.960.1c7b6d3e.jpg 960w, photos/mother-smorri-portrait.jpg?v=1c7b6d3e 1200w" sizes="40px" alt="" loading="lazy">S'Morri</span> <span class="tp"><img src="photos/father-rootbeer-portrait.jpg?v=8fec5bf1" srcset="photos/father-rootbeer-portrait.160.8fec5bf1.jpg 160w, photos/father-rootbeer-portrait.320.8fec5bf1.jpg 320w, photos/father-rootbeer-portrait.640.8fec5bf1.jpg 640w, photos/father-rootbeer-portrait.960.8fec5bf1.jpg 960w, photos/father-rootbeer-portrait.jpg?v=8fec5bf1 1200w" sizes="40px" alt="" loading="lazy">Root Beer</span></div>
             <div data-fact="ready:2026-09-18" class="tile-ready">Listos desde el 16 oct</div>
           </div>
@@ -1840,9 +1896,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">27 ago 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">6 nacidos, 6 sobrevivieron</div>
-            <div data-fact="line:2026-08-27" class="tile-line">cruzas de Holland Lop</div>
+            <div class="tile-linebox"><div data-fact="line:2026-08-27" class="tile-line">cruzas de Holland Lop</div></div>
             <div data-fact="tile-parents:2026-08-27" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
             <div data-fact="ready:2026-08-27" class="tile-ready">Listos desde el 27 sep</div>
           </div>
@@ -1854,9 +1910,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">28 jul 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">6 nacidos, 4 sobrevivieron</div>
-            <div data-fact="line:2026-07-28" class="tile-line">cruzas de Holland Lop</div>
+            <div class="tile-linebox"><div data-fact="line:2026-07-28" class="tile-line">cruzas de Holland Lop</div></div>
             <div data-fact="tile-parents:2026-07-28" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
             <div data-fact="ready:2026-07-28" class="tile-ready">Listos desde el 29 ago</div>
           </div>
@@ -1868,9 +1924,9 @@ html[data-look="dim"] .finder select{background-image:url("data:image/svg+xml,%3
           <div class="tile-body">
             <small class="tile-born">Nacimiento</small>
             <div class="tile-date">28 jun 2026</div>
-            <div class="tile-age" hidden></div>
+            <div class="tile-agebox"><div class="tile-age" hidden></div></div>
             <div class="tile-sub">5 nacidos, 4 sobrevivieron</div>
-            <div data-fact="line:2026-06-28" class="tile-line">cruzas de Holland Lop</div>
+            <div class="tile-linebox"><div data-fact="line:2026-06-28" class="tile-line">cruzas de Holland Lop</div></div>
             <div data-fact="tile-parents:2026-06-28" class="tile-parents"><span class="sr-only">Padres: </span><span class="tp"><img src="photos/mother.jpg?v=82c16a60" srcset="photos/mother.160.82c16a60.jpg 160w, photos/mother.320.82c16a60.jpg 320w, photos/mother.640.82c16a60.jpg 640w, photos/mother.960.82c16a60.jpg 960w, photos/mother.1280.82c16a60.jpg 1280w, photos/mother.jpg?v=82c16a60 1600w" sizes="40px" alt="" loading="lazy">Cinnamony</span> <span class="tp"><img src="photos/father-2.jpg?v=607c5d09" srcset="photos/father-2.160.607c5d09.jpg 160w, photos/father-2.320.607c5d09.jpg 320w, photos/father-2.640.607c5d09.jpg 640w, photos/father-2.960.607c5d09.jpg 960w, photos/father-2.1280.607c5d09.jpg 1280w, photos/father-2.jpg?v=607c5d09 1448w" sizes="40px" alt="" loading="lazy">Frederick</span></div>
             <div data-fact="ready:2026-06-28" class="tile-ready">Se fueron a casa antes de este sitio</div>
           </div>
