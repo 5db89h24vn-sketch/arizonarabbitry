@@ -2196,6 +2196,20 @@ html.pick .lsh{display:none!important}
 .lsh-ready.set,.lsh-ready.set b{color:var(--moss-dk);font-weight:600}   
 @media(max-width:359px){.lsh-kind,.lsh-ready{font-size:12px}}   
 
+@supports (grid-template-rows:subgrid){
+  .lsh-row{grid-template-rows:repeat(5,auto);row-gap:0}
+  .lsh-row>li{display:grid;grid-row:1/-1;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr)}
+  .lsh-card,.lsh-open{display:grid;grid-row:1/-1;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr)}
+  .lsh-pic{grid-row:1}
+  .lsh-pg{grid-row:2}
+  .lsh-b{display:grid;grid-row:3/-1;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr)}
+  .lsh-age{grid-row:1}
+  .lsh-kind{grid-row:2}
+  .lsh-ready{grid-row:3}
+  .lsh-row .lsh-end .lsh-pic{grid-row:1/span 2;aspect-ratio:auto}   
+  .lsh-row .lsh-end .lsh-b{display:block}   
+}
+
 .lsh-card{--lshp:84px;--lshf:42px}
 .lsh-pg{display:block;flex:none;height:var(--lshp)}
 .lsh-par{position:absolute;left:0;right:0;top:0;z-index:1;padding-top:75%;pointer-events:none}
@@ -9903,6 +9917,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function nowWords(born){
       var d=days(born), a=ageWords(born); if(!a) return '';
       if(d===0) return ES?'Nacidos hoy':'Born today';
+      if(d<56) return ES?('Ahora tienen '+d+NB+(d===1?'día':'días')):('Now '+d+NB+(d===1?'day':'days')+NB+'old');
       return (ES?'Ahora tienen ':'Now ')+a.replace(/(\d+½?) /g,'$1'+NB);
     }
     function dayCome(s){ var d=days(s); return !isNaN(d)&&d>=0; }
