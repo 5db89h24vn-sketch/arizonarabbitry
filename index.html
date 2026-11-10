@@ -2558,6 +2558,9 @@ html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #vi
 .gs-again{font:inherit;font-size:14px;color:var(--brick-dk);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 .gs-copy{margin:-6px 0 14px;font-size:13.5px;color:var(--ink-soft);overflow-wrap:anywhere}
 .gs-copy[hidden]{display:none}
+
+.gs-cc{margin:-8px 0 14px;font-size:13px;line-height:1.4;color:var(--ink-soft);text-wrap:balance}   
+.gs-cc[hidden]{display:none}   
 .gs-more{margin:12px 0 0;font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:4px 14px}
 .gs-more a,.gs-more button{font:inherit;color:var(--ink-soft);background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
@@ -7640,6 +7643,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '<ol class="gs-prules"><li class="gs-pwhen">I send them as soon as I’m next with the rabbit.</li><li class="gs-pway">By text to the number you write, or in reply to your email.</li><li class="gs-phold"></li></ol>'+
         '<div class="gs-send"><a class="btn btn-primary gs-text" href="sms:+15202702827">Send by text</a><a class="btn btn-tonal gs-mail" href="#">Send by email</a>'+
           '<button type="button" class="btn btn-tonal gs-copyb" hidden>Copy for a text</button></div>'+
+        '<p class="gs-cc"></p>'+
         '<p class="gs-copy" role="status" hidden></p>'+
         '</form>'+
         '<div class="gs-done" role="status" hidden><p class="gs-done-say"></p>'+
@@ -7661,7 +7665,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         if(c.closest('.gs-tovisit')){ gsMove('visit'); return; }
         if(c.closest('.gs-tobuy')){ gsMove((gsR&&gsOne(gsR))?'buy':'reserve'); return; }
         var s=c.closest('.gs-text,.gs-mail');
-        if(s){ if(!gsReady(s)){ ev.preventDefault(); return; } setTimeout(gsDone,400); return; }   /* the link goes to the phone's app */
+        if(s){ if(!gsReady(s)){ ev.preventDefault(); return; } if(s.classList.contains('gs-text')) gsInbox('text'); setTimeout(gsDone,400); return; }   /* the link goes to the phone's app; a text's copy goes to his inbox (Round 192b) */
         if(c.closest('.gs-copyb')){ ev.preventDefault(); gsCopy(); }
       });
       f.addEventListener('submit',function(ev){ ev.preventDefault(); var b=gs.querySelector(gsScreen()?'.gs-mail':'.gs-text'); if(b) b.click(); });
@@ -7828,6 +7832,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         gs.querySelector('#gsZelle').hidden=!gsVals.zelle; gs.querySelector('.gs-zlink').setAttribute('aria-expanded',String(!!gsVals.zelle)); }
       var scr=gsScreen(), bt=gs.querySelector('.gs-text'), bm=gs.querySelector('.gs-mail'), bc=gs.querySelector('.gs-copyb');
       bt.hidden=scr; bc.hidden=!scr;
+      var gcc=gs.querySelector('.gs-cc');
+      gcc.textContent=scr?'Copy for a text also emails me these words, so your request can’t\u00A0get\u00A0lost.':'Send by text also emails me a copy, so your request can’t\u00A0get\u00A0lost.';
+      gcc.hidden=(gsCopyN||0)>=5;   /* no promise of a copy that will not be sent (the limit, at gsInbox) */
       bm.className='btn '+(scr?'btn-primary':'btn-tonal')+' gs-mail';
       var qa=gs.querySelector('.gs-ask');
       if(scr){ qa.removeAttribute('href'); qa.textContent='A question first? Text me at '+GS_TEL_WORDS; }
@@ -8000,6 +8007,34 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
                                                         :('sms:'+GS_TEL+'?&body='+encodeURIComponent(m.body)));
       return true;
     }
+    var gsCopied={}, gsCopyN=0;
+    function gsInbox(how){
+      try{
+        var a=(document.getElementById('lead')||{}).action||'';
+        if(!/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(a)||!window.fetch||!window.FormData) return;
+        var m=gsMessage(), k=m.code+'|'+m.body; if(gsCopied[k]) return; gsCopied[k]=1;
+        if(++gsCopyN>5) return;
+        if(gsCopyN===5){ var c5=gs.querySelector('.gs-cc'); if(c5) c5.hidden=true; }
+        var f=gs.querySelector('form'), nm=f.elements.name.value.trim(), tel=gsTelOK(f.elements.tel.value), fd=new FormData();
+        var r=gsR, two=r?gsMate():null, names=r?(two?r.name+' and '+two.name:r.name):'';
+        var photos=gsMode==='photos', visit=gsMode==='visit'||!r, fc=gsVals.how==='facetime';
+        var kind=photos?'New photos':visit?(fc?'Meet on FaceTime':'Meet in person'):({reserve:'Reserve',buy:'Buy',plan:'Payment plan'}[gsMode]||'Reserve');
+        var will=photos?'send them new photos when you are next with the rabbit'
+                :visit?(fc?'call them back to set a time':'call them back to set a time and, once it is on the books, send them the address')
+                :'call them and request the payment on Zelle; the hour starts with your call';
+        fd.append('_subject',(nm||'Someone')+', about '+(names||'the rabbits')+', wants a '+(photos?'text':'call')+': '+kind+', text written · '+m.code);
+        fd.append('this is','A copy of a request written for a text on arizonarabbits.com'+(gsES()?' (their page was in Spanish)':'')+'. '+(how==='copy'?'They copied these words on a computer, to text them from their phone.':'Their Messages app opened with these words.')+' The site cannot tell whether the text was then sent.');
+        fd.append('name',nm);
+        fd.append('reply by',photos?'Text them':'Call them');
+        if(tel) fd.append('phone',gsTelWords(tel));
+        fd.append('asking about',names||'No rabbit in particular');
+        fd.append('asking for',kind);
+        fd.append('request',m.code);
+        fd.append('their message',m.body);
+        fd.append('next step','Look for their text in Messages. The site told them you will '+will+'. No text there: they may not have pressed send'+(tel?'; their number is above.':'.'));
+        fetch(a,{method:'POST',body:fd,headers:{'Accept':'application/json'},keepalive:true}).then(function(){},function(){});
+      }catch(e){}
+    }
     function gsDone(){
       var f=gs.querySelector('form'); f.hidden=true;
       gs.querySelector('.gs-done-say').innerHTML=gsMode==='photos'
@@ -8012,6 +8047,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function gsCopy(){
       if(!gsReady(gs.querySelector('.gs-text'))) return;
+      gsInbox('copy');
       var m=gsMessage(), cp=gs.querySelector('.gs-copy');
       var done=function(ok){ cp.textContent=ok?('Copied. Paste it into a text to '+GS_TEL_WORDS+'.'):('Text this to '+GS_TEL_WORDS+': '+m.body.split('\n').filter(Boolean).join(' / ')); cp.hidden=false; };
       try{ navigator.clipboard.writeText(m.body).then(function(){ done(true); },function(){ done(false); }); }catch(e){ done(false); }
@@ -10624,7 +10660,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 })();
 </script>
 
-<script src="count.js?v=138787c3" defer></script>
+<script src="count.js?v=8faf408d" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');

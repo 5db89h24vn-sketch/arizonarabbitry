@@ -14,6 +14,14 @@
           (text, call, email, see-rabbits, listing, ask, waitlist, form,
           instagram, tiktok, facebook, news, litters, litter-open, ...),
           each at most once per visit
+   AND, FROM ROUND 192b (9 Nov 2026), MORE OF THE SAME VISIT: when buttons are
+   tapped after that record has gone (the page left the screen, came back, and
+   something was tapped), the page sends their names alone, {more:1, p, ev,
+   had}: the page, the new names, and the names it had already sent. It is
+   kept as its own small key beside the day's visits, adds its taps to the
+   day's taps, and never adds a visit (cleanMore and addMore, below). Sent on
+   the day of the tap: a page left open past midnight adds its later taps to
+   the new day.
    WHAT IS NOT: no cookie, no ID, no IP address, no user agent string, no
    fingerprint, no per-person history. The record has no field that could
    identify anyone, so two visits by one person are two visits. The terms
@@ -114,6 +122,38 @@ function cleanVisit(body, stored) {
   return v;
 }
 
+/* MORE OF THE SAME VISIT (Round 192b, 9 Nov 2026): the taps made after the visit's record had gone (count.js: the page
+   left the screen, came back, and a button was tapped). Kept as its own small record beside the visits of its day:
+   {m:1, p, ev, ho, hc, h}: the new taps, and two yes-or-no marks made here from the names the page says it had already
+   sent ("had"): ho, a rabbit had been opened; hc, a contact tap had been made. It adds its taps to the day's taps. For a
+   person's visit it counts that visit once among those that opened a rabbit, or made a contact tap, if the record
+   before it had not. It never adds a visit, a page, a device, a source, a scroll, a time or a new visitor. */
+function cleanMore(body, stored) {
+  if (!body || typeof body !== 'object') return null;
+  if (!(stored ? body.m === 1 : body.more === 1)) return null;
+  const p = PAGES.has(body.p) ? body.p : null;
+  if (!p) return null;
+  const names = (a) => { const out = []; if (Array.isArray(a)) for (const e of a) { if (typeof e === 'string' && EVENT.test(e) && !out.includes(e)) out.push(e); if (out.length >= MAX_EVENTS) break; } return out; };
+  const had = stored ? [] : names(body.had);
+  const ev = names(body.ev).filter((e) => !had.includes(e));
+  if (!ev.length) return null;
+  const v = { m: 1, p, ev, h: body.h === 1 ? 1 : 0,
+    ho: (stored ? body.ho === 1 : had.includes('listing')) ? 1 : 0,
+    hc: (stored ? body.hc === 1 : had.some((e) => CONTACT.has(e))) ? 1 : 0 };
+  if (stored && (body.k === 'b' || body.k === 'd')) v.k = body.k;
+  return v;
+}
+
+function addMore(t, v) {
+  t.more = (t.more || 0) + 1;
+  for (const e of v.ev) t.taps[e] = (t.taps[e] || 0) + 1;
+  /* a person's: a real input, and not a browser that calls itself a bot (a tap after coming back is past three seconds) */
+  if (v.h === 1 && v.k !== 'b') {
+    if (v.ev.includes('listing') && !v.ho) t.people.opened += 1;
+    if (v.ev.some((e) => CONTACT.has(e)) && !v.hc) t.people.contact += 1;
+  }
+}
+
 async function listAll(kv, prefix) {
   const out = [];
   let cursor;
@@ -176,6 +216,7 @@ async function totalsFor(kv, day) {
   const t = emptyTotals(day);
   const keys = await listAll(kv, 'v:' + day + ':');
   for (const k of keys) {
+    if (k.metadata && k.metadata.m === 1) { const x = cleanMore(k.metadata, true); if (x) addMore(t, x); continue; }
     const v = k.metadata && cleanVisit(k.metadata, true);
     if (v) addVisit(t, v);
   }
@@ -210,7 +251,7 @@ export async function onRequestPost(context) {
     if (text.length > 2000) return new Response(null, { status: 204 });
     body = JSON.parse(text);
   } catch (e) { return new Response(null, { status: 204 }); }
-  const v = cleanVisit(body, false);
+  const v = (body && body.more === 1) ? cleanMore(body, false) : cleanVisit(body, false);
   if (!v) return new Response(null, { status: 204 });
   const label = labelOf(context.request);
   if (label) v.k = label;

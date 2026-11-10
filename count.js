@@ -1,7 +1,8 @@
 /* THE PRIVATE COUNTER, the page's half (14 Sept 2026). See functions/api/hit.js
    for what is stored and why. This file does three things and nothing else:
    remembers which of the site's own controls were tapped on this page, how far
-   it was scrolled, and sends ONE small record when the page is left. No
+   it was scrolled, and sends ONE small record when the page is left (from Round
+   192b, also the names of buttons tapped after that record has gone: more(), below). No
    cookie, no ID, nothing read from the device beyond "is this a touch screen"
    and whether the browser asks not to be tracked. It never delays anything: the record goes out with sendBeacon after the
    reader has already moved on. Loaded with defer at the end of every page. */
@@ -74,7 +75,7 @@
   if(ref==='') ref='other';
 
   var dev = (window.matchMedia && matchMedia('(pointer:coarse)').matches) ? 'phone' : 'desktop';
-  var taps=[], sent=false, maxScroll=0;
+  var taps=[], sent=false, maxScroll=0, told=0;   /* told: how many of the taps the record already carried (Round 192b) */
 
   function tap(name){ if(name && taps.indexOf(name)<0 && taps.length<24) taps.push(name); }
 
@@ -151,16 +152,30 @@
   function step(ms){ var s=ms/1000; return s>=600?600:s>=180?180:s>=60?60:s>=30?30:s>=10?10:s>=3?3:0; }
   ['pointerdown','touchstart','keydown','wheel'].forEach(function(type){
     document.addEventListener(type,function(ev){ if(ev&&ev.isTrusted) human=1; },{capture:true,passive:true}); });
-  function send(){
-    if(sent) return; sent=true; settle();
-    var body=JSON.stringify({p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps, t:step(shown), h:human, u:fresh});
+  function post(body){
     try{
       if(navigator.sendBeacon){ navigator.sendBeacon('/api/hit', new Blob([body],{type:'text/plain'})); return; }
     }catch(e){}
     try{ fetch('/api/hit',{method:'POST',body:body,keepalive:true,headers:{'Content-Type':'text/plain'}}); }catch(e){}
   }
+  /* A VISIT'S LATER TAPS (Round 192b, 9 Nov 2026). The record goes once, the first time the page leaves the screen. On a
+     phone that is often before the visit is over: the screen locks, another app is opened, and the person comes back and
+     taps Send by text. Until this round nothing more was sent, so that tap was never counted (found from a text request
+     of 8 Nov that the day's count did not show). Now, each later time the page leaves the screen with buttons tapped
+     since, it sends those taps alone: "more":1, the new names, and the names already sent ("had"), so the server can tell
+     a visit's first contact tap from its second. No visit, page, scroll or time is sent again, and nothing about who. */
+  function more(){
+    if(taps.length<=told) return;
+    var body=JSON.stringify({p:page, more:1, ev:taps.slice(told), had:taps.slice(0,told), h:human});
+    told=taps.length; post(body);
+  }
+  function send(){
+    if(sent){ more(); return; }
+    sent=true; settle(); told=taps.length;
+    post(JSON.stringify({p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps, t:step(shown), h:human, u:fresh}));
+  }
   document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') send(); else if(!since&&!sent) since=clock(); });   /* a page opened in a background tab starts its clock when it is first shown (Round 192) */
   window.addEventListener('pagehide',send);
   /* back from the bfcache is a new visit */
-  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; maxScroll=0; shown=0; since=clock(); human=0; measure(); } });
+  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; told=0; maxScroll=0; shown=0; since=clock(); human=0; measure(); } });
 })();
