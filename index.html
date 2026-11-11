@@ -776,6 +776,41 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
 
 @media(min-width:761px){ .bunnies.few .bunny{max-width:none} }
 
+@media(min-width:360px){
+  @supports (grid-template-rows:subgrid){
+    #rail{row-gap:0;margin-bottom:-12px}   
+    .bunnies>.bunny{display:grid;grid-row:span 11;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:0;margin-bottom:12px}
+    .bunnies>.bunny>.bunny-media{grid-row:1}
+    .bunnies>.bunny>.bunny-body{--bg:8px;display:grid;grid-row:2/-1;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:0;container-type:normal}
+    
+    .bunnies>.bunny .bget{container-type:inline-size;container-name:bget;flex-wrap:wrap}
+    .bunnies>.bunny>.bunny-body>.bunny-top{grid-row:1}
+    
+    .bunnies>.bunny>.bunny-body>.parts{grid-row:2;margin-top:calc(var(--bg) - 5px)}
+    .bunnies>.bunny>.bunny-body>.plan-meta{grid-row:2;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.plan-meta:not(.state-meta)~.state-meta{grid-row:3}
+    .bunnies>.bunny>.bunny-body>.meta{grid-row:4;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.deal{grid-row:5;margin-top:calc(var(--bg) - 3px)}
+    .bunnies>.bunny>.bunny-body>.grow{grid-row:6;margin-top:calc(var(--bg) + 10px)}
+    .bunnies>.bunny>.bunny-body>.desc{grid-row:7;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.bget-note{grid-row:8;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.bget,.bunnies>.bunny>.bunny-body>.cta-note{grid-row:9;margin-top:var(--bg)}
+    
+    .bunnies>.bunny>.bunny-body>.bget-after{grid-row:10;margin-top:calc(var(--bg) + 7px);align-self:end}
+    .bunnies>.bunny>.bunny-body>.bunny-cta{grid-row:10;margin-top:var(--bg);align-self:end}
+    .bunnies>.bunny>.bunny-body>.cta-note+.bunny-cta{margin-top:var(--bg)}
+  }
+}
+@container bget (max-width:216px){ .bunnies>.bunny .bget>.btn{flex:1 1 100%} }
+@container bget (max-width:256px){ html[lang="es"] .bunnies>.bunny .bget>.btn{flex:1 1 100%} }
+@media(min-width:761px){
+  @supports (grid-template-rows:subgrid){
+    #rail{margin-bottom:-18px}
+    .bunnies>.bunny{margin-bottom:18px}
+    .bunnies>.bunny>.bunny-body{--bg:9px}
+  }
+}
+
 .paytab{margin:14px 0 0}
 .paytab[hidden]{display:none}
 
@@ -6634,8 +6669,6 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           if(st){ var pill=document.createElement('span'); pill.className='lit-state '+st.cls; pill.textContent=st.text; tx.appendChild(pill); }
           var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true');
           a.appendChild(tx); a.appendChild(ch);
-          a.setAttribute('aria-label','Litter born '+niceDate(l.born)+(l.line?', '+l.line:'')+
-            ', '+l.age+'.'+(st?' '+st.text+'.':'')+' Open it in the litter archive.');   /* the words on screen first: "Litter born 5 Nov" (WCAG 2.5.3) */
           tag.appendChild(a);
         });
         var when=el.querySelector('.stage-when');
@@ -10192,12 +10225,13 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function cardHTML(w){
       var on=onList(w.id), nm=nameOf(w), stamp=w.plan?'':stampHTML(w);
       var pic=w.pic?picHTML(w.pic.src,CARD_SIZES):'<span class="lsh-none" aria-hidden="true"></span>';
-      var tag=w.plan?'':'<span class="lsh-tag">'+esc(w.kind==='x'?(pairWord(w.l)||pureWord(w.kind)):pureWord(w.kind))+'</span>';
+      var bn=String(w.l.line||'').replace(/\s+cross$/i,''), bs=/Netherland Dwarf/i.test(bn)?(ES?'Enano':'Dwarf'):/Holland Lop/i.test(bn)?'Holland':'';   /* (Round 192f) the breed, and its short name */
+      var tag=w.plan?'':'<span class="lsh-tag"'+(w.kind!=='x'&&bn&&bs?' data-short="'+esc(bs)+'"':'')+'>'+esc(w.kind==='x'?(pairWord(w.l)||pureWord(w.kind)):(bn?tie(bn):pureWord(w.kind)))+'</span>';
       var nb=w.plan?0:(function(c){ var m=/\b(\w+) alive\b/i.exec(c)||/\b(\w+) raised\b/i.exec(c)||/^(\w+) born\b/i.exec(c); if(!m) return 0; var x=m[1].toLowerCase();
         return /^\d+$/.test(x)?+x:({one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12}[x]||0); })(String((w.l&&w.l.count)||''));
       var count=nb?'<span class="lsh-count"><b>'+nb+'</b> '+(ES?(nb===1?'bebé':'bebés'):(nb===1?'baby':'babies'))+'</span>':'';
       var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(nowWords(w.born));
-      var kind=w.plan?esc(T.notBorn):esc(tie(String(w.l.line||'').replace(/\s+cross$/i,'')));   /* the breed as the chips name it: Holland Lop, Netherland Dwarf ("Netherland Dwarfs" ran past a phone's card) */
+      var kind=w.plan?esc(T.notBorn):esc(pureWord(w.kind));   /* (Round 192f, his word of 11:49pm) the label on the photo says the breed; this line says what the label said: Purebred, or Cross */
       var rp=w.plan?null:readyParts(w);
       var ready=rp?'<span class="lsh-ready'+(rp.firm?' set':'')+(rp.unset?' none':'')+'">'+(rp.checked?VCHK:'')+esc(tie(rp.label))+dateCard(rp)+'</span>':'';
       var par=w.plan?'':parentsHTML(w);
@@ -10238,7 +10272,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       [].forEach.call(row.querySelectorAll('.lsh-tag'),function(t){ var x=t.getAttribute('data-whole'); if(x) t.textContent=x; t.style.fontSize=''; t.style.letterSpacing=''; var f=parseFloat(getComputedStyle(t).fontSize)||10.5;
         while(t.scrollWidth>t.clientWidth+0.5&&f>9.5){ f-=0.5; t.style.fontSize=f+'px'; }
         if(t.scrollWidth>t.clientWidth+0.5&&t.textContent.indexOf('\u00d7')>=0){ if(!x) t.setAttribute('data-whole',t.textContent); t.textContent=t.textContent.replace(/[\s\u00a0]*\u00d7[\s\u00a0]*/,'\u202f\u00d7\u202f'); t.style.letterSpacing='0';
-          if(t.scrollWidth>t.clientWidth+0.5) t.textContent=t.textContent.replace(/\u202f\u00d7\u202f/,'\u00d7'); } }); }
+          if(t.scrollWidth>t.clientWidth+0.5) t.textContent=t.textContent.replace(/\u202f\u00d7\u202f/,'\u00d7'); }
+        else if(t.scrollWidth>t.clientWidth+0.5){ t.style.letterSpacing='0'; var sh=t.getAttribute('data-short'); if(sh&&t.scrollWidth>t.clientWidth+0.5){ if(!x) t.setAttribute('data-whole',t.textContent); t.textContent=sh; } } }); }
     var fitRO=false; if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fitNames(); }).observe(row); fitRO=true; }catch(e){} }
     if(!fitRO){ var fitT=0; window.addEventListener('resize',function(){ clearTimeout(fitT); fitT=setTimeout(fitNames,120); }); }
     function arrows(){ var max=row.scrollWidth-row.clientWidth-2; prev.disabled=row.scrollLeft<=2; next.disabled=row.scrollLeft>=max; }
