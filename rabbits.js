@@ -1248,7 +1248,8 @@ const LITTER_READY = {
      his list, 9 Nov 2026, 2:17pm Tucson, row 208: "S'Morri x Root Beer, born 19 Oct (23 days old on Wednesday)"; his
      words, 9 Nov 2026, 4:07pm Tucson: "Also have it so that the Holland lop litter that is upcoming says Wednesday or
      Thursday of this week") */
-  "2026-10-19": { day: "2026-11-11", or: "2026-11-12", checked: "2026-11-09" }
+  /* (10 Nov 2026, 6:14pm Tucson, his words: "that Hollandlop litter will be coming out on Thursday near guaranteed") */
+  "2026-10-19": { day: "2026-11-12", checked: "2026-11-10" }
 };
 
 /* TWO NAMED RABBITS AT ONE PRICE, BOUGHT AT THE SAME TIME (5 Nov 2026, your words 9:50pm: "if they're bought
@@ -1265,7 +1266,7 @@ const LITTER_READY = {
    offer because of stock being tight on my end, and make sure it's advertised as well with its own unique icon". */
 const BUNDLES = [
   /* (7 Nov 2026, 3:20pm, his words: "make this special $440 now. I feel like that's a more compelling special and looks better on paper") $500 from 5 Nov to 7 Nov */
-  { names: ["Coconut", "Snowcone"], price: 440, why: "making room for the babies on the way", on: "2026-11-07" }
+  /* ended 10 Nov 2026, when Snowcone was sold (his word, 8:39pm Tucson): { names: ["Coconut", "Snowcone"], price: 440, why: "making room for the babies on the way", on: "2026-11-07" } */
 ];
 
 const RABBITS = [
@@ -1993,8 +1994,10 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
-    soldOn: "",
+    status: "adopted",                         /* his word, 10 Nov 2026, 8:39pm Tucson: "Also, snowcone was sold today"; home the same day (his rule, 27 Oct 2026, about 12:20pm Tucson: "the moment I tell you a rabbit was sold is also meaning it went home") */
+    reservedOn: "2026-11-10",                  /* sold outright, which counts as reserved the same day (his rule, 7 Oct 2026) */
+    soldOn: "2026-11-10",
+    wentHome: "2026-11-10",
     ear:    "",
     weights: [],
     photo:  "photos/snowcone.jpg",
