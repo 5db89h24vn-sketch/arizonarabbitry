@@ -6976,7 +6976,16 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         (ES?', hora de'+LKNB+'Arizona.':', Arizona'+LKNB+'time.')+'</b></p>'+
       '<p>'+(ES?'Esta página se abre sola a esa hora. '+(one?'':'$50 lo reservan. ')+'Por orden de'+LKNB+'llegada.'
                :'This page opens by itself then. '+(one?'':'$50 reserves it. ')+'First come, first'+LKNB+'served.')+'</p>'; }
-  function lockButtons(h){ return h.replace(/class="btn btn-(primary|tonal) bget-(r|b)"/g,'class="btn btn-$1 bget-$2 btn-locked"'); }
+  function lockSr(r){ return '<span class="sr-only">, '+(lkES()?'abre '+esc(opensDay(r,false))+' a '+opensLas(r):'opens '+esc(opensDay(r,false))+' at ')+esc(opensName(r,false))+'</span>'; }
+  var lkN=0;
+  function lockButtons(h,r){ var id='lkopen'+(++lkN);   /* the hour is told by the card's own count block (aria-describedby): the buttons' words stay as the page translates them */
+    h=h.replace('<p class="bget-note bopen">','<p class="bget-note bopen" id="'+id+'">');
+    return h.replace(/<a class="btn btn-(primary|tonal) bget-(r|b)" href="[^"]*"([^>]*)>([^<]*)<\/a>/g,function(m,k,w,rest,txt){
+    return '<a class="btn btn-'+k+' bget-'+w+' btn-locked" aria-disabled="true" tabindex="0" aria-describedby="'+id+'"'+rest+'>'+txt+'</a>'; }); }
+  function lockStop(ev){ var t=ev.target&&ev.target.closest?ev.target.closest('.btn-locked'):null; if(!t) return;
+    if(ev.type==='keydown'&&ev.key!=='Enter'&&ev.key!==' ') return;
+    ev.preventDefault(); ev.stopImmediatePropagation(); }
+  ['click','keydown','auxclick'].forEach(function(e){ document.addEventListener(e,lockStop,true); });
   function lkRabbit(a){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[]; for(var i=0;i<R.length;i++){ if(R[i]&&addrOf(R[i])===a) return R[i]; } return null; }
   var lkT=0, lkLate=false;
   function opensCome(t){ var a=document.activeElement, typing=!!a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName||'');
@@ -7020,7 +7029,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var day=y+'-'+('0'+(mo+1)).slice(-2)+'-'+('0'+m[1]).slice(-2);
     return day<=t;
   }
-  function gsCardHTML(r){ var h=gsCardHTML0(r); return locked(r)?lockButtons(h):h; }   /* (Round 193) not yet available: the two buttons wear the locked palette */
+  function gsCardHTML(r){ var h=gsCardHTML0(r); return locked(r)?lockButtons(h,r):h; }   /* (Round 193) not yet available: the two buttons wear the locked palette */
   function gsCardHTML0(r){
     var a=esc(addrOf(r)), n=esc(r.name), p=+priceOf(r), now=gsNow(r), one=gsOne(r);
     var note=locked(r)?('<p class="bget-note bopen">'+lockNoteHTML(r)+'</p>')   /* (Round 193) available at an hour: the time left and the hour */
@@ -9249,7 +9258,9 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       vCta.textContent=sell?(one?('Buy \u00B7 $'+p):'Reserve \u00B7 $50'):openNow?('Ask about '+r.name):keptHere?('See '+objPronoun(r)+' as a producer'):(anyOpen?'See who is available':'See the next litter first');
       vCta.setAttribute('href',sell?(a+(one?'~buy':'~reserve')):openNow?'#contact':keptHere?('#p-'+r.producer):(anyOpen?'#available':'#waitlist'));
       if(vBuy){ vBuy.hidden=!sell||one; if(sell&&!one){ vBuy.textContent='Buy \u00B7 $'+p; vBuy.setAttribute('href',a+'~buy'); } }
-      [vCta,vBuy].forEach(function(b){ if(b) b.classList.toggle('btn-locked',!!(sell&&locked(r))); });   /* (Round 193) not yet available: the listing's two buttons wear the locked palette */
+      [vCta,vBuy].forEach(function(b){ if(!b) return; var on=!!(sell&&locked(r)); b.classList.toggle('btn-locked',on);
+        if(on){ b.removeAttribute('href'); b.setAttribute('aria-disabled','true'); b.setAttribute('tabindex','0'); b.setAttribute('aria-describedby','viewerReady'); }
+        else { b.removeAttribute('aria-disabled'); b.removeAttribute('tabindex'); b.removeAttribute('aria-describedby'); } });   /* (candidate 4) not clickable until the moment */   /* (Round 193) not yet available: the listing's two buttons wear the locked palette */
       if(sell&&vWith&&pq){ vCta.textContent='Reserve \u00B7 $100'; vCta.setAttribute('href',a+'~reserve+'+addrOf(vWith)); if(vBuy){ vBuy.hidden=false; vBuy.textContent='Buy \u00B7 $'+gsCut(pq.two);   /* ROUND 189 (R189-2): what the receipt says */ vBuy.setAttribute('href',a+'~buy+'+addrOf(vWith)); } }
       if(sell&&vConfirm){ var cq=gsQuote(vConfirm,r); vCta.textContent=(gsES()?'Confirmar a ':'Confirm ')+r.name+'\u00a0\u00b7\u00a0$'+gsCut(cq.two)+(gsES()?' por los dos':' for the two'); vCta.setAttribute('href','#r-'+addrOf(vConfirm)+'+'+addrOf(r)); if(vBuy){ vBuy.hidden=true; } }
       if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell&&!one&&!vConfirm);
