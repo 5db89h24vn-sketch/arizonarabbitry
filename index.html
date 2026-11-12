@@ -10172,7 +10172,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function dateCard(rp){ if(!rp.date) return ''; var d=String(rp.date), k=rp.two?d.indexOf(ES?' o el ':' or '):-1;
       var b=function(t){ return '<b>'+esc(t).replace(/ /g,NB)+'</b>'; };
       return ' '+(k>0?(b(d.slice(0,k))+' '+b(d.slice(k+1))):b(d)); }
-    var HOUR_AT={'2026-10-19':'2026-11-12T14:00:00-07:00'};
+    var HOUR_AT={'2026-10-19':'2026-11-12T18:00:00-07:00'};   /* (Round 192i, 12 Nov 2026) 6:00 PM: the hour moved from 2:00 PM at his word of 12:12pm, so the three can be shown with their count before they open */
     function hourMs(born){ var t=Date.parse(HOUR_AT[born]||''); return isNaN(t)?0:t; }
     function hourListed(born){ return typeof RABBITS!=='undefined'&&Array.isArray(RABBITS)&&RABBITS.some(function(r){ return !!r&&r.dob===born; }); }
     function hourName(born,full){ var m=/T(\d{2}):(\d{2})/.exec(HOUR_AT[born]||''); if(!m) return ''; var h=+m[1], h12=(h%12)||12;
