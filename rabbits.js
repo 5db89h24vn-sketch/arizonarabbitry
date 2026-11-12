@@ -323,6 +323,19 @@
       grooming answer one tap away, so a buyer who is weighing the work sees
       it on the rabbit and not only in the FAQ. Leave it out on a short coat.
 
+   ── ONE RABBIT PER CUSTOMER (12 Nov 2026) ──
+      A rabbit that a customer may take only one of gets one line:
+
+        onePer: true,
+
+      and its listing prints "One rabbit per customer from this litter."
+      The site then never offers it as one of two: no pair line, no
+      second-rabbit button, no listing for two, and the 20% for a second
+      does not apply with it. Put the line on every rabbit of the litter.
+      A special price for two (BUNDLES, above) that names such a rabbit is
+      ignored by the site: one per customer comes first.
+      Leave it out and the usual rule for two applies.
+
    ── TO ADD A NEW RABBIT ──
       Copy any block between { and }, including the comma at the end,
       paste it in, and change the details.
@@ -1766,6 +1779,103 @@ const RABBITS = [
     note:   "Tortoise like Mocha and hard to tell apart: a shade warmer and fluffier on 15 October, one ear down and one out to the side."
   },
 
+  /* S'Morri and Root Beer's litter of 19 Oct 2026, three raised, listed Thu 12 Nov 2026: Blueberry, Chai and Juniper. One rabbit per customer; no payment plan, paid in full at pickup. */
+  {
+    name:   "Blueberry",
+    photos: [
+      { src: "photos/blueberry.jpg", date: "2026-11-12" },
+      { src: "photos/blueberry-2.jpg", date: "2026-11-12", note: "Sitting up, closer, facing the camera." },
+      { src: "photos/blueberry-3.jpg", date: "2026-11-12", note: "Sitting tall, looking over its shoulder." },
+      { src: "photos/blueberry-4.jpg", date: "2026-11-12", note: "Lying down, from the side." },
+      { src: "photos/blueberry-5.jpg", date: "2026-11-12", note: "Tucked in, facing the camera." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  450,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Blue tortoise",
+    dob:    "2026-10-19",
+    listedOn: "2026-11-12",
+    ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/blueberry.jpg",
+    onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
+    noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
+    opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    feature: true,   /* the lead of the front page from 12 Nov 2026, by the rule of 27 Sept: the dearest rabbit available, first on the rail */
+    note:   "Blue tortoise: soft blue-grey all over, paler underneath, and very fluffy. Sitting up to face the camera on 12 November. No payment plan: paid in full at pickup."
+  },
+
+  {
+    name:   "Chai",
+    photos: [
+      { src: "photos/chai.jpg", date: "2026-11-12" },
+      { src: "photos/chai-2.jpg", date: "2026-11-12", note: "Lying down, from the side: the dark nose, ears and feet." },
+      { src: "photos/chai-3.jpg", date: "2026-11-12", note: "In the shade, facing the camera: the dark mask around the nose." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  425,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Sable point",
+    dob:    "2026-10-19",
+    listedOn: "2026-11-12",
+    ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/chai.jpg",
+    onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
+    noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
+    opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Sable point: cream with a smoky grey-brown nose, ears and feet. Tucked in on 12 November, one ear out to the side. No payment plan: paid in full at pickup."
+  },
+
+  {
+    name:   "Juniper",
+    photos: [
+      { src: "photos/juniper.jpg", date: "2026-11-12" },
+      { src: "photos/juniper-2.jpg", date: "2026-11-12", note: "Tucked in, half turned to the camera." },
+      { src: "photos/juniper-3.jpg", date: "2026-11-12", note: "Face on, chin on the stone, both ears out." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  425,
+    breed:  "Holland Lop",
+    mother: "smorri",
+    father: "rootbeer",
+    sex:    "",
+    colour: "Blue tortoise",
+    dob:    "2026-10-19",
+    listedOn: "2026-11-12",
+    ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/juniper.jpg",
+    onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
+    noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
+    opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Blue tortoise, the warmer of the two: fawn-grey with blue-grey ears and a bright dark eye. Lying down on 12 November, one ear down and one out to the side. No payment plan: paid in full at pickup."
+  },
+
   /* THE SEVEN OF 27 SEPTEMBER, listed 22 Oct 2026: Cinnamony and Frederick's last
      litter (his word through Codex that day: "Yes. They belong to Frederick &
      Cinamonia", the question being this litter). Photographed by him at the
@@ -1845,7 +1955,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/coconut.jpg",
-    feature: true,                             /* the hero from 31 Oct 2026, when Marshmallow went home: by the rule she was chosen by (27 Sept), the dearest rabbit available ($350, with Snowcone), first on the rail, settled on the brick with nothing holding it (its 22 Oct photo, flat out by the fountain) */
+    /* feature: true came off on 12 Nov 2026, when Blueberry was listed: by the same rule (27 Sept) the lead passes to the dearest rabbit available, first on the rail. Coconut led the front page from 31 Oct, when Marshmallow went home (its 22 Oct photo, flat out by the fountain). */
     note:   "White, with pink ears and ruby eyes; flat out on the brick on 22 October, and picked up and held in the clip."
   },
 
