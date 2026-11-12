@@ -10172,10 +10172,62 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     function dateCard(rp){ if(!rp.date) return ''; var d=String(rp.date), k=rp.two?d.indexOf(ES?' o el ':' or '):-1;
       var b=function(t){ return '<b>'+esc(t).replace(/ /g,NB)+'</b>'; };
       return ' '+(k>0?(b(d.slice(0,k))+' '+b(d.slice(k+1))):b(d)); }
+    var HOUR_AT={'2026-10-19':'2026-11-12T14:00:00-07:00'};
+    function hourMs(born){ var t=Date.parse(HOUR_AT[born]||''); return isNaN(t)?0:t; }
+    function hourListed(born){ return typeof RABBITS!=='undefined'&&Array.isArray(RABBITS)&&RABBITS.some(function(r){ return !!r&&r.dob===born; }); }
+    function hourName(born,full){ var m=/T(\d{2}):(\d{2})/.exec(HOUR_AT[born]||''); if(!m) return ''; var h=+m[1], h12=(h%12)||12;
+      return h12+((full||m[2]!=='00')?(':'+m[2]):'')+NB+(ES?((h<12?'a.':'p.')+NB+'m.'):(h<12?'AM':'PM')); }
+    function hourLeft(born,full){ var t=hourMs(born), left=t-Date.now(); if(!t||left<=0) return '';
+      var mins=Math.ceil(left/60000), h=Math.floor(mins/60), m=mins%60;
+      function n(x,one,many){ return x+NB+(x===1?one:many); }
+      if(!full) return (ES?'en':'in')+NB+((h&&!m)?n(h,ES?'hora':'hour',ES?'horas':'hours'):(h?(h+NB+'h'+NB+m+NB+'min'):(m+NB+'min')));
+      if(ES) return (((h===1&&!m)||(!h&&m===1))?'falta ':'faltan ')+(h?n(h,'hora','horas'):'')+(h&&m?' y ':'')+(m?n(m,'minuto','minutos'):'');
+      return (h?n(h,'hour','hours'):'')+(h&&m?', ':'')+(m?n(m,'minute','minutes'):'')+' left'; }
+    function readyInner(rp,w){ return (rp.checked?VCHK:'')+esc(tie(rp.label))+dateCard(rp)+(rp.left?'<br><b data-hour-left="'+esc(w.born)+'">'+esc(rp.left)+'</b>':''); }
+    function hourSheet(w,rd,why){ var left=hourLeft(w.born,true); why.style.textWrap=left?'balance':'';
+      if(left){ rd.innerHTML=(ES?'A la venta hoy a las <b>':'On sale today at <b>')+esc(hourName(w.born,true))+(ES?'</b>':'</b>.');
+        why.innerHTML=esc(ES?'Hora de Arizona: ':'Arizona time: ')+'<span data-hour-left="'+esc(w.born)+'" data-hour-full>'+esc(left)+'</span>. '+esc(tie(ES?'Salen a la venta en esta página a esa hora, y ese día le aviso si está en la lista.':'They go on sale on this page then, and I email you that day if you’re on the list.')); }
+      else { rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=tie(ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'); } }
+    function hourCome(born){ var w=null, i;
+      if(typeof waiting==='undefined'||!waiting) return;
+      for(i=0;i<waiting.length;i++){ if(waiting[i].born===born) w=waiting[i]; }
+      if(!w) return;
+      var li=row?row.querySelector('li[data-id="'+w.id+'"]'):null, sp=li?li.querySelector('.lsh-ready'):null, rp=readyParts(w);
+      if(sp&&rp) sp.innerHTML=readyInner(rp,w);
+      if(lsNow&&lsNow.born===born){ var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy'); if(rd&&why) hourSheet(lsNow,rd,why); }
+    }
+    var hourSeen={};
+    function hourWatch(born){ var t=hourMs(born);
+      if(hourSeen[born]||hourListed(born)||!t||Date.now()-t>6*3600000) return;   /* six hours after the hour, a reader's own visit finds them */
+      hourSeen[born]=1; var n=0;
+      (function look(){ if(n++>=90) return;
+        var again=function(){ setTimeout(look,20000); };
+        try{ fetch('rabbits.js?hour='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.text():''; }).then(function(t){
+            if(!new RegExp('dob:\\s*"'+born+'"').test(t)) return again();
+            var a=document.activeElement, typing=!!a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName||'');
+            if(typing) return again();   /* never under a reader's hands */
+            try{ if(sessionStorage.getItem('arHourShown')===born) return; sessionStorage.setItem('arHourShown',born); }catch(e){}
+            location.reload();
+          }).catch(again); }catch(e){ again(); } })();
+    }
+    var hourT=0;
+    function hourTick(){ var els=document.querySelectorAll('[data-hour-left]'), i, k, t, now, next=0, come={};
+      for(i=0;i<els.length;i++){ k=els[i].getAttribute('data-hour-left'); t=hourLeft(k,els[i].hasAttribute('data-hour-full'));
+        if(t){ if(els[i].textContent!==t) els[i].textContent=t; } else come[k]=1; }
+      for(k in come){ if(come.hasOwnProperty(k)) hourCome(k); }
+      now=Date.now();
+      for(k in HOUR_AT){ if(HOUR_AT.hasOwnProperty(k)){ t=hourMs(k); if(t>now){ if(!next||t<next) next=t; } else hourWatch(k); } }
+      clearTimeout(hourT);
+      if(next) hourT=setTimeout(hourTick,Math.max(250,Math.min(60000-(now%60000)+400,next-now+60)));
+    }
+    setTimeout(hourTick,0);
+    document.addEventListener('visibilitychange',function(){ if(!document.hidden) hourTick(); });
+    window.addEventListener('pageshow',function(e){ if(e&&e.persisted) hourTick(); });
     function readyParts(w){
       if(!w.day) return {label:ES?'Listos en fecha por definir':'Ready date not set', date:'', unset:true};
       var togo=-days(w.or||w.day); if(isNaN(togo)) return null;
       var date=w.or?dWeek2(w.day,w.or):dWeek(w.day);
+      if(w.rk==='checked'&&togo<=0&&hourLeft(w.born)) return {label:ES?'A la venta a las':'On sale at', date:hourName(w.born), firm:true, come:true, left:hourLeft(w.born)};   /* (Round 192h) his hour for the day, and the time left */
       if(w.rk==='checked') return togo<=0?{label:ES?'A la venta muy pronto':'Going on sale soon', date:'', firm:true, come:true}:{label:ES?'Listos el':'Ready', date:date, firm:true, checked:true, two:!!w.or};
       return togo<=0?{label:ES?'Listos muy pronto':'Ready soon', date:'', come:true}:{label:ES?'Listos hacia el':'Projected ready', date:date, two:!!w.or};
     }
@@ -10310,7 +10362,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       var top=w.plan?esc(w.plan.name.charAt(0).toUpperCase()+w.plan.name.slice(1)):esc(nowWords(w.born));
       var kind=w.plan?esc(T.notBorn):esc(pureWord(w.kind));   /* (Round 192f, his word of 11:49pm) the label on the photo says the breed; this line says what the label said: Purebred, or Cross */
       var rp=w.plan?null:readyParts(w);
-      var ready=rp?'<span class="lsh-ready'+(rp.firm?' set':'')+(rp.unset?' none':'')+'">'+(rp.checked?VCHK:'')+esc(tie(rp.label))+dateCard(rp)+'</span>':'';
+      var ready=rp?'<span class="lsh-ready'+(rp.firm?' set':'')+(rp.unset?' none':'')+'">'+readyInner(rp,w)+'</span>':'';
       var par=w.plan?'':parentsHTML(w);
       return '<li data-id="'+esc(w.id)+'" data-k="'+w.kind+'"><div class="lsh-card">'+
         '<button type="button" class="lsh-open" aria-haspopup="dialog">'+
@@ -10432,14 +10484,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
           '<span><small>'+esc(role==='mother'?T.mother:T.father)+'</small><b>'+esc(p.name)+'</b></span></a>'; };
       var pt=(w.l.parents?tile('mother',w.l.parents.mother)+tile('father',w.l.parents.father):'');
       var subEl=document.getElementById('lsSub'); subEl.className=pt?'ls-sub viewer-parents ls-par':'ls-sub'; subEl.innerHTML=pt||sub;
-      var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy');
+      var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy'); why.style.textWrap='';   /* (Round 192h) only the hour's own sentence is balanced */
       var LISTED=ES?'Cada uno se publica cuando ya lo fotografié y revisé que está sano; con los avisos, se entera ese mismo día.':'Each one is listed once it’s photographed and I’ve checked it’s in good health; with alerts, you hear the same day.';
       var rp=readyParts(w)||{unset:true};
       var GOES=ES?'Ese día salen a la venta en esta página y pueden irse a casa; le aviso si está en la lista.':'That day they go on sale on this page and can go home, and I email you if you’re on the list.';
       var GOES2=ES?'En uno de ellos salen a la venta en esta página y pueden irse a casa; ese día le aviso si está en la lista.':'On one of them they go on sale on this page and can go home, and I email you that day if you’re on the list.';
       var OR=ES?('o'+NB+'el'):'or', dateH=rp.date?(rp.two?esc(rp.date).replace(/ /g,NB).replace(NB+OR+NB,' '+OR+NB):esc(rp.date)):'';
       if(rp.unset){ rd.textContent=tie(ES?'Listos en fecha por definir.':'Ready date not set yet.'); why.textContent=tie(LISTED); }   /* plain: an absence is not moss (candidate 5); the last two words held (candidate 6) */
-      else if(rp.firm&&rp.come){ rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=tie(ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'); }
+      else if(rp.firm&&rp.come){ hourSheet(w,rd,why); }   /* (Round 192h) his hour and the time left while the hour is ahead; else the words as before */
       else if(rp.checked&&rp.two){ rd.innerHTML=VCHK+(ES?'Listos el ':'Ready ')+'<b>'+dateH+'</b>.'; why.textContent=tie((w.checkedOn?(ES?('Comprobé estos dos días yo mismo el '+dWeek(w.checkedOn)+'. '):('I checked these two days myself on '+dWeek(w.checkedOn)+'. ')):(ES?'Comprobé estos dos días yo mismo. ':'I checked these two days myself. '))+GOES2); }
       else if(rp.checked){ rd.innerHTML=VCHK+(ES?'Listos el ':'Ready ')+'<b>'+esc(rp.date)+'</b>.'; why.textContent=tie((w.checkedOn?(ES?('Comprobé esta fecha yo mismo el '+dWeek(w.checkedOn)+'. '):('I checked this date myself on '+dWeek(w.checkedOn)+'. ')):(ES?'Comprobé esta fecha yo mismo. ':'I checked this date myself. '))+GOES); }
       else if(rp.come){ rd.innerHTML=ES?'Listos <b>muy pronto</b>.':'Ready <b>soon</b>.'; why.textContent=tie(LISTED); }
