@@ -973,6 +973,9 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
 .hist-flash{animation:histflash 1.6s ease-out;border-radius:6px}
 @keyframes histflash{0%,35%{background:color-mix(in srgb,var(--brick) 20%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 20%,transparent)}100%{background:transparent;box-shadow:0 0 0 6px transparent}}
 @media (prefers-reduced-motion:reduce){ .hist-flash{animation:none;background:color-mix(in srgb,var(--brick) 16%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 16%,transparent)} }
+
+.pay-flash{animation:histflash 1.6s ease-out}
+@media (prefers-reduced-motion:reduce){ .pay-flash{animation:none;background:color-mix(in srgb,var(--brick) 16%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 16%,transparent)} }
 .viewer-hist span{white-space:nowrap}
 
 .meta{font-size:13.5px;color:var(--ink-faint);line-height:1.55}
@@ -10102,7 +10105,25 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     }
     function payShut(){ var pp=document.getElementById('viewerPayPanel'); if(pp) pp.hidden=true; if(vPay) vPay.setAttribute('aria-expanded','false');
       var row=document.getElementById('viewerOpens'); if(row) row.hidden=!((vWhy&&!vWhy.hidden)||(vPay&&!vPay.hidden)); }
-    function payShow(){ var pp=document.getElementById('viewerPayPanel'); if(!pp||!vPay||vPay.hidden) return; pp.hidden=false; vPay.setAttribute('aria-expanded','true'); }
+    function payShow(){ var pp=document.getElementById('viewerPayPanel'); if(!pp||!vPay||vPay.hidden) return; pp.hidden=false; vPay.setAttribute('aria-expanded','true'); payFrame(); }
+    function payFrame(){
+      var n=0;
+      (function wait(){
+        if(document.documentElement.classList.contains('vt')&&n++<90){ requestAnimationFrame(wait); return; }   /* the photograph still in flight */
+        setTimeout(function(){
+          var pp=document.getElementById('viewerPayPanel');
+          if(!vPay||vPay.hidden||!pp||pp.hidden||!vw.classList.contains('open')) return;
+          var sc=vScroller(), foot=vw.querySelector('.viewer-foot'), fl=foot?foot.getBoundingClientRect().top:innerHeight;
+          var ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
+          var st=(sc&&sc.getBoundingClientRect)?sc.getBoundingClientRect().top:0, top=Math.max(topLine,st)+10;
+          var rt=vPay.getBoundingClientRect().top, pb=pp.getBoundingClientRect().bottom;
+          if(rt>=top-2&&pb<=fl-12) return;   /* already in view: nothing moves */
+          var dy=rt-top, calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy({top:dy,behavior:calm?'auto':'smooth'});
+          vPay.classList.remove('pay-flash'); void vPay.offsetWidth; vPay.classList.add('pay-flash'); setTimeout(function(){ vPay.classList.remove('pay-flash'); },1700);
+        },320);
+      })();
+    }
     function payFill(r){
       var plan=document.getElementById('viewerPayPlan'), now=document.getElementById('viewerPayNow');
       var onPlan=!!(r&&r.partsFrom&&r.status!=='available');
