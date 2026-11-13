@@ -241,7 +241,7 @@
 <meta name="description" content="Cada cambio del sitio de Arizona Rabbits, con una foto del antes y el después, el más reciente primero.">
 <meta name="theme-color" content="#FBF8F3">
 
-<script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
+<script>/* (Round 193d, his words of 4:56pm: "defaults to whatever system settings somebody has") the reader's own choice when they made one; else the system's */(function(){var r=document.documentElement,q=null;function set(d){if(d)r.setAttribute('data-look','dim');else r.removeAttribute('data-look');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',d?'#2D251F':'#FBF8F3');}var l=null;try{l=localStorage.getItem('look');}catch(e){}try{q=window.matchMedia('(prefers-color-scheme: dark)');}catch(e){}set(l==='dim'||(!l&&!!q&&q.matches));if(!l&&q&&q.addEventListener)q.addEventListener('change',function(e){var k=null;try{k=localStorage.getItem('look');}catch(x){}if(!k){set(e.matches);try{document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:e.matches}}));}catch(x){}}});})();</script>
 <link rel="canonical" href="https://arizonarabbits.com/es-changes">
 <link rel="alternate" hreflang="en" href="https://arizonarabbits.com/changes">
 <link rel="alternate" hreflang="es" href="https://arizonarabbits.com/es-changes">

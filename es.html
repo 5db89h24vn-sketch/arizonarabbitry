@@ -247,7 +247,7 @@
 
 <meta name="theme-color" content="#FBF8F3">
 
-<script>(function(){try{if(localStorage.getItem('look')==='dim'){document.documentElement.setAttribute('data-look','dim');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#2D251F');}}catch(e){}})();</script>
+<script>/* (Round 193d, his words of 4:56pm: "defaults to whatever system settings somebody has") the reader's own choice when they made one; else the system's */(function(){var r=document.documentElement,q=null;function set(d){if(d)r.setAttribute('data-look','dim');else r.removeAttribute('data-look');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',d?'#2D251F':'#FBF8F3');}var l=null;try{l=localStorage.getItem('look');}catch(e){}try{q=window.matchMedia('(prefers-color-scheme: dark)');}catch(e){}set(l==='dim'||(!l&&!!q&&q.matches));if(!l&&q&&q.addEventListener)q.addEventListener('change',function(e){var k=null;try{k=localStorage.getItem('look');}catch(x){}if(!k){set(e.matches);try{document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:e.matches}}));}catch(x){}}});})();</script>
 
 <link rel="preload" as="script" href="rabbits.js?v=b5efa231" data-fact="data-preload">
 
@@ -2863,6 +2863,38 @@ html.pick #nav .btn,html.pick .bunny .parts{display:none}
 
 .bunny-body{container-type:inline-size;container-name:bcard}
 .bget{position:relative;z-index:2;display:flex;gap:6px;margin:0}
+
+.bget-locked{position:relative;min-height:104px}
+.bget-locked>.btn{visibility:hidden}
+.lkcover{position:absolute;inset:0;z-index:3;display:grid;align-content:center;justify-items:center;gap:4px;padding:8px 6px;border-radius:12px;
+  background:var(--lock-bg);border:1px solid var(--lock-line);color:var(--lock-ink);text-align:center;transition:opacity .5s ease}
+.lkcover .bopen-k{color:var(--lock-ink)}
+.lkcover .lkclock{margin:2px 0}
+.lkcover .lkc b{background:var(--paper);border-color:var(--lock-line)}
+.lkcover .lkc small{color:var(--lock-ink)}
+.lkcover-at{font-size:12px;line-height:1.3;font-weight:600;color:var(--lock-ink)}
+.bget-locked.lk-opening>.lkcover{opacity:0}
+
+.lkclock{gap:12px;margin:6px 0 4px;align-items:flex-start}
+.lkc{gap:5px}
+.lkc b{min-width:0;padding:0;border:0;border-radius:0;background:none;font-family:var(--serif);font-weight:500;font-size:clamp(24px,6.4vw,30px);line-height:1;letter-spacing:-.01em;color:var(--ink)}
+.lkc small{font-size:9px;font-weight:600;letter-spacing:.14em;color:var(--ink-faint)}
+.lkclock>i{font-family:var(--serif);font-weight:400;font-size:clamp(20px,5.4vw,25px);line-height:1;padding-top:0;color:var(--ink-faint);opacity:.55}
+.soonbar .lkclock{gap:9px}.soonbar .lkc b{font-size:clamp(18px,5vw,22px);padding:0}.soonbar .lkclock>i{font-size:clamp(16px,4.4vw,19px)}
+.gs-lock .lkc b{font-size:32px}
+.lkcover{gap:6px;padding:16px 12px 14px;border-radius:14px;background:color-mix(in srgb,var(--lock-bg) 55%,transparent);border-color:color-mix(in srgb,var(--lock-line) 75%,transparent)}
+.lkcover .lkc b{background:none;border:0}
+.lkcover .bopen-k{font-weight:600;letter-spacing:.12em;color:var(--ink-faint)}
+.lkcover-at{font-size:12.5px;line-height:1.35;font-weight:400;color:var(--ink-soft);text-wrap:balance;max-width:24ch}
+.bget-locked{min-height:138px}
+.vcta.bget-locked{min-height:136px}
+
+.vonep{display:flex;align-items:center;justify-content:center;gap:7px;margin:8px 0 0;font-size:13px;line-height:1.35;color:var(--ink-soft);text-align:center}
+.vonep[hidden]{display:none}
+.vonep .vti{flex:none;display:block;width:16px;height:16px;margin:0;color:var(--ink-faint);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.vonep b{font-weight:600;color:var(--ink)}
+.vcta.bget-locked{min-height:112px}
+@media(prefers-reduced-motion:reduce){.lkcover{transition:none}}
 .bget .btn{flex:1 1 auto;min-width:0;min-height:44px;padding:0 6px;font-size:15px;white-space:nowrap}
 
 @container bcard (max-width:216px){ .bget{flex-direction:column} .bget .btn{flex:none} }
@@ -5371,7 +5403,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       <div class="vmoney" id="viewerMoney" hidden>
         
         <div class="pairmath" id="viewerPairMath" hidden></div>
-        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">El depósito de $50 se resta del precio.</b><b class="vt-one" hidden>Sin depósito a este precio.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Entrega&nbsp;gratis</b> en AZ; viajes largos en fin de&nbsp;semana.</span></span><span class="vt-row vt-more"><svg class="vti milg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path fill="currentColor" stroke="none" d="M12 7 13.15 10.12 16.47 10.25 13.85 12.3 14.76 15.5 12 13.65 9.24 15.5 10.15 12.3 7.53 10.25 10.85 10.12z"/></svg><span><b>5%&nbsp;de&nbsp;descuento</b> para militares y personal de&nbsp;emergencias.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Dos juntos:</b> el segundo tiene 20% de&nbsp;descuento.</span></span><span class="vt-row vt-oneper" id="viewerOnePer" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2"/><path d="M10.5 9.8 12.4 8.3v7.5"/></svg><span><b>Un conejo por cliente</b> de esta&nbsp;camada.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
+        <p class="viewer-terms" id="viewerTerms"><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/></svg><span><b class="vt-dep">El depósito de $50 se resta del precio.</b><b class="vt-one" hidden>Sin depósito a este precio.</b></span></span><span class="vt-row"><svg class="vti" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="translate(0 3.75) scale(.75)" stroke-width="2.4"><path d="M5.4 17H3.6Q2 17 2 15.4V4.6Q2 3 3.6 3H17.4Q19 3 19 4.6V17"/><path d="M10.6 17H21.4"/><path d="M19 7.5H24.6Q25.4 7.5 25.9 8.1L29.6 12.7Q30 13.2 30 13.8V15.4Q30 17 28.4 17H26.6"/><circle cx="8" cy="17.6" r="2.3"/><circle cx="24" cy="17.6" r="2.3"/></g></svg><span><b>Entrega&nbsp;gratis</b> en AZ; viajes largos en fin de&nbsp;semana.</span></span><span class="vt-row vt-more"><svg class="vti milg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path fill="currentColor" stroke="none" d="M12 7 13.15 10.12 16.47 10.25 13.85 12.3 14.76 15.5 12 13.65 9.24 15.5 10.15 12.3 7.53 10.25 10.85 10.12z"/></svg><span><b>5%&nbsp;de&nbsp;descuento</b> para militares y personal de&nbsp;emergencias.</span></span><span class="vt-row vt-pairrule" id="viewerPairRule" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span><b>Dos juntos:</b> el segundo tiene 20% de&nbsp;descuento.</span></span><span class="vt-row vt-bundle" id="viewerBundle" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span><b class="vt-bl"></b> <span class="vt-bs"></span></span></span></p>
 
         <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span class="vtwo-t">Una oferta especial</span></a><a class="btn btn-tonal vtwo-b" id="viewerAddB" href="#contact" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Un segundo conejo</span></a></p>
         
@@ -5428,6 +5460,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         <div class="pairrec" id="viewerPair" hidden></div>
       </div>
       <div class="viewer-foot"><div class="vcta"><a class="btn btn-primary" id="viewerCta" href="#contact">Pregunte por este conejo</a><a class="btn btn-tonal" id="viewerBuy" href="#contact" hidden>Comprar</a><a class="btn btn-tonal vtext txgo" id="viewerText" href="sms:+15202702827" hidden><span class="tx-s">Mensaje</span><span class="tx-l">Mensaje al (520) 270-2827</span></a><button type="button" class="btn btn-tonal vtext txbig" id="viewerTextBig" aria-expanded="false" aria-controls="viewerTextQR" hidden><svg class="txi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.6c-.5.4-1.4 0-1.4-.7V5.5z"/></svg>Mensaje</button></div>
+        <p class="vonep" id="viewerOnePer" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2"/><path d="M10.5 9.8 12.4 8.3v7.5"/></svg><span><b>Un conejo por cliente</b> de esta&nbsp;camada.</span></p>
         <div class="txqr" id="viewerTextQR" hidden><p class="txsay"><b>Escanee esto con la cámara de su teléfono.</b>Abre un mensaje para mí con un saludo ya escrito.<span class="txwho"></span><span class="txnum">O escriba al (520) 270-2827.</span></p></div>
 
         </div>
@@ -7025,7 +7058,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function lockNoteHTML(r){ return '<span class="bopen-k">'+LK_IC+lkIn()+'</span>'+lkCount(r,'clock','')+
     '<span class="bopen-at">'+esc(opensDay(r,true))+(lkES()?' a '+opensLas(r):' at ')+esc(opensName(r,false))+'</span>'; }
   function lockReadyHTML(r){ var ES=lkES(), one=gsOne(r);
-    return LK_IC+'<span class="vlock-t"><small>'+lkIn()+'</small>'+lkCount(r,'clock','')+
+    return LK_IC+'<span class="vlock-t">'+
       '<span>'+(ES?(one?'Comprar se abre ':'Reservar y Comprar se abren ')+esc(opensDay(r,false))+' a '+opensLas(r)
                   :(one?'Buy opens ':'Reserve and Buy open ')+esc(opensDay(r,false))+' at ')+esc(opensName(r,true))+'</span></span>'; }
   function lockSheetHTML(r){ var ES=lkES(), one=gsOne(r);
@@ -7051,7 +7084,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var g=document.getElementById('getSheet'), busy=lkLate&&!!g&&!g.hidden;   /* put off once, the load also waits for a request being written or just sent */
     if(typing||busy){ lkLate=true; lkT=setTimeout(opensTick,5000); return; }
     try{ if(sessionStorage.getItem('arOpensShown')===String(t)) return; sessionStorage.setItem('arOpensShown',String(t)); }catch(e){}
-    location.reload(); }
+    [].forEach.call(document.querySelectorAll('.bget-locked'),function(x){ x.classList.add('lk-opening'); });   /* (Round 193d) the panels go, the buttons show */
+    setTimeout(function(){ location.reload(); },650); }
   function opensTick(){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[], now=Date.now(), next=0, come=0, i, t, els, r, s;
     for(i=0;i<R.length;i++){ if(!R[i]||R[i].status!=='available') continue; t=opensMs(R[i]); if(!t) continue;
       if(t>now){ if(!next||t<next) next=t; } else if(t>lkBoot&&t>come) come=t; }
@@ -7091,7 +7125,12 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     var day=y+'-'+('0'+(mo+1)).slice(-2)+'-'+('0'+m[1]).slice(-2);
     return day<=t;
   }
-  function gsCardHTML(r){ var h=gsCardHTML0(r); return locked(r)?lockButtons(h,r):h; }   /* (Round 193) not yet available: the two buttons wear the locked palette */
+  function lockCoverHTML(r){ var ES=lkES(), one=gsOne(r), p=+priceOf(r);
+    return '<span class="lkcover" role="status"><span class="bopen-k">'+LK_IC+lkIn()+'</span>'+lkCount(r,'clock','')+
+      '<span class="lkcover-at">'+(one?(ES?'Comprar $'+p:'Buy $'+p):(ES?'Reservar $50 · Comprar $'+p:'Reserve $50 · Buy $'+p))+(ES?' a '+opensLas(r):' at ')+esc(opensName(r,false))+'</span></span>'; }
+  function gsCardHTML(r){ var h=gsCardHTML0(r); if(!locked(r)) return h;
+    h=lockButtons(h,r).replace(/<p class="bget-note bopen"[^>]*>[\s\S]*?<\/p>/,'');   /* the separate block goes: the clock is on the buttons */
+    return h.replace(/<div class="bget( bget-one)?">/,function(m,one){ var id=(/aria-describedby="(lkopen\d+)"/.exec(h)||[])[1]||''; return '<div class="bget bget-locked'+(one||'')+'">'+lockCoverHTML(r).replace('<span class="lkcover"','<span class="lkcover" id="'+id+'"'); }); }   /* (Round 193d) the clock lies over the buttons */   /* (Round 193) not yet available: the two buttons wear the locked palette */
   function gsCardHTML0(r){
     var a=esc(addrOf(r)), n=esc(r.name), p=+priceOf(r), now=gsNow(r), one=gsOne(r);
     var note=locked(r)?('<p class="bget-note bopen">'+lockNoteHTML(r)+'</p>')   /* (Round 193) available at an hour: the time left and the hour */
@@ -9322,7 +9361,8 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
       if(vBuy){ vBuy.hidden=!sell||one; if(sell&&!one){ vBuy.textContent='Buy \u00B7 $'+p; vBuy.setAttribute('href',a+'~buy'); } }
       [vCta,vBuy].forEach(function(b){ if(!b) return; var on=!!(sell&&locked(r)); b.classList.toggle('btn-locked',on);
         if(on){ b.removeAttribute('href'); b.setAttribute('aria-disabled','true'); b.setAttribute('tabindex','0'); b.setAttribute('aria-describedby','viewerReady'); }
-        else { b.removeAttribute('aria-disabled'); b.removeAttribute('tabindex'); b.removeAttribute('aria-describedby'); } });   /* (candidate 4) not clickable until the moment */   /* (Round 193) not yet available: the listing's two buttons wear the locked palette */
+        else { b.removeAttribute('aria-disabled'); b.removeAttribute('tabindex'); b.removeAttribute('aria-describedby'); }
+        var vc=b.parentNode; if(vc&&b===vCta){ var old=vc.querySelector('.lkcover'); if(old) old.parentNode.removeChild(old); vc.classList.toggle('bget-locked',on); if(on) vc.insertAdjacentHTML('afterbegin',lockCoverHTML(r)); }   /* (Round 193d) the listing's two, covered */ });   /* (candidate 4) not clickable until the moment */   /* (Round 193) not yet available: the listing's two buttons wear the locked palette */
       if(sell&&vWith&&pq){ vCta.textContent='Reserve \u00B7 $100'; vCta.setAttribute('href',a+'~reserve+'+addrOf(vWith)); if(vBuy){ vBuy.hidden=false; vBuy.textContent='Buy \u00B7 $'+gsCut(pq.two);   /* ROUND 189 (R189-2): what the receipt says */ vBuy.setAttribute('href',a+'~buy+'+addrOf(vWith)); } }
       if(sell&&vConfirm){ var cq=gsQuote(vConfirm,r); vCta.textContent=(gsES()?'Confirmar a ':'Confirm ')+r.name+'\u00a0\u00b7\u00a0$'+gsCut(cq.two)+(gsES()?' por los dos':' for the two'); vCta.setAttribute('href','#r-'+addrOf(vConfirm)+'+'+addrOf(r)); if(vBuy){ vBuy.hidden=true; } }
       if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell&&!one&&!vConfirm);
@@ -10038,7 +10078,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
             if(bs) bs.textContent=''; } }
         var mates=(avail&&sell&&!one)?gsMates(r):[], pr=vMoney.querySelector('#viewerPairRule'), tw=vMoney.querySelector('#viewerTwo'), twb=vMoney.querySelector('#viewerTwoB'), adb=vMoney.querySelector('#viewerAddB'), vset=vMoney.querySelector('#viewerPairSet');
         if(pr) pr.hidden=!(mates.length&&!bm)||!!(sell&&mate);
-        var op1=vMoney.querySelector('#viewerOnePer'); if(op1) op1.hidden=!(avail&&onePer(r));   /* Round 193: the rule, where the pair line would be */   /* (Round 181) the table says it in a pair context */
+        var op1=document.getElementById('viewerOnePer'); if(op1) op1.hidden=!(avail&&onePer(r));   /* Round 193: the rule, where the pair line would be */   /* (Round 181) the table says it in a pair context */
         var pm=vMoney.querySelector('#viewerPairMath');
         if(pm){ pm.hidden=!(sell&&mate);
           var pmw=pmMilEl(pm); if(pmw){ pmw.hidden=pm.hidden; if(!pmw.hidden) pmMilPaint(pmw); }
