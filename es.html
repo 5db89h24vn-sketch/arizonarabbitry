@@ -1018,6 +1018,7 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
     .bunnies>.bunny>.bunny-body>.bunny-top{grid-row:1}
     
     .bunnies>.bunny>.bunny-body>.parts{grid-row:2;margin-top:calc(var(--bg) - 5px)}
+    .bunnies>.bunny>.bunny-body>.parts.partsline{margin-top:var(--bg)}   
     .bunnies>.bunny>.bunny-body>.plan-meta{grid-row:2;margin-top:var(--bg)}
     .bunnies>.bunny>.bunny-body>.noplan{grid-row:2;margin-top:var(--bg)}
     .bunnies>.bunny>.bunny-body>.plan-meta:not(.state-meta)~.state-meta{grid-row:3}
@@ -1179,6 +1180,7 @@ a.bunny-cta::before{content:'';position:absolute;inset:-11px -12px}
 
 .bunny .plan-meta{margin:0;font-size:12px;line-height:1.4;color:var(--ink-soft);pointer-events:none}
 .bunny .noplan{margin:0;font-size:12px;line-height:1.4;color:var(--ink-soft)}   
+.bunny .parts.partsline{margin:0;font-size:12px;font-weight:500;line-height:1.4;color:var(--ink)}   
 .bunny .plan-meta .pd{white-space:nowrap}
 
 @media (max-width:374px){.bunny .parts .partschip{padding:0 6px 0 8px;gap:5px;font-size:12px}}
@@ -7312,7 +7314,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
         '<div class="bunny-body">'+
         '<div class="bunny-top"><h3>'+esc(r.name)+'</h3>'+
         '<span class="price">'+priceHTML(r)+'</span></div>'+
-        (partsLine(r)?'<p class="parts"><a class="chip partschip" href="#r-'+esc(addrOf(r))+'" aria-label="'+esc(r.name+': '+partsLine(r).toLowerCase())+'">'+partsLine(r)+'<i class="chev" aria-hidden="true"></i></a></p>':'')+
+        (partsLine(r)?'<p class="parts partsline">'+partsLine(r)+'</p>':'')+
         ((r.status==='available'&&noPlan(r))?'<p class="noplan">'+(document.documentElement.lang==='es'?'Sin plan de\u00a0pagos':'No payment\u00a0plan')+'</p>':'')+   /* (Round 193) no payment plan: said on the line the chip stands on */
         (pmk?'<p class="plan-meta">'+pmh+'</p>':'')+(stLabel?stMeta:'')+
         '<p class="meta">'+meta+'</p>'+dealHTML(r,false)+growHTML(r,false)+
@@ -10174,7 +10176,7 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
     document.addEventListener('click',function(ev){
       var t=ev.target; if(!t||!t.closest) return;
       if(t.closest('.partschip')){ window.payOpenNext=true; return; }
-      var lk=t.closest('.bunny-link'), card=lk&&lk.closest('.bunny'), pm=card&&card.querySelector('.planmark, .plan-meta');
+      var lk=t.closest('.bunny-link'), card=lk&&lk.closest('.bunny'), pm=card&&card.querySelector('.planmark, .plan-meta, .partsline');   /* (Round 193g) the offer's line too */
       if(pm){ var b=pm.getBoundingClientRect(); if(ev.clientX>=b.left&&ev.clientX<=b.right&&ev.clientY>=b.top&&ev.clientY<=b.bottom) window.payOpenNext=true; }
     },true);
     if(vMark) vMark.addEventListener('click',function(ev){
