@@ -1802,7 +1802,8 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "available",
+    status: "reserved",
+    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026: "Juniper and blueberry are sold. Blueberry is going home tomorrow, and Juniper is going home on Sunday"; 6:14pm: "you could mark them as reserved until the pick up date". Goes home Fri 13 Nov: then adopted, wentHome on the real day. */
     soldOn: "",
     ear:    "",
     weights: [],
@@ -1810,7 +1811,7 @@ const RABBITS = [
     onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
     noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
     opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
-    feature: true,   /* the lead of the front page from 12 Nov 2026, by the rule of 27 Sept: the dearest rabbit available, first on the rail */
+    /* feature: true came off at 6:13pm 12 Nov 2026, when Blueberry was reserved: the lead passes to Chai, the dearest rabbit available (rule of 27 Sept). */
     note:   "Blue tortoise: soft blue-grey all over, paler underneath, and very fluffy. Sitting up to face the camera on 12 November. No payment plan: paid in full at pickup."
   },
 
@@ -1842,6 +1843,7 @@ const RABBITS = [
     onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
     noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
     opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    feature: true,   /* the lead of the front page from 6:13pm 12 Nov 2026, when Blueberry was reserved: the dearest rabbit available (rule of 27 Sept) */
     note:   "Sable point: cream with a smoky grey-brown nose, ears and feet. Tucked in on 12 November, one ear out to the side. No payment plan: paid in full at pickup."
   },
 
@@ -1865,7 +1867,8 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "available",
+    status: "reserved",
+    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026 (as Blueberry's); goes home Sun 15 Nov: then adopted, wentHome on the real day. */
     soldOn: "",
     ear:    "",
     weights: [],
