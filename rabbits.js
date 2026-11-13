@@ -1835,7 +1835,8 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "available",
+    status: "reserved",
+    reservedOn: "2026-11-12",   /* his words, 8:00pm 12 Nov 2026: "Chai was just sold. Well, technically reserved, and it's gonna be picked up tomorrow afternoon" (as Blueberry and Juniper, 6:14pm: "you could mark them as reserved until the pick up date"). Planned pickup Fri 13 Nov, afternoon: adopted, with wentHome, only on his word that it went home. */
     soldOn: "",
     ear:    "",
     weights: [],
@@ -1843,7 +1844,7 @@ const RABBITS = [
     onePer: true,                              /* one rabbit per customer: never one of two (the 20% for a second does not apply) */
     noPlan: true,                              /* no payment plan: reserved or bought, the rest paid in full at pickup */
     opensAt: "2026-11-12T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
-    feature: true,   /* the lead of the front page from 6:13pm 12 Nov 2026, when Blueberry was reserved: the dearest rabbit available (rule of 27 Sept) */
+    /* feature: true came off at 8:00pm 12 Nov 2026, when Chai was reserved: the lead passes to Coconut, the dearest rabbit available and the only one (rule of 27 Sept). Chai led the front page from 6:13pm. */
     note:   "Sable point: cream with a smoky grey-brown nose, ears and feet. Tucked in on 12 November, one ear out to the side. No payment plan: paid in full at pickup."
   },
 
@@ -1958,7 +1959,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/coconut.jpg",
-    /* feature: true came off on 12 Nov 2026, when Blueberry was listed: by the same rule (27 Sept) the lead passes to the dearest rabbit available, first on the rail. Coconut led the front page from 31 Oct, when Marshmallow went home (its 22 Oct photo, flat out by the fountain). */
+    feature: true,   /* the lead of the front page again from 8:00pm 12 Nov 2026, when Chai was reserved: the dearest rabbit available and the only one (rule of 27 Sept). It led from 31 Oct, when Marshmallow went home (its 22 Oct photo, flat out by the fountain), until 12 Nov, when Blueberry was listed. */
     note:   "White, with pink ears and ruby eyes; flat out on the brick on 22 October, and picked up and held in the clip."
   },
 
