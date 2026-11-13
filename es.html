@@ -2931,6 +2931,13 @@ html.pick #nav .btn,html.pick .bunny .parts{display:none}
 .lkc small{font-size:8.5px;line-height:1;font-weight:700;letter-spacing:.08em;color:var(--open)}
 .lkclock>i{font-style:normal;font-weight:700;font-size:clamp(15px,4.4vw,19px);line-height:1;padding-top:6px;color:var(--ink-soft)}
 .soonbar .lkclock{margin:2px 0 0}.soonbar .lkc b{font-size:clamp(15px,4.4vw,19px);padding:4px 4px 3px}
+
+.soonbar{background:var(--brick-tint);border-bottom-color:var(--brick-tint-line)}
+.soonbar svg.lk-ic{color:var(--brick)}
+.soonbar-left small{color:var(--brick-dk)}
+.soonbar .lkc b{border-color:var(--brick-tint-line)}
+.soonbar .lkc small{color:var(--ink-soft)}
+.soonbar .lkclock>i{opacity:1;color:var(--ink-soft)}
 .gs-lock .lkc b{font-size:24px}
 .bopen-at{font-size:12px;color:var(--ink-soft)}
 
@@ -4194,19 +4201,21 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
 <a class="soonbar" id="soonBar" href="#available" hidden><span class="wrap soonbar-in"></span></a>
 <script>
 (function(){
-  var T="2026-11-12T18:00:00-07:00", N=3, KIND="Holland Lop", ONE="Blueberry", A="blueberry";
+  var T="2026-11-14T18:00:00-07:00", N=7, KIND="", ONE="", A="", WHAT="7 new Netherland Dwarf crosses", WHAT_ES="7 cruzas nuevas de Netherland Dwarf", GO="L2026-10-21";
   var el=document.getElementById('soonBar'), t=Date.parse(T); if(!el||isNaN(t)||Date.now()>=t) return;
   var ES=document.documentElement.lang==='es', NB='\u00a0', m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(T), h=+m[4], h12=(h%12)||12;
   var hour=h12+(m[5]!=='00'?':'+m[5]:'')+NB+(ES?((h<12?'a.':'p.')+NB+'m.'):(h<12?'AM':'PM'));
   var MO=ES?['ene','feb','mar','abr','may','jun','jul','ago','sept','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
   var today=new Date().toLocaleDateString('en-CA',{timeZone:'America/Phoenix'})===m[1]+'-'+m[2]+'-'+m[3];
-  var when=(today?(ES?'Hoy':'Today'):((+m[3])+NB+MO[+m[2]-1]))+(ES?' a '+(h12===1?'la':'las')+NB:' at ')+hour;
+  var tmrw=new Date(Date.now()+864e5).toLocaleDateString('en-CA',{timeZone:'America/Phoenix'})===m[1]+'-'+m[2]+'-'+m[3];   /* (Round 193j) the day before says so (Arizona keeps one offset all year) */
+  var when=(today?(ES?'Hoy':'Today'):tmrw?(ES?'Mañana':'Tomorrow'):((+m[3])+NB+MO[+m[2]-1]))+(ES?' a '+(h12===1?'la':'las')+NB:' at ')+hour;
   var mins=Math.ceil((t-Date.now())/60000), hh=Math.floor(mins/60), mm=mins%60;
   function n(x,one,many){ return x+NB+(x===1?one:many); }
   var sx=Math.max(0,Math.ceil((t-Date.now())/1000)), dd=function(v){ return (v<10?'0':'')+v; }, LB=ES?['H','MIN','SEG']:['HRS','MIN','SEC'];
-  var left='<span class="lkclock" aria-hidden="true" data-opens-left="'+A+'" data-opens-form="clock">'+[dd(Math.floor(sx/3600)),dd(Math.floor(sx%3600/60)),dd(sx%60)].map(function(x,i){ return '<span class="lkc"><b>'+x+'</b><small>'+LB[i]+'</small></span>'; }).join('<i>:</i>')+'</span>';   /* (Round 193c) the launch clock */
-  var what=N===1?((ES?'Nuevo: ':'New: ')+ONE):(ES?(N+' '+(KIND||'conejos')+' nuevos'):(N+' new '+(KIND?KIND+'s':'rabbits')));
+  var left='<span class="lkclock" aria-hidden="true" data-opens-left="'+A+'" data-opens-at="'+T+'" data-opens-form="clock">'+[dd(Math.floor(sx/3600)),dd(Math.floor(sx%3600/60)),dd(sx%60)].map(function(x,i){ return '<span class="lkc"><b>'+x+'</b><small>'+LB[i]+'</small></span>'; }).join('<i>:</i>')+'</span>';   /* (Round 193c) the launch clock */
+  var what=WHAT?(ES?WHAT_ES:WHAT):(N===1?((ES?'Nuevo: ':'New: ')+ONE):(ES?(N+' '+(KIND||'conejos')+' nuevos'):(N+' new '+(KIND?KIND+'s':'rabbits'))));
   el.firstChild.innerHTML='<svg class="lk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="soonbar-what"><b>'+what+'</b><span>'+when+'</span></span><span class="soonbar-left"><small>'+(ES?'Abre en':'Opens in')+'</small>'+left+'</span><i class="soonbar-go" aria-hidden="true"></i>';
+  el.setAttribute('data-opens-at',T); if(GO) el.setAttribute('href',(ES?'es-litters.html':'/litters')+'#'+GO);   /* (Round 193j) its moment, and the litter */
   el.hidden=false;
 })();
 </script>
@@ -7094,12 +7103,14 @@ html[data-look="dim"] .viewer-foot::before{background:linear-gradient(to bottom,
   function opensTick(){ var R=(typeof RABBITS!=='undefined'&&RABBITS)||[], now=Date.now(), next=0, come=0, i, t, els, r, s;
     for(i=0;i<R.length;i++){ if(!R[i]||R[i].status!=='available') continue; t=opensMs(R[i]); if(!t) continue;
       if(t>now){ if(!next||t<next) next=t; } else if(t>lkBoot&&t>come) come=t; }
+    var sb=document.getElementById('soonBar'), sbt=sb?Date.parse(sb.getAttribute('data-opens-at')||''):NaN;
+    if(!isNaN(sbt)&&sbt>now&&(!next||sbt<next)) next=sbt;
     els=document.querySelectorAll('[data-opens-left]');
     var clk=0;
     for(i=0;i<els.length;i++){ r=lkRabbit(els[i].getAttribute('data-opens-left'));
-      if(els[i].getAttribute('data-opens-form')==='clock'){ clk=1; if(!r) continue; var v=lkHMS(opensMs(r)-now), bs=els[i].querySelectorAll('b'); if(opensMs(r)<=now) continue; for(var k=0;k<bs.length&&k<3;k++){ if(bs[k].textContent!==v[k]) bs[k].textContent=v[k]; } continue; }
+      if(els[i].getAttribute('data-opens-form')==='clock'){ clk=1; var ct=r?opensMs(r):Date.parse(els[i].getAttribute('data-opens-at')||''); if(!ct||isNaN(ct)||ct<=now) continue; var v=lkHMS(ct-now), bs=els[i].querySelectorAll('b'); for(var k=0;k<bs.length&&k<3;k++){ if(bs[k].textContent!==v[k]) bs[k].textContent=v[k]; } continue; }
       s=r?opensLeft(r,els[i].getAttribute('data-opens-form')||'in'):''; if(s&&els[i].textContent!==s) els[i].textContent=s; }
-    var sb=document.getElementById('soonBar'); if(sb&&!sb.hidden&&!next) sb.hidden=true;   /* the news banner goes with the last moment */
+    if(sb&&!sb.hidden&&(!next||(!isNaN(sbt)&&sbt<=now))) sb.hidden=true;   /* the news banner goes with the last moment, or (Round 193j) at its own */
     clearTimeout(lkT);
     if(come) return opensCome(come);
     if(next) lkT=setTimeout(opensTick,clk?Math.max(50,Math.min(1000-(now%1000)+30,next-now+60)):Math.max(250,Math.min(60000-(now%60000)+400,next-now+60)));   /* (Round 193c) every second while a clock shows */
