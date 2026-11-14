@@ -1,0 +1,29 @@
+{
+ "rule": "available, a price above 0; opensAt or null (open now); written from rabbits.js by lineopen.py",
+ "rabbits": {
+  "coconut": {
+   "opensAt": null
+  },
+  "espresso": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "lavender": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "licorice": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "malbec": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "poppyseed": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "sage": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  },
+  "truffle": {
+   "opensAt": "2026-11-14T18:00:00-07:00"
+  }
+ }
+}

@@ -1779,6 +1779,213 @@ const RABBITS = [
     note:   "Tortoise like Mocha and hard to tell apart: a shade warmer and fluffier on 15 October, one ear down and one out to the side."
   },
 
+  /* Saffron and Odyssey's litter of 21 Oct 2026, seven raised, listed 2026-11-14: Poppyseed, Sage, Lavender, Malbec, Truffle, Licorice, Espresso. The usual rules (his tap of 7:42am 14 Nov): payment plans, 20% off a second; ready to go home from 14 Nov (his words of 7:39am). */
+  {
+    name:   "Poppyseed",
+    photos: [
+      { src: "photos/poppyseed.jpg", date: "2026-11-13" },
+      { src: "photos/poppyseed-2.jpg", date: "2026-11-13", note: "Tucked into a round ball, head low." },
+      { video: "videos/poppyseed.mp4", poster: "photos/poppyseed-video.jpg", date: "2026-11-13", note: "Petted on a stone ledge, then filmed from the front and from above." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  400,   /* his words, 9:50pm 13 Nov 2026: "This rabbit will be $400 and it will be the highlight of the litter overall" */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Blue",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/poppyseed.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    feature: true,   /* the lead of the front page from 2026-11-14, by the rule of 27 Sept: the dearest rabbit available, first on the rail */
+    note:   "Blue: soft blue-grey all over, the belly the same as the back. The highlight of the litter: extremely small, with exceptionally small ears and a consistent, plush coat. Crouched in profile on 13 November, and petted on the stone ledge in the clip."
+  },
+
+  {
+    name:   "Sage",
+    photos: [
+      { src: "photos/sage.jpg", date: "2026-11-13" },
+      { src: "photos/sage-2.jpg", date: "2026-11-13", note: "Sitting up in profile, ears up." },
+      { src: "photos/sage-3.jpg", date: "2026-11-13", note: "Sitting, turned toward the camera." },
+      { video: "videos/sage.mp4", poster: "photos/sage-video.jpg", date: "2026-11-13", note: "Held in a hand on a stone ledge, then filmed from a step back." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  385,   /* his words, 9:52pm 13 Nov 2026: "This rabbit will be $385" */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Blue",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/sage.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Blue: soft blue-grey all over, the belly the same as the back. A very beautiful body; the ears a little longer. Sitting up to face the camera on 13 November, and held in a hand in the clip."
+  },
+
+  {
+    name:   "Lavender",
+    photos: [
+      { src: "photos/lavender.jpg", date: "2026-11-13" },
+      { src: "photos/lavender-2.jpg", date: "2026-11-13", note: "Stretched long, in profile." },
+      { src: "photos/lavender-3.jpg", date: "2026-11-13", note: "From behind, ears up." },
+      { video: "videos/lavender.mp4", poster: "photos/lavender-video.jpg", date: "2026-11-13", note: "Picked up to show its belly, then set back on the stone ledge." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  385,   /* his words, 9:53pm 13 Nov 2026: "$385" (and 9:52pm: "Same thing for the other gray") */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Blue",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/lavender.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Blue: soft blue-grey all over, the belly the same as the back. A very beautiful body; the ears a little longer. Crouched on 13 November, turned toward the camera, and picked up to show its belly in the clip."
+  },
+
+  {
+    name:   "Malbec",
+    photos: [
+      { src: "photos/malbec.jpg", date: "2026-11-13" },
+      { src: "photos/malbec-2.jpg", date: "2026-11-13", note: "Crouched, eyes half closed." },
+      { video: "videos/malbec.mp4", poster: "photos/malbec-video.jpg", date: "2026-11-13", note: "On a stone ledge, filmed from the side and the front." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  385,   /* his words, 9:57pm 13 Nov 2026: "This bun will go for $385 and is the highlight of the black litter" */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Black",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/malbec.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Black: soft black all over, the belly the same as the back. The highlight of the blacks, with the smallest ears of the four. Crouched on 13 November, eyes half closed, and filmed from the side and the front in the clip."
+  },
+
+  {
+    name:   "Truffle",
+    photos: [
+      { src: "photos/truffle.jpg", date: "2026-11-13" },
+      { video: "videos/truffle.mp4", poster: "photos/truffle-video.jpg", date: "2026-11-13", note: "Sniffing a hand on a stone ledge, then filmed from all around." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,   /* his words, 10:05pm 13 Nov 2026: "$375" */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Black",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/truffle.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Black: soft black all over, the belly the same as the back. Crouched in profile on 13 November, and sniffing a hand in the clip."
+  },
+
+  {
+    name:   "Licorice",
+    photos: [
+      { src: "photos/licorice.jpg", date: "2026-11-13" },
+      { src: "photos/licorice-2.jpg", date: "2026-11-13", note: "Crouched, ears up." },
+      { video: "videos/licorice.mp4", poster: "photos/licorice-video.jpg", date: "2026-11-13", note: "Held up to show its belly, then back down on the stone ledge." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,   /* his words, 10:06pm 13 Nov 2026: "$375 / The last bun" */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Black",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/licorice.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Black: soft black all over, the belly the same as the back. Long in profile, head up, on 13 November, and held up to show its belly in the clip."
+  },
+
+  {
+    name:   "Espresso",
+    photos: [
+      { src: "photos/espresso.jpg", date: "2026-11-13" },
+      { src: "photos/espresso-2.jpg", date: "2026-11-13", note: "Crouched long, eyes narrowed to a squint." },
+      { src: "photos/espresso-3.jpg", date: "2026-11-13", note: "Crouched, head turned toward the camera." },
+      { video: "videos/espresso.mp4", poster: "photos/espresso-video.jpg", date: "2026-11-13", note: "Stretched out on a stone ledge, then up and looking around." },
+      { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
+      { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
+      { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
+      { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
+    ],
+    price:  375,   /* his words, 10:30pm 13 Nov 2026: "$375" (and "the little lively wormy picture") */
+    breed:  "Netherland Dwarf cross",
+    mother: "saffron",
+    father: "odyssey",
+    sex:    "",
+    colour: "Black",
+    dob:    "2026-10-21",
+    listedOn: "2026-11-14",
+    ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
+    status: "available",
+    soldOn: "",
+    ear:    "",
+    weights: [],
+    photo:  "photos/espresso.jpg",
+    opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
+    note:   "Black: soft black all over, the belly the same as the back. A lively one, stretched out on the stone ledge on 13 November, and up and looking around in the clip."
+  },
+
   /* S'Morri and Root Beer's litter of 19 Oct 2026, three raised, listed Thu 12 Nov 2026: Blueberry, Chai and Juniper. One rabbit per customer; no payment plan, paid in full at pickup. */
   {
     name:   "Blueberry",
@@ -1965,7 +2172,7 @@ const RABBITS = [
     ear:    "",
     weights: [],
     photo:  "photos/coconut.jpg",
-    feature: true,   /* the lead of the front page again from 8:00pm 12 Nov 2026, when Chai was reserved: the dearest rabbit available and the only one (rule of 27 Sept). It led from 31 Oct, when Marshmallow went home (its 22 Oct photo, flat out by the fountain), until 12 Nov, when Blueberry was listed. */
+    /* feature: true came off on 14 Nov 2026, when Poppyseed was listed: by the rule of 27 Sept the lead passes to the dearest rabbit available, first on the rail. */
     note:   "White, with pink ears and ruby eyes; flat out on the brick on 22 October, and picked up and held in the clip."
   },
 

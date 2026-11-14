@@ -1,0 +1,10 @@
+WEBVTT
+
+NOTE
+No talking in this clip: measured 14 November 2026 on its own sound (read every half second, it stays between
+about -42 and -32 dBFS around a median of -38; its spectrum is a steady outdoor background with short rustles where the
+rabbit is handled, and no voice in it). No speech recognizer is on this machine: this note says what was
+measured. If talking is ever added, its words go here.
+
+00:00:00.000 --> 10:00:00.000
+[No talking, just background sound]

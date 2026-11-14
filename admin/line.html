@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The line | Arizona Rabbits</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#241F1D">
+<!-- ═══════════════════════════════════════════════════════════════
+     WILLIAM'S LINE PAGE (Round 194 draft, 12 Nov 2026). His words, 5:12pm: "make sure that the digital queue is working
+     as well for the reservation, so people know what position they are"; 5:19pm: the next buyer's turn when the first has
+     not paid the $50 within the hour ("1 hr"; the site's words: "The hour starts with my call"). Nobody links here; he
+     bookmarks it. Everything comes from /api/line with his key in the Authorization header (the waitlist page's key).
+     REBASED 13 Nov 2026 for Saffron and Odyssey's seven (his 11:20pm, "a working system for this new litter that we can rely
+     on"): it asks again every 30 seconds while open and says when it last did; the key field is a password field his
+     phone's keychain can fill; the page keeps the key only while it is open.
+     VERSION 3 (14 Nov 2026, Codex's queue review):
+     - THE CODE, NOT THE PLACE. Each row shows the buyer's code (K7Q2), the one in their text; places move, codes do not.
+       One code in two lines is one buyer who asked for both.
+     - CALLED. A tap stamps the moment he called; the row then says when the hour ends, and says so in red once it has.
+       Nothing happens by itself: he marks Paid or Passed (or puts a place back).
+     - A TAP NAMES WHAT IT SAW. Each button sends the state the row had when the page drew it; a place changed since (on
+       another phone) is not overwritten: the page says so and reads the line again.
+     - IT KEEPS ASKING. A failed or hung read (12 seconds) says so, keeps the last line on screen marked with its time, and
+       asks again in 30 seconds; a wrong key stops and asks for the key.
+     - Grouped with a Map (a rabbit named "constructor" cannot break the page); the last 60 days only.
+     - A code that never reached him by text is a place nobody can be called for: he passes it when it comes to the front.
+     VERSION 3.1 (14 Nov 2026 ~1:15am, Codex's static review ready-queue-v3-static-qc-20261114T075036Z):
+     - EVERY ACTIVE PLACE, THE SERVER'S PLACE: the site sends every waiting and paid place whatever its age, each with the place
+       it counts itself (the buyer's own number), and the passed places of the last 60 days; the page prints the server's
+       place (it no longer counts the rows it was sent) and says so when the site cut a list.
+     - CALLED NAMES THE CALL IT SAW: a Called tap sends the call time this page drew; if another phone called since (or the tap
+       is a repeat of one already taken), the site refuses it and the page says when that call was.
+     - A REFUSED TAP STAYS SAID: "That place changed since this page drew it ..." stays on screen through the read that
+       follows, until his next tap.
+     - A TAP DURING A READ: the page reads again as soon as the read in flight ends, so what it shows is after the tap.
+     - A code is one browser's (usually one person on one phone), not a proven person.
+     ═══════════════════════════════════════════════════════════════ -->
+<style>
+:root{color-scheme:light;--paper:#FBF8F3;--paper-2:#F3EDE3;--ink:#241F1D;--ink-soft:#57504A;--ink-faint:#736A64;--line:#E3DACC;--line-soft:#EDE6DA;
+  --brick:#A0522D;--brick-dk:#7C3E21;--open:#286737;--hold:#8A5A08;--gone:#726461;--alert:#A32218;
+  --serif:'Fraunces',ui-serif,Georgia,serif;--sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;--r:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:28px 16px 60px}
+main{max-width:42rem;margin:0 auto}
+h1{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+p{color:var(--ink-soft);margin-bottom:12px;text-wrap:pretty}
+.row{display:flex;gap:9px;flex-wrap:wrap}
+input{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);background:#fff;min-width:0;flex:1}
+input:focus{outline:none;border-color:var(--brick);box-shadow:0 0 0 3px rgba(160,82,45,.11)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:var(--r);font-weight:500;font-size:15.5px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
+.btn.sm{min-height:38px;padding:0 12px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:default}
+@media(hover:hover){.btn:not(:disabled):hover{border-color:var(--brick);color:var(--brick-dk)}.btn.primary:not(:disabled):hover{background:var(--brick-dk);color:#fff}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:12px}
+.card h3{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:2px}
+.card .opens{font-size:13.5px;color:var(--ink-faint);margin-bottom:6px}
+.card ol{list-style:none}
+.card li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;padding:10px 0;border-top:1px solid var(--line-soft)}
+.card li:first-of-type{border-top:0}
+.pl{font-family:var(--serif);font-size:20px;font-weight:600;min-width:2.6em;line-height:1.3}
+.code{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.06em;color:var(--ink)}
+.st{font-size:13px;font-weight:600}
+.st.paid{color:var(--open)}.st.passed{color:var(--gone)}.st.waiting{color:var(--hold)}
+.when{font-size:13.5px;color:var(--ink-faint)}
+.hour{font-size:13.5px;font-weight:600;color:var(--hold)}.hour.over{color:var(--alert)}
+.acts{grid-column:2;display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.said{font-size:15px;font-weight:600;color:var(--open);margin-top:10px}.said.bad{color:var(--alert)}
+#lines.stale{opacity:.6}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <h1>The line</h1>
+  <p>Each rabbit's line in the order the database took the requests. Match a text to its row by the code in it (like K7Q2): places move up when one ahead is passed, codes never change. The same code in two lines is one browser that asked for both (usually one person, on one phone). Tap <b>Called</b> when you call someone: the row then shows when their hour ends. Nothing happens by itself; you mark <b>Paid</b> or <b>Passed</b>. A code that never reached you by text has nobody to call: pass it when it comes to the front. Passed places stay on this page for 60 days.</p>
+  <form id="keyform" class="row">
+    <input type="text" name="username" value="Arizona Rabbits line" autocomplete="username" hidden aria-hidden="true" tabindex="-1">
+    <input type="password" id="key" name="password" placeholder="Your key" aria-label="Your key" autocomplete="current-password">
+    <button class="btn primary" type="submit">Show the line</button>
+  </form>
+  <p class="said" id="said" role="status" hidden></p>
+  <p class="when" id="stamp" hidden></p>
+  <noscript><p class="said bad">This page needs scripts on to ask the site for the line.</p></noscript>
+  <div id="lines"></div>
+</main>
+<script>
+(function(){
+  var key='', said=document.getElementById('said'), box=document.getElementById('lines'), stamp=document.getElementById('stamp');
+  var timer=0, busy=false, more=false, sticky=false, skew=0, lastOk=0, HOUR=3600000, EVERY=30000, WAIT=12000;
+  function say(t,bad){ said.textContent=t; said.hidden=!t; said.classList.toggle('bad',!!bad); }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function ord(n){ var v=n%100; return n+((v>=11&&v<=13)?'th':({1:'st',2:'nd',3:'rd'}[n%10]||'th')); }
+  function clock(ms,secs){ return new Date(ms).toLocaleTimeString('en-US',secs?{timeZone:'America/Phoenix',hour:'numeric',minute:'2-digit',second:'2-digit'}:{timeZone:'America/Phoenix',hour:'numeric',minute:'2-digit'}); }
+  function when(ms){ return new Date(ms).toLocaleString('en-US',{timeZone:'America/Phoenix',weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit'}); }
+  function title(a){ return String(a).split('-').map(function(w){ return /^\d+$/.test(w)?w:w.charAt(0).toUpperCase()+w.slice(1); }).join(' '); }
+  function btn(r,to,label){ return '<button class="btn sm" type="button" data-id="'+(+r.id)+'" data-to="'+to+'" data-from="'+esc(r.state)+'" data-called="'+(+r.calledAt||0)+'">'+label+'</button>'; }
+  function render(rows,open,j){
+    var by=new Map(); rows.forEach(function(r){ var a=String(r.rabbit); if(!by.has(a)) by.set(a,[]); by.get(a).push(r); });
+    var names=Array.from(by.keys()).sort(), now=Date.now()+skew; box.innerHTML='';   /* (3.1) places come from the site, not from these rows */
+    if(!names.length){ box.innerHTML='<p>Nobody is in line yet.</p>'; return; }
+    names.forEach(function(a){ var c=document.createElement('section'), place=0; c.className='card';
+      var on=open&&Object.prototype.hasOwnProperty.call(open,a)?open[a]:undefined;
+      var h='<h3>'+esc(title(a))+'</h3><p class="opens">'+(on===undefined?(open?'Not for sale on the site now.':''):on&&on>now?'Opens '+esc(when(on))+'.':'For sale now.')+'</p><ol>';
+      by.get(a).forEach(function(r){ var live=r.state!=='passed', place=+r.place;   /* the server's own place */
+        var code=/^[A-HJ-NP-Z2-9]{4}$/.test(r.code||'')?r.code:'????';
+        var hour='';
+        if(r.state==='waiting'&&r.calledAt){ var end=+r.calledAt+HOUR, over=now>=end;
+          hour='<br><span class="hour'+(over?' over':'')+'">Called '+esc(clock(r.calledAt))+(over?'. The hour ended at ':'. The hour ends at ')+esc(clock(end))+'.</span>'; }
+        h+='<li data-row="'+(+r.id)+'"><span class="pl">'+(live&&place>0?ord(place):'·')+'</span><span><span class="code">'+esc(code)+'</span> · <span class="st '+esc(r.state)+'">'+
+          esc(r.state==='waiting'?'Waiting':r.state==='paid'?'Paid':'Passed')+'</span> · '+esc(r.kind==='buy'?'Buy':'Reserve')+
+          '<br><span class="when">In line '+esc(when(r.at))+'</span>'+hour+'</span><span class="acts">'+
+          (r.state==='waiting'?btn(r,'called',r.calledAt?'Called again':'Called')+btn(r,'paid','Paid')+btn(r,'passed','Passed')
+            :r.state==='paid'?btn(r,'waiting','Not paid: put back'):btn(r,'waiting','Put back'))+'</span></li>'; });
+      c.innerHTML=h+'</ol>'; box.appendChild(c); });
+    if(j&&(j.activeTruncated||j.historyTruncated)){ var w=document.createElement('p'); w.className='said bad'; w.setAttribute('data-cut','1');
+      w.textContent=(j.activeTruncated?'The site sent only part of the active places: tell Claude. ':'')+(j.historyTruncated?'Only the latest '+(+j.historyMax)+' passed places are shown.':''); box.appendChild(w); } }
+  function next(){ clearTimeout(timer); timer=setTimeout(function again(){ if(document.hidden){ timer=setTimeout(again,EVERY); return; } load(true); },EVERY); }
+  function ask(url,opt,done){ var ctl=null, t=0, fin=false; function end(x){ if(fin) return; fin=true; clearTimeout(t); done(x); }
+    try{ ctl=new AbortController(); opt.signal=ctl.signal; }catch(e){}
+    t=setTimeout(function(){ try{ if(ctl) ctl.abort(); }catch(e){} end({ok:false,j:{why:'no answer in 12 seconds'}}); },WAIT);
+    fetch(url,opt).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,status:r.status,j:j}; },function(){ return {ok:false,status:r.status,j:{why:'an answer that was not JSON ('+r.status+')'}}; }); })
+      .then(end,function(){ end({ok:false,j:{why:'the site did not answer'}}); }); }
+  function why(j){ var w=j&&j.why; return w==='no line store'?'The line has no database yet (the LINE binding in Cloudflare).':w==='store'?'The database did not answer.':w==='wrong key'?'That key is not the one the site has.':w==='no admin key set'?'The site has no key set (ADMIN_KEY in Cloudflare).':(w||'That did not work.'); }
+  function load(quiet){ if(busy){ more=true; return; } busy=true; if(!quiet&&!sticky) say('Asking the site…');   /* (3.1) asked during a read: once more after it */
+    ask('/api/line?all=1',{headers:{'Authorization':'Bearer '+key},cache:'no-store'},function(x){ busy=false; done(x); if(more){ more=false; load(true); } }); }
+  function done(x){
+      if(x.ok&&x.j&&x.j.ok){ if(!sticky) say(''); if(typeof x.j.now==='number') skew=x.j.now-Date.now(); lastOk=Date.now(); render(x.j.rows||[],x.j.open||null,x.j); box.classList.remove('stale');
+        stamp.textContent='Updated '+clock(lastOk,true)+'. It asks again every 30 seconds.'; stamp.hidden=false; next(); return; }
+      if(x.status===401){ clearTimeout(timer); say(why(x.j)+' Type it again.',true); box.innerHTML=''; stamp.hidden=true; return; }
+      sticky=false; say(why(x.j)+(lastOk?' The line below is as of '+clock(lastOk,true)+'. It asks again in 30 seconds.':' It asks again in 30 seconds.'),true);
+      if(lastOk) box.classList.add('stale'); next(); }
+  document.getElementById('keyform').addEventListener('submit',function(e){ e.preventDefault(); sticky=false; key=document.getElementById('key').value.trim(); if(key){ lastOk=0; load(); } });
+  box.addEventListener('click',function(e){ var b=e.target.closest('button[data-id]'); if(!b) return;
+    var li=b.closest('li'), all=li?li.querySelectorAll('button'):[b]; Array.prototype.forEach.call(all,function(x){ x.disabled=true; });
+    sticky=false; var to=b.getAttribute('data-to'), body={admin:to,id:+b.getAttribute('data-id'),from:b.getAttribute('data-from')};
+    if(to==='called') body.calledFrom=+b.getAttribute('data-called')||0;   /* (3.1) the call this page saw */
+    ask('/api/line',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify(body)},function(x){
+      if(x.ok&&x.j&&x.j.ok){ say(''); load(true); return; }
+      if(x.status===409){ var st=x.j&&x.j.state, ca=x.j&&+x.j.calledAt;
+        say('That place changed since this page drew it (it is '+(st||'changed')+' now'+(st==='waiting'&&ca?', called at '+clock(ca):'')+'). Here is the line as it is.',true); sticky=true; load(true); return; }
+      say(why(x.j),true); Array.prototype.forEach.call(all,function(y){ y.disabled=false; }); }); });
+})();
+</script>
+</body>
+</html>
