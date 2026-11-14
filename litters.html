@@ -225,10 +225,14 @@ picture.av{display:contents}
 .viewer-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#1A1613}
 .viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
 .viewer-stage video[hidden],.viewer-stage img[hidden]{display:none}
-.viewer-stage.video .vborn{bottom:60px}
-.viewer-stage.video .vborn{bottom:60px}
-.viewer-stage.video .viewer-nav{top:38%}
-.viewer-stage.video .viewer-nav{top:38%}
+.viewer-stage.video.started .vborn{visibility:hidden}
+.viewer-stage.video.started .vborn{visibility:hidden}
+.clip-play{position:absolute;left:50%;top:50%;z-index:3;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;border-radius:50%;background:rgba(24,20,18,.72);display:grid;place-items:center;cursor:pointer;transition:transform .12s ease-out;-webkit-tap-highlight-color:transparent}
+.clip-play::before{content:'';display:block;width:0;height:0;border-style:solid;border-color:transparent transparent transparent #fff;border-width:8px 0 8px 13px;margin-left:3px}
+.clip-play[hidden]{display:none}
+.clip-play:active{transform:scale(.94)}
+.clip-play:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px;box-shadow:0 0 0 6px var(--card)}
+html.ptr .clip-play:focus-visible{box-shadow:none!important}
 .viewer-strip button{position:relative}
 .viewer-strip button{flex:0 0 62px;width:62px;height:52px;padding:0;border-radius:6px;overflow:hidden; border:2px solid transparent;background:var(--paper-2);cursor:pointer;position:relative; transition:border-color .15s,transform .12s ease-out}
 .viewer-strip .pv{width:22px;height:22px;left:50%;top:50%;transform:translate(-50%,-50%)}
@@ -264,7 +268,8 @@ html.ptr .viewer-close:focus-visible,html.ptr .viewer-share:focus-visible,html.p
 .viewer-strip button.on{border-color:var(--brick)}
 .viewer-strip button:focus-visible{box-shadow:0 0 0 3px var(--card)}
 html.ptr .viewer-strip button:focus-visible{box-shadow:none!important}   
-.viewer-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.viewer-head{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:baseline}
+.viewer-head h2{grid-column:1;grid-row:1;min-width:0}
 .viewer-head h2{font-size:21px;margin-bottom:0;letter-spacing:-.015em}
 #viewer-name:focus{outline:none}
 .viewer-sub{display:flow-root;margin-top:-2px}
@@ -2549,7 +2554,22 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       t.src=clip.replace(/\.mp4(\?.*)?$/,'.vtt');
       v.appendChild(t);
     }
+    var vClipGo=document.createElement('button');
+    vClipGo.type='button'; vClipGo.className='clip-play'; vClipGo.hidden=true;
+    if(vVideo&&vVideo.parentNode) vVideo.parentNode.insertBefore(vClipGo, vVideo.nextSibling);
+    function clipReset(){ if(vStage) vStage.classList.remove('started'); if(vVideo) vVideo.removeAttribute('controls'); }
+    vClipGo.addEventListener('click',function(){
+      if(!vVideo||!vVideo.getAttribute('src')) return;
+      vStage.classList.add('started'); vClipGo.hidden=true; vVideo.setAttribute('controls','');
+      var pr=vVideo.play(); if(pr&&pr.catch) pr.catch(function(){});
+      try{ vVideo.focus({preventScroll:true}); }catch(e){}
+    });
+    if(vVideo){
+      vVideo.addEventListener('click',function(){ if(!vStage.classList.contains('started')&&!vClipGo.hidden) vClipGo.click(); });
+      vVideo.addEventListener('ended',function(){ if(!vVideo.getAttribute('src')) return; clipReset(); vClipGo.hidden=false; try{ vVideo.load(); }catch(e){} });
+    }
     function stopVideo(){
+      clipReset(); vClipGo.hidden=true;
       try{ vVideo.pause(); }catch(e){}
       setCaptions(vVideo, null);
       if(vVideo.getAttribute('src')){ vVideo.removeAttribute('src'); vVideo.removeAttribute('poster'); vVideo.load(); }
@@ -2666,7 +2686,7 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
         vVideo.setAttribute('src', s.video);
         setCaptions(vVideo, s.video);
         vVideo.setAttribute('aria-label', label+', video '+(at+1)+' of '+shots.length+(s.date?(', filmed '+nice(s.date)):''));
-        vVideo.hidden=false; vVideo.load(); vStage.classList.add('video');
+        vVideo.hidden=false; vVideo.load(); vStage.classList.add('video'); clipReset(); vClipGo.hidden=false; vClipGo.setAttribute('aria-label','Play this video');
       } else {
         stopVideo();
         var av=avifSet(s.src);
