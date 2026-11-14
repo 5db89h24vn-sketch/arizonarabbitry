@@ -1788,6 +1788,8 @@ const RABBITS = [
       { src: "photos/blueberry-3.jpg", date: "2026-11-12", note: "Sitting tall, looking over its shoulder." },
       { src: "photos/blueberry-4.jpg", date: "2026-11-12", note: "Lying down, from the side." },
       { src: "photos/blueberry-5.jpg", date: "2026-11-12", note: "Tucked in, facing the camera." },
+      /* (Round 193k, 13 Nov 2026) his clip, IMG_2012.mov, filmed 12 Nov 9:50am, sent 11:23am; through video.py */
+      { video: "videos/blueberry.mp4", poster: "photos/blueberry-video.jpg", date: "2026-11-12", note: "Petted on a stone ledge, then picked up and held." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -1821,6 +1823,8 @@ const RABBITS = [
       { src: "photos/chai.jpg", date: "2026-11-12" },
       { src: "photos/chai-2.jpg", date: "2026-11-12", note: "Lying down, from the side: the dark nose, ears and feet." },
       { src: "photos/chai-3.jpg", date: "2026-11-12", note: "In the shade, facing the camera: the dark mask around the nose." },
+      /* (Round 193k, 13 Nov 2026) his clip, IMG_1986_6.mov, filmed 12 Nov 9:30am, sent 11:38am; through video.py */
+      { video: "videos/chai.mp4", poster: "photos/chai-video.jpg", date: "2026-11-12", note: "Petted on a stone ledge, then picked up and held." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
@@ -1854,6 +1858,8 @@ const RABBITS = [
       { src: "photos/juniper.jpg", date: "2026-11-12" },
       { src: "photos/juniper-2.jpg", date: "2026-11-12", note: "Tucked in, half turned to the camera." },
       { src: "photos/juniper-3.jpg", date: "2026-11-12", note: "Face on, chin on the stone, both ears out." },
+      /* (Round 193k, 13 Nov 2026) his clip, IMG_1951.mov, filmed 12 Nov 9:21am, sent 11:44am; through video.py */
+      { video: "videos/juniper.mp4", poster: "photos/juniper-video.jpg", date: "2026-11-12", note: "Petted on a stone ledge, then picked up and held." },
       { src: "photos/coming-soon-3.png", note: "In my hands, so you can see how big it really is." },
       { src: "photos/coming-soon-4.png", note: "Ears and head close up." },
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
