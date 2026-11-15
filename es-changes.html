@@ -494,14 +494,14 @@ html[data-look="dim"] .xm-scene{
   --sm:#D6E0EE;--smsh:#97A9C6;--rab:#3A200F;--rablit:#55311A;
 }
 
-.xm-scene::before,.xm-scene::after{content:'';position:absolute;top:0;bottom:0;z-index:0;
-  background:linear-gradient(to bottom,transparent 150px,var(--far) 150px,var(--far) 178px,var(--mid) 178px,var(--mid) 200px,var(--snow) 200px)}
-.xm-scene::before{left:0;right:calc(50% + 720px)}
-.xm-scene::after{left:calc(50% + 720px);right:0}
-.xm-stage{position:absolute;left:50%;top:0;width:1440px;height:220px;margin-left:-720px;z-index:1}
+.xm-scene::before,.xm-scene::after{content:'';position:absolute;bottom:0;height:220px;z-index:0;
+  background:linear-gradient(to bottom,transparent 150px,var(--far) 150px,var(--far) 177.6px,var(--mid) 178.4px,var(--mid) 200px,var(--crest) 200px,var(--crest) 200.7px,var(--snow) 201.6px)}
+.xm-scene::before{left:0;right:calc(50% + 717px)}
+.xm-scene::after{left:calc(50% + 717px);right:0}
+.xm-stage{position:absolute;left:50%;top:0;width:1440px;height:220px;margin-left:-720px;z-index:1;clip-path:inset(0 2px)}
 .xm-art{display:block;width:1440px;height:220px;overflow:visible}
 @media (min-width:900px){.xm-scene{height:264px}.xm-stage{top:auto;bottom:0;transform:scale(1.2);transform-origin:50% 100%}
-  .xm-scene::before,.xm-scene::after{transform:scaleY(1.2);transform-origin:50% 100%}.xm-count{font-size:16px;top:11px}.xm-pause{top:11px}}
+  .xm-scene::before,.xm-scene::after{transform:scaleY(1.2);transform-origin:50% 100%}.xm-scene::before{right:calc(50% + 861px)}.xm-scene::after{left:calc(50% + 861px)}.xm-count{font-size:16px;top:11px}.xm-pause{top:11px}}
 
 .xm-tw,.xm-sp{fill:var(--star)}
 .xm-north-glow{fill:url(#xmGlowS);opacity:.75}.xm-north-ray{fill:var(--star);opacity:.85}.xm-north-x{opacity:.55}.xm-north-core{fill:#fff}
@@ -765,9 +765,23 @@ html:not(.xmas) .xm-scene,html:not(.xmas) .xm-tagrow,html:not(.xmas) .xm-out{dis
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-11-15a" aria-labelledby="v2026-11-15a-h">
-  <h2 id="v2026-11-15a-h">Nochebuena en cada página</h2>
+<section class="rel" id="v2026-11-15b" aria-labelledby="v2026-11-15b-h">
+  <h2 id="v2026-11-15b-h">Las fotos fieles a cada pelaje</h2>
   <p class="rel-when"><time datetime="2026-11-15">15 de noviembre de 2026</time></p>
+  <p class="rel-ver">Versión del sitio 2026.11.15b</p>
+  <article class="chg" id="c-true-coats-black">
+    <p class="chg-lead"><b>Los pelajes negros se ven negros en las fotos.</b></p>
+    <p>Las fotos se habían aclarado hacia los pelajes claros de los conejos de agosto, así que Truffle y Licorice se veían grises. Se volvieron a recortar de los originales de la cámara con el mismo encuadre: la luz cálida se queda, cada pelaje conserva su propio brillo y los colores ya no se exageran.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.15b/true-coats-black-before-es-780.webp" srcset="changes/2026.11.15b/true-coats-black-before-es-390.webp 390w, changes/2026.11.15b/true-coats-black-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: las tarjetas de Truffle y Licorice en un teléfono, su pelaje negro deslavado hasta verse gris." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.15b/true-coats-black-after-es-780.webp" srcset="changes/2026.11.15b/true-coats-black-after-es-390.webp 390w, changes/2026.11.15b/true-coats-black-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: las mismas dos tarjetas, Truffle y Licorice tan negros como son." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-true-coats-blue">
+    <p class="chg-lead"><b>Los pelajes azules también conservan su color.</b></p>
+    <p>El gris azulado de Poppyseed y de Sage se ve como es. Veinticuatro fotos de los conejos a la venta, incluidas las de los reservados, se rehicieron de la misma manera.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.15b/true-coats-blue-before-es-780.webp" srcset="changes/2026.11.15b/true-coats-blue-before-es-390.webp 390w, changes/2026.11.15b/true-coats-blue-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: las tarjetas de Poppyseed y Sage en un teléfono, su pelaje azul deslavado." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.15b/true-coats-blue-after-es-780.webp" srcset="changes/2026.11.15b/true-coats-blue-after-es-390.webp 390w, changes/2026.11.15b/true-coats-blue-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: las mismas dos tarjetas, el gris azulado de Poppyseed y de Sage como es." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-11-15a">
+  <summary><span class="rel-sum">Nochebuena en cada página</span><time class="rel-date" datetime="2026-11-15">15 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.15a</p>
   <article class="chg" id="c-christmas-eve">
     <p class="chg-lead"><b>Nochebuena al pie de cada página.</b></p>
@@ -784,7 +798,7 @@ html:not(.xmas) .xm-scene,html:not(.xmas) .xm-tagrow,html:not(.xmas) .xm-out{dis
     <p>El conejo de la esquina se pone el gorro después de llegar dando saltos, la tira de focos de arriba se enciende una vez y el icono de la pestaña de su navegador se vuelve verde pino durante la temporada. El dibujo del conejo no cambia.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.15a/christmas-logo-before-es-780.webp" srcset="changes/2026.11.15a/christmas-logo-before-es-390.webp 390w, changes/2026.11.15a/christmas-logo-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la parte de arriba de la portada en un teléfono, el conejo junto al nombre." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.15a/christmas-logo-after-es-780.webp" srcset="changes/2026.11.15a/christmas-logo-after-es-390.webp 390w, changes/2026.11.15a/christmas-logo-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: el conejo con gorro de Santa junto al nombre y una tira de focos de colores debajo de la barra de arriba." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 <details class="rel rel-old" id="v2026-11-14b">
   <summary><span class="rel-sum">El anuncio de dos conejos, y botones que se ven a través de la cuenta regresiva</span><time class="rel-date" datetime="2026-11-14">14 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.14b</p>
