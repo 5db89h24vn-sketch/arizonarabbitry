@@ -1011,7 +1011,7 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
 @media(min-width:360px){
   @supports (grid-template-rows:subgrid){
     #rail{row-gap:0;margin-bottom:-12px}   
-    .bunnies>.bunny{display:grid;grid-row:span 11;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:0;margin-bottom:12px}
+    .bunnies>.bunny{display:grid;grid-row:span 12;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:0;margin-bottom:12px}
     .bunnies>.bunny>.bunny-media{grid-row:1}
     .bunnies>.bunny>.bunny-body{--bg:8px;display:grid;grid-row:2/-1;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);row-gap:0;container-type:normal}
     
@@ -1025,13 +1025,16 @@ html.boot:not(.js) #rail::before,html.boot:not(.js) #rail::after{content:'';disp
     .bunnies>.bunny>.bunny-body>.plan-meta:not(.state-meta)~.state-meta{grid-row:3}
     .bunnies>.bunny>.bunny-body>.meta{grid-row:4;margin-top:var(--bg)}
     .bunnies>.bunny>.bunny-body>.deal{grid-row:5;margin-top:calc(var(--bg) - 3px)}
-    .bunnies>.bunny>.bunny-body>.grow{grid-row:6;margin-top:calc(var(--bg) + 10px)}
-    .bunnies>.bunny>.bunny-body>.desc{grid-row:7;margin-top:var(--bg)}
-    .bunnies>.bunny>.bunny-body>.bget-note{grid-row:8;margin-top:var(--bg)}
-    .bunnies>.bunny>.bunny-body>.bget,.bunnies>.bunny>.bunny-body>.cta-note{grid-row:9;margin-top:var(--bg)}
     
-    .bunnies>.bunny>.bunny-body>.bget-after{grid-row:10;margin-top:calc(var(--bg) + 7px);align-self:end}
-    .bunnies>.bunny>.bunny-body>.bunny-cta{grid-row:10;margin-top:var(--bg);align-self:end}
+    .bunnies>.bunny>.bunny-body>.grow{grid-row:6 / span 2;display:grid;grid-template-rows:subgrid;row-gap:0;justify-items:start;margin-top:calc(var(--bg) + 10px)}
+    .bunnies>.bunny>.bunny-body>.grow>.grow-txt:not(.grow-open){grid-row:1}
+    .bunnies>.bunny>.bunny-body>.grow>.grow-open{grid-row:2;margin-top:8px}
+    .bunnies>.bunny>.bunny-body>.desc{grid-row:8;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.bget-note{grid-row:9;margin-top:var(--bg)}
+    .bunnies>.bunny>.bunny-body>.bget,.bunnies>.bunny>.bunny-body>.cta-note{grid-row:10;margin-top:var(--bg)}
+    
+    .bunnies>.bunny>.bunny-body>.bget-after{grid-row:11;margin-top:calc(var(--bg) + 7px);align-self:end}
+    .bunnies>.bunny>.bunny-body>.bunny-cta{grid-row:11;margin-top:var(--bg);align-self:end}
     .bunnies>.bunny>.bunny-body>.cta-note+.bunny-cta{margin-top:var(--bg)}
   }
 }
