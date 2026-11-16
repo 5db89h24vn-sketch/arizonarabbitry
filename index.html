@@ -3230,6 +3230,28 @@ body.locked{overflow:hidden}
   .hero-sub{grid-row:4} .hero-cta{grid-row:5} .hero .txqr{grid-row:6} .hero-srow{grid-row:7}
   .hero .facts{grid-row:8} .hero-media{grid-row:1 / 8}
 }
+
+@media(min-width:921px) and (min-height:501px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) min(45.2%,486px);column-gap:48px;row-gap:0;align-items:stretch}
+  .hero-grid > div:not(.hero-media){display:contents}
+  .hero h1{grid-column:1;grid-row:1}
+  .hero-deliver{grid-column:1;grid-row:2;justify-self:start}
+  .hero-lines{grid-column:1;grid-row:3;justify-self:start}
+  .hero-sub{grid-column:1;grid-row:4}
+  .hero-cta{grid-column:1;grid-row:5}
+  .hero .txqr{grid-column:1;grid-row:6}
+  .hero-srow{grid-column:1;grid-row:7;margin-bottom:0}
+  .hero-media{grid-column:2;grid-row:1 / 8;position:relative;min-height:0;container-type:inline-size}
+  .hero-go,.hero-media>.hero-pic>.hero-img{max-height:93.75cqw}
+  .hero .facts{grid-column:1 / -1;grid-row:8;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px;margin-top:22px}
+  .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
+  .hero .facts small{margin-top:2px;white-space:normal}
+}
+@media(min-width:921px) and (max-width:1099px) and (min-height:501px){
+  .hero-grid{grid-template-columns:minmax(min-content,1fr) minmax(0,min(45.2%,486px))}
+  .hero-cta{gap:9px;flex-wrap:nowrap}
+  .hero-cta .btn{flex:1 1 auto;padding-left:14px;padding-right:14px;white-space:nowrap}
+}
 @media(orientation:landscape) and (max-height:500px) and (min-width:560px){
   
   .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
@@ -3409,6 +3431,16 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
   .pro-card>.pro-face{grid-row:1}
   .pro-card>b{grid-row:2}
   .pro-card>.pro-what{grid-row:3}
+}
+
+.pro-sex.pro-empty,.pro-none{display:none}
+@media (min-width:760px){
+  .pro-sex.pro-empty{display:block}
+  .pro-none{display:block;grid-row:2;grid-column:var(--cs)/var(--ce);align-self:center;margin:0;font-size:14px;line-height:1.4;color:var(--ink-faint)}
+  .pro-grid::before{content:"";grid-column:var(--dv);grid-row:1 / span 2;justify-self:center;align-self:stretch;width:1px;background:var(--line)}
+}
+@supports (grid-template-rows:subgrid){
+  @media (min-width:760px){ .pro-grid::before{grid-row:1 / span 4} }
 }
 
 .pro-views{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
@@ -8251,11 +8283,16 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
       order.forEach(function(g){ var G=by[g]; [G].concat(subsOf(G).map(function(x){ return G.subs[x]; })).forEach(function(T){
         T.does.sort(proByName); T.bucks.sort(proByName); d=Math.max(d,T.does.length); b=Math.max(b,T.bucks.length); }); });
       box.style.setProperty('--d',String(d)); box.style.setProperty('--b',String(b));
+      box.style.setProperty('--dv',String(d+1));   /* the gap between the does and the bucks: the line's column (Round 193v) */
       var proGrid=function(T){ var h='';
         if(T.does.length) h+='<p class="pro-sex" style="--cs:1;--ce:'+(d+1)+'">Does (females)</p>'+
           T.does.map(function(k,i){ return proCard(k,i+1); }).join('');
+        else if(T.bucks.length) h+='<p class="pro-sex pro-empty" style="--cs:1;--ce:'+(d+1)+'">Does (females)</p>'+
+          '<p class="pro-none" style="--cs:1;--ce:'+(d+1)+'">There are no females in this group.</p>';
         if(T.bucks.length) h+='<p class="pro-sex" style="--cs:'+(d+2)+';--ce:'+(d+2+b)+'">Bucks (males)</p>'+
           T.bucks.map(function(k,i){ return proCard(k,d+2+i); }).join('');
+        else if(T.does.length) h+='<p class="pro-sex pro-empty" style="--cs:'+(d+2)+';--ce:'+(d+2+b)+'">Bucks (males)</p>'+
+          '<p class="pro-none" style="--cs:'+(d+2)+';--ce:'+(d+2+b)+'">There are no males in this group.</p>';
         return h?'<div class="pro-grid">'+h+'</div>':''; };
       box.innerHTML=order.map(function(g){
         var G=by[g], head, s=roots?SOURCES[g]:null;
