@@ -2011,9 +2011,10 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "reserved",
-    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026: "Juniper and blueberry are sold. Blueberry is going home tomorrow, and Juniper is going home on Sunday"; 6:14pm: "you could mark them as reserved until the pick up date". Goes home Fri 13 Nov: then adopted, wentHome on the real day. */
-    soldOn: "",
+    status: "adopted",                         /* his words, 12:39pm Sun 15 Nov 2026: "blueberry was taken home yesterday" */
+    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026: "Juniper and blueberry are sold. Blueberry is going home tomorrow, and Juniper is going home on Sunday"; 6:14pm: "you could mark them as reserved until the pick up date". */
+    soldOn: "",                                /* no sold date given: paid in full at pickup is the listing's rule, and he named only the day it left */
+    wentHome: "2026-11-14",                    /* Saturday 14 Nov 2026, the real day (Friday the 13th had been the plan) */
     ear:    "",
     weights: [],
     photo:  "photos/blueberry.jpg",
