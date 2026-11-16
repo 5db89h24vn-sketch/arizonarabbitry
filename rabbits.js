@@ -2047,9 +2047,10 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "reserved",
-    reservedOn: "2026-11-12",   /* his words, 8:00pm 12 Nov 2026: "Chai was just sold. Well, technically reserved, and it's gonna be picked up tomorrow afternoon" (as Blueberry and Juniper, 6:14pm: "you could mark them as reserved until the pick up date"). Planned pickup Fri 13 Nov, afternoon: adopted, with wentHome, only on his word that it went home. */
-    soldOn: "",
+    status: "adopted",                         /* his words, 8:01am Mon 16 Nov 2026: "our last Holland lops that were reserved went home yesterday" / "Juniper and chai" */
+    reservedOn: "2026-11-12",   /* his words, 8:00pm 12 Nov 2026: "Chai was just sold. Well, technically reserved, and it's gonna be picked up tomorrow afternoon" (as Blueberry and Juniper, 6:14pm: "you could mark them as reserved until the pick up date"). The pickup had been planned for Fri 13 Nov, afternoon. */
+    soldOn: "",                                /* no sold date given: paid in full at pickup is the listing's rule, and he named only the day it left */
+    wentHome: "2026-11-15",                    /* Sunday 15 Nov 2026, the day he named on the 16th ("yesterday"); Friday the 13th had been the plan */
     ear:    "",
     weights: [],
     photo:  "photos/chai.jpg",
@@ -2082,9 +2083,10 @@ const RABBITS = [
     dob:    "2026-10-19",
     listedOn: "2026-11-12",
     ready:  "12 Nov",   /* his checked day for the litter (10 Nov 2026) */
-    status: "reserved",
-    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026 (as Blueberry's); goes home Sun 15 Nov: then adopted, wentHome on the real day. */
-    soldOn: "",
+    status: "adopted",                         /* his words, 8:01am Mon 16 Nov 2026: "our last Holland lops that were reserved went home yesterday" / "Juniper and chai" */
+    reservedOn: "2026-11-12",   /* his words, 6:13pm 12 Nov 2026 (as Blueberry's) */
+    soldOn: "",                                /* no sold date given: paid in full at pickup is the listing's rule, and he named only the day it left */
+    wentHome: "2026-11-15",                    /* Sunday 15 Nov 2026, the day he named on the 16th ("yesterday") and the day planned */
     ear:    "",
     weights: [],
     photo:  "photos/juniper.jpg",
