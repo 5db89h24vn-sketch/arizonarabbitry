@@ -1791,7 +1791,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  400,   /* his words, 9:50pm 13 Nov 2026: "This rabbit will be $400 and it will be the highlight of the litter overall" */
+    price:  375,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 9:50pm 13 Nov 2026: "This rabbit will be $400 and it will be the highlight of the litter overall") */
+    wasPrice: 400,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1822,7 +1827,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  385,   /* his words, 9:52pm 13 Nov 2026: "This rabbit will be $385" */
+    price:  360,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 9:52pm 13 Nov 2026: "This rabbit will be $385") */
+    wasPrice: 385,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1852,7 +1862,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  385,   /* his words, 9:53pm 13 Nov 2026: "$385" (and 9:52pm: "Same thing for the other gray") */
+    price:  360,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 9:53pm 13 Nov 2026: "$385" (and 9:52pm: "Same thing for the other gray")) */
+    wasPrice: 385,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1881,7 +1896,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  385,   /* his words, 9:57pm 13 Nov 2026: "This bun will go for $385 and is the highlight of the black litter" */
+    price:  360,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 9:57pm 13 Nov 2026: "This bun will go for $385 and is the highlight of the black litter") */
+    wasPrice: 385,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1909,7 +1929,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  375,   /* his words, 10:05pm 13 Nov 2026: "$375" */
+    price:  350,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 10:05pm 13 Nov 2026: "$375") */
+    wasPrice: 375,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1938,7 +1963,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  375,   /* his words, 10:06pm 13 Nov 2026: "$375 / The last bun" */
+    price:  350,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 10:06pm 13 Nov 2026: "$375 / The last bun") */
+    wasPrice: 375,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
@@ -1968,7 +1998,12 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  375,   /* his words, 10:30pm 13 Nov 2026: "$375" (and "the little lively wormy picture") */
+    price:  350,   /* his words, 16 Nov 2026, 11:32pm: "decrease the price of each Netherland dwarf by $25 ... because our big Holland lop litter is coming in a few days from now" (the first price: his words, 10:30pm 13 Nov 2026: "$375" (and "the little lively wormy picture")) */
+    wasPrice: 375,                             /* the first price, listed 14 Nov 2026 */
+    dealOn:   "2026-11-17",
+    dealTag:  "Making room",
+    dealNote: "Making room for our big Holland Lop litter",
+    dealStays: true,                           /* the new price, not a sale: he gave no last day */
     breed:  "Netherland Dwarf cross",
     mother: "saffron",
     father: "odyssey",
