@@ -4656,6 +4656,61 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   .hero .facts{grid-row:8;margin-top:16px}
 }
 </style>
+<style id="season-row">
+
+html:not(.xmas) .facts>details.fact-season{display:none}
+
+html.xmas .hero .facts{align-items:stretch}
+html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
+@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  html.xmas .hero .facts>details.fact-season+details.fact>summary span{display:flex;align-items:baseline;gap:10px}
+  html.xmas .hero .facts>details.fact-season+details.fact b,html.xmas .hero .facts>details.fact-season+details.fact small{display:inline;margin-top:0}
+}
+@media (orientation:landscape) and (min-width:560px) and (max-width:659px){
+  html.xmas .hero .facts>details.fact:nth-of-type(3),html.xmas .hero .facts>details.fact-season{grid-column:1 / -1}
+  html.xmas .hero .facts>details.fact:nth-of-type(3)>summary span,html.xmas .hero .facts>details.fact-season>summary span{display:flex;align-items:baseline;gap:10px}
+  html.xmas .hero .facts>details.fact:nth-of-type(3) b,html.xmas .hero .facts>details.fact:nth-of-type(3) small,html.xmas .hero .facts>details.fact-season b,html.xmas .hero .facts>details.fact-season small{display:inline;margin-top:0}
+}
+@media (min-width:921px) and (min-height:501px){
+  html.xmas .hero .facts{grid-template-columns:repeat(3,minmax(min-content,1fr));contain:inline-size}
+  html.xmas .hero .facts>details.fact,html.xmas .hero .facts>details.fact-season+details.fact{grid-column:auto}
+  html.xmas .hero .facts>details.fact-season{grid-column:span 2}
+  html.xmas .hero .facts .factpanel{contain:inline-size}
+  html.xmas .hero .facts small{text-wrap:balance}
+}
+</style>
+<style id="side-as-upright">
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px){
+  .hero h1{grid-column:1;grid-row:1}
+  .hero h1 br{display:inline}
+  .hero-deliver{grid-column:1;grid-row:2;justify-self:start}
+  .hero-lines{grid-column:1;grid-row:3;justify-self:start;margin-bottom:0}
+  .hero-media{grid-column:2;grid-row:1 / 5;margin-top:0}
+  .hero-sub{grid-column:1;grid-row:4;margin-top:8px}
+  .hero-cta{grid-column:1 / -1;grid-row:5;flex-direction:row;gap:8px;margin-top:12px}
+  .hero-cta .btn{flex:1 1 0;width:auto}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px){
+  html[lang="es"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:592px){
+  html[lang="en"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  .corner{top:auto;bottom:max(10px,env(safe-area-inset-bottom))}
+  .corner-pill{position:relative}
+  .corner-pill .corner-ring{width:28px;height:28px}
+  .corner-pill::after{position:absolute;left:50%;top:50%;margin:0;transform:translate(-50%,-30%) rotate(225deg)}
+  .corner-pill[aria-expanded="true"]::after{transform:translate(-50%,-70%) rotate(45deg)}
+  .corner-sheet{top:auto;bottom:max(10px,env(safe-area-inset-bottom))}
+  .corner-list{grid-template-columns:max-content minmax(0,1fr)}
+}
+@media (orientation:landscape) and (min-height:420px) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  .corner-sheet{bottom:max(86px,env(safe-area-inset-bottom))}
+  .corner-list{max-height:calc(100svh - 96px)}
+}
+</style>
 </head>
 <body>
 
@@ -4992,6 +5047,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
         <details class="fact"><summary><span><b>Conózcalos antes de pagar</b><small>Para entrega a domicilio, primero un depósito de $50</small></span></summary><div class="whypanel factpanel" id="fact-pay"><ul class="checks"><li>Visitas gratis, sin presión</li><li>¿Lejos? Primero por FaceTime</li><li>Solo $50 antes de conocerlo</li><li>El resto, ya en sus manos</li><li>Zelle o efectivo, o a plazos</li></ul><p><a class="litterlink chip" href="#faq-pay">La respuesta completa<i class="chev" aria-hidden="true"></i></a></p></div></details>
         
         <details class="fact"><summary><span><b>Bienvenido si es su primer conejo</b><small>Tiempo, espacio, gatos y perros</small></span></summary><div class="whypanel factpanel" id="fact-first"><ul class="checks"><li>Lo que pide es tiempo cada día</li><li>Una guía y 2 semanas de comida</li><li>Mi número, de por vida</li><li>¿Gatos o perros? Bien, poco a poco</li><li>Con niños, un adulto a cargo</li></ul><p><a class="litterlink chip" href="#faq-first">La respuesta completa<i class="chev" aria-hidden="true"></i></a></p></div></details>
+        <details class="fact fact-season"><summary><span><b>¿Un conejo para Navidad?</b><small>Planéelo en familia, conózcalo primero</small></span></summary><div class="whypanel factpanel" id="fact-xmas"><ul class="checks"><li>Un conejo vive de ocho a doce años</li><li>Visitas gratis, sin presión</li><li>Con niños, un adulto a cargo</li><li>¿Viaja en las fiestas? Yo lo hospedo</li><li>Mi número, de por vida</li></ul></div></details>
         <details class="fact"><summary><span><b>20% de descuento en un segundo conejo</b><small>Si se lleva dos</small></span></summary><div class="whypanel factpanel" id="fact-pair"><ul class="checks"><li>El segundo es el que cueste menos</li><li>Sean de la misma camada o no</li><li>Salvo camadas de uno por cliente</li><li>¿No está seguro? Tiene 48 horas</li><li>Los hermanos ya se llevan bien</li></ul><p><a class="litterlink chip" href="#faq-pair">La respuesta completa<i class="chev" aria-hidden="true"></i></a></p></div></details>
 
       </div>

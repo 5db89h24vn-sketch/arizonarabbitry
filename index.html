@@ -4425,6 +4425,61 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   .hero .facts{grid-row:8;margin-top:16px}
 }
 </style>
+<style id="season-row">
+
+html:not(.xmas) .facts>details.fact-season{display:none}
+
+html.xmas .hero .facts{align-items:stretch}
+html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
+@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  html.xmas .hero .facts>details.fact-season+details.fact>summary span{display:flex;align-items:baseline;gap:10px}
+  html.xmas .hero .facts>details.fact-season+details.fact b,html.xmas .hero .facts>details.fact-season+details.fact small{display:inline;margin-top:0}
+}
+@media (orientation:landscape) and (min-width:560px) and (max-width:659px){
+  html.xmas .hero .facts>details.fact:nth-of-type(3),html.xmas .hero .facts>details.fact-season{grid-column:1 / -1}
+  html.xmas .hero .facts>details.fact:nth-of-type(3)>summary span,html.xmas .hero .facts>details.fact-season>summary span{display:flex;align-items:baseline;gap:10px}
+  html.xmas .hero .facts>details.fact:nth-of-type(3) b,html.xmas .hero .facts>details.fact:nth-of-type(3) small,html.xmas .hero .facts>details.fact-season b,html.xmas .hero .facts>details.fact-season small{display:inline;margin-top:0}
+}
+@media (min-width:921px) and (min-height:501px){
+  html.xmas .hero .facts{grid-template-columns:repeat(3,minmax(min-content,1fr));contain:inline-size}
+  html.xmas .hero .facts>details.fact,html.xmas .hero .facts>details.fact-season+details.fact{grid-column:auto}
+  html.xmas .hero .facts>details.fact-season{grid-column:span 2}
+  html.xmas .hero .facts .factpanel{contain:inline-size}
+  html.xmas .hero .facts small{text-wrap:balance}
+}
+</style>
+<style id="side-as-upright">
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px){
+  .hero h1{grid-column:1;grid-row:1}
+  .hero h1 br{display:inline}
+  .hero-deliver{grid-column:1;grid-row:2;justify-self:start}
+  .hero-lines{grid-column:1;grid-row:3;justify-self:start;margin-bottom:0}
+  .hero-media{grid-column:2;grid-row:1 / 5;margin-top:0}
+  .hero-sub{grid-column:1;grid-row:4;margin-top:8px}
+  .hero-cta{grid-column:1 / -1;grid-row:5;flex-direction:row;gap:8px;margin-top:12px}
+  .hero-cta .btn{flex:1 1 0;width:auto}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px){
+  html[lang="es"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:592px){
+  html[lang="en"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  .corner{top:auto;bottom:max(10px,env(safe-area-inset-bottom))}
+  .corner-pill{position:relative}
+  .corner-pill .corner-ring{width:28px;height:28px}
+  .corner-pill::after{position:absolute;left:50%;top:50%;margin:0;transform:translate(-50%,-30%) rotate(225deg)}
+  .corner-pill[aria-expanded="true"]::after{transform:translate(-50%,-70%) rotate(45deg)}
+  .corner-sheet{top:auto;bottom:max(10px,env(safe-area-inset-bottom))}
+  .corner-list{grid-template-columns:max-content minmax(0,1fr)}
+}
+@media (orientation:landscape) and (min-height:420px) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  .corner-sheet{bottom:max(86px,env(safe-area-inset-bottom))}
+  .corner-list{max-height:calc(100svh - 96px)}
+}
+</style>
 </head>
 <body>
 
@@ -4761,6 +4816,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
         <details class="fact"><summary><span><b>Meet them before you pay</b><small>For delivery, a $50 deposit first</small></span></summary><div class="whypanel factpanel" id="fact-pay"><ul class="checks"><li>Visits are free, no pressure to buy</li><li>Far away? A FaceTime call first</li><li>Only $50 before you meet</li><li>The rest when it's in your hands</li><li>Zelle or cash, or a payment plan</li></ul><p><a class="litterlink chip" href="#faq-pay">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
         
         <details class="fact"><summary><span><b>First-timers welcome</b><small>Time, space, cats and dogs</small></span></summary><div class="whypanel factpanel" id="fact-first"><ul class="checks"><li>Time every day is what it takes</li><li>A care sheet and two weeks of food</li><li>My number, for life</li><li>Cats or dogs? Often fine, slowly</li><li>Kids do well, an adult in charge</li></ul><p><a class="litterlink chip" href="#faq-first">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
+        <details class="fact fact-season"><summary><span><b>A rabbit for Christmas?</b><small>Plan it together, meet first</small></span></summary><div class="whypanel factpanel" id="fact-xmas"><ul class="checks"><li>A rabbit lives eight to twelve years</li><li>Visits are free, no pressure to buy</li><li>Kids do well, an adult in charge</li><li>Away for the holidays? I board</li><li>My number, for life</li></ul></div></details>
         <details class="fact"><summary><span><b>20% off a second rabbit</b><small>When you take two</small></span></summary><div class="whypanel factpanel" id="fact-pair"><ul class="checks"><li>The second is whichever costs less</li><li>Same litter or not</li><li>Unless a litter is one per customer</li><li>Not sure yet? You have 48 hours</li><li>Littermates already get along</li></ul><p><a class="litterlink chip" href="#faq-pair">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
 
       </div>
