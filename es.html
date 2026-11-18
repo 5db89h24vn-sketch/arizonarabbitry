@@ -4879,6 +4879,11 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 @media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
   .bunny .deal .deal-mate{display:block}
 }
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:720px) and (max-width:1099px), (orientation:portrait) and (min-width:666px) and (max-width:920px){
+  .bunnies{grid-auto-columns:clamp(170px,calc((100% - 64px) / 3),258px)}
+  .bunnies .bunny-top{flex-direction:column;align-items:flex-start;gap:2px}
+}
 </style>
 </head>
 <body>
