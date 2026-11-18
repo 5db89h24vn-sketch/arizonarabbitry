@@ -150,7 +150,7 @@ h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;le
 @media(hover:hover){.xlink:hover{border-bottom-style:solid;color:var(--brick)}}
 
 a[data-leaves] .kw{white-space:nowrap}
-a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline;padding-left:.6em;margin-left:.2em;background:linear-gradient(currentColor,currentColor) 0 50%/.6em .6em no-repeat;opacity:.72;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");-webkit-mask-repeat:no-repeat;-webkit-mask-position:0 50%;-webkit-mask-size:.6em .6em;mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");mask-repeat:no-repeat;mask-position:0 50%;mask-size:.6em .6em}
 .xlink:active{color:var(--brick)}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 18px;
@@ -708,9 +708,23 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-11-17d" aria-labelledby="v2026-11-17d-h">
-  <h2 id="v2026-11-17d-h">A tablet held upright shows more, and no picture slides through empty space</h2>
-  <p class="rel-when"><time datetime="2026-11-17">17 November 2026</time></p>
+<section class="rel" id="v2026-11-18a" aria-labelledby="v2026-11-18a-h">
+  <h2 id="v2026-11-18a-h">Rows side by side begin level on a phone on its side, and a full stop keeps its line</h2>
+  <p class="rel-when"><time datetime="2026-11-18">18 November 2026</time></p>
+  <p class="rel-ver">Site version 2026.11.18a</p>
+  <article class="chg" id="c-side-rows-level">
+    <p class="chg-lead"><b>On a phone on its side, rows side by side begin level.</b></p>
+    <p>Held on its side, a phone showed a few rows side by side out of line in Spanish: the two questions in the contact form, the two links under the rabbits, and the facts at the top of a tablet held upright. Their words now begin level, so a name on two lines never pushes the line beside it down.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.11.18a/side-rows-level-before-780.webp" srcset="changes/2026.11.18a/side-rows-level-before-390.webp 390w, changes/2026.11.18a/side-rows-level-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the contact form’s two questions in Spanish on a phone on its side, the second one’s line lower than the first’s." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.11.18a/side-rows-level-after-780.webp" srcset="changes/2026.11.18a/side-rows-level-after-390.webp 390w, changes/2026.11.18a/side-rows-level-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same questions, their lines level." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-arrow-mark">
+    <p class="chg-lead"><b>A full stop after a link to another site keeps its line.</b></p>
+    <p>A link to another site ends with a small arrow. The full stop or comma after it could drop to the start of the next line on its own; it now stays with the arrow, on every page and every screen.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.11.18a/arrow-mark-before-780.webp" srcset="changes/2026.11.18a/arrow-mark-before-390.webp 390w, changes/2026.11.18a/arrow-mark-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: About on a computer, a line that begins with the full stop belonging after a link." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.11.18a/arrow-mark-after-780.webp" srcset="changes/2026.11.18a/arrow-mark-after-390.webp 390w, changes/2026.11.18a/arrow-mark-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same place, the full stop right after the link’s arrow." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-11-17d">
+  <summary><span class="rel-sum">A tablet held upright shows more, and no picture slides through empty space</span><time class="rel-date" datetime="2026-11-17">17 November 2026</time></summary>
   <p class="rel-ver">Site version 2026.11.17d</p>
   <article class="chg" id="c-upright-room">
     <p class="chg-lead"><b>A folding phone opened, or a tablet held upright, shows more.</b></p>
@@ -737,7 +751,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
     <p>Held on its side, a phone squeezed a few small boxes until single words wrapped onto lines of their own: the litters to pick for alerts, the choices in the contact form, the breeders’ coat colours in Spanish. Each box now has the room its words need.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Before</figcaption><img src="changes/2026.11.17d/words-whole-before-780.webp" srcset="changes/2026.11.17d/words-whole-before-390.webp 390w, changes/2026.11.17d/words-whole-before-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Before: the litters to pick on a phone on its side, two across, with words like Purebred alone on a line." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>After</figcaption><img src="changes/2026.11.17d/words-whole-after-780.webp" srcset="changes/2026.11.17d/words-whole-after-390.webp 390w, changes/2026.11.17d/words-whole-after-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="After: the same screen, each litter on a row of its own with its words whole." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 <details class="rel rel-old" id="v2026-11-17c">
   <summary><span class="rel-sum">A phone on its side shows more, and on a computer the Christmas row sits on the right</span><time class="rel-date" datetime="2026-11-17">17 November 2026</time></summary>
   <p class="rel-ver">Site version 2026.11.17c</p>
@@ -2458,7 +2472,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   setP(paused);
   if(pb) pb.addEventListener('click',function(){ setP(!paused); try{ localStorage.setItem('xmPaused',paused?'1':'0'); }catch(e){} });
   var seen=false; function on(v){ if(sc) sc.classList.toggle('xm-on',v&&document.visibilityState!=='hidden'); }
-  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[0].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
+  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[es.length-1].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
     document.addEventListener('visibilitychange',function(){ on(seen); }); } else on(true);
   // the header: the hat lands after the rabbit's own arrival (its drawing is marked data-arriving while it plays), else at once, still
   var arrived=false; try{ arrived=!!sessionStorage.getItem('arrived'); }catch(e){}

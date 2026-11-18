@@ -3239,7 +3239,7 @@ html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #vi
 @media(hover:hover){.cite:hover{border-bottom-style:solid;color:var(--brick)}}
 
 a[data-leaves] .kw{white-space:nowrap}
-a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline;padding-left:.6em;margin-left:.2em;background:linear-gradient(currentColor,currentColor) 0 50%/.6em .6em no-repeat;opacity:.72;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");-webkit-mask-repeat:no-repeat;-webkit-mask-position:0 50%;-webkit-mask-size:.6em .6em;mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");mask-repeat:no-repeat;mask-position:0 50%;mask-size:.6em .6em}
 
 .stagelink{color:var(--brick-dk);text-decoration:none;
   border-bottom:1px dotted var(--link-line);padding-bottom:1px}
@@ -4660,7 +4660,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   html.xmas .hero .facts>details.fact-season+details.fact>summary span{display:flex;align-items:baseline;gap:10px}
   html.xmas .hero .facts>details.fact-season+details.fact b,html.xmas .hero .facts>details.fact-season+details.fact small{display:inline;margin-top:0}
 }
-@media (orientation:landscape) and (min-width:560px) and (max-width:659px){
+@media (orientation:landscape) and (min-width:560px) and (max-width:659px),(orientation:portrait) and (min-width:560px) and (max-width:659px){
   html.xmas .hero .facts>details.fact:nth-of-type(3),html.xmas .hero .facts>details.fact-season{grid-column:1 / -1}
   html.xmas .hero .facts>details.fact:nth-of-type(3)>summary span,html.xmas .hero .facts>details.fact-season>summary span{display:flex;align-items:baseline;gap:10px}
   html.xmas .hero .facts>details.fact:nth-of-type(3) b,html.xmas .hero .facts>details.fact:nth-of-type(3) small,html.xmas .hero .facts>details.fact-season b,html.xmas .hero .facts>details.fact-season small{display:inline;margin-top:0}
@@ -4864,6 +4864,20 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 }
 @media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:699px), (orientation:portrait) and (min-width:560px) and (max-width:699px){
   html[lang="es"] #producers .pro-grid{column-gap:6px}
+}
+
+@media (min-width:801px){
+  .doors a{align-items:flex-start}
+  .doors a>.chev{align-self:center}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:699px), (orientation:portrait) and (min-width:560px) and (max-width:699px){
+  #contact .tasks>li{display:grid;grid-row:span 2;grid-template-rows:subgrid}
+  #contact .tasks>li>a{grid-row:span 2;grid-template-rows:subgrid;align-items:start}
+  #contact .tasks>li>a>span{display:grid;grid-row:1 / span 2;grid-column:1;grid-template-rows:subgrid}
+  #contact .tasks>li>a>.chev{grid-column:2;grid-row:1 / span 2;align-self:center}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+  .bunny .deal .deal-mate{display:block}
 }
 </style>
 </head>

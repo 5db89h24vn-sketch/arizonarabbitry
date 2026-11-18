@@ -379,7 +379,7 @@ h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;le
 @media(hover:hover){.xlink:hover{border-bottom-style:solid;color:var(--brick)}}
 
 a[data-leaves] .kw{white-space:nowrap}
-a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline;padding-left:.6em;margin-left:.2em;background:linear-gradient(currentColor,currentColor) 0 50%/.6em .6em no-repeat;opacity:.72;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");-webkit-mask-repeat:no-repeat;-webkit-mask-position:0 50%;-webkit-mask-size:.6em .6em;mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");mask-repeat:no-repeat;mask-position:0 50%;mask-size:.6em .6em}
 .xlink:active{color:var(--brick)}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 18px;
@@ -937,9 +937,23 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-11-17d" aria-labelledby="v2026-11-17d-h">
-  <h2 id="v2026-11-17d-h">Una tableta en vertical muestra más, y ninguna foto se desliza por espacio vacío</h2>
-  <p class="rel-when"><time datetime="2026-11-17">17 de noviembre de 2026</time></p>
+<section class="rel" id="v2026-11-18a" aria-labelledby="v2026-11-18a-h">
+  <h2 id="v2026-11-18a-h">Las filas lado a lado empiezan a la misma altura en un teléfono de lado, y el punto se queda en su línea</h2>
+  <p class="rel-when"><time datetime="2026-11-18">18 de noviembre de 2026</time></p>
+  <p class="rel-ver">Versión del sitio 2026.11.18a</p>
+  <article class="chg" id="c-side-rows-level">
+    <p class="chg-lead"><b>En un teléfono de lado, las filas lado a lado empiezan a la misma altura.</b></p>
+    <p>De lado, el teléfono mostraba algunas filas lado a lado desalineadas en español: las dos preguntas del formulario de contacto, los dos enlaces bajo los conejos y los datos de arriba en una tableta en vertical. Ahora sus palabras empiezan a la misma altura, así un nombre en dos líneas nunca baja la línea de al lado.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.18a/side-rows-level-before-es-780.webp" srcset="changes/2026.11.18a/side-rows-level-before-es-390.webp 390w, changes/2026.11.18a/side-rows-level-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: las dos preguntas del formulario de contacto en un teléfono de lado, la línea de la segunda más baja que la de la primera." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.18a/side-rows-level-after-es-780.webp" srcset="changes/2026.11.18a/side-rows-level-after-es-390.webp 390w, changes/2026.11.18a/side-rows-level-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: las mismas preguntas, sus líneas a la misma altura." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-arrow-mark">
+    <p class="chg-lead"><b>Un punto después de un enlace a otro sitio se queda en su línea.</b></p>
+    <p>Un enlace a otro sitio termina con una flechita. El punto o la coma que le sigue podía caer solo al comienzo de la línea siguiente; ahora se queda con la flecha, en cada página y cada pantalla.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.18a/arrow-mark-before-es-780.webp" srcset="changes/2026.11.18a/arrow-mark-before-es-390.webp 390w, changes/2026.11.18a/arrow-mark-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la respuesta sobre las jaulas en una computadora, una línea que empieza con la coma que va después de un enlace." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.18a/arrow-mark-after-es-780.webp" srcset="changes/2026.11.18a/arrow-mark-after-es-390.webp 390w, changes/2026.11.18a/arrow-mark-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: el mismo lugar, la coma justo después de la flecha del enlace." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-11-17d">
+  <summary><span class="rel-sum">Una tableta en vertical muestra más, y ninguna foto se desliza por espacio vacío</span><time class="rel-date" datetime="2026-11-17">17 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.17d</p>
   <article class="chg" id="c-upright-room">
     <p class="chg-lead"><b>Un teléfono plegable abierto, o una tableta en vertical, muestra más.</b></p>
@@ -966,7 +980,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
     <p>De lado, el teléfono apretaba algunas cajas pequeñas hasta que palabras sueltas pasaban solas a otra línea: las camadas para elegir avisos, las opciones del formulario de contacto y los colores de los criadores. Cada caja tiene ahora el espacio que sus palabras necesitan.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.17d/words-whole-before-es-780.webp" srcset="changes/2026.11.17d/words-whole-before-es-390.webp 390w, changes/2026.11.17d/words-whole-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: las camadas para elegir en un teléfono de lado, de dos en dos, con palabras como pura solas en una línea." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.17d/words-whole-after-es-780.webp" srcset="changes/2026.11.17d/words-whole-after-es-390.webp 390w, changes/2026.11.17d/words-whole-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: la misma pantalla, cada camada en su propia fila con sus palabras completas." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 <details class="rel rel-old" id="v2026-11-17c">
   <summary><span class="rel-sum">Un teléfono de lado muestra más, y en una computadora la fila de Navidad va a la derecha</span><time class="rel-date" datetime="2026-11-17">17 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.17c</p>
@@ -2687,7 +2701,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   setP(paused);
   if(pb) pb.addEventListener('click',function(){ setP(!paused); try{ localStorage.setItem('xmPaused',paused?'1':'0'); }catch(e){} });
   var seen=false; function on(v){ if(sc) sc.classList.toggle('xm-on',v&&document.visibilityState!=='hidden'); }
-  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[0].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
+  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[es.length-1].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
     document.addEventListener('visibilitychange',function(){ on(seen); }); } else on(true);
   // the header: the hat lands after the rabbit's own arrival (its drawing is marked data-arriving while it plays), else at once, still
   var arrived=false; try{ arrived=!!sessionStorage.getItem('arrived'); }catch(e){}

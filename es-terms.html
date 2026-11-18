@@ -379,7 +379,7 @@ h2{font-family:var(--serif);font-weight:500;font-size:23px;margin:34px 0 12px;le
 @media(hover:hover){.xlink:hover{border-bottom-style:solid;color:var(--brick)}}
 
 a[data-leaves] .kw{white-space:nowrap}
-a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline-block;width:.6em;height:.6em;margin-left:.2em;vertical-align:.04em;background:currentColor;opacity:.72;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E") center/contain no-repeat}
+a[data-leaves] .kw::after,a[data-arrow="end"]::after{content:"";display:inline;padding-left:.6em;margin-left:.2em;background:linear-gradient(currentColor,currentColor) 0 50%/.6em .6em no-repeat;opacity:.72;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");-webkit-mask-repeat:no-repeat;-webkit-mask-position:0 50%;-webkit-mask-size:.6em .6em;mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10M7 17 17 7'/%3E%3C/svg%3E");mask-repeat:no-repeat;mask-position:0 50%;mask-size:.6em .6em}
 .xlink:active{color:var(--brick)}
 footer{border-top:1px solid var(--line-soft);margin-top:44px;padding:20px 0 34px;
   font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 18px;
@@ -1076,7 +1076,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   setP(paused);
   if(pb) pb.addEventListener('click',function(){ setP(!paused); try{ localStorage.setItem('xmPaused',paused?'1':'0'); }catch(e){} });
   var seen=false; function on(v){ if(sc) sc.classList.toggle('xm-on',v&&document.visibilityState!=='hidden'); }
-  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[0].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
+  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[es.length-1].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
     document.addEventListener('visibilitychange',function(){ on(seen); }); } else on(true);
   // the header: the hat lands after the rabbit's own arrival (its drawing is marked data-arriving while it plays), else at once, still
   var arrived=false; try{ arrived=!!sessionStorage.getItem('arrived'); }catch(e){}
