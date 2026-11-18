@@ -532,7 +532,7 @@ header .brand{color:var(--logo)}
   @keyframes csGrip{from{left:0}to{left:calc(100% - 15px)}}
 }
 
-@media(max-width:980px) and (orientation:landscape) and (max-height:500px){
+@media(max-width:980px) and (orientation:landscape) and (max-height:500px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (max-width:980px){
   .dock{padding-top:4px;padding-bottom:2px}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
@@ -572,7 +572,7 @@ header .brand{color:var(--logo)}
 @media(max-width:359px){ .srow{font-size:14px;gap:0 10px} .srow-more a{width:36px} .srow-more{margin-right:-8px} }
 .hero-srow{margin:-16px 0 -10px}
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px){ .hero-srow{display:none} }
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px){ .hero-srow{display:none} }
 
 .hero-deliver{display:flex;width:fit-content;align-items:center;gap:10px;margin:-22px 0 2px;padding:12px 0;
   color:inherit;text-decoration:none;cursor:pointer}
@@ -1131,7 +1131,7 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
 .about-story{grid-column:1;grid-row:2;margin-top:14px}
 .about-story p+p,.about-head p+p{margin-top:14px}
 
-.about-media{grid-column:2;grid-row:1/3;align-self:start;position:sticky;top:96px}
+.about-media{grid-column:2;grid-row:1/3;align-self:start}
 
 .about-media img{border-radius:var(--r);object-fit:cover;object-position:40% 74%;width:100%;aspect-ratio:4/3;height:auto}
 .lede b{color:var(--ink);font-weight:600}
@@ -3253,7 +3253,7 @@ body.locked{overflow:hidden}
   .hero-cta{gap:9px;flex-wrap:nowrap}
   .hero-cta .btn{flex:1 1 auto;padding-left:14px;padding-right:14px;white-space:nowrap}
 }
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px){
   
   .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
   .hero .facts small{margin-top:2px;white-space:normal}
@@ -3272,7 +3272,7 @@ body.locked{overflow:hidden}
   .viewer-body{scroll-padding-bottom:200px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
   .hero-grid{grid-template-columns:minmax(0,54fr) minmax(0,46fr);gap:0 24px;align-items:start;--rowpad:12px}
   .hero-grid > div:not(.hero-media){display:contents}
   .hero h1{grid-column:1;grid-row:1;margin-bottom:6px}
@@ -3297,14 +3297,14 @@ body.locked{overflow:hidden}
   .hero .facts>details>summary{min-height:0;padding-top:9px;padding-bottom:9px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:639px){
   .hero-deliver{font-size:15px;padding-right:24px}
   .hero .hero-deliver .chev{margin:0 -20px 0 10px}
   html[lang="es"] .hero-grid{--rowpad:2px}
   html[lang="es"] .hero h1{margin-bottom:3px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px){
   .hero-grid{--rowpad:clamp(2px,calc((100vw - 700px) * .07 + 2px),9px)}
   .hero h1{margin-bottom:3px}
   .hero-lines{margin-bottom:calc(0px - var(--rowpad))}
@@ -3313,7 +3313,7 @@ body.locked{overflow:hidden}
   .hero-cta{margin-top:12px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:880px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:880px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:880px) and (max-width:1099px){
   .hero-grid{--rowpad:2px}
   .hero-sub{margin-bottom:14px}
   .hero-cta{grid-column:1;gap:9px;margin-top:0;margin-bottom:0}
@@ -4318,7 +4318,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 </style>
 <style id="sideways-book">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
   
   section{padding:22px 0}
   section:not(#top) .wrap,footer .wrap{padding-right:max(78px,calc(env(safe-area-inset-right) + 66px))}
@@ -4344,13 +4344,14 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   #available .avail-head .lede{font-size:15px;line-height:1.45}
   .bunnies{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(258px,calc(50% - 22px));grid-template-rows:repeat(12,auto);
     overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:0 12px}
+  
+  .bunnies:not(.few){grid-template-columns:none}
   .bunnies>.bunny{scroll-snap-align:start;margin-bottom:0}
   .bunnies>.bunny>.bunny-body{--bg:6px}
   
   .bunnies:focus-within,.lsh-row:focus-within{scroll-snap-type:none;scroll-behavior:auto}
   
   #included .split{grid-template-columns:minmax(0,1fr) minmax(0,min(calc((100svh - 60px) * .6),46%));gap:0 26px;align-items:start}
-  #included .split>.rv{position:sticky;top:max(12px,env(safe-area-inset-top))}
   #included .split img{width:100%;height:auto;min-height:0;aspect-ratio:3 / 5}
   
   .about-grid{display:block}
@@ -4368,7 +4369,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   #contact .tasks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
   #lead .opts{grid-template-columns:repeat(auto-fit,minmax(138px,1fr))}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:839px){
   
   .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,252px);gap:0 22px;--rowpad:7px}
   .hero h1{grid-column:1 / -1;grid-row:1;margin-bottom:6px;max-width:none}
@@ -4392,25 +4393,17 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   .hero-chip b{font-size:14px}
   .hero-chip small{font-size:12px}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:640px) and (max-width:839px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:640px) and (max-width:839px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:640px) and (max-width:839px){
   
   .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,240px)}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px){
   
   #waitlist.wl{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0 24px}
   #waitlist .wl-side{min-width:0;max-width:none}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px){
-  
-  .about-grid{display:grid;grid-template-columns:minmax(0,min(470px,60%)) minmax(0,1fr);gap:0 24px;align-items:start}
-  .about-grid>.about-head{grid-column:1;grid-row:1}
-  .about-grid>.about-story{grid-column:1;grid-row:2}
-  .about-grid>.about-story::after{content:none}
-  .about-grid>.about-media{float:none;width:auto;margin:0;grid-column:2;grid-row:1 / 3;position:sticky;top:max(12px,env(safe-area-inset-top));align-self:start}
-  .about-grid>.about-media img{aspect-ratio:4 / 5;max-height:calc(100svh - 24px)}
-}
-@media (orientation:landscape) and (max-height:500px) and (min-width:840px) and (max-width:1099px){
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:840px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:840px) and (max-width:1099px){
   
   .hero-grid{grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:0 26px;--rowpad:clamp(4px,calc((100vw - 840px) * .06 + 4px),10px)}
   .hero-media{grid-column:2;grid-row:1 / 6}
@@ -4432,7 +4425,7 @@ html:not(.xmas) .facts>details.fact-season{display:none}
 
 html.xmas .hero .facts{align-items:stretch}
 html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
-@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
   html.xmas .hero .facts>details.fact-season+details.fact>summary span{display:flex;align-items:baseline;gap:10px}
   html.xmas .hero .facts>details.fact-season+details.fact b,html.xmas .hero .facts>details.fact-season+details.fact small{display:inline;margin-top:0}
 }
@@ -4459,7 +4452,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </style>
 <style id="side-as-upright">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:839px){
   .hero h1{grid-column:1;grid-row:1}
   .hero h1 br{display:inline}
   .hero-deliver{grid-column:1;grid-row:2;justify-self:start}
@@ -4469,13 +4462,13 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   .hero-cta{grid-column:1 / -1;grid-row:5;flex-direction:row;gap:8px;margin-top:12px}
   .hero-cta .btn{flex:1 1 0;width:auto}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:639px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:639px){
   html[lang="es"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:592px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:592px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:592px){
   html[lang="en"] .hero h1{font-size:clamp(24px,calc((100vw - 314px) / 10.2),30px)}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
   .corner{top:auto;bottom:max(10px,env(safe-area-inset-bottom))}
   .corner-pill{position:relative}
   .corner-pill .corner-ring{width:28px;height:28px}
@@ -4491,7 +4484,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </style>
 <style id="sideways-room">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
   
   section:not(#top){padding-bottom:14px}
   section:not(#top):not(#available):not(#producers){padding-top:14px}
@@ -4514,7 +4507,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   
   footer .foot-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px){
 
   #faq{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:22px;align-items:start;
        padding-left:26px;padding-right:max(78px,calc(env(safe-area-inset-right) + 66px))}
@@ -4557,12 +4550,89 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   footer .foot>div:nth-child(2){grid-column:2;grid-row:1 / span 2}
   footer .foot>div:nth-child(3){grid-column:1;grid-row:2}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px){
   
   .stages{row-gap:14px;margin-top:14px}
   .stages>.stage{grid-template-columns:minmax(0,260px) minmax(0,1fr);column-gap:22px;align-items:start}
   .stages>.stage>*{grid-column:1}
   .stages>.stage>.stage-now{grid-column:2;grid-row:1 / span 6;margin:0;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+}
+</style>
+<style id="upright-room">
+
+@media (orientation:portrait) and (min-width:560px) and (max-width:839px){
+  .hero-srow{display:flex;grid-column:1 / -1;grid-row:6;margin:10px 0 0}
+}
+</style>
+<style id="level-pictures">
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+  #included .split{grid-template-columns:minmax(0,1fr) minmax(0,min(40%,200px));column-gap:24px;row-gap:0;align-items:start}
+  #included .split>div:first-child{display:contents}
+  #included .split>div:first-child>*{grid-column:1}
+  #included .split>div:first-child>.incl,#included .split>div:first-child>.owner-back{grid-column:1 / -1}
+  #included .split>.rv{grid-column:2;grid-row:1 / 5;position:static;top:auto;align-self:stretch;min-height:0;contain:size;display:flex;flex-direction:column}
+  #included .split>.rv img{flex:1 1 0;min-height:0;height:auto;width:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 58%}
+  #included .split>.rv .rv-note{flex:none}
+  #included .incl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px;margin-top:12px}
+  #included .incl li{padding-top:10px;padding-bottom:10px;text-wrap:balance}
+  #included .incl li small{text-wrap:pretty}
+  #included .incl li::before{top:16px}
+}
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px), (orientation:portrait) and (min-width:800px) and (max-width:920px){
+  .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);column-gap:24px;row-gap:0;align-items:start}
+  .about-grid>.about-head{grid-column:1;grid-row:1}
+  .about-grid>.about-media{float:none;width:auto;margin:0;grid-column:2;grid-row:1;align-self:stretch;position:static;top:auto;contain:size;display:flex;flex-direction:column}
+  .about-grid>.about-media img{flex:1 1 0;min-height:0;height:auto;max-height:none;aspect-ratio:auto;object-fit:cover;object-position:40% 50%}
+  .about-grid>.about-story{grid-column:1 / -1;grid-row:2;columns:2;column-gap:24px;margin-top:18px}
+  .about-grid>.about-story>p{break-inside:avoid}
+  .about-grid>.about-story::after{content:none}
+  .about-grid>.about-story>.about-more{column-span:all;margin-top:14px}
+}
+
+@media (min-width:901px) and (min-height:501px), (min-width:1100px){
+  .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);column-gap:48px;row-gap:0;align-items:start}
+  .about-grid>.about-head{grid-column:1;grid-row:1}
+  .about-grid>.about-media{float:none;width:auto;margin:0;grid-column:2;grid-row:1;align-self:stretch;position:static;top:auto;contain:size;display:flex;flex-direction:column}
+  .about-grid>.about-media img{flex:1 1 0;min-height:0;height:auto;max-height:none;aspect-ratio:auto;object-fit:cover;object-position:40% 50%}
+  .about-grid>.about-story{grid-column:1 / -1;grid-row:2;columns:2;column-gap:48px;margin-top:18px}
+  .about-grid>.about-story>p{break-inside:avoid}
+  .about-grid>.about-story::after{content:none}
+  .about-grid>.about-story>.about-more{column-span:all;margin-top:14px}
+}
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px){
+  #available .bunny-media{aspect-ratio:16 / 9}
+  .bunnies > .bunny > .bunny-body{--bg:6px;padding-top:12px;padding-bottom:12px}
+  .bunnies > .bunny > .bunny-body > .grow{margin-top:calc(var(--bg) + 4px)}
+}
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+  #waitlist .wl-lits{grid-template-columns:repeat(auto-fill,minmax(256px,1fr))}
+  #lead .opts{grid-template-columns:minmax(0,1fr)}
+  #lead .opt b,#lead .opt small{text-wrap:balance}
+  .callout>b{text-wrap:balance}
+  footer a{white-space:nowrap}
+  .stage-lit b.by-parents .f{white-space:nowrap}
+}
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:860px) and (max-width:1099px), (orientation:portrait) and (min-width:860px) and (max-width:920px){
+  html[lang="es"] #producers .pro-grid{grid-template-columns:repeat(var(--d),minmax(0,150px)) 16px repeat(var(--b),minmax(0,150px))}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:760px) and (max-width:859px), (orientation:portrait) and (min-width:760px) and (max-width:859px){
+  html[lang="es"] #producers .pro-grid{grid-template-columns:repeat(var(--d),minmax(0,150px)) 12px repeat(var(--b),minmax(0,150px));column-gap:6px}
+  html[lang="es"] #producers .pro-what{font-size:11px}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:759px), (orientation:portrait) and (min-width:700px) and (max-width:759px){
+  html[lang="es"] #producers .pro-grid{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:6px}
+  html[lang="es"] #producers .pro-sex{grid-row:auto;grid-column:1 / -1}
+  html[lang="es"] #producers .pro-card{grid-column:auto}
+  html[lang="es"] #producers .pro-sex.pro-empty,html[lang="es"] #producers .pro-none{display:none}
+  html[lang="es"] #producers .pro-grid::before{content:none}
+}
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:699px), (orientation:portrait) and (min-width:560px) and (max-width:699px){
+  html[lang="es"] #producers .pro-grid{column-gap:6px}
 }
 </style>
 </head>
@@ -6935,11 +7005,11 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     onScrollChange(function(){ if(isOpen() && Math.abs(scrollPos()-openY)>60) close(false); });
     var foot=document.querySelector('footer');
     if(foot && 'IntersectionObserver' in window) new IntersectionObserver(function(es){
-      var on=es[0].isIntersecting; box.classList.toggle('away',on); if(on) close(false);
+      var on=es[es.length-1].isIntersecting; box.classList.toggle('away',on);   /* (Round 195) the LAST entry: two can come in one call, the first the older */ if(on) close(false);
     },{threshold:0}).observe(foot);
     var contactSec=document.getElementById('contact');
     if(contactSec && 'IntersectionObserver' in window) new IntersectionObserver(function(es){
-      root.classList.toggle('at-contact',es[0].isIntersecting);
+      root.classList.toggle('at-contact',es[es.length-1].isIntersecting);
     },{threshold:0}).observe(contactSec);
     document.addEventListener('focusin',function(e){
       var t=e.target;
@@ -12373,7 +12443,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   setP(paused);
   if(pb) pb.addEventListener('click',function(){ setP(!paused); try{ localStorage.setItem('xmPaused',paused?'1':'0'); }catch(e){} });
   var seen=false; function on(v){ if(sc) sc.classList.toggle('xm-on',v&&document.visibilityState!=='hidden'); }
-  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[0].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
+  if(sc&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[es.length-1].isIntersecting; on(seen); },{threshold:.1}).observe(sc);
     document.addEventListener('visibilitychange',function(){ on(seen); }); } else on(true);
   // the header: the hat lands after the rabbit's own arrival (its drawing is marked data-arriving while it plays), else at once, still
   var arrived=false; try{ arrived=!!sessionStorage.getItem('arrived'); }catch(e){}
@@ -12423,7 +12493,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </script>
 <script>
 (function(){ var top=document.getElementById("top"); if(!top||!("IntersectionObserver" in window)||!window.matchMedia) return;
-  var mq=matchMedia("(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px)");
+  var mq=matchMedia("(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px)");
   var io=new IntersectionObserver(function(es){ var r=es[es.length-1].intersectionRect.height; document.documentElement.classList.toggle("ls-hero", mq.matches && r>Math.min(180, innerHeight*.38)); },{threshold:[0,.1,.2,.3,.35,.4,.5,.6,.7,.8,.9,1]});
   io.observe(top); if(mq.addEventListener) mq.addEventListener("change",function(){ io.unobserve(top); io.observe(top); }); })();
 </script>
