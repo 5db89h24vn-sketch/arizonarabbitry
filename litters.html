@@ -63,6 +63,8 @@
 </style>
 
 <style>
+
+.lit-proof{margin:10px 0 16px;max-width:52ch;font-size:16px;line-height:1.6;color:var(--ink-soft);text-wrap:pretty}
 :root{
   color-scheme:light;
   --paper:#FBF8F3; --paper-2:#F3EDE3; --ink:#241F1D; --ink-soft:#57504A;
@@ -1344,6 +1346,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
       <a class="lang-link" href="es-litters.html" hreflang="es" lang="es" data-lang-switch><svg class="globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.7 5.6 3.7 9s-1.3 6.4-3.7 9c-2.4-2.6-3.7-5.6-3.7-9s1.3-6.4 3.7-9z"/></svg>Español</a>
     </nav>
     <h1>Litters</h1>
+      <p class="lit-proof" id="litProof" hidden></p>
   </div>
 </header>
 
@@ -2459,6 +2462,36 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
 <script src="rabbits.js?v=27b7907b"></script>
+<script>
+(function(){
+  var el=document.getElementById('litProof'); if(!el||typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
+  var ES=document.documentElement.lang==='es', BASE=ES?'es.html#r-':'/#r-';
+  function day(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); return m?Date.UTC(+m[1],+m[2]-1,+m[3])/864e5:null;}
+  function slug(t){return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+  var groups={}, addr=new Map(); RABBITS.forEach(function(r){var s=slug(r.name);(groups[s]=groups[s]||[]).push(r);});
+  Object.keys(groups).forEach(function(s){ var g=groups[s].slice().sort(function(a,b){return String(a.dob||'').localeCompare(String(b.dob||''));}); var used={};
+    g.forEach(function(r,i){ var a=i===0?s:s+'-'+String(r.dob||'').replace(/[^0-9]/g,''); if(used[a])a=a+'-'+(++used[a]);else used[a]=1; addr.set(r,a); }); });
+  function homed(r){ var d=[r.reservedOn,r.soldOn,r.wentHome].map(day).filter(function(x){return x!==null;}); var l=day(r.listedOn); return d.length&&l!==null?Math.min.apply(null,d)-l:null; }
+  var L={}; RABBITS.forEach(function(r){ if(!r.dob||!r.listedOn) return; var k=r.dob+'|'+(r.mother||'')+'|'+(r.father||''); (L[k]=L[k]||[]).push(r); });
+  var lit=Object.keys(L).sort().reverse().map(function(k){return L[k];}).filter(function(g){return g.some(function(r){return homed(r)!==null;});}).slice(0,3);
+  if(lit.length<3) return;
+  var kits=[].concat.apply([],lit), fast=[], later=0, kept=[], open=[];
+  kits.forEach(function(r){ var h=homed(r); if(r.status==='kept'||r.keptOn) kept.push(r); else if(h!==null&&h<=28) fast.push(h); else if(h!==null) later++; else open.push(r); });
+  if(!fast.length) return;
+  fast.sort(function(a,b){return a-b;}); var med=fast[Math.ceil(fast.length/2)-1];
+  var W=ES?['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez']:['no','one','two','three','four','five','six','seven','eight','nine','ten'];
+  function num(n){return n<=10?W[n]:String(n);}
+  function names(list){ var f=document.createDocumentFragment(); list.forEach(function(r,i){ if(i) f.appendChild(document.createTextNode(i===list.length-1?(ES?' y ':' and '):', '));
+    var a=document.createElement('a'); a.className='xlink'; a.href=BASE+addr.get(r); a.textContent=r.name; f.appendChild(a); }); return f; }
+  var t=ES?('De los '+kits.length+' gazapos de las últimas tres camadas, '+fast.length+' encontraron hogar en cuatro semanas o menos desde que se publicaron'+(med===0?', la mitad el mismo día':med<=1?', la mitad a más tardar al día siguiente':med<=7?', la mitad en una semana o menos':'')+(later?'; '+num(later)+' más tarde':'')+'.')
+         :('Of the last three litters’ '+kits.length+' kits, '+fast.length+' found homes within four weeks of being listed'+(med===0?', half of them the same day':med<=1?', half of them by the next day':med<=7?', half of them within a week':'')+(later?'; '+num(later)+' later':'')+'.');
+  el.textContent=t;
+  if(kept.length){ el.appendChild(document.createTextNode(' ')); el.appendChild(names(kept)); el.appendChild(document.createTextNode(ES?(kept.length>1?' se quedan aquí.':' se queda aquí.'):(kept.length>1?' stay here.':' stays here.'))); }
+  if(open.length&&open.length<=3){ el.appendChild(document.createTextNode(' ')); el.appendChild(names(open)); el.appendChild(document.createTextNode(ES?(open.length>1?' siguen buscando hogar.':' sigue buscando hogar.'):(open.length>1?' are still looking.':' is still looking.'))); }
+  else if(open.length) el.appendChild(document.createTextNode(ES?(' '+open.length+' siguen buscando hogar.'):(' '+open.length+' are still looking.')));
+  el.hidden=false;
+})();
+</script>
 <script>
 (function(){
   if (typeof RABBITS === 'undefined' || !Array.isArray(RABBITS)) return;
