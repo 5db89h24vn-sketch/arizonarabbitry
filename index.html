@@ -6316,8 +6316,9 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
         <div class="done" id="done" role="status">
           <h3>Got it, thank you.</h3>
-          <p>I'll read this myself and get back to you shortly, usually the same day. If it's
-          urgent, text me at <b>(520) 270-2827</b>.</p>
+          
+          <p>I’ll read this myself and get back to you shortly, usually the same day. If you haven’t heard
+          from me by tomorrow, text me at <b>(520) 270-2827</b>; sometimes a&nbsp;message&nbsp;goes&nbsp;astray.</p>
         </div>
       </div>
     </div>
@@ -9398,7 +9399,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         if(c.closest('.gs-tovisit')){ gsMove('visit'); return; }
         if(c.closest('.gs-tobuy')){ gsMove((gsR&&gsOne(gsR))?'buy':'reserve'); return; }
         var s=c.closest('.gs-text,.gs-mail');
-        if(s){ if(!gsReady(s)){ ev.preventDefault(); return; } if(s.classList.contains('gs-text')) gsInbox('text'); setTimeout(gsDone,400); return; }   /* the link goes to the phone's app; a text's copy goes to his inbox (Round 192b) */
+        if(s){ if(!gsReady(s)){ ev.preventDefault(); return; } gsInbox(s.classList.contains('gs-text')?'text':'mail'); setTimeout(gsDone,400); return; }   /* the link goes to the phone's app; a copy goes to his inbox by either button (a text's since Round 192b; an email's since Round 218, Site Idea 199: a phone with no mail app set up opens nothing, and nothing reached him) */
         if(c.closest('.gs-copyb')){ ev.preventDefault(); gsCopy(); }
       });
       f.addEventListener('submit',function(ev){ ev.preventDefault(); var b=gs.querySelector(gsScreen()?'.gs-mail':'.gs-text'); if(b) b.click(); });
@@ -9570,7 +9571,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       var scr=gsScreen(), bt=gs.querySelector('.gs-text'), bm=gs.querySelector('.gs-mail'), bc=gs.querySelector('.gs-copyb');
       bt.hidden=scr; bc.hidden=!scr;
       var gcc=gs.querySelector('.gs-cc');
-      gcc.textContent=scr?'Copy for a text also emails me these words, so your request can’t\u00A0get\u00A0lost.':'Send by text also emails me a copy, so your request can’t\u00A0get\u00A0lost.';
+      gcc.textContent=scr?'Send by email or Copy for a text: either way I get a copy too, so your request can’t\u00A0get\u00A0lost.':'Send by text or Send by email: either way I get a copy too, so your request can’t\u00A0get\u00A0lost.';
       gcc.hidden=(gsCopyN||0)>=5;   /* no promise of a copy that will not be sent (the limit, at gsInbox) */
       bm.className='btn '+(scr?'btn-primary':'btn-tonal')+' gs-mail';
       var qa=gs.querySelector('.gs-ask');
@@ -9764,8 +9765,10 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         var will=photos?'send them new photos when you are next with the rabbit'
                 :visit?(fc?'call them back to set a time':'call them back to set a time and, once it is on the books, send them the address')
                 :'call them and request the payment on Zelle; the hour starts with your call';
-        fd.append('_subject',(nm||'Someone')+', about '+(names||'the rabbits')+', wants a '+(photos?'text':'call')+': '+kind+', text written · '+m.code);
-        fd.append('this is','A copy of a request written for a text on arizonarabbits.com'+(gsES()?' (their page was in Spanish)':'')+'. '+(how==='copy'?'They copied these words on a computer, to text them from their phone.':'Their Messages app opened with these words.')+' The site cannot tell whether the text was then sent.');
+        fd.append('_subject',(nm||'Someone')+', about '+(names||'the rabbits')+', wants a '+(photos?'text':'call')+': '+kind+(how==='mail'?', email written · ':', text written · ')+m.code);   /* (Round 218) "email written" when it was Send by email; the grammar his mailbox's rules read is unchanged */
+        fd.append('this is',how==='mail'
+          ?'A copy of a request written for an email on arizonarabbits.com'+(gsES()?' (their page was in Spanish)':'')+'. Their mail app was asked to open with these words. The site cannot tell whether it opened or whether the email was then sent.'
+          :'A copy of a request written for a text on arizonarabbits.com'+(gsES()?' (their page was in Spanish)':'')+'. '+(how==='copy'?'They copied these words on a computer, to text them from their phone.':'Their Messages app opened with these words.')+' The site cannot tell whether the text was then sent.');
         fd.append('name',nm);
         fd.append('reply by',photos?'Text them':'Call them');
         if(tel) fd.append('phone',gsTelWords(tel));
@@ -9773,7 +9776,9 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         fd.append('asking for',kind);
         fd.append('request',m.code);
         fd.append('their message',m.body);
-        fd.append('next step','Look for their text in Messages. The site told them you will '+will+'. No text there: they may not have pressed send'+(tel?'; their number is above.':'.'));
+        fd.append('next step',how==='mail'
+          ?'Look for their own email, under the same code. The site told them you will '+will+'. No email there: their mail app may not have opened, or they may not have pressed send'+(tel?'; their number is above.':'.')
+          :'Look for their text in Messages. The site told them you will '+will+'. No text there: they may not have pressed send'+(tel?'; their number is above.':'.'));
         var gsCopyTry=0; (function send(){ gsCopyTry++;
           fetch(a,{method:'POST',body:fd,headers:{'Accept':'application/json'},keepalive:true})
             .then(function(res){ if(!res||!res.ok) throw new Error('copy '+(res&&res.status)); gsCopied[k]=2; })
