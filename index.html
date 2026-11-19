@@ -4265,6 +4265,17 @@ html.xmas .xm-ls .xc::after{content:"";position:absolute;left:5.5px;top:5px;widt
 html.xmas.xm-live header.nav::before,html.xmas.xm-live header.nav::after,html.xmas.xm-live header:not(.nav) .topbar::before,html.xmas.xm-live header:not(.nav) .topbar::after{background-image:none!important;animation:none!important}
 :root.xmas.xm-plug .xm-ls{animation:xm-plug 1.1s steps(1,end) both}
 
+.xm-place{display:none}
+html.xmas .xm-place{display:block;position:relative;height:0;padding-top:min(128px,33.69% + 10.86px);overflow:hidden;margin:-10px -20px 10px;pointer-events:none}
+html.xmas #producers .xm-place{margin-top:0}
+html.xmas .xm-place img{position:absolute!important;left:50%!important;top:0!important;width:min(440px,115.8% - 9px)!important;height:auto!important;aspect-ratio:440/128!important;margin:0 0 0 calc(min(440px,115.8% - 9px) / -2)!important;max-width:none!important;min-height:0!important;border-radius:0!important;box-shadow:none!important;object-fit:fill!important}
+html.xmas .xm-place img.xm-pd,html.xmas[data-look="dim"] .xm-place img.xm-pl{display:none!important}
+html.xmas[data-look="dim"] .xm-place img.xm-pd{display:block!important}
+@media (min-width:900px){html.xmas .xm-place{margin:-22px 0 12px -40px;padding-top:min(128px,29.09% + 11.64px)}html.xmas #producers .xm-place{margin-top:-22px}html.xmas .xm-place img{left:0!important;width:min(440px,100%)!important;margin-left:0!important}html.xmas .center .xm-place{margin-left:0;padding-top:min(128px,29.09%)}html.xmas .center .xm-place img{left:50%!important;margin-left:calc(min(440px,100%) / -2)!important}}
+@media (orientation:portrait) and (min-width:560px) and (max-width:920px){html.xmas .xm-place{margin-top:0}html.xmas #producers .xm-place{margin-top:0;border-top:10px solid transparent}}
+@media (orientation:portrait) and (min-width:700px) and (max-width:899px){html.xmas #faq .xm-place{margin-left:0;margin-right:0;padding-top:min(128px,29.09%)}html.xmas #faq .xm-place img{left:0!important;width:min(440px,100%)!important;margin-left:0!important}}
+@media (orientation:landscape) and (max-height:500px){html.xmas .xm-place{display:none}}
+
 html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:xm-plug 1.1s steps(1,end) both}
 @keyframes xm-plug{0%{filter:saturate(0) brightness(.75);opacity:.5}18%{filter:none;opacity:1}30%{filter:saturate(0) brightness(.75);opacity:.5}44%{filter:none;opacity:1}100%{filter:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){html.xmas.xm-hat-drop header .brand::before,html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:none}}
@@ -5243,6 +5254,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
 <section id="producers" class="tinted">
   <div class="wrap">
+    <div class="xm-place" aria-hidden="true"><img class="xm-pl" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-barn-light.3a66886e.svg"><img class="xm-pd" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-barn-dim.ed301e80.svg"></div>
     <p class="kicker">Producers</p>
     <h2>The rabbits behind every litter</h2>
     <p class="lede">Every doe (female) and buck (male) here. Tap one for its photos, papers and litters.</p>
@@ -5344,6 +5356,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 <section id="included" class="tinted">
   <div class="wrap split">
     <div>
+      <div class="xm-place" aria-hidden="true"><img class="xm-pl" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-kit-light.53e6e066.svg"><img class="xm-pd" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-kit-dim.03e66ed7.svg"></div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
 
@@ -5425,6 +5438,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
 <section id="faq" class="tinted">
   <div class="wrap center">
+    <div class="xm-place" aria-hidden="true"><img class="xm-pl" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-post-light.bbdc962d.svg"><img class="xm-pd" alt="" width="440" height="128" loading="lazy" decoding="async" src="img/xmas-post-dim.8d86342f.svg"></div>
     <p class="kicker">FAQ</p>
     <h2>Things people ask</h2>
     <p class="lede">If yours isn't here, text me. There's no dumb rabbit question.</p>
