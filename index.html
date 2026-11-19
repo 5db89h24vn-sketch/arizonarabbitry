@@ -7536,6 +7536,11 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     var m=document.getElementById('qlMore'); m.setAttribute('href','#r-'+addrOf(r)); m.firstChild.nodeValue=es()?('El anuncio de '+r.name):('All about '+r.name);
     ql.hidden=false; x.focus();
   }
+  function tapOpen(r,from){ last=from; open(r); var L=window.__lookStep; if(L) L.push(addrOf(r)); }
+  function close(){ if(ql.hidden) return; var L=window.__lookStep; if(L&&L.mine()&&L.back()) return; shut(); }
+  function hide(){ ql.hidden=true; strip.innerHTML=''; }
+  window.__look={open:function(a){ for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===a){ open(RABBITS[i]); return true; } return false; },
+    shut:shut, hide:hide, isOpen:function(){ return !ql.hidden; }};
   var pc=document.getElementById('pchange'), pcT=document.getElementById('pcT'), pcB=document.getElementById('pcB'), pcGo=document.getElementById('pcGo'), pcKeep=document.getElementById('pcKeep'), pcLast=null;
   function pcShut(){ if(pc.hidden) return; pc.hidden=true; if(pcLast&&pcLast.focus) pcLast.focus(); }
   function pcOpen(el){
@@ -7554,8 +7559,8 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     pc.hidden=false; pcGo.focus();
   }
   document.addEventListener('click',function(e){ var ch=e.target.closest&&e.target.closest('#viewerPairHero .ph-edit[data-change], #vsetChange[data-change]'); if(ch){ e.preventDefault(); e.stopPropagation(); pcOpen(ch); return; }
-    var ab=e.target.closest&&e.target.closest('#vsetAbout[data-ql]'); if(ab){ e.preventDefault(); e.stopPropagation(); var aa=ab.getAttribute('data-ql'); for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===aa){ last=ab; open(RABBITS[i]); break; } }
-    var pi=e.target.closest&&e.target.closest('#viewerPairMore .pc-info[data-ql]'); if(pi){ e.preventDefault(); e.stopPropagation(); var pa=pi.getAttribute('data-ql'); for(var j=0;j<RABBITS.length;j++) if(addrOf(RABBITS[j])===pa){ last=pi; open(RABBITS[j]); break; } } },true);
+    var ab=e.target.closest&&e.target.closest('#vsetAbout[data-ql]'); if(ab){ e.preventDefault(); e.stopPropagation(); var aa=ab.getAttribute('data-ql'); for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===aa){ tapOpen(RABBITS[i],ab); break; } }
+    var pi=e.target.closest&&e.target.closest('#viewerPairMore .pc-info[data-ql]'); if(pi){ e.preventDefault(); e.stopPropagation(); var pa=pi.getAttribute('data-ql'); for(var j=0;j<RABBITS.length;j++) if(addrOf(RABBITS[j])===pa){ tapOpen(RABBITS[j],pi); break; } } },true);
   pcKeep.addEventListener('click',function(ev){ var to=pcKeep.getAttribute('data-to'); if(to){ ev.preventDefault(); ev.stopPropagation(); pc.hidden=true; location.hash=to; } });
   window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!pc.hidden){ e.stopPropagation(); e.preventDefault(); pcShut(); } },true);
   pcGo.addEventListener('keydown',function(e){ if((e.key===' '||e.key==='Spacebar')&&pcGo.getAttribute('data-stay')){ e.preventDefault(); pcShut(); } });
@@ -7566,12 +7571,17 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     var b=e.target.closest&&e.target.closest('#viewerPairHero .ph-one[data-ql]');
     if(b){ e.preventDefault(); var a=b.getAttribute('data-ql'), r=null;
       for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===a){ r=RABBITS[i]; break; }
-      if(r){ last=b; open(r); } return; }
-    if(!ql.hidden&&(e.target===ql||e.target===x)){ e.preventDefault(); shut(); }
+      if(r) tapOpen(r,b); return; }
+    if(!ql.hidden&&(e.target===ql||e.target===x)){ e.preventDefault(); close(); }
     if(!ql.hidden&&e.target.closest&&e.target.closest('#qlMore')){ ql.hidden=true; strip.innerHTML=''; }
   });
-  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ql.hidden){ e.stopPropagation(); e.preventDefault(); shut(); } },true);
-  window.addEventListener('hashchange',function(){ if(!ql.hidden){ ql.hidden=true; strip.innerHTML=''; } });
+  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ql.hidden){ e.stopPropagation(); e.preventDefault(); close(); } },true);
+  window.addEventListener('hashchange',function(e){ if(e&&/~look-[a-z0-9-]+$/.test(e.newURL||'')) return; if(!ql.hidden){ ql.hidden=true; strip.innerHTML=''; } });   /* (Round 207) its own step being written is no route away */
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||ql.hidden) return;
+    var mo=e.target.closest&&e.target.closest('#qlMore'), L=window.__lookStep; if(!mo||!L||!L.mine()) return;
+    e.preventDefault(); e.stopPropagation(); var to=mo.getAttribute('href'); hide(); L.leave(function(){ L.step(to); });
+  },true);
   } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',qlInit); else qlInit(); })();
 
   function bundleRec(a,b){
@@ -10506,7 +10516,50 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       }
       shutSmooth();
     }
+    var lookAfter=null, lookTimer=0;
+    function lookPush(x){
+      if(history.state&&history.state.look) return;
+      clearTimeout(lookTimer);   /* a close's fallback still waiting stands down: this is a new look */
+      var base=location.hash||'', d=(history.state&&history.state.rv)|0;
+      lastRouted=base+'~look-'+x;      /* the router hears this move and lets it pass (lookRoute) */
+      location.hash=lastRouted;
+      try{ history.replaceState({rv:d+1,look:x},'',base||(location.pathname+location.search)); }catch(e){}
+      lastRouted=base;
+    }
+    function lookBack(){
+      if(!(history.state&&history.state.look)) return false;
+      lookAfter=null; clearTimeout(lookTimer);
+      history.back();
+      lookTimer=setTimeout(function(){ var L=window.__look; if(L&&L.isOpen()) L.shut(); },800);   /* if the step back never reports */
+      return true;
+    }
+    function lookLeave(then){
+      var L=window.__look; if(L&&L.isOpen()) L.hide();
+      if(!(history.state&&history.state.look)){ then(); return; }
+      lookAfter=then; clearTimeout(lookTimer);
+      history.back();
+      lookTimer=setTimeout(function(){ if(lookAfter){ var f=lookAfter; lookAfter=null; f(); } },800);
+    }
+    function lookRoute(ev){
+      var h=location.hash||'';
+      if(/~look-[a-z0-9-]+$/.test(h)) return true;   /* the step being written (lookPush): its address is the listing's again at once */
+      if(!ev||ev.type!=='popstate') return false;
+      var L=window.__look; if(!L) return false;
+      var st=ev.state||null, want=st&&st.look;
+      if(want){
+        if(L.isOpen()) return true;
+        if(vw.classList.contains('open')&&h===lastRouted){ L.open(want); return true; }
+        setTimeout(function(){ if(vw.classList.contains('open')&&history.state&&history.state.look===want&&!L.isOpen()) L.open(want); },0);
+        return false;
+      }
+      var f=lookAfter; lookAfter=null;
+      if(f){ clearTimeout(lookTimer); if(L.isOpen()) L.hide(); f(); return true; }   /* the way out, now the step is gone */
+      if(L.isOpen()){ clearTimeout(lookTimer); L.shut(); return h===lastRouted; }   /* Back from the look: only the look moves */
+      return false;
+    }
+    window.__lookStep={push:lookPush, back:lookBack, leave:lookLeave, mine:function(){ return !!(history.state&&history.state.look); }, step:function(to){ stepFrom(to); }};
     function route(ev){
+      if(lookRoute(ev)) return;   /* (Round 207) the closer look's own step: only the look moves */
       var h=location.hash||'', plain=!!(ev&&ev.hasUAVisualTransition);
       if(/^#[rp]-/.test(h)){ if(ev&&ev.type==='popstate') trailStepping=true; } else { vTrail=[]; trailStepping=false; }
       if(closeOnPop){
@@ -10676,6 +10729,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       vFromHash=true;
       return openFor(r,true);
     }
+    if(/~look-[a-z0-9-]+$/.test(location.hash||'')){ try{ history.replaceState(null,'',location.pathname+location.search+location.hash.replace(/~look-[a-z0-9-]+$/,'')); }catch(e){} lastRouted=location.hash||''; }
     if(!openFromHash()) releaseCards();
     window.addEventListener('popstate',route);
     window.addEventListener('hashchange',function(){ route(); });
@@ -11042,7 +11096,11 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     function plGoClick(){
         var d=plDo; plDo=null; PL.hidden=true; if(!d) return;
         plOnce=location.hash||'';   /* asked once for these two; the next way out goes without asking */
-        var ql=document.getElementById('qlook'), qx=document.getElementById('qlX'); if(ql&&!ql.hidden&&qx) qx.click();
+        var ql=document.getElementById('qlook');
+        if(ql&&!ql.hidden){ lookLeave(function(){ plGoOn(d); }); return; }   /* (Round 207) the closer look's own step goes first (this was qlX.click(), which now goes back) */
+        plGoOn(d);
+    }
+    function plGoOn(d){
         asShut();
         var h=d.h;
         if(/^#[rp]-/.test(h)){ stepFrom(h); return; }
@@ -11746,15 +11804,38 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     function refind(k){ if(!k) return null; if(k.every) return empty.querySelector('[data-every]');
       var hit=null; [].forEach.call(row.querySelectorAll('li[data-id]'),function(li){ if(li.getAttribute('data-id')===k.id) hit=li; });
       return hit?hit.querySelector(k.bell?'.lsh-bell':'.lsh-open'):null; }
+    var LIT_RE=/^#(L\d{4}-\d{2}-\d{2})$/, AL_RE=/^#alerts(?:-(L\d{4}-\d{2}-\d{2}|all))?$/;
+    function shAddr(h){ return LIT_RE.test(h||'')||AL_RE.test(h||''); }
+    var shPend=0;   /* a close still waiting for its step back; any move of the address since makes its fallback stand down */
+    function shWrite(addr){
+      var h=location.hash||'';
+      shPend++;
+      if(h===addr) return;
+      if(shAddr(h)){ try{ history.replaceState(history.state,'',addr); }catch(e){} return; }   /* one sheet replaces the other's step */
+      var d=(history.state&&history.state.rv)|0;
+      location.hash=addr;
+      try{ history.replaceState({rv:d+1},''); }catch(e){}
+    }
+    function shDrop(){ if(shAddr(location.hash||'')){ try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} } }
+    function shBack(){
+      var h=location.hash||'', n=(history.state&&history.state.rv)|0;
+      if(!shAddr(h)||n<1) return false;
+      var my=++shPend;
+      history.go(-n);   /* the hashchange closes it (shRoute) */
+      setTimeout(function(){ if(shPend===my&&location.hash===h){ shDrop(); if(ls&&LS&&!LS.hidden) ls.shut(); if(al&&AL&&!AL.hidden) al.shut(); } },800);   /* if the step back never reports */
+      return true;
+    }
+    function litById(id){ return waiting.filter(function(x){ return x.id===id; })[0]||null; }
     function sheet(el,onClose){
       var back=null, backKey=null;
       function open(from){ back=from||document.activeElement; backKey=keyOf(back); el.hidden=false; document.documentElement.classList.add('lsh-sheet'); var x=el.querySelector('.ql-x'); if(x) x.focus({preventScroll:true}); }
       function shut(){ if(el.hidden) return; el.hidden=true; document.documentElement.classList.remove('lsh-sheet'); if(onClose) onClose();
         var b=(back&&document.documentElement.contains(back))?back:refind(backKey); if(b){ try{ b.focus({preventScroll:true}); }catch(e){} } }
-      el.addEventListener('click',function(ev){ if(ev.target===el) shut(); });
-      el.querySelector('.ql-x').addEventListener('click',shut);
-      el.addEventListener('keydown',function(ev){ if(ev.key==='Escape'){ ev.preventDefault(); ev.stopPropagation(); shut(); return; } trap(el.firstElementChild,ev); });
-      return {open:open,shut:shut,el:el};
+      function close(){ if(el.hidden) return; if(shBack()) return; shDrop(); shut(); }
+      el.addEventListener('click',function(ev){ if(ev.target===el) close(); });
+      el.querySelector('.ql-x').addEventListener('click',close);
+      el.addEventListener('keydown',function(ev){ if(ev.key==='Escape'){ ev.preventDefault(); ev.stopPropagation(); close(); return; } trap(el.firstElementChild,ev); });
+      return {open:open,shut:shut,close:close,el:el};
     }
     var LS=null, ls=null, lsNow=null;
     function litInit(){
@@ -11786,7 +11867,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if(!a){ st.hidden=true; return; }
       st.hidden=false; st.className='vborn ls-stamp'+(p.video?' film':'');
       st.querySelector('.vwhat').textContent=a.lab+' '; st.querySelector('.t').textContent=a.lab===a.full?'':a.full.slice(a.lab.length+1); }
-    function openLitter(w,from){
+    function openLitter(w,from,how){
       if(!litInit()) return; lsNow=w;
       var strip=document.getElementById('lsStrip'), dots=document.getElementById('lsDots');
       var ph=w.photos.length?w.photos:[];
@@ -11826,6 +11907,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       var on=onList(w.id), b=document.getElementById('lsAlert');
       b.innerHTML=(on?BELLF:BELL)+'<span>'+esc(on?(ES?'En su lista · sus avisos':'On your list · your alerts'):(ES?'Avisarme de esta camada':'Get alerts for this litter'))+'</span>';
       var pg=document.getElementById('lsPage'); pg.setAttribute('href',(ES?'es-litters.html':'/litters')+'#'+w.id); pg.innerHTML=esc(ES?'La página de la camada':'The litter’s page')+'<i class="chev" aria-hidden="true"></i>';
+      if(how!=='route') shWrite('#'+w.id);   /* (Round 207) its own step (the router opens it without one) */
       ls.open(from);
     }
     var AL=null, al=null, af=null, every=null, named=[], held={};
@@ -11873,7 +11955,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
             af.style.display='none';   /* .wl-form is display:flex, which a hidden attribute does not beat (the waitlist's own form hides the same way) */
             var ok=document.getElementById('alOk'); ok.textContent=thanksFor(picks,level).replace(/(\d+) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\b/g,'$1'+NB+'$2').replace(/ (\S+)$/,NB+'$1'); ok.hidden=false;
             document.getElementById('alKept').hidden=true;
-            var dn=document.createElement('button'); dn.type='button'; dn.className='btn btn-primary al-done'; dn.textContent=ES?'Listo':'Done'; dn.addEventListener('click',function(){ al.shut(); });
+            var dn=document.createElement('button'); dn.type='button'; dn.className='btn btn-primary al-done'; dn.textContent=ES?'Listo':'Done'; dn.addEventListener('click',function(){ al.close(); });
             ok.parentNode.insertBefore(dn,ok.nextSibling); dn.focus({preventScroll:true});
             paint(); recordWaiting(email,wants,level,function(){}); })
           .catch(function(){ done(); sayError(af,'alErr',ES?'No se envió. <a href="sms:+15202702827">Mándeme un mensaje</a> y lo apunto yo, o inténtelo de nuevo.':'That didn’t send. <a href="sms:+15202702827">Text me</a> and I’ll add you myself, or try again.'); });
@@ -11882,7 +11964,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     }
     function kept(){ var k=document.getElementById('alKept'); if(!k||!af) return; var d=draft(); var any=d&&((d.email&&d.email.length)||(d.named&&d.named.length)||d.level==='all');
       k.textContent=tie(ES?'Lo que elija se guarda aunque cierre esto.':'What you choose here is kept if you close this.'); k.hidden=!any; }
-    function openAlerts(id,from){
+    function openAlerts(id,from,how){
       if(!alInit()||!buildForm()) return;
       var ok=document.getElementById('alOk'), dn=AL.querySelector('.al-done'); if(dn) dn.parentNode.removeChild(dn); ok.hidden=true; af.style.display='';
       document.getElementById('alT').textContent=ES?'Avisos de\u00a0camadas':'Litter alerts';
@@ -11895,6 +11977,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if((id==='all'||(!id&&!base))&&every&&!every.checked){ every.checked=true; paintEvery(); }
       else if(id&&id!=='all'){ var t=named.filter(function(b){ return b.value===id; })[0]; if(t){ held[id]=true; if(!(every&&every.checked)) t.checked=true; } }
       saveDraft(); kept();
+      if(how!=='route') shWrite(id==='all'?'#alerts-all':(id?'#alerts-'+id:'#alerts'));   /* (Round 207) its own step, or the litter's become the alerts' */
       al.open(from);
       var lab=id&&af.querySelector('input[name="want"][value="'+id+'"]'); if(lab){ var l=lab.closest('label'); if(l&&l.scrollIntoView) l.scrollIntoView({block:'nearest'}); }
     }
@@ -11907,7 +11990,23 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       var op=t.closest&&t.closest('.lsh-open');
       if(op&&li){ var id=li.getAttribute('data-id'); var w=waiting.filter(function(x){ return x.id===id; })[0]; if(w&&!w.plan) openLitter(w,op); else if(w) openAlerts(id,op); }
     });
-    window.addEventListener('hashchange',function(){ if(ls&&LS&&!LS.hidden) ls.shut(); if(al&&AL&&!AL.hidden) al.shut(); });
+    function shRoute(){
+      var h=location.hash||'', m=LIT_RE.exec(h), a=AL_RE.exec(h);
+      shPend++;
+      if(m){
+        var w=litById(m[1]);
+        if(!w){ shDrop(); if(ls&&LS&&!LS.hidden) ls.shut(); if(al&&AL&&!AL.hidden) al.shut(); return; }   /* a litter no longer on the shelf: its address goes, in place */
+        if(w.plan){ try{ history.replaceState(history.state,'','#alerts-'+w.id); }catch(e){} if(ls&&LS&&!LS.hidden) ls.shut(); if(!(al&&AL&&!AL.hidden)) openAlerts(w.id,null,'route'); return; }   /* a planned litter's card opens its alerts */
+        if(al&&AL&&!AL.hidden) al.shut();
+        if(!(ls&&LS&&!LS.hidden&&lsNow&&lsNow.id===w.id)) openLitter(w,null,'route');
+        return;
+      }
+      if(a){ if(ls&&LS&&!LS.hidden) ls.shut(); if(!(al&&AL&&!AL.hidden)) openAlerts(a[1]||null,null,'route'); return; }
+      if(ls&&LS&&!LS.hidden) ls.shut(); if(al&&AL&&!AL.hidden) al.shut();
+    }
+    window.addEventListener('hashchange',shRoute);
+    if(AL_RE.test(location.hash||'')) shDrop();
+    else if(LIT_RE.test(location.hash||'')){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',shRoute); else shRoute(); }
   })();
 
   (function(){
