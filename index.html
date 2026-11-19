@@ -2087,6 +2087,10 @@ details.fold.shutting[open]>summary.opener::after{transform:translateY(-2px) rot
 details.fold>.fold-body{padding-top:12px}
 details.fold>.fold-body>:first-child{margin-top:0}
 
+.lease .lease-note{margin:8px 0 0;padding:10px 14px;border-left:3px solid var(--line);border-radius:0 8px 8px 0;background:var(--paper-2);color:var(--ink)}
+.faq-body .fold.lease+p{margin-top:14px}   
+.lease .lease-said{margin-left:8px;font-size:14px;color:var(--ink-soft)}
+
 html.js .incl:not(.open) li small{display:none}
 
 html.js .incl li{padding-top:11px;padding-bottom:11px} html.js .incl li::before{top:17px}
@@ -5679,6 +5683,15 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
             
             <li><b>Hay, pellets, greens and litter, every month.</b> <a class="litterlink" href="#faq-food">What they eat</a>.</li>
           </ul>
+          
+          <details class="fold lease">
+            <summary class="opener">Renting? Check your lease first</summary>
+            <div class="fold-body">
+              <p>A note you can send your landlord:</p>
+              <p class="lease-note" id="leaseNote">Hi, I'd like to get a pet rabbit. It will live indoors, in an enclosed pen. Is that OK with you?</p>
+              <p><button type="button" class="mini" id="leaseCopy">Copy the note</button> <span class="lease-said" id="leaseSaid" role="status"></span></p>
+            </div>
+          </details>
           <p><b>You won't be guessing.</b> A written care sheet, two weeks of their food, and my
           number for as long as you have them.</p>
           
@@ -12717,6 +12730,15 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   var mq=matchMedia("(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px)");
   var io=new IntersectionObserver(function(es){ var r=es[es.length-1].intersectionRect.height; document.documentElement.classList.toggle("ls-hero", mq.matches && r>Math.min(180, innerHeight*.38)); },{threshold:[0,.1,.2,.3,.35,.4,.5,.6,.7,.8,.9,1]});
   io.observe(top); if(mq.addEventListener) mq.addEventListener("change",function(){ io.unobserve(top); io.observe(top); }); })();
+</script>
+<script>
+(function(){ var b=document.getElementById('leaseCopy'), n=document.getElementById('leaseNote'), s=document.getElementById('leaseSaid'); if(!b||!n||!s) return;
+  var es=(document.documentElement.getAttribute('lang')||'').slice(0,2)==='es';
+  function pick(){ try{ var r=document.createRange(); r.selectNodeContents(n); var w=window.getSelection(); w.removeAllRanges(); w.addRange(r); }catch(e){}
+    s.textContent=es?'La nota est\u00e1 seleccionada: c\u00f3piela y p\u00e9guela en su mensaje.':'The note is selected: copy it and paste it into your message.'; }
+  b.addEventListener('click', function(){ var t=n.textContent.replace(/\s+/g,' ').trim();
+    try{ navigator.clipboard.writeText(t).then(function(){ s.textContent=es?'Copiada. P\u00e9guela en su mensaje para el arrendador.':'Copied. Paste it into your message to your landlord.'; }, pick); }catch(e){ pick(); } });
+})();
 </script>
 </body>
 </html>
