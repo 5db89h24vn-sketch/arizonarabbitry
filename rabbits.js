@@ -878,6 +878,10 @@ const PARENTS = {
     /* 22 Oct 2026: fawn (row 106) */
     variety: "Fawn",
     dob:     "2026-06-28",
+    /* (Round 205, 18 Nov 2026) her father and mother, as her note says ("Cinnamony and Frederick's daughter"), so her
+       kits' pedigrees reach their grandparents on her side */
+    sire:    "angora",
+    dam:     "lop",
     /* NO LONGER A PRODUCER (30 Oct 2026, William, 7:51am: "Saffron is gonna no longer be a producer, but
        Scotch is going to be a replacement because it has better lop ears"; 7:52am, with her view on his
        screen: "this is the one that's being replaced. I forgot we changed the name"). She leaves the
@@ -905,6 +909,9 @@ const PARENTS = {
     breed:   "Holland Lop cross",
     variety: "Fawn",
     dob:     "2026-07-28",
+    /* (Round 205, 18 Nov 2026) her father and mother, as her note says ("Cinnamony and Frederick's daughter") */
+    sire:    "angora",
+    dam:     "lop",
     listing: "butterscotch",
     note:    "From my second litter: Cinnamony and Frederick's daughter, and Teddy's sister. Kept for her ears.",
     photos: [

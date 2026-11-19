@@ -19,7 +19,7 @@
 
 <script>/* (Round 193d, his words of 4:56pm: "defaults to whatever system settings somebody has") the reader's own choice when they made one; else the system's */(function(){var r=document.documentElement,q=null;function set(d){if(d)r.setAttribute('data-look','dim');else r.removeAttribute('data-look');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',d?'#2D251F':'#FBF8F3');}var l=null;try{l=localStorage.getItem('look');}catch(e){}try{q=window.matchMedia('(prefers-color-scheme: dark)');}catch(e){}set(l==='dim'||(!l&&!!q&&q.matches));if(!l&&q&&q.addEventListener)q.addEventListener('change',function(e){var k=null;try{k=localStorage.getItem('look');}catch(x){}if(!k){set(e.matches);try{document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:e.matches}}));}catch(x){}}});})();</script>
 
-<link rel="preload" as="script" href="rabbits.js?v=27b7907b" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=0e7be717" data-fact="data-preload">
 
 <script>document.documentElement.classList.add('boot')</script>
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/poppyseed.1200.8d44364f.avif";l.setAttribute("imagesrcset","img/poppyseed.800.8d44364f.avif 800w, img/poppyseed.1200.8d44364f.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
@@ -3730,6 +3730,8 @@ html.ptr .ped-close:focus-visible{box-shadow:none!important}
   color:var(--ink);font-variant-numeric:tabular-nums}
 
 .ped-f{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px;white-space:nowrap;min-width:0}
+
+.ped-f.ped-wrap{white-space:normal}
 .ped-f.ped-v,.ped-br{flex-basis:100%}
 .ped-br{height:0}
 .ped-f b{flex:none;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
@@ -3825,6 +3827,9 @@ html.ptr .ped-close:focus-visible{box-shadow:none!important}
   .pedsheet .ped-cell.g3 .ped-rel{font-size:7pt;line-height:1.2;margin-bottom:0}
   .pedsheet .ped-cell.g3 .ped-nm{font-size:10.5pt;line-height:1.15}
   .pedsheet .ped-cell.g3 .ped-fs{font-size:8.25pt;line-height:1.15;gap:0 .1in;margin-top:1pt}
+
+.pedsheet .ped-cell.g2 .ped-box.ped-none{min-height:.86in}
+.pedsheet .ped-cell.g3 .ped-box.ped-none{min-height:.68in}
   .pedsheet .ped-me .ped-fs{font-size:9.5pt;margin-top:.06in}
   .pedsheet .ped-me .ped-f{padding:.035in 0}
   .pedsheet .ped-me .ped-f b{font-size:8pt}
@@ -6371,7 +6376,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 <script id="litterIndex" type="application/json">[{"born":"2026-11-05","count":"Four born, three alive","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Tenth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-28","count":"Eight born","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Ninth litter","parents":{"mother":"lop","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-24","count":"Three born, one alive","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"fox","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-21","count":"Eight born, seven raised","kits":[{"addr":"espresso","name":"Espresso"},{"addr":"lavender","name":"Lavender"},{"addr":"licorice","name":"Licorice"},{"addr":"malbec","name":"Malbec"},{"addr":"poppyseed","name":"Poppyseed"},{"addr":"sage","name":"Sage"},{"addr":"truffle","name":"Truffle"}],"line":"Netherland Dwarf cross","lost":false,"never":false,"no":"Seventh litter","parents":{"mother":"saffron","father":"odyssey"},"roles":["father","mother"]},{"born":"2026-10-19","count":"Three born, three raised","kits":[{"addr":"blueberry","name":"Blueberry"},{"addr":"chai","name":"Chai"},{"addr":"juniper","name":"Juniper"}],"line":"Holland Lop","lost":false,"never":false,"no":"Sixth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born, seven raised","kits":[{"addr":"churro","name":"Churro"},{"addr":"coconut","name":"Coconut"},{"addr":"dollop","name":"Dollop"},{"addr":"marmalade","name":"Marmalade"},{"addr":"oatmeal","name":"Oatmeal"},{"addr":"pancake","name":"Pancake"},{"addr":"snowcone","name":"Snowcone"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born, three raised","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born, six raised","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 
 <script id="pedArchive" type="application/json">{"blueberry|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Blueberry","on":"2026-11-14","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Blue tortoise"},"chai|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Chai","on":"2026-11-15","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"juniper|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Juniper","on":"2026-11-15","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Blue tortoise"},"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"},"nutmeg|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Nutmeg","on":"2026-10-24","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
-<script src="rabbits.js?v=27b7907b"></script>
+<script src="rabbits.js?v=0e7be717"></script>
 
 <script>
 (function(){
@@ -7135,6 +7140,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     var m=pedPar(r&&r.mother), f=pedPar(r&&r.father);
     return !!(r&&m&&f&&r.breed&&m.breed===r.breed&&f.breed===r.breed&&pedHasTree(m)&&pedHasTree(f));
   }
+  function pedCross(r){ return !!(r&&pedPar(r.mother)&&pedPar(r.father)&&!pedPurebred(r)); }
   function pedMarkHTML(r){ return pedPurebred(r)?'<span class="pedmark">Pedigreed</span>':''; }
   function newHTML(r){
     var out='';
@@ -9651,7 +9657,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if(!p||!pedHasTree(p)) return null;
       return {kind:'p',id:key,name:p.name||'',breed:p.breed||'',variety:p.variety||'',
         sex:p.role==='mother'?'doe':'buck',ear:p.ear||'',dob:p.dob||'',weight:null,
-        sire:p.sire||'',dam:p.dam||'',bred:false,href:'#p-'+key,her:p.role==='mother'};
+        sire:p.sire||'',dam:p.dam||'',bred:p.from==='here',href:'#p-'+key,her:p.role==='mother',cross:/\bcross\b/i.test(p.breed||'')};   /* (Round 205) a parent bred here is certified as bred here; a cross parent's labels are a cross's */
     }
     var PED_ARCH=(function(){
       try{ var el=document.getElementById('pedArchive'); return el?(JSON.parse(el.textContent||'{}')||{}):{}; }catch(e){ return {}; }
@@ -9665,13 +9671,13 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       var a=r&&PED_ARCH[rslug(r.name)+'|'+(r.dob||'')];
       if(a) return {kind:'r',id:addrOf(r),name:a.name||r.name||'',breed:a.breed||r.breed||'',variety:a.variety||'',
         sex:pedSex(a.sex),ear:a.ear||'',dob:a.dob||'',weight:a.weight||null,sire:'',dam:'',bred:true,
-        href:'#r-'+addrOf(r),kept:a.on||'',tree:{sire:pedKept(a.sire),dam:pedKept(a.dam)}};
-      if(!pedPurebred(r)) return null;
+        href:'#r-'+addrOf(r),kept:a.on||'',cross:/\bcross\b/i.test(a.breed||r.breed||''),tree:{sire:pedKept(a.sire),dam:pedKept(a.dam)}};
+      if(!pedPurebred(r)&&!pedCross(r)) return null;   /* (Round 205) a cross with both parents on file has papers too */
       var ws=(r.weights||[]).filter(function(w){ return w&&((+w.lb)||(+w.oz)); });
       return {kind:'r',id:addrOf(r),name:r.name||'',breed:r.breed||'',variety:r.colour||'',
         sex:pedSex(r.sex),
         ear:r.ear||'',dob:r.dob||'',weight:ws.length?ws[ws.length-1]:null,
-        sire:r.father||'',dam:r.mother||'',bred:true,href:'#r-'+addrOf(r)};
+        sire:r.father||'',dam:r.mother||'',bred:true,href:'#r-'+addrOf(r),cross:pedCross(r)};
     }
     function pedForRabbitId(id){
       for(var i=0;i<RABBITS.length;i++) if(addrOf(RABBITS[i])===id) return pedForRabbit(RABBITS[i]);
@@ -9696,6 +9702,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     }
     function pedLabels(s,t,p){
       var L=[];
+      if(s&&s.cross){ if(s.ear) L.push('Ear tattooed'); return L; }   /* (Round 205) a cross: never Purebred, never Pedigreed */
       if(s||(p&&p.pedigreed)) L.push('Purebred','Pedigreed');
       if(s&&t&&pedShows(t)) L.push('Show-winning lines');
       if((s&&s.ear)||(!s&&p&&p.pedigreed&&p.ear)) L.push('Ear tattooed');
@@ -9739,7 +9746,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       var frames=framesOf(p.photos||[]), src=(frames[0]&&frames[0].src)||'';
       return src?'<img'+(cls?' class="'+cls+'"':'')+' src="'+esc(src)+'"'+sizedAttrs(src,size)+' alt="" loading="lazy">':'';
     }
-    function pedSide(n,dam){
+    function pedSide(n,dam,cross){
       if(!n) return '';
       var r=n.rec, kids='';
       [[n.sire,false],[n.dam,true]].forEach(function(x){
@@ -9752,6 +9759,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       return '<section class="ped-col side-'+(dam?'dam':'sire')+'">'+
         '<div class="ped-card">'+pedFace(n,'ped-face','40px')+
         '<span class="ped-fam-t"><span class="ped-rel">'+pedRel(1,dam)+'</span><b>'+esc(r.name||'')+'</b>'+
+        (cross&&r.breed?'<span class="ped-what">'+pedTie(esc(r.breed))+'</span>':'')+   /* (Round 205) a cross's parent: its breed first */
         (r.variety?'<span class="ped-what">'+pedTie(esc(r.variety))+'</span>':'')+
         (r.gc?'<span class="ped-what ped-best">Grand Champion</span>':'')+
         (legs?'<span class="ped-what">'+pedTie(legs)+'</span>':'')+
@@ -9795,7 +9803,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         '<span class="ped-names">'+names+'</span></span></summary>'+
         '<div class="ped-in">'+pedKeptHTML(s)+pedFromHTML(s,t)+
         '<p class="ped-selfrec ped-rec"><b>'+esc(s.name||'')+'</b>'+pedRecHTML(me,true).replace(/^<span class="ped-rec">|<\/span>$/g,'')+'</p>'+
-        '<div class="ped-cols">'+pedSide(t.sire,false)+pedSide(t.dam,true)+'</div>'+
+        '<div class="ped-cols">'+pedSide(t.sire,false,s.cross)+pedSide(t.dam,true,s.cross)+'</div>'+
         '<p class="ped-tools"><button type="button" class="chip ped-show" aria-expanded="false">Show ear numbers and weights</button>'+
         '<span class="ped-note">Only what is on record is shown here. The PDF leaves a line for anything missing.</span></p>'+
         '</div></details>'+
@@ -9838,21 +9846,22 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     function pedField(label,val,cls){
       return val?'<span class="ped-f'+(cls?' '+cls:'')+'"><b>'+label+'</b> '+val+'</span>':'';
     }
-    function pedFacts(r,g){
+    function pedFacts(r,g,cross){
       var w=((+r.lb)||(+r.oz))?esc(weightText(r)):'';
       var color=pedField('Color',r.variety?esc(r.variety):''), ear=pedField('Ear number',r.ear?esc(r.ear):''), wt=pedField('Weight',w),
           reg=r.reg?pedField('Registration',esc(r.reg)):'';
       function lines(a){ a=a.filter(Boolean); return a.length?'<span class="ped-fs">'+a.join('<span class="ped-br"></span>')+'</span>':''; }
       if(g===3) return lines([color+ear, wt+reg]);
+      if(cross&&r.breed) return '<span class="ped-coat"><span>'+esc(r.breed)+'</span>'+(r.variety?' · <span>'+pedTie(esc(r.variety))+'</span>':'')+'</span>'+lines([ear+wt, reg]);
       return (r.variety?'<span class="ped-coat">'+pedTie(esc(r.variety))+'</span>':'')+lines([ear+wt, reg]);
     }
-    function pedBox(n,rel,g){
+    function pedBox(n,rel,g,cross){
       if(!n) return '<div class="ped-box ped-none"></div>';
-      return '<div class="ped-box"><span class="ped-rel">'+rel+'</span><span class="ped-nm">'+pedWho(n)+'</span>'+pedFacts(n.rec,g)+'</div>';
+      return '<div class="ped-box"><span class="ped-rel">'+rel+'</span><span class="ped-nm">'+pedWho(n)+'</span>'+pedFacts(n.rec,g,cross)+'</div>';
     }
     function pedMe(s){
       var f=[];
-      f.push(pedField('Breed',esc(s.breed)));
+      f.push(pedField('Breed',s.cross?pedTie(esc(s.breed)):esc(s.breed),s.cross?'ped-wrap':''));   /* (Round 205) a cross's breed may take two lines */
       f.push(pedField('Color',s.variety?esc(s.variety):''));
       f.push(pedField('Sex',s.sex?(s.sex==='doe'?'Doe (female)':'Buck (male)'):''));
       f.push(pedField('Ear number',s.ear?esc(s.ear):''));
@@ -9866,12 +9875,12 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       out.push('<div class="ped-cell g0 i0'+((t.sire||t.dam)?' kids':'')+'">'+pedMe(s)+'</div>');
       (function walk(n,g,i,side){
         var kids=g<3&&n&&(n.sire||n.dam);
-        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1),g)+'</div>');
+        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1),g,s.cross)+'</div>');
         if(g<3){ walk(n&&n.sire,g+1,i*2,side); walk(n&&n.dam,g+1,i*2+1,side); }
       })(t.sire,1,0,'sire');
       (function walk(n,g,i,side){
         var kids=g<3&&n&&(n.sire||n.dam);
-        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1),g)+'</div>');
+        out.push('<div class="ped-cell g'+g+' i'+i+' up side-'+side+(kids?' kids':'')+'">'+pedBox(n,pedRel(g,i%2===1),g,s.cross)+'</div>');
         if(g<3){ walk(n&&n.sire,g+1,i*2,side); walk(n&&n.dam,g+1,i*2+1,side); }
       })(t.dam,1,1,'dam');
       return out.join('');
@@ -9915,6 +9924,8 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     }
     function pedEven(){
       if(!pedPage||!pedOpen) return;
+      var nm=pedPage.querySelector('.ped-me .ped-nm');
+      if(nm){ nm.style.fontSize=''; var fz=parseFloat(getComputedStyle(nm).fontSize)||0, k=0; while(fz>14&&nm.scrollWidth>nm.clientWidth+1&&k++<30){ fz-=1; nm.style.fontSize=fz+'px'; } }
       ['g1','g2','g3'].forEach(function(g){
         var bs=[].slice.call(pedPage.querySelectorAll('.ped-cell.'+g+' .ped-box')), h=0;
         bs.forEach(function(b){ b.style.minHeight=''; });
@@ -9940,8 +9951,9 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     window.__pedSheet=function(kind,id){ return openPed(kind,id,false); };
     window.__pedSubjects=function(){
       var out=[];
-      RABBITS.forEach(function(r){ var s=pedForRabbit(r); if(s) out.push({kind:'r',id:s.id,name:s.name,kept:s.kept||''}); });
-      if(HAVE_PARENTS) for(var k in PARENTS){ var s=pedForParent(k); if(s) out.push({kind:'p',id:k,name:s.name,kept:''}); }
+      var ids={};   /* (Round 205) a parent kept from a litter here (Butterscotch) has her own listing: one pedigree, one PDF */
+      RABBITS.forEach(function(r){ var s=pedForRabbit(r); if(s){ ids[s.id]=1; out.push({kind:'r',id:s.id,name:s.name,kept:s.kept||'',cross:!!s.cross}); } });
+      if(HAVE_PARENTS) for(var k in PARENTS){ var s=pedForParent(k); if(s&&!ids[k]) out.push({kind:'p',id:k,name:s.name,kept:'',cross:!!s.cross}); }
       return out;
     };
     window.addEventListener('hashchange',function(){ pedRoute(true); });
