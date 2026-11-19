@@ -1,6 +1,7 @@
 # Arizona Rabbits. Everything public may be indexed; the admin page is not
 # public and says so with its own header. The sitemap lists every public page
-# (ten, English and Spanish, with the day each last changed); the per-rabbit
+# (the ten, and every rabbit's own page under /rabbits/ and /conejos/, English
+# and Spanish, with the day each last changed); the per-rabbit
 # share addresses under /r/ forward to the front page and are left out on
 # purpose.
 User-agent: *
