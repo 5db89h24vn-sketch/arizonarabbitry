@@ -4507,6 +4507,10 @@ html.xmas[data-look="dim"] .xm-place img.xm-pd{display:block!important}
 @media (orientation:portrait) and (min-width:700px) and (max-width:899px){html.xmas #faq .xm-place{margin-left:0;margin-right:0;padding-top:min(128px,29.09%)}html.xmas #faq .xm-place img{left:0!important;width:min(440px,100%)!important;margin-left:0!important}}
 @media (orientation:landscape) and (max-height:500px){html.xmas .xm-place{display:none}}
 
+.deal .deal-last{display:block}
+.vlast{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.vlast[hidden]{display:none}
+
 html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:xm-plug 1.1s steps(1,end) both}
 @keyframes xm-plug{0%{filter:saturate(0) brightness(.75);opacity:.5}18%{filter:none;opacity:1}30%{filter:saturate(0) brightness(.75);opacity:.5}44%{filter:none;opacity:1}100%{filter:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){html.xmas.xm-hat-drop header .brand::before,html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:none}}
@@ -6394,6 +6398,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
       <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div>
       <p class="vready" id="viewerReady" hidden></p>
+      <p class="vlast" id="viewerLast" hidden></p>
       <div class="viewer-mark" id="viewerMark" hidden></div>
       <div class="vmoney" id="viewerMoney" hidden>
         
@@ -7515,6 +7520,31 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     if(!hasDeal(r)) return '$'+esc(priceOf(r));
     return '<s>$'+esc(r.wasPrice)+'</s> $'+esc(r.price);
   }
+  function litter215(r){ var o=[], i, x; if(!r||!r.mother||!r.father||!r.dob||typeof RABBITS==='undefined') return o;
+    for(i=0;i<RABBITS.length;i++){ x=RABBITS[i]; if(x&&x!==r&&x.mother===r.mother&&x.father===r.father&&x.dob===r.dob) o.push(x); } return o; }
+  function last215(r){
+    if(!r||r.status!=='available') return null;
+    var m=litter215(r), placed=0, quick=0, i, x, a, b;
+    for(i=0;i<m.length;i++){ x=m[i];
+      if(x.status==='available') return null;
+      if(x.status==='adopted'||x.status==='sold'||x.status==='reserved') placed++;
+      if(x.status==='adopted'||x.status==='sold'){ a=Date.parse(String(x.listedOn||'')+'T12:00:00Z'); b=Date.parse(String(x.wentHome||x.soldOn||'')+'T12:00:00Z');
+        if(isFinite(a)&&isFinite(b)&&b>=a&&b-a<=3*864e5) quick++; } }
+    return placed?{mates:m.length,quick:quick}:null;
+  }
+  function lastWords215(L, full){
+    var es=document.documentElement.lang==='es';
+    var N=es?['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce']:['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
+    var w=function(n){ return n<N.length?N[n]:String(n); };
+    var head=es?'El \u00faltimo de su\u00a0camada':'The last of its\u00a0litter';
+    if(!full) return head;
+    if(L.quick<2||L.quick*2<L.mates) return head+'.';
+    return es?head+': '+(L.quick===L.mates?'sus '+w(L.mates)+' hermanos de camada':w(L.quick)+' de sus '+w(L.mates)+' hermanos de camada')+' se fueron a casa en tres d\u00edas o menos desde que salieron a la\u00a0venta.'
+             :head+': '+(L.quick===L.mates?'all '+w(L.mates)+' of its littermates':w(L.quick)+' of its '+w(L.mates)+' littermates')+' went home within three days of being\u00a0listed.';
+  }
+  function lastLine215(html, r){ var L=last215(r); if(!L) return html;
+    var t='<span class="deal-why deal-last">'+esc(lastWords215(L,false))+'</span>';
+    return html?html.replace(/<\/p>$/,' '+t+'</p>'):'<p class="deal">'+t+'</p>'; }
   function dealHTML(r, full){
     if(hasDeal(r)){
       var was=+r.wasPrice, now=+r.price, off=was-now;
@@ -8344,7 +8374,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         (partsLine(r)?'<p class="parts partsline">'+partsLine(r)+'</p>':'')+
         ((r.status==='available'&&noPlan(r))?'<p class="noplan">'+(document.documentElement.lang==='es'?'Sin plan de\u00a0pagos':'No payment\u00a0plan')+'</p>':'')+   /* (Round 193) no payment plan: said on the line the chip stands on */
         (pmk?'<p class="plan-meta">'+pmh+'</p>':'')+(stLabel?stMeta:'')+
-        '<p class="meta">'+meta+'</p>'+dealHTML(r,false)+growHTML(r,false)+
+        '<p class="meta">'+meta+'</p>'+lastLine215(dealHTML(r,false),r)+growHTML(r,false)+
         '<p class="desc">'+esc(r.note)+'</p>'+
         (gsCan(r)?gsCardHTML(r):
         (open?'<p class="cta-note">Asking is free. $50 reserves&nbsp;it.</p>':'')+
@@ -10147,7 +10177,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if(vMark){ vMark.innerHTML=''; vMark.hidden=true; }   /* a kit's mark never rides to its parent (5 Oct 2026) */
       if(vPath){ vPath.innerHTML=''; vPath.hidden=true; }
       if(vPair){ vPair.innerHTML=''; vPair.hidden=true; }
-      if(vReady){ vReady.textContent=''; vReady.hidden=true; }
+      if(vReady){ vReady.textContent=''; vReady.hidden=true; } var vl215p=document.getElementById('viewerLast'); if(vl215p){ vl215p.textContent=''; vl215p.hidden=true; }
       if(vMoney) vMoney.hidden=true;
       if(vStep){ vStep.textContent=''; vStep.hidden=true; }
       if(vHistLink) vHistLink.hidden=true;
@@ -11291,7 +11321,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         if(vWith){ var na=gsNow(r), nb=gsNow(vWith); if(na&&!nb) rr=vWith; else if(!na&&!nb&&readyDay(vWith)>readyDay(r)) rr=vWith; }
         var rt=avail?(gsNow(rr)?'Ready to go home now':(rr.ready?'Ready to go home '+String(rr.ready):'')):'';
         vReady.textContent=rt; vReady.hidden=!rt;
-        vReady.classList.remove('vlock'); if(avail&&locked(r)){ vReady.innerHTML=lockReadyHTML(r); vReady.classList.add('vlock'); vReady.hidden=false; }   /* (Round 193) available at an hour: the time left and the hour */
+        vReady.classList.remove('vlock'); if(avail&&locked(r)){ vReady.innerHTML=lockReadyHTML(r); vReady.classList.add('vlock'); vReady.hidden=false; } var vl215=document.getElementById('viewerLast'); if(vl215){ var L215=(avail&&!vWith)?last215(r):null; vl215.textContent=L215?lastWords215(L215,true):''; vl215.hidden=!L215; }   /* (Round 215) the last of its litter, with its reason from the dates; not in the listing for two */   /* (Round 193) available at an hour: the time left and the hour */
       }
       if(vAboutT) vAboutT.textContent='About '+r.name;
       if(vAboutS){
