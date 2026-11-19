@@ -532,7 +532,7 @@ header .brand{color:var(--logo)}
   @keyframes csGrip{from{left:0}to{left:calc(100% - 15px)}}
 }
 
-@media(max-width:980px) and (orientation:landscape) and (max-height:500px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (max-width:980px){
+@media(max-width:980px) and (orientation:landscape) and (max-height:500px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (max-width:980px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:980px){
   .dock{padding-top:4px;padding-bottom:2px}
   .mnav-inner{padding-bottom:4px}
   .sprog{display:none}
@@ -572,7 +572,7 @@ header .brand{color:var(--logo)}
 @media(max-width:359px){ .srow{font-size:14px;gap:0 10px} .srow-more a{width:36px} .srow-more{margin-right:-8px} }
 .hero-srow{margin:-16px 0 -10px}
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px){ .hero-srow{display:none} }
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){ .hero-srow{display:none} }
 
 .hero-deliver{display:flex;width:fit-content;align-items:center;gap:10px;margin:-22px 0 2px;padding:12px 0;
   color:inherit;text-decoration:none;cursor:pointer}
@@ -3238,7 +3238,7 @@ body.locked{overflow:hidden}
   .hero .facts{grid-row:8} .hero-media{grid-row:1 / 8}
 }
 
-@media(min-width:921px) and (min-height:501px){
+@media(min-width:921px) and (min-height:661px), (min-width:921px) and (min-height:501px) and (orientation:portrait), (min-width:921px) and (min-height:501px) and (pointer:fine), (min-width:921px) and (min-height:501px) and (pointer:none), (min-width:921px) and (min-height:501px) and (min-width:1100px){
   .hero-grid{grid-template-columns:minmax(0,1fr) min(45.2%,486px);column-gap:48px;row-gap:0;align-items:stretch}
   .hero-grid > div:not(.hero-media){display:contents}
   .hero h1{grid-column:1;grid-row:1}
@@ -3254,12 +3254,12 @@ body.locked{overflow:hidden}
   .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
   .hero .facts small{margin-top:2px;white-space:normal}
 }
-@media(min-width:921px) and (max-width:1099px) and (min-height:501px){
+@media(min-width:921px) and (max-width:1099px) and (min-height:661px), (min-width:921px) and (max-width:1099px) and (min-height:501px) and (orientation:portrait), (min-width:921px) and (max-width:1099px) and (min-height:501px) and (pointer:fine), (min-width:921px) and (max-width:1099px) and (min-height:501px) and (pointer:none){
   .hero-grid{grid-template-columns:minmax(min-content,1fr) minmax(0,min(45.2%,486px))}
   .hero-cta{gap:9px;flex-wrap:nowrap}
   .hero-cta .btn{flex:1 1 auto;padding-left:14px;padding-right:14px;white-space:nowrap}
 }
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   .hero .facts>details>summary span,.hero .facts b,.hero .facts small{display:block}
   .hero .facts small{margin-top:2px;white-space:normal}
@@ -3278,7 +3278,7 @@ body.locked{overflow:hidden}
   .viewer-body{scroll-padding-bottom:200px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .hero-grid{grid-template-columns:minmax(0,54fr) minmax(0,46fr);gap:0 24px;align-items:start;--rowpad:12px}
   .hero-grid > div:not(.hero-media){display:contents}
   .hero h1{grid-column:1;grid-row:1;margin-bottom:6px}
@@ -3310,7 +3310,7 @@ body.locked{overflow:hidden}
   html[lang="es"] .hero h1{margin-bottom:3px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .hero-grid{--rowpad:clamp(2px,calc((100vw - 700px) * .07 + 2px),9px)}
   .hero h1{margin-bottom:3px}
   .hero-lines{margin-bottom:calc(0px - var(--rowpad))}
@@ -3319,7 +3319,7 @@ body.locked{overflow:hidden}
   .hero-cta{margin-top:12px}
 }
 
-@media(orientation:landscape) and (max-height:500px) and (min-width:880px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:880px) and (max-width:1099px){
+@media(orientation:landscape) and (max-height:500px) and (min-width:880px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:880px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .hero-grid{--rowpad:2px}
   .hero-sub{margin-bottom:14px}
   .hero-cta{grid-column:1;gap:9px;margin-top:0;margin-bottom:0}
@@ -4292,6 +4292,10 @@ html.xmas[data-look="dim"] #about .about-head>.kicker::after,html.xmas[data-look
 @media (min-width:600px){#about .about-head .lede{display:flow-root}}
 html[data-look="dim"] #about .about-face{box-shadow:0 0 0 1px rgba(255,255,255,.16)}
 
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){#raised .stage>p{margin-right:max(0px,calc(100% - 66ch))}}
+
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:799px), (orientation:portrait) and (min-width:560px) and (max-width:799px){#about .about-face{margin-bottom:10px}}
+
 html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:xm-plug 1.1s steps(1,end) both}
 @keyframes xm-plug{0%{filter:saturate(0) brightness(.75);opacity:.5}18%{filter:none;opacity:1}30%{filter:saturate(0) brightness(.75);opacity:.5}44%{filter:none;opacity:1}100%{filter:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){html.xmas.xm-hat-drop header .brand::before,html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:none}}
@@ -4386,7 +4390,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 </style>
 <style id="sideways-book">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   section{padding:22px 0}
   .corner{transition:opacity .2s,visibility 0s}
@@ -4454,13 +4458,13 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   
   .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,240px)}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   #waitlist.wl{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0 24px}
   #waitlist .wl-side{min-width:0;max-width:none}
 }
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:840px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:840px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:840px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:840px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   .hero-grid{grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:0 26px;--rowpad:clamp(4px,calc((100vw - 840px) * .06 + 4px),10px)}
   .hero-media{grid-column:2;grid-row:1 / 6}
@@ -4482,7 +4486,7 @@ html:not(.xmas) .facts>details.fact-season{display:none}
 
 html.xmas .hero .facts{align-items:stretch}
 html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
-@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (min-width:560px) and (max-width:920px) and (min-height:501px),(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   html.xmas .hero .facts>details.fact-season+details.fact>summary span{display:flex;align-items:baseline;gap:10px}
   html.xmas .hero .facts>details.fact-season+details.fact b,html.xmas .hero .facts>details.fact-season+details.fact small{display:inline;margin-top:0}
 }
@@ -4491,7 +4495,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   html.xmas .hero .facts>details.fact:nth-of-type(3)>summary span,html.xmas .hero .facts>details.fact-season>summary span{display:flex;align-items:baseline;gap:10px}
   html.xmas .hero .facts>details.fact:nth-of-type(3) b,html.xmas .hero .facts>details.fact:nth-of-type(3) small,html.xmas .hero .facts>details.fact-season b,html.xmas .hero .facts>details.fact-season small{display:inline;margin-top:0}
 }
-@media (min-width:921px) and (min-height:501px){
+@media (min-width:921px) and (min-height:661px), (min-width:921px) and (min-height:501px) and (orientation:portrait), (min-width:921px) and (min-height:501px) and (pointer:fine), (min-width:921px) and (min-height:501px) and (pointer:none), (min-width:921px) and (min-height:501px) and (min-width:1100px){
   html.xmas .hero .facts{grid-template-columns:repeat(3,minmax(min-content,1fr));contain:inline-size}
   html.xmas .hero .facts>details.fact,html.xmas .hero .facts>details.fact-season+details.fact{grid-column:auto}
   
@@ -4500,7 +4504,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   html.xmas .hero .facts .factpanel{contain:inline-size}
   html.xmas .hero .facts small{text-wrap:balance}
 }
-@media (min-width:921px) and (max-width:999px) and (min-height:501px){
+@media (min-width:921px) and (max-width:999px) and (min-height:661px), (min-width:921px) and (max-width:999px) and (min-height:501px) and (orientation:portrait), (min-width:921px) and (max-width:999px) and (min-height:501px) and (pointer:fine), (min-width:921px) and (max-width:999px) and (min-height:501px) and (pointer:none){
   
   html.xmas .hero .facts{column-gap:24px}
   html.xmas .hero .facts>details.fact>summary{padding-right:26px}
@@ -4534,7 +4538,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   .corner-list{display:grid;grid-template-columns:max-content minmax(0,1fr);grid-template-rows:repeat(6,auto);grid-auto-flow:column;column-gap:4px;max-height:calc(100svh - 68px - max(10px,env(safe-area-inset-bottom)))}
   .corner-sheet a.corner-page:not(.corner-page + .corner-page){margin-top:0}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:761px) and (max-width:1099px),(orientation:portrait) and (min-width:761px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:761px) and (max-width:1099px),(orientation:portrait) and (min-width:761px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   section:not(#top) .wrap,footer .wrap{padding-right:max(26px,env(safe-area-inset-right))}
 }
@@ -4545,7 +4549,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </style>
 <style id="sideways-room">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   section:not(#top){padding-bottom:14px}
   section:not(#top):not(#available):not(#producers){padding-top:14px}
@@ -4568,7 +4572,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   
   footer .foot-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:700px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:700px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
 
   #faq{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:22px;align-items:start;
        padding-left:26px;padding-right:max(26px,env(safe-area-inset-right))}
@@ -4611,7 +4615,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   footer .foot>div:nth-child(2){grid-column:2;grid-row:1 / span 2}
   footer .foot>div:nth-child(3){grid-column:1;grid-row:2}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:800px) and (max-width:1099px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   
   .stages{row-gap:14px;margin-top:14px}
   .stages>.stage{grid-template-columns:minmax(0,260px) minmax(0,1fr);column-gap:22px;align-items:start}
@@ -4627,7 +4631,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </style>
 <style id="level-pictures">
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   #included .split{grid-template-columns:minmax(0,1fr) minmax(0,min(40%,200px));column-gap:24px;row-gap:0;align-items:start}
   #included .split>div:first-child{display:contents}
   #included .split>div:first-child>*{grid-column:1}
@@ -4641,7 +4645,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   #included .incl li::before{top:16px}
 }
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px), (orientation:portrait) and (min-width:800px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px), (orientation:portrait) and (min-width:800px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);column-gap:24px;row-gap:0;align-items:start}
   .about-grid>.about-head{grid-column:1;grid-row:1}
   .about-grid>.about-media{float:none;width:auto;margin:0;grid-column:2;grid-row:1;align-self:stretch;position:static;top:auto;contain:size;display:flex;flex-direction:column}
@@ -4652,7 +4656,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   .about-grid>.about-story>.about-more{column-span:all;margin-top:14px}
 }
 
-@media (min-width:901px) and (min-height:501px), (min-width:1100px){
+@media (min-width:901px) and (min-height:661px), (min-width:901px) and (min-height:501px) and (orientation:portrait), (min-width:901px) and (min-height:501px) and (pointer:fine), (min-width:901px) and (min-height:501px) and (pointer:none), (min-width:901px) and (min-height:501px) and (max-width:920px), (min-width:901px) and (min-height:501px) and (min-width:1100px), (min-width:1100px){
   .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);column-gap:48px;row-gap:0;align-items:start}
   .about-grid>.about-head{grid-column:1;grid-row:1}
   .about-grid>.about-media{float:none;width:auto;margin:0;grid-column:2;grid-row:1;align-self:stretch;position:static;top:auto;contain:size;display:flex;flex-direction:column}
@@ -4669,7 +4673,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   .bunnies > .bunny > .bunny-body > .grow{margin-top:calc(var(--bg) + 4px)}
 }
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   #waitlist .wl-lits{grid-template-columns:repeat(auto-fill,minmax(256px,1fr))}
   #lead .opts{grid-template-columns:minmax(0,1fr)}
   #lead .opt b,#lead .opt small{text-wrap:balance}
@@ -4678,7 +4682,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   .stage-lit b.by-parents .f{white-space:nowrap}
 }
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:860px) and (max-width:1099px), (orientation:portrait) and (min-width:860px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:860px) and (max-width:1099px), (orientation:portrait) and (min-width:860px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   html[lang="es"] #producers .pro-grid{grid-template-columns:repeat(var(--d),minmax(0,150px)) 16px repeat(var(--b),minmax(0,150px))}
 }
 @media (orientation:landscape) and (max-height:500px) and (min-width:760px) and (max-width:859px), (orientation:portrait) and (min-width:760px) and (max-width:859px){
@@ -4706,16 +4710,16 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   #contact .tasks>li>a>span{display:grid;grid-row:1 / span 2;grid-column:1;grid-template-rows:subgrid}
   #contact .tasks>li>a>.chev{grid-column:2;grid-row:1 / span 2;align-self:center}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .bunny .deal .deal-mate{display:block}
 }
 
-@media (orientation:landscape) and (max-height:500px) and (min-width:720px) and (max-width:1099px), (orientation:portrait) and (min-width:666px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:720px) and (max-width:1099px), (orientation:portrait) and (min-width:666px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   .bunnies{grid-auto-columns:clamp(170px,calc((100% - 64px) / 3),258px)}
   .bunnies .bunny-top{flex-direction:column;align-items:flex-start;gap:2px}
 }
 
-@media (max-width:560px), (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+@media (max-width:560px), (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   #raised .stage-lit{grid-template-columns:44px minmax(0,1fr) auto;grid-template-rows:auto;column-gap:10px;row-gap:0;align-items:center;padding:7px 10px 7px 7px}
   #raised .stage-lit>.stage-pic{grid-column:1;grid-row:1;width:44px;height:44px;align-self:center}
   #raised .stage-lit>.stage-pic img{width:44px;height:44px}
@@ -4746,7 +4750,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   #raised .social-head>.srow{order:4}
   #raised .social-head>.owners-fold{order:5;margin-top:12px}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   #raised .stages{position:relative;padding-left:26px;row-gap:0;margin-top:20px}
   #raised .stages>.stage{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;padding:12px 0 14px}
   #raised .stages>.stage::before{content:'';position:absolute;left:-26px;top:17px;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--line);z-index:1}
@@ -4770,7 +4774,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   #raised .social-head:has(> .reel > :is(.reel-play,video))>.srow{grid-column:1 / -1;grid-row:4;margin-top:14px}
   #raised .social-head:has(> .reel > :is(.reel-play,video))>.owners-fold{grid-column:1 / -1;grid-row:5;margin-top:10px}
 }
-@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px), (orientation:portrait) and (min-width:800px) and (max-width:920px){
+@media (orientation:landscape) and (max-height:500px) and (min-width:800px) and (max-width:1099px), (orientation:portrait) and (min-width:800px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
   #raised .social-head:has(> .reel > :is(.reel-play,video)){grid-template-columns:minmax(0,1fr) minmax(0,34%)}
   #raised .social-head:has(> .reel > :is(.reel-play,video)) .reel-play,#raised .social-head:has(> .reel > :is(.reel-play,video)) .reel>video{grid-row:1 / span 4}
   #raised .social-head:has(> .reel > :is(.reel-play,video))>.srow{grid-column:1;grid-row:4}
@@ -12891,7 +12895,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 </script>
 <script>
 (function(){ var top=document.getElementById("top"); if(!top||!("IntersectionObserver" in window)||!window.matchMedia) return;
-  var mq=matchMedia("(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px)");
+  var mq=matchMedia("(orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px)");
   var io=new IntersectionObserver(function(es){ var r=es[es.length-1].intersectionRect.height; document.documentElement.classList.toggle("ls-hero", mq.matches && r>Math.min(180, innerHeight*.38)); },{threshold:[0,.1,.2,.3,.35,.4,.5,.6,.7,.8,.9,1]});
   io.observe(top); if(mq.addEventListener) mq.addEventListener("change",function(){ io.unobserve(top); io.observe(top); }); })();
 </script>
