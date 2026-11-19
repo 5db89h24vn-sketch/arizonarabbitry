@@ -1455,6 +1455,88 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(go, 300); });
   else setTimeout(go, 300);
 })();</script>
+<script id="xm213-lights">(function(){
+  var H=document.documentElement; if(!H.classList.contains('xmas')||H.classList.contains('xm-live')) return;
+  var host=document.querySelector('header.nav')||document.querySelector('header:not(.nav) .topbar');
+  if(!host||!host.animate||!window.CSS||!CSS.supports||!CSS.supports('clip-path','path("M0 0L1 1Z")')) return;
+  var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), T=window.xmLightsTest||{}, SP=T.speed>0?T.speed:1;
+  var seed=(T.seed>>>0)||((Date.now()^(Math.random()*4294967296))>>>0);
+  function rnd(){ seed=(seed+0x6D2B79F5)|0; var t=Math.imul(seed^(seed>>>15),1|seed); t=(t+Math.imul(t^(t>>>7),61|t))^t; return((t^(t>>>14))>>>0)/4294967296; }
+  function R(a,b){ return a+(b-a)*rnd(); }
+  var PAL=['214 59 54','224 95 50','234 138 46','233 162 54','232 184 62','111 200 43','47 145 88','52 172 175','59 111 203','183 56 209'];   // round the colour wheel
+  var HUE=[2,15,29,36,43,94,145,181,218,290];
+  var S0=[0,2,6,8,4,2,8,0,6,4,8,2,0,4,6,8,0,2,4,6,0], TILT=[-12,1,7,-6,7,13], BX=[11.67,35,58.33], BY=[6.04,8.8,6.04];   // Round 201's first set, as drawn
+  var box=document.createElement('div'); box.className='xm-ls'; box.setAttribute('aria-hidden','true');
+  var segs=[], bulbs=[], vis=0, clock=0, anims=[], log=[], wasP=false, onscreen=true, P0=false, K0=(rnd()*3)|0;
+  try{ P0=localStorage.getItem('xmPaused')==='1'; }catch(e){}   // (Round 216) the visitor's pause, kept by the season's script at the page's end: heard here until that script has it in hand
+  function mk(c,p){ var e=document.createElement('div'); e.className=c; p.appendChild(e); return e; }
+  function note(t,k,x,dl){ log.push([Math.round(performance.now()+(dl||0)),t,k,x]); if(log.length>800) log.shift(); }
+  var BEAT=500;
+  function build(n){ for(var i=segs.length;i<n;i++){ var w=mk('xw',box); w.style.left=(i*70)+'px';
+      var sg={w:w,u:0,v:0,w0:6.2832/R(1.9,2.6),z:R(.13,.18),b:[]}; segs.push(sg);
+      for(var j=0;j<3;j++){ var k=i*3+j, el=mk('xb',box), lit=mk('xl',el), a=mk('xc',lit), b=mk('xc',lit), c=S0[k%21], tempo=Math.exp(R(1.504,2.639));
+        el.style.left=(i*70+BX[j])+'px'; el.style.top=(4+BY[j])+'px'; el.style.transform='rotate('+TILT[k%6]+'deg)';
+        a.style.setProperty('--c',PAL[c]); b.style.setProperty('--c',PAL[c]); b.style.opacity='0';
+        var bl={k:k,el:el,lit:lit,L:[a,b],cur:0,c:c,tc:c,tilt:TILT[k%6],d:BY[j]-2.6,p:0,q:0,wb:6.2832/R(.85,1.3),zb:R(.06,.11),gn:R(.8,1.2),
+                busy:false,out:false,tempo:tempo,fade:R(1400,3200),next:((k+K0)%3===0?0:R(.5,tempo*Math.max(1,n/12))),relit:0};   // (Round 216) every third bulb begins at once (which third is drawn once a visit), the others within one pace
+        bulbs.push(bl); sg.b.push(bl); } } }
+  function run(el,kf,o,done){ var a=el.animate(kf,o); anims.push(a);
+    a.onfinish=function(){ var i=anims.indexOf(a); if(i>=0) anims.splice(i,1); if(done) done(); }; return a; }
+  function pick(b){ var l=bulbs[b.k-1], r=bulbs[b.k+1], near=[], ok=[], c, d;
+    for(c=0;c<10;c++){ d=Math.abs(HUE[c]-HUE[b.c]); if(d>180) d=360-d; if(c!==b.c&&d<=90){ near.push(c); if((!l||c!==l.tc)&&(!r||c!==r.tc)) ok.push(c); } }
+    if(!ok.length) ok=near; return ok[(rnd()*ok.length)|0]; }
+  function change(b,to){ var inL=b.L[1-b.cur], outL=b.L[b.cur], c=to==null?pick(b):to, D=1.5*b.fade*R(.75,1.3)*(RM?1.5:1)/SP, dl=to==null?R(0,BEAT-40):0;   // dl: each starts after its own short wait
+    if(to==null) D=Math.max(BEAT,Math.ceil((dl+D)/BEAT)*BEAT-dl);   // and ends on a beat
+    b.busy=true; b.tc=c; inL.style.setProperty('--c',PAL[c]); note('c',b.k,c,dl);
+    inL.style.opacity='1'; run(inL,dl?[{opacity:0,easing:'linear'},{opacity:0,offset:dl/(dl+D),easing:'cubic-bezier(0,0,.2,1)'},{opacity:1}]:[{opacity:0,easing:'cubic-bezier(0,0,.2,1)'},{opacity:1}],{duration:dl+D});   // (Round 216) the wait is the fade's own first part: a delay's end wakes the page, each change at its own moment
+    outL.style.opacity='0'; run(outL,dl?[{opacity:1,easing:'linear'},{opacity:1,offset:dl/(dl+D),easing:'cubic-bezier(.8,0,1,1)'},{opacity:0}]:[{opacity:1,easing:'cubic-bezier(.8,0,1,1)'},{opacity:0}],{duration:dl+D},function(){
+      b.cur=1-b.cur; b.c=c; b.busy=false; b.next=clock+b.tempo*R(.45,1.5)*(RM?1.6:1)*Math.max(1,vis/12); note('d',b.k,c); }); }
+  function burn(k){ var n=vis*3, b=null, t, x, l, r;
+    if(k==null){ for(t=0;t<10&&!b;t++){ x=bulbs[(rnd()*n)|0]; l=bulbs[x.k-1]; r=bulbs[x.k+1]; if(!x.out&&!x.busy&&!(l&&l.out)&&!(r&&r.out)) b=x; } } else b=bulbs[k];
+    if(!b||b.out||b.busy) return false; b.out=true; b.busy=true; b.el.classList.add('out'); note('o',b.k); b.lit.style.opacity='0';
+    run(b.lit,RM?[{opacity:1},{opacity:0}]:[{opacity:1},{opacity:.25,offset:.2},{opacity:.85,offset:.45},{opacity:0,offset:.8},{opacity:0}],
+      {duration:RM?900:700,easing:RM?'ease-in':'linear'},function(){ b.busy=false; b.relit=clock+R(2.2,5.2); });
+    return true; }
+  function relight(b){ b.busy=true; note('r',b.k); b.lit.style.opacity='';
+    run(b.lit,RM?[{opacity:0},{opacity:1}]:[{opacity:0},{opacity:.7,offset:.08},{opacity:.1,offset:.25},{opacity:.9,offset:.42},{opacity:.3,offset:.6},{opacity:1,offset:.85},{opacity:1}],
+      {duration:RM?1400:900,easing:RM?'ease-out':'linear'},function(){ b.el.classList.remove('out'); b.out=false; b.busy=false; b.next=clock+R(1,b.tempo); note('l',b.k); }); }
+  var WIND={dir:rnd()<.72?1:-1,f1:R(0,6.28),f3:R(0,6.28)};
+  function sway(sg,i){ var L=R(9.5,13), N=Math.round(L*10), w=6.2832/N, dir=WIND.dir, s, j, b, q, th, x,
+        lean=dir*R(1.5,3), A1=R(2.5,4.5), A2=R(3.5,6), A3=R(.8,1.8), p1=WIND.f1-dir*i*.35+R(-.3,.3), p2=WIND.f3-dir*i*.75+R(-.3,.3), p3=R(0,6.28), K=[], KB=[[],[],[]], Q=[];
+    for(j=0;j<3;j++){ b=sg.b[j]; Q.push({l:-dir*R(2,4)*b.gn,B0:R(1.5,3),q0:R(0,6.28),B1:R(3,6)*b.gn,q1:p2+3.1416-R(.6,1.2),B2:R(2,4.5),k:Math.max(7,Math.round(L/R(.95,1.35))),q2:R(0,6.28)}); }
+    for(s=0;s<N;s++){ th=lean+A1*Math.sin(w*s+p1)+A2*Math.sin(3*w*s+p2)+A3*Math.sin(7*w*s+p3); x=Math.tan(th/57.2958);
+      K.push({transform:'skewX('+th.toFixed(2)+'deg)'});
+      for(j=0;j<3;j++){ b=sg.b[j]; q=Q[j]; KB[j].push({transform:'translate('+(x*b.d).toFixed(2)+'px,0px) rotate('+(b.tilt+q.l+q.B0*Math.sin(w*s+q.q0)+q.B1*Math.sin(3*w*s+q.q1)+q.B2*Math.sin(q.k*w*s+q.q2)).toFixed(2)+'deg)'}); } }
+    K.push(K[0]); for(j=0;j<3;j++) KB[j].push(KB[j][0]);   // the end is the beginning
+    sg.kf=[K,KB[0],KB[1],KB[2]]; sg.o={duration:L*1000,iterations:Infinity}; sg.at=0; sg.T=L; if(onscreen) hang(sg); note('w',i,L); }
+  function hang(sg){ var els=[sg.w,sg.b[0].el,sg.b[1].el,sg.b[2].el], j, a; sg.sw=[];
+    for(j=0;j<4;j++){ a=els[j].animate(sg.kf[j],sg.o); if(sg.at){ try{ a.currentTime=sg.at; }catch(e){} } anims.push(a); sg.sw.push(a); } }
+  function unhang(sg){ var j, q, t; if(!sg.sw) return; try{ t=+sg.sw[0].currentTime; sg.at=t>0?t%sg.o.duration:0; }catch(e){ sg.at=0; }
+    for(j=0;j<sg.sw.length;j++){ q=anims.indexOf(sg.sw[j]); if(q>=0) anims.splice(q,1); try{ sg.sw[j].cancel(); }catch(e){} } sg.sw=null; }
+  function swayAll(){ if(RM) return; var i, made=false; for(i=0;i<segs.length;i++) if(!segs[i].kf){ sway(segs[i],i); made=true; } if(made) hold(true); }
+  function shown(v){ var i; if(v===onscreen) return; onscreen=v; note(v?'b':'a',0,0);
+    for(i=0;i<segs.length;i++) if(segs[i].kf){ if(!v) unhang(segs[i]); else if(!segs[i].sw) hang(segs[i]); }
+    if(v) hold(true); }
+  var nextBurn=R(6,12);
+  function hold(again){ var paused=H.classList.contains('xm-scene-paused')||(P0&&document.readyState==='loading'), i; if(paused===wasP&&!(again===true&&paused)) return paused; wasP=paused;   // (Round 216) held from the first instant for a visitor who paused the season; again: a loop made or put up again while held is held
+    for(i=0;i<anims.length;i++){ try{ if(paused) anims[i].pause(); else anims[i].play(); }catch(e){} } return paused; }
+  function tick(){ var paused=hold(), i, b, w, n;
+    w=Math.ceil(bw/70); if(w>segs.length){ build(w); swayAll(); } vis=Math.min(w,segs.length); n=vis*3;
+    if(paused||!onscreen||document.hidden) return;   // (Round 216) nothing new begins while the season is paused, the string is off the screen or the tab is hidden; no other rest: not for the snow scene, not for a still hand, not for a page read far down
+    clock+=BEAT/1000*SP;
+    for(i=0;i<n;i++){ b=bulbs[i]; if(b.out){ if(!b.busy&&clock>=b.relit) relight(b); } else if(!b.busy&&clock>=b.next) change(b); }
+    if(clock>=nextBurn){ nextBurn=clock+R(9,22); burn(); } }
+  var bw=0; function size(){ bw=box.clientWidth; }
+  build(Math.ceil((host.clientWidth||window.innerWidth||320)/70)+2); host.appendChild(box); H.classList.add('xm-live');
+  if(!RM){ var arr=false; try{ arr=!!sessionStorage.getItem('arrived'); }catch(e){} if(!arr) H.classList.add('xm-plug'); }   // (Round 216) the lights come on once, as they are hung: the season's own rule for its plug (its script, at the page's end, then finds the mark there)
+  size(); window.addEventListener('resize',size);
+  window.xmLights={rm:RM,log:log,count:function(){ return vis*3; },burn:function(k){ return burn(k); },wind:WIND,sway:function(){ return segs.map(function(s){ return s.sw?s.T:0; }); },at:function(){ return segs.map(function(s){ var t=-1; try{ t=s.sw?(+s.sw[0].currentTime||0)%s.o.duration:(s.kf?s.at:-1); }catch(e){} return Math.round(t); }); },seen:function(){ return onscreen; },change:function(k,c){ var b=bulbs[k]; if(b&&!b.busy&&!b.out) change(b,c); },
+    state:function(){ return bulbs.slice(0,vis*3).map(function(b){ return {c:b.c,tc:b.tc,busy:b.busy,out:b.out}; }); }};
+  if(window.MutationObserver) new MutationObserver(function(){ hold(); }).observe(H,{attributes:true,attributeFilter:['class']});   // the pause is heard at once
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ shown(es[es.length-1].isIntersecting); },{rootMargin:'240px 0px'}).observe(box);   // (Round 216) off the screen its loops are taken down; within 240px of coming back they are put up again from where they stood
+  swayAll(); tick(); setInterval(tick,BEAT);
+})();
+</script>
 
 <main>
   <div class="wrap">
@@ -3461,90 +3543,6 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
       goods[i].classList.toggle('g-away',hit); } }
   var cwT=0; clearWords(); window.addEventListener('resize',function(){ clearTimeout(cwT); cwT=setTimeout(clearWords,120); });
   if(document.fonts&&document.fonts.ready&&document.fonts.ready.then) document.fonts.ready.then(clearWords);
-})();
-</script>
-<script id="xm213-lights">(function(){
-  var H=document.documentElement; if(!H.classList.contains('xmas')||H.classList.contains('xm-live')) return;
-  var host=document.querySelector('header.nav')||document.querySelector('header:not(.nav) .topbar');
-  if(!host||!host.animate||!window.CSS||!CSS.supports||!CSS.supports('clip-path','path("M0 0L1 1Z")')) return;
-  var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), T=window.xmLightsTest||{}, SP=T.speed>0?T.speed:1;
-  var seed=(T.seed>>>0)||((Date.now()^(Math.random()*4294967296))>>>0);
-  function rnd(){ seed=(seed+0x6D2B79F5)|0; var t=Math.imul(seed^(seed>>>15),1|seed); t=(t+Math.imul(t^(t>>>7),61|t))^t; return((t^(t>>>14))>>>0)/4294967296; }
-  function R(a,b){ return a+(b-a)*rnd(); }
-  var PAL=['214 59 54','224 95 50','234 138 46','233 162 54','232 184 62','111 200 43','47 145 88','52 172 175','59 111 203','183 56 209'];   // round the colour wheel
-  var HUE=[2,15,29,36,43,94,145,181,218,290];
-  var S0=[0,2,6,8,4,2,8,0,6,4,8,2,0,4,6,8,0,2,4,6,0], TILT=[-12,1,7,-6,7,13], BX=[11.67,35,58.33], BY=[6.04,8.8,6.04];   // Round 201's first set, as drawn
-  var box=document.createElement('div'); box.className='xm-ls'; box.setAttribute('aria-hidden','true');
-  var segs=[], bulbs=[], vis=0, clock=0, anims=[], log=[], gusting=false, wasP=false;
-  function mk(c,p){ var e=document.createElement('div'); e.className=c; p.appendChild(e); return e; }
-  function note(t,k,x,dl){ log.push([Math.round(performance.now()+(dl||0)),t,k,x]); if(log.length>800) log.shift(); }
-  var BEAT=500;
-  function build(n){ for(var i=segs.length;i<n;i++){ var w=mk('xw',box); w.style.left=(i*70)+'px';
-      var sg={w:w,u:0,v:0,w0:6.2832/R(1.9,2.6),z:R(.13,.18),b:[]}; segs.push(sg);
-      for(var j=0;j<3;j++){ var k=i*3+j, el=mk('xb',box), lit=mk('xl',el), a=mk('xc',lit), b=mk('xc',lit), c=S0[k%21], tempo=Math.exp(R(1.504,2.639));
-        el.style.left=(i*70+BX[j])+'px'; el.style.top=(4+BY[j])+'px'; el.style.transform='rotate('+TILT[k%6]+'deg)';
-        a.style.setProperty('--c',PAL[c]); b.style.setProperty('--c',PAL[c]); b.style.opacity='0';
-        var bl={k:k,el:el,lit:lit,L:[a,b],cur:0,c:c,tc:c,tilt:TILT[k%6],d:BY[j]-2.6,p:0,q:0,wb:6.2832/R(.85,1.3),zb:R(.06,.11),gn:R(.8,1.2),
-                busy:false,out:false,tempo:tempo,fade:R(1400,3200),next:R(1.2,1.2+tempo*Math.max(1,n/8)),relit:0};
-        bulbs.push(bl); sg.b.push(bl); } } }
-  function run(el,kf,o,done){ var a=el.animate(kf,o); anims.push(a);
-    a.onfinish=function(){ var i=anims.indexOf(a); if(i>=0) anims.splice(i,1); if(done) done(); }; return a; }
-  function pick(b){ var l=bulbs[b.k-1], r=bulbs[b.k+1], near=[], ok=[], c, d;
-    for(c=0;c<10;c++){ d=Math.abs(HUE[c]-HUE[b.c]); if(d>180) d=360-d; if(c!==b.c&&d<=90){ near.push(c); if((!l||c!==l.tc)&&(!r||c!==r.tc)) ok.push(c); } }
-    if(!ok.length) ok=near; return ok[(rnd()*ok.length)|0]; }
-  function change(b,to){ var inL=b.L[1-b.cur], outL=b.L[b.cur], c=to==null?pick(b):to, D=1.5*b.fade*R(.75,1.3)*(RM?1.5:1)/SP, dl=to==null?R(0,BEAT-40):0;   // dl: each starts after its own short wait
-    if(to==null) D=Math.max(BEAT,Math.ceil((dl+D)/BEAT)*BEAT-dl);   // and ends on a beat
-    b.busy=true; b.tc=c; inL.style.setProperty('--c',PAL[c]); note('c',b.k,c,dl);
-    inL.style.opacity='1'; run(inL,[{opacity:0},{opacity:1}],{duration:D,delay:dl,easing:'cubic-bezier(0,0,.2,1)',fill:'backwards'});
-    outL.style.opacity='0'; run(outL,[{opacity:1},{opacity:0}],{duration:D,delay:dl,easing:'cubic-bezier(.8,0,1,1)',fill:'backwards'},function(){
-      b.cur=1-b.cur; b.c=c; b.busy=false; b.next=clock+b.tempo*R(.45,1.5)*(RM?1.6:1)*Math.max(1,vis/6); note('d',b.k,c); }); }
-  function burn(k){ var n=vis*3, b=null, t, x, l, r;
-    if(k==null){ for(t=0;t<10&&!b;t++){ x=bulbs[(rnd()*n)|0]; l=bulbs[x.k-1]; r=bulbs[x.k+1]; if(!x.out&&!x.busy&&!(l&&l.out)&&!(r&&r.out)) b=x; } } else b=bulbs[k];
-    if(!b||b.out||b.busy) return false; b.out=true; b.busy=true; b.el.classList.add('out'); note('o',b.k); b.lit.style.opacity='0';
-    run(b.lit,RM?[{opacity:1},{opacity:0}]:[{opacity:1},{opacity:.25,offset:.2},{opacity:.85,offset:.45},{opacity:0,offset:.8},{opacity:0}],
-      {duration:RM?900:700,easing:RM?'ease-in':'linear'},function(){ b.busy=false; b.relit=clock+R(2.2,5.2); });
-    return true; }
-  function relight(b){ b.busy=true; note('r',b.k); b.lit.style.opacity='';
-    run(b.lit,RM?[{opacity:0},{opacity:1}]:[{opacity:0},{opacity:.7,offset:.08},{opacity:.1,offset:.25},{opacity:.9,offset:.42},{opacity:.3,offset:.6},{opacity:1,offset:.85},{opacity:1}],
-      {duration:RM?1400:900,easing:RM?'ease-out':'linear'},function(){ b.el.classList.remove('out'); b.out=false; b.busy=false; b.next=clock+R(1,b.tempo); note('l',b.k); }); }
-  function gust(A){ if(RM||gusting||!vis) return false; gusting=true;
-    var n=Math.min(vis,8), at=((vis-n+1)*rnd())|0, W=n*70, dir=rnd()<.72?1:-1, c=R(420,980), r0=rnd(); A=A>0?A:(r0<.4?R(1,1.6):r0<.82?R(1.7,2.5):R(2.6,3.4));
-    var rise=R(.25,.5), hold=R(.2,1.1), fall=R(.5,1.1), puff=rnd()<.4?R(.9,1.8):0, G=A*R(5.5,7), dt=1/60;
-    var TM=W/c+rise+hold+fall+(puff?puff+.8:0)+4.8, steps=Math.ceil(TM/dt), left=n, i;
-    function env(t){ if(t<=0) return 0; if(t<rise){ t/=rise; return t*t*(3-2*t); } t-=rise; if(t<hold) return 1; t-=hold; if(t<fall){ t=1-t/fall; return t*t*(3-2*t); } return 0; }
-    note('g',-1,[+A.toFixed(2),dir,Math.round(c)]);
-    for(i=0;i<n;i++) (function(sg,i){ var d=(dir>0?i*70+35:W-i*70-35)/c, p1=R(0,6.28), p2=R(0,6.28), f1=R(2.2,3.6), f2=R(4,6.5), loc=R(.8,1.15)*(n<vis?.35+.65*Math.sin(3.1416*(i+.5)/n):1);
-      var u=0, v=0, a, s, j, t, g, tb, b, fu=[], fp=[[],[],[]]; for(j=0;j<3;j++){ sg.b[j].p=0; sg.b[j].q=0; }
-      for(s=0;s<=steps;s++){ t=s*dt; g=env(t-d)+(puff?.5*env(t-d-puff):0); tb=loc*(1+.22*Math.sin(f1*t+p1)+.13*Math.sin(f2*t+p2));
-        a=sg.w0*sg.w0*(dir*A*g*tb-u)-2*sg.z*sg.w0*v; v+=a*dt; u+=v*dt;
-        for(j=0;j<3;j++){ b=sg.b[j]; b.q+=(b.wb*b.wb*(-dir*G*g*tb*b.gn-b.p)-2*b.zb*b.wb*b.q+.6*a*(b.d/6.2)*6.37)*dt; b.p+=b.q*dt; }
-        if(s%5===0){ fu.push(u); for(j=0;j<3;j++) fp[j].push(sg.b[j].p); } }
-      var m=fu.length, tail=Math.round(1.1*12), K=[], KB=[[],[],[]], f, uu, ky, pp;
-      for(s=0;s<m;s++){ f=s>=m-tail?(m-1-s)/tail:1; f=f*f*(3-2*f); uu=5.2*Math.tanh(fu[s]*f/5.2); ky=1-Math.min(.1,uu*uu/260);
-        K.push({transform:'skewX('+(Math.atan(uu/6.2)*57.2958).toFixed(2)+'deg) scaleY('+ky.toFixed(3)+')'});
-        for(j=0;j<3;j++){ b=sg.b[j]; pp=30*Math.tanh(fp[j][s]*f/30);
-          KB[j].push({transform:'translate('+(uu*b.d/6.2).toFixed(2)+'px,'+(b.d*(ky-1)).toFixed(2)+'px) rotate('+(b.tilt+pp).toFixed(2)+'deg)'}); } }
-      for(j=0;j<3;j++){ sg.b[j].p=0; sg.b[j].q=0; run(sg.b[j].el,KB[j],{duration:TM*1000}); }
-      run(sg.w,K,{duration:TM*1000},function(){ if(--left<=0){ gusting=false; nextGust=clock+R(1.5,7); note('s',-1); } });
-    })(segs[at+i],i);
-    return true; }
-  var nextBurn=R(6,12), nextGust=R(2,4.5), seen=performance.now();
-  ['scroll','pointerdown','keydown','touchstart','mousemove'].forEach(function(t){ window.addEventListener(t,function(){ seen=performance.now(); },{passive:true,capture:true}); });
-  function hold(){ var paused=H.classList.contains('xm-scene-paused'), i; if(paused===wasP) return paused; wasP=paused;
-    for(i=0;i<anims.length;i++){ try{ if(paused) anims[i].pause(); else anims[i].play(); }catch(e){} } return paused; }
-  function tick(){ var paused=hold(), i, b, w, n;
-    w=Math.ceil(bw/70); if(w>segs.length) build(w); vis=Math.min(w,segs.length); n=vis*3;
-    if(paused||H.classList.contains('xm-scene-on')||document.hidden||performance.now()-seen>18e4) return;
-    clock+=BEAT/1000*SP;
-    for(i=0;i<n;i++){ b=bulbs[i]; if(b.out){ if(!b.busy&&clock>=b.relit) relight(b); } else if(!b.busy&&clock>=b.next) change(b); }
-    if(clock>=nextBurn){ nextBurn=clock+R(9,22); burn(); }
-    if(!gusting&&clock>=nextGust&&(window.pageYOffset||0)<=window.innerHeight) gust(); }
-  var bw=0; function size(){ bw=box.clientWidth; }
-  build(Math.ceil((host.clientWidth||window.innerWidth||320)/70)+2); host.appendChild(box); H.classList.add('xm-live'); size(); window.addEventListener('resize',size);
-  window.xmLights={rm:RM,log:log,count:function(){ return vis*3; },burn:function(k){ return burn(k); },gust:function(a){ return gust(a); },change:function(k,c){ var b=bulbs[k]; if(b&&!b.busy&&!b.out) change(b,c); },
-    state:function(){ return bulbs.slice(0,vis*3).map(function(b){ return {c:b.c,tc:b.tc,busy:b.busy,out:b.out}; }); }};
-  if(window.MutationObserver) new MutationObserver(hold).observe(H,{attributes:true,attributeFilter:['class']});   // the pause is heard at once
-  tick(); setInterval(tick,BEAT);
 })();
 </script>
 </body>
