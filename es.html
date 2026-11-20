@@ -4547,7 +4547,7 @@ html[data-look="dim"] #about .about-face{box-shadow:0 0 0 1px rgba(255,255,255,.
 #available .lsh-arr{height:34px;min-width:34px;padding:0 11px;border-radius:17px;font-size:13.5px}   
 @media(hover:hover){#available .rail-btn:hover,#available .lsh-arr:not([disabled]):hover{border-color:rgba(255,255,255,.6);background:rgba(24,20,18,.9)}}
 #available .rail-n:empty{display:none}
-#available .rail-btn.one .rail-n,#available .lsh-arr.one .rail-n{color:#F2B48E}
+#available .rail-btn.new .rail-n,#available .lsh-arr.new .rail-n{color:#F2B48E}   
 #available .rail-btn.all,#available .lsh-arr.all{color:#C4D6B4}
 #available .rail-btn.all svg,#available .lsh-arr.all svg{display:none}
 #available .rail-btn.all .rail-n::before,#available .lsh-arr.all .rail-n::before{content:"\2713\00a0"}
@@ -11766,37 +11766,43 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
   function railCounts(rail,prev,next,word){
     if(!rail||!prev||!next) return;
-    var ES=(document.documentElement.lang||'').slice(0,2)==='es', seen=false, holding=false, hadMore=false, lab0=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||''];
-    try{ seen=sessionStorage.getItem('az.railAll.'+rail.id)==='1'; }catch(e){}
+    var ES=(document.documentElement.lang||'').slice(0,2)==='es', seen=false, holding=false, owed=false, lab0=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||''], SK='az.railSeen.'+rail.id, saw={}, lastS=null, first=null;
+    try{ seen=sessionStorage.getItem('az.railAll.'+rail.id)==='1'; JSON.parse(sessionStorage.getItem(SK)||'[]').forEach(function(x){ saw[x]=1; }); }catch(e){}
+    var keyOf=function(c,i){ return c.getAttribute('data-rid')||c.getAttribute('data-shots')||('#'+i); };
     var pn=document.createElement('span'), nn=document.createElement('span'); pn.className=nn.className='rail-n';
     prev.appendChild(pn); next.insertBefore(nn,next.firstChild);
     var step=function(){ var c=rail.querySelector('.bunny'); return c ? c.getBoundingClientRect().width+18 : 300; };
-    var count=function(){ var rr=rail.getBoundingClientRect(), L=0, R=0, n=0;
-      Array.prototype.forEach.call(rail.children,function(c){ if(!c.classList||!c.classList.contains('bunny')||!c.getClientRects().length) return; var q=c.getBoundingClientRect(); n++;
-        if(q.right>rr.right+1) R++; else if(q.left<rr.left-1) L++; }); return {L:L,R:R,n:n}; };
+    var count=function(moves){ var rr=rail.getBoundingClientRect(), s=rail.scrollLeft, a=s, b=s, L=0, R=0, n=0, uL=0, uR=0, u=0, add=false;
+      if(rail.firstElementChild!==first){ first=rail.firstElementChild; lastS=null; }   /* the cards painted again: no stretch across two paintings */
+      if(moves&&lastS!==null){ a=Math.min(lastS,s); b=Math.max(lastS,s); } lastS=moves?s:null;   /* the stretch scrolled since the page last looked: a swipe's frames all passed, the page hears only some */
+      Array.prototype.forEach.call(rail.children,function(c,i){ if(!c.classList||!c.classList.contains('bunny')||!c.getClientRects().length) return; var q=c.getBoundingClientRect(), k=keyOf(c,i), x0=q.left-rr.left+s, x1=q.right-rr.left+s; n++;
+        if(moves&&!saw[k]&&Math.max(a,x1-rr.width-1)<=Math.min(b,x0+1)){ saw[k]=1; add=true; }   /* wholly in the window at some point of that stretch */
+        if(q.right>rr.right+1){ R++; if(!saw[k]) uR++; } else if(q.left<rr.left-1){ L++; if(!saw[k]) uL++; }
+        if(!saw[k]) u++; });
+      if(add) try{ sessionStorage.setItem(SK,JSON.stringify(Object.keys(saw))); }catch(e){}
+      return {L:L,R:R,n:n,uL:uL,uR:uR,u:u}; };
     var say=function(b,t,lab){ var w=b.querySelector('.rail-n'); if(w.textContent!==t) w.textContent=t; b.setAttribute('aria-label',lab); };
     var sync=function(){
       if(holding) return;
-      var k=count(), moves=rail.scrollWidth>rail.clientWidth+2;
+      var moves=rail.scrollWidth>rail.clientWidth+2, k=count(moves), nL=!seen&&k.uL>0, nR=!seen&&k.uR>0; if(moves&&k.u>0) owed=true;
       prev.disabled=!moves||k.L===0; next.disabled=!moves||k.R===0;
-      say(prev,k.L?String(k.L):'',!k.L?lab0[0]:ES?(k.L===1?'Ver el conejo anterior':'Ver los '+k.L+' conejos anteriores'):(k.L===1?'Scroll to the previous rabbit':'Scroll to the '+k.L+' previous rabbits'));
-      say(next,k.R===1?(ES?'1 más':'1 more'):(k.R?String(k.R):''),!k.R?lab0[1]:ES?(k.R===1?'Ver 1 conejo más':'Ver '+k.R+' conejos más'):(k.R===1?'Scroll to 1 more rabbit':'Scroll to '+k.R+' more rabbits'));
-      if(moves&&k.R>0) hadMore=true;
-      next.classList.toggle('one',k.R===1);
-      if(moves&&hadMore&&k.n>1&&k.R===0&&!seen&&rail.scrollLeft>2){ seen=true; try{ sessionStorage.setItem('az.railAll.'+rail.id,'1'); }catch(e){} done(k.n); }
+      say(prev,k.L?String(k.L):'',(!k.L?lab0[0]:ES?(k.L===1?'Ver el conejo anterior':'Ver los '+k.L+' conejos anteriores'):(k.L===1?'Scroll to the previous rabbit':'Scroll to the '+k.L+' previous rabbits'))+(nL?(ES?', '+k.uL+' aún sin ver':', '+k.uL+' not seen yet'):''));
+      say(next,k.R===1&&nR?(ES?'1 más':'1 more'):(k.R?String(k.R):''),(!k.R?lab0[1]:ES?(k.R===1?'Ver 1 conejo más':'Ver '+k.R+' conejos más'):(k.R===1?'Scroll to 1 more rabbit':'Scroll to '+k.R+' more rabbits'))+(nR?(ES?', '+k.uR+' aún sin ver':', '+k.uR+' not seen yet'):''));
+      prev.classList.toggle('new',nL); next.classList.toggle('new',nR);
+      if(moves&&owed&&k.n>1&&k.u===0&&!seen){ seen=true; try{ sessionStorage.setItem('az.railAll.'+rail.id,'1'); }catch(e){} done(k.n); }
     };
     var done=function(n){
-      holding=true; next.disabled=false; next.classList.add('all'); next.classList.remove('one');
+      holding=true; next.disabled=false; next.classList.add('all'); prev.classList.remove('new'); next.classList.remove('new');
       say(next,ES?('Viste los '+n):('All '+n+' seen'),ES?('Viste los '+n+' conejos'):('All '+n+' rabbits seen'));
       var q=next.getBoundingClientRect(); confetti(q.left+10,q.top+q.height/2);   /* from the button's left end: the paper flies up and back over the row, never over its words */
       setTimeout(function(){ holding=false; next.classList.remove('all'); sync(); },2600);
     };
     prev.addEventListener('click',function(){ rail.scrollBy({left:-step()*2,behavior:'smooth'}); });
     next.addEventListener('click',function(){ if(!next.classList.contains('all')) rail.scrollBy({left:step()*2,behavior:'smooth'}); });
-    rail.addEventListener('scroll',sync,{passive:true}); window.addEventListener('resize',sync);
+    rail.addEventListener('scroll',sync,{passive:true}); window.addEventListener('resize',function(){ lastS=null; sync(); });
     if(window.MutationObserver) new MutationObserver(sync).observe(rail,{childList:true});
     sync();
-  }
+  }   /* (Round 227) end */
   function confetti(x,y){
     try{ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; }catch(e){}
     var cv=document.createElement('canvas'), d=Math.min(2,window.devicePixelRatio||1), W=innerWidth, H=innerHeight, g;
@@ -12184,21 +12190,27 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         else if(t.scrollWidth>t.clientWidth+0.5){ t.style.letterSpacing='0'; var sh=t.getAttribute('data-short'); if(sh&&t.scrollWidth>t.clientWidth+0.5){ if(!x) t.setAttribute('data-whole',t.textContent); t.textContent=sh; } } }); }
     var fitRO=false; if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fitNames(); }).observe(row); fitRO=true; }catch(e){} }
     if(!fitRO){ var fitT=0; window.addEventListener('resize',function(){ clearTimeout(fitT); fitT=setTimeout(fitNames,120); }); }
-    var lshSeen=false, lshHold=false, lshMore=false, lshLab=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||'']; try{ lshSeen=sessionStorage.getItem('az.railAll.lshRow')==='1'; }catch(e){}   /* (Round 225) the litters coming soon count what is left, as the rabbits' row does (William, 19 Nov 2026, 4:46pm: "going forward across the website"): each arrow the litters past its edge, "1 more" when one is left, out when nothing is that way; the arrows shown wherever the row slides; once a visit "All 3 seen" at the end; no paper (that is for the rabbits) */
+    var lshSeen=false, lshHold=false, lshSaw={}, lshOwed=false, lshLastS=null, lshFirst=null, lshLab=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||'']; try{ lshSeen=sessionStorage.getItem('az.railAll.lshRow')==='1'; JSON.parse(sessionStorage.getItem('az.railSeen.lshRow')||'[]').forEach(function(x){ lshSaw[x]=1; }); }catch(e){}   /* (Round 225) the litters coming soon count what is left, as the rabbits' row does (William, 19 Nov 2026, 4:46pm: "going forward across the website"): each arrow the litters past its edge, "1 more" when one is left, out when nothing is that way; the arrows shown wherever the row slides; once a visit "All 3 seen" at the end; no paper (that is for the rabbits) */
       [prev,next].forEach(function(b,i){ var w=document.createElement('span'); w.className='rail-n'; if(i) b.insertBefore(w,b.firstChild); else b.appendChild(w); });
       function lshSay(b,t,lab){ var w=b.querySelector('.rail-n'); if(w.textContent!==t) w.textContent=t; b.setAttribute('aria-label',lab); }
-      function arrows(){ var max=row.scrollWidth-row.clientWidth-2, moves=max>0, rr=row.getBoundingClientRect(), L=0, R=0, n=0;
-        [].forEach.call(row.children,function(c){ if(c.getAttribute('data-id')==='litters'||!c.getClientRects().length) return; var q=c.getBoundingClientRect(); n++; if(q.right>rr.right+1) R++; else if(q.left<rr.left-1) L++; });
+      function arrows(){ var max=row.scrollWidth-row.clientWidth-2, moves=max>0, rr=row.getBoundingClientRect(), s=row.scrollLeft, a=s, b=s, L=0, R=0, n=0, uL=0, uR=0, u=0, add=false;
+        if(row.firstElementChild!==lshFirst){ lshFirst=row.firstElementChild; lshLastS=null; }
+        if(moves&&lshLastS!==null){ a=Math.min(lshLastS,s); b=Math.max(lshLastS,s); } lshLastS=moves?s:null;
+        [].forEach.call(row.children,function(c){ var k=c.getAttribute('data-id'); if(k==='litters'||!c.getClientRects().length) return; var q=c.getBoundingClientRect(), x0=q.left-rr.left+s, x1=q.right-rr.left+s; n++;
+          if(moves&&!lshSaw[k]&&Math.max(a,x1-rr.width-1)<=Math.min(b,x0+1)){ lshSaw[k]=1; add=true; }
+          if(q.right>rr.right+1){ R++; if(!lshSaw[k]) uR++; } else if(q.left<rr.left-1){ L++; if(!lshSaw[k]) uL++; }
+          if(!lshSaw[k]) u++; });
+        if(add) try{ sessionStorage.setItem('az.railSeen.lshRow',JSON.stringify(Object.keys(lshSaw))); }catch(e){}
         shelf.classList.toggle('lsh-moves',moves); if(lshHold) return;
+        var lL=!lshSeen&&uL>0, lR=!lshSeen&&uR>0; if(moves&&u>0) lshOwed=true;
         prev.disabled=!moves||row.scrollLeft<=2; next.disabled=!moves||row.scrollLeft>=max;
-        lshSay(prev,L?String(L):'',!L?lshLab[0]:ES?(L===1?'Ver la camada anterior':'Ver las '+L+' camadas anteriores'):(L===1?'Scroll to the earlier litter':'Scroll to the '+L+' earlier litters'));
-        lshSay(next,R===1?(ES?'1 más':'1 more'):(R?String(R):''),!R?lshLab[1]:ES?(R===1?'Ver 1 camada más':'Ver '+R+' camadas más'):(R===1?'Scroll to 1 more litter':'Scroll to '+R+' more litters'));
-        if(moves&&R>0) lshMore=true;
-        next.classList.toggle('one',R===1);
-        if(moves&&lshMore&&n>1&&R===0&&!lshSeen&&row.scrollLeft>2){ lshSeen=true; try{ sessionStorage.setItem('az.railAll.lshRow','1'); }catch(e){} lshHold=true; next.disabled=false; next.classList.add('all'); next.classList.remove('one');
+        lshSay(prev,L?String(L):'',(!L?lshLab[0]:ES?(L===1?'Ver la camada anterior':'Ver las '+L+' camadas anteriores'):(L===1?'Scroll to the earlier litter':'Scroll to the '+L+' earlier litters'))+(lL?(ES?', '+uL+' aún sin ver':', '+uL+' not seen yet'):''));
+        lshSay(next,R===1&&lR?(ES?'1 más':'1 more'):(R?String(R):''),(!R?lshLab[1]:ES?(R===1?'Ver 1 camada más':'Ver '+R+' camadas más'):(R===1?'Scroll to 1 more litter':'Scroll to '+R+' more litters'))+(lR?(ES?', '+uR+' aún sin ver':', '+uR+' not seen yet'):''));
+        prev.classList.toggle('new',lL); next.classList.toggle('new',lR);
+        if(moves&&lshOwed&&n>1&&u===0&&!lshSeen&&filter==='all'){ lshSeen=true; try{ sessionStorage.setItem('az.railAll.lshRow','1'); }catch(e){} lshHold=true; next.disabled=false; next.classList.add('all'); prev.classList.remove('new'); next.classList.remove('new');
           lshSay(next,ES?('Viste las '+n):('All '+n+' seen'),ES?('Viste las '+n+' camadas'):('All '+n+' litters seen'));
           setTimeout(function(){ lshHold=false; next.classList.remove('all'); arrows(); },2600); } }
-      window.addEventListener('resize',function(){ arrows(); });
+      window.addEventListener('resize',function(){ lshLastS=null; arrows(); });
     row.addEventListener('scroll',function(){ arrows(); sset('arShelfX',row.scrollLeft); },{passive:true});
     function smooth(){ return (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth'; }
     function step(d){ var li=row.querySelector('li'); var w=li?li.getBoundingClientRect().width+12:200; var n=Math.max(1,Math.floor(row.clientWidth/w)); row.scrollBy({left:d*n*w,behavior:smooth()}); }
@@ -12207,7 +12219,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     chips.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('.lsh-chip'); if(b) setFilter(b.getAttribute('data-k')); });
     paint();
     var x0=sget('arShelfX',0); if(x0) row.scrollLeft=x0;
-    shelf.hidden=false; fitNames();
+    shelf.hidden=false; fitNames(); arrows();   /* (Round 227) the arrows measured once the shelf is shown: the first litters in view are seen */
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitNames);   /* the names measured again in the site's own type */
 
     function trap(box,ev){ if(ev.key!=='Tab') return; var f=[].filter.call(box.querySelectorAll('button:not([disabled]),a[href],input:not([type="hidden"]):not([disabled]),[tabindex="0"]'),function(e){ return e.getClientRects().length>0; }); if(!f.length) return;
