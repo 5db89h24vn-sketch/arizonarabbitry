@@ -5958,6 +5958,8 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
           target="_blank" rel="noopener noreferrer" data-leaves="word">quedarse por debajo de los <span class="kw">85 °F</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a>. Si el viaje no es seguro ese día, lo cambiamos de fecha, y se lo diré.</p>
 
           <p><b>¿Fuera de Arizona?</b> Tiene que ir con un transportista terrestre. Escríbame primero, y organizamos juntos el transporte y buscamos la cotización.</p>
+          
+          <p class="faq-more"><a class="litterlink" href="/es-delivery">Hasta dónde llego: Phoenix, Flagstaff, Yuma y cada pueblo entre ellos</a></p>
         </div>
       </details>
       <details id="faq-deposit">
@@ -13333,7 +13335,7 @@ function fmPlan(o){
     ics.href='/api/month?n='+encodeURIComponent(cur.name)+'&b='+cur.dob+'&h='+h+'&l='+(ES?'es':'en');
     ics.querySelector('span').textContent=ES?(n===3?'Añadir las tres a mi calendario':n===2?'Añadir las dos a mi calendario':'Añadir su cumpleaños a mi calendario')
                                             :(n===3?'Add all three to my calendar':n===2?'Add both to my calendar':'Add its birthday to my calendar');
-    gl.innerHTML=(ES?'O en Google Calendar: ':'Or in Google Calendar: ')+on.map(function(it){ return '<a class="fm-gl" href="'+esc(gcal(it))+'" target="_blank" rel="noopener noreferrer nofollow">'+esc(it.g)+'</a>'; }).join(' · '); }
+    gl.innerHTML=(ES?'O en Google Calendar: ':'Or in Google Calendar: ')+on.map(function(it){ return '<a class="fm-gl" href="'+esc(gcal(it))+'" target="_blank" rel="noopener noreferrer nofollow">'+esc(it.g)+'</a>'; }).join('\u00a0· '); }   /* (Round 234) each dot held to the link before it: no line opens with a dot (round-233-live.jpg) */
   function build(){ built=true; box.setAttribute('role','region'); box.setAttribute('aria-label',ES?'Su primer mes':'Its first month');
     box.innerHTML='<div class="fm-top"><img class="fm-pic" alt="" width="48" height="48"><span class="fm-who"><span class="fm-k">'+(ES?'Su primer mes':'Its first month')+'</span>'
       +'<span class="fm-pick"><select id="fmWho" aria-label="'+(ES?'Conejo':'Rabbit')+'"></select><i class="chev" aria-hidden="true"></i></span></span></div>'
