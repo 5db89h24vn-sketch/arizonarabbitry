@@ -4280,6 +4280,26 @@ html.xmas[data-look="dim"] .xm-place img.xm-pd{display:block!important}
 .corner-sheet a[href="#xmScene"]::after{content:'';order:-1;flex:none;width:18px;height:18px;margin-left:-1px;background:currentColor;-webkit-mask:var(--ci) center/contain no-repeat;mask:var(--ci) center/contain no-repeat}
 .corner-sheet a[href="#xmScene"]{--ci:var(--ci-village)}
 
+html.xmas .xm-place .xm-pic{display:block;-webkit-mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.25) 3%,rgba(0,0,0,.65) 6%,#000 9%,#000 91%,rgba(0,0,0,.65) 94%,rgba(0,0,0,.25) 97%,transparent);mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.25) 3%,rgba(0,0,0,.65) 6%,#000 9%,#000 91%,rgba(0,0,0,.65) 94%,rgba(0,0,0,.25) 97%,transparent)}
+html.xmas .xm-place .xm-pic-v{display:block;position:relative;height:118px}
+.xm-fx{display:none}
+html.xmas .xm-place.xm-go .xm-fx{display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent);mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent)}
+html.xmas{--xmc:rgba(255,255,255,.95);--xmr:rgba(112,104,166,.42);--xmr2:rgba(112,104,166,.5)}
+html.xmas[data-look="dim"]{--xmc:rgba(255,250,240,.92);--xmr:rgba(255,248,236,.3);--xmr2:rgba(255,248,236,.4)}
+.xm-home .xm-fx i{position:absolute;left:-12px;right:-12px;top:-118px;height:236px;background-repeat:repeat;opacity:0}
+.xm-home .xm-sn1{background-size:97px 118px;background-image:radial-gradient(circle at 14px 20px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px),radial-gradient(circle at 61px 74px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px);animation:xmSnF 4.5s linear 1 both}
+.xm-home .xm-sn2{background-size:139px 118px;background-image:radial-gradient(circle at 40px 46px,var(--xmc) 0 0.90px,var(--xmr2) 0.90px 1.80px,transparent 2.40px),radial-gradient(circle at 112px 95px,var(--xmc) 0 0.80px,var(--xmr2) 0.80px 1.60px,transparent 2.20px),radial-gradient(circle at 76px 12px,var(--xmc) 0 0.75px,var(--xmr2) 0.75px 1.50px,transparent 2.10px);animation:xmSnN 4.5s linear 1 both}
+@keyframes xmSnF{0%{transform:translate3d(0,0,0);opacity:0}16%{opacity:.7}78%{opacity:.7}100%{transform:translate3d(-5px,81px,0);opacity:0}}
+@keyframes xmSnN{0%{transform:translate3d(0,0,0);opacity:0}14%{opacity:1}80%{opacity:1}100%{transform:translate3d(-8px,117px,0);opacity:0}}
+.xm-sled .xm-gl{position:absolute;display:block;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,120,.62),rgba(255,180,84,.22) 55%,rgba(255,180,84,0));opacity:0;animation:xmGlA 4.5s ease-in-out 1 both}
+.xm-sled .xm-g2{animation-name:xmGlB}
+.xm-sled .xm-gp,.xm-sled.xm-narrow .xm-gw{display:none}
+.xm-sled.xm-narrow .xm-gp{display:block}
+@keyframes xmGlA{0%{opacity:0}12%{opacity:.85}26%{opacity:.5}40%{opacity:.95}55%{opacity:.6}70%{opacity:.9}85%{opacity:.65}100%{opacity:0}}
+@keyframes xmGlB{0%{opacity:0}16%{opacity:.6}30%{opacity:.92}46%{opacity:.55}60%{opacity:.88}76%{opacity:.6}90%{opacity:.8}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){html.xmas .xm-place.xm-go .xm-fx{display:none}}
+html.xm-scene-paused .xm-place .xm-fx{display:none!important}
+
 .deal .deal-last{display:block}
 .vlast{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 .vlast[hidden]{display:none}
@@ -5428,7 +5448,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
 <section id="producers" class="tinted">
   <div class="wrap">
-    <div class="xm-place" aria-hidden="true"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place3-home-light.a2ddb74b.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place3-home-dim.d2d3d86d.svg"></div>
+    <div class="xm-place xm-home" aria-hidden="true"><span class="xm-pic"><span class="xm-pic-v"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-home-light.2a5bca61.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-home-dim.2ee379c5.svg"><span class="xm-fx"><i class="xm-sn1"></i><i class="xm-sn2"></i></span></span></span></div>
     <p class="kicker">Producers</p>
     <h2>The rabbits behind every litter</h2>
     <p class="lede">Every doe (female) and buck (male) here. Tap one for its photos, papers and litters.</p>
@@ -5530,7 +5550,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 <section id="included" class="tinted">
   <div class="wrap split">
     <div>
-      <div class="xm-place" aria-hidden="true"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place3-sled-light.2bea57af.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place3-sled-dim.17fcca5a.svg"></div>
+      <div class="xm-place xm-sled" aria-hidden="true"><span class="xm-pic"><span class="xm-pic-v"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-light.2595c478.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-dim.f2be43fe.svg"><span class="xm-fx"><b class="xm-gl xm-gw" style="left:23%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:28.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:58%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:63.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:69%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gp" style="left:57%;top:95.41px;width:34.41px;height:25.81px"></b><b class="xm-gl xm-gp xm-g2" style="left:63.5%;top:101.14px;width:36.43px;height:27.32px"></b></span></span></span></div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
 
@@ -13112,5 +13132,6 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     try{ navigator.clipboard.writeText(t).then(function(){ s.textContent=es?'Copiada. P\u00e9guela en su mensaje para el arrendador.':'Copied. Paste it into your message to your landlord.'; }, pick); }catch(e){ pick(); } });
 })();
 </script>
+<script id="xm231">(function(){var H=document.documentElement;if(!H.classList.contains('xmas'))return;var hs=[].slice.call(document.querySelectorAll('.xm-place.xm-home,.xm-place.xm-sled'));if(!hs.length)return;var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null,run=null;function fit(h){h.classList.toggle('xm-narrow',h.clientWidth<=560);}hs.forEach(fit);if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(e){fit(e.target);});});hs.forEach(function(h){ro.observe(h);});}else window.addEventListener('resize',function(){hs.forEach(fit);});if(!('IntersectionObserver' in window))return;function go(h){if(h.xm231||!h.xmIn||run||document.hidden||H.classList.contains('xm-scene-paused')||(RM&&RM.matches)||!h.clientHeight)return false;h.xm231=1;run=h;fit(h);h.classList.add('xm-go');io.unobserve(h);setTimeout(function(){h.classList.remove('xm-go');h.classList.add('xm-rest');run=null;hs.some(go);},4700);return true;}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.xmIn=e.isIntersecting&&e.intersectionRatio>=.5;go(e.target);});},{threshold:[0,.5,1]});hs.forEach(function(h){io.observe(h);});document.addEventListener('visibilitychange',function(){if(!document.hidden)hs.some(go);});})();</script>
 </body>
 </html>
