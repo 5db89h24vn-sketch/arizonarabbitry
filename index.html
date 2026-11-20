@@ -4300,6 +4300,21 @@ html.xmas[data-look="dim"]{--xmc:rgba(255,250,240,.92);--xmr:rgba(255,248,236,.3
 @media (prefers-reduced-motion:reduce){html.xmas .xm-place.xm-go .xm-fx{display:none}}
 html.xm-scene-paused .xm-place .xm-fx{display:none!important}
 
+:root{--mx-nd:#7B5039;--mx-hl:#CF955A;--mx-sa:#A49AC8;--mx-lh:#8AA578;--mx-x:#BCB2A5}
+html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A9C397;--mx-x:#8F877E}
+.vmix{display:block;width:100%;margin:10px 0 0;padding:6px 0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vmix[hidden]{display:none}
+.vmix-bar{display:flex;gap:2px;height:6px;border-radius:999px;overflow:hidden}
+.vmix-bar i{display:block;height:100%;background:var(--c)}
+.vmix-k{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 14px;margin-top:8px;font-size:12.5px;line-height:1.4;color:var(--ink-soft)}
+.vmix-k .u{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.vmix-k .u::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--c);transform:translateY(-.5px)}
+.vmix-k b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.vmix-go{margin-left:auto;display:inline-flex;align-items:center;gap:3px;font-weight:600;color:var(--brick);white-space:nowrap}
+.vmix-go::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:1.6px 1.6px 0 0;transform:rotate(45deg);margin-left:1px}
+@media (hover:hover){.vmix:hover .vmix-go{text-decoration:underline;text-underline-offset:3px}}
+.vmix:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:8px}
+
 .deal .deal-last{display:block}
 .vlast{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 .vlast[hidden]{display:none}
@@ -6543,7 +6558,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       <p class="vback" id="viewerBackP" hidden><a class="chip" id="viewerBack" href="#"><i class="chev left" aria-hidden="true"></i><span id="viewerBackT"></span></a></p>
       <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a></div>
 
-      <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div><div class="vcm" id="viewerComing" hidden></div>
+      <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div><button type="button" class="vmix" id="viewerMix" hidden></button><div class="vcm" id="viewerComing" hidden></div>
       <p class="vready" id="viewerReady" hidden></p>
       <p class="vlast" id="viewerLast" hidden></p>
       <div class="viewer-mark" id="viewerMark" hidden></div>
@@ -10500,6 +10515,35 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         (window.requestAnimationFrame||setTimeout)(unleadAll); };
       [vMeta,vGrow].forEach(function(el){ new MutationObserver(reUnlead).observe(el,{childList:true,subtree:true,characterData:true}); });
     }
+
+    var vMix=document.getElementById('viewerMix'), MIXC={'Netherland Dwarf':'--mx-nd','Holland Lop':'--mx-hl','Satin Angora':'--mx-sa','Lionhead':'--mx-lh'};
+    function mixOf(key,depth){ var p=PARENTS[key]; if(!p||depth>6) return null; var b=String(p.breed||'');
+      if(b&&!/\bcross\b/i.test(b)){ var o={}; o[b]=1; return o; }
+      var a=mixOf(p.sire,depth+1), d=mixOf(p.dam,depth+1); if(!a||!d) return null;
+      var m={}; [a,d].forEach(function(x){ for(var k in x) m[k]=(m[k]||0)+x[k]/2; }); return m; }
+    function mixFor(r){ if(!r||!/\bcross\b/i.test(String(r.breed||''))||typeof PARENTS==='undefined') return null;
+      var a=mixOf(r.mother,0), d=mixOf(r.father,0); if(!a||!d) return null;
+      var m={}; [a,d].forEach(function(x){ for(var k in x) m[k]=(m[k]||0)+x[k]/2; });
+      var parts=Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); });
+      return parts.length>1?parts:null; }
+    function pct(v){ var n=Math.round(v*1000)/10; return (n%1?n.toFixed(1):String(n))+'%'; }
+    function paintMix(r){ if(!vMix) return; var parts=mixFor(r); vMix.hidden=!parts; vMix.innerHTML=''; if(!parts) return;
+      var ES=document.documentElement.lang==='es', bar='', key='';
+      parts.forEach(function(x){ var c='var('+(MIXC[x[0]]||'--mx-x')+')';
+        bar+='<i style="--c:'+c+';flex:'+x[1]+' 0 0"></i>';
+        key+='<span class="u" style="--c:'+c+'"><b>'+pct(x[1])+'</b> '+esc(x[0])+'</span>'; });
+      vMix.innerHTML='<span class="vmix-bar" aria-hidden="true">'+bar+'</span><span class="vmix-k">'+key+'<span class="vmix-go">'+(ES?'Padres':'Parents')+'</span></span>';
+      vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', ')+(ES?'. Ver los padres':'. See the parents')); }
+    if(vMix) vMix.addEventListener('click',function(){
+      if(vAboutPanel&&vAboutPanel.hidden&&vAbout) vAbout.click();   /* About opens as a tap on it would; never shut from here */
+      setTimeout(function(){
+        if(vAbout) openSettle(vAbout);   /* the panel's rise ends first: its last frame pins the row where it aimed and undid the scroll below
+                                            when it came later (WebKit, 3 of 8 runs at 260ms; Round 174's lesson, as Price history's link does) */
+        var t=(vParents&&!vParents.hidden)?vParents:vAboutPanel; if(!t) return;
+        var sc=vScroller(), ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
+        var dy=t.getBoundingClientRect().top-(topLine+12), calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(Math.abs(dy)>2){ if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy(0,dy); }
+        t.classList.remove('hist-flash'); void t.offsetWidth; t.classList.add('hist-flash'); setTimeout(function(){ t.classList.remove('hist-flash'); },1700); }, 320); });
     function paintMeta(r){
       vMeta.textContent='';
       if(vFrom){ vFrom.hidden=true; vFrom.innerHTML=''; }
@@ -10761,6 +10805,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if(vPair){ vPair.innerHTML=pairHTML(r)||stillHTML(r); vPair.hidden=!vPair.innerHTML; }
       var pcBack=pcRestore(r);   /* ROUND 189 (R189-1): the box as it was left */
       paintMeta(r);
+      paintMix(r);   /* (Round 232) the mix of a cross */
       paintCalm(r);   /* Round 171 */
       paintParents(r);
       var pedS=pedForRabbit(r);
