@@ -4571,6 +4571,33 @@ html[data-look="dim"] #about .about-face{box-shadow:0 0 0 1px rgba(255,255,255,.
 #about .about-head>.lede{margin-top:14px}
 #about .about-head::after{content:none}
 
+.vcm{margin-top:14px}
+.viewer.vpair .vcm{display:none}
+.vcm-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;box-shadow:var(--lift-1,0 1px 2px rgba(36,31,29,.06))}
+.vcm-mark{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--open-line);border-radius:7px;background:var(--open-tint);color:var(--open-ink,var(--open));font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.vcm-mark svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.vcm-h{margin:12px 0 0;font-family:var(--serif,Georgia,serif);font-size:23px;line-height:1.22;color:var(--ink);text-wrap:balance}
+.vcm-s{margin:6px 0 0;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.vcm-rows{list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--line-soft,var(--line))}
+.vcm-rows li{border-bottom:1px solid var(--line-soft,var(--line))}
+.vcm-row{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:9px 2px;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vcm-row:focus-visible{outline:2px solid var(--brick);outline-offset:2px;border-radius:10px}
+@media(hover:hover){.vcm-row:hover .vcm-rt>b{color:var(--brick)}}
+.vcm-face{flex:none;width:46px;height:46px;border-radius:50%;overflow:hidden;background:var(--paper-2);box-shadow:0 0 0 1px var(--line)}
+.vcm-face img{display:block;width:100%;height:100%;object-fit:cover}
+.vcm-rt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.vcm-rt>b{font-size:16px;line-height:1.3;font-weight:650;color:var(--ink)}
+.vcm-rd{font-size:15px;line-height:1.35;color:var(--ink-soft)}
+.vcm-rd b{color:var(--ink);font-weight:650;white-space:nowrap}
+.vcm-row .chev{flex:none}
+#viewerComing .vcm-form{display:flex;align-items:stretch;gap:10px;margin:14px 0 0}
+#viewerComing .vcm-form input{flex:1 1 auto;width:auto;min-width:0;height:48px;padding:0 14px;border:1px solid var(--field-line,var(--control-line,#8F8072));border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:16px}
+#viewerComing .vcm-form input:focus-visible{outline:2px solid var(--brick);outline-offset:1px}
+#viewerComing .vcm-form .btn{flex:0 0 auto;width:auto;min-width:0;max-width:none;height:48px;margin:0;padding:0 20px;white-space:nowrap}
+.vcm-fine{margin:8px 0 0;font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
+.vcm-ok{margin:14px 0 0;font-size:15px;line-height:1.45;color:var(--ink);font-weight:600}
+.vcm-err{margin:8px 0 0;font-size:14px;line-height:1.4;color:var(--alert,#A33A2A)}
+
 html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:xm-plug 1.1s steps(1,end) both}
 @keyframes xm-plug{0%{filter:saturate(0) brightness(.75);opacity:.5}18%{filter:none;opacity:1}30%{filter:saturate(0) brightness(.75);opacity:.5}44%{filter:none;opacity:1}100%{filter:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){html.xmas.xm-hat-drop header .brand::before,html.xmas.xm-plug header.nav::after,html.xmas.xm-plug header.nav::before,html.xmas.xm-plug header:not(.nav) .topbar::after,html.xmas.xm-plug header:not(.nav) .topbar::before{animation:none}}
@@ -6538,7 +6565,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       <p class="vback" id="viewerBackP" hidden><a class="chip" id="viewerBack" href="#"><i class="chev left" aria-hidden="true"></i><span id="viewerBackT"></span></a></p>
       <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Historial de precios</a></div>
 
-      <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div>
+      <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div><div class="vcm" id="viewerComing" hidden></div>
       <p class="vready" id="viewerReady" hidden></p>
       <p class="vlast" id="viewerLast" hidden></p>
       <div class="viewer-mark" id="viewerMark" hidden></div>
@@ -10021,6 +10048,44 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       if(p&&p.gcParents) L.push('Grand Champion parents');
       return L;
     }
+    var vComing=document.getElementById('viewerComing'), vComingFor=null;
+    function paintComing(r){ vComingFor=r||null; if(!vComing) return; var C=window.AZ_COMING, h=''; try{ h=(r&&C)?comingHTML(r,C):''; }catch(e){ h=''; } vComing.innerHTML=h; vComing.hidden=!h; }
+    window.azComingRepaint=function(){ if(vComingFor) paintComing(vComingFor); };
+    function comingHTML(r,C){
+      if(!r||r.status==='available'||!pedPurebred(r)) return '';
+      var kind=/netherland dwarf/i.test(r.breed||'')?'nd':(/holland lop/i.test(r.breed||'')?'hl':''); if(!kind) return '';
+      var rows=C.rows(kind); if(!rows.length) return '';
+      var ES=(document.documentElement.lang||'').slice(0,2)==='es', breed=kind==='nd'?'Netherland Dwarf':'Holland Lop';
+      var same=!!r.father&&rows.every(function(x){ return x.father===r.father; }), fn=same?C.name(r.father):'';
+      var head=ES?('Vienen más '+breed+' como '+r.name+'.'):('More '+breed+'s like '+r.name+' are on the way.');
+      var sub=fn?(ES?('De raza pura, del mismo padre, '+fn+'.'):('Purebred, by the same father, '+fn+'.')):(ES?('De raza pura, los dos padres '+breed+'.'):('Purebred, both parents '+breed+'s.'));
+      var all=rows.every(function(x){ return x.on; });
+      var rh=rows.map(function(x){
+        var who=x.motherName?(ES?('La camada de '+x.motherName):(x.motherName+'’s litter')):(ES?'Una camada':'A litter');
+        var cnt=x.n?(ES?(x.n+' '+(x.how==='alive'?(x.n===1?'vivo':'vivos'):(x.n===1?'nacido':'nacidos'))):x.countWords):'';
+        var face=x.face?'<img src="'+esc(x.face)+'" alt="" width="44" height="44" loading="lazy" decoding="async">':'<i class="vcm-nf"></i>';
+        return '<li><button type="button" class="vcm-row" data-lit="'+esc(x.id)+'"><span class="vcm-face">'+face+'</span><span class="vcm-rt"><b>'+esc(who+(cnt?', '+cnt:''))+'</b>'+
+          '<span class="vcm-rd">'+esc(x.label)+(x.date?' <b>'+esc(x.date)+'</b>':'')+'</span></span><i class="chev" aria-hidden="true"></i></button></li>'; }).join('');
+      var names=rows.map(function(x){ return x.motherName; }).filter(Boolean);
+      var okWords=ES?('Ya está en la lista de '+(names.length>1?'las camadas de '+names.slice(0,-1).join(', ')+' y '+names[names.length-1]:'la camada de '+names[0])+'. Un correo el día que salgan a la venta.'):
+        ('You’re on the list for '+(names.length>1?names.slice(0,-1).join(', ')+' and '+names[names.length-1]+'’s litters':names[0]+'’s litter')+'. One email the day they’re listed.');
+      return '<div class="vcm-card" data-ids="'+esc(rows.map(function(x){ return x.id; }).join(' '))+'" data-ok="'+esc(okWords)+'">'+
+        '<span class="vcm-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>'+(ES?'Próximamente':'Coming soon')+'</span>'+
+        '<p class="vcm-h">'+esc(head)+'</p><p class="vcm-s">'+esc(sub)+'</p><ul class="vcm-rows">'+rh+'</ul>'+
+        (all?'<p class="vcm-ok">'+esc(okWords)+'</p>':
+        '<form class="vcm-form" novalidate><input type="email" name="email" autocomplete="email" inputmode="email" required aria-label="'+(ES?'Su correo':'Your email')+'" placeholder="'+(ES?'usted@correo.com':'you@email.com')+'">'+
+        '<button type="submit" class="btn btn-primary">'+(ES?'Avisarme':'Tell me')+'</button></form>'+
+        '<p class="vcm-fine">'+(ES?'Un correo el día que salgan a la venta, y nada más.':'One email the day they’re listed, and nothing else.')+'</p><p class="vcm-err" role="alert" hidden></p>')+'</div>'; }
+    if(vComing){
+      vComing.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('.vcm-row'); if(!b||!window.AZ_COMING) return; window.AZ_COMING.open(b.getAttribute('data-lit'),b); });
+      vComing.addEventListener('submit',function(ev){ var f=ev.target; if(!f.classList||!f.classList.contains('vcm-form')) return; ev.preventDefault();
+        var card=f.closest('.vcm-card'), inp=f.querySelector('input[name="email"]'), err=card.querySelector('.vcm-err'), btn=f.querySelector('button'), ES=(document.documentElement.lang||'').slice(0,2)==='es';
+        var em=(inp.value||'').trim(); if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ err.textContent=ES?'Escriba su correo, por ejemplo usted@correo.com.':'Type your email, like you@email.com.'; err.hidden=false; inp.focus(); return; }
+        err.hidden=true; btn.disabled=true;
+        window.AZ_COMING.alert(em,(card.getAttribute('data-ids')||'').split(' ').filter(Boolean),function(ok){ btn.disabled=false;
+          if(ok){ var p=document.createElement('p'); p.className='vcm-ok'; p.textContent=card.getAttribute('data-ok')||''; f.parentNode.replaceChild(p,f); var fine=card.querySelector('.vcm-fine'); if(fine) fine.hidden=true; }
+          else { err.innerHTML=ES?'No se envió. <a href="sms:+15202702827">Mándeme un mensaje</a> y lo apunto yo, o inténtelo de nuevo.':'That didn’t send. <a href="sms:+15202702827">Text me</a> and I’ll add you myself, or try again.'; err.hidden=false; } }); });
+    }
     function paintTags(list,inAbout){
       if(!vTags) return;
       var home=inAbout?vAboutPanel:(vMeta&&vMeta.parentNode);
@@ -10350,7 +10415,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       vParents.innerHTML=''; vParents.hidden=true;
       paintLitters(p,key);
       var pedS=pedForParent(key);
-      paintPed(pedS); paintTags(pedLabels(pedS,pedS?pedTree(pedS):null,p),true);   /* (Round 193) a parent's labels stay in About */
+      paintPed(pedS); paintTags(pedLabels(pedS,pedS?pedTree(pedS):null,p),true);   /* (Round 193) a parent's labels stay in About */ paintComing(null);   /* (Round 226) no card on a parent's own view */
       footClear();   /* (Round 149) the rabbit that led here keeps its buttons: a parent's view has one, and no price */
       vCta.textContent='See who is available';
       vCta.setAttribute('href','#available'); vCta.removeAttribute('data-ask');
@@ -10718,7 +10783,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       paintCalm(r);   /* Round 171 */
       paintParents(r);
       var pedS=pedForRabbit(r);
-      paintPed(pedS); paintTags(pedS?pedLabels(pedS,pedTree(pedS),null):[]);
+      paintPed(pedS); paintTags(pedS?pedLabels(pedS,pedTree(pedS),null):[]); paintComing(r);   /* (Round 226) */
       if(vShare) vShare.hidden=!shareAble;
       vGrow.innerHTML=growHTML(r,true);
       born=r.dob||'';
@@ -12330,7 +12395,22 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
       al.open(from);
       var lab=id&&af.querySelector('input[name="want"][value="'+id+'"]'); if(lab){ var l=lab.closest('label'); if(l&&l.scrollIntoView) l.scrollIntoView({block:'nearest'}); }
     }
-    go.addEventListener('click',function(){ openAlerts(null,go); });
+      window.AZ_COMING={
+        rows:function(kind){ var NW={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12};
+          return waiting.filter(function(w){ return !w.plan&&w.kind===kind; }).map(function(w){ var pr=(w.l&&w.l.parents)||{}, rp=readyParts(w)||{};
+            var cs=String((w.l&&w.l.count)||''), m=/\b(\w+) (alive)\b/i.exec(cs)||/\b(\w+) (raised)\b/i.exec(cs)||/^(\w+) (born)\b/i.exec(cs), n=m?(/^\d+$/.test(m[1])?+m[1]:(NW[m[1].toLowerCase()]||0)):0;   /* the shelf's own reading: alive, then raised, then born */
+            return {id:w.id, mother:pr.mother||'', father:pr.father||'', motherName:(PAR[pr.mother]&&PAR[pr.mother].name)||'', face:faceOf(pr.mother),
+              n:n, how:m?m[2].toLowerCase():'', countWords:m?(m[1].toLowerCase()+' '+m[2].toLowerCase()):'', label:rp.label||'', date:String(rp.date||'').replace(/ /g,' '), on:onList(w.id)}; }); },
+        name:function(key){ return (PAR[key]&&PAR[key].name)||''; },
+        open:function(id,from){ var w=litById(id); if(w&&!w.plan) openLitter(w,from); },
+        alert:function(email,ids,done){ if(!alInit()||!buildForm()){ done(false); return; } var a=af.getAttribute('action')||''; if(!a||a.indexOf('[[')!==-1){ done(false); return; }
+          var picks=ids.map(function(id){ var inp=af.querySelector('input[name="want"][value="'+id+'"]'), l=inp&&inp.closest('label'), w=litById(id); return {want:id,label:(l&&l.getAttribute('data-label'))||'',name:(l&&l.getAttribute('data-name'))||(w?nameOf(w):id)}; });
+          fetch(a,{method:'POST',body:waitFields(af,email,picks,'sale'),headers:{'Accept':'application/json'}}).then(function(r){ if(!r.ok) throw 0;
+            var prev=(mine&&Array.isArray(mine.want))?mine.want:[], all=prev.indexOf('all')>=0?['all']:prev.concat(ids.filter(function(x){ return prev.indexOf(x)<0; }));
+            mine={want:all,level:(mine&&mine.level)||'sale',at:todayISO()}; lset('arAlerts',mine); paint(); recordWaiting(email,ids,'sale',function(){}); done(true); }).catch(function(){ done(false); }); }
+      };
+      if(window.azComingRepaint) window.azComingRepaint();
+      go.addEventListener('click',function(){ openAlerts(null,go); });
     shelf.addEventListener('click',function(ev){
       var t=ev.target, bell=t.closest&&t.closest('.lsh-bell'), li=t.closest&&t.closest('li[data-id]');
       if(bell&&li){ ev.preventDefault(); openAlerts(li.getAttribute('data-id'),bell); return; }
