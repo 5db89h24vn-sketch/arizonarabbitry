@@ -233,6 +233,8 @@
   window.__es={tr:tr,visit:visit,key:function(el){ return keyOf([].slice.call(el.childNodes)).key; }};
 })();
 </script>
+
+<script>window.arErr=[];addEventListener('error',function(e){try{if(e&&e.filename&&arErr.length<3)arErr.push([String(e.filename),e.lineno|0,e.colno|0])}catch(x){}})</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -1056,6 +1058,8 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 
   <p><b>Lo que recibo es lo que usted escribe.</b> Su nombre, un correo electrónico, un teléfono si me lo da, y su mensaje. Si me escribe o me llama, su número. Sin cuentas, y sin cookies mías. Cloudflare, que aloja el sitio, cuenta las visitas con un programa propio, Cloudflare Web Analytics; según <a class="xlink" href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener noreferrer" data-leaves="word">la propia <span class="kw">descripción</span><span class="sr-only"> (se abre en una pestaña nueva)</span></a> de Cloudflare no usa cookies y no lo sigue a otros sitios. También cuento, solo como totales: qué páginas se visitan, con pantalla táctil o no, y de dónde vino cada visita en una palabra (Instagram, Google, un enlace compartido, nunca la dirección); qué botones se tocan; hasta dónde se baja en cada página y más o menos cuánto tiempo estuvo en pantalla; y si una visita parece de una persona o automatizada (si algo tocó la página, si el navegador dice ser un bot, si vino de la red de una empresa de alojamiento web: un sí o un no cada uno, nunca el nombre del navegador ni su dirección). Para no contar dos veces a un mismo visitante, su navegador recuerda el día en que se contó por última vez; esa fecha se queda en su dispositivo y nunca se envía. Sin cookies, sin identificador, nada que diga quién es usted. Un navegador que pide no ser rastreado, con Global Privacy Control o Do Not Track, no se cuenta en absoluto.</p>
   
+  <p><b>Una página que falla me dice dónde.</b> Si uno de los scripts del sitio falla en su pantalla, el conteo también anota en qué parte de mi código pasó: un archivo y una línea, nada más, para que yo lo arregle.</p>
+  
   <p><b>El formulario y la lista de espera pasan por Formspree a mi correo.</b> Formspree (formspree.io) me los entrega. Cuando toca Enviar por mensaje o Enviar por correo en una solicitud, las palabras escritas para ella me llegan por la misma vía, así la solicitud queda registrada aunque su mensaje o su correo nunca llegue; la página lo dice bajo los botones. La lista de espera también guarda su dirección en el servidor del sitio, Cloudflare, con las camadas que eligió y lo que me pidió que le mande, para contarle una sola vez y avisarle de esas camadas.</p>
   
   <p><b>Una solicitud también le guarda su lugar en la fila.</b> Cuando pide reservar o comprar, el sitio guarda su lugar en Cloudflare: qué conejo, si reserva o compra, cuándo, la hora en que le llamo, un código corto que aparece en su pantalla y en su mensaje, y un número al azar que guarda su navegador para que la página le pueda mostrar su lugar otra vez. Nunca su nombre ni su número.</p>
@@ -1143,7 +1147,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 })();
 </script>
 
-<script src="count.js?v=c4e5f087" defer></script>
+<script src="count.js?v=2859b509" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');

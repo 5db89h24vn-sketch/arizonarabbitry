@@ -233,6 +233,8 @@
   window.__es={tr:tr,visit:visit,key:function(el){ return keyOf([].slice.call(el.childNodes)).key; }};
 })();
 </script>
+
+<script>window.arErr=[];addEventListener('error',function(e){try{if(e&&e.filename&&arErr.length<3)arErr.push([String(e.filename),e.lineno|0,e.colno|0])}catch(x){}})</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -1573,7 +1575,7 @@ html.xmas:not([data-look="dim"]) .xm-under .xm-face:focus-visible{outline-color:
 })();
 </script>
 
-<script src="count.js?v=c4e5f087" defer></script>
+<script src="count.js?v=2859b509" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');

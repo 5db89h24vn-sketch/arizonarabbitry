@@ -14,6 +14,9 @@
           (text, call, email, see-rabbits, listing, ask, waitlist, form,
           instagram, tiktok, facebook, news, litters, litter-open, ...),
           each at most once per visit
+     x    (Round 235, 20 Nov 2026; Site Idea 193) where one of the site's own scripts broke on the page, if one did: "page" or
+          the script file's name, with the line and column, at most three, each once; never the failure's message. The day's
+          totals count them by page (errors: {"home page:1234:56": 1}), so a fault is found and fixed in the next round.
    AND, FROM ROUND 192b (9 Nov 2026), MORE OF THE SAME VISIT: when buttons are
    tapped after that record has gone (the page left the screen, came back, and
    something was tapped), the page sends their names alone, {more:1, p, ev,
@@ -54,6 +57,7 @@ const DEVS = new Set(['phone', 'desktop']);
 const SCROLLS = new Set([0, 25, 50, 75, 100]);
 const EVENT = /^[a-z][a-z0-9-]{0,23}$/;
 const MAX_EVENTS = 24;
+const SPOT = /^(page|[a-z0-9][a-z0-9._-]{0,40}\.js):\d{1,7}:\d{1,7}$/;   /* (Round 235) a place in the site's code, and nothing else */
 /* ROUND 192 (9 Nov 2026; William: "how long they were on the website for"; "I just wanna be able to differentiate real
    human visits from bot visits"). Two more fields from the page, and one label made here:
      t    seconds on screen, as one of seven steps (0, 3, 10, 30, 60, 180, 600: at least that many), never the figure
@@ -116,6 +120,11 @@ function cleanVisit(body, stored) {
     }
   }
   const v = { p, d, ref, s, ev };
+  if (Array.isArray(body.x)) {   /* (Round 235) where the page broke: places in the site's code only, at most three */
+    const x = [];
+    for (const e of body.x) { if (typeof e === 'string' && SPOT.test(e) && !x.includes(e)) x.push(e); if (x.length >= 3) break; }
+    if (x.length) v.x = x;
+  }
   if (TIMES.has(body.t)) { v.t = body.t; v.h = body.h === 1 ? 1 : 0; v.u = FRESH.has(body.u) ? body.u : 'x'; }
   /* the label is this function's own: read back from the store, never taken from a browser */
   if (stored && (body.k === 'b' || body.k === 'd')) v.k = body.k;
@@ -167,7 +176,7 @@ async function listAll(kv, prefix) {
 }
 
 function emptyTotals(day) {
-  return { day, visits: 0, pages: {}, devices: {}, refs: {}, scroll: {}, taps: {},
+  return { day, visits: 0, pages: {}, devices: {}, refs: {}, scroll: {}, taps: {}, errors: {},
     kinds: { people: 0, auto: 0, unknown: 0, old: 0 }, time: {}, fresh: { day: 0, week: 0, month: 0, ever: 0, unknown: 0 },
     people: { scroll: { 25: 0, 50: 0, 75: 0, 100: 0 }, opened: 0, contact: 0, refs: {}, devices: {}, time: {}, fresh: { day: 0, week: 0, month: 0, ever: 0, unknown: 0 } } };
 }
@@ -191,6 +200,7 @@ function addVisit(t, v) {
   const sc = t.scroll[v.p] || (t.scroll[v.p] = { 25: 0, 50: 0, 75: 0, 100: 0 });
   for (const b of [25, 50, 75, 100]) if (v.s >= b) sc[b] += 1;
   for (const e of v.ev) t.taps[e] = (t.taps[e] || 0) + 1;
+  if (v.x) for (const e of v.x) { const k = v.p + ' ' + e; t.errors[k] = (t.errors[k] || 0) + 1; }   /* (Round 235) */
   const kind = kindOf(v);
   t.kinds[kind] += 1;
   if (v.t !== undefined) t.time[v.t] = (t.time[v.t] || 0) + 1;

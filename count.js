@@ -55,6 +55,23 @@
            : /^\/terms(\.html)?$/.test(path) ? 'terms'
            : (path==='/'||/^\/index(\.html)?$/.test(path)) ? 'home' : '';
   if(!page) return;
+  /* A PAGE THAT BREAKS SAYS WHERE (Round 235, 20 Nov 2026; Site Idea 193, his yes of 18 Nov 2026, 11:30pm: "The site tells me when it
+     breaks on a visitor's phone"). If one of this site's own scripts fails on this page, the visit's one record also says where:
+     "page" (a script in the page itself) or the script file's name, with the line and column; at most three places, each once.
+     Nothing else about the failure (not its message, which can hold anything), nothing about the person or the browser, and nothing
+     from a script that is not the site's own (an extension's, another site's). The page's head keeps the failures that happen before
+     this file runs (window.arErr). functions/api/hit.js checks each place again and counts them by page in the day's totals. */
+  var errs=[];
+  function spot(f,l,c){
+    try{
+      if(!f||errs.length>=3) return;
+      var u=new URL(String(f),location.href); if(u.origin!==location.origin) return;
+      var s=(/\.js$/i.test(u.pathname)?u.pathname.split('/').pop().toLowerCase():'page')+':'+Math.max(0,l|0)+':'+Math.max(0,c|0);
+      if(/^(page|[a-z0-9][a-z0-9._-]{0,40}\.js):\d{1,7}:\d{1,7}$/.test(s)&&errs.indexOf(s)<0) errs.push(s);
+    }catch(e){}
+  }
+  try{ var early=window.arErr||[]; for(var i=0;i<early.length;i++) spot(early[i][0],early[i][1],early[i][2]); }catch(e){}
+  window.addEventListener('error',function(e){ if(e&&e.filename) spot(e.filename,e.lineno,e.colno); });
 
   var ref='direct';
   try{
@@ -175,10 +192,12 @@
   function send(){
     if(sent){ more(); return; }
     sent=true; settle(); told=taps.length;
-    post(JSON.stringify({p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps, t:step(shown), h:human, u:fresh}));
+    var rec={p:page, d:dev, ref:ref, s:bucket(maxScroll), ev:taps, t:step(shown), h:human, u:fresh};
+    if(errs.length) rec.x=errs.slice(0,3);   /* (Round 235) where this page broke, if it did */
+    post(JSON.stringify(rec));
   }
   document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') send(); else if(!since&&!sent) since=clock(); });   /* a page opened in a background tab starts its clock when it is first shown (Round 192) */
   window.addEventListener('pagehide',send);
   /* back from the bfcache is a new visit */
-  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; told=0; maxScroll=0; shown=0; since=clock(); human=0; measure(); } });
+  window.addEventListener('pageshow',function(e){ if(e.persisted){ sent=false; taps=[]; told=0; maxScroll=0; shown=0; since=clock(); human=0; errs=[]; measure(); } });
 })();
