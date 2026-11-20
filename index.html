@@ -4315,6 +4315,39 @@ html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A
 @media (hover:hover){.vmix:hover .vmix-go{text-decoration:underline;text-underline-offset:3px}}
 .vmix:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:8px}
 
+.fm{margin:14px 0 0;padding:16px 16px 14px;max-width:560px;border:1px solid var(--line);border-radius:16px;background:var(--card);scroll-margin-top:76px}
+.fm[hidden]{display:none}
+.fm-top{display:flex;align-items:center;gap:12px}
+#month .fm-pic{flex:none;display:block;width:48px;height:48px;max-width:48px;min-height:0;aspect-ratio:auto;margin:0;border-radius:50%;object-fit:cover;background:var(--paper-2);border:1px solid var(--line)}   
+.fm-who{min-width:0;display:flex;flex-direction:column}
+.fm-k{font-size:13px;line-height:1.3;color:var(--ink-faint)}
+.fm-pick{position:relative;display:inline-flex;align-items:center;max-width:100%}
+.fm-pick select{appearance:none;-webkit-appearance:none;margin:0;border:0;background:none;padding:2px 24px 2px 0;font:600 21px/1.25 var(--serif);color:var(--ink);min-height:40px;max-width:100%;cursor:pointer}
+.fm-pick .chev{position:absolute;right:6px;top:50%;width:7px;height:7px;margin:-6px 0 0;border-right:1.6px solid var(--ink-soft);border-bottom:1.6px solid var(--ink-soft);transform:rotate(45deg);pointer-events:none}
+.fm-pick select:focus-visible{outline:2px solid var(--brick);outline-offset:2px;border-radius:6px}
+.fm-when{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:12px 0 2px;font-size:15px;color:var(--ink-soft)}
+.fm-when>span{flex:0 0 100%}
+.fm-when input{flex:1 1 140px;min-width:0;min-height:44px;padding:8px 10px;font:inherit;font-size:16px;color:var(--ink);background:var(--paper-2);border:1px solid var(--line);border-radius:10px}
+.fm-when input[type=time]{flex:0 1 128px}
+.fm-list{list-style:none;margin:12px 0 0;padding:0}
+.fm-i{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-top:1px solid var(--line-soft)}
+.fm-tile{flex:none;width:50px;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-align:center;background:var(--card)}
+.fm-tile b{display:block;padding:2px 0 1px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brick);background:var(--brick-tint)}
+.fm-tile i{display:block;padding:1px 0 4px;font:500 21px/1.25 var(--serif);font-style:normal;color:var(--ink)}
+.fm-x{min-width:0}
+.fm-x b{display:block;font-size:16px;font-weight:600;line-height:1.3;color:var(--ink)}
+.fm-x small{display:block;margin-top:3px;font-size:14px;line-height:1.45;color:var(--ink-soft)}
+.fm-x em{font-style:normal;font-weight:600;color:var(--ink-faint)}
+.fm-past{opacity:.62}
+.fm-past .fm-tile b{background:var(--paper-2);color:var(--ink-faint)}
+.fm-bad{padding:12px 0;font-size:14px;color:var(--ink-soft);border-top:1px solid var(--line-soft)}
+.fm-ics{display:flex;width:100%;margin:12px 0 0}
+.fm-ics[hidden],.fm-g[hidden]{display:none}
+.fm-ic{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fm-g{margin:10px 0 0;font-size:14px;line-height:1.6;color:var(--ink-soft)}
+.fm-g a{color:var(--brick);text-underline-offset:3px}
+.fm-note{margin:6px 0 0;font-size:13px;line-height:1.4;color:var(--ink-faint)}
+
 .deal .deal-last{display:block}
 .vlast{margin:6px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 .vlast[hidden]{display:none}
@@ -5584,7 +5617,9 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         <li><b>My phone number, yours to keep</b><small>No question limit and no expiry. This is the part I care most about.</small></li>
       </ul>
       
-      <p class="owner-back"><b>Already have one of mine?</b> <a class="chip" href="#faq-after">If something's wrong<i class="chev" aria-hidden="true"></i></a> <a class="chip" href="#topic-care">Everyday care<i class="chev" aria-hidden="true"></i></a></p>
+      <p class="owner-back"><b>Already have one of mine?</b> <a class="chip" href="#faq-after">If something's wrong<i class="chev" aria-hidden="true"></i></a> <a class="chip" href="#topic-care">Everyday care<i class="chev" aria-hidden="true"></i></a> <a class="chip fm-chip" href="#month" id="fmChip" aria-controls="month" aria-expanded="false">Its first month in my calendar<i class="chev" aria-hidden="true"></i></a></p>
+      
+      <div class="fm" id="month" hidden></div>
     </div>
     <div class="rv">
       
@@ -12897,7 +12932,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 })();
 </script>
 
-<script src="count.js?v=8faf408d" defer></script>
+<script src="count.js?v=c4e5f087" defer></script>
 <script>
 (function(){
   var rows=document.querySelectorAll('.subnav,.mnav-track');
@@ -13178,5 +13213,104 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 })();
 </script>
 <script id="xm231">(function(){var H=document.documentElement;if(!H.classList.contains('xmas'))return;var hs=[].slice.call(document.querySelectorAll('.xm-place.xm-home,.xm-place.xm-sled'));if(!hs.length)return;var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null,run=null;function fit(h){h.classList.toggle('xm-narrow',h.clientWidth<=560);}hs.forEach(fit);if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(e){fit(e.target);});});hs.forEach(function(h){ro.observe(h);});}else window.addEventListener('resize',function(){hs.forEach(fit);});if(!('IntersectionObserver' in window))return;function go(h){if(h.xm231||!h.xmIn||run||document.hidden||H.classList.contains('xm-scene-paused')||(RM&&RM.matches)||!h.clientHeight)return false;h.xm231=1;run=h;fit(h);h.classList.add('xm-go');io.unobserve(h);setTimeout(function(){h.classList.remove('xm-go');h.classList.add('xm-rest');run=null;hs.some(go);},4700);return true;}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.xmIn=e.isIntersecting&&e.intersectionRatio>=.5;go(e.target);});},{threshold:[0,.5,1]});hs.forEach(function(h){io.observe(h);});document.addEventListener('visibilitychange',function(){if(!document.hidden)hs.some(go);});})();</script>
+<script>
+function fmPlan(o){
+  var H=3600000, AZ=7*H, M15=900000;
+  var m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/.exec(o&&o.home||''), b=/^(\d{4})-(\d{2})-(\d{2})$/.exec(o&&o.dob||'');
+  if(!m||!b) return null;
+  var home=Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])+AZ, born=Date.UTC(+b[1],+b[2]-1,+b[3]);
+  var hw=new Date(home-AZ), bw=new Date(born);
+  if(isNaN(home)||isNaN(born)||hw.getUTCDate()!==+m[3]||hw.getUTCHours()!==+m[4]||bw.getUTCDate()!==+b[3]||born>home) return null;
+  var es=!!o.es, name=String(o.name||''), now=(o.now==null?Date.now():+o.now), NB='\u00a0';
+  var MON=es?['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DOW=es?['dom','lun','mar','mié','jue','vie','sáb']:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function w(t){ return new Date(t-AZ); }   /* a Date whose UTC fields read Arizona's clock */
+  function hm(t){ var d=w(t), h=d.getUTCHours(), mi=d.getUTCMinutes(); return (h%12||12)+':'+(mi<10?'0':'')+mi+(es?NB+(h<12?'a.'+NB+'m.':'p.'+NB+'m.'):NB+(h<12?'AM':'PM')); }
+  function dy(t){ var d=w(t); return DOW[d.getUTCDay()]+NB+d.getUTCDate()+NB+MON[d.getUTCMonth()]; }
+  function la(t){ return (w(t).getUTCHours()%12||12)===1?'la ':'las '; }   /* Spanish: "la 1:00", "las 4:00" */
+  function at(t,dd,h){ var d=w(t); return Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()+dd,h,0)+AZ; }
+  var up=Math.ceil(now/60000)*60000, SIGN='William, Arizona Rabbits: (520) 270-2827 · arizonarabbits.com'+(es?'/es':''), out=[];
+  var by=home+72*H, s1=Math.max(at(home,1,9),up);
+  out.push({k:'vet', on:s1<by, day:by, start:s1, end:by, alarms:['PT0M','END-PT3H'],
+    t:es?('Veterinario antes de '+la(by)+hm(by)):('Vet check by '+hm(by)),
+    s:es?('El plazo de 72 horas de mi garantía se cierra el '+dy(by)+'.'):('The 72-hour window in my guarantee closes '+dy(by)+'.'),
+    g:es?'veterinario':'vet check',
+    sum:es?('Veterinario de '+name+', antes del '+dy(by)+' a '+la(by)+hm(by)):(name+'’s vet check, by '+dy(by)+' at '+hm(by)),
+    desc:es?('El plazo de 72 horas de mi garantía: si una visita al veterinario dentro de las 72 horas después de llevarse su conejo muestra un problema que empezó conmigo, le devuelvo todo y recibo el conejo de vuelta.\n\nSanta Cruz Veterinary Clinic atiende conejos y tiene citas como a cuatro meses: 5408 S 12th Ave, (520) 889-9643. Si no tienen lugar para usted, el Arizona Exotic Animal Hospital, en Grant Road, pide que llame por cualquier cosa en los dos días siguientes: (520) 305-0055.\n\n'+SIGN)
+            :('The 72-hour window in my guarantee: if a vet visit within 72 hours of taking your rabbit home shows a problem that started with me, I’ll refund everything and take the rabbit back.\n\nSanta Cruz Veterinary Clinic sees rabbits and is booked about four months out: 5408 S 12th Ave, (520) 889-9643. If they can’t fit you in, Arizona Exotic Animal Hospital on Grant Road asks you to call for anything within two days: (520) 305-0055.\n\n'+SIGN)});
+  var gone=at(home,14,0), s2=at(home,7,9);
+  if(s2<up){ s2=at(up,0,9); if(s2<up) s2=at(up,1,9); }
+  out.push({k:'food', on:s2<gone, day:s2, start:s2, end:s2+M15, alarms:['PT0M'],
+    t:es?('Comprar la comida de '+name):('Buy '+name+'’s food'),
+    s:es?('Las dos semanas que le di se acaban el '+dy(gone)+'. ¿Va a cambiarla? Mezcle la nueva poco a poco.'):('The two weeks I sent run out on '+dy(gone)+'. Changing food? Mix the new in slowly.'),
+    g:es?'comida':'food',
+    sum:es?('Comprar la comida de '+name+': las dos semanas se acaban el '+dy(gone)):('Buy '+name+'’s food: the two weeks run out '+dy(gone)),
+    desc:es?('Las dos semanas de su comida actual que le di se acaban el '+dy(gone)+'. Cambiarles la comida de golpe les cae mal al estómago: si la cambia, mezcle la nueva poco a poco.\n\n'+SIGN)
+            :('The two weeks of its current food I sent run out on '+dy(gone)+'. Changing their food suddenly upsets their stomach, so if you change it, mix the new in slowly.\n\n'+SIGN)});
+  var nw=w(now), today=Date.UTC(nw.getUTCFullYear(),nw.getUTCMonth(),nw.getUTCDate()), next=Date.UTC(nw.getUTCFullYear(),bw.getUTCMonth(),bw.getUTCDate());
+  if(next<today) next=Date.UTC(nw.getUTCFullYear()+1,bw.getUTCMonth(),bw.getUTCDate());
+  var bornTxt=bw.getUTCDate()+NB+MON[bw.getUTCMonth()]+NB+bw.getUTCFullYear();
+  out.push({k:'bday', on:true, allDay:true, day:next+AZ, dob:b[1]+b[2]+b[3],
+    t:es?('El cumpleaños de '+name):(name+'’s birthday'),
+    s:es?('Cada año. Nació el '+bornTxt+'.'):('Every year. Born '+bornTxt+'.'),
+    g:es?'cumpleaños':'birthday',
+    sum:es?('Cumpleaños de '+name):(name+'’s birthday'),
+    desc:es?('Nació el '+bornTxt+' en Arizona Rabbits, en Tucson.\n\n'+SIGN):('Born '+bornTxt+' at Arizona Rabbits in Tucson.\n\n'+SIGN)});
+  return out;
+}
+(function(){
+  var chip=document.getElementById('fmChip'), box=document.getElementById('month');
+  if(!chip||!box||typeof RABBITS==='undefined'||!RABBITS.length||typeof fmPlan!=='function') return;
+  var ES=document.documentElement.lang==='es', D=86400000, built=false, cur=null, sel, day, time, list, ics, gl, pic;
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function slug(r){ return (r&&r.addr)||String(r&&r.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+  function az(){ return new Date(Date.now()-7*3600000); }
+  function iso(d){ return d.toISOString().slice(0,10); }
+  var SZ=(function(){ try{ var e=document.getElementById('photoSizes'); return e?(JSON.parse(e.textContent||'{}')||{}):{}; }catch(x){ return {}; } })();
+  function thumb(r){ var p=String(r.photo||'').replace(/\?v=.*$/,''), e=SZ[p]; return (e&&e.v&&e.v.length)?e.v[0][1]:p; }
+  function gone(r){ return (r.status==='available'||r.status==='reserved')?'':(r.wentHome||r.soldOn||''); }
+  function pool(extra){ var t=iso(az()), lim=iso(new Date(az().getTime()-30*D)), L=[];
+    RABBITS.forEach(function(r){ var g=gone(r), ok=r.dob&&r.photo&&(r.status==='available'||r.status==='reserved'||(g&&g>=lim&&g<=t)); if(ok||r===extra) L.push(r); });
+    var rk=function(r){ return r.status==='reserved'?0:(gone(r)?1:2); };
+    return L.sort(function(a,b){ return rk(a)-rk(b)||(rk(a)===1?(gone(b)<gone(a)?-1:gone(b)>gone(a)?1:0):0)||(a.name<b.name?-1:1); }); }
+  function fill(extra){ var L=pool(extra); sel.innerHTML=L.map(function(r){ return '<option value="'+esc(slug(r))+'">'+esc(r.name)+'</option>'; }).join(''); return L; }
+  function setRabbit(r){ cur=r; sel.value=slug(r); pic.src=thumb(r); var g=gone(r), n=az();
+    day.value=g||iso(n); time.value=g?'12:00':((n.getUTCHours()<10?'0':'')+n.getUTCHours()+':00'); paint(); }
+  function gz(t){ return new Date(t).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
+  function gcal(it){ var d=it.allDay?(it.dob+'/'+iso(new Date(Date.UTC(+it.dob.slice(0,4),+it.dob.slice(4,6)-1,+it.dob.slice(6,8)+1))).replace(/-/g,'')):(gz(it.start)+'/'+gz(it.end));
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(it.sum)+'&dates='+d+'&details='+encodeURIComponent(it.desc)+(it.allDay?'&recur='+encodeURIComponent('RRULE:FREQ=YEARLY'):''); }
+  function paint(){ if(!cur) return; var h=day.value&&time.value?(day.value+'T'+time.value):'', items=fmPlan({name:cur.name,dob:cur.dob,home:h,es:ES});
+    if(!items){ list.innerHTML='<li class="fm-i fm-bad">'+(ES?'Elija un día y una hora reales, después de que nació.':'Pick a real day and time, after it was born.')+'</li>'; ics.hidden=true; gl.hidden=true; return; }
+    var MON=ES?['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    list.innerHTML=items.map(function(it){ var d=new Date(it.day-7*3600000);
+      return '<li class="fm-i fm-'+it.k+(it.on?'':' fm-past')+'"><span class="fm-tile" aria-hidden="true"><b>'+MON[d.getUTCMonth()]+'</b><i>'+d.getUTCDate()+'</i></span>'
+        +'<span class="fm-x"><b>'+esc(it.t)+'</b><small>'+esc(it.s)+(it.on?'':' <em>'+(ES?'Ya pasó.':'Already past.')+'</em>')+'</small></span></li>'; }).join('');
+    var on=items.filter(function(it){ return it.on; }), n=on.length;
+    ics.hidden=!n; gl.hidden=!n;
+    ics.href='/api/month?n='+encodeURIComponent(cur.name)+'&b='+cur.dob+'&h='+h+'&l='+(ES?'es':'en');
+    ics.querySelector('span').textContent=ES?(n===3?'Añadir las tres a mi calendario':n===2?'Añadir las dos a mi calendario':'Añadir su cumpleaños a mi calendario')
+                                            :(n===3?'Add all three to my calendar':n===2?'Add both to my calendar':'Add its birthday to my calendar');
+    gl.innerHTML=(ES?'O en Google Calendar: ':'Or in Google Calendar: ')+on.map(function(it){ return '<a class="fm-gl" href="'+esc(gcal(it))+'" target="_blank" rel="noopener noreferrer nofollow">'+esc(it.g)+'</a>'; }).join(' · '); }
+  function build(){ built=true; box.setAttribute('role','region'); box.setAttribute('aria-label',ES?'Su primer mes':'Its first month');
+    box.innerHTML='<div class="fm-top"><img class="fm-pic" alt="" width="48" height="48"><span class="fm-who"><span class="fm-k">'+(ES?'Su primer mes':'Its first month')+'</span>'
+      +'<span class="fm-pick"><select id="fmWho" aria-label="'+(ES?'Conejo':'Rabbit')+'"></select><i class="chev" aria-hidden="true"></i></span></span></div>'
+      +'<div class="fm-when"><span>'+(ES?'Llegó a casa':'Came home')+'</span><input type="date" id="fmDay" aria-label="'+(ES?'Día en que llegó a casa':'Day it came home')+'">'
+      +'<input type="time" id="fmTime" aria-label="'+(ES?'Hora':'Time')+'"></div>'
+      +'<ol class="fm-list" id="fmList"></ol>'
+      +'<a class="btn btn-tonal fm-ics" id="fmIcs" rel="nofollow"><svg class="fm-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span></span></a>'
+      +'<p class="fm-g" id="fmG"></p><p class="fm-note">'+(ES?'No se envía ni se guarda nada sobre usted.':'Nothing about you is sent or kept.')+'</p>';
+    sel=box.querySelector('#fmWho'); day=box.querySelector('#fmDay'); time=box.querySelector('#fmTime'); list=box.querySelector('#fmList'); ics=box.querySelector('#fmIcs'); gl=box.querySelector('#fmG'); pic=box.querySelector('.fm-pic');
+    sel.addEventListener('change',function(){ var r=null; RABBITS.some(function(x){ if(slug(x)===sel.value){ r=x; return true; } }); if(r) setRabbit(r); });
+    day.addEventListener('change',paint); time.addEventListener('change',paint); day.addEventListener('input',paint); time.addEventListener('input',paint); }
+  function open(r,scroll){ if(!built) build(); var L=fill(r); if(!L.length) return; setRabbit(r||L[0]);
+    box.hidden=false; chip.setAttribute('aria-expanded','true');
+    if(scroll) box.scrollIntoView({block:'start',behavior:(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth'}); }
+  chip.addEventListener('click',function(ev){ ev.preventDefault();
+    if(!box.hidden){ box.hidden=true; chip.setAttribute('aria-expanded','false'); return; } open(null,false); });
+  function fromHash(){ var m=/^#month(?:-([a-z0-9-]+))?$/.exec(location.hash||''); if(!m) return; var r=null;
+    if(m[1]) RABBITS.some(function(x){ if(slug(x)===m[1]){ r=x; return true; } }); open(r,true); }
+  window.addEventListener('hashchange',fromHash); fromHash();
+})();
+</script>
 </body>
 </html>

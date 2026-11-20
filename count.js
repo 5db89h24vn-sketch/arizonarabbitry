@@ -108,6 +108,9 @@
       if(/facebook/.test(href)) return 'facebook';
     }
     if(a.closest('.viewer') && a.tagName==='A' && /btn/.test(a.className)) return 'ask';
+    if(a.classList.contains('fm-chip')) return 'month';          /* (Round 233) its first month: the capsule, the file, Google */
+    if(a.classList.contains('fm-ics')) return 'month-add';
+    if(a.classList.contains('fm-gl')) return 'month-google';
     if(/updates(\.html)?(#|$)/.test(href)) return 'news';
     if(/litters(\.html)?(#|$)/.test(href)) return 'litters';
     if(/terms(\.html)?(#|$)/.test(href)) return 'terms';
