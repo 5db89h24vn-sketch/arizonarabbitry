@@ -893,6 +893,31 @@ html.xmas .xm-bank{filter:blur(1.4px) drop-shadow(0 6px 10px rgba(8,6,20,.38))}
 html.xmas .xm-pause{background:linear-gradient(to bottom,var(--sky0) -8px,var(--sky1) 38px)}
 @media(hover:hover){html.xmas .xm-pause:hover{background:var(--sky1)}}   
 </style>
+<style id="motion238">
+
+:root{--spring:cubic-bezier(.3,1.4,.6,1);--spring-press:cubic-bezier(.3,2.2,.6,1);--pop-away:cubic-bezier(.4,-.8,.7,1)}
+
+#available .lsh-arr{position:relative}
+#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-3px;right:-3px;width:11px;height:11px;border-radius:50%;
+  background:#F2B48E;box-shadow:0 0 0 2px rgba(24,20,18,.88);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
+#available .lsh-arr::after{width:9px;height:9px}
+#available .rail-btn.new::after,#available .lsh-arr.new::after{transform:scale(1);transition:none}
+
+#available .rail-btn.next{height:44px;min-width:44px;padding:0 14px;border-radius:22px;font-size:15px;margin-top:-2px}
+#available .rail-btn.next svg{width:18px;height:18px}
+@media (prefers-reduced-motion:no-preference){
+  
+  #available .rail-btn{transition:opacity .2s,border-color .15s,transform .34s var(--spring-press)}
+  #available .rail-btn:active{transition:opacity .2s,border-color .15s,transform .08s ease-out}
+  #available .lsh-arr{transition:transform .34s var(--spring-press)}
+  #available .lsh-arr:not([disabled]):active{transform:scale(.94);transition:transform .08s ease-out}
+  
+  summary::after{transition:transform .36s var(--spring)}
+  .opener::after{transition:transform .36s var(--spring),border-color .15s}
+  #producers .pro-car{transition:transform .36s var(--spring)}
+}
+@media (prefers-reduced-motion:reduce){#available .rail-btn::after,#available .lsh-arr::after{transition:none}}
+</style>
 </head>
 <body>
 

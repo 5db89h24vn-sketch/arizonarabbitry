@@ -5173,6 +5173,31 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 }
 
 </style>
+<style id="motion238">
+
+:root{--spring:cubic-bezier(.3,1.4,.6,1);--spring-press:cubic-bezier(.3,2.2,.6,1);--pop-away:cubic-bezier(.4,-.8,.7,1)}
+
+#available .lsh-arr{position:relative}
+#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-3px;right:-3px;width:11px;height:11px;border-radius:50%;
+  background:#F2B48E;box-shadow:0 0 0 2px rgba(24,20,18,.88);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
+#available .lsh-arr::after{width:9px;height:9px}
+#available .rail-btn.new::after,#available .lsh-arr.new::after{transform:scale(1);transition:none}
+
+#available .rail-btn.next{height:44px;min-width:44px;padding:0 14px;border-radius:22px;font-size:15px;margin-top:-2px}
+#available .rail-btn.next svg{width:18px;height:18px}
+@media (prefers-reduced-motion:no-preference){
+  
+  #available .rail-btn{transition:opacity .2s,border-color .15s,transform .34s var(--spring-press)}
+  #available .rail-btn:active{transition:opacity .2s,border-color .15s,transform .08s ease-out}
+  #available .lsh-arr{transition:transform .34s var(--spring-press)}
+  #available .lsh-arr:not([disabled]):active{transform:scale(.94);transition:transform .08s ease-out}
+  
+  summary::after{transition:transform .36s var(--spring)}
+  .opener::after{transition:transform .36s var(--spring),border-color .15s}
+  #producers .pro-car{transition:transform .36s var(--spring)}
+}
+@media (prefers-reduced-motion:reduce){#available .rail-btn::after,#available .lsh-arr::after{transition:none}}
+</style>
 </head>
 <body>
 
@@ -11897,8 +11922,8 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 
   function railCounts(rail,prev,next,word){
     if(!rail||!prev||!next) return;
-    var ES=(document.documentElement.lang||'').slice(0,2)==='es', seen=false, holding=false, owed=false, lab0=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||''], SK='az.railSeen.'+rail.id, saw={}, lastS=null, first=null, uR0=null, uL0=null;
-    try{ seen=sessionStorage.getItem('az.railAll.'+rail.id)==='1'; JSON.parse(sessionStorage.getItem(SK)||'[]').forEach(function(x){ saw[x]=1; }); }catch(e){}
+    var ES=(document.documentElement.lang||'').slice(0,2)==='es', seen=false, holding=false, owed=false, lab0=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||''], SK='az.seen.'+rail.id, saw={}, lastS=null, first=null, uR0=null, uL0=null;
+    try{ seen=sessionStorage.getItem('az.railAll.'+rail.id)==='1'; }catch(e){} try{ JSON.parse(localStorage.getItem(SK)||'[]').forEach(function(x){ saw[x]=1; }); }catch(e){}   /* (Round 238) seen is kept on this phone or computer, so the dot and the brick come back only for a rabbit not seen here before (William, 20 Nov 2026, 6:16pm) */
     var keyOf=function(c,i){ return c.getAttribute('data-rid')||c.getAttribute('data-shots')||('#'+i); };
     var pn=document.createElement('span'), nn=document.createElement('span'); pn.className=nn.className='rail-n';
     prev.appendChild(pn); next.insertBefore(nn,next.firstChild);
@@ -11910,7 +11935,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         if(moves&&!saw[k]&&Math.max(a,x1-rr.width-1)<=Math.min(b,x0+1)){ saw[k]=1; add=true; }   /* wholly in the window at some point of that stretch */
         if(q.right>rr.right+1){ R++; if(!saw[k]) uR++; } else if(q.left<rr.left-1){ L++; if(!saw[k]) uL++; }
         if(!saw[k]) u++; });
-      if(add) try{ sessionStorage.setItem(SK,JSON.stringify(Object.keys(saw))); }catch(e){}
+      if(add) try{ localStorage.setItem(SK,JSON.stringify(Object.keys(saw).slice(-400))); }catch(e){}
       return {L:L,R:R,n:n,uL:uL,uR:uR,u:u}; };
     var say=function(b,t,lab){ var w=b.querySelector('.rail-n'); if(w.textContent!==t) w.textContent=t; b.setAttribute('aria-label',lab); };
     var sync=function(){
@@ -12326,7 +12351,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
         else if(t.scrollWidth>t.clientWidth+0.5){ t.style.letterSpacing='0'; var sh=t.getAttribute('data-short'); if(sh&&t.scrollWidth>t.clientWidth+0.5){ if(!x) t.setAttribute('data-whole',t.textContent); t.textContent=sh; } } }); }
     var fitRO=false; if(window.ResizeObserver){ try{ new ResizeObserver(function(){ fitNames(); }).observe(row); fitRO=true; }catch(e){} }
     if(!fitRO){ var fitT=0; window.addEventListener('resize',function(){ clearTimeout(fitT); fitT=setTimeout(fitNames,120); }); }
-    var lshSeen=false, lshHold=false, lshSaw={}, lshOwed=false, lshLastS=null, lshFirst=null, lshUR0=null, lshUL0=null, lshLab=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||'']; try{ lshSeen=sessionStorage.getItem('az.railAll.lshRow')==='1'; JSON.parse(sessionStorage.getItem('az.railSeen.lshRow')||'[]').forEach(function(x){ lshSaw[x]=1; }); }catch(e){}   /* (Round 225) the litters coming soon count what is left, as the rabbits' row does (William, 19 Nov 2026, 4:46pm: "going forward across the website"): each arrow the litters past its edge, "1 more" when one is left, out when nothing is that way; the arrows shown wherever the row slides; once a visit "All 3 seen" at the end; no paper (that is for the rabbits) */
+    var lshSeen=false, lshHold=false, lshSaw={}, lshOwed=false, lshLastS=null, lshFirst=null, lshUR0=null, lshUL0=null, lshLab=[prev.getAttribute('aria-label')||'',next.getAttribute('aria-label')||'']; try{ lshSeen=sessionStorage.getItem('az.railAll.lshRow')==='1'; }catch(e){} try{ JSON.parse(localStorage.getItem('az.seen.lshRow')||'[]').forEach(function(x){ lshSaw[x]=1; }); }catch(e){}   /* (Round 238) kept on this phone or computer, as the rabbits' row */   /* (Round 225) the litters coming soon count what is left, as the rabbits' row does (William, 19 Nov 2026, 4:46pm: "going forward across the website"): each arrow the litters past its edge, "1 more" when one is left, out when nothing is that way; the arrows shown wherever the row slides; once a visit "All 3 seen" at the end; no paper (that is for the rabbits) */
       [prev,next].forEach(function(b,i){ var w=document.createElement('span'); w.className='rail-n'; if(i) b.insertBefore(w,b.firstChild); else b.appendChild(w); });
       function lshSay(b,t,lab){ var w=b.querySelector('.rail-n'); if(w.textContent!==t) w.textContent=t; b.setAttribute('aria-label',lab); }
       function arrows(){ var max=row.scrollWidth-row.clientWidth-2, moves=max>0, rr=row.getBoundingClientRect(), s=row.scrollLeft, a=s, b=s, L=0, R=0, n=0, uL=0, uR=0, u=0, add=false;
@@ -12336,7 +12361,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
           if(moves&&!lshSaw[k]&&Math.max(a,x1-rr.width-1)<=Math.min(b,x0+1)){ lshSaw[k]=1; add=true; }
           if(q.right>rr.right+1){ R++; if(!lshSaw[k]) uR++; } else if(q.left<rr.left-1){ L++; if(!lshSaw[k]) uL++; }
           if(!lshSaw[k]) u++; });
-        if(add) try{ sessionStorage.setItem('az.railSeen.lshRow',JSON.stringify(Object.keys(lshSaw))); }catch(e){}
+        if(add) try{ localStorage.setItem('az.seen.lshRow',JSON.stringify(Object.keys(lshSaw).slice(-400))); }catch(e){}
         shelf.classList.toggle('lsh-moves',moves); if(lshHold) return;
         var lL=!lshSeen&&uL>0, lR=!lshSeen&&uR>0; if(moves&&u>0) lshOwed=true;
         prev.disabled=!moves||row.scrollLeft<=2; next.disabled=!moves||row.scrollLeft>=max;
