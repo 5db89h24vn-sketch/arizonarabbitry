@@ -689,6 +689,16 @@ html.xmas .xm-pause{background:linear-gradient(to bottom,var(--sky0) -8px,var(--
 }
 @media (prefers-reduced-motion:reduce){#available .rail-btn::after,#available .lsh-arr::after{transition:none}}
 </style>
+<style id="edge240">
+
+html.xmas footer:has(>.xm-scene){border-top-color:transparent}
+
+html.xmas .xm-ground .g-crest{display:none}
+@media (min-width:1441px){.g-crest{display:none}}
+html.xmas .xm-ground{top:-6px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 52px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 52px),transparent)}
+
+html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-webkit-clip-path:inset(0 -40px -80px);clip-path:inset(0 -40px -80px)}
+</style>
 </head>
 <body>
 
@@ -1355,7 +1365,7 @@ html.xmas .xm-pause{background:linear-gradient(to bottom,var(--sky0) -8px,var(--
   }
   function noOrphans(root){
     if(!root) return;
-    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t, .tile-name, .tile-line, .tile-sub, .tile-ready, .nc-name, .nc-ready';   /* (Round 192g) the litters page's rows and cards */
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t, .tile-name, .tile-line, .tile-sub, .tile-ready, .nc-name, .nc-ready, .parent em .pf:first-child';   /* (Round 192g) the litters page's rows and cards; (Round 240) a parent's breed and colour: "Netherland Dwarf azul manchado" left "manchado" alone at 600 to 1200px (hangtest) */
     var els=root.querySelectorAll(sel);
     for(var i=0;i<els.length;i++){
       var el=els[i];

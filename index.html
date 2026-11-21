@@ -1074,14 +1074,15 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
 .wl-lit input:checked+.wl-card .wl-tick{background:var(--brick-fill);border-color:var(--brick-fill)}
 .wl-lit input:checked+.wl-card .wl-tick::after{opacity:1}
 
-@media(max-width:359px){
+@media(max-width:389px){
   .wl-pic{width:44px;height:33px}
   .wl-card{gap:8px;padding-right:10px}
 }
 
-@media(min-width:640px){
+@media(min-width:664px){
   .wl-lits{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 }
+@media(min-width:640px){#wlform .wl-pic{width:52px}#wlform .wl-card{gap:8px;padding-right:10px}}   
 @media(min-width:1020px){
   .wl-side{min-width:580px;max-width:580px}
 }
@@ -4046,7 +4047,7 @@ html[data-look="dim"] .xm-grain{opacity:.42}
 .xm-rein{fill:none;stroke:#C42A33;stroke-width:.8}
 .xm-sleigh{fill:var(--sil);stroke:var(--sil)}.xm-rudolph{fill:#E2453C;stroke:none}
 
-.xm-fall{position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;will-change:transform}
+.xm-fall{position:absolute;left:-8px;right:-8px;bottom:0;z-index:2;pointer-events:none;will-change:transform,translate}
 .xm-fall-far{top:-137px;background-size:137px 137px;background-image:
   radial-gradient(circle at 17px 23px,rgba(255,255,255,.62) 0 .6px,transparent 1.3px),radial-gradient(circle at 71px 9px,rgba(255,255,255,.55) 0 .5px,transparent 1.2px),
   radial-gradient(circle at 104px 61px,rgba(255,255,255,.6) 0 .7px,transparent 1.4px),radial-gradient(circle at 43px 88px,rgba(255,255,255,.5) 0 .5px,transparent 1.2px),
@@ -4085,8 +4086,11 @@ html[data-look="dim"] .xm-grain{opacity:.42}
 @keyframes xm-bob{0%{transform:translateY(-.7px)}100%{transform:translateY(.7px)}}
 @keyframes xm-pom{0%{transform:rotate(-3deg)}100%{transform:rotate(4deg)}}
 @keyframes xm-fall-a{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,137px,0)}}
-@keyframes xm-fall-b{from{transform:translate3d(0,0,0)}to{transform:translate3d(-14px,211px,0)}}
-@keyframes xm-fall-c{from{transform:translate3d(0,0,0)}to{transform:translate3d(10px,293px,0)}}
+@keyframes xm-fall-b{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,211px,0)}}
+@keyframes xm-fall-c{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,293px,0)}}
+@keyframes xm-sway-a{from{translate:-2px 0}to{translate:2px 0}}
+@keyframes xm-sway-b{from{translate:-5px 0}to{translate:5px 0}}
+@keyframes xm-sway-c{from{translate:-5px 0}to{translate:5px 0}}   
 .xm-tw{animation:xm-tw var(--t) ease-in-out var(--d) infinite}
 .xm-sp{transform-box:fill-box;transform-origin:center;animation:xm-sp var(--t) ease-in-out var(--d) infinite}
 .xm-north-rays{transform-box:view-box;animation:xm-rays 6.4s ease-in-out infinite}
@@ -4175,9 +4179,9 @@ svg.xm-sleigh-in{display:block;width:61px;height:18px;overflow:visible}
 .xm-art .xm-hatg{animation:xm-pom 3s steps(30,end) infinite alternate}
 .xm-art .xm-gift-main{animation:xm6-wiggle 8s steps(4,end) 3s infinite}
 .xm-sleigh-in{animation:xm-bob 1.2s ease-in-out infinite alternate}
-.xm-fall-far{animation:xm-fall-a 15s linear infinite}
-.xm-fall-mid{animation:xm-fall-b 12s linear infinite}
-.xm-fall-near{animation:xm-fall-c 9.5s linear infinite}
+.xm-fall-far{animation:xm-fall-a 15s linear infinite,xm-sway-a 4.6s ease-in-out infinite alternate}
+.xm-fall-mid{animation:xm-fall-b 12s linear infinite,xm-sway-b 3.7s ease-in-out infinite alternate}
+.xm-fall-near{animation:xm-fall-c 9.5s linear infinite,xm-sway-c 3s ease-in-out infinite alternate}
 .xm-scene.xm-paused *{animation-play-state:paused!important}
 .xm-scene:not(.xm-on) *,.xm-scene:not(.xm-on) *::before,.xm-scene:not(.xm-on) *::after{animation:none!important}   
 @media (prefers-reduced-motion:reduce){
@@ -4283,24 +4287,29 @@ html.xmas[data-look="dim"] .xm-place img.xm-pd{display:block!important}
 .corner-sheet a[href="#xmScene"]{--ci:var(--ci-village)}
 
 html.xmas .xm-place .xm-pic{display:block;-webkit-mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.25) 3%,rgba(0,0,0,.65) 6%,#000 9%,#000 91%,rgba(0,0,0,.65) 94%,rgba(0,0,0,.25) 97%,transparent);mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.25) 3%,rgba(0,0,0,.65) 6%,#000 9%,#000 91%,rgba(0,0,0,.65) 94%,rgba(0,0,0,.25) 97%,transparent)}
-html.xmas .xm-place .xm-pic-v{display:block;position:relative;height:118px}
+html.xmas .xm-place .xm-pic-v{display:block;position:relative;height:118px;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 9px),rgba(0,0,0,.55) calc(100% - 4px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 9px),rgba(0,0,0,.55) calc(100% - 4px),transparent)}   
 .xm-fx{display:none}
-html.xmas .xm-place.xm-go .xm-fx{display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent);mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent)}
+html.xmas .xm-place.xm-go .xm-fx{display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent);mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 30px),rgba(0,0,0,.45) calc(100% - 15px),transparent);animation:xmFxIn .9s ease-out both}
 html.xmas{--xmc:rgba(255,255,255,.95);--xmr:rgba(112,104,166,.42);--xmr2:rgba(112,104,166,.5)}
 html.xmas[data-look="dim"]{--xmc:rgba(255,250,240,.92);--xmr:rgba(255,248,236,.3);--xmr2:rgba(255,248,236,.4)}
-.xm-home .xm-fx i{position:absolute;left:-12px;right:-12px;top:-118px;height:236px;background-repeat:repeat;opacity:0}
-.xm-home .xm-sn1{background-size:97px 118px;background-image:radial-gradient(circle at 14px 20px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px),radial-gradient(circle at 61px 74px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px);animation:xmSnF 4.5s linear 1 both}
-.xm-home .xm-sn2{background-size:139px 118px;background-image:radial-gradient(circle at 40px 46px,var(--xmc) 0 0.90px,var(--xmr2) 0.90px 1.80px,transparent 2.40px),radial-gradient(circle at 112px 95px,var(--xmc) 0 0.80px,var(--xmr2) 0.80px 1.60px,transparent 2.20px),radial-gradient(circle at 76px 12px,var(--xmc) 0 0.75px,var(--xmr2) 0.75px 1.50px,transparent 2.10px);animation:xmSnN 4.5s linear 1 both}
-@keyframes xmSnF{0%{transform:translate3d(0,0,0);opacity:0}16%{opacity:.7}78%{opacity:.7}100%{transform:translate3d(-5px,81px,0);opacity:0}}
-@keyframes xmSnN{0%{transform:translate3d(0,0,0);opacity:0}14%{opacity:1}80%{opacity:1}100%{transform:translate3d(-8px,117px,0);opacity:0}}
-.xm-sled .xm-gl{position:absolute;display:block;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,120,.62),rgba(255,180,84,.22) 55%,rgba(255,180,84,0));opacity:0;animation:xmGlA 4.5s ease-in-out 1 both}
-.xm-sled .xm-g2{animation-name:xmGlB}
+
+.xm-place .xm-fx i{position:absolute;left:-12px;right:-12px;top:-118px;height:236px;background-repeat:repeat;will-change:transform,translate}
+.xm-place .xm-sn1{background-size:97px 118px;background-image:radial-gradient(circle at 14px 20px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px),radial-gradient(circle at 61px 74px,var(--xmc) 0 0.50px,var(--xmr) 0.50px 1.00px,transparent 1.60px);opacity:.7;animation:xmFall 9s linear infinite,xmSwF 3.4s ease-in-out infinite alternate}
+.xm-place .xm-sn2{background-size:139px 118px;background-image:radial-gradient(circle at 40px 46px,var(--xmc) 0 0.90px,var(--xmr2) 0.90px 1.80px,transparent 2.40px),radial-gradient(circle at 112px 95px,var(--xmc) 0 0.80px,var(--xmr2) 0.80px 1.60px,transparent 2.20px),radial-gradient(circle at 76px 12px,var(--xmc) 0 0.75px,var(--xmr2) 0.75px 1.50px,transparent 2.10px);animation:xmFall 5.6s linear infinite,xmSwN 2.5s ease-in-out infinite alternate}
+.xm-sled .xm-sn1{background-position:43px 51px;animation-delay:-4.1s,-1.3s}
+.xm-sled .xm-sn2{background-position:71px 29px;animation-delay:-2.2s,-.6s}
+@keyframes xmFall{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,118px,0)}}
+@keyframes xmSwF{from{translate:-3px 0}to{translate:3px 0}}
+@keyframes xmSwN{from{translate:-4.5px 0}to{translate:4.5px 0}}
+@keyframes xmFxIn{from{opacity:0}to{opacity:1}}
+.xm-sled .xm-gl{position:absolute;display:block;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,120,.62),rgba(255,180,84,.22) 55%,rgba(255,180,84,0));opacity:.78;animation:xmGlA 5.3s ease-in-out infinite}
+.xm-sled .xm-g2{opacity:.72;animation-name:xmGlB;animation-duration:6.7s}
 .xm-sled .xm-gp,.xm-sled.xm-narrow .xm-gw{display:none}
 .xm-sled.xm-narrow .xm-gp{display:block}
-@keyframes xmGlA{0%{opacity:0}12%{opacity:.85}26%{opacity:.5}40%{opacity:.95}55%{opacity:.6}70%{opacity:.9}85%{opacity:.65}100%{opacity:0}}
-@keyframes xmGlB{0%{opacity:0}16%{opacity:.6}30%{opacity:.92}46%{opacity:.55}60%{opacity:.88}76%{opacity:.6}90%{opacity:.8}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){html.xmas .xm-place.xm-go .xm-fx{display:none}}
-html.xm-scene-paused .xm-place .xm-fx{display:none!important}
+@keyframes xmGlA{0%,100%{opacity:.78}15%{opacity:.6}31%{opacity:.92}47%{opacity:.66}64%{opacity:.88}81%{opacity:.68}}
+@keyframes xmGlB{0%,100%{opacity:.72}18%{opacity:.9}36%{opacity:.62}53%{opacity:.86}71%{opacity:.64}87%{opacity:.84}}
+@media (prefers-reduced-motion:reduce){html.xmas .xm-place .xm-fx,html.xmas .xm-place .xm-fx *{animation:none!important}}
+html.xm-scene-paused .xm-place .xm-fx *{animation-play-state:paused!important}
 
 :root{--mx-nd:#7B5039;--mx-hl:#CF955A;--mx-sa:#A49AC8;--mx-lh:#8AA578;--mx-x:#BCB2A5}
 html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A9C397;--mx-x:#8F877E}
@@ -4835,7 +4844,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 }
 
 @media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:1099px), (orientation:portrait) and (min-width:560px) and (max-width:920px), (orientation:landscape) and (pointer:coarse) and (min-height:501px) and (max-height:660px) and (min-width:921px) and (max-width:1099px){
-  #waitlist .wl-lits{grid-template-columns:repeat(auto-fill,minmax(256px,1fr))}
+  #waitlist .wl-lits{grid-template-columns:repeat(auto-fill,minmax(286px,1fr))}   
   #lead .opts{grid-template-columns:minmax(0,1fr)}
   #lead .opt b,#lead .opt small{text-wrap:balance}
   .callout>b{text-wrap:balance}
@@ -4966,6 +4975,16 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   #producers .pro-car{transition:transform .36s var(--spring)}
 }
 @media (prefers-reduced-motion:reduce){#available .rail-btn::after,#available .lsh-arr::after{transition:none}}
+</style>
+<style id="edge240">
+
+html.xmas footer:has(>.xm-scene){border-top-color:transparent}
+
+html.xmas .xm-ground .g-crest{display:none}
+@media (min-width:1441px){.g-crest{display:none}}
+html.xmas .xm-ground{top:-6px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 52px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 52px),transparent)}
+
+html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-webkit-clip-path:inset(0 -40px -80px);clip-path:inset(0 -40px -80px)}
 </style>
 </head>
 <body>
@@ -5646,7 +5665,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 <section id="included" class="tinted">
   <div class="wrap split">
     <div>
-      <div class="xm-place xm-sled" aria-hidden="true"><span class="xm-pic"><span class="xm-pic-v"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-light.2595c478.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-dim.f2be43fe.svg"><span class="xm-fx"><b class="xm-gl xm-gw" style="left:23%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:28.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:58%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:63.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:69%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gp" style="left:57%;top:95.41px;width:34.41px;height:25.81px"></b><b class="xm-gl xm-gp xm-g2" style="left:63.5%;top:101.14px;width:36.43px;height:27.32px"></b></span></span></span></div>
+      <div class="xm-place xm-sled" aria-hidden="true"><span class="xm-pic"><span class="xm-pic-v"><img class="xm-pl" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-light.2595c478.svg"><img class="xm-pd" alt="" width="755" height="118" loading="lazy" decoding="async" src="img/place4-sled-dim.f2be43fe.svg"><span class="xm-fx"><b class="xm-gl xm-gw" style="left:23%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:28.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:58%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gw xm-g2" style="left:63.5%;top:102.33px;width:42.50px;height:31.88px"></b><b class="xm-gl xm-gw" style="left:69%;top:95.87px;width:38.46px;height:28.84px"></b><b class="xm-gl xm-gp" style="left:57%;top:95.41px;width:34.41px;height:25.81px"></b><b class="xm-gl xm-gp xm-g2" style="left:63.5%;top:101.14px;width:36.43px;height:27.32px"></b><i class="xm-sn1"></i><i class="xm-sn2"></i></span></span></span></div>
       <p class="kicker">Included</p>
       <h2>What you take home</h2>
 
@@ -12921,7 +12940,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   }
   function noOrphans(root){
     if(!root) return;
-    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t, .tile-name, .tile-line, .tile-sub, .tile-ready, .nc-name, .nc-ready';   /* (Round 192g) the litters page's rows and cards */
+    var sel='p, li, summary, figcaption, blockquote, dd, h1, h2, h3, .ped-fam-t, .tile-name, .tile-line, .tile-sub, .tile-ready, .nc-name, .nc-ready, .parent em .pf:first-child';   /* (Round 192g) the litters page's rows and cards; (Round 240) a parent's breed and colour: "Netherland Dwarf azul manchado" left "manchado" alone at 600 to 1200px (hangtest) */
     var els=root.querySelectorAll(sel);
     for(var i=0;i<els.length;i++){
       var el=els[i];
@@ -13264,7 +13283,7 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
     try{ navigator.clipboard.writeText(t).then(function(){ s.textContent=es?'Copiada. P\u00e9guela en su mensaje para el arrendador.':'Copied. Paste it into your message to your landlord.'; }, pick); }catch(e){ pick(); } });
 })();
 </script>
-<script id="xm231">(function(){var H=document.documentElement;if(!H.classList.contains('xmas'))return;var hs=[].slice.call(document.querySelectorAll('.xm-place.xm-home,.xm-place.xm-sled'));if(!hs.length)return;var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):null,run=null;function fit(h){h.classList.toggle('xm-narrow',h.clientWidth<=560);}hs.forEach(fit);if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(e){fit(e.target);});});hs.forEach(function(h){ro.observe(h);});}else window.addEventListener('resize',function(){hs.forEach(fit);});if(!('IntersectionObserver' in window))return;function go(h){if(h.xm231||!h.xmIn||run||document.hidden||H.classList.contains('xm-scene-paused')||(RM&&RM.matches)||!h.clientHeight)return false;h.xm231=1;run=h;fit(h);h.classList.add('xm-go');io.unobserve(h);setTimeout(function(){h.classList.remove('xm-go');h.classList.add('xm-rest');run=null;hs.some(go);},4700);return true;}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.xmIn=e.isIntersecting&&e.intersectionRatio>=.5;go(e.target);});},{threshold:[0,.5,1]});hs.forEach(function(h){io.observe(h);});document.addEventListener('visibilitychange',function(){if(!document.hidden)hs.some(go);});})();</script>
+<script id="xm240">(function(){var H=document.documentElement;if(!H.classList.contains('xmas'))return;var hs=[].slice.call(document.querySelectorAll('.xm-place.xm-home,.xm-place.xm-sled'));if(!hs.length)return;function fit(h){h.classList.toggle('xm-narrow',h.clientWidth<=560);}hs.forEach(fit);if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(e){fit(e.target);});});hs.forEach(function(h){ro.observe(h);});}else window.addEventListener('resize',function(){hs.forEach(fit);});function set(h){h.classList.toggle('xm-go',!!h.xmIn&&!document.hidden);}if(!('IntersectionObserver' in window)){hs.forEach(function(h){h.xmIn=true;set(h);});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.xmIn=e.isIntersecting;set(e.target);});},{rootMargin:'80px 0px'});hs.forEach(function(h){io.observe(h);});document.addEventListener('visibilitychange',function(){hs.forEach(set);});})();</script>
 <script>
 function fmPlan(o){
   var H=3600000, AZ=7*H, M15=900000;
