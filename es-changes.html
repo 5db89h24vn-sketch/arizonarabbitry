@@ -876,9 +876,10 @@ html.xmas .xm-pause{background:linear-gradient(to bottom,var(--sky0) -8px,var(--
 :root{--spring:cubic-bezier(.3,1.4,.6,1);--spring-press:cubic-bezier(.3,2.2,.6,1);--pop-away:cubic-bezier(.4,-.8,.7,1)}
 
 #available .lsh-arr{position:relative}
-#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-3px;right:-3px;width:11px;height:11px;border-radius:50%;
-  background:#F2B48E;box-shadow:0 0 0 2px rgba(24,20,18,.88);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
-#available .lsh-arr::after{width:9px;height:9px}
+
+#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;
+  background:#E5352B;box-shadow:0 0 0 2.5px var(--paper);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
+#available .lsh-arr::after{width:10px;height:10px}
 #available .rail-btn.new::after,#available .lsh-arr.new::after{transform:scale(1);transition:none}
 
 #available .rail-btn.next{height:44px;min-width:44px;padding:0 14px;border-radius:22px;font-size:15px;margin-top:-2px}
@@ -1105,9 +1106,28 @@ html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-we
 
 <main class="wrap sheet changes">
 
-<section class="rel" id="v2026-11-21a" aria-labelledby="v2026-11-21a-h">
-  <h2 id="v2026-11-21a-h">Nieve en cada escena, cada línea completa</h2>
+<section class="rel" id="v2026-11-21b" aria-labelledby="v2026-11-21b-h">
+  <h2 id="v2026-11-21b-h">Un punto conocido, una mezcla alineada, fichas que no se mueven</h2>
   <p class="rel-when"><time datetime="2026-11-21">21 de noviembre de 2026</time></p>
+  <p class="rel-ver">Versión del sitio 2026.11.21b</p>
+  <article class="chg" id="c-red-dot">
+    <p class="chg-lead"><b>El punto de los conejos que aún no ha visto ahora es el rojo de siempre.</b></p>
+    <p>Donde la fila de conejos se desliza de lado, el punto de su flecha ahora es el puntito rojo que usan los teléfonos para algo nuevo, sobre la esquina de la flecha en vez de al lado, y el número junto a la flecha, cuántos conejos hay hacia ese lado, se mantiene blanco. El punto sigue diciendo solo que algunos son nuevos para usted, y se va cuando ya los ha visto todos.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.21b/red-dot-before-es-780.webp" srcset="changes/2026.11.21b/red-dot-before-es-390.webp 390w, changes/2026.11.21b/red-dot-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la flecha hacia adelante con un punto color durazno en un aro oscuro junto a su esquina, y su número en durazno." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.21b/red-dot-after-es-780.webp" srcset="changes/2026.11.21b/red-dot-after-es-390.webp 390w, changes/2026.11.21b/red-dot-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: la misma flecha con un puntito rojo sobre su esquina, y su número en blanco." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-mix-columns">
+    <p class="chg-lead"><b>En la mezcla de una cruza, cada raza va debajo de su propio color.</b></p>
+    <p>La clave bajo la barra de una cruza ahora va alineada con la barra: el porcentaje y el nombre de cada raza empiezan justo donde empieza su color, así que ninguna queda colgando sola en una línea ni debajo del color equivocado. En los teléfonos más angostos, donde tres razas no caben una al lado de otra, cada una va en su propia línea con el punto de su color, y ningún nombre se corta. Padres va en su propia línea, a la derecha.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.21b/mix-columns-before-es-780.webp" srcset="changes/2026.11.21b/mix-columns-before-es-390.webp 390w, changes/2026.11.21b/mix-columns-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la mezcla de Poppyseed en un teléfono, con «25% Satin Angora» sola en una segunda línea debajo del primer color." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.21b/mix-columns-after-es-780.webp" srcset="changes/2026.11.21b/mix-columns-after-es-390.webp 390w, changes/2026.11.21b/mix-columns-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: 50% Netherland Dwarf, 25% Holland Lop y 25% Satin Angora, cada una debajo de su propio color." loading="lazy" decoding="async"></figure></div>
+  </article>
+  <article class="chg" id="c-sheet-held">
+    <p class="chg-lead"><b>Una ficha se queda quieta mientras la lee, y su X queda siempre a mano.</b></p>
+    <p>La ficha de una camada, el vistazo de cerca, la ficha de avisos y las respuestas ahora dejan quieta la página de atrás, como lo hace el anuncio de un conejo, así que un dedo o la rueda del ratón sobre la parte oscura no mueve nada y la ficha ya no se desliza con las barras del teléfono. La X se queda en la esquina de arriba mientras la recorre, para cerrarla desde cualquier punto sin volver a subir; cuando el texto llega a ella, detrás aparece poco a poco una barra con el título de la ficha, como en el anuncio de un conejo, para que nunca pase por debajo. Al cerrarla, la página queda donde estaba.</p>
+    <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.21b/sheet-held-before-es-780.webp" srcset="changes/2026.11.21b/sheet-held-before-es-390.webp 390w, changes/2026.11.21b/sheet-held-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: la ficha de una camada en un teléfono, desplazada hacia abajo, sin X arriba." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.21b/sheet-held-after-es-780.webp" srcset="changes/2026.11.21b/sheet-held-after-es-390.webp 390w, changes/2026.11.21b/sheet-held-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: la misma ficha desplazada hacia abajo, con su X todavía en la esquina de arriba." loading="lazy" decoding="async"></figure></div>
+  </article>
+</section>
+<details class="rel rel-old" id="v2026-11-21a">
+  <summary><span class="rel-sum">Nieve en cada escena, cada línea completa</span><time class="rel-date" datetime="2026-11-21">21 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.21a</p>
   <article class="chg" id="c-snow-everywhere">
     <p class="chg-lead"><b>Nieve en las dos escenas navideñas pequeñas, cayendo como en el pueblo.</b></p>
@@ -1119,7 +1139,7 @@ html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-we
     <p>Donde el número de oreja de un padre no cabe en su línea, los papeles ahora ocupan dos líneas, el número de oreja y luego el pedigrí, en las tarjetas de los dos padres, en vez de quedar cortados, y los papeles de las dos tarjetas empiezan a la misma altura. En la lista de espera, la raza de cada camada y «Pura raza» o «Cruza» quedan en una sola línea en cualquier teléfono o computadora desde 360 píxeles de ancho, así que ninguna palabra queda sola.</p>
     <div class="ba"><figure class="ba-one ba-before"><figcaption>Antes</figcaption><img src="changes/2026.11.21a/whole-lines-before-es-780.webp" srcset="changes/2026.11.21a/whole-lines-before-es-390.webp 390w, changes/2026.11.21a/whole-lines-before-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Antes: las tarjetas de Tajima y Maximo en una computadora, con los papeles a distinta altura y «Número de» solo en su línea." loading="lazy" decoding="async"></figure><figure class="ba-one ba-after"><figcaption>Después</figcaption><img src="changes/2026.11.21a/whole-lines-after-es-780.webp" srcset="changes/2026.11.21a/whole-lines-after-es-390.webp 390w, changes/2026.11.21a/whole-lines-after-es-780.webp 780w" sizes="(min-width:700px) 328px, calc(100vw - 44px)" width="390" height="300" alt="Después: en las dos tarjetas, el número de oreja en una línea y «Con pedigrí» en la siguiente, a la misma altura." loading="lazy" decoding="async"></figure></div>
   </article>
-</section>
+</details>
 <details class="rel rel-old" id="v2026-11-20l">
   <summary><span class="rel-sum">La primera camada de Tajima y Maximo</span><time class="rel-date" datetime="2026-11-20">20 de noviembre de 2026</time></summary>
   <p class="rel-ver">Versión del sitio 2026.11.20l</p>

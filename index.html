@@ -2317,7 +2317,15 @@ body.locked .backpill,html.at-contact .backpill,html.pick .backpill{opacity:0;vi
 .qlook .ql-meta .u{white-space:nowrap}
 .qlook .ql-note{margin:10px 0 0;font-size:16px;line-height:1.5}
 .qlook .ql-more{margin:14px 0 0}
-.qlook .ql-x{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:19px;line-height:1;cursor:pointer;box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out}   
+.qlook .ql-x{position:sticky;top:10px;margin:10px 10px -54px auto;z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:19px;line-height:1;cursor:pointer;box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out}   
+
+.qlook .ql-bar{position:sticky;top:0;z-index:4;display:block;height:64px;margin-bottom:-64px;pointer-events:none}
+.qlook .ql-bar.on{pointer-events:auto}
+.qlook .ql-bar::before{content:"";position:absolute;left:0;right:0;top:0;height:64px;background:var(--paper);box-shadow:0 1px 0 var(--line);opacity:var(--bar,0)}
+.qlook .ql-bar::after{content:attr(data-name);position:absolute;left:0;right:0;top:0;height:64px;box-sizing:border-box;padding:0 66px 0 20px;font-family:var(--serif);font-weight:500;font-size:16px;line-height:64px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:var(--name,0)}
+.asheet .ql-bar::after{padding-left:22px}
+.litsheet .qlook-card.navunder .ls-arr{opacity:0;pointer-events:none}
+.qlook .qlook-card{scroll-padding-top:64px}   
 @media(hover:hover){.qlook .ql-x:hover{border-color:var(--brick);color:var(--brick)}}
 .qlook .ql-x:active{transform:scale(.94)}
 .qlook .ql-x:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
@@ -2482,7 +2490,7 @@ html.pick .lsh{display:none!important}
 .litsheet .ql-meta a{color:var(--brick-dk);text-decoration:underline dotted;text-underline-offset:3px}
 
 .alsheet .al-body{padding:18px 20px 4px}
-.alsheet .al-t{margin:0 52px 4px 0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2}
+.alsheet .al-t{margin:0 52px 10px 0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2}   
 .alsheet .al-s{margin:0 0 14px;font-size:15px;line-height:1.45;color:var(--ink-soft)}
 .alsheet .al-kept{margin:10px 0 0;font-size:13px;color:var(--ink-soft)}
 .alsheet .al-kept[hidden]{display:none}
@@ -4315,13 +4323,19 @@ html.xm-scene-paused .xm-place .xm-fx *{animation-play-state:paused!important}
 html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A9C397;--mx-x:#8F877E}
 .vmix{display:block;width:100%;margin:10px 0 0;padding:6px 0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .vmix[hidden]{display:none}
-.vmix-bar{display:flex;gap:2px;height:6px;border-radius:999px;overflow:hidden}
+
+.vmix-bar{display:grid;grid-template-columns:var(--mixcols);grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;height:6px;border-radius:999px;overflow:hidden}
 .vmix-bar i{display:block;height:100%;background:var(--c)}
-.vmix-k{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 14px;margin-top:8px;font-size:12.5px;line-height:1.4;color:var(--ink-soft)}
-.vmix-k .u{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.vmix-k .u::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--c);transform:translateY(-.5px)}
+.vmix-k{display:grid;grid-template-columns:var(--mixcols);grid-auto-columns:1fr;column-gap:2px;row-gap:0;align-items:start;margin-top:7px;font-size:12.5px;line-height:1.35;color:var(--ink-soft)}
+.vmix-k .u{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:0}
+.vmix-k .u b{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.vmix-k .u b::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--c);transform:translateY(-.5px)}
+.vmix-k .n{font-size:12px;white-space:nowrap}
 .vmix-k b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
-.vmix-go{margin-left:auto;display:inline-flex;align-items:center;gap:3px;font-weight:600;color:var(--brick);white-space:nowrap}
+.vmix-go{grid-column:1/-1;justify-self:end;margin-top:3px;display:inline-flex;align-items:center;gap:3px;font-weight:600;color:var(--brick);white-space:nowrap}
+.vmix.vmix-rows .vmix-k{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.vmix.vmix-rows .vmix-k .u{flex-direction:row;align-items:baseline;gap:6px}
+.vmix.vmix-rows .vmix-go{align-self:flex-end}
 .vmix-go::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:1.6px 1.6px 0 0;transform:rotate(45deg);margin-left:1px}
 @media (hover:hover){.vmix:hover .vmix-go{text-decoration:underline;text-underline-offset:3px}}
 .vmix:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:8px}
@@ -4397,7 +4411,7 @@ html[data-look="dim"] #about .about-face{box-shadow:0 0 0 1px rgba(255,255,255,.
 #available .lsh-arr{height:34px;min-width:34px;padding:0 11px;border-radius:17px;font-size:13.5px}   
 @media(hover:hover){#available .rail-btn:hover,#available .lsh-arr:not([disabled]):hover{border-color:rgba(255,255,255,.6);background:rgba(24,20,18,.9)}}
 #available .rail-n:empty{display:none}
-#available .rail-btn.new .rail-n,#available .lsh-arr.new .rail-n{color:#F2B48E}   
+
 #available .rail-btn.all,#available .lsh-arr.all{color:#C4D6B4}
 #available .rail-btn.all svg,#available .lsh-arr.all svg{display:none}
 #available .rail-btn.all .rail-n::before,#available .lsh-arr.all .rail-n::before{content:"\2713\00a0"}
@@ -4956,9 +4970,10 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
 :root{--spring:cubic-bezier(.3,1.4,.6,1);--spring-press:cubic-bezier(.3,2.2,.6,1);--pop-away:cubic-bezier(.4,-.8,.7,1)}
 
 #available .lsh-arr{position:relative}
-#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-3px;right:-3px;width:11px;height:11px;border-radius:50%;
-  background:#F2B48E;box-shadow:0 0 0 2px rgba(24,20,18,.88);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
-#available .lsh-arr::after{width:9px;height:9px}
+
+#available .rail-btn::after,#available .lsh-arr::after{content:"";position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;
+  background:#E5352B;box-shadow:0 0 0 2.5px var(--paper);pointer-events:none;transform:scale(0);transition:transform .32s var(--pop-away)}
+#available .lsh-arr::after{width:10px;height:10px}
 #available .rail-btn.new::after,#available .lsh-arr.new::after{transform:scale(1);transition:none}
 
 #available .rail-btn.next{height:44px;min-width:44px;padding:0 14px;border-radius:22px;font-size:15px;margin-top:-2px}
@@ -10633,13 +10648,26 @@ html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-we
       var parts=Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); });
       return parts.length>1?parts:null; }
     function pct(v){ var n=Math.round(v*1000)/10; return (n%1?n.toFixed(1):String(n))+'%'; }
-    function paintMix(r){ if(!vMix) return; var parts=mixFor(r); vMix.hidden=!parts; vMix.innerHTML=''; if(!parts) return;
-      var ES=document.documentElement.lang==='es', bar='', key='';
+    function paintMix(r){ if(!vMix) return; var parts=mixFor(r); vMix.hidden=!parts; vMix.innerHTML=''; vMix.classList.remove('vmix-rows'); if(!parts) return;
+      var ES=document.documentElement.lang==='es', bar='', key='', cols=[];
       parts.forEach(function(x){ var c='var('+(MIXC[x[0]]||'--mx-x')+')';
-        bar+='<i style="--c:'+c+';flex:'+x[1]+' 0 0"></i>';
-        key+='<span class="u" style="--c:'+c+'"><b>'+pct(x[1])+'</b> '+esc(x[0])+'</span>'; });
+        bar+='<i style="--c:'+c+';flex:'+x[1]+' 0 0"></i>'; cols.push((x[1]*100)+'fr');   /* (Round 241) the key's columns are the bar's */
+        key+='<span class="u" style="--c:'+c+'"><b>'+pct(x[1])+'</b> <span class="n">'+esc(x[0])+'</span></span>'; });
+      vMix.style.setProperty('--mixcols',cols.join(' '));
       vMix.innerHTML='<span class="vmix-bar" aria-hidden="true">'+bar+'</span><span class="vmix-k">'+key+'<span class="vmix-go">'+(ES?'Padres':'Parents')+'</span></span>';
-      vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', ')+(ES?'. Ver los padres':'. See the parents')); }
+      vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', ')+(ES?'. Ver los padres':'. See the parents'));
+      mixFit(); if(document.fonts&&document.fonts.status!=='loaded'&&document.fonts.ready) document.fonts.ready.then(mixFit); }
+    function mixFit(){ if(!vMix||vMix.hidden) return; var bar=vMix.querySelector('.vmix-bar'); if(!bar) return;
+      vMix.classList.remove('vmix-rows'); if(!bar.offsetWidth) return;
+      var segs=vMix.querySelectorAll('.vmix-bar i'), us=vMix.querySelectorAll('.vmix-k .u');
+      function right(el){ if(!el) return 0; var x=el.getBoundingClientRect().right; try{ var g=document.createRange(); g.selectNodeContents(el); x=Math.max(x,g.getBoundingClientRect().right); }catch(e){} return x; }
+      function over(){ var q=bar.getBoundingClientRect(), k=(q.width/bar.offsetWidth)||1;
+        for(var i=0;i<us.length;i++){ var end=(i+1<segs.length)?segs[i+1].getBoundingClientRect().left-10*k:q.right+6*k;
+          if(Math.max(right(us[i].querySelector('b')),right(us[i].querySelector('.n')))>end+0.5*k) return true; }
+        return false; }
+      if(over()) vMix.classList.add('vmix-rows'); }
+    window.addEventListener('resize',function(){ mixFit(); });
+    if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener('loadingdone',function(){ mixFit(); });
     if(vMix) vMix.addEventListener('click',function(){
       if(vAboutPanel&&vAboutPanel.hidden&&vAbout) vAbout.click();   /* About opens as a tap on it would; never shut from here */
       setTimeout(function(){
@@ -10979,6 +11007,7 @@ html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-we
       fitBlocks();        /* needs the dialog laid out, so it runs after .open */
       fitCaption();
       fitGal();
+      mixFit();   /* (Round 241) the mix measured now it has its width (paintMix ran before .open) */
       unleadAll();
       var start=0;
       for(var q=0;q<shots.length;q++) if(shots[q].src===cover){ start=q; break; }
@@ -13197,11 +13226,11 @@ html.xmas .xm-bank{filter:blur(1px) drop-shadow(0 14px 6px rgba(8,6,20,.38));-we
   window.__kickerMarks = marks;   // for the checks only
 })();</script>
 
-<div class="qlook litsheet" id="litSheet" hidden role="dialog" aria-modal="true" aria-labelledby="lsName"><div class="qlook-card"><button type="button" class="ql-x" id="lsX">&#215;</button><div class="ls-pics"><div class="ql-strip" id="lsStrip"></div><button type="button" class="ls-arr l" id="lsPrev" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ls-arr r" id="lsNext" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div><div class="ql-dots" id="lsDots" aria-hidden="true"></div><div class="ql-body"><h3 class="ql-name" id="lsName"></h3><p class="ql-meta" id="lsMeta"></p><p class="ls-sub" id="lsSub"></p><p class="ls-ready" id="lsReady"></p><p class="ls-why" id="lsWhy"></p><p class="ls-wait" id="lsWait" hidden></p><div class="ls-acts"><button type="button" class="btn btn-primary" id="lsAlert" aria-haspopup="dialog"></button><a class="chip ls-page" id="lsPage" href="/litters"></a></div></div></div></div>
-<div class="qlook alsheet" id="alertSheet" hidden role="dialog" aria-modal="true" aria-labelledby="alT"><div class="qlook-card"><button type="button" class="ql-x" id="alX">&#215;</button><div class="al-body"><h3 class="al-t" id="alT"></h3><p class="al-s" id="alS"></p><div id="alFormBox"></div><p class="al-ok" id="alOk" hidden></p><p class="al-kept" id="alKept" hidden></p></div></div></div>
-<div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><button type="button" class="ql-x" id="qlX" aria-label="Close">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">Full listing<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
+<div class="qlook litsheet" id="litSheet" hidden role="dialog" aria-modal="true" aria-labelledby="lsName"><div class="qlook-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="lsX">&#215;</button><div class="ls-pics"><div class="ql-strip" id="lsStrip"></div><button type="button" class="ls-arr l" id="lsPrev" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="ls-arr r" id="lsNext" hidden><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div><div class="ql-dots" id="lsDots" aria-hidden="true"></div><div class="ql-body"><h3 class="ql-name" id="lsName"></h3><p class="ql-meta" id="lsMeta"></p><p class="ls-sub" id="lsSub"></p><p class="ls-ready" id="lsReady"></p><p class="ls-why" id="lsWhy"></p><p class="ls-wait" id="lsWait" hidden></p><div class="ls-acts"><button type="button" class="btn btn-primary" id="lsAlert" aria-haspopup="dialog"></button><a class="chip ls-page" id="lsPage" href="/litters"></a></div></div></div></div>
+<div class="qlook alsheet" id="alertSheet" hidden role="dialog" aria-modal="true" aria-labelledby="alT"><div class="qlook-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="alX">&#215;</button><div class="al-body"><h3 class="al-t" id="alT"></h3><p class="al-s" id="alS"></p><div id="alFormBox"></div><p class="al-ok" id="alOk" hidden></p><p class="al-kept" id="alKept" hidden></p></div></div></div>
+<div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="qlX" aria-label="Close">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">Full listing<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
 
-<div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><button type="button" class="ql-x" id="asX" aria-label="Close">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><i class="chev" aria-hidden="true"></i><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
+<div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="asX" aria-label="Close">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><i class="chev" aria-hidden="true"></i><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
 
 <div class="qlook pchange pleave" id="pleave" hidden role="dialog" aria-modal="true" aria-labelledby="plT"><div class="qlook-card pc-card"><h3 class="pc-t" id="plT"></h3><p class="pc-b" id="plB"></p><div class="pc-btns"><button type="button" class="btn btn-primary" id="plStay"></button><button type="button" class="btn btn-tonal" id="plGo"></button></div></div></div>
 
@@ -13381,6 +13410,33 @@ function fmPlan(o){
   function fromHash(){ var m=/^#month(?:-([a-z0-9-]+))?$/.exec(location.hash||''); if(!m) return; var r=null;
     if(m[1]) RABBITS.some(function(x){ if(slug(x)===m[1]){ r=x; return true; } }); open(r,true); }
   window.addEventListener('hashchange',fromHash); fromHash();
+})();
+</script>
+<script id="sheet241">
+(function(){
+  var sheets=[].slice.call(document.querySelectorAll('.qlook')), b=document.body; if(!sheets.length||!window.MutationObserver) return;
+  var mine=false, LINE=64;
+  function bar(card){ var el=card&&card.querySelector('.ql-bar'); if(!el||!card.offsetHeight) return;
+    var s=card.scrollTop, pr=Math.min(1,s/24), nr=0, h=card.querySelector('.ql-name,.as-t,.al-t');
+    if(h&&h.offsetHeight){ var top0=card.getBoundingClientRect().top+card.clientTop, H=h.closest('.ql-head')||h, hq=H.getBoundingClientRect(), n=H.nextElementSibling;
+      while(n&&!n.offsetHeight) n=n.nextElementSibling;
+      var hRest=hq.top-top0+s, nRest=(n?n.getBoundingClientRect().top:hq.bottom)-top0+s, s0=Math.max(0,hRest-LINE), s1=Math.max(s0+8,nRest-LINE);
+      pr=Math.max(0,Math.min(1,(s-s0)/(s1-s0))); nr=Math.max(0,Math.min(1,(s-s1)/16));
+      if(s1>card.scrollHeight-card.clientHeight+0.5){ pr=0; nr=0; }   /* the sheet ends before those words reach the line: nothing goes under the X, so no bar */
+      var nm=(h.textContent||'').replace(/\s+/g,' ').trim(); if(el.getAttribute('data-name')!==nm) el.setAttribute('data-name',nm); }
+    el.style.setProperty('--bar',pr.toFixed(3)); el.style.setProperty('--name',nr.toFixed(3)); el.classList.toggle('on',pr>0.9);
+    var pics=card.querySelector('.ls-pics'); if(pics) card.classList.toggle('navunder',pics.offsetTop+pics.offsetHeight/2-s<LINE+14); }
+  function bars(){ sheets.forEach(function(s){ if(!s.hidden) bar(s.querySelector('.qlook-card')); }); }
+  function sync(){ var open=sheets.some(function(s){ return !s.hidden; });
+    if(open){ if(!b.classList.contains('locked')){ b.classList.add('locked'); mine=true; } if(window.requestAnimationFrame) requestAnimationFrame(bars); else bars(); }
+    else if(mine){ mine=false; if(!document.querySelector('.viewer.open')) b.classList.remove('locked'); } }
+  var mo=new MutationObserver(sync);
+  sheets.forEach(function(s){ mo.observe(s,{attributes:true,attributeFilter:['hidden']});
+    s.addEventListener('touchmove',function(e){ if(e.target===s) e.preventDefault(); },{passive:false});
+    var card=s.querySelector('.qlook-card'); if(card&&card.querySelector('.ql-bar')) card.addEventListener('scroll',function(){ bar(card); },{passive:true}); });
+  mo.observe(b,{attributes:true,attributeFilter:['class']});
+  window.addEventListener('resize',bars);
+  sync();
 })();
 </script>
 </body>
