@@ -2,6 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script id="sz-boot">/* (Round 243) THE PAGE'S SIZE (William, 21 Nov 2026, 8:34am, with two photos of the site on his Tesla: "somebody could hit a magnifying glass
+   on the screen and have all the UI elements either get bigger or smaller and perfectly fit at just the right layout and positioning"; "everything
+   is very modular and has respected rules for each UI element"; "make sure that this idea won't be messy"; the plan pictured 11:44am,
+   size-system-plan.jpg). The reader's own size, kept on the device like the look: Smaller (0.9), Standard, Larger (1.15). At Standard this
+   returns at once and the page is today's, byte for byte as drawn. At another size every length in px in the page's style rules becomes N x s
+   px (hairlines of 1px and under kept), each width and height media condition the same, and the page's own matchMedia(...) the same, so every
+   rule switches where a browser zoomed to that size would switch it (measured against a browser's own zoom before the build: within a few
+   pixels in both engines). Each style block is scaled as it arrives, before it is drawn; a rule written for a size itself ([data-sz] in its
+   selector) is left as written. Lengths a script sets from what it measures are already in the scaled page's own measure.
+   THE TAP FLOOR (version 2, 21 Nov 2026, 12:1xpm): on a touch screen, Smaller never takes a control under the site's 44px. A height or
+   min-height of 44px or more is drawn at 44px or more (and the width written beside it), and a hit area drawn past a control by its ::before
+   or ::after (past it on both sides, with nothing drawn in it: a band or a ring is not one) keeps 44px: the part of it beyond 44px is scaled,
+   never the 44px itself (reach = 44 + s x (reach - 44)).
+   THE NARROWEST SCREEN: Larger never draws a page narrower than the 320px the site is made for: on a screen whose shorter side is under 368px
+   (320 x 1.15) Larger is as large as that side allows (360: 1.125; 320: Standard's own size), so nothing runs off a small phone. */
+(function(){
+var H=document.documentElement, N={smaller:.9,larger:1.15}, k=null; try{ k=localStorage.getItem('sz'); }catch(e){}
+if(!N[k]){ window.SZ=1; window.SZNAME='standard'; return; }
+var s=N[k]; if(s>1){ var sw=Math.min(screen.width||1e4,screen.height||1e4); if(sw>0) s=Math.min(s,Math.max(1,Math.floor(sw/320*1000)/1000)); }
+window.SZ=s; window.SZNAME=k; H.setAttribute('data-sz',k); if(s===1) return;
+var mm=window.matchMedia, FL=false; try{ FL=s<1&&mm.call(window,'(pointer: coarse)').matches; }catch(e){}
+var PX=/(-?\d*\.?\d+)px\b/g, MQ=/((?:min-|max-)?(?:width|height)\s*:\s*)(\d*\.?\d+)px/g, ONE=/^\s*(-?\d*\.?\d+)px\s*$/, PS=/::?(before|after)\b/, seen=new WeakSet();
+function r3(x){ return (Math.round(x*1000)/1000)+'px'; }
+function px(v,f){ return v.replace(PX,function(m,n){ var x=+n; if(x===0||Math.abs(x)<=1) return m; var y=x*s; if(f&&x>=44&&y<44) y=44; return r3(y); }); }
+function mq(v){ return v.replace(MQ,function(_,a,n){ return a+(Math.round(+n*s*100)/100)+'px'; }); }
+function big(st,p){ var m=ONE.exec(st.getPropertyValue(p)); return !!m&&+m[1]>=44; }
+function neg(st,p){ var m=ONE.exec(st.getPropertyValue(p)); return !!m&&+m[1]<-1; }
+var SEEN=/^(background|border$|border-(?!.*radius)|box-shadow|outline|filter|opacity|mask|-webkit-mask|clip-path|backdrop-filter)/;
+function drawn(st){ for(var i=0;i<st.length;i++) if(SEEN.test(st[i])) return true; return false; }
+function decl(st,pseudo){ var hf=FL&&(big(st,'height')||big(st,'min-height')),
+    tb=FL&&pseudo&&neg(st,'top')&&neg(st,'bottom'), lr=FL&&pseudo&&neg(st,'left')&&neg(st,'right');   /* a hit area: past the control on both sides, */
+  if((tb||lr)&&drawn(st)) tb=lr=false;                                                                /* and nothing drawn in it (a band is not one) */
+  for(var i=0;i<st.length;i++){ var p=st[i], v=st.getPropertyValue(p); if(!v||v.indexOf('px')<0||v.indexOf('url(')>=0) continue;
+    var w;
+    if(((p==='top'||p==='bottom')&&tb)||((p==='left'||p==='right')&&lr)) w=r3(+ONE.exec(v)[1]*s-(1-s)*22);   /* its 44px kept */
+    else w=px(v,FL&&(p==='height'||p==='min-height'||(hf&&(p==='width'||p==='min-width'))));
+    if(w!==v) st.setProperty(p,w,st.getPropertyPriority(p)); } }
+function walk(R,sh){ for(var i=0;i<R.length;i++){ var r=R[i]; if(seen.has(r)) continue; seen.add(r);
+  if(r.conditionText!==undefined&&r.containerName!==undefined&&R===sh.cssRules){   /* a container rule: its condition cannot be written, so it is put back scaled */
+    var c=mq(r.conditionText); if(c!==r.conditionText){ var body=''; for(var j=0;j<r.cssRules.length;j++) body+=r.cssRules[j].cssText;
+      try{ sh.deleteRule(i); sh.insertRule('@container '+(r.containerName?r.containerName+' ':'')+c+'{'+body+'}',i); r=sh.cssRules[i]; seen.add(r); }catch(e){} } }
+  if(r.style&&!(r.selectorText&&r.selectorText.indexOf('data-sz')>=0)) decl(r.style,!!(r.selectorText&&PS.test(r.selectorText)));
+  if(r.media&&r.type===4){ var t=r.media.mediaText, u=mq(t); if(u!==t) r.media.mediaText=u; }
+  if(r.cssRules) walk(r.cssRules,sh); } }
+function all(){ for(var i=0;i<document.styleSheets.length;i++){ var sh=document.styleSheets[i]; try{ walk(sh.cssRules,sh); }catch(e){} } }
+window.matchMedia=function(q){ return mm.call(window,mq(String(q))); };
+new MutationObserver(function(ms){ for(var i=0;i<ms.length;i++){ var a=ms[i].addedNodes; for(var j=0;j<a.length;j++){ var n=a[j]; if(n.nodeName==='STYLE'||n.nodeName==='LINK'||(n.querySelector&&n.querySelector('style'))){ all(); return; } } } }).observe(H,{childList:true,subtree:true});
+document.addEventListener('DOMContentLoaded',all); window.addEventListener('load',all);
+})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Licorice, Netherland Dwarf cross for sale in Tucson · Arizona Rabbits</title>
 <!-- GENERATED by rabbitpages.py from rabbits.js (Round 206; Site Idea 181): do not edit by hand, the next build writes it again. -->
