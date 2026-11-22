@@ -5146,6 +5146,7 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
 .viewer-stage{width:100%;max-height:40vh;max-height:40dvh}   /* its full width kept: the cap takes height, never width */
 .viewer-stage .viewer-frame{position:absolute;inset:0;width:auto;height:auto;aspect-ratio:auto}   /* the photo fills the capped stage's width, cropped to it, never a narrow strip */
 @media(min-width:920px) and (min-height:520px),(orientation:landscape) and (min-width:640px){.viewer-stage{max-height:none}.viewer-stage .viewer-frame{position:relative;inset:auto;width:100%;aspect-ratio:var(--stage-ar,4/3)}}
+.viewer-media{position:relative}
 .viewer-big{position:absolute;left:10px;top:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px 0 11px;
   border:1px solid var(--line);border-radius:100px;background:var(--paper);color:var(--ink);box-shadow:var(--lift-photo);
   font:inherit;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer}
@@ -5161,6 +5162,7 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
 .viewer.big .viewer-stage img{object-fit:contain}
 .viewer.big .viewer-close{right:9px}
 .viewer.big .viewer-share{display:none}
+.viewer.big .viewer-big{top:auto;bottom:62px;left:50%;transform:translateX(-50%);min-height:44px;padding:0 16px 0 14px;font-size:15px}   /* (R244b) back from the enlarged photo: low and centred, clear of the name bar a phone keeps on top */
 </style>
 </head>
 <body>
@@ -13633,8 +13635,8 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
 (function(){ var vw=document.getElementById('viewer'), st=vw&&vw.querySelector('.viewer-stage'); if(!st) return;
   var b=document.createElement('button'); b.type='button'; b.className='viewer-big'; b.setAttribute('aria-pressed','false');
   b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Enlarge</span>';
-  b.setAttribute('aria-label','Enlarge the photo'); st.appendChild(b);
-  function set(on){ vw.classList.toggle('big',on); b.setAttribute('aria-pressed',on?'true':'false'); b.setAttribute('aria-label',on?'Back to the card':'Enlarge the photo'); b.querySelector('span').textContent=on?'Back to the card':'Enlarge'; }
+  b.setAttribute('aria-label','Enlarge the photo'); (vw.querySelector('.viewer-media')||st).appendChild(b);   /* on the photo's column, which always starts on screen (in two columns the stage itself can start above it) */
+  function set(on){ vw.classList.toggle('big',on); b.setAttribute('aria-pressed',on?'true':'false'); b.setAttribute('aria-label',on?'Back to the card':'Enlarge the photo'); b.querySelector('svg').innerHTML=on?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>'; b.querySelector('span').textContent=on?'Back to the card':'Enlarge'; }
   b.addEventListener('click',function(e){ e.stopPropagation(); set(!vw.classList.contains('big')); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&vw.classList.contains('big')){ e.stopImmediatePropagation(); set(false); b.focus(); } },true);
   new MutationObserver(function(){ if(!vw.classList.contains('open')&&vw.classList.contains('big')) set(false); }).observe(vw,{attributes:true,attributeFilter:['class']});
