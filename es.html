@@ -4902,6 +4902,8 @@ html.xmas .xm-pause{background:linear-gradient(to bottom,var(--sky0) -8px,var(--
   .photo-chips{top:10px;right:10px;gap:6px}
   .photo-chips .look-chip,.photo-chips .lang-chip{position:relative;min-height:32px;height:32px;padding:0 7px}
   .photo-chips .look-chip::before,.photo-chips .lang-chip::before{content:'';position:absolute;inset:-6px}
+  /* (R243-1 follow-up) while the two say their words they keep this tier's tighter room: the Spanish words fit the narrow photo */
+  .photo-chips.say .look-chip,.photo-chips.say .lang-chip,.photo-chips .look-chip.say,.photo-chips .look-chip:focus-visible,.photo-chips .lang-chip:focus-visible{padding:0 9px 0 7px}
   .hero-chip{left:10px;bottom:10px;min-height:30px;padding:3px 11px;gap:6px}
   .hero-chip b{font-size:14px}
   .hero-chip small{font-size:12px}
@@ -5370,6 +5372,26 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
   #about .about-grid > .about-media img{flex:1 1 0;aspect-ratio:auto;object-position:40% 50%}
   #about .about-grid > .about-story{grid-column:1 / -1;grid-row:2;columns:2;column-gap:48px}
 }
+</style>
+<style id="viewer-big">/* (R244) THE CARD FITS THE SCREEN; THE PHOTO ENLARGES ON ASK (William, 21 Nov 2026, 9:58pm) */
+.viewer-stage{width:100%;max-height:40vh;max-height:40dvh}   /* its full width kept: the cap takes height, never width */
+.viewer-stage .viewer-frame{position:absolute;inset:0;width:auto;height:auto;aspect-ratio:auto}   /* the photo fills the capped stage's width, cropped to it, never a narrow strip */
+@media(min-width:920px) and (min-height:520px),(orientation:landscape) and (min-width:640px){.viewer-stage{max-height:none}.viewer-stage .viewer-frame{position:relative;inset:auto;width:100%;aspect-ratio:var(--stage-ar,4/3)}}
+.viewer-big{position:absolute;left:10px;top:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px 0 11px;
+  border:1px solid var(--line);border-radius:100px;background:var(--paper);color:var(--ink);box-shadow:var(--lift-photo);
+  font:inherit;font-size:13.5px;font-weight:600;line-height:1;cursor:pointer}
+.viewer-big::before{content:'';position:absolute;inset:-5px}
+.viewer-big svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.viewer-big:focus-visible{outline:2px solid var(--brick);outline-offset:2px}
+@media(hover:hover){.viewer-big:hover{border-color:var(--brick);color:var(--brick)}}
+.viewer.big .viewer-body,.viewer.big .viewer-gallery,.viewer.big .pairhero,.viewer.big .vtags,.viewer.big .viewer-nav,.viewer.big .viewer-strip{display:none!important}
+.viewer.big .viewer-box{background:#1A1613}
+.viewer.big .viewer-media{flex:1 1 auto;width:100%;display:flex;flex-direction:column;justify-content:center;background:#1A1613}
+.viewer.big .viewer-stage{max-height:none;aspect-ratio:auto;height:calc(100vh - 24px);height:calc(100dvh - 24px);background:#1A1613}
+.viewer.big .viewer-frame{position:absolute;inset:0;aspect-ratio:auto;width:100%;height:100%}
+.viewer.big .viewer-stage img{object-fit:contain}
+.viewer.big .viewer-close{right:9px}
+.viewer.big .viewer-share{display:none}
 </style>
 </head>
 <body>
@@ -13655,6 +13677,16 @@ var a=null; try{ a=JSON.parse(sessionStorage.getItem('szAt')||'null'); sessionSt
 if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) return; var q=el.getBoundingClientRect(), b=H.style.scrollBehavior; H.style.scrollBehavior='auto';
     window.scrollTo(0,Math.max(0,q.top+scrollY+a.f*q.height)); H.style.scrollBehavior=b; };
   if(document.readyState==='complete'){ go(); } else addEventListener('load',function(){ go(); setTimeout(function(){ go(); try{ history.scrollRestoration='auto'; }catch(e){} },350); }); }
+})();</script>
+<script id="viewer-big-js">/* (R244) the photo's Enlarge button: the picture whole, the card set aside; back with the same button, Escape or closing */
+(function(){ var vw=document.getElementById('viewer'), st=vw&&vw.querySelector('.viewer-stage'); if(!st) return;
+  var b=document.createElement('button'); b.type='button'; b.className='viewer-big'; b.setAttribute('aria-pressed','false');
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Ampliar</span>';
+  b.setAttribute('aria-label','Ampliar la foto'); st.appendChild(b);
+  function set(on){ vw.classList.toggle('big',on); b.setAttribute('aria-pressed',on?'true':'false'); b.setAttribute('aria-label',on?'Volver a la ficha':'Ampliar la foto'); b.querySelector('span').textContent=on?'Volver a la ficha':'Ampliar'; }
+  b.addEventListener('click',function(e){ e.stopPropagation(); set(!vw.classList.contains('big')); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&vw.classList.contains('big')){ e.stopImmediatePropagation(); set(false); b.focus(); } },true);
+  new MutationObserver(function(){ if(!vw.classList.contains('open')&&vw.classList.contains('big')) set(false); }).observe(vw,{attributes:true,attributeFilter:['class']});
 })();</script>
 </body>
 </html>
