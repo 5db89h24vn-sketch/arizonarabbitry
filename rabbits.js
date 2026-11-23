@@ -1883,8 +1883,10 @@ const RABBITS = [
     dob:    "2026-10-21",
     listedOn: "2026-11-14",
     ready:  "14 Nov",   /* his words, 7:39am 14 Nov 2026 (list row 260): "as soon as the 14th, but ultimately whenever people take them home" */
-    status: "available",
-    soldOn: "",
+    status: "adopted",
+    reservedOn: "2026-11-22",
+    soldOn: "2026-11-22",
+    wentHome: "2026-11-22",                    /* his words, 22 Nov 2026, 8:13pm: "lavender was just sold today"; sold means reserved and went home that day (his rule, 7 and 27 Oct) */
     ear:    "",
     weights: [],
     photo:  "photos/lavender.jpg",
