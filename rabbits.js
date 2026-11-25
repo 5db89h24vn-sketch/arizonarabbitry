@@ -2565,3 +2565,34 @@ const RABBITS = [
   }
 
 ];
+
+/* LAUNCH-DAY PRICES (25 Nov 2026). His words, 24 Nov 2026, 4:09pm: "as soon as these guys go live, all of the other
+   dwarf rabbits will be discounted by $50 across the board however, the $50 discount will only last for one hour, and
+   then they will go to a $30 Thanksgiving discount ... people can still buy multiple rabbits and discount stack";
+   4:12pm: "coconut will also get sliced by $100 for one hour on the launch. And then go to 250 ... basically -$100 from
+   its current price"; 25 Nov 2:27pm: "Maybe you could also lock the dwarfs, since it's coming so close? Just have a
+   reason why they're locked". The Thanksgiving end (through Sun 29 Nov) is Claude's proposal of 24 Nov, unopposed.
+   Applied to the records as the page reads them, by the clock (Arizona keeps one offset all year):
+     before 6 PM   the dwarf crosses and Coconut wait for 6 PM like the Holland Lops (opensAt), prices unchanged;
+     6 to 7 PM     launch hour: each dwarf cross $50 under its price, Coconut $100 under ($185);
+     7 PM to Sun   Thanksgiving: each dwarf cross $30 under its price until the end of Sun 29 Nov, then back by itself;
+                   Coconut $250 from 7 PM for good (to be written into its record at the next build).
+   The struck price stays each rabbit's first price (his rule of 30 Oct). The 20% second-rabbit rule is untouched, so
+   it stacks. The page loads itself once at 7 PM and at midnight starting Mon 30 Nov, never otherwise. */
+(function(){
+  if(typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
+  var T6=Date.parse('2026-11-25T18:00:00-07:00'), T7=Date.parse('2026-11-25T19:00:00-07:00'), TEND=Date.parse('2026-11-30T00:00:00-07:00');
+  var now=Date.now();
+  for(var i=0;i<RABBITS.length;i++){
+    var r=RABBITS[i]; if(!r||r.status!=='available') continue;
+    var dwarf=/Netherland Dwarf/.test(String(r.breed||'')), coco=(r.name==='Coconut');
+    if(!dwarf&&!coco) continue;
+    var base=+r.price;
+    if(now<T6){ r.opensAt='2026-11-25T18:00:00-07:00'; continue; }
+    if(now<T7){ r.price=base-(coco?100:50); r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealStays=false; delete r.dealEnds; continue; }
+    if(coco){ r.price=250; r.dealOn='2026-11-25'; r.dealTag='Launch-day price'; r.dealNote='Our launch-day price for Coconut, kept'; r.dealStays=true; r.dealScope='rabbit'; delete r.dealEnds; continue; }
+    if(now<TEND){ r.price=base-30; r.dealOn='2026-11-25'; r.dealTag='Thanksgiving, through Sunday'; r.dealNote='Thanksgiving price, through Sunday 29 November'; r.dealStays=false; delete r.dealEnds; }
+  }
+  var next=[T7,TEND].filter(function(t){ return t>now; })[0];
+  if(next && next-now<2147000000){ setTimeout(function(){ try{ location.reload(); }catch(e){} }, next-now+1500); }
+})();
