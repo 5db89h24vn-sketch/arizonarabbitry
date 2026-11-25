@@ -5475,7 +5475,7 @@ html.pick .grid-home-return{display:none}
 <a class="soonbar" id="soonBar" href="#available" hidden><span class="wrap soonbar-in"></span></a>
 <script>
 (function(){
-  var T="2026-11-25T18:00:00-07:00", N=8, KIND="", ONE="", A="", WHAT="Holland Lops + dwarf deals", WHAT_ES="Holland Lop y ofertas", GO="L2026-10-28";   /* (24 Nov 2026, 3:58pm, his words: "have the countdown for 6 PM tomorrow, starting ASAP") Cinnamony and Root Beer's purebred Holland Lops, born 28 Oct: to their litter until their cards are posted */
+  var T="2026-11-25T18:00:00-07:00", N=8, KIND="", ONE="", A="", WHAT="Holland Lops + dwarf deals", WHAT_ES="Holland Lop y ofertas", GO="#available";   /* (25 Nov 2026, owner 4:15pm: the banner goes to the rabbits on sale, not the litter page) (24 Nov 2026, 3:58pm, his words: "have the countdown for 6 PM tomorrow, starting ASAP") Cinnamony and Root Beer's purebred Holland Lops, born 28 Oct: to their litter until their cards are posted */
   var el=document.getElementById('soonBar'), t=Date.parse(T); if(!el||isNaN(t)||Date.now()>=t) return;
   var ES=document.documentElement.lang==='es', NB='\u00a0', m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(T), h=+m[4], h12=(h%12)||12;
   var hour=h12+(m[5]!=='00'?':'+m[5]:'')+NB+(ES?((h<12?'a.':'p.')+NB+'m.'):(h<12?'AM':'PM'));
