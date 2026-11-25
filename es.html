@@ -2036,7 +2036,15 @@ html.vtout::view-transition-new(rabbitphoto){
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:var(--name,0);pointer-events:none;z-index:2}
 }
 
-.viewer-share{right:61px}  
+.viewer-share{right:61px}
+.viewer-back{position:absolute;top:9px;left:9px;z-index:3;width:44px;height:44px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:none;place-items:center;color:var(--ink);box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out;-webkit-tap-highlight-color:transparent}
+.viewer.hasback .viewer-back{display:grid}
+.viewer.big .viewer-back{display:none!important}
+.viewer-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-left:-1px}
+.viewer-back:active{transform:scale(.94)}
+.viewer-back:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+@media(hover:hover){.viewer-back:hover{border-color:var(--brick);color:var(--brick)}}
+@media(max-width:600px){.viewer.hasback .viewer-ctl::after{padding-left:64px}}  
 @media(hover:hover){.viewer-close:hover,.viewer-share:hover{border-color:var(--brick);color:var(--brick)}}
 .viewer-share svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round}
@@ -6967,6 +6975,7 @@ html.pick .grid-home-return{display:none}
   <div class="viewer-box">
 
     <div class="viewer-ctl">
+    <a class="viewer-back" id="viewerBack" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg><span class="sr-only" id="viewerBackT"></span></a>
     <button class="viewer-share" type="button" id="viewerShare" hidden>
       <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 15.5V4"/><path d="M8.2 7.4L12 3.6l3.8 3.8"/>
@@ -7018,7 +7027,7 @@ html.pick .grid-home-return{display:none}
     </div>
     <div class="viewer-body">
       
-      <p class="vback" id="viewerBackP" hidden><a class="chip" id="viewerBack" href="#"><i class="chev left" aria-hidden="true"></i><span id="viewerBackT"></span></a></p>
+      <p class="vback" id="viewerBackP" hidden></p>
       <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Historial de precios</a></div>
 
       <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div><button type="button" class="vmix" id="viewerMix" hidden></button><div class="vcm" id="viewerComing" hidden></div>
@@ -11998,7 +12007,7 @@ html.pick .grid-home-return{display:none}
       trailStepping=false;
       while(vTrail.length&&vTrail[vTrail.length-1].hash===h) vTrail.pop();
       var t=vTrail[vTrail.length-1];
-      if(vBackP){ vBackP.hidden=!t; if(t){ vBackT.textContent=(asES()?'Volver a ':'Back to ')+t.label; vBack.setAttribute('href',t.hash); } }
+      if(vBackP){ vBackP.hidden=!t; vw.classList.toggle('hasback',!!t); if(t){ vBackT.textContent=(asES()?'Volver a ':'Back to ')+t.label; vBack.setAttribute('href',t.hash); vBack.title=vBackT.textContent; } }   /* (25 Nov 2026, owner 4:34pm) one back button, the same everywhere: a round arrow at the top left, mirroring Close */
       pillOff(); askBackOff();   /* a listing on screen: the page's way back has done its work */
     }
     function vBackClick(ev){
