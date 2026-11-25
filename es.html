@@ -4601,9 +4601,13 @@ html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A
 .vmix-k .n{font-size:12px;white-space:nowrap}
 .vmix-k b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .vmix-go{grid-column:1/-1;justify-self:end;margin-top:3px;display:inline-flex;align-items:center;gap:3px;font-weight:600;color:var(--brick);white-space:nowrap}
-.vmix.vmix-rows .vmix-k{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
-.vmix.vmix-rows .vmix-k .u{flex-direction:row;align-items:baseline;gap:6px}
+.vmix.vmix-rows .vmix-k,.vmix-one.vmix-rows .vmix-k{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.vmix.vmix-rows .vmix-k .u,.vmix-one.vmix-rows .vmix-k .u{flex-direction:row;align-items:baseline;gap:6px}
 .vmix.vmix-rows .vmix-go{align-self:flex-end}
+.vmix-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));column-gap:18px;row-gap:14px}
+.vmix-one{display:block;min-width:0}
+.vmix-who{display:block;margin-bottom:5px;font-size:12.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.vmix-k-go{display:flex;justify-content:flex-end;margin-top:4px}
 .vmix-go::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:1.6px 1.6px 0 0;transform:rotate(45deg);margin-left:1px}
 @media (hover:hover){.vmix:hover .vmix-go{text-decoration:underline;text-underline-offset:3px}}
 .vmix:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:8px}
@@ -10846,6 +10850,7 @@ html.pick .grid-home-return{display:none}
       if(vHow){ vHow.hidden=true; if(vHowPanel) vHowPanel.hidden=true; }
       if(vAbout&&vAboutPanel){ vAboutPanel.hidden=false; vAbout.setAttribute('aria-expanded','true'); }
       vParents.innerHTML=''; vParents.hidden=true;
+      paintMixProducer(key);   /* (25 Nov 2026, owner) the producer's own mix, never the last rabbit's */
       paintLitters(p,key);
       var pedS=pedForParent(key);
       paintPed(pedS); paintTags(pedLabels(pedS,pedS?pedTree(pedS):null,p),true);   /* (Round 193) a parent's labels stay in About */ paintComing(null);   /* (Round 226) no card on a parent's own view */
@@ -10964,27 +10969,45 @@ html.pick .grid-home-return{display:none}
       var parts=Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); });
       return parts.length>1?parts:null; }
     function pct(v){ var n=Math.round(v*1000)/10; return (n%1?n.toFixed(1):String(n))+'%'; }
-    function paintMix(r){ if(!vMix) return; var parts=mixFor(r); vMix.hidden=!parts; vMix.innerHTML=''; vMix.classList.remove('vmix-rows'); if(!parts) return;
-      var ES=document.documentElement.lang==='es', bar='', key='', cols=[];
+    function mixOne(parts){ var bar='', key='', cols=[];
       parts.forEach(function(x){ var c='var('+(MIXC[x[0]]||'--mx-x')+')';
         bar+='<i style="--c:'+c+';flex:'+x[1]+' 0 0"></i>'; cols.push((x[1]*100)+'fr');   /* (Round 241) the key's columns are the bar's */
         key+='<span class="u" style="--c:'+c+'"><b>'+pct(x[1])+'</b> <span class="n">'+esc(x[0])+'</span></span>'; });
-      vMix.style.setProperty('--mixcols',cols.join(' '));
-      vMix.innerHTML='<span class="vmix-bar" aria-hidden="true">'+bar+'</span><span class="vmix-k">'+key+'<span class="vmix-go">'+(ES?'Padres':'Parents')+'</span></span>';
-      vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', ')+(ES?'. Ver los padres':'. See the parents'));
+      return {cols:cols.join(' '),bar:'<span class="vmix-bar" aria-hidden="true">'+bar+'</span>',key:key}; }
+    function pureParts(b){ b=String(b||''); return (b&&!/\bcross\b/i.test(b))?[[b,1]]:null; }
+    function mixSay(parts){ return parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', '); }
+    /* (25 Nov 2026, owner) each rabbit's own mix, rebuilt from its own record every time it opens: a listing for two shows two
+       compact breakdowns, each under its name; a producer shows its own (a purebred one a full bar); nothing carries over */
+    function paintMixSets(sets,goTo){ if(!vMix) return; vMix.innerHTML=''; vMix.classList.remove('vmix-rows','vmix-pair'); vMix.style.removeProperty('--mixcols');
+      vMix.hidden=!sets.length; if(!sets.length) return;
+      var ES=document.documentElement.lang==='es', go=goTo?('<span class="vmix-go">'+(ES?'Padres':'Parents')+'</span>'):'';
+      if(sets.length===1){ var o=mixOne(sets[0].parts); vMix.style.setProperty('--mixcols',o.cols);
+        vMix.innerHTML=o.bar+'<span class="vmix-k">'+o.key+go+'</span>'; }
+      else { vMix.classList.add('vmix-pair');
+        vMix.innerHTML='<span class="vmix-two">'+sets.map(function(z){ var o=mixOne(z.parts);
+          return '<span class="vmix-one" style="--mixcols:'+o.cols+'"><span class="vmix-who">'+esc(z.name)+'</span>'+o.bar+'<span class="vmix-k">'+o.key+'</span></span>'; }).join('')+'</span>'+(go?'<span class="vmix-k vmix-k-go">'+go+'</span>':''); }
+      vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+sets.map(function(z){ return (sets.length>1?z.name+', ':'')+mixSay(z.parts); }).join('; ')+(goTo?(ES?'. Ver los padres':'. See the parents'):''));
+      vMix.style.cursor=goTo?'':'default'; vMix.setAttribute('data-go',goTo?'1':'');
       mixFit(); if(document.fonts&&document.fonts.status!=='loaded'&&document.fonts.ready) document.fonts.ready.then(mixFit); }
-    function mixFit(){ if(!vMix||vMix.hidden) return; var bar=vMix.querySelector('.vmix-bar'); if(!bar) return;
-      vMix.classList.remove('vmix-rows'); if(!bar.offsetWidth) return;
-      var segs=vMix.querySelectorAll('.vmix-bar i'), us=vMix.querySelectorAll('.vmix-k .u');
-      function right(el){ if(!el) return 0; var x=el.getBoundingClientRect().right; try{ var g=document.createRange(); g.selectNodeContents(el); x=Math.max(x,g.getBoundingClientRect().right); }catch(e){} return x; }
-      function over(){ var q=bar.getBoundingClientRect(), k=(q.width/bar.offsetWidth)||1;
+    function paintMix(r,w){ if(!w){ var p1=mixFor(r); paintMixSets(p1?[{name:r.name,parts:p1}]:[],true); return; }
+      var a=mixFor(r), b=mixFor(w); if(!a&&!b){ paintMixSets([],false); return; }   /* two purebreds: no mix to show, as before */
+      paintMixSets([{name:r.name,parts:a||pureParts(r.breed)},{name:w.name,parts:b||pureParts(w.breed)}].filter(function(z){ return z.parts; }),true); }
+    function paintMixProducer(key){ var p=HAVE_PARENTS&&PARENTS[key]; if(!p){ paintMixSets([],false); return; }
+      var m=mixOf(key,0), parts=m?Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); }):null;
+      paintMixSets(parts?[{name:p.name,parts:parts}]:[],false); }
+    function mixFit(){ if(!vMix||vMix.hidden) return;
+      var blocks=vMix.classList.contains('vmix-pair')?[].slice.call(vMix.querySelectorAll('.vmix-one')):[vMix];
+      blocks.forEach(function(blk){ blk.classList.remove('vmix-rows'); });
+      blocks.forEach(function(blk){ var bar=blk.querySelector('.vmix-bar'); if(!bar||!bar.offsetWidth) return;
+        var segs=blk.querySelectorAll('.vmix-bar i'), us=blk.querySelectorAll('.vmix-k .u');
+        function right(el){ if(!el) return 0; var x=el.getBoundingClientRect().right; try{ var g=document.createRange(); g.selectNodeContents(el); x=Math.max(x,g.getBoundingClientRect().right); }catch(e){} return x; }
+        var q=bar.getBoundingClientRect(), k=(q.width/bar.offsetWidth)||1, over=false;
         for(var i=0;i<us.length;i++){ var end=(i+1<segs.length)?segs[i+1].getBoundingClientRect().left-10*k:q.right+6*k;
-          if(Math.max(right(us[i].querySelector('b')),right(us[i].querySelector('.n')))>end+0.5*k) return true; }
-        return false; }
-      if(over()) vMix.classList.add('vmix-rows'); }
+          if(Math.max(right(us[i].querySelector('b')),right(us[i].querySelector('.n')))>end+0.5*k){ over=true; break; } }
+        if(over) blk.classList.add('vmix-rows'); }); }
     window.addEventListener('resize',function(){ mixFit(); });
     if(document.fonts&&document.fonts.addEventListener) document.fonts.addEventListener('loadingdone',function(){ mixFit(); });
-    if(vMix) vMix.addEventListener('click',function(){
+    if(vMix) vMix.addEventListener('click',function(){ if(vMix.getAttribute('data-go')!=='1') return;
       if(vAboutPanel&&vAboutPanel.hidden&&vAbout) vAbout.click();   /* About opens as a tap on it would; never shut from here */
       setTimeout(function(){
         if(vAbout) openSettle(vAbout);   /* the panel's rise ends first: its last frame pins the row where it aimed and undid the scroll below
@@ -11306,7 +11329,7 @@ html.pick .grid-home-return{display:none}
       if(vPair){ vPair.innerHTML=pairHTML(r)||stillHTML(r); vPair.hidden=!vPair.innerHTML; }
       var pcBack=pcRestore(r);   /* ROUND 189 (R189-1): the box as it was left */
       paintMeta(r);
-      paintMix(r);   /* (Round 232) the mix of a cross */
+      paintMix(r,vWith);   /* (Round 232) the mix of a cross; (25 Nov 2026) each of the two on a listing for two */
       paintCalm(r);   /* Round 171 */
       paintParents(r);
       var pedS=pedForRabbit(r);
