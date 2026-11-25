@@ -1809,7 +1809,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-back{position:absolute;top:9px;left:9px;z-index:3;width:44px;height:44px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:none;place-items:center;color:var(--ink);box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out;-webkit-tap-highlight-color:transparent}
 .viewer.hasback .viewer-back{display:grid}
 .viewer.big .viewer-back{display:none!important}
-.viewer-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-left:-1px}
+.viewer-back svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}   /* (25 Nov 2026, owner 4:46pm: "more like a backtrack button") a return arrow, unlike the photo arrows */
 .viewer-back:active{transform:scale(.94)}
 .viewer-back:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
 @media(hover:hover){.viewer-back:hover{border-color:var(--brick);color:var(--brick)}}
@@ -6925,7 +6925,7 @@ html.pick .grid-home-return{display:none}
   <div class="viewer-box">
 
     <div class="viewer-ctl">
-    <a class="viewer-back" id="viewerBack" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg><span class="sr-only" id="viewerBackT"></span></a>
+    <a class="viewer-back" id="viewerBack" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg><span class="sr-only" id="viewerBackT"></span></a>
     <button class="viewer-share" type="button" id="viewerShare" hidden>
       <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 15.5V4"/><path d="M8.2 7.4L12 3.6l3.8 3.8"/>
