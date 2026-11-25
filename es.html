@@ -14010,7 +14010,7 @@ html:not(.pick) #rail.grid-compact .lkcover-at{display:none}
 .breed-filter-empty button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
 html:not(.pick) #rail>.bunny.breed-filtered-out{display:none!important}
 html.pick #rail[data-grid-columns]{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(max-width:599px){.rabbit-breed-filters{display:flex;flex-wrap:wrap;gap:8px}.rabbit-breed-filters button{flex-direction:row;gap:8px;justify-content:center;padding:6px 9px;border-radius:999px;font-size:12px;line-height:1.2}.breed-filter-name{min-height:0;max-width:100%;display:block;white-space:nowrap;text-align:center}.breed-filter-symbol{gap:5px}.breed-filter-symbol svg{width:30px;height:30px}.breed-filter-note{font-size:11.5px}}
+/* (25 Nov 2026, owner 4:02pm: "These must be on a single line") phones: the three filters are one row of equal tiles, icon and count over the name, the name free to take a second line at large text sizes, never a second row of filters */@media(max-width:599px){.rabbit-breed-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.rabbit-breed-filters button{flex-direction:column;gap:3px;justify-content:center;min-width:0;padding:7px 4px 8px;border-radius:16px;font-size:12px;line-height:1.2}.breed-filter-name{min-height:0;max-width:100%;display:block;white-space:normal;overflow-wrap:anywhere;text-wrap:balance;text-align:center}.breed-filter-symbol{gap:5px}.breed-filter-symbol svg{width:30px;height:30px}.breed-filter-note{font-size:11.5px}}
 </style>
 <script id="rabbit-breed-filtering">
 (function(){
