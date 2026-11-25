@@ -5432,6 +5432,17 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
 .viewer.big .viewer-close{right:9px}
 .viewer.big .viewer-share{display:none}
 </style>
+
+<style id="rabbit-grid-home-clear">
+.grid-home-return{display:none}
+html.pick .grid-home-return{display:none}
+@media(max-width:599px){
+  html.thumb.at-rabbit-grid .corner{opacity:0;visibility:hidden;pointer-events:none;transition:none}
+  .grid-home-return{display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;width:max-content;margin:18px auto 0;padding:10px 18px;border:1px solid var(--line);border-radius:24px;color:var(--ink);background:var(--paper-2);font-weight:600;text-decoration:none}
+  .grid-home-return .up{width:12px;height:12px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:translateY(3px) rotate(45deg)}
+  .grid-home-return:focus-visible{outline:3px solid var(--brick);outline-offset:3px}
+}
+</style>
 </head>
 <body>
 
@@ -5872,7 +5883,27 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
         <p class="avail-stamp">Disponibilidad <span data-fact="stamp"><a class="stamp-link" href="es-updates.html#changes" title="Cada cambio, con su fecha"><time id="availStamp" datetime="2026-11-25">actualizada al 25 de noviembre de 2026</time></a></span> <span class="ages-note">Las edades se cuentan desde cada fecha de nacimiento, así que están al día hoy. <a href="#faq-ages">Cómo funciona</a></span></p>
       </div>
       
-      <div class="availability-counts" aria-live="polite" aria-atomic="true"><span class="count" id="count">Llame o escriba para saber de las camadas actuales</span><span class="count-next" id="countNext" hidden></span></div>
+      <div class="avail-controls"><div class="availability-counts" aria-live="polite" aria-atomic="true"><span class="availability-scope">Todas las razas</span><span class="count" id="count">Llame o escriba para saber de las camadas actuales</span><span class="count-next" id="countNext" hidden></span></div>
+        <div class="rabbit-grid-options" id="rabbitGridOptions" role="group" aria-label="Columnas de conejos" hidden>
+          <span class="grid-options-label">Columnas</span>
+          <span class="grid-options-buttons">
+            <button type="button" data-grid-choice="2" aria-label="2 columnas" aria-pressed="true">2</button>
+            <button type="button" data-grid-choice="3" aria-label="3 columnas" aria-pressed="false">3</button>
+            <button type="button" data-grid-choice="4" aria-label="4 columnas" aria-pressed="false" hidden>4</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rabbit-breed-browser" id="rabbitBreedBrowser" hidden>
+      <div class="rabbit-breed-filters" id="rabbitBreedFilters" role="group" aria-label="Filtrar los conejos publicados por raza">
+        <button type="button" data-breed-choice="all" aria-pressed="true"><span class="breed-filter-symbol"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="6" y="6" width="15" height="15" rx="4"/><rect x="27" y="6" width="15" height="15" rx="4"/><rect x="6" y="27" width="15" height="15" rx="4"/><rect x="27" y="27" width="15" height="15" rx="4"/></svg><span class="breed-filter-count" data-breed-count="all">0</span></span><span class="breed-filter-name">Todos</span></button>
+        <button type="button" data-breed-choice="lop" aria-pressed="false"><span class="breed-filter-symbol"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M44 14C59 11 75 17 81 30C85 35 87 43 85 50C88 56 90 61 89 66L86 67L88 69C87 75 83 79 78 82C72 87 62 90 50 89C41 89 34 87 28 84C23 89 15 91 11 85C7 79 8 67 10 56C12 43 18 33 25 26C30 20 36 16 44 14Z M38 28C31 40 30 53 29 64C28 74 24 81 20 84C27 81 32 74 34 65C35 53 34 40 41 29C42 27 40 26 38 28Z M56 48C57 44 61 43 64 45C68 47 67 52 64 54C59 56 55 53 56 48Z"/></svg><span class="breed-filter-count" data-breed-count="lop">0</span></span><span class="breed-filter-name">Holland Lop</span></button>
+        <button type="button" data-breed-choice="dwarf" aria-pressed="false"><span class="breed-filter-symbol"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M27 35C25 27 25 17 28 12C31 7 37 8 40 13C43 19 43 24 43 29L47 28C46 21 47 13 50 10C54 6 59 8 61 13C63 18 62 24 61 29C74 30 84 37 85 49C89 54 92 61 90 67L87 68L89 70C87 77 81 82 75 85C61 92 42 93 28 87C15 82 9 71 10 57C10 47 18 39 27 35Z M29 32C33 28 38 26 43 27L43 29C38 29 34 31 31 34Z M58 52C59 48 63 47 66 49C70 51 69 56 66 58C61 60 57 57 58 52Z"/></svg><span class="breed-filter-count" data-breed-count="dwarf">0</span></span><span class="breed-filter-name">Netherland Dwarf</span></button>
+      </div>
+      <p class="breed-filter-note">Las cifras incluyen cruzas y próximas aperturas.</p>
+      <p class="sr-only" id="rabbitBreedStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+      <div class="breed-filter-empty" id="rabbitBreedEmpty" hidden><p>No hay conejos en esta vista.</p><button type="button" id="rabbitBreedReset">Mostrar todos los conejos</button></div>
     </div>
 
     <div class="rail">
@@ -7178,7 +7209,9 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
   window.__focusQuietly=focusQuietly;
 
   function scrollTopFast(){
-    var html=document.documentElement, from=scrollPos();
+    var html=document.documentElement, native=document.scrollingElement, pageY=window.pageYOffset||0;
+    if(native&&pageY>0&&Math.abs(native.scrollTop-pageY)<1&&learnScroller()===native){ posBase=rawPos()-pageY; }
+    var from=scrollPos();
     var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches);
     var was=html.style.scrollBehavior; html.style.scrollBehavior='auto';
     var stopped=false;
@@ -7678,6 +7711,26 @@ html[data-look="dim"] .sz-knob{transform:translateX(16px);background:#EFE8DE}
     var lab=pill.querySelector('.corner-label'), fill=pill.querySelector('.cr-fill');
     box.appendChild(up); box.appendChild(pill); box.appendChild(sheet);
     document.body.appendChild(box);
+
+    var rabbitRail=document.getElementById('rail');
+    if(rabbitRail){
+      var gridHome=document.createElement('a');
+      gridHome.className='grid-home-return'; gridHome.href='#top';
+      var homeSource=mnav.querySelector('a[href="#top"]');
+      gridHome.textContent=homeSource ? homeSource.textContent.trim() : up.getAttribute('aria-label');
+      var homeArrow=document.createElement('i'); homeArrow.className='up'; homeArrow.setAttribute('aria-hidden','true');
+      gridHome.appendChild(homeArrow);
+      var railWrap=rabbitRail.closest('.rail')||rabbitRail;
+      railWrap.parentNode.insertBefore(gridHome,railWrap.nextSibling);
+      gridHome.addEventListener('click',function(e){e.preventDefault();close(false);scrollTopFast();});
+      function gridClear(){
+        var b=rabbitRail.getBoundingClientRect();
+        root.classList.toggle('at-rabbit-grid',b.width>0 && b.height>0 && b.top<innerHeight && b.bottom>0);
+      }
+      onScrollChange(gridClear); window.addEventListener('resize',gridClear);
+      if(window.ResizeObserver) new ResizeObserver(gridClear).observe(rabbitRail);
+      gridClear();
+    }
 
     pill.addEventListener('transitionend',function(e){ if(e.propertyName==='width') pill.style.width=''; });
     function setLabel(t){
@@ -13839,5 +13892,134 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
 </script>
 <script id="modal-origin-focus-js">(function(){document.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target.closest&&e.target.closest('#viewer a[href^="#faq-"],#viewer a[href^="#topic-"],#viewer a[href^="#stage-w"]');if(!a||!a.getClientRects().length)return;try{a.focus({preventScroll:true});}catch(err){a.focus();}},true);})();
 </script>
+
+<style id="rabbit-grid-options">
+
+#available .avail-head{flex-wrap:wrap}
+#available .avail-head>.avail-controls{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;min-width:0;margin-top:0}
+.avail-controls>.availability-counts{flex:1 1 220px}
+.rabbit-grid-options{display:flex;align-items:center;gap:9px;color:var(--ink-soft);font-size:13px;line-height:1.3}
+.rabbit-grid-options[hidden],.rabbit-grid-options button[hidden]{display:none}
+.grid-options-label{font-weight:600}
+.grid-options-buttons{display:inline-flex;align-items:center;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--paper-2);gap:2px}
+.rabbit-grid-options button{min-width:44px;min-height:44px;padding:8px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);font:600 15px/1 var(--sans);cursor:pointer}
+.rabbit-grid-options button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 4px #0002}
+.rabbit-grid-options button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+@media(hover:hover){.rabbit-grid-options button:hover{background:var(--card);color:var(--ink)}}
+#rail[data-grid-columns]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;grid-template-rows:none;overflow-x:visible;scroll-snap-type:none;column-gap:12px}
+#rail[data-grid-columns="3"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+#rail[data-grid-columns="4"]{grid-template-columns:repeat(4,minmax(0,1fr))}
+#rail[data-grid-columns]>.bunny{min-width:0;max-width:none}
+#rail[data-grid-columns]>.pairfold{grid-column:1/-1}
+html:not(.pick) #rail.grid-compact{row-gap:12px;margin-bottom:0}
+html:not(.pick) #rail.grid-compact>.bunny{display:flex;flex-direction:column;grid-row:auto;margin-bottom:0;min-width:0;transform:none}
+html:not(.pick) #rail.grid-compact>.bunny>.bunny-media,html:not(.pick) #rail.grid-compact>.bunny>.bunny-body{display:contents}
+html:not(.pick) #rail.grid-compact>.bunny>.bunny-media>picture{display:block;position:relative;order:0;flex:none;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
+html:not(.pick) #rail.grid-compact .bunny-media img{aspect-ratio:auto;object-fit:contain;transform:none}
+html:not(.pick) #rail.grid-compact .bunny-media>.status,html:not(.pick) #rail.grid-compact .bunny-media>.ptags{position:static;inset:auto;order:2;align-self:flex-start;max-width:calc(100% - 16px);margin:6px 8px 8px;padding:0;border:0;border-radius:0;box-shadow:none;background:none;font-size:11px;line-height:1.35;letter-spacing:0;white-space:normal;text-transform:none;overflow-wrap:anywhere}
+html:not(.pick) #rail.grid-compact .bunny-media>.status::before,html:not(.pick) #rail.grid-compact .planmark::before{display:none}
+html:not(.pick) #rail.grid-compact .planmark{position:static;padding:0;white-space:normal;font-size:11px;line-height:1.35;border:0;background:none;box-shadow:none}
+html:not(.pick) #rail.grid-compact .bunny-media>.marks,html:not(.pick) #rail.grid-compact .bunny-media>.shots,html:not(.pick) #rail.grid-compact .bunny-media>.pedmark{display:none}
+html:not(.pick) #rail.grid-compact>.bunny>.bunny-body>:not(.bunny-top):not(.bget-locked){display:none}
+html:not(.pick) #rail.grid-compact>.bunny>.bunny-body>.bunny-top{display:flex;flex-direction:column;align-items:flex-start;gap:3px;order:1;margin:9px 8px 0;min-width:0}
+html:not(.pick) #rail.grid-compact .bunny-top h3{font-size:16px;line-height:1.2;min-height:2.4em;overflow-wrap:anywhere;max-width:100%}
+html:not(.pick) #rail.grid-compact .bunny-top .price{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 3px;font-size:16px;line-height:1.3;white-space:normal;max-width:100%}
+html:not(.pick) #rail.grid-compact>.bunny>.bunny-body>.bget-locked{display:flex;order:3;position:relative;z-index:auto;pointer-events:none;margin:auto 6px 8px;padding:0;min-height:68px;max-width:calc(100% - 12px);width:calc(100% - 12px);container-type:normal}
+html:not(.pick) #rail.grid-compact .bget-locked>.btn{display:none}
+html:not(.pick) #rail.grid-compact .lkcover{position:relative;inset:auto;width:100%;padding:8px 3px;gap:4px;border-radius:8px;background:var(--lock-bg);border:1px solid var(--lock-line);box-sizing:border-box}
+html:not(.pick) #rail.grid-compact .lkcover .bopen-k{font-size:10px;line-height:1.2;letter-spacing:0;text-transform:none;white-space:normal}
+html:not(.pick) #rail.grid-compact .lkcover .bopen-k svg{display:none}
+html:not(.pick) #rail.grid-compact .lkcover .lkclock{gap:2px;margin:0;align-items:flex-start}
+html:not(.pick) #rail.grid-compact .lkcover .lkc{gap:3px}
+html:not(.pick) #rail.grid-compact .lkcover .lkc b{font-family:var(--sans);font-size:13px;line-height:1.1;font-weight:600;padding:0;min-width:0;border:0;background:none;letter-spacing:0}
+html:not(.pick) #rail.grid-compact .lkcover .lkc small{font-size:9px;line-height:1;letter-spacing:0}
+html:not(.pick) #rail.grid-compact .lkcover .lkclock>i{font-family:var(--sans);font-size:12px;line-height:1.1;padding:0;opacity:1}
+html:not(.pick) #rail.grid-compact .lkcover-at{display:none}
+@media(min-width:600px){#rail[data-grid-columns]{column-gap:18px}html:not(.pick) #rail.grid-compact{row-gap:18px}html:not(.pick) #rail.grid-compact .bunny-top h3{font-size:19px}html:not(.pick) #rail.grid-compact .bunny-top .price{font-size:18px}html:not(.pick) #rail.grid-compact .bunny-media>.status,html:not(.pick) #rail.grid-compact .planmark{font-size:12px}html:not(.pick) #rail.grid-compact .lkcover .lkc b{font-size:19px}html:not(.pick) #rail.grid-compact .lkcover .lkc small{font-size:9px}}
+</style>
+<script id="rabbit-grid-preference">
+(function(){
+  var rail=document.getElementById('rail'), group=document.getElementById('rabbitGridOptions');
+  if(!rail||!group) return;
+  var key='ar-rabbit-grid-columns', preferred=2, buttons=[].slice.call(group.querySelectorAll('[data-grid-choice]'));
+  function valid(value){ value=String(value); return /^(2|3|4)$/.test(value)?+value:2; }
+  try{ preferred=valid(localStorage.getItem(key)); }catch(e){}
+  function apply(){
+    var wide=window.innerWidth>=600, columns=Math.min(preferred,wide?4:3), focused=document.activeElement;
+    rail.setAttribute('data-grid-columns',String(columns));
+    rail.classList.toggle('grid-compact',columns>2);
+    buttons.forEach(function(button){ var n=+button.getAttribute('data-grid-choice'); button.hidden=n===4&&!wide; button.setAttribute('aria-pressed',n===columns?'true':'false'); });
+    group.hidden=false;
+    if(focused&&buttons.indexOf(focused)!==-1&&focused.hidden){ buttons.filter(function(b){return +b.getAttribute('data-grid-choice')===columns;})[0].focus(); }
+  }
+  function choose(button){ preferred=+button.getAttribute('data-grid-choice'); try{ localStorage.setItem(key,String(preferred)); }catch(e){} apply(); }
+  group.addEventListener('click',function(event){ var button=event.target.closest&&event.target.closest('[data-grid-choice]'); if(button&&group.contains(button)&&!button.hidden) choose(button); });
+  group.addEventListener('keydown',function(event){
+    if(!/^(ArrowLeft|ArrowRight|Home|End)$/.test(event.key)) return;
+    var button=event.target.closest&&event.target.closest('[data-grid-choice]'); if(!button) return;
+    var visible=buttons.filter(function(b){return !b.hidden;}), at=visible.indexOf(button), next;
+    if(event.key==='Home') next=0; else if(event.key==='End') next=visible.length-1; else next=(at+(event.key==='ArrowRight'?1:-1)+visible.length)%visible.length;
+    event.preventDefault(); event.stopPropagation(); choose(visible[next]); visible[next].focus();
+  });
+  window.addEventListener('resize',apply);
+  window.addEventListener('storage',function(event){if(event.key===key){preferred=valid(event.newValue);apply();}});
+  apply();
+})();
+</script>
+
+<style id="rabbit-breed-filters">
+.availability-scope{flex:1 0 100%;font-size:12px;font-weight:600;line-height:1.3;color:var(--ink-faint)}
+.rabbit-breed-browser{margin:-8px 0 20px}
+.rabbit-breed-browser[hidden],html.pick .rabbit-breed-browser{display:none}
+.rabbit-breed-filters{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.rabbit-breed-filters button{--breed-icon-ground:var(--paper-2);display:flex;align-items:center;justify-content:center;gap:9px;min-width:44px;min-height:44px;max-width:100%;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--paper-2);color:var(--ink-soft);font:600 14px/1.25 var(--sans);cursor:pointer}
+.rabbit-breed-filters button[aria-pressed="true"]{--breed-icon-ground:var(--card);background:var(--card);color:var(--brick-dk);border-color:var(--brick);box-shadow:0 1px 4px #0001}
+.rabbit-breed-filters button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+.breed-filter-symbol{display:inline-flex;gap:7px;align-items:center;flex:none}
+.breed-filter-symbol svg{display:block;width:30px;height:30px;fill:currentColor}
+.breed-icon-cutout{fill:var(--breed-icon-ground)}
+.breed-filter-count{min-width:19px;text-align:center;font-variant-numeric:tabular-nums;font-size:13px}
+.breed-filter-note{font-size:12px;color:var(--ink-faint);line-height:1.4;margin:8px 2px 0}
+.breed-filter-empty{margin:16px 0 0;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);color:var(--ink-soft);font-size:14px}
+.breed-filter-empty[hidden]{display:none}
+.breed-filter-empty p{margin:0 0 10px}
+.breed-filter-empty button{min-width:44px;min-height:44px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:600 14px/1.2 var(--sans);cursor:pointer}
+.breed-filter-empty button:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+html:not(.pick) #rail>.bunny.breed-filtered-out{display:none!important}
+html.pick #rail[data-grid-columns]{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:599px){.rabbit-breed-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.rabbit-breed-filters button{flex-direction:column;gap:5px;justify-content:flex-start;padding:10px 5px;border-radius:18px;font-size:12px;line-height:1.2}.breed-filter-name{min-height:2.4em;max-width:100%;display:flex;align-items:center;justify-content:center;text-align:center}.breed-filter-symbol{gap:5px}.breed-filter-symbol svg{width:30px;height:30px}.breed-filter-note{font-size:11.5px}}
+</style>
+<script id="rabbit-breed-filtering">
+(function(){
+  var rail=document.getElementById('rail'), browser=document.getElementById('rabbitBreedBrowser'), group=document.getElementById('rabbitBreedFilters'), status=document.getElementById('rabbitBreedStatus');
+  if(!rail||!browser||!group) return;
+  var records=(typeof RABBITS!=='undefined'&&Array.isArray(RABBITS))?RABBITS:[], selected='all', buttons=[].slice.call(group.querySelectorAll('[data-breed-choice]')), byAddress={};
+  records.forEach(function(r){ if(r){ var address=r.addr||String(r.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); byAddress[address]=r; } });
+  var key='ar-rabbit-breed-filter';
+  try{var saved=sessionStorage.getItem(key);if(/^(all|lop|dwarf)$/.test(saved||''))selected=saved;}catch(e){}
+  function family(card){ var r=byAddress[card.getAttribute('data-rid')], breed=String(r&&r.breed||''); return /^Holland Lop\b/i.test(breed)?'lop':(/^Netherland Dwarf\b/i.test(breed)?'dwarf':'other'); }
+  function paint(announce){
+    var cards=[].slice.call(rail.children).filter(function(card){return card.classList.contains('bunny');}), counts={all:cards.length,lop:0,dwarf:0}, shown=0;
+    cards.forEach(function(card){ var breed=family(card); if(breed!=='other') counts[breed]++; var match=selected==='all'||selected===breed; card.setAttribute('data-breed-family',breed); card.classList.toggle('breed-filtered-out',!match); if(match) shown++; });
+    rail.setAttribute('data-breed-filter',selected);
+    buttons.forEach(function(button){var key=button.getAttribute('data-breed-choice'), count=button.querySelector('[data-breed-count]'); if(count.textContent!==String(counts[key])) count.textContent=String(counts[key]); button.setAttribute('aria-pressed',key===selected?'true':'false');});
+    browser.hidden=cards.length===0;
+    var empty=document.getElementById('rabbitBreedEmpty');if(empty)empty.hidden=shown!==0||cards.length===0;
+    if(announce&&status){var es=document.documentElement.lang==='es';status.textContent=es?(shown===1?'Se muestra 1 conejo.':'Se muestran '+shown+' conejos.'):(shown===1?'1 rabbit shown.':shown+' rabbits shown.');}
+  }
+  function choose(button){selected=button.getAttribute('data-breed-choice');try{sessionStorage.setItem(key,selected);}catch(e){}paint(true);}
+  var reset=document.getElementById('rabbitBreedReset');if(reset)reset.addEventListener('click',function(){choose(buttons[0]);buttons[0].focus();});
+  group.addEventListener('click',function(event){var button=event.target.closest&&event.target.closest('[data-breed-choice]');if(button&&group.contains(button))choose(button);});
+  group.addEventListener('keydown',function(event){
+    if(!/^(ArrowLeft|ArrowRight|Home|End)$/.test(event.key))return;
+    var button=event.target.closest&&event.target.closest('[data-breed-choice]');if(!button)return;
+    var at=buttons.indexOf(button),next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(at+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;
+    event.preventDefault();event.stopPropagation();choose(buttons[next]);buttons[next].focus();
+  });
+  if(window.MutationObserver)new MutationObserver(function(){paint(false);}).observe(rail,{childList:true});
+  paint(false);
+})();
+</script>
+
 </body>
 </html>
