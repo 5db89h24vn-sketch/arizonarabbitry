@@ -1452,7 +1452,8 @@ const RABBITS = [
     wentHome: "2026-10-16",                    /* his word, 16 Oct 2026, 8:10pm Tucson: picked up "around the middle of the day" that day */
     partsFrom: "2026-10-10",                   /* paying in parts since the first payment (his word, 17 Oct 2026: "just ... say paying in parts", "a payment start date"); no name, ever */
     paidOff: "",                               /* the day the last payment comes in: then "Paid off <date>" in its record */
-    planPaid: 150,                             /* his word, 30 Oct 2026, 10:01pm: "honey only has $150 put down so far ... Honey's original price is $350"; the record says "$150 of $350 · $200 to go" with the bar (his 10:02pm ask); it replaces planPct: 43, the same share */
+    /* His word, 25 Nov 2026: "update the website for Honey that we received $50". Add that payment to the $150 already received; the pair allocation below is unchanged. */
+    planPaid: 200,                             /* prior evidence, 30 Oct 2026, 10:01pm: "honey only has $150 put down so far ... Honey's original price is $350"; the record then said "$150 of $350 · $200 to go" with the bar (his 10:02pm ask); it replaces planPct: 43, the same share */
     planDue: "",                               /* the day he expects the last payment; he gives it, the record prints it */
     planNext: "Marshmallow",                   /* A PAIR ON ONE PLAN (his words, 31 Oct 2026, afternoon: "Marshmallow was taken by the same person who is currently paying for honey ... Honey, will be the first meter, and then all the other money left over will just fill up marshmallows $200 meter"): planPaid above is the pair's dollars; Honey's $350 fills first, whatever is over fills Marshmallow's $200. One card for the two on the front page, opening like a folder onto both listings ("you see 2x listings in one"); both listings stay as they are ("preserve their original posts for archive purposes") */
     ear:    "",
