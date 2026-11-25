@@ -4608,6 +4608,23 @@ html[data-look="dim"]{--mx-nd:#C99A80;--mx-hl:#E3B27E;--mx-sa:#BDB3E2;--mx-lh:#A
 .vmix-one{display:block;min-width:0}
 .vmix-who{display:block;margin-bottom:5px;font-size:12.5px;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
 .vmix-k-go{display:flex;justify-content:flex-end;margin-top:4px}
+:root{--ped-g1:#B4872F;--ped-g2:#F2D27C;--ped-gk:#8A6418}
+html[data-look="dim"]{--ped-g1:#A57C2C;--ped-g2:#F4DC98;--ped-gk:#E9C878}
+.vmix-ench .vmix-bar{position:relative;height:10px;padding:2px;gap:2px;background:linear-gradient(110deg,var(--ped-g1),var(--ped-g2) 28%,var(--ped-g1) 52%,var(--ped-g2) 76%,var(--ped-g1));box-shadow:0 0 10px color-mix(in srgb,var(--ped-g2) 45%,transparent)}
+.vmix-ench .vmix-bar i{border-radius:999px}
+.vmix-ench .vmix-k .u b::before{box-shadow:0 0 0 2px var(--ped-g2)}
+.vmix-shine .vmix-bar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%);background-size:250% 100%;background-position:120% 0;animation:pedShine 1.6s .35s ease-out 1 both;pointer-events:none}
+@keyframes pedShine{to{background-position:-120% 0}}
+@media (prefers-reduced-motion:reduce){.vmix-shine .vmix-bar::after{animation:none;display:none}}
+.vped-full{display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;margin:8px 0 2px;font-size:13px;line-height:1.35;color:var(--ink-soft)}
+.vped-full[hidden]{display:none}
+.vpf-ic{flex:none;display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;color:var(--ped-gk);background:color-mix(in srgb,var(--ped-g2) 22%,transparent);box-shadow:inset 0 0 0 1.5px var(--ped-g1)}
+.vpf-ic svg{width:18px;height:18px;fill:currentColor}
+.vpf-t{flex:1;min-width:0}.vpf-t b{color:var(--ink);font-weight:600}
+.vpf-i{flex:none;width:44px;height:44px;margin:-8px -8px -8px 0;border:0;background:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:italic 700 13px/1 Georgia,serif;color:var(--ink-soft);position:relative}
+.vpf-i::before{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:var(--paper-2);box-shadow:inset 0 0 0 1px var(--line);z-index:-1}
+.vpf-i{isolation:isolate}.vpf-i:focus-visible{outline:2px solid var(--brick-dk);outline-offset:-6px;border-radius:50%}
+.vpf-say{flex-basis:100%;margin:2px 0 0 39px;font-size:13px;color:var(--ink-soft)}
 .vmix-go::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:1.6px 1.6px 0 0;transform:rotate(45deg);margin-left:1px}
 @media (hover:hover){.vmix:hover .vmix-go{text-decoration:underline;text-underline-offset:3px}}
 .vmix:focus-visible{outline:2px solid var(--brick);outline-offset:3px;border-radius:8px}
@@ -10978,7 +10995,27 @@ html.pick .grid-home-return{display:none}
     function mixSay(parts){ return parts.map(function(x){ return pct(x[1])+' '+x[0]; }).join(', '); }
     /* (25 Nov 2026, owner) each rabbit's own mix, rebuilt from its own record every time it opens: a listing for two shows two
        compact breakdowns, each under its name; a producer shows its own (a purebred one a full bar); nothing carries over */
-    function paintMixSets(sets,goTo){ if(!vMix) return; vMix.innerHTML=''; vMix.classList.remove('vmix-rows','vmix-pair'); vMix.style.removeProperty('--mixcols');
+    var PED_IC='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="4" cy="12" r="2.4"/><circle cx="12" cy="6.5" r="2.1"/><circle cx="12" cy="17.5" r="2.1"/><circle cx="20" cy="3.6" r="1.7"/><circle cx="20" cy="9.4" r="1.7"/><circle cx="20" cy="14.6" r="1.7"/><circle cx="20" cy="20.4" r="1.7"/><path d="M6.2 11 9.9 7.4M6.2 13l3.7 3.6M14 5.7l4.3-1.6M14 7.3l4.3 1.6M14 16.7l4.3-1.6M14 18.3l4.3 1.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+    /* (25 Nov 2026, owner: "an enchanted design if they were 100% pedigree"; full pedigree = "Three generations recorded; explain this
+       beside the pedigree icon") one breed and every parent, grandparent and great-grandparent on record (all 14) */
+    function pedFull(s){ if(!s||s.cross) return false; var t=pedTree(s), n=0;
+      (function walk(x,g){ if(!x) return; n++; if(g<3){ walk(x.sire,g+1); walk(x.dam,g+1); } })(t.sire,1);
+      (function walk(x,g){ if(!x) return; n++; if(g<3){ walk(x.sire,g+1); walk(x.dam,g+1); } })(t.dam,1);
+      return n>=14; }
+    var vPedFull=null;
+    function paintPedFull(ench){ if(!vMix) return;
+      if(!vPedFull){ vPedFull=document.createElement('div'); vPedFull.className='vped-full'; vPedFull.id='viewerPedFull'; vMix.parentNode.insertBefore(vPedFull,vMix.nextSibling);
+        vPedFull.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.vpf-i'); if(!b) return; var say=vPedFull.querySelector('.vpf-say'); if(!say) return;
+          var on=b.getAttribute('aria-expanded')!=='true'; b.setAttribute('aria-expanded',on?'true':'false'); say.hidden=!on; }); }
+      vMix.classList.toggle('vmix-ench',!!ench); vPedFull.hidden=!ench; vPedFull.innerHTML=''; if(!ench) return;
+      var ES=document.documentElement.lang==='es';
+      vPedFull.innerHTML='<span class="vpf-ic">'+PED_IC+'</span><span class="vpf-t"><b>'+(ES?'Pedigrí completo':'Full pedigree')+'</b> '+(ES?'Tres generaciones registradas':'Three generations recorded')+'</span>'+
+        '<button type="button" class="vpf-i" aria-expanded="false" aria-controls="viewerPedFullSay" aria-label="'+(ES?'Qué significa':'What this means')+'">i</button>'+
+        '<p class="vpf-say" id="viewerPedFullSay" hidden>'+esc(ES?('Sus padres, sus cuatro abuelos y sus ocho bisabuelos están registrados, todos '+ench.breed+'. Puede verlos en Pedigrí, más abajo.')
+          :('Both parents, all four grandparents and all eight great-grandparents are on record, every one a '+ench.breed+'. You can see them under Pedigree below.'))+'</p>';
+      if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){ vMix.classList.remove('vmix-shine'); void vMix.offsetWidth; vMix.classList.add('vmix-shine'); } }
+    function paintMixSets(sets,goTo,ench){ if(!vMix) return; vMix.innerHTML=''; vMix.classList.remove('vmix-rows','vmix-pair'); vMix.style.removeProperty('--mixcols');
+      paintPedFull(sets.length===1?ench:null);
       vMix.hidden=!sets.length; if(!sets.length) return;
       var ES=document.documentElement.lang==='es', go=goTo?('<span class="vmix-go">'+(ES?'Padres':'Parents')+'</span>'):'';
       if(sets.length===1){ var o=mixOne(sets[0].parts); vMix.style.setProperty('--mixcols',o.cols);
@@ -10989,12 +11026,14 @@ html.pick .grid-home-return{display:none}
       vMix.setAttribute('aria-label',(ES?'Mezcla: ':'The mix: ')+sets.map(function(z){ return (sets.length>1?z.name+', ':'')+mixSay(z.parts); }).join('; ')+(goTo?(ES?'. Ver los padres':'. See the parents'):''));
       vMix.style.cursor=goTo?'':'default'; vMix.setAttribute('data-go',goTo?'1':'');
       mixFit(); if(document.fonts&&document.fonts.status!=='loaded'&&document.fonts.ready) document.fonts.ready.then(mixFit); }
-    function paintMix(r,w){ if(!w){ var p1=mixFor(r); paintMixSets(p1?[{name:r.name,parts:p1}]:[],true); return; }
+    function paintMix(r,w){ if(!w){ var p1=mixFor(r);
+        if(!p1){ var pb=pureParts(r&&r.breed), ps=pb&&pedForRabbit(r); if(pb&&pedFull(ps)){ paintMixSets([{name:r.name,parts:pb}],false,{breed:pb[0][0]}); return; } }   /* a purebred listing shows its bar only with a full pedigree */
+        paintMixSets(p1?[{name:r.name,parts:p1}]:[],true); return; }
       var a=mixFor(r), b=mixFor(w); if(!a&&!b){ paintMixSets([],false); return; }   /* two purebreds: no mix to show, as before */
       paintMixSets([{name:r.name,parts:a||pureParts(r.breed)},{name:w.name,parts:b||pureParts(w.breed)}].filter(function(z){ return z.parts; }),true); }
     function paintMixProducer(key){ var p=HAVE_PARENTS&&PARENTS[key]; if(!p){ paintMixSets([],false); return; }
       var m=mixOf(key,0), parts=m?Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); }):null;
-      paintMixSets(parts?[{name:p.name,parts:parts}]:[],false); }
+      paintMixSets(parts?[{name:p.name,parts:parts}]:[],false,(parts&&parts.length===1&&pedFull(pedForParent(key)))?{breed:parts[0][0]}:null); }
     function mixFit(){ if(!vMix||vMix.hidden) return;
       var blocks=vMix.classList.contains('vmix-pair')?[].slice.call(vMix.querySelectorAll('.vmix-one')):[vMix];
       blocks.forEach(function(blk){ blk.classList.remove('vmix-rows'); });
