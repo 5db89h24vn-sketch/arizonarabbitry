@@ -4424,9 +4424,10 @@ html[data-look="dim"]{--ped-g1:#A57C2C;--ped-g2:#F4DC98;--ped-gk:#E9C878}
 .vmix-ench .vmix-bar{position:relative;height:10px;padding:2px;gap:2px;background:linear-gradient(110deg,var(--ped-g1),var(--ped-g2) 28%,var(--ped-g1) 52%,var(--ped-g2) 76%,var(--ped-g1));box-shadow:0 0 10px color-mix(in srgb,var(--ped-g2) 45%,transparent)}
 .vmix-ench .vmix-bar i{border-radius:999px}
 .vmix-ench .vmix-k .u b::before{box-shadow:0 0 0 2px var(--ped-g2)}
-.vmix-shine .vmix-bar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%);background-size:250% 100%;background-position:120% 0;animation:pedShine 1.6s .35s ease-out 1 both;pointer-events:none}
+.vmix-ench .vmix-bar{position:relative;isolation:isolate}
+.vmix-ench.vmix-shine .vmix-bar::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.75) 50%,transparent 70%);background-size:250% 100%;background-position:120% 0;animation:pedShine 1.6s .35s ease-out 1 both;pointer-events:none}
 @keyframes pedShine{to{background-position:-120% 0}}
-@media (prefers-reduced-motion:reduce){.vmix-shine .vmix-bar::after{animation:none;display:none}}
+@media (prefers-reduced-motion:reduce){.vmix-ench.vmix-shine .vmix-bar::after{animation:none;display:none}}
 .vped-full{display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;margin:8px 0 2px;font-size:13px;line-height:1.35;color:var(--ink-soft)}
 .vped-full[hidden]{display:none}
 .vpf-ic{flex:none;display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;color:var(--ped-gk);background:color-mix(in srgb,var(--ped-g2) 22%,transparent);box-shadow:inset 0 0 0 1.5px var(--ped-g1)}
@@ -11019,7 +11020,7 @@ html.pick .grid-home-return{display:none}
       if(!vPedFull){ vPedFull=document.createElement('div'); vPedFull.className='vped-full'; vPedFull.id='viewerPedFull'; vMix.parentNode.insertBefore(vPedFull,vMix.nextSibling);
         vPedFull.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.vpf-i'); if(!b) return; var say=vPedFull.querySelector('.vpf-say'); if(!say) return;
           var on=b.getAttribute('aria-expanded')!=='true'; b.setAttribute('aria-expanded',on?'true':'false'); say.hidden=!on; }); }
-      vMix.classList.toggle('vmix-ench',!!ench); vPedFull.hidden=!ench; vPedFull.innerHTML=''; if(!ench) return;
+      vMix.classList.toggle('vmix-ench',!!ench); vMix.classList.remove('vmix-shine'); vPedFull.hidden=!ench; vPedFull.innerHTML=''; if(!ench) return;   /* (25 Nov 2026, 4:51pm fix) the shine never outlives the gold bar */
       var ES=document.documentElement.lang==='es';
       vPedFull.innerHTML='<span class="vpf-ic">'+PED_IC+'</span><span class="vpf-t"><b>'+(ES?'Pedigrí completo':'Full pedigree')+'</b> '+(ES?'Tres generaciones registradas':'Three generations recorded')+'</span>'+
         '<button type="button" class="vpf-i" aria-expanded="false" aria-controls="viewerPedFullSay" aria-label="'+(ES?'Qué significa':'What this means')+'">i</button>'+
