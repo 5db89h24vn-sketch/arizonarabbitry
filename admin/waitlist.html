@@ -7,27 +7,6 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#241F1D">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     WILLIAM'S WAITLIST PAGE (7 Sept 2026). Nobody links here; he
-     bookmarks it. It shows who is waiting on which litter, counts them
-     the way the public pages do, copies the addresses for an email, and
-     takes a paste of the addresses that signed up before the counter
-     existed. Since 7 Oct 2026 it also shows what each person asked to be
-     sent ("every update" beside an address) and copies those people apart,
-     for the emails with a litter's new photos. Everything it shows comes from /api/waitlist with his key
-     in the Authorization header; the key is typed here each time and
-     kept nowhere. The page is plain HTML, so with scripts off it says
-     so and nothing else.
-
-     Since 27 Oct 2026 (Round 158, his list row 112) it also holds the site's own
-     mail test: one button that sends two emails through Resend, both to
-     hello@arizonarabbits.com and nobody else (functions/api/mailtest.js).
-
-     Cloudflare serves this address with X-Robots-Tag: noindex and
-     Cache-Control: no-store (_headers), so it is never indexed and
-     never cached.
-     ═══════════════════════════════════════════════════════════════ -->
-
 <style>
 :root{
   color-scheme:light;
@@ -56,10 +35,7 @@ textarea{width:100%;min-height:120px;resize:vertical}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:var(--r);
   font-weight:500;font-size:15.5px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;font-family:inherit}
 .btn.primary{background:var(--brick);border-color:var(--brick);color:#fff}
-/* A COLOUR FOR A MOUSE, NOT FOR A TAP (8 Nov 2026, Round 182d; William, 6:05am, a picture of an orange ring left on the
-   listing's Share button after a tap). A phone keeps :hover on what was tapped until the next tap, so every :hover on
-   this page sits in @media(hover:hover), where its rule was: the same on a computer, never on a phone. The front
-   page's note has the whole of it; hovertest.js holds every page. */
+
 @media(hover:hover){.btn:hover{border-color:var(--brick);color:var(--brick-dk)}}
 @media(hover:hover){.btn.primary:hover{background:var(--brick-dk);color:#fff}}
 .btn.sm{min-height:38px;padding:0 14px;font-size:14px}
@@ -130,8 +106,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
   </section>
 </main>
 
-<!-- rabbits.js names the litters William is planning (PLANNED), so a planned
-     list shows here by its words rather than its key -->
 <script src="/rabbits.js"></script>
 <script>
 (function(){
@@ -164,10 +138,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
     });
     return b;
   }
-  /* WHAT EACH PERSON ASKED TO BE SENT (7 Oct 2026): "every update" (new photos
-     as the litter grows, and the day it goes on sale) or only that day. The
-     day a litter goes on sale, everybody on it gets the email (the first
-     button); for new photos, only the every-update people (the second). */
   function card(title, count, sub, entries, copyLabel, union, updates){
     var c=document.createElement('div'); c.className='card';
     c.innerHTML='<h3>'+esc(title)+'</h3><div class="n">'+esc(people(count))+'</div><p class="note">'+esc(sub)+'</p>';
@@ -197,8 +167,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
       var seen={}, union=[];
       ownEmails.concat(allEmails).forEach(function(e){ if(!seen[e]){ seen[e]=1; union.push(e); } });
       var both=ownEmails.filter(function(e){ return allEmails.indexOf(e)>=0; }).length;
-      /* (the bracket after "list'" was missing from 7 Sept to 7 Oct 2026, so
-         this whole script never ran; waitlisttest.js now opens this page) */
       var sub=people(own.length)+' asked for this litter by name'+(both?(', '+both+' of them also on the every-litter list'):'')+'; '+people(all.length)+' want every litter. The site shows '+union.length+'.';
       var seenU={}, updates=[];
       own.concat(all).forEach(function(x){ if(x.f==='all'&&!seenU[x.email]){ seenU[x.email]=1; updates.push(x.email); } });
@@ -221,8 +189,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
     }).catch(function(){ say('Could not reach the site. Try again in a minute.', true); });
   }
   document.getElementById('keyform').addEventListener('submit',function(ev){ ev.preventDefault(); load(); });
-  /* THE SITE'S OWN MAIL, TRIED (27 Oct 2026, Round 158): one press sends the two test emails to
-     hello@arizonarabbits.com; the answer says what Resend said, word for word */
   var mailBox=document.getElementById('mailbox'), mailSaid=document.getElementById('mailsaid'), mailBtn=document.getElementById('mailtest');
   function mailSay(t, bad){ mailSaid.textContent=t; mailSaid.hidden=!t; mailSaid.classList.toggle('bad',!!bad); }
   mailBtn.addEventListener('click',function(){
@@ -232,8 +198,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;back
       return r.text().then(function(t){ var d=null; try{ d=JSON.parse(t); }catch(e){} return {status:r.status, d:d}; });
     }).then(function(x){
       mailBtn.disabled=false; var d=x.d;
-      /* an answer that is not the site's own JSON (Cloudflare's error page, a cut-off body): the request may have
-         reached the site and both emails may have gone (Codex's review, 28 Oct 2026): the Inbox first, never "try again" */
       if(!d||typeof d!=='object'){ mailSay('The site answered '+x.status+' but not in its own words, so the test may or may not have gone. Look in your Inbox for \u201c[Test]\u201d first; a new press after that is a new test.', true); return; }
       if(x.status===200&&d.ok){ mailSay('Resend accepted both at '+d.at+', for '+d.to+'. Now look in your Inbox for \u201c[Test] Sam\u201d and \u201c[Test] Thanks, Sam\u201d (accepted is not yet delivered). Request '+d.code+'.'); return; }
       if(x.status===401){ mailSay('That key is not the one set in Cloudflare.', true); return; }

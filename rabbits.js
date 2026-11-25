@@ -1786,6 +1786,184 @@ const RABBITS = [
     note:   "Tortoise like Mocha and hard to tell apart: a shade warmer and fluffier on 15 October, one ear down and one out to the side."
   },
 
+  /* Cinnamony and Root Beer's Holland Lops, born 28 Oct 2026: Release A, opening 25 Nov at 6 PM Arizona.
+     Seven offered from the eight born; Cinnabun remains unlisted while William decides whether to keep it.
+     Names, prices, colours and descriptions follow Claude's owner-attributed handoff of 24 Nov 2026.
+     Sex remains blank until William supplies it. Cocoa's third photo is held for its crop/privacy conflict;
+     Cookie's unsupported lookout description is omitted. Clips are not part of this release. */
+  {
+    name:   "Snickerdoodle",
+    photos: [
+      { src: "photos/snickerdoodle.jpg", date: "2026-11-24" },
+      { src: "photos/snickerdoodle-2.jpg", date: "2026-11-24", note: "Face on, ears down, the white mark on the forehead." }
+    ],
+    price:   450,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Blue tortoise",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/snickerdoodle.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    feature: true,
+    note:    "A warm fawn coat with blue-grey ears, and the only clear white mark on the forehead in the litter: the first we've had in our purebred line."
+  },
+
+  {
+    name:   "Mochi",
+    photos: [
+      { src: "photos/mochi.jpg", date: "2026-11-24" },
+      { src: "photos/mochi-2.jpg", date: "2026-11-24", note: "Lying flat on the stone." },
+      { src: "photos/mochi-3.jpg", date: "2026-11-24", note: "Face on." }
+    ],
+    price:   400,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/mochi.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "The heaviest of the litter: round and soft, pale grey with darker ears and feet."
+  },
+
+  {
+    name:   "Sprinkles",
+    photos: [
+      { src: "photos/sprinkles.jpg", date: "2026-11-24" },
+      { src: "photos/sprinkles-2.jpg", date: "2026-11-24", note: "Face on." },
+      { src: "photos/sprinkles-3.jpg", date: "2026-11-24", note: "Curled up, face tucked." }
+    ],
+    price:   420,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/sprinkles.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "The smallest of the litter, with a small, faint white mark on the forehead."
+  },
+
+  {
+    name:   "Cocoa",
+    photos: [
+      { src: "photos/cocoa.jpg", date: "2026-11-24" },
+      { src: "photos/cocoa-2.jpg", date: "2026-11-24", note: "Asleep, face on." }
+    ],
+    price:   400,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/cocoa.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "The sleepy one: asleep in most of its photos."
+  },
+
+  {
+    name:   "Cookie",
+    photos: [
+      { src: "photos/cookie.jpg", date: "2026-11-24" },
+      { src: "photos/cookie-2.jpg", date: "2026-11-24", note: "Face on, ears out." }
+    ],
+    price:   400,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/cookie.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "A plush, dense coat. Crumb is its near-identical twin."
+  },
+
+  {
+    name:   "Crumb",
+    photos: [
+      { src: "photos/crumb.jpg", date: "2026-11-24" },
+      { src: "photos/crumb-2.jpg", date: "2026-11-24", note: "Stretched out on the ledge." },
+      { src: "photos/crumb-3.jpg", date: "2026-11-24", note: "Face on, eyes half shut." },
+      { src: "photos/crumb-4.jpg", date: "2026-11-24", note: "Asleep, ears out." }
+    ],
+    price:   400,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/crumb.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "Cookie's near-identical twin."
+  },
+
+  {
+    name:   "Pepper",
+    photos: [
+      { src: "photos/pepper.jpg", date: "2026-11-24" },
+      { src: "photos/pepper-2.jpg", date: "2026-11-24", note: "Lying on the stone, from the side." }
+    ],
+    price:   400,
+    breed:   "Holland Lop",
+    mother:  "lop",
+    father:  "rootbeer",
+    sex:     "",
+    colour:  "Sable point",
+    dob:     "2026-10-28",
+    listedOn: "2026-11-25",
+    ready:   "",
+    status:  "available",
+    soldOn:  "",
+    ear:     "",
+    weights: [],
+    photo:   "photos/pepper.jpg",
+    opensAt: "2026-11-25T18:00:00-07:00",
+    note:    "Our little wolf: a dark face and ears on a soft grey coat, the darkest of the litter."
+  },
+
   /* Saffron and Odyssey's litter of 21 Oct 2026, seven raised, listed 2026-11-14: Poppyseed, Sage, Lavender, Malbec, Truffle, Licorice, Espresso. The usual rules (his tap of 7:42am 14 Nov): payment plans, 20% off a second; ready to go home from 14 Nov (his words of 7:39am). */
   {
     name:   "Poppyseed",
@@ -1818,7 +1996,7 @@ const RABBITS = [
     weights: [],
     photo:  "photos/poppyseed.jpg",
     opensAt: "2026-11-14T18:00:00-07:00",           /* on sale from this moment (Arizona time): shown before it with its count; Reserve and Buy open at it */
-    feature: true,   /* the lead of the front page from 2026-11-14, by the rule of 27 Sept: the dearest rabbit available, first on the rail */
+    /* Feature moved to Snickerdoodle for the 25 Nov launch, by the dearest-available rule of 27 Sept. */
     note:   "Blue: soft blue-grey all over, the belly the same as the back. The highlight of the litter: extremely small, with exceptionally small ears and a consistent, plush coat. Crouched in profile on 13 November, and petted on the stone ledge in the clip."
   },
 
