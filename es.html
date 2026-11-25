@@ -3966,6 +3966,31 @@ html.ptr .src-x:focus-visible{box-shadow:none!important}
 .ped-from{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin:0 0 10px;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 .ped-from .chip{font-size:13px}
 .ped-more{margin:2px 0 6px}
+
+/* (25 Nov 2026) the family card: born and its litter, the parents, the littermates */
+.vfam-card{display:flex;flex-direction:column;margin:var(--sp-open,16px) 0 4px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--ink) 3.5%,transparent);overflow:hidden}
+.vfam-card:not(:has(>:not([hidden]):not(:empty))){display:none}
+.vfam-card>.vbornline{order:1;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;margin:0;padding:12px 16px;font-size:15px;color:var(--ink)}
+.vfam-card>.vbornline:empty{display:none}
+.vfam-card>.vbornline .u:first-child{font-weight:600}
+.vfam-card>.vbornline a.litterlink.chip{background:none;border:0;box-shadow:none;padding:0;min-height:0;color:var(--ink-soft);font-size:14px;font-weight:600;position:static}
+.vfam-card>.vbornline a.litterlink.chip::after{content:"";position:absolute;inset:0}
+.vfam-card>.vbornline a.litterlink.chip .chev{margin-left:8px}
+.vfam-card>.viewer-parents{order:2;margin:0;padding:12px 16px 14px;border-top:1px solid var(--line)}
+.vfam-card>#viewerGrow{order:3}
+.vfam-card>#viewerGrow:not(:has(.vmates)){display:none}
+.vfam-card>#viewerGrow .grow:empty,.vfam-card>#viewerGrow .grow:not(:has(a,b)){display:none}
+.vmates{padding:12px 16px 14px;border-top:1px solid var(--line)}
+.vmates-h{margin:0 0 10px;font-size:13px;line-height:1.4;color:var(--ink-faint)}
+.vmates-h b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.vmates-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px 6px}
+.vmate{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;padding:4px 2px;border-radius:12px;text-decoration:none;color:var(--ink);-webkit-tap-highlight-color:transparent}
+.vmate-f{display:block;width:48px;height:48px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1.5px var(--line)}
+.vmate-f img{display:block;width:100%;height:100%;object-fit:cover}
+.vmate-n{max-width:100%;font-size:13px;font-weight:600;line-height:1.2;text-align:center;overflow-wrap:anywhere}
+.vmate-s{font-size:11.5px;color:var(--ink-faint)}
+.vmate:focus-visible{outline:2px solid var(--brick-dk);outline-offset:1px}
+@media(hover:hover){.vmate:hover .vmate-f{box-shadow:0 0 0 2px var(--brick)}}
 /* (25 Nov 2026) the pedigree card: rows, not little capsules */
 .vped-card{display:flex;flex-direction:column;margin:var(--sp-open,16px) 0 4px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--ink) 3.5%,transparent);overflow:hidden}
 .vped-card:not(:has(>:not([hidden]))){display:none}
@@ -8501,7 +8526,7 @@ html.pick .grid-home-return{display:none}
     if(full&&document.getElementById('viewerBornLine')) txt='';   /* (Round 171) the listing's facts line carries the age (growHTML is outside the viewer's scope) */
     var pastEight=(daysOld(r.dob)!==null&&daysOld(r.dob)>=LAST_WEEK*7);
     var chev='<i class="chev" aria-hidden="true"></i>';
-    if(full&&st&&!pastEight) txt+=' <a class="stagelink chip" href="#stage-w'+st.from+'">'+
+    if(false&&full&&st&&!pastEight) txt+=' <a class="stagelink chip" href="#stage-w'+st.from+'">'+
                       esc(st.now.charAt(0).toUpperCase()+st.now.slice(1))+chev+'</a>';
     var days=daysOld(r.dob), eight=(days!==null&&days>=LAST_WEEK*7);
     var openHTML='';
@@ -10600,6 +10625,20 @@ html.pick .grid-home-return{display:none}
     function pedCardEl(){ if(pedCard||!vPed||!vPed.parentNode) return pedCard;
       pedCard=document.createElement('div'); pedCard.className='vped-card'; vPed.parentNode.insertBefore(pedCard,vPed); pedCard.appendChild(vPed);
       if(vFrom&&vFrom.parentNode===pedCard.parentNode) pedCard.appendChild(vFrom); return pedCard; }
+    /* (25 Nov 2026, owner 4:54pm: "Give about Snickerdoodle a breath of fresh air ... the getting used to being handled ... chart is completely
+       unnecessary and could maybe be replaced with something more relevant and useful") born and its litter, the parents and the littermates
+       still here, in one card of rows like the pedigree's; every littermate one tap away (23 Oct standard), which also shows who pairs with it */
+    var famCard=null;
+    function famCardEl(){ if(famCard) return famCard; var bl=document.getElementById('viewerBornLine'), pa=document.getElementById('viewerParents');
+      if(!bl||!vGrow||!pa||bl.parentNode!==vGrow.parentNode||pa.parentNode!==vGrow.parentNode) return null;
+      famCard=document.createElement('div'); famCard.className='vfam-card'; bl.parentNode.insertBefore(famCard,bl); famCard.appendChild(bl); famCard.appendChild(pa); famCard.appendChild(vGrow); return famCard; }
+    function matesHTML(r){ if(!r||!r.dob||!r.mother) return '';
+      var ES=document.documentElement.lang==='es', on={available:1,reserved:1};
+      var m=RABBITS.filter(function(x){ return x&&x!==r&&x.name!==r.name&&x.dob===r.dob&&x.mother===r.mother&&on[x.status]; });
+      if(!m.length) return '';
+      var open=r.status==='available'&&m.some(function(x){ return x.status==='available'; });
+      return '<div class="vmates"><p class="vmates-h"><b>'+(ES?'Sus hermanos de camada':'Its littermates')+'</b>'+(open?(' <span>'+(ES?'Si se lleva dos, el segundo tiene un 20% de descuento.':'Take two and the second is 20% off.')+'</span>'):'')+'</p>'+
+        '<div class="vmates-row">'+m.map(function(x){ return '<a class="vmate" href="#r-'+esc(addrOf(x))+'"><span class="vmate-f" aria-hidden="true">'+faceImg(x,44)+'</span><span class="vmate-n">'+esc(x.name)+'</span>'+(x.status==='reserved'?'<span class="vmate-s">'+(ES?'Reservado':'Reserved')+'</span>':'')+'</a>'; }).join('')+'</div></div>'; }
     function paintTags(list,inAbout){
       if(!vTags) return;
       var home=inAbout?(pedCardEl()||vAboutPanel):(vMeta&&vMeta.parentNode);
@@ -11438,7 +11477,8 @@ html.pick .grid-home-return{display:none}
       var pedS=pedForRabbit(r);
       paintPed(pedS); paintTags(pedS?pedLabels(pedS,pedTree(pedS),null):[]); paintComing(r);   /* (Round 226) */
       if(vShare) vShare.hidden=!shareAble;
-      vGrow.innerHTML=growHTML(r,true);
+      vGrow.innerHTML=growHTML(r,true)+matesHTML(r);   /* (25 Nov 2026, owner 4:54pm) its littermates in place of the routine stage */
+      famCardEl();
       born=r.dob||'';
       vNote.innerHTML=nameLinkHTML(r.note||'', r.name);   // Round 112: a named rabbit is a doorway
       vNote.style.display=r.note?'':'none';
