@@ -10984,7 +10984,9 @@ html.pick .grid-home-return{display:none}
       paintMixSets([{name:r.name,parts:a||pureParts(r.breed)},{name:w.name,parts:b||pureParts(w.breed)}].filter(function(z){ return z.parts; }),true); }
     function paintMixProducer(key){ var p=HAVE_PARENTS&&PARENTS[key]; if(!p){ paintMixSets([],false); return; }
       var m=mixOf(key,0), parts=m?Object.keys(m).map(function(k){ return [k,m[k]]; }).sort(function(x,y){ return y[1]-x[1]||(x[0]<y[0]?-1:1); }):null;
-      paintMixSets(parts?[{name:p.name,parts:parts}]:[],false,(parts&&parts.length===1&&pedFull(pedForParent(key)))?{breed:parts[0][0]}:null); }
+      var full=!!(parts&&parts.length===1&&pedFull(pedForParent(key)));
+      paintMixSets(parts?[{name:p.name,parts:parts}]:[],false,full?{breed:parts[0][0]}:null);
+      if(full&&vNote&&/^\s*pedigreed\.?\s*$/i.test(p.note||'')) vNote.style.display='none'; }   /* (25 Nov 2026, owner 4:13pm) the full-pedigree line already says it: no "Pedigreed." under it */
     function mixFit(){ if(!vMix||vMix.hidden) return;
       var blocks=vMix.classList.contains('vmix-pair')?[].slice.call(vMix.querySelectorAll('.vmix-one')):[vMix];
       blocks.forEach(function(blk){ blk.classList.remove('vmix-rows'); });
