@@ -1,0 +1,12 @@
+WEBVTT
+
+NOTE
+Automated caption assessment, 25 November 2026: base.en and small.en with voice activity
+detection found no speech in the verified original audio. Unfiltered model output was
+absent or inconsistent/repetitive and was not used as a transcript. Direct listening
+was unavailable; this cue is an automated-supported candidate pending final review.
+Source SHA256: 8f2e1b94bcc4602e512a46b96546ba2a563cee308e466b7291fec9c29020dc0c
+Source segment: 0.000 to 21.791700 seconds; caption starts at output time zero.
+
+00:00:00.000 --> 10:00:00.000
+[Sin voces, solo el sonido de fondo]

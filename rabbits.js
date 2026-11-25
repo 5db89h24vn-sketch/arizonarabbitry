@@ -1790,12 +1790,13 @@ const RABBITS = [
      Seven offered from the eight born; Cinnabun remains unlisted while William decides whether to keep it.
      Names, prices, colours and descriptions follow Claude's owner-attributed handoff of 24 Nov 2026.
      Sex remains blank until William supplies it. Cocoa's third photo is held for its crop/privacy conflict;
-     Cookie's unsupported lookout description is omitted. Clips are not part of this release. */
+     Cookie's unsupported lookout description is omitted. Original clips from 24 Nov added after byte-exact recovery on 25 Nov. */
   {
     name:   "Snickerdoodle",
     photos: [
       { src: "photos/snickerdoodle.jpg", date: "2026-11-24" },
-      { src: "photos/snickerdoodle-2.jpg", date: "2026-11-24", note: "Face on, ears down, the white mark on the forehead." }
+      { src: "photos/snickerdoodle-2.jpg", date: "2026-11-24", note: "Face on, ears down, the white mark on the forehead." },
+      { video: "videos/snickerdoodle.mp4", poster: "photos/snickerdoodle-video.jpg", date: "2026-11-24" }
     ],
     price:   450,
     breed:   "Holland Lop",
@@ -1821,7 +1822,8 @@ const RABBITS = [
     photos: [
       { src: "photos/mochi.jpg", date: "2026-11-24" },
       { src: "photos/mochi-2.jpg", date: "2026-11-24", note: "Lying flat on the stone." },
-      { src: "photos/mochi-3.jpg", date: "2026-11-24", note: "Face on." }
+      { src: "photos/mochi-3.jpg", date: "2026-11-24", note: "Face on." },
+      { video: "videos/mochi-b.mp4", poster: "photos/mochi-b-video.jpg", date: "2026-11-24" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1846,7 +1848,8 @@ const RABBITS = [
     photos: [
       { src: "photos/sprinkles.jpg", date: "2026-11-24" },
       { src: "photos/sprinkles-2.jpg", date: "2026-11-24", note: "Face on." },
-      { src: "photos/sprinkles-3.jpg", date: "2026-11-24", note: "Curled up, face tucked." }
+      { src: "photos/sprinkles-3.jpg", date: "2026-11-24", note: "Curled up, face tucked." },
+      { video: "videos/sprinkles.mp4", poster: "photos/sprinkles-video.jpg", date: "2026-11-24" }
     ],
     price:   420,
     breed:   "Holland Lop",
@@ -1870,7 +1873,8 @@ const RABBITS = [
     name:   "Cocoa",
     photos: [
       { src: "photos/cocoa.jpg", date: "2026-11-24" },
-      { src: "photos/cocoa-2.jpg", date: "2026-11-24", note: "Asleep, face on." }
+      { src: "photos/cocoa-2.jpg", date: "2026-11-24", note: "Asleep, face on." },
+      { video: "videos/cocoa.mp4", poster: "photos/cocoa-video.jpg", date: "2026-11-24" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1894,7 +1898,8 @@ const RABBITS = [
     name:   "Cookie",
     photos: [
       { src: "photos/cookie.jpg", date: "2026-11-24" },
-      { src: "photos/cookie-2.jpg", date: "2026-11-24", note: "Face on, ears out." }
+      { src: "photos/cookie-2.jpg", date: "2026-11-24", note: "Face on, ears out." },
+      { video: "videos/cookie.mp4", poster: "photos/cookie-video.jpg", date: "2026-11-24" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1920,7 +1925,8 @@ const RABBITS = [
       { src: "photos/crumb.jpg", date: "2026-11-24" },
       { src: "photos/crumb-2.jpg", date: "2026-11-24", note: "Stretched out on the ledge." },
       { src: "photos/crumb-3.jpg", date: "2026-11-24", note: "Face on, eyes half shut." },
-      { src: "photos/crumb-4.jpg", date: "2026-11-24", note: "Asleep, ears out." }
+      { src: "photos/crumb-4.jpg", date: "2026-11-24", note: "Asleep, ears out." },
+      { video: "videos/crumb.mp4", poster: "photos/crumb-video.jpg", date: "2026-11-24" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1944,7 +1950,8 @@ const RABBITS = [
     name:   "Pepper",
     photos: [
       { src: "photos/pepper.jpg", date: "2026-11-24" },
-      { src: "photos/pepper-2.jpg", date: "2026-11-24", note: "Lying on the stone, from the side." }
+      { src: "photos/pepper-2.jpg", date: "2026-11-24", note: "Lying on the stone, from the side." },
+      { video: "videos/pepper.mp4", poster: "photos/pepper-video.jpg", date: "2026-11-24" }
     ],
     price:   400,
     breed:   "Holland Lop",
