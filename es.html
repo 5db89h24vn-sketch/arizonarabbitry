@@ -503,6 +503,10 @@ html.thumb.at-contact .corner,.corner.away,body.locked .corner{opacity:0;visibil
 
 .corner-sheet a.corner-page{justify-content:flex-start}
 .corner-sheet a.corner-page .chev{margin-left:auto}
+/* (26 Nov 2026, "Every tap says where it goes") the menu's own line between this page's sections and the site's other pages */
+.corner-sheet .corner-cap{display:block;margin:7px 14px 0;padding:12px 0 2px;border-top:1px solid var(--line);font-size:11px;font-weight:700;line-height:1.3;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.corner-sheet .corner-cap + a.corner-page:not(.corner-page + .corner-page){margin-top:0}
+.corner-sheet .corner-cap + a.corner-page:not(.corner-page + .corner-page)::before{content:none}
 @media(max-width:980px){
   html.thumb #about .about-head>.kicker::before,html.thumb #producers>.wrap>.kicker::before,html.thumb #raised>.wrap>.kicker::before,html.thumb #included .split>div>.kicker::before,html.thumb #boarding .svc-main>.kicker::before,html.thumb #faq>.wrap>.kicker::before,html.thumb #contact .form-grid>div>.kicker::before{content:'';display:inline-block;width:15px;height:15px;margin:0 7px 0 0;vertical-align:-3px;background:currentColor;-webkit-mask:var(--ck) center/contain no-repeat;mask:var(--ck) center/contain no-repeat}
   html.thumb #about .about-head>.kicker{--ck:var(--ck-about)}
@@ -2766,6 +2770,7 @@ html.pick .lsh{display:none!important}
 .litsheet .ls-ready b.est{color:var(--ink)}   
 .litsheet .ls-wait{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
 .litsheet .ls-wait[hidden]{display:none}
+.litsheet .ls-par[hidden],.litsheet .ls-why[hidden],.litsheet .ls-acts .btn[hidden]{display:none}   /* (26 Nov 2026) the card over a listing, and a listed litter's card, leave these out */
 .litsheet .ls-acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 4px}
 .litsheet .ls-acts .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .litsheet .ls-acts .btn svg{width:18px;height:18px}
@@ -7800,6 +7805,7 @@ html.pick .grid-home-return{display:none}
     if(xmw && xmw.textContent.trim()){ var xr=document.createElement('a'); xr.href='#xmScene'; xr.textContent=xmw.textContent.trim(); list.appendChild(xr); }
     [].slice.call(document.querySelectorAll('#nav .nav-links a[href]')).forEach(function(a){
       if(/^#/.test(a.getAttribute('href'))) return;
+      if(!list.querySelector('.corner-cap')){ var cap=document.createElement('span'); cap.className='corner-cap'; cap.textContent=(root.lang||'').slice(0,2)==='es'?'Otras p\u00e1ginas':'Other pages'; list.appendChild(cap); }   /* (26 Nov 2026) the rows under it leave this page, and the list says so */
       var r=document.createElement('a'); r.href=a.getAttribute('href'); r.className='corner-page';
       r.appendChild(document.createTextNode(a.textContent.trim()));
       var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true'); r.appendChild(ch);
@@ -11197,8 +11203,8 @@ html.pick .grid-home-return{display:none}
         /* (25 Nov 2026, owner 5:11pm: "Shouldn't it be more accurate on what it actually takes you to ... It takes you to an archive") the litter
            page holds the litter's story and its first-days photos, so the link says so; the littermates as they are now sit in this card */
         var esL=document.documentElement.lang==='es';
-        lk.title=esL?'Fotos de la camada en sus primeros días':'Photos of the litter in its first days';
-        lk.setAttribute('aria-label',esL?('Nacido el '+niceDate(r.dob)+': fotos de la camada en sus primeros días'):('Born '+niceDate(r.dob)+': photos of the litter in its first days'));
+        lk.title=esL?'Fotos de la camada en sus primeras semanas':'Photos of the litter in its first weeks';
+        lk.setAttribute('aria-label',esL?('Nacido el '+niceDate(r.dob)+': fotos de la camada en sus primeras semanas'):('Born '+niceDate(r.dob)+': photos of the litter in its first weeks'));
         lk.textContent=esL?'Fotos de bebé':'Baby photos';
         var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true'); lk.appendChild(ch);
         lit.appendChild(lk);
@@ -12145,6 +12151,28 @@ html.pick .grid-home-return{display:none}
       var n=document.querySelector('.mnav a[href="#'+best.id+'"]');
       return {label:n?n.textContent.replace(/\s+/g,' ').trim():(asES()?'donde estaba':'where you were'), top:false, sec:best.id};
     }
+    /* (26 Nov 2026, "Every tap says where it goes") WHERE A LONG JUMP LANDED. A link that carries the reader more than a screen along this
+       same page lights the heading it landed on for a moment (the listing's own flash, .hist-flash), the menus' links included, so the
+       eye finds the place it was promised without reading for it. A short hop needs none, and a listing or a sheet is not a jump. */
+    function landOn(h){
+      var y0=scrollY;
+      setTimeout(function(){
+        if(vw.classList.contains('open')||Math.abs(scrollY-y0)<innerHeight) return;
+        var t=document.getElementById(h.slice(1)); if(!t) return;
+        var el=t.tagName==='DETAILS'?t.querySelector('summary'):(/^H[1-6]$/.test(t.tagName)?t:(t.querySelector('h2,h3')||t));
+        if(!el||!el.getClientRects().length) return;
+        var r=el.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight||r.height>220) return;
+        el.classList.remove('hist-flash'); void el.offsetWidth; el.classList.add('hist-flash');
+        setTimeout(function(){ el.classList.remove('hist-flash'); },1700);
+      },950);
+    }
+    document.addEventListener('click',function(ev){
+      if(ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var a=ev.target.closest&&ev.target.closest('a[href^="#"]'); if(!a) return;
+      var h=a.getAttribute('href'); if(h.length<2||h==='#top'||/^#(?:[rp]|ped|from|alerts)-|^#L\d|^#(?:visit|alerts|contact)$/.test(h)) return;
+      if(a.closest('#viewer,#asheet,#pleave,#pchange,#qlook,.gs,#backPill')) return;
+      landOn(h);
+    });
     function jumpNote(to){
       var y0=scrollY, w=whereLabel(), h0=location.hash||'';
       if(w.top) return;   /* from the top, the corner's own Back to top is the way back (a second one beside it was a twin) */
@@ -12177,6 +12205,7 @@ html.pick .grid-home-return{display:none}
       var twoHere=!!pairWithOf(location.hash||'')||((viewModeOf(location.hash||'')||{}).mode==='confirm');   /* the address says when two are picked */
       if(!twoHere||!(vWith||vConfirm)||!vw.classList.contains('open')||plOnce===(location.hash||'')) return;
       var a=ev.target.closest&&ev.target.closest('a[href]'); if(!a) return;
+      if(typeof window.azStaysHere==='function'&&window.azStaysHere(a)) return;   /* (26 Nov 2026) a litter's card opens over the listing: nothing is left */
       var ql=document.getElementById('qlook');
       if(!(vw.contains(a)||(AS&&AS.contains(a))||(ql&&!ql.hidden&&ql.contains(a)))) return;
       var h=a.getAttribute('href')||'';
@@ -13035,6 +13064,7 @@ html.pick .grid-home-return{display:none}
       st.querySelector('.vwhat').textContent=a.lab+' '; st.querySelector('.t').textContent=a.lab===a.full?'':a.full.slice(a.lab.length+1); }
     function openLitter(w,from,how){
       if(!litInit()) return; lsNow=w;
+      var listed=!!w.peek, vwEl=document.getElementById('viewer'), under=!!(vwEl&&vwEl.classList.contains('open'));   /* (26 Nov 2026) a litter whose babies are listed, opened for its photos; and a listing open under the card */
       var strip=document.getElementById('lsStrip'), dots=document.getElementById('lsDots');
       var ph=w.photos.length?w.photos:[];
       strip.innerHTML=ph.map(function(p){ var pa=between(w.born,p.day); var alt=(ES?'La camada ':'The litter ')+(isNaN(pa)?'':(pa<=0?(ES?'al nacer':'at birth'):(ES?('a los '+pa+' días'):('at '+pa+' days old')))); return '<img src="'+esc(p.src)+'"'+sizedAttrs(p.src,'(min-width:761px) 560px, 100vw')+' alt="'+esc(alt)+'" loading="lazy" decoding="async">'; }).join('');
@@ -13051,31 +13081,63 @@ html.pick .grid-home-return{display:none}
           (src?'<img src="'+esc(src)+'"'+sizedAttrs(src,'44px')+' alt="" loading="lazy" decoding="async" width="44" height="44">':'')+
           '<span><small>'+esc(role==='mother'?T.mother:T.father)+'</small><b>'+esc(p.name)+'</b></span></a>'; };
       var pt=(w.l.parents?tile('mother',w.l.parents.mother)+tile('father',w.l.parents.father):'');
-      var subEl=document.getElementById('lsSub'); subEl.className=pt?'ls-sub viewer-parents ls-par':'ls-sub'; subEl.innerHTML=pt||sub;
+      var subEl=document.getElementById('lsSub'); subEl.className=pt?'ls-sub viewer-parents ls-par':'ls-sub'; subEl.innerHTML=pt||sub; subEl.hidden=under;   /* over a listing the parents are on the card right under this one */
       var rd=document.getElementById('lsReady'), why=document.getElementById('lsWhy');
       var LISTED=ES?'Cada uno se publica cuando ya lo fotografié y revisé que está sano; con los avisos, se entera ese mismo día.':'Each one is listed once it’s photographed and I’ve checked it’s in good health; with alerts, you hear the same day.';
       var rp=readyParts(w)||{unset:true};
       var GOES=ES?'Ese día salen a la venta en esta página y pueden irse a casa; le aviso si está en la lista.':'That day they go on sale on this page and can go home, and I email you if you’re on the list.';
       var GOES2=ES?'En uno de ellos salen a la venta en esta página y pueden irse a casa; ese día le aviso si está en la lista.':'On one of them they go on sale on this page and can go home, and I email you that day if you’re on the list.';
       var OR=ES?('o'+NB+'el'):'or', dateH=rp.date?(rp.two?esc(rp.date).replace(/ /g,NB).replace(NB+OR+NB,' '+OR+NB):esc(rp.date)):'';
-      if(rp.unset){ rd.textContent=tie(ES?'Listos en fecha por definir.':'Ready date not set yet.'); why.textContent=tie(LISTED); }   /* plain: an absence is not moss (candidate 5); the last two words held (candidate 6) */
+      if(listed){ rd.textContent=tie(ES?'Fotos de la camada en sus primeras semanas.':'Photos of the litter in its first weeks.'); why.textContent=''; }
+      else if(rp.unset){ rd.textContent=tie(ES?'Listos en fecha por definir.':'Ready date not set yet.'); why.textContent=tie(LISTED); }   /* plain: an absence is not moss (candidate 5); the last two words held (candidate 6) */
       else if(rp.firm&&rp.come){ rd.innerHTML=(ES?'A la venta <b>muy pronto</b>.':'Going on sale <b>soon</b>.'); why.textContent=tie(ES?'Salen a la venta en esta página enseguida, y ese día le aviso si está en la lista.':'They go on sale on this page next, and I email you that day if you’re on the list.'); }
       else if(rp.checked&&rp.two){ rd.innerHTML=VCHK+(ES?'Listos el ':'Ready ')+'<b>'+dateH+'</b>.'; why.textContent=tie((w.checkedOn?(ES?('Comprobé estos dos días yo mismo el '+dWeek(w.checkedOn)+'. '):('I checked these two days myself on '+dWeek(w.checkedOn)+'. ')):(ES?'Comprobé estos dos días yo mismo. ':'I checked these two days myself. '))+GOES2); }
       else if(rp.checked){ rd.innerHTML=VCHK+(ES?'Listos el ':'Ready ')+'<b>'+esc(rp.date)+'</b>.'; why.textContent=tie((w.checkedOn?(ES?('Comprobé esta fecha yo mismo el '+dWeek(w.checkedOn)+'. '):('I checked this date myself on '+dWeek(w.checkedOn)+'. ')):(ES?'Comprobé esta fecha yo mismo. ':'I checked this date myself. '))+GOES); }
       else if(rp.come){ rd.innerHTML=ES?'Listos <b>muy pronto</b>.':'Ready <b>soon</b>.'; why.textContent=tie(LISTED); }
       else if(w.rk==='est'){ rd.innerHTML=(ES?'Listos hacia el ':'Projected ready ')+'<b class="est">'+dateH+'</b>.'; why.textContent=tie((ES?'Es mi estimado y aún puede moverse un poco. ':'My estimate, and it can still move a little. ')+(rp.two?GOES2:GOES)); }
       else { rd.innerHTML=(ES?'Listos hacia el ':'Projected ready ')+'<b class="est">'+esc(rp.date)+'</b>.'; why.textContent=tie(basisWords(w)+(ES?' Compruebo la fecha yo mismo cuando se acerque.':' I check the date myself as it gets close.')); }
+      why.hidden=!why.textContent;
       var mt=document.getElementById('lsMath'), mp=(w.rk==='auto'&&!rp.come)?mathParts(w):null;
       if(mt){ mt.hidden=!mp; [].forEach.call(mt.querySelectorAll('details'),function(d){ d.open=false; });
         if(mp){ mt.querySelector('summary small').textContent=mp.sub; mt.querySelector('.ls-all>summary').textContent=mp.all; mt.querySelector('.ls-rows').innerHTML=mp.rows; mt.querySelector('.ls-sum').textContent=mp.sum; mt.querySelector('.ls-add').textContent=mp.add; mt.querySelector('.ls-group').textContent=mp.why; } }
       var wt=document.getElementById('lsWait'); wt.hidden=true; wt.textContent='';
-      if(typeof fetchWaiting==='function') fetchWaiting(w.id, wt, T.litterOf(w.born), onList(w.id));
+      if(!listed&&typeof fetchWaiting==='function') fetchWaiting(w.id, wt, T.litterOf(w.born), onList(w.id));
       var on=onList(w.id), b=document.getElementById('lsAlert');
+      b.hidden=listed||under;   /* alerts are for a litter still to come, asked for from the page itself */
       b.innerHTML=(on?BELLF:BELL)+'<span>'+esc(on?(ES?'En su lista · sus avisos':'On your list · your alerts'):(ES?'Avisarme de esta camada':'Get alerts for this litter'))+'</span>';
       var pg=document.getElementById('lsPage'); pg.setAttribute('href',(ES?'es-litters.html':'/litters')+'#'+w.id); pg.innerHTML=esc(ES?'La página de la camada':'The litter’s page')+'<i class="chev" aria-hidden="true"></i>';
-      if(how!=='route') shWrite('#'+w.id);   /* (Round 207) its own step (the router opens it without one) */
+      if(how!=='route'&&how!=='over') shWrite('#'+w.id);   /* (Round 207) its own step (the router opens it without one) */
       ls.open(from);
     }
+    /* (26 Nov 2026, "Every tap says where it goes") A LITTER OPENS RIGHT HERE. The owner, 26 Nov 2026, 5:36am: "I don't want [people] getting
+       teleported to 1/2 of the website and then have to go through a bunch of menus just to get back". A litter's own controls (a listing's
+       Baby photos, a parent's litter rows, the rows in How they're raised, the waitlist's pictures) used to throw the reader onto the litters
+       page. They now open that litter's card over wherever the reader is: its photos, each with the age it was taken at, and one link on
+       to the litters page for the whole story. A litter with no photos here, and every link inside a sentence, still goes to the page and
+       says so (trail.js). Over a listing the card has no address of its own, so the listing under it never moves: closing it is back
+       where the tap was. (The reasoning for keeping a listing's detail on the listing: Baymard Institute, "Avoid Using Subpages", 2020.) */
+    function peekOf(id){
+      var born=String(id||'').slice(1), l=null, i;
+      for(i=0;i<LITS.length;i++){ if(LITS[i]&&LITS[i].born===born){ l=LITS[i]; break; } }
+      if(!l||l.lost||l.never||!(l.kits&&l.kits.length)) return null;
+      var ph=photosOf(born).filter(function(p){ return !p.tile; }); if(!ph.length) return null;   /* the tile is one of these again, cropped */
+      return {id:id, born:born, l:l, kind:kindOf(l.line), his:false, rk:'', basis:'', checkedOn:'', day:'', or:'', photos:ph, pic:ph[0], peek:true};
+    }
+    function litHere(a){   /* the litter this link opens here, or null: the link goes to the litters page */
+      if(!a||a.id==='lsPage'||!a.matches||!a.matches('.litterlink.chip, .litrow-main, .stage-lit, .wl-piclink')) return null;
+      var m=/(?:^|\/)(?:es-)?litters(?:\.html)?#(L\d{4}-\d{2}-\d{2})$/.exec(a.getAttribute('href')||''); if(!m) return null;
+      var w=litById(m[1]); if(w) return w.plan?null:w;
+      return peekOf(m[1]);
+    }
+    window.azStaysHere=function(a){ return !!litHere(a); };
+    document.addEventListener('click',function(ev){
+      if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var a=ev.target.closest&&ev.target.closest('a[href]'), w=a?litHere(a):null; if(!w) return;
+      if(document.documentElement.classList.contains('pick')) return;
+      ev.preventDefault();
+      var vwEl=document.getElementById('viewer'), over=!!(vwEl&&vwEl.classList.contains('open'));
+      openLitter(w,a,(over||w.peek)?'over':undefined);
+    });
     var AL=null, al=null, af=null, every=null, named=[], held={};
     function alInit(){ if(al) return al; AL=document.getElementById('alertSheet'); if(!AL) return null; al=sheet(AL,function(){ saveDraft(); }); return al; }
     var src=document.getElementById('wlform');
@@ -13605,7 +13667,7 @@ html.pick .grid-home-return{display:none}
 })();
 </script>
 
-<script src="trail.js?v=8f8837ce" defer></script>
+<script src="trail.js?v=14bb88b1" defer></script>
 <script src="count.js?v=2859b509" defer></script>
 <script>
 (function(){

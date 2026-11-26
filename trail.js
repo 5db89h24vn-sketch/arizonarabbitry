@@ -162,11 +162,108 @@
     if(pill){ pillT.textContent=w; pillGo.setAttribute('href',h?h.from:'#'); show(); }
   }
 
-  W.azTrail={ here:here, label:label, words:words, back:back, hide:hide, icon:ICON,
+  /* ── EVERY TAP SAYS WHERE IT GOES (26 Nov 2026, the second release of the same request). The owner, 26 Nov 2026, 5:36am: "there needs
+     to be a little warning telling them where they're gonna go. Just make sure it's when it needs to be". So a link that opens ANOTHER
+     PAGE of this site carries one small mark, the way-back arrow turned to face forward, and names the page in words wherever the link's
+     own words do not already name it and it ends its sentence or stands alone. A link that opens something right here keeps its plain
+     chevron: the home page says which ones through azStaysHere(a). Menus, footers and the language switch are lists of pages already
+     and are left alone; a link out to another site keeps its own corner arrow (data-leaves). Nothing here asks a question before a
+     tap: a dialog on every link is read less each time it appears (Nielsen Norman Group, "Confirmation Dialogs", 2018). ── */
+  var PAGES={'/litters':['Litters page','página de camadas'],'/updates':['News page','página de noticias'],'/terms':['Terms page','página de condiciones'],
+             '/changes':['Site changes page','página de cambios'],'/delivery':['Delivery page','página de entrega'],'/which-rabbit':['Which rabbit page','página Qué conejo']};
+  var SAID={'/litters':/\blitters\b|\bcamadas\b/i,'/updates':/\bnews\b|\bnoticias\b/i,'/terms':/\bterms\b|\bcondiciones\b/i,'/changes':/site changes|cambios en el sitio/i,
+            '/delivery':/delivery page|página de entrega/i,'/which-rabbit':/which rabbit|qué conejo/i};
+  var GOSEL='a.litterlink,a.chip,a.stamp-link,a.stage-lit,a.lsh-end,a.litrow-main,a.corner-page,.doors a,.faq-more a,.privacy a';
+  var goT=0, goObs=null;
+  function goCss(){
+    if(D.getElementById('az-go-css')) return;
+    var M="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14l4.5-4.5L15 5'/%3E%3Cpath d='M19.5 9.5H9.75a5.25 5.25 0 0 0 0 10.5H13'/%3E%3C/svg%3E\")";
+    var s=D.createElement('style'); s.id='az-go-css';
+    s.textContent=
+'a[data-goes] .az-kw{white-space:nowrap}'+
+'a[data-goes] .az-kw::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:.3em;vertical-align:-.1em;background:currentColor;opacity:.8;-webkit-mask:'+M+' center/contain no-repeat;mask:'+M+' center/contain no-repeat}'+
+'a[data-goes] .chev.az-gochev{width:15px!important;height:15px!important;border:0!important;border-radius:0!important;transform:none!important;background:currentColor;opacity:.72;-webkit-mask:'+M+' center/contain no-repeat;mask:'+M+' center/contain no-repeat}'+
+'a[data-goes] .az-to{margin-left:.42em;font-size:.86em;font-weight:500;letter-spacing:.005em;color:var(--ink-soft,#57504A);white-space:nowrap}'+
+'a.chip[data-goes] .az-to{margin-left:0}'+
+'.az-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}'+
+'@media print{a[data-goes] .az-kw::after,a[data-goes] .az-to{display:none}}';
+    (D.head||H).appendChild(s);
+  }
+  function goOwn(n){ return n.nodeType===1&&typeof n.className==='string'&&/(?:^|\s)(?:az-to|az-sr|sr-only)(?:\s|$)/.test(n.className); }
+  function goText(n){ var t='', c=n.firstChild; for(;c;c=c.nextSibling){ if(c.nodeType===3) t+=c.nodeValue; else if(c.nodeType===1&&!goOwn(c)) t+=goText(c); } return t; }
+  function goLast(n){ var c=n.lastChild, r; for(;c;c=c.previousSibling){ if(c.nodeType===3){ if(/\S/.test(c.nodeValue)) return c; } else if(c.nodeType===1&&!goOwn(c)&&typeof c.className==='string'){ r=goLast(c); if(r) return r; } } return null; }
+  function goWrap(a){   /* the mark rides on the last word, so it can never start a line alone (the same hold the outside arrow has, .kw) */
+    var t=goLast(a); if(!t) return false;
+    if(t.parentNode.className==='az-kw') return true;
+    var m=/^([\s\S]*\s)?(\S+)(\s*)$/.exec(t.nodeValue); if(!m) return false;
+    var k=D.createElement('span'), p=t.parentNode; k.className='az-kw'; k.textContent=m[2];
+    t.nodeValue=m[1]||''; p.insertBefore(k,t.nextSibling); if(m[3]) p.insertBefore(D.createTextNode(m[3]),k.nextSibling);
+    return true;
+  }
+  function goStrip(a){
+    var l=a.querySelectorAll('.az-kw'), i, k, p;
+    for(i=0;i<l.length;i++){ k=l[i]; p=k.parentNode; p.replaceChild(D.createTextNode(k.textContent),k); if(p.normalize) p.normalize(); }
+    l=a.querySelectorAll('.az-to,.az-sr'); for(i=0;i<l.length;i++) l[i].parentNode.removeChild(l[i]);
+    l=a.querySelectorAll('.az-gochev'); for(i=0;i<l.length;i++) l[i].classList.remove('az-gochev');
+    a.removeAttribute('data-goes');
+  }
+  function goMid(a){   /* words only where the link ends its sentence or stands alone; inside a sentence the mark alone */
+    var n=a.nextSibling; while(n&&n.nodeType===3&&!/\S/.test(n.nodeValue)) n=n.nextSibling;
+    if(!n) return false; if(n.nodeType!==3) return /^(?:A|B|I|EM|STRONG|SPAN|SMALL|TIME|ABBR|CITE)$/.test(n.tagName);   /* a row with a block under it stands alone */
+    return !/^\s*[.!?…]/.test(n.nodeValue);
+  }
+  function goTwin(a,key){   /* a second link to the same page in the same sentence does not say the page twice */
+    var c=a.parentNode&&a.parentNode.firstChild, u;
+    for(;c&&c!==a;c=c.nextSibling){ if(c.nodeType===1&&c.tagName==='A'){ u=pageUrl(c); if(u&&keyOf(u.pathname)===key) return true; } }
+    return false;
+  }
+  function goOne(a){
+    var u=null, stay=false, as=a.getAttribute('data-goes-as')||'';
+    if(as!=='off'&&!a.hasAttribute('data-lang-switch')&&!a.hasAttribute('hreflang')&&!(a.target&&a.target!=='_self')&&!a.hasAttribute('data-az-back')) u=pageUrl(a);
+    if(u){ try{ stay=typeof W.azStaysHere==='function'&&!!W.azStaysHere(a); }catch(e){} }
+    var key=(u&&!stay)?keyOf(u.pathname):'', nm=key?PAGES[key]:null;
+    if(!nm){ if(a.hasAttribute('data-goes')) goStrip(a); return; }
+    var page=nm[ES?1:0], chev=a.querySelector('.chev'), chip=typeof a.className==='string'&&/(?:^|\s)chip(?:\s|$)/.test(a.className), txt=goText(a);
+    var said=/\bpage\b|página/i.test(txt)||SAID[key].test(txt);
+    var words=!said&&as!=='mark'&&(chev?(chip&&!a.closest('.vbornline')):(!goMid(a)&&!goTwin(a,key)));
+    var sig=key+(chev?'|c':'|t')+(words?'|w':'');
+    if(a.getAttribute('data-goes')===sig&&(chev?/(?:^|\s)az-gochev(?:\s|$)/.test(chev.className):!!a.querySelector('.az-kw'))&&(!words||a.querySelector('.az-to'))) return;
+    goStrip(a);
+    var x=D.createElement('span'), lab=a.getAttribute('aria-label');
+    if(chev){
+      chev.classList.add('az-gochev');
+      if(words){ x.className='az-to'; x.textContent=page; chev.parentNode.insertBefore(x,chev); }
+      else if(!lab){ x.className='az-sr'; x.textContent=(ES?' (abre la ':' (opens the ')+page+')'; a.appendChild(x); }
+    } else {
+      if(!goWrap(a)) return;
+      if(words){ x.className='az-to'; x.innerHTML='<span class="az-sr">'+(ES?', abre la ':', opens the ')+'</span>'; x.appendChild(D.createTextNode(page)); }
+      else { x.className='az-sr'; x.textContent=(ES?' (abre la ':' (opens the ')+page+')'; }
+      var k=a.querySelector('.az-kw'), at=k;   /* the words sit right after the marked word, on its line; a date or a bold keeps only its own words */
+      while(at.parentNode!==a&&/^(?:TIME|B|STRONG|EM|I)$/.test(at.parentNode.tagName)) at=at.parentNode;
+      at.parentNode.insertBefore(x,at.nextSibling);
+    }
+    a.setAttribute('data-goes',sig);
+  }
+  function goAll(){ var l, i; goT=0; if(!HOME) return; try{ l=D.querySelectorAll(GOSEL); }catch(e){ return; } for(i=0;i<l.length;i++){ try{ goOne(l[i]); }catch(e){} } }
+  function goSoon(){ if(!goT) goT=setTimeout(goAll,90); }
+  function goInit(){
+    if(goObs||!HOME||!D.body) return;
+    goCss(); goAll(); goObs=true;
+    if(!W.MutationObserver) return;
+    goObs=new MutationObserver(function(rs){
+      for(var i=0;i<rs.length;i++){ var r=rs[i], t=r.target, n, j;
+        if(t&&t.nodeType===1&&t.closest&&t.closest('a[href]')){ goSoon(); return; }
+        for(j=0;j<r.addedNodes.length;j++){ n=r.addedNodes[j]; if(n.nodeType===1&&(n.tagName==='A'||(n.querySelector&&n.querySelector('a[href]')))){ goSoon(); return; } }
+      }
+    });
+    goObs.observe(D.body,{childList:true,subtree:true});
+  }
+
+  W.azTrail={ here:here, label:label, words:words, back:back, hide:hide, icon:ICON, cue:goAll,
     leave:function(t){ var a=(t&&t.href!==undefined)?t:null, u=null; if(a) u=pageUrl(a); else { try{ u=new URL(String(t),location.href); if(u.origin!==location.origin||norm(u.pathname)===CUR) u=null; }catch(e){ u=null; } } if(u) push(u,a); },
     on:function(fn){ if(typeof fn==='function') subs.push(fn); } };
 
-  function init(persisted){ CUR=norm(location.pathname); arrive(); restore(persisted); build(); paint(); tell(); }
+  function init(persisted){ CUR=norm(location.pathname); arrive(); restore(persisted); build(); paint(); tell(); goInit(); }
   if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',function(){ init(false); }); else init(false);
   W.addEventListener('pageshow',function(e){ if(e&&e.persisted) init(true); });
 })();
