@@ -1043,11 +1043,19 @@ html.pick .deal .deal-mate a.deal-matel{pointer-events:none;color:inherit;border
 .viewer-hist[hidden]{display:none}
 
 #viewerHist:focus,#viewerDeal:focus{outline:none}
-.hist-flash{animation:histflash 1.6s ease-out;border-radius:6px}
-@keyframes histflash{0%,35%{background:color-mix(in srgb,var(--brick) 20%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 20%,transparent)}100%{background:transparent;box-shadow:0 0 0 6px transparent}}
-@media (prefers-reduced-motion:reduce){ .hist-flash{animation:none;background:color-mix(in srgb,var(--brick) 16%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 16%,transparent)} }
-
-.pay-flash{animation:histflash 1.6s ease-out}
+/* (26 Nov 2026) THE LANDING GLOW. His words, 11:45am, after a listing's "Parents" link: "it redirected me in an awkward position. Make sure
+   that any redirect for something like this isn't awkward, and it has what needs to be in focus in focus. And it has a gentle highlight
+   with an animation of what needs to be focused. A gentle fade in and fade out. The idea is to have the website be so cohesive that it
+   connects with their brain, so whatever they are supposed to look at it automatically is highlighted and then disappears once they get
+   the idea ... consistent and cohesive throughout". ONE glow for every jump on the site: it starts once the page has come to rest, rises
+   in under half a second, holds about a second and fades away (2.5 s in all): a soft tint laid over the thing and a halo round it, in
+   the site's brick. It is drawn with box-shadow alone (the first layer is an inset tint), so it sits on any element without touching
+   its background, and it rises from and returns to the element's own shadow. The harsher block that snapped on at full strength
+   (histflash) is gone; the old class names still work. A reader who asks for less motion gets the tint with no rise or fade. */
+.hist-flash,.pay-flash,.land-glow{animation:landglow 2.5s ease-in-out}
+.land-r{border-radius:10px}
+@keyframes landglow{18%,56%{box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--brick) 11%,transparent),0 0 0 5px color-mix(in srgb,var(--brick) 15%,transparent),0 0 24px 6px color-mix(in srgb,var(--brick) 16%,transparent)}}
+@media (prefers-reduced-motion:reduce){ .hist-flash,.pay-flash,.land-glow{animation:none;box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--brick) 11%,transparent),0 0 0 5px color-mix(in srgb,var(--brick) 15%,transparent)} }
 @media (prefers-reduced-motion:reduce){ .pay-flash{animation:none;background:color-mix(in srgb,var(--brick) 16%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--brick) 16%,transparent)} }
 .viewer-hist span{white-space:nowrap}
 
@@ -11278,10 +11286,27 @@ html.pick .grid-home-return{display:none}
         if(vAbout) openSettle(vAbout);   /* the panel's rise ends first: its last frame pins the row where it aimed and undid the scroll below
                                             when it came later (WebKit, 3 of 8 runs at 260ms; Round 174's lesson, as Price history's link does) */
         var t=(vParents&&!vParents.hidden)?vParents:vAboutPanel; if(!t) return;
-        var sc=vScroller(), ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
-        var dy=t.getBoundingClientRect().top-(topLine+12), calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if(Math.abs(dy)>2){ if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy(0,dy); }
-        t.classList.remove('hist-flash'); void t.offsetWidth; t.classList.add('hist-flash'); setTimeout(function(){ t.classList.remove('hist-flash'); },1700); }, 320); });
+        vLandOn(t, t===vParents?vAbout:null); }, 320); });
+    /* (26 Nov 2026) ONE WAY TO LAND (see .land-glow). landStill waits until a scroller has stopped moving (six frames alike, two seconds at
+       most), so the glow is seen at rest and not in flight. landGlow lights one element once. vLandOn is every jump inside a listing or
+       a producer's card: the row's own title leads when the title and the thing fit the room together, so the reader lands on "About
+       Licorice" with the parents lit under it, not on a block jammed against the bar with its title cut off; there is air under the
+       bar; and nothing moves when it is already there. */
+    function landStill(sc,cb){ var el=(sc&&sc!==window&&typeof sc.scrollTop==='number')?sc:null, last=null, same=0, n=0;
+      (function tick(){ var y=el?el.scrollTop:(window.scrollY||0); if(y===last){ if(++same>=6){ cb(); return; } } else { same=0; last=y; } if(++n>120){ cb(); return; } requestAnimationFrame(tick); })(); }
+    function landGlow(t){ if(!t||!t.classList) return; var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+      t.classList.remove('land-glow','hist-flash','pay-flash'); void t.offsetWidth;
+      t.classList.toggle('land-r',(parseFloat(getComputedStyle(t).borderTopLeftRadius)||0)<2);
+      t.classList.add('land-glow'); clearTimeout(t.__lg); t.__lg=setTimeout(function(){ t.classList.remove('land-glow','land-r'); },calm?1800:2600); }
+    function vLandOn(t,head){ if(!t) return;
+      var sc=vScroller(), foot=vw.querySelector('.viewer-foot'), fl=foot?foot.getBoundingClientRect().top:innerHeight;
+      var ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
+      var st=(sc&&sc.getBoundingClientRect)?sc.getBoundingClientRect().top:0, top=Math.max(topLine,st)+14;
+      var rt=t.getBoundingClientRect(), ra=(head&&head.getClientRects().length)?head.getBoundingClientRect():rt;
+      if(ra.top>rt.top||rt.bottom-ra.top>fl-top-12) ra=rt;   /* the title and the thing do not fit together: the thing itself leads */
+      var dy=ra.top-top, calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(Math.abs(dy)>2){ if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); }
+      landStill(sc,function(){ landGlow(t); }); }
     function paintMeta(r){
       vMeta.textContent='';
       if(vFrom){ vFrom.hidden=true; vFrom.innerHTML=''; }
@@ -12290,18 +12315,21 @@ html.pick .grid-home-return{display:none}
     /* (26 Nov 2026, "Every tap says where it goes") WHERE A LONG JUMP LANDED. A link that carries the reader more than a screen along this
        same page lights the heading it landed on for a moment (the listing's own flash, .hist-flash), the menus' links included, so the
        eye finds the place it was promised without reading for it. A short hop needs none, and a listing or a sheet is not a jump. */
+    /* (26 Nov 2026, 11:45am: "consistent and cohesive throughout") Every jump along the page now lights what it landed on, the short hops too,
+       with the one glow, once the page has come to rest; and a page opened at a section (a link from another page) does the same. */
     function landOn(h){
-      var y0=scrollY;
-      setTimeout(function(){
-        if(vw.classList.contains('open')||Math.abs(scrollY-y0)<innerHeight) return;
+      setTimeout(function(){ landStill(window,function(){
+        if(vw.classList.contains('open')||document.body.classList.contains('locked')) return;   /* a listing or a sheet opened instead: not a jump */
         var t=document.getElementById(h.slice(1)); if(!t) return;
         var el=t.tagName==='DETAILS'?t.querySelector('summary'):(/^H[1-6]$/.test(t.tagName)?t:(t.querySelector('h2,h3')||t));
         if(!el||!el.getClientRects().length) return;
         var r=el.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight||r.height>220) return;
-        el.classList.remove('hist-flash'); void el.offsetWidth; el.classList.add('hist-flash');
-        setTimeout(function(){ el.classList.remove('hist-flash'); },1700);
-      },950);
+        landGlow(el);
+      }); },80);
     }
+    window.addEventListener('load',function(){ var h=location.hash||'';
+      if(h.length<2||h==='#top'||/^#(?:[rp]|ped|from|alerts)-|^#L\d|^#(?:visit|alerts|contact)$/.test(h)) return;
+      setTimeout(function(){ landOn(h); },450); });
     document.addEventListener('click',function(ev){
       if(ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
       var a=ev.target.closest&&ev.target.closest('a[href^="#"]'); if(!a) return;
@@ -12522,14 +12550,8 @@ html.pick .grid-home-return{display:none}
       setTimeout(function(){
         if(vWhy) openSettle(vWhy);
         var t=(vHist&&!vHist.hidden&&vHist.textContent.trim())?vHist:vDeal; if(!t) return;
-        var sc=vScroller(), foot=vw.querySelector('.viewer-foot'), fl=foot?foot.getBoundingClientRect().top:innerHeight;
-        var ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
-        var head=vWhy||t, dy=head.getBoundingClientRect().top-(topLine+10);
-        if(t.getBoundingClientRect().bottom-dy>fl-12) dy=t.getBoundingClientRect().top-(topLine+10);   /* a very tall row: the steps themselves at the top */
-        var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if(Math.abs(dy)>2){ if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); }
         t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(e){}
-        t.classList.remove('hist-flash'); void t.offsetWidth; t.classList.add('hist-flash'); setTimeout(function(){ t.classList.remove('hist-flash'); },1700);
+        vLandOn(t, vWhy);   /* (26 Nov 2026) the one way to land: the row's title leads, a very tall row leads itself */
       }, 320);
     });
     if(vWhy&&vWhyPanel) vWhy.addEventListener('click',function(ev){
@@ -12567,10 +12589,10 @@ html.pick .grid-home-return{display:none}
           var ccs=vCtl?getComputedStyle(vCtl):null, topLine=(ccs&&ccs.display==='block')?(vCtl.getBoundingClientRect().top+(parseFloat(getComputedStyle(vCtl,'::before').height)||58)):0;
           var st=(sc&&sc.getBoundingClientRect)?sc.getBoundingClientRect().top:0, top=Math.max(topLine,st)+10;
           var rt=vPay.getBoundingClientRect().top, pb=pp.getBoundingClientRect().bottom;
-          if(rt>=top-2&&pb<=fl-12) return;   /* already in view: nothing moves */
+          if(rt>=top-2&&pb<=fl-12){ landGlow(vPay); return; }   /* already in view: nothing moves, the row is lit where it is (26 Nov 2026) */
           var dy=rt-top, calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
           if(sc&&sc.scrollBy) sc.scrollBy({top:dy,behavior:calm?'auto':'smooth'}); else window.scrollBy({top:dy,behavior:calm?'auto':'smooth'});
-          vPay.classList.remove('pay-flash'); void vPay.offsetWidth; vPay.classList.add('pay-flash'); setTimeout(function(){ vPay.classList.remove('pay-flash'); },1700);
+          landStill(sc,function(){ landGlow(vPay); });
         },320);
       })();
     }
