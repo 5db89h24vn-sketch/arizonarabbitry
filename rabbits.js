@@ -618,7 +618,11 @@
 const PARENTS = {
   lop: {
     role:   "mother",
-    from:   "start",
+    /* WHERE SHE CAME FROM (his words, 26 Nov 2026, 2:52pm: "the mother came from Alpine rabbitry from Instagram ... They're based in
+       California ... create a little page for the mom"). She came without a pedigree (his word the same minute), so noPedigree: the
+       family tree says so on her side and prints no ancestors for her. Until then she stood under "Where it started" with Frederick. */
+    from:   "alpine",
+    noPedigree: true,
     name:   "Cinnamony",
     breed:  "Holland Lop",
     /* 22 Oct 2026, his words on the list: a sable point (row 106); weighed 4 lb (row 74, "4 lb 7 lb",
@@ -1203,9 +1207,20 @@ const SOURCES = {
     what:  "Netherland Dwarfs",
     says:  "Regret's breeder: her pedigree card is theirs. Her father, Frijoles, is from Modern Farms US."
   },
+  /* ALPINE RABBITRY (26 Nov 2026). Only what William said that day is printed: the name as he gave it, California, found on
+     Instagram, and that Cinnamony came without a pedigree. A rabbitry of that name in California has a site of its own; it is not
+     linked and none of its facts are used until he confirms it is the same one (his list). No owner, town, phone or handle. `what`
+     gives it a sheet of its own (the "little page"); readSays is the sheet's last line, in place of the pedigree-card line. */
+  alpine: {
+    name:  "Alpine Rabbitry",
+    what:  "A breeder in California",
+    says:  ["Cinnamony came from Alpine Rabbitry, a breeder in California that I found on Instagram.",
+            "She came without a pedigree, so her own parents and grandparents are not on record. Where she is a mother, her side of the family tree stops at her."],
+    readSays: "From William, 26 November 2026. No pedigree card came with Cinnamony."
+  },
   start: {
     name:  "Where it started",
-    says:  "Cinnamony and Frederick, the pair behind my first litter and every Holland Lop cross since."
+    says:  "Frederick, the Satin Angora behind my first litter and every Holland Lop cross since. Cinnamony, the mother of those litters, is under Alpine Rabbitry."   /* until 26 Nov 2026: "Cinnamony and Frederick, the pair behind my first litter and every Holland Lop cross since." */
   },
   here: {
     name:  "Bred here",
