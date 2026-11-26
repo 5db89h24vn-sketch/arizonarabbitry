@@ -2922,6 +2922,30 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   im.setAttribute('sizes',sizes); im.setAttribute('srcset',parts.join(', ')); }
 </script>
 <script src="rabbits.js?v=c16482fc"></script>
+<style>
+/* (25 Nov 2026, owner 5:16pm: "It takes you to an archive and not something that occurs in up-to-date") each litter shows who from it is listed today */
+.lit-now{margin:14px 0 4px;padding:12px 14px 14px;border:1px solid var(--line);border-radius:16px}
+.lit-now-h{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--ink)}
+.lit-now-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:10px 4px}
+.lit-now a{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;text-decoration:none;color:var(--ink);border-radius:12px;padding:4px 2px}
+.lit-now img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.5px var(--line)}
+.lit-now b{font-size:13px;font-weight:600;line-height:1.2;text-align:center;white-space:nowrap}
+.lit-now small{font-size:11.5px;color:var(--ink-faint)}
+.lit-now a:focus-visible{outline:2px solid var(--brick-dk,#8a3d22);outline-offset:1px}
+</style>
+<script>
+(function(){ if(typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
+  function slug(t){ return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+  function esc(t){ return String(t||'').replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  [].forEach.call(document.querySelectorAll('article.litter[id^="L"]'),function(art){ var d=art.id.slice(1); if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+    var kids=RABBITS.filter(function(r){ return r&&r.dob===d&&(r.status==='available'||r.status==='reserved'); }); if(!kids.length) return;
+    var body=art.querySelector('.litter-body'), at=body&&body.querySelector('.parents'); if(!body) return;
+    var box=document.createElement('div'); box.className='lit-now';
+    box.innerHTML='<p class="lit-now-h">De esta camada, en el sitio ahora</p><div class="lit-now-row">'+kids.map(function(r){ var img=r.photo||((r.photos||[]).filter(function(x){ return x.src; })[0]||{}).src||'';
+      return '<a href="es.html#r-'+esc(r.addr||slug(r.name))+'">'+(img?'<img src="'+esc(img)+'" alt="" loading="lazy">':'')+'<b>'+esc(r.name)+'</b>'+(r.status==='reserved'?'<small>Reservado</small>':'')+'</a>'; }).join('')+'</div>';
+    if(at) body.insertBefore(box,at); else body.appendChild(box); });
+})();
+</script>
 <script>
 (function(){
   var el=document.getElementById('litProof'); if(!el||typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
