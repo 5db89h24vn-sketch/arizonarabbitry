@@ -286,6 +286,17 @@
       the two meters ("Both together $100 of $588 · $488 to go") with the
       note under it. Every pair on one plan says its total; the note is
       there only when you type one.
+      THE DAY THEY GO HOME, WHEN YOU KNOW IT (26 Nov 2026, your words: "put
+      on the payment plan that the projected pick up for those two bunnies
+      ... is Monday in the afternoon"): on a rabbit on a plan (for a pair,
+      on the FIRST of the two):
+      set      planPickup: "2026-11-30"       the day
+               planPickupPart: "afternoon"    morning, afternoon or evening;
+                                              leave it out for the day alone
+      The record (both records, for a pair) and the list of plans then say
+      "Projected pickup Mon 30 Nov, afternoon". Only the day and the part
+      of the day: never an hour, never a name. It leaves the record the day
+      the rabbit goes home (wentHome), when the record says that instead.
 
    ── TO KEEP ONE AS A PRODUCER (30 Oct 2026, your word on Butterscotch:
       "remove butterscotch from our available rabbits for sale. I'm using
@@ -2426,6 +2437,8 @@ const RABBITS = [
     planNote: "Reserved in the launch hour: the second rabbit 20% off",          /* where the pair's saving comes from, said under the pair's total on both records (his rule of 8 Nov 2026: a pair's saving names its source, the 20% or a special price) */
     planNoteEs: "Reservados en la hora de lanzamiento: el segundo con 20% menos",
     planDue: "",
+    planPickup: "2026-11-30",                  /* his words, 26 Nov 2026, 12:50pm: "put on the payment plan that the projected pick up for those two bunnies that we just added is Monday in the afternoon". Monday is 30 Nov 2026. Both records and the list of plans say it under the pair's total: "Projected pickup Mon 30 Nov, afternoon" */
+    planPickupPart: "afternoon",               /* the part of the day he gave; no hour is published */
     planNext: "Pepper",
     ear:    "",
     weights: [],
