@@ -2589,7 +2589,7 @@ const RABBITS = [
     if(!dwarf&&!coco) continue;
     var base=+r.price;
     if(now<T6){ r.opensAt='2026-11-25T18:00:00-07:00'; continue; }
-    if(now<T7){ r.price=base-(coco?100:50); r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealStays=false; delete r.dealEnds; continue; }
+    if(now<T7){ r.price=base-50; r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealStays=false; delete r.dealEnds; continue; }
     if(coco){ r.price=250; r.dealOn='2026-11-25'; r.dealTag='Launch-day price'; r.dealNote='Our launch-day price for Coconut, kept'; r.dealStays=true; r.dealScope='rabbit'; delete r.dealEnds; continue; }
     if(now<TEND){ r.price=base-30; r.dealOn='2026-11-25'; r.dealTag='Thanksgiving, through Sunday'; r.dealNote='Thanksgiving price, through Sunday 29 November'; r.dealStays=false; delete r.dealEnds; }
   }
