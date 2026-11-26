@@ -1963,8 +1963,11 @@ const RABBITS = [
     dob:     "2026-10-28",
     listedOn: "2026-11-25",
     ready:   "",
-    status:  "available",
+    status:  "reserved",                       /* his word, 25 Nov 2026, 7:26pm, with Coconut */
+    reservedOn: "2026-11-25",
     soldOn:  "",
+    partsFrom: "2026-11-25",                   /* on Coconut's plan; its meter fills after Coconut's (Coconut's planNext); the pair's dollars are on Coconut */
+    paidOff: "",
     ear:     "",
     weights: [],
     photo:   "photos/pepper.jpg",
@@ -2384,14 +2387,16 @@ const RABBITS = [
       { src: "photos/coming-soon-5.png", note: "Eating, mid-hop, or sitting in the run." },
       { src: "photos/coming-soon-6.png", note: "Next to a littermate, for colour comparison." }
     ],
-    price:  285,                               /* his word, 5 Nov 2026, 10:23pm: "make both white rabbits $285 each" (9:50pm: $300) */
+    price:  250,                               /* launch-day price kept (his word, 24 Nov 2026); before it, 5 Nov 2026, 10:23pm: "make both white rabbits $285 each" (9:50pm: $300) */
     wasPrice: 350,                             /* the first price, 22 Oct 2026 ("Make every single one 350") */
-    dealOn:   "2026-11-05",
-    dealTag:  "Making room",
+    dealOn:   "2026-11-25",
+    dealTag:  "Launch-day price",
+    dealStays: true,
+    dealScope: "rabbit",
     /* A SPECIAL, HIS WORDS 5 Nov 2026, 9:50pm and 9:51pm: "both of our white rabbits go down to $300 each ...
        This is basically a special because I need to clear up stock for all of these upcoming babies." No last
        day given, so none is printed; the SALE mark says it is a special. The two together are $500: BUNDLES, above. */
-    dealNote: "Making room for the babies on the way",
+    dealNote: "Our launch-day price for Coconut, kept",
     breed:  "Holland Lop cross",
     mother: "lop",
     father: "angora",
@@ -2400,8 +2405,14 @@ const RABBITS = [
     dob:    "2026-09-27",
     listedOn: "2026-10-22",
     ready:  "",
-    status: "available",
+    status: "reserved",                        /* his word, 25 Nov 2026, 7:26pm: "mark coconut and pepper as reserved and put them on a payment plan so far I received $100" */
+    reservedOn: "2026-11-25",
     soldOn: "",
+    partsFrom: "2026-11-25",                   /* paying in parts from today; no name, ever */
+    paidOff: "",
+    planPaid: 100,                             /* A PAIR ON ONE PLAN, as Honey and Marshmallow: the pair's dollars; Coconut's $250 fills first, the rest fills Pepper's $400. A plan takes no 20% second-rabbit or 5% discount (his rule, 25 Nov 2026, 6:07pm) */
+    planDue: "",
+    planNext: "Pepper",
     ear:    "",
     weights: [],
     photo:  "photos/coconut.jpg",
