@@ -1207,15 +1207,19 @@ const SOURCES = {
     what:  "Netherland Dwarfs",
     says:  "Regret's breeder: her pedigree card is theirs. Her father, Frijoles, is from Modern Farms US."
   },
-  /* ALPINE RABBITRY (26 Nov 2026). Only what William said that day is printed: the name as he gave it, California, found on
-     Instagram, and that Cinnamony came without a pedigree. A rabbitry of that name in California has a site of its own; it is not
-     linked and none of its facts are used until he confirms it is the same one (his list). No owner, town, phone or handle. `what`
-     gives it a sheet of its own (the "little page"); readSays is the sheet's last line, in place of the pedigree-card line. */
+  /* ALPINE RABBITRY (26 Nov 2026). What William said that day is printed: the name as he gave it, California, found on Instagram,
+     and that Cinnamony came without a pedigree. THE LINK (the same evening): on 2 Nov he had named Cinnamony's breeder and asked
+     for a link to the breeder's public page, for openness (his list, row 183; Codex checked the page then). Read again on 26 Nov
+     2026, the rabbitry's own page is signed with the name he gave, so it is the same one, and it is linked like the other
+     rabbitries' pages. Nothing else from their site is used, and no owner, town, phone or handle is printed (the rule above).
+     `what` gives it a sheet of its own (the "little page"); readSays is the sheet's last line, in place of the pedigree-card line. */
   alpine: {
     name:  "Alpine Rabbitry",
     what:  "A breeder in California",
     says:  ["Cinnamony came from Alpine Rabbitry, a breeder in California that I found on Instagram.",
             "She came without a pedigree, so her own parents and grandparents are not on record. Where she is a mother, her side of the family tree stops at her."],
+    url:   "https://www.alpinerabbitryandmore.com/",
+    read:  "2026-11-26",
     readSays: "From William, 26 November 2026. No pedigree card came with Cinnamony."
   },
   start: {
