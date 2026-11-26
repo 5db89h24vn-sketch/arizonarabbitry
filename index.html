@@ -14367,6 +14367,65 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&vw.classList.contains('big')){ e.stopImmediatePropagation(); set(false); b.focus(); } },true);
   var watch=new MutationObserver(sync); watch.observe(vw,{attributes:true,attributeFilter:['class']}); watch.observe(st,{subtree:true,attributes:true,attributeFilter:['class','hidden','src','srcset','poster']}); if(sourceName) watch.observe(sourceName,{childList:true,characterData:true,subtree:true}); sync();
 })();</script>
+<style id="viewer-ambient">
+/* (26 Nov 2026) THE PHOTO LIGHTS ITS OWN SURROUND. His words, 11:48am, on the black beside and under a listing's photo: "modernize it a little bit
+   more, and make it feel less claustrophobic, so either have it be a gradient color that makes the color of the photo look like it's
+   reflecting off to give a feeling of depth, kind of like how YouTube does. Or just make it slimmer. However, I don't want you to choose the
+   easier option for yourself ... if you can think of something even better then do it"; 11:51am: "the bunny also emit some light ... if they
+   watch the video ... the video will also have accurate reflections". Both of his: the black is gone and the line is slimmer. Behind the
+   stage and the date line sits the same photograph, enlarged, softened and dimmed, so the room left beside a photo is the photo's own light
+   and the photo floats over it on a soft shadow. A clip does it live: a 32-pixel copy of the frame is redrawn about ten times a second while
+   it plays. Changing photos cross-fades the light. The date line has no slab of its own: it sits on the light, under a shade that keeps its
+   words above 7:1 on any photograph. NOT built, and why (told to him): the dirt tunnel. A drawn burrow frames every rabbit in the same
+   brown, competes with the coat colours the photos exist to show, and reads as a toy on the one screen a wary buyer studies. Less motion
+   asked for: no cross-fade, and a clip's light is taken once when it starts, pauses or is moved. More contrast asked for: plain dark. */
+.viewer-media{isolation:isolate;--viewer-tools-h:44px}
+.viewer-amb{position:absolute;left:0;right:0;top:0;height:var(--amb-h,0px);z-index:-1;overflow:hidden;pointer-events:none;background:#1A1613}
+.viewer-amb>i,.viewer-amb>canvas{position:absolute;left:-12%;top:-12%;width:124%;height:124%;background:center/cover no-repeat;filter:blur(30px) saturate(1.35) brightness(.62);opacity:0;transition:opacity .55s ease}
+.viewer-amb>.on{opacity:1}
+.viewer-amb::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,16,14,.14) 0,rgba(20,16,14,.14) calc(var(--amb-h,0px) - var(--viewer-tools-h) - 34px),rgba(20,16,14,.62) calc(var(--amb-h,0px) - var(--viewer-tools-h) + 4px),rgba(20,16,14,.76) var(--amb-h,0px),rgba(20,16,14,.8) 100%)}
+/* beside the text, on a wide screen, the whole photo column is dark: the light fills it, thumbnails and all, under the same shade */
+@media(min-width:920px) and (min-height:520px),(orientation:landscape) and (min-width:640px){.viewer-amb{height:100%}}
+.viewer-stage,.viewer-photo-tools,.viewer-photo-head{background:transparent}
+.viewer-photo-tools{padding-top:0;padding-bottom:0}
+.viewer-stage .viewer-frame{box-shadow:0 12px 34px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.26)}
+.viewer-stage video{background:transparent}
+.viewer.big .viewer-amb{height:100%}
+.viewer.big .viewer-stage,.viewer.big .viewer-big-nav{background:transparent}
+.viewer.big .viewer-amb::after{background:linear-gradient(to bottom,rgba(20,16,14,.72) 0,rgba(20,16,14,.3) 96px,rgba(20,16,14,.3) calc(100% - 150px),rgba(20,16,14,.74) 100%)}
+.viewer.vpair .viewer-amb{display:none}
+@media(prefers-reduced-motion:reduce){.viewer-amb>i,.viewer-amb>canvas{transition:none}}
+@media(prefers-contrast:more){.viewer-amb>i,.viewer-amb>canvas{display:none}}
+</style>
+<script id="viewer-ambient-js">(function(){
+  var vw=document.getElementById('viewer'), media=vw&&vw.querySelector('.viewer-media'), st=vw&&vw.querySelector('.viewer-stage'), img=document.getElementById('viewerImg'), vid=document.getElementById('viewerVideo'); if(!media||!st||!img) return;
+  var tools=media.querySelector('.viewer-photo-tools');
+  var amb=document.createElement('div'); amb.className='viewer-amb'; amb.setAttribute('aria-hidden','true');
+  var la=document.createElement('i'), lb=document.createElement('i'), cv=document.createElement('canvas'); cv.width=32; cv.height=24;
+  amb.appendChild(la); amb.appendChild(lb); amb.appendChild(cv); media.insertBefore(amb,media.firstChild);
+  var cur=null, src='', ctx=null, raf=0, last=0;
+  function calm(){ return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  /* the light reaches from the top of the photo's block to the foot of the date line, and no further (the thumbnails under it keep the card's own ground) */
+  function size(){ var end=(tools&&tools.offsetHeight)?tools:(st.offsetHeight?st:null), h=0;   /* layout sizes, not rects: the card is scaled while it opens */
+    if(end&&!vw.classList.contains('vpair')) h=Math.max(0,end.offsetTop+end.offsetHeight);
+    media.style.setProperty('--amb-h',h+'px'); }
+  function show(u){ u=String(u||''); if(!u||/^data:/.test(u)||u===src) return; src=u;
+    var nx=(cur===la)?lb:la; nx.style.backgroundImage='url("'+u.replace(/["\\\n\r]/g,'')+'")'; nx.classList.add('on'); if(cur) cur.classList.remove('on'); cur=nx; }
+  function fromImg(){ if(img.hidden) return; show(img.currentSrc||img.getAttribute('src')); }
+  function frame(){ if(!vid||vid.hidden||!vid.videoWidth) return; try{ ctx=ctx||cv.getContext('2d'); ctx.drawImage(vid,0,0,cv.width,cv.height); cv.classList.add('on'); }catch(e){} }
+  function tick(t){ raf=0; if(!vid||vid.hidden||vid.paused||vid.ended) return; if(!last||t-last>95){ last=t; frame(); } raf=requestAnimationFrame(tick); }
+  function play(){ frame(); if(calm()) return; if(!raf) raf=requestAnimationFrame(tick); }
+  function stop(){ if(raf){ cancelAnimationFrame(raf); raf=0; } }
+  function clip(){ if(!vid||vid.hidden){ stop(); cv.classList.remove('on'); fromImg(); } }
+  img.addEventListener('load',fromImg);
+  if(vid){ vid.addEventListener('playing',play); vid.addEventListener('pause',function(){ stop(); frame(); }); vid.addEventListener('seeked',frame); vid.addEventListener('loadeddata',frame);
+    vid.addEventListener('ended',stop); vid.addEventListener('emptied',function(){ stop(); cv.classList.remove('on'); });
+    if(window.MutationObserver) new MutationObserver(clip).observe(vid,{attributes:true,attributeFilter:['hidden']}); }
+  if(window.MutationObserver) new MutationObserver(function(){ size();
+    if(!vw.classList.contains('open')){ stop(); src=''; la.classList.remove('on'); lb.classList.remove('on'); cv.classList.remove('on'); cur=null; } else fromImg(); }).observe(vw,{attributes:true,attributeFilter:['class']});
+  if(window.ResizeObserver){ var ro=new ResizeObserver(size); ro.observe(media); ro.observe(st); if(tools) ro.observe(tools); }
+  window.addEventListener('resize',size); size(); if(img.complete) fromImg();
+})();</script>
 <style id="pedigree-document-css">
 .ped-document[hidden]{display:none!important}.ped-document{position:fixed;inset:0;z-index:220;display:flex;flex-direction:column;background:var(--paper,#f7f3ed);color:var(--ink,#29251f);padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);box-sizing:border-box}.ped-document-bar{flex:none;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px max(12px,env(safe-area-inset-right)) 10px max(12px,env(safe-area-inset-left));border-bottom:1px solid var(--line,#d8d0c4);background:var(--paper,#f7f3ed)}.ped-document-bar h2{font-family:var(--serif,Georgia,serif);font-size:20px;line-height:1.2;margin:0;text-align:center;overflow-wrap:anywhere}.ped-document button,.ped-document-save{min-height:44px;min-width:44px;display:inline-flex;gap:7px;align-items:center;justify-content:center;flex:none;font:600 15px/1.2 var(--sans,system-ui);border:1px solid var(--line,#d8d0c4);border-radius:12px;padding:10px 12px;background:var(--card,#fff);color:inherit;cursor:pointer;text-decoration:none}.ped-document button:focus-visible,.ped-document a:focus-visible,.ped-document-canvas:focus-visible{outline:3px solid var(--brick,#8b5d43);outline-offset:2px}.ped-document svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ped-document-tools{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:8px 12px;border-bottom:1px solid var(--line,#d8d0c4)}.ped-document-tools p{margin:0;font-size:14px;line-height:1.35;color:var(--ink-soft,#615950)}.ped-document-status:empty{display:none}.ped-document-fallback[hidden]{display:none}.ped-document-fallback{flex-basis:100%}.ped-document-fallback a{color:var(--brick-dk,#70442e);text-decoration:underline;text-underline-offset:3px}.ped-document-canvas{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;background:var(--paper-2,#e7e0d7);padding:16px;box-sizing:border-box;scrollbar-gutter:stable}.ped-document-canvas img{display:block;width:100%;max-width:1100px;height:auto;margin:0 auto;background:#fff;box-shadow:0 2px 14px #0002}.ped-document-canvas.zoomed img{width:var(--doc-width,1500px);max-width:none;margin:0}.ped-document-canvas img[hidden]{display:none}.ped-document-error{max-width:36em;margin:32px auto;font-size:17px;line-height:1.5}.ped-document-error[hidden]{display:none}@media(max-width:600px){.ped-document-bar{gap:8px;grid-template-columns:1fr 1fr}.ped-document-bar h2{grid-column:1/-1;grid-row:2;font-size:20px;text-align:left}.ped-document-back{justify-self:start}.ped-document-save{justify-self:end}.ped-document-canvas{padding:10px}.ped-document-tools{gap:6px 10px}.ped-document-tools p{font-size:13px}}@media print{.ped-document{display:none!important}}
 </style>
