@@ -286,7 +286,37 @@
     leave:function(t){ var a=(t&&t.href!==undefined)?t:null, u=null; if(a) u=pageUrl(a); else { try{ u=new URL(String(t),location.href); if(u.origin!==location.origin||norm(u.pathname)===CUR) u=null; }catch(e){ u=null; } } if(u) push(u,a); },
     on:function(fn){ if(typeof fn==='function') subs.push(fn); } };
 
-  function init(persisted){ CUR=norm(location.pathname); arrive(); restore(persisted); build(); paint(); tell(); goInit(); }
+  /* THE LANDING GLOW, ON EVERY PAGE BUT THE HOME PAGE (26 Nov 2026).
+     Owner, 26 Nov 2026, 11:45am: "whatever they are supposed to look at it automatically is highlighted and then disappears once they get
+     the idea ... give the entire website a breath of fresh air with this method and have it be consistent and cohesive throughout".
+     The home page lights its own landings (index.html: landOn, vLandOn, .land-glow). This is the same glow for the other pages: a page
+     opened at a place (terms at its privacy part, the news at the availability log) or a link along the page lights the heading it
+     landed on, once the page has come to rest, and lets it fade (2.5 s). A whole view opened by its address (one litter's card, the
+     list of litters) is not a place within a page and lights nothing. Less motion asked for: the tint, with no rise or fade. */
+  function glowInit(){
+    if(D.getElementById('viewer')||D.getElementById('land-glow-css')) return;
+    var st=D.createElement('style'); st.id='land-glow-css';
+    st.textContent='.land-glow{animation:landglow 2.5s ease-in-out}.land-r{border-radius:10px}'+
+      '@keyframes landglow{18%,56%{box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--brick,#A0522D) 11%,transparent),0 0 0 5px color-mix(in srgb,var(--brick,#A0522D) 15%,transparent),0 0 24px 6px color-mix(in srgb,var(--brick,#A0522D) 16%,transparent)}}'+
+      '@media (prefers-reduced-motion:reduce){.land-glow{animation:none;box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--brick,#A0522D) 11%,transparent),0 0 0 5px color-mix(in srgb,var(--brick,#A0522D) 15%,transparent)}}';
+    (D.head||H).appendChild(st);
+    function still(cb){ var last=null, same=0, n=0; (function tick(){ var y=W.scrollY||0; if(y===last){ if(++same>=6){ cb(); return; } } else { same=0; last=y; } if(++n>120){ cb(); return; } W.requestAnimationFrame(tick); })(); }
+    function glow(el){ var calm=W.matchMedia&&W.matchMedia('(prefers-reduced-motion: reduce)').matches; el.classList.remove('land-glow'); void el.offsetWidth;
+      el.classList.toggle('land-r',(parseFloat(W.getComputedStyle(el).borderTopLeftRadius)||0)<2); el.classList.add('land-glow');
+      W.clearTimeout(el.__lg); el.__lg=W.setTimeout(function(){ el.classList.remove('land-glow','land-r'); },calm?1800:2600); }
+    function land(h){ var t=null; try{ t=D.getElementById(decodeURIComponent(String(h).slice(1))); }catch(e){}
+      if(!t||(t.matches&&t.matches('.litter,.browse,main,body'))) return;
+      still(function(){ var el=t.tagName==='DETAILS'?t.querySelector('summary'):(/^H[1-6]$/.test(t.tagName)?t:(t.querySelector('h1,h2,h3,h4,summary')||t));
+        if(!el||!el.getClientRects().length) return; var r=el.getBoundingClientRect(); if(r.bottom<0||r.top>W.innerHeight||r.height>220) return; glow(el); }); }
+    function ok(h){ return !!h&&h.length>1&&h!=='#top'&&h!=='#page-top'; }
+    if(ok(location.hash)){ if(D.readyState==='complete') W.setTimeout(function(){ land(location.hash); },350); else W.addEventListener('load',function(){ W.setTimeout(function(){ land(location.hash); },350); }); }
+    W.addEventListener('hashchange',function(){ if(ok(location.hash)) W.setTimeout(function(){ land(location.hash); },80); });
+    D.addEventListener('click',function(ev){ if(ev.defaultPrevented||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+      var a=ev.target.closest&&ev.target.closest('a[href]'); if(!a) return; var u; try{ u=new URL(a.href,location.href); }catch(e){ return; }
+      if(u.origin!==location.origin||norm(u.pathname)!==CUR||!ok(u.hash)||u.hash!==location.hash) return;   /* the same place tapped again: no hashchange comes */
+      W.setTimeout(function(){ land(u.hash); },80); });
+  }
+  function init(persisted){ CUR=norm(location.pathname); arrive(); restore(persisted); build(); paint(); tell(); goInit(); if(!persisted) glowInit(); }
   if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',function(){ init(false); }); else init(false);
   W.addEventListener('pageshow',function(e){ if(e&&e.persisted) init(true); });
 })();
