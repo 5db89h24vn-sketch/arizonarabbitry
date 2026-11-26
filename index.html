@@ -3638,6 +3638,13 @@ html[data-look="dim"] .planmark{border-image-source:url("data:image/svg+xml,%3Cs
 .pro-views button.on{background:var(--brick-tint);border-color:var(--brick-tint-line);color:var(--brick-dk);font-weight:600}
 .pro-views button:focus-visible{outline-offset:-3px}
 .pro-views+.pro-key{margin-top:14px}
+/* (26 Nov 2026) His words, 11:54am: "for the producer section, let's also have a filter similar to our rabbits selection thing with the same
+   rabbit icon and the same other rabbit icon for Holland Lop and Netherland Dwarfs. Just for more consistency throughout the website".
+   The producers get the rabbits' own three tiles: the same class, so the same look at every size, and the drawings and names are read
+   from the rabbits' tiles when the page runs, so there is one source for both. */
+.pro-breed-filters{margin:18px 0 0}
+.pro-breed-filters[hidden],.pro-breed-note[hidden]{display:none}
+.pro-breed-filters~.pro-views{margin-top:14px}
 .pro-breed>h3.pro-src-h{margin:0}
 .pro-src{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--ink);text-decoration:none;
   -webkit-tap-highlight-color:transparent}
@@ -5989,6 +5996,9 @@ html.pick .grid-home-return{display:none}
     <h2>The rabbits behind every litter</h2>
     <p class="lede">Every doe (female) and buck (male) here. Tap one for its photos, papers and litters.</p>
     
+    <div class="rabbit-breed-filters pro-breed-filters" id="proBreedFilters" role="group" hidden></div>
+    <p class="breed-filter-note pro-breed-note" id="proBreedNote" hidden></p>
+    <p class="sr-only" id="proBreedStatus" role="status" aria-live="polite" aria-atomic="true"></p>
     <div class="pro-views" id="proViews" role="group" aria-label="How to show them" hidden><button type="button" class="on" data-pview="breed" aria-pressed="true">By breed</button><button type="button" data-pview="roots" aria-pressed="false">By roots</button></div>
     <p class="pro-key"><span class="pro-seal" aria-hidden="true"></span><span>Pedigreed</span></p>
     <div class="pro-breeds" id="proBreeds" hidden></div>
@@ -9634,12 +9644,34 @@ html.pick .grid-home-return{display:none}
     function proTog(n,id,open,T){ var ks=T.does.concat(T.bucks).slice(0,5);
       return '<button type="button" class="pro-tog" aria-expanded="'+(open?'true':'false')+'" aria-controls="'+id+'" data-pname="'+esc(n)+'"><span class="pro-tn">'+esc(n)+'</span><i class="pro-car" aria-hidden="true"></i>'+
         '<span class="pro-peek" aria-hidden="true">'+ks.map(function(k){ return '<span class="pro-pf">'+proFace(PARENTS[k],'30px')+'</span>'; }).join('')+'</span></button>'; }
+    /* (26 Nov 2026) the producers' breed tiles (see .pro-breed-filters). A cross counts with its breed, as it does for the rabbits; a breed
+       without a tile (the Satin Angora) shows under All, and the line under the tiles says so. The choice lasts for the visit. */
+    var proBreed='all';
+    try{ var proSaved=sessionStorage.getItem('ar-producer-breed-filter'); if(/^(all|lop|dwarf)$/.test(proSaved||'')) proBreed=proSaved; }catch(e){}
+    function proFam(p){ var x=String(p&&p.breed||''); return /^Holland Lop\b/i.test(x)?'lop':(/^Netherland Dwarf\b/i.test(x)?'dwarf':'other'); }
+    function proTiles(n,others,crosses){
+      var pf=document.getElementById('proBreedFilters'), rf=document.getElementById('rabbitBreedFilters'), note=document.getElementById('proBreedNote'), es=document.documentElement.lang==='es'; if(!pf||!rf) return;
+      if(!pf.firstChild){
+        pf.setAttribute('aria-label',es?'Filtrar los reproductores por raza':'Filter the producers by breed');
+        pf.innerHTML=[].map.call(rf.querySelectorAll('[data-breed-choice]'),function(b){ var k=b.getAttribute('data-breed-choice'), sv=b.querySelector('svg'), nm=b.querySelector('.breed-filter-name');
+          return '<button type="button" data-pro-choice="'+esc(k)+'" aria-pressed="false"><span class="breed-filter-symbol">'+(sv?sv.outerHTML:'')+'<span class="breed-filter-count" data-pro-count="'+esc(k)+'">0</span></span><span class="breed-filter-name">'+esc(nm?nm.textContent:k)+'</span></button>'; }).join('');
+      }
+      [].forEach.call(pf.querySelectorAll('[data-pro-choice]'),function(b){ var k=b.getAttribute('data-pro-choice'), c=b.querySelector('[data-pro-count]'), v=String(n[k]||0);
+        if(c&&c.textContent!==v) c.textContent=v; b.setAttribute('aria-pressed',k===proBreed?'true':'false'); });
+      pf.hidden=!n.all;
+      if(note){ var ks=Object.keys(others), t=crosses?(es?'Las cifras incluyen cruzas.':'Counts include crosses.'):'';
+        if(ks.length){ var tot=ks.reduce(function(a,k){ return a+others[k]; },0), al=pf.querySelector('[data-pro-choice="all"] .breed-filter-name'), an=al?al.textContent:(es?'Todos':'All');
+          t+=(t?' ':'')+(es?('Adem\u00e1s, '+tot+' '+(ks.length===1?ks[0]:'de otras razas')+', en '+an+'.'):('Plus '+tot+' '+(ks.length===1?ks[0]:'of other breeds')+', under '+an+'.')); }
+        note.textContent=t; note.hidden=!t||!n.all; }
+    }
     function paintProducers(){
       var box=document.getElementById('proBreeds'); if(!box||!HAVE_PARENTS) return;
-      var roots=(proView==='roots'&&HAVE_SOURCES), by={}, order;
+      var roots=(proView==='roots'&&HAVE_SOURCES), by={}, order, n={all:0,lop:0,dwarf:0}, others={}, crosses=0, es=document.documentElement.lang==='es';
       Object.keys(PARENTS).forEach(function(k){
         var p=PARENTS[k]; if(!p||!p.breed||!p.name) return;
         if(p.until) return;   /* no longer breeding here (Round 167, Praline): off the roster; its view stays, its litters name it */
+        var fam=proFam(p); n.all++; if(fam==='other') others[p.breed]=(others[p.breed]||0)+1; else { n[fam]++; if(/\bcross\b/i.test(p.breed)) crosses++; }
+        if(proBreed!=='all'&&fam!==proBreed) return;   /* (26 Nov 2026) the breed tile */
         var g=roots?(srcOf(k)||'start'):p.breed, sub='';
         if(!roots&&PRO_SUB[g]){ sub=g; g=PRO_SUB[g]; }
         var G=(by[g]=by[g]||{does:[],bucks:[],subs:{}}), T=sub?(G.subs[sub]=G.subs[sub]||{does:[],bucks:[]}):G;
@@ -9651,7 +9683,8 @@ html.pick .grid-home-return{display:none}
         var rank=function(x){ var i=PRO_BREEDS.indexOf(x); return i<0?PRO_BREEDS.length:i; };
         order=Object.keys(by).sort(function(a,b){ return (rank(a)-rank(b))||(a<b?-1:(a>b?1:0)); });
       }
-      if(!order.length){ box.hidden=true; return; }
+      proTiles(n,others,crosses);
+      if(!order.length){ if(proBreed!=='all'&&n.all){ box.innerHTML='<div class="breed-filter-empty"><p>'+(es?'No hay reproductores en esta vista.':'No producers in this view.')+'</p><button type="button" data-pro-reset>'+(es?'Mostrar todos':'Show all')+'</button></div>'; box.hidden=false; } else box.hidden=true; return; }
       var d=1, b=1;
       var subsOf=function(G){ return PRO_BREEDS.filter(function(x){ return !!G.subs[x]; }).concat(Object.keys(G.subs).filter(function(x){ return PRO_BREEDS.indexOf(x)<0; })); };
       order.forEach(function(g){ var G=by[g]; [G].concat(subsOf(G).map(function(x){ return G.subs[x]; })).forEach(function(T){
@@ -9670,7 +9703,7 @@ html.pick .grid-home-return{display:none}
         return h?'<div class="pro-grid">'+h+'</div>':''; };
       box.innerHTML=order.map(function(g){
         var G=by[g], head, s=roots?SOURCES[g]:null;
-        if(!s){ var id='proB-'+proSlug(g), op=proIsOpen(g);   /* (Round 225) a breed folds */
+        if(!s){ var id='proB-'+proSlug(g), op=(proBreed!=='all')||proIsOpen(g);   /* (Round 225) a breed folds; (26 Nov 2026) the breed a tile picked opens */
           return '<div class="pro-breed pro-fold"><h3>'+proTog(g,id,op,G)+'</h3><div class="pro-body" id="'+id+'"'+(op?'':' hidden')+'>'+proGrid(G)+
             subsOf(G).map(function(x){ var sid='proB-'+proSlug(x), sop=proIsOpen(x);
               return '<div class="pro-subfold"><h4 class="pro-sub">'+proTog(x,sid,sop,G.subs[x])+'</h4><div class="pro-body" id="'+sid+'"'+(sop?'':' hidden')+'>'+proGrid(G.subs[x])+'</div></div>'; }).join('')+'</div></div>'; }
@@ -9692,6 +9725,19 @@ html.pick .grid-home-return{display:none}
         var v=bt.getAttribute('data-pview'); if(v===proView) return; proView=v;
         try{ localStorage.setItem('az.producers',v); }catch(e){}
         paintProducers(); });
+    })();
+    (function(){   /* (26 Nov 2026) the producers' breed tiles: a tap, or the arrow keys as on the rabbits' tiles */
+      var pf=document.getElementById('proBreedFilters'), box=document.getElementById('proBreeds'), st=document.getElementById('proBreedStatus'); if(!pf) return;
+      function pick(k,focus){ if(!/^(all|lop|dwarf)$/.test(k)) return; proBreed=k; try{ sessionStorage.setItem('ar-producer-breed-filter',k); }catch(e){}
+        paintProducers();
+        var es=document.documentElement.lang==='es', shown=box?box.querySelectorAll('.pro-card').length:0;
+        if(st) st.textContent=es?(shown===1?'Se muestra 1 reproductor.':'Se muestran '+shown+' reproductores.'):(shown===1?'1 producer shown.':shown+' producers shown.');
+        if(focus){ var b=pf.querySelector('[data-pro-choice="'+k+'"]'); if(b) b.focus(); } }
+      pf.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('[data-pro-choice]'); if(b&&pf.contains(b)) pick(b.getAttribute('data-pro-choice')); });
+      pf.addEventListener('keydown',function(ev){ if(!/^(ArrowLeft|ArrowRight|Home|End)$/.test(ev.key)) return; var b=ev.target.closest&&ev.target.closest('[data-pro-choice]'); if(!b) return;
+        var bs=[].slice.call(pf.querySelectorAll('[data-pro-choice]')), at=bs.indexOf(b), nx=ev.key==='Home'?0:ev.key==='End'?bs.length-1:(at+(ev.key==='ArrowRight'?1:-1)+bs.length)%bs.length;
+        ev.preventDefault(); ev.stopPropagation(); pick(bs[nx].getAttribute('data-pro-choice'),true); });
+      if(box) box.addEventListener('click',function(ev){ var r=ev.target.closest&&ev.target.closest('[data-pro-reset]'); if(r) pick('all',true); });
     })();
     (function(){   /* (Round 225) a breed's button folds its rabbits away and back */
       var box=document.getElementById('proBreeds'); if(!box) return;
