@@ -285,7 +285,9 @@
       Both records and the list of plans then say the pair's own total under
       the two meters ("Both together $100 of $588 · $488 to go") with the
       note under it. Every pair on one plan says its total; the note is
-      there only when you type one.
+      there only when you type one. (Coconut and Pepper's own note came off
+      the same day, at your tap of 1:55pm: "Take the line off". Their total
+      stays.)
       THE DAY THEY GO HOME, WHEN YOU KNOW IT (26 Nov 2026, your words: "put
       on the payment plan that the projected pick up for those two bunnies
       ... is Monday in the afternoon"): on a rabbit on a plan (for a pair,
@@ -297,6 +299,22 @@
       "Projected pickup Mon 30 Nov, afternoon". Only the day and the part
       of the day: never an hour, never a name. It leaves the record the day
       the rabbit goes home (wentHome), when the record says that instead.
+
+   ── WHERE A PHOTO WAS TAKEN (26 Nov 2026, your words: "photo taken how many
+      days ago with the exact date of when it was taken and the location of
+      the photo", and, with the map of La Encantada, "They were all taken
+      here on the first floor in front of the Apple Store ... concise and not
+      too much information ... people can understand that they are not AI
+      but real") ──
+      on a photo or a clip, next to its date:
+      add      place: "La Encantada, Tucson"
+      The line under the picture then reads "Photo taken 2 days ago · 24 Nov
+      2026" and the place after a small pin. The place only, as short as a
+      street sign: no floor, no shop, no address. A photo with no place says
+      the day alone; never type a place you are not sure of. The 25 photos
+      and clips of 24 Nov 2026 (Snickerdoodle, Mochi, Sprinkles, Cocoa,
+      Cookie, Crumb and Pepper) carry it, on your word; no other photo does
+      until you say where it was taken.
 
    ── TO KEEP ONE AS A PRODUCER (30 Oct 2026, your word on Butterscotch:
       "remove butterscotch from our available rabbits for sale. I'm using
@@ -1817,9 +1835,9 @@ const RABBITS = [
   {
     name:   "Snickerdoodle",
     photos: [
-      { src: "photos/snickerdoodle.jpg", date: "2026-11-24" },
-      { src: "photos/snickerdoodle-2.jpg", date: "2026-11-24", note: "Face on, ears down, the white mark on the forehead." },
-      { video: "videos/snickerdoodle.mp4", poster: "photos/snickerdoodle-video.jpg", date: "2026-11-24" }
+      { src: "photos/snickerdoodle.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/snickerdoodle-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Face on, ears down, the white mark on the forehead." },
+      { video: "videos/snickerdoodle.mp4", poster: "photos/snickerdoodle-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   450,
     breed:   "Holland Lop",
@@ -1843,10 +1861,10 @@ const RABBITS = [
   {
     name:   "Mochi",
     photos: [
-      { src: "photos/mochi.jpg", date: "2026-11-24" },
-      { src: "photos/mochi-2.jpg", date: "2026-11-24", note: "Lying flat on the stone." },
-      { src: "photos/mochi-3.jpg", date: "2026-11-24", note: "Face on." },
-      { video: "videos/mochi-b.mp4", poster: "photos/mochi-b-video.jpg", date: "2026-11-24" }
+      { src: "photos/mochi.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/mochi-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Lying flat on the stone." },
+      { src: "photos/mochi-3.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Face on." },
+      { video: "videos/mochi-b.mp4", poster: "photos/mochi-b-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1869,10 +1887,10 @@ const RABBITS = [
   {
     name:   "Sprinkles",
     photos: [
-      { src: "photos/sprinkles.jpg", date: "2026-11-24" },
-      { src: "photos/sprinkles-2.jpg", date: "2026-11-24", note: "Face on." },
-      { src: "photos/sprinkles-3.jpg", date: "2026-11-24", note: "Curled up, face tucked." },
-      { video: "videos/sprinkles.mp4", poster: "photos/sprinkles-video.jpg", date: "2026-11-24" }
+      { src: "photos/sprinkles.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/sprinkles-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Face on." },
+      { src: "photos/sprinkles-3.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Curled up, face tucked." },
+      { video: "videos/sprinkles.mp4", poster: "photos/sprinkles-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   420,
     breed:   "Holland Lop",
@@ -1895,9 +1913,9 @@ const RABBITS = [
   {
     name:   "Cocoa",
     photos: [
-      { src: "photos/cocoa.jpg", date: "2026-11-24" },
-      { src: "photos/cocoa-2.jpg", date: "2026-11-24", note: "Asleep, face on." },
-      { video: "videos/cocoa.mp4", poster: "photos/cocoa-video.jpg", date: "2026-11-24" }
+      { src: "photos/cocoa.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/cocoa-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Asleep, face on." },
+      { video: "videos/cocoa.mp4", poster: "photos/cocoa-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1920,9 +1938,9 @@ const RABBITS = [
   {
     name:   "Cookie",
     photos: [
-      { src: "photos/cookie.jpg", date: "2026-11-24" },
-      { src: "photos/cookie-2.jpg", date: "2026-11-24", note: "Face on, ears out." },
-      { video: "videos/cookie.mp4", poster: "photos/cookie-video.jpg", date: "2026-11-24" }
+      { src: "photos/cookie.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/cookie-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Face on, ears out." },
+      { video: "videos/cookie.mp4", poster: "photos/cookie-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1945,11 +1963,11 @@ const RABBITS = [
   {
     name:   "Crumb",
     photos: [
-      { src: "photos/crumb.jpg", date: "2026-11-24" },
-      { src: "photos/crumb-2.jpg", date: "2026-11-24", note: "Stretched out on the ledge." },
-      { src: "photos/crumb-3.jpg", date: "2026-11-24", note: "Face on, eyes half shut." },
-      { src: "photos/crumb-4.jpg", date: "2026-11-24", note: "Asleep, ears out." },
-      { video: "videos/crumb.mp4", poster: "photos/crumb-video.jpg", date: "2026-11-24" }
+      { src: "photos/crumb.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/crumb-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Stretched out on the ledge." },
+      { src: "photos/crumb-3.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Face on, eyes half shut." },
+      { src: "photos/crumb-4.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Asleep, ears out." },
+      { video: "videos/crumb.mp4", poster: "photos/crumb-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1972,9 +1990,9 @@ const RABBITS = [
   {
     name:   "Pepper",
     photos: [
-      { src: "photos/pepper.jpg", date: "2026-11-24" },
-      { src: "photos/pepper-2.jpg", date: "2026-11-24", note: "Lying on the stone, from the side." },
-      { video: "videos/pepper.mp4", poster: "photos/pepper-video.jpg", date: "2026-11-24" }
+      { src: "photos/pepper.jpg", date: "2026-11-24", place: "La Encantada, Tucson" },
+      { src: "photos/pepper-2.jpg", date: "2026-11-24", place: "La Encantada, Tucson", note: "Lying on the stone, from the side." },
+      { video: "videos/pepper.mp4", poster: "photos/pepper-video.jpg", date: "2026-11-24", place: "La Encantada, Tucson" }
     ],
     price:   400,
     breed:   "Holland Lop",
@@ -1990,6 +2008,7 @@ const RABBITS = [
     soldOn:  "",
     partsFrom: "2026-11-25",                   /* on Coconut's plan; its meter fills after Coconut's (Coconut's planNext); the pair's dollars are on Coconut. Pepper's share of the pair's $588 is its own $400 (26 Nov 2026) */
     paidOff: "",
+    planDue: "2027-03-25",                     /* the pair's one plan: "They have 4 months" (his words, 26 Nov 2026, 1:54pm), from the first payment of 25 Nov 2026, as on Coconut */
     ear:     "",
     weights: [],
     photo:   "photos/pepper.jpg",
@@ -2434,9 +2453,9 @@ const RABBITS = [
     paidOff: "",
     planPaid: 100,                             /* A PAIR ON ONE PLAN, as Honey and Marshmallow: the pair's dollars; they fill Coconut's meter first, the rest fills Pepper's $400. His words, 26 Nov 2026, 10:02am: "for the two rabbits, this is what I have as a total. They already put down 100, so make sure you update it", and 10:03am: "488 left over": $588 for the two, $100 received, $488 to go */
     planTotal: 188,                            /* Coconut's share of the pair's $588 (Pepper's share is its own $400). The $588 is the site's own quote for the two in the launch hour of 25 Nov: Pepper $400 + Coconut's launch-hour $235, the second (the cheaper) 20% off, so $235 - $47 = $188. His rule of 25 Nov, 6:07pm keeps the 20% off a payment plan; this pair was reserved at that quote and he keeps the total (his words above), so the plan is written as agreed */
-    planNote: "Reserved in the launch hour: the second rabbit 20% off",          /* where the pair's saving comes from, said under the pair's total on both records (his rule of 8 Nov 2026: a pair's saving names its source, the 20% or a special price) */
-    planNoteEs: "Reservados en la hora de lanzamiento: el segundo con 20% menos",
-    planDue: "",
+    planNote: "",                              /* his tap, 26 Nov 2026, 1:55pm (list row 283): "Take the line off". Until then: "Reserved in the launch hour: the second rabbit 20% off", where the pair's saving comes from (his rule of 8 Nov 2026: a pair's saving names its source). The pair's total stays; the line under it does not */
+    planNoteEs: "",
+    planDue: "2027-03-25",                     /* his words, 26 Nov 2026, 1:54pm (list row 284, asked whether to show a pay-off date): "They have 4 months". Counted from the first payment, 25 Nov 2026 (partsFrom); both records say "Paid off by 25 Mar 2027". His to correct if the four months run from another day */
     planPickup: "2026-11-30",                  /* his words, 26 Nov 2026, 12:50pm: "put on the payment plan that the projected pick up for those two bunnies that we just added is Monday in the afternoon". Monday is 30 Nov 2026. Both records and the list of plans say it under the pair's total: "Projected pickup Mon 30 Nov, afternoon" */
     planPickupPart: "afternoon",               /* the part of the day he gave; no hour is published */
     planNext: "Pepper",
