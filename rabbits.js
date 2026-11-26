@@ -275,6 +275,17 @@
       archive). Each listing's record says who it is paid with, a link. When
       one of the two leaves the rail (paid off and three days on), the other
       goes back to a card of its own.
+      WHEN THE PAIR PAYS LESS THAN THE TWO PRICES ADDED (26 Nov 2026, Coconut
+      and Pepper: $588 for the two, your word): on the rabbit whose share is
+      not its price, set  planTotal: 188  (its share), so the two meters add
+      up to what the pair pays; and on the FIRST of the two, a few words on
+      where the saving comes from:
+      set      planNote: "Reserved in the launch hour: the second rabbit 20% off"
+               planNoteEs: the same in Spanish
+      Both records and the list of plans then say the pair's own total under
+      the two meters ("Both together $100 of $588 · $488 to go") with the
+      note under it. Every pair on one plan says its total; the note is
+      there only when you type one.
 
    ── TO KEEP ONE AS A PRODUCER (30 Oct 2026, your word on Butterscotch:
       "remove butterscotch from our available rabbits for sale. I'm using
@@ -1966,7 +1977,7 @@ const RABBITS = [
     status:  "reserved",                       /* his word, 25 Nov 2026, 7:26pm, with Coconut */
     reservedOn: "2026-11-25",
     soldOn:  "",
-    partsFrom: "2026-11-25",                   /* on Coconut's plan; its meter fills after Coconut's (Coconut's planNext); the pair's dollars are on Coconut */
+    partsFrom: "2026-11-25",                   /* on Coconut's plan; its meter fills after Coconut's (Coconut's planNext); the pair's dollars are on Coconut. Pepper's share of the pair's $588 is its own $400 (26 Nov 2026) */
     paidOff: "",
     ear:     "",
     weights: [],
@@ -2410,7 +2421,10 @@ const RABBITS = [
     soldOn: "",
     partsFrom: "2026-11-25",                   /* paying in parts from today; no name, ever */
     paidOff: "",
-    planPaid: 100,                             /* A PAIR ON ONE PLAN, as Honey and Marshmallow: the pair's dollars; Coconut's $250 fills first, the rest fills Pepper's $400. A plan takes no 20% second-rabbit or 5% discount (his rule, 25 Nov 2026, 6:07pm) */
+    planPaid: 100,                             /* A PAIR ON ONE PLAN, as Honey and Marshmallow: the pair's dollars; they fill Coconut's meter first, the rest fills Pepper's $400. His words, 26 Nov 2026, 10:02am: "for the two rabbits, this is what I have as a total. They already put down 100, so make sure you update it", and 10:03am: "488 left over": $588 for the two, $100 received, $488 to go */
+    planTotal: 188,                            /* Coconut's share of the pair's $588 (Pepper's share is its own $400). The $588 is the site's own quote for the two in the launch hour of 25 Nov: Pepper $400 + Coconut's launch-hour $235, the second (the cheaper) 20% off, so $235 - $47 = $188. His rule of 25 Nov, 6:07pm keeps the 20% off a payment plan; this pair was reserved at that quote and he keeps the total (his words above), so the plan is written as agreed */
+    planNote: "Reserved in the launch hour: the second rabbit 20% off",          /* where the pair's saving comes from, said under the pair's total on both records (his rule of 8 Nov 2026: a pair's saving names its source, the 20% or a special price) */
+    planNoteEs: "Reservados en la hora de lanzamiento: el segundo con 20% menos",
     planDue: "",
     planNext: "Pepper",
     ear:    "",
