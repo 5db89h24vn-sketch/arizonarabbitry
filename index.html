@@ -8416,6 +8416,14 @@ html.pick .grid-home-return{display:none}
   }
   function faceSrc(r){ var s=r.photo||(Array.isArray(r.photos)&&r.photos[0]&&r.photos[0].src)||'';
     return realPhoto(s)?s:''; }
+  /* (26 Nov 2026) a parent's small round face, from its own first photograph, to stand before its name wherever a rabbit's mother and
+     father are named (his words, 2:49pm: "a mini picture of each parent ... so people clearly understand that we're referencing their
+     rabbits"). parNamesHTML writes "Mother (face) Name, father (face) Name" whole, in the page's language, so the Spanish dictionary
+     has nothing to match. */
+  function parFace(k,px){ var p=pedPar(k), f=p?framesOf(p.photos||[]):[], src=(f[0]&&f[0].src)||''; px=px||18;
+    return src?'<img class="par-face" src="'+esc(src)+'"'+sizedAttrs(src,px+'px')+' alt="" loading="lazy" width="'+px+'" height="'+px+'">':''; }
+  function parNamesHTML(mk,fk){ var es=document.documentElement.lang==='es';
+    return '<span class="par-one">'+(es?'Madre ':'Mother ')+parFace(mk)+esc(PARENTS[mk].name)+',</span> <span class="par-one">'+(es?'padre ':'father ')+parFace(fk)+esc(PARENTS[fk].name)+'</span>'; }
   function faceImg(r,px){ var s=faceSrc(r);
     return s?'<img src="'+esc(s)+'"'+sizedAttrs(s,px+'px')+' alt="" loading="lazy" width="'+px+'" height="'+px+'">'
             :'<i class="face-none"></i>'; }
@@ -9020,12 +9028,12 @@ html.pick .grid-home-return{display:none}
   function gsCardHTML0(r){
     var a=esc(addrOf(r)), n=esc(r.name), p=+priceOf(r), now=gsNow(r), one=gsOne(r);
     var note=locked(r)?('<p class="bget-note bopen">'+lockNoteHTML(r)+'</p>')   /* (Round 193) available at an hour: the time left and the hour */
-      :('<p class="bget-note">'+(now?'Ready to go home.':'Home on the day I say.')+' First come, first served.</p>');
+      :('<p class="bget-note">'+(now?'Ready to go home.':'Home on the day I say.')+'</p>');   /* (26 Nov 2026) "First come, first served." is the request sheet's first rule and the FAQ's; it left the card, where every card said it (his ask for shorter cards, 2:48pm) */
     if(one) return note+'<div class="bget bget-one"><a class="btn btn-primary bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy \u00B7 $'+p+'</a></div>'+
       '<p class="bget-after">Yours the day you pay, no\u00a0deposit.</p>';
     return note+'<div class="bget"><a class="btn btn-primary bget-r" href="#r-'+a+'~reserve" aria-label="Reserve '+n+' for $50">Reserve \u00B7 $50</a>'+
       '<a class="btn btn-tonal bget-b" href="#r-'+a+'~buy" aria-label="Buy '+n+' for $'+p+'">Buy \u00B7 $'+p+'</a></div>'+
-      '<p class="bget-after">$50 reserves it and comes off the\u00a0price.</p>';
+      '<p class="bget-after">$50 comes off the\u00a0price.</p>';   /* (26 Nov 2026) one line: the button above it says "Reserve · $50" */
   }
   function planWord(r){
     if(!r || r.status==='available' || !r.partsFrom) return '';
@@ -9203,7 +9211,7 @@ html.pick .grid-home-return{display:none}
         (partsLine(r)?'<p class="parts partsline">'+partsLine(r)+'</p>':'')+
         ((r.status==='available'&&noPlan(r))?'<p class="noplan">'+(document.documentElement.lang==='es'?'Sin plan de\u00a0pagos':'No payment\u00a0plan')+'</p>':'')+   /* (Round 193) no payment plan: said on the line the chip stands on */
         (pmk?'<p class="plan-meta">'+pmh+'</p>':'')+(stLabel?stMeta:'')+
-        '<p class="meta">'+meta+'</p>'+lastLine215(dealHTML(r,false),r)+growHTML(r,false)+
+        '<p class="meta">'+meta+'</p>'+lastLine215(dealHTML(r,false),r)+(gsCan(r)?growHTML(r,false).replace(/<span class="grow-txt grow-open">[\s\S]*?<\/span>/,''):growHTML(r,false))+   /* (26 Nov 2026) "Open to reserve" / "Buy outright" is said by the button under it; a card with no button keeps the words */
         '<p class="desc">'+esc(r.note)+'</p>'+
         (gsCan(r)?gsCardHTML(r):
         (open?'<p class="cta-note">Asking is free. $50 reserves&nbsp;it.</p>':'')+
@@ -11598,7 +11606,7 @@ html.pick .grid-home-return{display:none}
       var t2=document.getElementById('viewerAboutT2'), s2=document.getElementById('viewerAboutS2');
       if(t2) t2.textContent='About '+vWith.name;
       if(s2){ var okp=(typeof HAVE_PARENTS!=='undefined')&&HAVE_PARENTS&&vWith.mother&&vWith.father&&PARENTS[vWith.mother]&&PARENTS[vWith.father];
-        s2.textContent=okp?('Mother '+PARENTS[vWith.mother].name+', father '+PARENTS[vWith.father].name):'Litter and record'; }
+        if(okp) s2.innerHTML=parNamesHTML(vWith.mother,vWith.father); else s2.textContent='Litter and record'; }
       a2.hidden=false; }
     function readyDay(x){ var m=/^(\d{1,2})\s+([A-Za-z]{3})/.exec(String(x&&x.ready||'').trim()); if(!m) return '';
       var mo=GS_MON[m[2].toLowerCase()]; if(mo===undefined) return '';
@@ -12569,7 +12577,7 @@ html.pick .grid-home-return{display:none}
       aboutPortrait('viewerAboutFace',r);
       if(vAboutS){
         var okp=(typeof HAVE_PARENTS!=='undefined')&&HAVE_PARENTS&&r.mother&&r.father&&PARENTS[r.mother]&&PARENTS[r.father];
-        vAboutS.textContent=okp?('Mother '+PARENTS[r.mother].name+', father '+PARENTS[r.father].name):'Litter and record';
+        if(okp) vAboutS.innerHTML=parNamesHTML(r.mother,r.father); else vAboutS.textContent='Litter and record';
       }
       var wq=(vWith&&gsCan(r)&&gsCan(vWith))?gsQuote(r,vWith).two:p;   /* (pair, 14 Nov 2026) on the listing for two, the price of the two */
       if(vWhyS) vWhyS.textContent=(gsCan(r)?'What the $'+wq+' covers':'What the price covers')+((hasDeal(r)||!!(vWith&&hasDeal(vWith)))?'\u00a0\u00b7\u00a0the price\u00a0history':'');   /* the dot never starts a line (listingroomtest at 320) */
@@ -13340,7 +13348,7 @@ html.pick .grid-home-return{display:none}
       if(nmo&&nfa) document.getElementById('lsMeta').innerHTML=esc(ES?('Nacidos el '+dLong(w.born)):('Born '+dLong(w.born)))+' · <span class="ls-age">'+esc(nowWords(w.born))+'</span><br>'+esc(crossLine(w)||kindWords(w))+(whyPair(w)?'<span class="ls-pair">'+esc(whyPair(w))+'</span>':'');
       else document.getElementById('lsMeta').textContent=nowWords(w.born)+' · '+kindWords(w);
       var mo=pName(w.l.parents&&w.l.parents.mother), fa=pName(w.l.parents&&w.l.parents.father), sub='';
-      if(mo||fa) sub=(mo?(ES?'Madre ':'Mother ')+'<a href="#p-'+esc(w.l.parents.mother)+'">'+esc(mo)+'</a>':'')+(mo&&fa?(ES?', padre ':', father '):(fa?(ES?'Padre ':'Father '):''))+(fa?'<a href="#p-'+esc(w.l.parents.father)+'">'+esc(fa)+'</a>':'');
+      if(mo||fa) sub=(mo?(ES?'Madre ':'Mother ')+'<a href="#p-'+esc(w.l.parents.mother)+'">'+parFace(w.l.parents.mother,16)+esc(mo)+'</a>':'')+(mo&&fa?(ES?', padre ':', father '):(fa?(ES?'Padre ':'Father '):''))+(fa?'<a href="#p-'+esc(w.l.parents.father)+'">'+parFace(w.l.parents.father,16)+esc(fa)+'</a>':'');
       var tile=function(role,key){ var p=PAR[key]; if(!p||!p.name) return ''; var src=faceOf(key);
         return '<a class="parent" href="#p-'+esc(key)+'" data-parent="'+esc(key)+'" aria-label="'+esc(T.parentOpen(role,p.name))+'">'+
           (src?'<img src="'+esc(src)+'"'+sizedAttrs(src,'44px')+' alt="" loading="lazy" decoding="async" width="44" height="44">':'')+
@@ -14621,6 +14629,90 @@ html:not(.pick) #rail>.bunny.breed-filtered-out{display:none!important}
 html.pick #rail[data-grid-columns]{grid-template-columns:repeat(2,minmax(0,1fr))}
 /* (25 Nov 2026, owner 4:02pm: "These must be on a single line") phones: the three filters are one row of equal tiles, icon and count over the name, the name free to take a second line at large text sizes, never a second row of filters */@media(max-width:599px){.rabbit-breed-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.rabbit-breed-filters button{flex-direction:column;gap:3px;justify-content:center;min-width:0;padding:7px 4px 8px;border-radius:16px;font-size:12px;line-height:1.2}.breed-filter-name{min-height:0;max-width:100%;display:block;white-space:normal;overflow-wrap:anywhere;text-wrap:balance;text-align:center}.breed-filter-symbol{gap:5px}.breed-filter-symbol svg{width:30px;height:30px}.breed-filter-note{font-size:11.5px}}
 </style>
+<style id="phone-density">
+/* (26 Nov 2026, his words, 2:47pm, on the three breed tiles: "a little bit more vertically narrow so we save space"; 2:48pm, on the
+   cards: "more vertically narrow without taking out important details or having everything smushed ... optimize the scrolling time
+   for everyone") PHONES ONLY (under 600px); wider screens keep their layout.
+
+   THE BREED TILES. One row still (his word of 25 Nov: "These must be on a single line"), now one line tall: the drawing, the name, the
+   count, side by side, 44px, the floor for a thing a finger taps (Apple's Human Interface Guidelines: 44pt; WCAG 2.2 target size,
+   2.5.5). Each tile is as wide as its own words, so "Netherland Dwarf" gets the room "All" does not need; on a narrow phone a name
+   takes a second line beside its drawing, whole words only, and the tile stays 44px. They were 64px (icon and count over the name).
+   The Producers section's tiles are the same tiles.
+
+   THE CARDS. What each card says about its own rabbit stays: photograph, name, price, payment plans, breed, colour, age, whether it
+   can go home, Reserve and Buy. Three things every card said in the same words are trimmed, because a card is for choosing which
+   rabbit to open (the listing and the request sheet say them in full): "Open to reserve" above a button that says Reserve; "First
+   come, first served." (the request sheet's first rule, and the FAQ); and "$50 reserves it and" before "comes off the price" (the
+   button says "Reserve · $50"). The gaps between a card's groups go from 18/15px to 10/7px; nothing inside a group is closer than
+   it was to its own neighbour by more than 4px, and no text is smaller. */
+@media(min-width:340px) and (max-width:599px){
+  .rabbit-breed-filters{display:flex;flex-wrap:nowrap;gap:6px}
+  .rabbit-breed-filters button{flex:1 1 auto;flex-direction:row;justify-content:center;gap:5px;min-width:0;min-height:44px;padding:5px 8px;border-radius:14px;font-size:12.5px;line-height:1.15}
+  .rabbit-breed-filters .breed-filter-symbol{display:contents}
+  .rabbit-breed-filters .breed-filter-symbol svg{flex:none;order:1;width:22px;height:22px}
+  .rabbit-breed-filters .breed-filter-name{order:2;display:block;min-width:0;white-space:normal;overflow-wrap:normal;text-wrap:balance;text-align:left}
+  .rabbit-breed-filters .breed-filter-count{order:3;flex:none;min-width:0;font-size:13px}
+  /* measured (the script under this block): every name on one line while the row has the room; when it does not, the longest name
+     takes two lines, then the next, each tile as wide as its own words; then smaller drawings and edges. Without the script the
+     rules above stand: the names turn where they must. */
+  .rabbit-breed-filters.fit button{flex:1 0 auto}
+  .rabbit-breed-filters.fit .breed-filter-name{white-space:nowrap}
+  .rabbit-breed-filters.fit button.two .breed-filter-name{white-space:normal;width:min-content}
+  .rabbit-breed-filters.fit.tight button{padding:5px 6px;gap:4px;font-size:12px}
+  .rabbit-breed-filters.fit.tight .breed-filter-symbol svg{width:19px;height:19px}
+}
+@media(max-width:599px){
+  .bunnies>.bunny>.bunny-body{padding-top:11px;padding-bottom:12px}
+  .bunnies>.bunny .bunny-top .price{line-height:1.3}
+  .bunnies>.bunny>.bunny-body>.parts.partsline,.bunnies>.bunny>.bunny-body>.noplan,.bunnies>.bunny>.bunny-body>.plan-meta{margin-top:4px}
+  .bunnies>.bunny>.bunny-body>.meta{margin-top:6px}
+  .bunnies>.bunny>.bunny-body>.grow{margin-top:10px}
+  .bunnies>.bunny>.bunny-body>p.bget-note{margin-top:3px;margin-bottom:0}
+  .bunnies>.bunny>.bunny-body>.bget{margin-top:9px}
+  .bunnies>.bunny>.bunny-body>p.bget-after{margin-top:7px}
+}
+/* (26 Nov 2026, his words, 2:49pm: "when you say their mother and their father have a mini picture of each parent ... so people clearly
+   understand that we're referencing their rabbits, and there's information about them") a parent's small round face before its name,
+   wherever a rabbit's mother and father are named; each "Mother (face) Name" stays in one piece when the line has to turn. */
+.par-face{display:inline-block;width:18px;height:18px;border-radius:50%;object-fit:cover;vertical-align:-4px;margin:0 4px 0 1px;background:var(--paper-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 16%,transparent)}
+.par-one{white-space:nowrap}
+</style>
+<script id="breed-tiles-fit">
+/* (26 Nov 2026) The breed tiles on a phone: one row, one line tall. Every name stays on one line while the row has the room; when it
+   does not, the longest name takes two lines beside its drawing, then the next; then the drawings and edges go smaller; and if the
+   row still does not fit, the plain rules take over (names turn where they must). Measured again when the row's width changes, when
+   the tiles are written again (the Producers section writes its own) and when the fonts arrive. */
+(function(){
+  if(!window.ResizeObserver||!window.matchMedia) return;
+  var mq=matchMedia('(min-width:340px) and (max-width:599px)');
+  function len(b){ var n=b.querySelector('.breed-filter-name'); return n?n.textContent.trim().length:0; }
+  function fit(g){
+    var bs=[].slice.call(g.querySelectorAll('button'));
+    g.classList.remove('tight'); bs.forEach(function(b){ b.classList.remove('two'); });
+    if(!mq.matches||!bs.length||!g.clientWidth){ g.classList.remove('fit'); return; }
+    g.classList.add('fit');
+    var over=function(){ return g.scrollWidth>g.clientWidth+0.5; };
+    var multi=bs.filter(function(b){ var n=b.querySelector('.breed-filter-name'); return !!n&&/\s/.test(n.textContent.trim()); }).sort(function(a,b){ return len(b)-len(a); });
+    for(var i=0;i<multi.length&&over();i++) multi[i].classList.add('two');
+    if(over()) g.classList.add('tight');
+    if(over()){ g.classList.remove('fit','tight'); bs.forEach(function(b){ b.classList.remove('two'); }); }
+  }
+  function watch(g){
+    if(g.__fitOn) return; g.__fitOn=true;
+    var w=-1, ro=new ResizeObserver(function(){ var n=g.clientWidth; if(n===w) return; w=n; fit(g); });
+    ro.observe(g);
+    new MutationObserver(function(ms){ for(var i=0;i<ms.length;i++){ if(ms[i].type==='childList'||ms[i].target.classList.contains('breed-filter-name')||ms[i].type==='characterData'){ w=g.clientWidth; fit(g); return; } } }).observe(g,{childList:true,subtree:true,characterData:true});
+    fit(g);
+  }
+  function all(){ [].forEach.call(document.querySelectorAll('.rabbit-breed-filters'),watch); }
+  function again(){ [].forEach.call(document.querySelectorAll('.rabbit-breed-filters'),function(g){ if(g.__fitOn) fit(g); }); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',all); else all();
+  window.addEventListener('load',function(){ all(); again(); });
+  if(mq.addEventListener) mq.addEventListener('change',again);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(again);
+})();
+</script>
 <script id="rabbit-breed-filtering">
 (function(){
   var rail=document.getElementById('rail'), browser=document.getElementById('rabbitBreedBrowser'), group=document.getElementById('rabbitBreedFilters'), status=document.getElementById('rabbitBreedStatus');
