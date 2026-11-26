@@ -2324,6 +2324,12 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .backpill{position:fixed;z-index:92;left:max(12px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));display:flex;align-items:center;height:48px;max-width:var(--bpmax,calc(100vw - 24px));box-sizing:border-box;border-radius:999px;color:var(--ink);background:var(--glass-solid);border:1px solid var(--glass-rim);
   box-shadow:0 0 0 .5px rgba(36,31,29,.1),0 8px 22px rgba(36,31,29,.15),0 1px 3px rgba(36,31,29,.1);opacity:0;transform:translateY(10px);transition:opacity .2s,transform .26s cubic-bezier(.2,.9,.25,1.1)}
 .backpill.on{opacity:1;transform:none}
+/* (26 Nov 2026) the way back steps aside over the rabbit grid while the reader scrolls down through the cards (see bpShow) */
+@media(max-width:599px){
+  html.bp-away .backpill.on:not(:focus-within){opacity:0;transform:translateY(calc(100% + 26px));pointer-events:none}
+  html.bp-small .backpill:not(:focus-within) .bp-t,html.bp-small .backpill:not(:focus-within) .bp-x{display:none}   /* its words said, the arrow alone stays, as Back to top does */
+  html.bp-small .backpill:not(:focus-within) .bp-go{padding:0 6px}
+}
 .backpill[hidden]{display:none}
 /* (26 Nov 2026, owner 5:36am) the way back wears the same round return arrow on every page and in every listing */
 .backpill .bp-ic{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(36,31,29,.1);transition:border-color .15s,color .15s,transform .12s ease-out}
@@ -12077,7 +12083,7 @@ html.pick .grid-home-return{display:none}
     }
     function pillOn(t){
       if(!BP) return;
-      bpTrail=t; bpName.textContent=t.label;
+      bpTrail=t; bpName.textContent=t.label; bpShow();
       bpPre.textContent=t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to ');
       bpGo.setAttribute('aria-label',(t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to '))+t.label);
       bpGo.setAttribute('href',t.kind==='listing'?t.hash:(t.kind==='trail'?t.href:('#'+(t.sec||'top'))));
@@ -12085,6 +12091,25 @@ html.pick .grid-home-return{display:none}
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(bpTrail===t) BP.classList.add('on'); }); });
     }
     function pillOff(){ if(!BP||BP.hidden) return; BP.classList.remove('on'); BP.hidden=true; bpTrail=null; }
+    /* (26 Nov 2026) THE WAY BACK STAYS OFF THE CARDS. On a phone the pill floats over the left column of the rabbit grid, where it sat on a
+       card's price and its Reserve button, so a tap meant for the button went back instead. The menu pill already leaves the grid for this
+       reason (rabbit-grid-home-clear). The way back cannot leave: it is how the reader returns. So over the grid it steps aside while the
+       reader scrolls down through the cards and is there again the moment they scroll up, the way a phone's own browser bar behaves. It
+       always shows on arrival, it never hides while the keyboard is on it, and anywhere else on the page it stays put. */
+    var bpY=scrollY, bpAway=false, bpHold=0, bpSayT=0;
+    function bpGrid(){ return document.documentElement.classList.contains('at-rabbit-grid'); }
+    function bpSay(){   /* its words for a few seconds; then, over the cards, the arrow alone (the menu's Back to top does the same) */
+      document.documentElement.classList.remove('bp-small'); clearTimeout(bpSayT);
+      bpSayT=setTimeout(function(){ if(BP&&!BP.hidden&&bpGrid()) document.documentElement.classList.add('bp-small'); },3200);
+    }
+    function bpShow(){ bpY=scrollY; bpHold=Date.now()+1600; if(bpAway){ bpAway=false; document.documentElement.classList.remove('bp-away'); } bpSay(); }
+    addEventListener('scroll',function(){
+      var y=scrollY, d=y-bpY; if(Math.abs(d)<22) return; bpY=y;
+      if(Date.now()<bpHold||!BP||BP.hidden) return;
+      var grid=bpGrid(), away=d>0&&grid;
+      if(!grid) document.documentElement.classList.remove('bp-small');   /* off the cards it is whole again */
+      if(away!==bpAway){ bpAway=away; document.documentElement.classList.toggle('bp-away',away); if(!away&&grid) bpSay(); }
+    },{passive:true});
     function askBackOff(){ if(AB){ AB.hidden=true; abTrail=null; } }
     function trailLeave(to){   /* a listing left for a place on the page */
       if(!/^#[rp]-/.test(location.hash||'')) return;
