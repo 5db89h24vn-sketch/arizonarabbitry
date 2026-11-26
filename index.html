@@ -11138,9 +11138,12 @@ html.pick .grid-home-return{display:none}
         bornTo.appendChild(born);
         var lit=document.createElement('span'); lit.className='u';
         var lk=document.createElement('a'); lk.className='litterlink chip'; lk.href='/litters#L'+r.dob;
-        lk.title='See the litter this rabbit came from';
-        lk.setAttribute('aria-label','Born '+niceDate(r.dob)+': see '+pronoun(r)+' litter');
-        var pw=pronoun(r); lk.textContent=pw.charAt(0).toUpperCase()+pw.slice(1)+' litter';
+        /* (25 Nov 2026, owner 5:11pm: "Shouldn't it be more accurate on what it actually takes you to ... It takes you to an archive") the litter
+           page holds the litter's story and its first-days photos, so the link says so; the littermates as they are now sit in this card */
+        var esL=document.documentElement.lang==='es';
+        lk.title=esL?'Fotos de la camada en sus primeros días':'Photos of the litter in its first days';
+        lk.setAttribute('aria-label',esL?('Nacido el '+niceDate(r.dob)+': fotos de la camada en sus primeros días'):('Born '+niceDate(r.dob)+': photos of the litter in its first days'));
+        lk.textContent=esL?'Fotos de bebé':'Baby photos';
         var ch=document.createElement('i'); ch.className='chev'; ch.setAttribute('aria-hidden','true'); lk.appendChild(ch);
         lit.appendChild(lk);
         bornTo.appendChild(document.createTextNode(' '));
