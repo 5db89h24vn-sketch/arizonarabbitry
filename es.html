@@ -2039,6 +2039,7 @@ html.vtout::view-transition-new(rabbitphoto){
 .viewer-share{right:61px}
 .viewer-back{position:absolute;top:9px;left:9px;z-index:3;width:44px;height:44px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:none;place-items:center;color:var(--ink);box-shadow:var(--lift-photo);transition:border-color .15s,color .15s,transform .12s ease-out;-webkit-tap-highlight-color:transparent}
 .viewer.hasback .viewer-back{display:grid}
+.viewer.hasback .vtags{left:62px;top:18px;max-width:calc(100% - 178px)}   /* (26 Nov 2026) the status marks sit beside the round arrow, never under it */
 .viewer.big .viewer-back{display:none!important}
 .viewer-back svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}   /* (25 Nov 2026, owner 4:46pm: "more like a backtrack button") a return arrow, unlike the photo arrows */
 .viewer-back:active{transform:scale(.94)}
@@ -2545,7 +2546,12 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
   box-shadow:0 0 0 .5px rgba(36,31,29,.1),0 8px 22px rgba(36,31,29,.15),0 1px 3px rgba(36,31,29,.1);opacity:0;transform:translateY(10px);transition:opacity .2s,transform .26s cubic-bezier(.2,.9,.25,1.1)}
 .backpill.on{opacity:1;transform:none}
 .backpill[hidden]{display:none}
-.backpill .bp-go{display:flex;align-items:center;gap:9px;min-width:0;height:100%;padding:0 4px 0 16px;color:inherit;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2}
+/* (26 Nov 2026, owner 5:36am) the way back wears the same round return arrow on every page and in every listing */
+.backpill .bp-ic{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(36,31,29,.1);transition:border-color .15s,color .15s,transform .12s ease-out}
+.backpill .bp-ic svg{display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.backpill .bp-go:active .bp-ic{transform:scale(.94)}
+@media(hover:hover){.backpill .bp-go:hover .bp-ic{border-color:var(--brick);color:var(--brick)}}
+.backpill .bp-go{display:flex;align-items:center;gap:10px;min-width:0;height:100%;padding:0 4px 0 7px;color:inherit;text-decoration:none;font-weight:600;font-size:15px;line-height:1.2}
 .backpill .bp-go .chev{flex:none;width:8px;height:8px;border-right:1.75px solid currentColor;border-bottom:1.75px solid currentColor;transform:rotate(135deg);margin-left:2px}
 .backpill .bp-t{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .backpill.short .bp-pre{display:none}
@@ -11668,6 +11674,7 @@ html.pick .grid-home-return{display:none}
       if(back){ var rb=back.getBoundingClientRect(); if(rb.bottom<0||rb.top>innerHeight) back=null; }
       if(!back&&shown&&!wasParent) back=document.querySelector('.bunny-link[href="#r-'+addrOf(shown)+'"]');
       if(back&&back.focus) focusNoScroll(back);
+      setTimeout(hopPill,0);   /* (26 Nov 2026) a listing opened from another page: the page's pill is the way back now */
     }
 
     function cardImgFor(r){
@@ -12051,12 +12058,45 @@ html.pick .grid-home-return{display:none}
       if(!trailStepping) vTrail=[];
       trailStepping=false;
       while(vTrail.length&&vTrail[vTrail.length-1].hash===h) vTrail.pop();
-      var t=vTrail[vTrail.length-1];
-      if(vBackP){ vBackP.hidden=!t; vw.classList.toggle('hasback',!!t); if(t){ vBackT.textContent=(asES()?'Volver a ':'Back to ')+t.label; vBack.setAttribute('href',t.hash); vBack.title=vBackT.textContent; } }   /* (25 Nov 2026, owner 4:34pm) one back button, the same everywhere: a round arrow at the top left, mirroring Close */
+      backPaint();   /* (25 Nov 2026, owner 4:34pm) one back button, the same everywhere: a round arrow at the top left, mirroring Close */
       pillOff(); askBackOff();   /* a listing on screen: the page's way back has done its work */
     }
+    /* (26 Nov 2026, owner 5:36am) THE WAY BACK ACROSS PAGES (trail.js). A listing opened from another page (a litter's parent, a litter's
+       "on the site now") gets the round arrow back to that page; once the listing is shut, the page's pill offers the same way back. */
+    function hopNow(){ var T=window.azTrail; return T?T.here():null; }
+    function hopListing(){ var hp=hopNow(); return (hp&&hp.th&&/^#[rp]-/.test(hp.th)&&hp.th===(location.hash||''))?hp:null; }
+    function backPaint(){
+      var t=vTrail[vTrail.length-1], hp=t?null:hopListing(), on=!!(t||hp);
+      if(!vBackP) return;
+      vBackP.hidden=!on; vw.classList.toggle('hasback',on);
+      if(t){ vBackT.textContent=(asES()?'Volver a ':'Back to ')+t.label; vBack.setAttribute('href',t.hash); vBack.title=vBackT.textContent; }
+      else if(hp){ vBackT.textContent=window.azTrail.words(hp); vBack.setAttribute('href',hp.from); vBack.title=vBackT.textContent; }
+    }
+    function hopPill(){
+      var hp=hopNow(); if(!hp||hp.m||hp.h||!BP) return;   /* the menus go where they say; a pill hidden stays hidden */
+      if(vw.classList.contains('open')||document.documentElement.classList.contains('pick')) return;
+      if(bpTrail&&bpTrail.kind!=='trail') return;   /* the page's own way back is showing */
+      pillOn({kind:'trail', label:window.azTrail.label(hp), href:hp.from});
+    }
+    document.addEventListener('aztrail',function(){ if(vw.classList.contains('open')) backPaint(); else hopPill(); });
+    window.azTrailFrom=function(){
+      if(vw.classList.contains('open')&&/^#[rp]-/.test(location.hash||'')){
+        var ex=[]; [].forEach.call(vw.querySelectorAll('[id][aria-expanded="true"]'),function(e){ if(e.getClientRects().length) ex.push(e.id); });
+        var sc=vScroller();
+        return {name:trailLabel(), state:{hash:location.hash, ex:ex, top:sc?sc.scrollTop:0}};
+      }
+      var w=whereLabel(); return {name:w.top?'':w.label, state:null};
+    };
+    window.azTrailRestore=function(st){   /* back by a fresh load: the listing as it was left (its open panels, its place) */
+      if(!st||!st.hash||st.hash!==(location.hash||'')) return; var n=0;
+      (function wait(){
+        if(!vw.classList.contains('open')){ if(++n<40) setTimeout(wait,60); return; }
+        (st.ex||[]).forEach(function(id){ var b=document.getElementById(id); if(b&&vw.contains(b)&&b.getAttribute('aria-expanded')==='false'&&b.getClientRects().length) b.click(); });
+        setTimeout(function(){ var sc=vScroller(); if(sc&&st.top>0) sc.scrollTop=st.top; },460);
+      })();
+    };
     function vBackClick(ev){
-      ev.preventDefault(); var t=vTrail[vTrail.length-1]; if(!t) return;
+      ev.preventDefault(); var t=vTrail[vTrail.length-1]; if(!t){ if(hopListing()) window.azTrail.back(); return; }
       trailStepping=true;
       if(((history.state&&history.state.rv)|0)===t.rv+1) history.back(); else stepTo(t.hash);
     }
@@ -12074,7 +12114,7 @@ html.pick .grid-home-return{display:none}
       bpTrail=t; bpName.textContent=t.label;
       bpPre.textContent=t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to ');
       bpGo.setAttribute('aria-label',(t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to '))+t.label);
-      bpGo.setAttribute('href',t.kind==='listing'?t.hash:('#'+(t.sec||'top')));
+      bpGo.setAttribute('href',t.kind==='listing'?t.hash:(t.kind==='trail'?t.href:('#'+(t.sec||'top'))));
       BP.hidden=false; BP.classList.remove('on'); bpFit();
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(bpTrail===t) BP.classList.add('on'); }); });
     }
@@ -12088,6 +12128,7 @@ html.pick .grid-home-return{display:none}
     }
     function goBackTo(t){
       if(!t) return;
+      if(t.kind==='trail'){ if(window.azTrail) window.azTrail.back(); return; }   /* back to the page left */
       if(t.kind==='listing'){
         if(location.hash===t.to&&!history.state){ history.back(); return; }   /* the listing's own entry is right behind */
         stepTo(t.hash); return;
@@ -12162,6 +12203,7 @@ html.pick .grid-home-return{display:none}
         var h=d.h;
         if(/^#[rp]-/.test(h)){ stepFrom(h); return; }
         if(h.charAt(0)==='#'){ leaveFor(h); return; }
+        if(window.azTrail) window.azTrail.leave(d.a);   /* (26 Nov 2026) and the page arrived at shows the way back */
         location.href=d.a.href;   /* another page: the browser's own Back comes back to this listing, its address kept */
     }
     window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&PL&&!PL.hidden){ e.stopPropagation(); e.preventDefault(); plShut(); } },true);
@@ -12175,11 +12217,12 @@ html.pick .grid-home-return{display:none}
       if(AS) AS.addEventListener('click',asClick);
       if(vBack) vBack.addEventListener('click',vBackClick);
       if(bpGo) bpGo.addEventListener('click',function(ev){ ev.preventDefault(); var t=bpTrail; pillOff(); goBackTo(t); });
-      if(bpX) bpX.addEventListener('click',function(){ pillOff(); });
+      if(bpX) bpX.addEventListener('click',function(){ var tr=bpTrail&&bpTrail.kind==='trail'; pillOff(); if(tr&&window.azTrail) window.azTrail.hide(); });
       if(abA) abA.addEventListener('click',function(ev){ ev.preventDefault(); var t=abTrail; askBackOff(); pillOff(); goBackTo(t); });
       if(PL){ PL.addEventListener('click',function(ev){ if(ev.target===PL) plShut(); }); plStay.addEventListener('click',function(){ plShut(); }); plGo.addEventListener('click',plGoClick); }
       if(window.ResizeObserver){ var cpo=document.querySelector('.corner-pill'); if(cpo) new ResizeObserver(function(){ bpFit(); }).observe(cpo); }
       if(window.MutationObserver) new MutationObserver(function(){ bpFit(); }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+      if(window.azTrail){ if(vw.classList.contains('open')) backPaint(); else hopPill(); }   /* (26 Nov 2026) trail.js was ready first: draw the way back now the controls are in hand */
     }
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',r182init); else r182init();
 
@@ -13562,6 +13605,7 @@ html.pick .grid-home-return{display:none}
 })();
 </script>
 
+<script src="trail.js?v=8f8837ce" defer></script>
 <script src="count.js?v=2859b509" defer></script>
 <script>
 (function(){
@@ -13764,7 +13808,7 @@ html.pick .grid-home-return{display:none}
 
 <div class="qlook pchange pleave" id="pleave" hidden role="dialog" aria-modal="true" aria-labelledby="plT"><div class="qlook-card pc-card"><h3 class="pc-t" id="plT"></h3><p class="pc-b" id="plB"></p><div class="pc-btns"><button type="button" class="btn btn-primary" id="plStay"></button><button type="button" class="btn btn-tonal" id="plGo"></button></div></div></div>
 
-<div class="backpill" id="backPill" hidden><a class="bp-go" id="bpGo" href="#"><i class="chev" aria-hidden="true"></i><span class="bp-t"><span class="bp-pre" id="bpPre">Volver a</span><span id="bpName"></span></span></a><button type="button" class="bp-x" id="bpX" aria-label="Ocultar">&#215;</button></div>
+<div class="backpill" id="backPill" hidden><a class="bp-go" id="bpGo" href="#"><span class="bp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg></span><span class="bp-t"><span class="bp-pre" id="bpPre">Volver a</span><span id="bpName"></span></span></a><button type="button" class="bp-x" id="bpX" aria-label="Ocultar">&#215;</button></div>
 <div class="qlook pchange" id="pchange" hidden role="dialog" aria-modal="true" aria-labelledby="pcT"><div class="qlook-card pc-card"><h3 class="pc-t" id="pcT"></h3><p class="pc-b" id="pcB"></p><div class="pc-btns"><a class="btn btn-primary" id="pcGo" href="#available"></a><button type="button" class="btn btn-tonal" id="pcKeep"></button></div></div></div>
 <script id="xm2-script">(function(){
   var H=document.documentElement; if(!H.classList.contains('xmas')) return;
