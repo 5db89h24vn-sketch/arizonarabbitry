@@ -14562,8 +14562,14 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
   .viewer.big .viewer-stage{position:absolute;inset:0;max-height:none}
   .viewer.big .viewer-frame,.viewer.big.bignav .viewer-frame{width:min(100%,calc(100vh * var(--stage-arn,1.3333)));width:min(100%,calc(100dvh * var(--stage-arn,1.3333)));border-radius:0;box-shadow:none}
   .viewer.big .viewer-amb{height:100%!important}
-  .viewer.big .viewer-photo-head{position:absolute;left:0;right:0;top:0;z-index:6;height:56px;padding:6px 64px 6px max(8px,env(safe-area-inset-left,0px));background:linear-gradient(rgba(12,9,8,.72),rgba(12,9,8,0))}
-  .viewer.big .viewer-big-nav{position:absolute;left:0;right:0;bottom:0;z-index:6;height:60px;background:linear-gradient(rgba(12,9,8,0),rgba(12,9,8,.72))}
+  /* (26 Nov 2026, the same afternoon, seen on the live site) THE WORDS OVER A LIGHT PHOTO. The date and the count lay on a strip that
+     was nearly clear where they stand: over pale stone they measured 2.6 to 1 against it, and small words need 4.5 to 1 (WCAG 2.2,
+     1.4.3 Contrast, Minimum). The two strips are longer now and dark where the words stand, clear again by the middle of the
+     picture; they are drawn behind the bars (::before) so the bars keep their size, and they fade with the bars. */
+  .viewer.big .viewer-photo-head{position:absolute;left:0;right:0;top:0;z-index:6;height:56px;padding:6px 64px 6px max(8px,env(safe-area-inset-left,0px));background:none}
+  .viewer.big .viewer-photo-head::before{content:"";position:absolute;left:0;right:0;top:0;height:84px;z-index:-1;pointer-events:none;background:linear-gradient(rgba(12,9,8,.88),rgba(12,9,8,.72) 48%,rgba(12,9,8,0))}
+  .viewer.big .viewer-big-nav{position:absolute;left:0;right:0;bottom:0;z-index:6;height:60px;background:none}
+  .viewer.big .viewer-big-nav::before{content:"";position:absolute;left:0;right:0;bottom:0;height:108px;z-index:-1;pointer-events:none;background:linear-gradient(rgba(12,9,8,0),rgba(12,9,8,.72) 50%,rgba(12,9,8,.9))}
   .viewer.big .viewer-photo-tools{position:absolute;left:max(12px,env(safe-area-inset-left,0px));right:max(8px,env(safe-area-inset-right,0px));bottom:8px;z-index:7;min-height:44px;padding:0;background:none!important;pointer-events:none}
   .viewer.big .viewer-photo-tools>*{pointer-events:auto}
   .viewer.big .viewer-photo-tools .vborn{flex:0 1 auto;margin-right:auto;text-shadow:0 1px 3px rgba(0,0,0,.6)}
@@ -14589,9 +14595,14 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
   /* a tap on the picture itself: hide when shown, show when hidden; a tap on a control only keeps them up */
   vw.addEventListener('click',function(e){ if(!immersive()) return;
     var onPic=e.target.closest&&e.target.closest('.viewer-frame')&&!(e.target.closest('video')&&vid&&!vid.paused);
-    if(onPic&&!vw.classList.contains('quiet')&&!e.target.closest('button,a')){ clearTimeout(timer); cls(vw,'quiet',true); return; }
+    if(onPic&&!vw.classList.contains('quiet')&&!e.target.closest('button,a')){ clearTimeout(timer); cls(vw,'quiet',true); hidAt=Date.now(); return; }
     show(); },true);
-  ['touchstart','keydown','mousemove'].forEach(function(t){ vw.addEventListener(t,function(e){ if(immersive()&&(t!=='touchstart'||vw.classList.contains('quiet')===false)) { clearTimeout(timer); timer=setTimeout(function(){ if(immersive()) cls(vw,'quiet',true); },2600); } },{passive:true,capture:true}); });
+  /* a touch while they are up keeps them up (while they are hidden, the tap itself decides, above); a key brings them back; so does
+     a real mouse moving, as in any video player, but not in the moment after a click that hid them */
+  var hidAt=0;
+  vw.addEventListener('touchstart',function(){ if(immersive()&&!vw.classList.contains('quiet')) show(); },{passive:true,capture:true});
+  document.addEventListener('keydown',function(){ if(immersive()) show(); },true);
+  vw.addEventListener('pointermove',function(e){ if(e.pointerType==='mouse'&&immersive()&&Date.now()-hidAt>700) show(); },{passive:true,capture:true});
 
   /* ── where the browser has a real full screen (not an iPhone), Enlarge asks for it, and leaving the enlarged view gives it back ── */
   var coarse=window.matchMedia&&matchMedia('(hover:none) and (pointer:coarse)').matches;
