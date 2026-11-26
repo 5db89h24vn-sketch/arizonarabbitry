@@ -57,7 +57,7 @@
     st.length=i<0?st.length:i; if(i>=0) write(st);
     var ok=false; try{ ok=!!hop&&new URL(hop.from,location.href).origin===location.origin; }catch(e){}
     if(!ok){ location.href=homeHref(); return; }   /* nothing to go back to: the rabbits */
-    try{ sessionStorage.setItem(RET,JSON.stringify({url:hop.from,y:hop.y||0,st:hop.st||null,t:Date.now()})); }catch(e){}
+    try{ sessionStorage.setItem(RET,JSON.stringify({url:hop.from,y:hop.y||0,st:hop.st||null,ai:hop.ai||'',at:hop.at|0,t:Date.now()})); }catch(e){}
     if(hop.d&&!hop.x&&!dirty&&history.length>1){
       var was=CUR; try{ history.back(); }catch(e){ location.href=hop.from; return; }
       clearTimeout(backTimer);
@@ -79,23 +79,46 @@
     if(!r) return;
     var a; try{ a=new URL(r.url,location.href); }catch(e){ return; }
     if(norm(a.pathname)!==CUR) return;
-    var y=r.y|0, go=function(){
-      if(r.st&&typeof W.azTrailRestore==='function'){ try{ W.azTrailRestore(r.st,r); }catch(e){} }
-      if(y>0){ try{ W.scrollTo({top:y,left:0,behavior:'instant'}); }catch(e){ W.scrollTo(0,y); } }
+    /* (26 Nov 2026) THE SAME PLACE, NOT THE SAME FIGURE. A page that comes back by a fresh load is not laid out yet as it was left: its open
+       answers are shut, its pictures unmeasured, and the browser's own slow scroll back is still under way, so one jump to the old scroll
+       figure landed a screen or two off. The place is now the thing that was tapped (the nearest part of the page with a name) put back
+       where it sat on the screen, and it is checked again as the page settles, until the reader touches the page themselves. */
+    var y=r.y|0, done=false, mine=false, stop=function(){ mine=true; };
+    var place=function(){
+      var el=r.ai?D.getElementById(r.ai):null, want=null;
+      if(el&&el.getClientRects().length) want=Math.round((W.scrollY||0)+el.getBoundingClientRect().top-(r.at|0));
+      else if(y>0) want=y;
+      if(want===null||want<0||Math.abs((W.scrollY||0)-want)<3) return;
+      try{ W.scrollTo({top:want,left:0,behavior:'instant'}); }catch(e){ W.scrollTo(0,want); }
+    };
+    var go=function(){
+      if(!done){ done=true;
+        if(r.st&&typeof W.azTrailRestore==='function'){ try{ W.azTrailRestore(r.st,r); }catch(e){} }
+        ['touchstart','wheel','keydown','mousedown'].forEach(function(k){ W.addEventListener(k,stop,{passive:true,capture:true,once:true}); });
+        [360,900,1700].forEach(function(ms){ setTimeout(function(){ if(!mine) place(); },ms); });
+      }
+      place();
     };
     if(D.readyState==='complete') setTimeout(go,60); else W.addEventListener('load',function(){ setTimeout(go,80); });
   }
 
+  function anchorOf(a){   /* the nearest named part of the page around the tap, and where it sat on the screen; none for a menu or a layer held over the page */
+    var e=(a&&a.closest)?a.closest('[id]'):null, n;
+    if(!e||e===D.body||e===H) return null;
+    for(n=e;n&&n!==D.body;n=n.parentElement){ try{ if(/fixed|sticky/.test(getComputedStyle(n).position)) return null; }catch(x){ return null; } }
+    return {ai:e.id, at:Math.round(e.getBoundingClientRect().top)};
+  }
   /* a tap that changes pages: remember this place */
   function push(u,a){
     var st=settle(), info={}, to=norm(u.pathname);
     try{ if(typeof W.azTrailFrom==='function') info=W.azTrailFrom(a)||{}; }catch(e){}
     while(st.length&&st[st.length-1].p&&st[st.length-1].fp===CUR) st.pop();   /* an earlier tap here that went nowhere */
+    var an=(info.state&&info.state.hash)?null:anchorOf(a);   /* a listing keeps its own place (azTrailRestore) */
     st.push({from:location.href, fp:CUR, to:to, th:u.hash||'', key:keyOf(location.pathname), name:info.name||'', y:Math.round(W.scrollY||0),
-             st:info.state||null, t:Date.now(), p:1,
+             st:info.state||null, ai:an?an.ai:'', at:an?an.at:0, t:Date.now(), p:1,
              m:(a&&a.closest&&a.closest('header,nav,footer,.mnav,.subnav,.topbar,.foot,.corner,#dock,#cornerSheet'))?1:0});
     write(st);
-    try{ sessionStorage.setItem(LEFT,JSON.stringify({url:location.href,y:Math.round(W.scrollY||0),st:info.state||null,t:Date.now()})); }catch(e){}
+    try{ sessionStorage.setItem(LEFT,JSON.stringify({url:location.href,y:Math.round(W.scrollY||0),st:info.state||null,ai:an?an.ai:'',at:an?an.at:0,t:Date.now()})); }catch(e){}
   }
   function pageUrl(a){
     var u; try{ u=new URL(a.href,location.href); }catch(e){ return null; }

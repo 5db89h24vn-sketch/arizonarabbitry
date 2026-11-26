@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',all); window.addEventListener('load
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<script>try{if(localStorage.getItem('look')==='dim')document.documentElement.setAttribute('data-look','dim')}catch(e){}</script>
+<script>/* (26 Nov 2026, "Same look everywhere") the same rule as every other page (Round 193d, his words of 4:56pm: "defaults to whatever system settings somebody has"): the reader's own choice when they made one; else the system's. This page used to stay light on a phone set to dark. */(function(){var r=document.documentElement,q=null;function set(d){if(d)r.setAttribute('data-look','dim');else r.removeAttribute('data-look');}var l=null;try{l=localStorage.getItem('look');}catch(e){}try{q=window.matchMedia('(prefers-color-scheme: dark)');}catch(e){}set(l==='dim'||(!l&&!!q&&q.matches));if(!l&&q&&q.addEventListener)q.addEventListener('change',function(e){var k=null;try{k=localStorage.getItem('look');}catch(x){}if(!k)set(e.matches);});})();</script>
 
 <style data-fact="fonts">
 @font-face{font-family: 'Fraunces';font-style: normal;font-weight: 500;font-display: swap;src: url(/fonts/fraunces-latin-ext.8c15c79f.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
@@ -159,13 +159,64 @@ h3{font-size:17px;font-weight:600;line-height:1.3;margin:0 0 6px}
 .rb b{display:block;font-weight:600;line-height:1.25}.rb small{display:block;color:var(--ink-soft);font-size:14px;font-variant-numeric:tabular-nums}
 .kind .rows{margin:8px 0 0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* (26 Nov 2026, "Same look everywhere") THE SAME HEAD AS EVERY OTHER PAGE. The owner, 26 Nov 2026, 5:36am: "overall I want the entire website
+   just to be very smooth and up-to-date with our current design language". This page and its twin had their own smaller head: a round
+   button, a larger mark, no row of ways on, and their own dark colours. They now carry the litters page's head (its measures, copied):
+   the same name and mark, the same button, the same row under the way back, the same Dark mode switch, and the same dark palette. */
+:root{--line-soft:#EDE6DA;--logo:#4B2912;--brick-fill:#A0522D;--brick-fill-dk:#7C3E21;--on-brick:#fff;--r:8px;
+  --lift-brick:0 1px 2px rgba(88,40,18,.22),0 6px 18px rgba(160,82,45,.26)}
+[data-look="dim"]{--paper-2:#362D26;--card:#3A3029;--ink:#E6D9C7;--ink-soft:#D0C1AE;--ink-faint:#B8A794;--line:#4B4037;--line-soft:#41372F;
+  --brick-dk:#EDB08E;--brick-tint:#3F2C21;--logo:#E3C29E;--brick-fill:#A0522D;--brick-fill-dk:#8C4626;--on-brick:#F6EEE3;--lift-brick:0 1px 2px rgba(0,0,0,.3);
+  --open:#93D5A5;--open-tint:#26362A;--hold:#E5BC6E;--hold-tint:#3C301D;--gone:#B3ABA9}
+.top{gap:16px;padding:16px 0 14px;border-bottom:1px solid var(--line-soft)}
+.brand{display:inline-block;min-height:0;font-size:19px;color:var(--logo);white-space:nowrap}
+@media(max-width:350px){.brand{font-size:17px}}
+.brand svg.brand-side{display:inline-block;width:auto;height:.732em;aspect-ratio:82.18/83.01;vertical-align:baseline;margin-right:.307em;color:inherit;overflow:visible}
+.cta-sm{justify-content:center;padding:10px 13px;border-radius:var(--r);background:var(--brick-fill);color:var(--on-brick);font-weight:500;font-size:14.5px;line-height:1.2;
+  white-space:nowrap;text-align:center;box-shadow:var(--lift-brick);transition:background .15s,transform .18s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:350px){.cta-sm{white-space:normal;max-width:7.5em}}
+[data-look="dim"] .cta-sm{color:var(--on-brick)}
+.cta-sm:active{transform:scale(.96)}
+@media(hover:hover){.cta-sm:hover{background:var(--brick-fill-dk)}}
+.go{background:var(--brick-fill);color:var(--on-brick)}
+[data-look="dim"] .go{color:var(--on-brick);box-shadow:var(--lift-brick)}
+.back{margin-top:8px}
+.subnav{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
+@media(min-width:481px){.subnav{gap:6px}}   /* the six fit one line in this page's narrower column */
+.subnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border:1px solid var(--line);border-radius:100px;background:var(--card);
+  font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;white-space:nowrap}
+.subnav a:active{color:var(--brick-dk);border-color:var(--brick)}
+@media(hover:hover){.subnav a:hover{color:var(--brick-dk);border-color:var(--brick)}}
+.moon,.sun{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sun{display:none}
+html[data-look="dim"] .sun{display:inline}
+html[data-look="dim"] .moon{display:none}
+.look-on{display:none}
+[data-look="dim"] .look-on{display:inline}
+[data-look="dim"] .look-off{display:none}
+.look-cap{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:0 15px 0 13px;border:0;border-radius:999px;
+  background:var(--paper-2);color:var(--ink);font:inherit;font-size:14px;font-weight:600;line-height:1;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+@media(hover:hover){.look-cap:hover{background:var(--line)}}
+.look-cap:focus-visible,.subnav a:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}
+@media(max-width:480px){
+  /* both written whole, with the screen's own edge in them, so the text-size setting leaves them matching this page's gutter (it cannot read a value that holds env()) */
+  .subnav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:2px calc(-1 * max(20px,env(safe-area-inset-right))) 10px 0;padding:3px max(20px,env(safe-area-inset-right)) 3px 0;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+  .subnav[data-edge="mid"]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+  .subnav[data-edge="end"]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px);mask-image:linear-gradient(90deg,transparent,#000 26px)}
+  .subnav[data-edge="fit"]{-webkit-mask-image:none;mask-image:none}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav a,.subnav .look-cap{flex:0 0 auto}
+  .subnav a:focus-visible,.subnav .look-cap:focus-visible{outline-offset:-3px}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Arizona Rabbits","item":"https://arizonarabbits.com/es"},{"@type":"ListItem","position":2,"name":"¿Qué conejo va con su hogar?","item":"https://arizonarabbits.com/es-which-rabbit"}]}</script>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><a class="brand" href="/es"><svg viewBox="9.82 7.24 82.18 83.01" aria-hidden="true" focusable="false"><path d="M22 88 C12 87 9 81 10 71 C10 56 22 43 37 43 C44 43 49 45 54 49 L59 41 C53 30 45 13 49 8 C55 3 64 24 67 34 C69 24 73 13 78 14 C84 16 77 34 73 41 C84 42 92 48 92 55 C92 62 85 66 78 66 C79 71 77 76 74 79 C83 79 88 84 86 88 L55 88 C44 91 31 91 22 88 Z" fill="currentColor"/></svg><span>Arizona Rabbits<small>Tucson</small></span></a><a class="cta-sm" href="sms:+15202702827">Mensaje a William</a></header>
+<header class="top"><a class="brand" href="/es"><svg class="brand-side" viewBox="9.82 7.24 82.18 83.01" aria-hidden="true" focusable="false"><path d="M22 88 C12 87 9 81 10 71 C10 56 22 43 37 43 C44 43 49 45 54 49 L59 41 C53 30 45 13 49 8 C55 3 64 24 67 34 C69 24 73 13 78 14 C84 16 77 34 73 41 C84 42 92 48 92 55 C92 62 85 66 78 66 C79 71 77 76 74 79 C83 79 88 84 86 88 L55 88 C44 91 31 91 22 88 Z" fill="currentColor"/></svg>Arizona Rabbits<small>Tucson</small></a><a class="cta-sm" href="sms:+15202702827">Mensaje a William</a></header>
 <a class="back" href="/es#available"><i class="chev" aria-hidden="true"></i>Todos los conejos</a>
+<nav class="subnav" aria-label="En la página principal"><a href="/es#available">Disponibles ahora</a><a href="/es#raised">Cómo se crían</a><a href="/es#boarding">Hospedaje</a><a href="/es#faq">Preguntas</a><button type="button" class="look-cap" data-look-switch><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M5.4 18.6l1.5-1.5M17.1 6.9l1.5-1.5"/></svg><span class="look-off">Modo oscuro</span><span class="look-on">Modo claro</span></button><a class="lang-link" href="/which-rabbit" hreflang="en" lang="en" data-lang-switch>English</a></nav>
 <main>
 <h1>¿Qué conejo va con su&nbsp;hogar?</h1>
 <p class="lead">Holland Lop, Netherland Dwarf o una de mis cruzas: lo que decide, lado a lado, y quién está listo ahora. Cada conejo es un animal distinto; cada anuncio dice cómo es&nbsp;ese.</p>
@@ -216,6 +267,22 @@ h3{font-size:17px;font-weight:600;line-height:1.3;margin:0 0 6px}
   draw(); f.hidden=false;
 })();
 </script>
-<script src="trail.js?v=14bb88b1" defer></script>
+<script>
+/* (26 Nov 2026, "Same look everywhere") the Dark mode switch every other page has (the same key, the same two words), and the row's faded edge */
+(function(){
+  var root=document.documentElement;
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-look-switch]'); if(!b) return;
+    var d=root.getAttribute('data-look')!=='dim';
+    if(d) root.setAttribute('data-look','dim'); else root.removeAttribute('data-look');
+    try{ localStorage.setItem('look', d?'dim':'light'); }catch(x){}
+    try{ document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:d}})); }catch(x){}
+  });
+  var el=document.querySelector('.subnav'); if(!el) return;
+  function f(){ var m=el.scrollWidth-el.clientWidth; el.setAttribute('data-edge', m<=2?'fit':(el.scrollLeft<=2?'start':(el.scrollLeft>=m-2?'end':'mid'))); }
+  el.addEventListener('scroll',f,{passive:true}); window.addEventListener('resize',f); f();
+})();
+</script>
+<script src="trail.js?v=c41d9cce" defer></script>
 </body>
 </html>

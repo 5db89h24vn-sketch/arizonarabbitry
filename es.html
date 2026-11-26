@@ -2539,6 +2539,12 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
 .asheet .as-back[hidden]{display:none}
 :where(html:not(.ptr)) .asheet .as-back:focus-visible{color:var(--brick-dk);background:var(--paper-2)}@media(hover:hover){.asheet .as-back:hover{color:var(--brick-dk);background:var(--paper-2)}}
 .asheet .as-back .chev{flex:none;width:7px;height:7px;margin-left:3px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(135deg)}
+/* (26 Nov 2026, "Same look everywhere") ONE ARROW FOR EVERY WAY BACK. The owner, 25 Nov 2026, 4:34pm: "Make the back to the rabbit button more
+   universal. and iconic as currently it's unique every time you need to go back a page", and 4:46pm: "make it look more like a backtrack
+   button?". The listing, the page pill and the other pages' heads took the return arrow then and on 26 Nov; these five still drew their own
+   chevron: an answer's step back, the form's way back to a rabbit, the picker's Back, the full-screen photo's and the pedigree sheet's. */
+.ret-ic{flex:none;display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.chip .ret-ic{margin:0 0 0 -2px}
 .asheet .as-t{margin:0 52px 0 0;font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;text-wrap:balance;outline:none}
 .asheet .as-a{margin-top:10px;max-width:none;padding-bottom:18px}
 .asheet .as-a>details:last-child{border-bottom:0}
@@ -5985,7 +5991,7 @@ html.pick .grid-home-return{display:none}
 <section id="available" style="padding-top:0">
   <div class="wrap">
 
-    <div class="pickbar" id="pickbar" hidden><a class="chip pickbar-no" id="pickbarNo" href="#available"><i class="chev left" aria-hidden="true"></i>Volver</a><div class="pickbar-in"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><p class="pickbar-t" id="pickbarT" tabindex="-1"></p></div></div>
+    <div class="pickbar" id="pickbar" hidden><a class="chip pickbar-no" id="pickbarNo" href="#available"><svg class="ret-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg>Volver</a><div class="pickbar-in"><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><p class="pickbar-t" id="pickbarT" tabindex="-1"></p></div></div>
     <div class="avail-head">
       <div>
         <h2 style="margin-bottom:8px">Conozca a los conejos</h2>
@@ -6848,7 +6854,7 @@ html.pick .grid-home-return{display:none}
           <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="askabout" id="askAbout" tabindex="-1">
-            <p class="askback" id="askBack" hidden><a class="chip" id="askBackA" href="#"><i class="chev left" aria-hidden="true"></i><span id="askBackT"></span></a></p>
+            <p class="askback" id="askBack" hidden><a class="chip" id="askBackA" href="#"><svg class="ret-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg><span id="askBackT"></span></a></p>
             <p class="ask-lead">Pregunta por <b id="askName"></b></p>
             <div class="rpick" id="askPick" role="group" aria-label="Qué conejos"></div>
 
@@ -12091,9 +12097,12 @@ html.pick .grid-home-return{display:none}
         var sc=vScroller();
         return {name:trailLabel(), state:{hash:location.hash, ex:ex, top:sc?sc.scrollTop:0}};
       }
-      var w=whereLabel(); return {name:w.top?'':w.label, state:null};
+      var w=whereLabel(), op=[];   /* (26 Nov 2026) the answers left open on the page go with it: closed, the same scroll figure is a different place */
+      [].forEach.call(document.querySelectorAll('main details[id]'),function(d){ if(d.open&&!vw.contains(d)) op.push(d.id); });
+      return {name:w.top?'':w.label, state:op.length?{open:op.slice(0,30)}:null};
     };
     window.azTrailRestore=function(st){   /* back by a fresh load: the listing as it was left (its open panels, its place) */
+      if(st&&st.open&&!st.hash){ st.open.forEach(function(id){ var d=document.getElementById(id); if(d&&d.tagName==='DETAILS'&&!d.open) d.open=true; }); return; }   /* the page as it was left: its open answers */
       if(!st||!st.hash||st.hash!==(location.hash||'')) return; var n=0;
       (function wait(){
         if(!vw.classList.contains('open')){ if(++n<40) setTimeout(wait,60); return; }
@@ -13667,7 +13676,7 @@ html.pick .grid-home-return{display:none}
 })();
 </script>
 
-<script src="trail.js?v=14bb88b1" defer></script>
+<script src="trail.js?v=c41d9cce" defer></script>
 <script src="count.js?v=2859b509" defer></script>
 <script>
 (function(){
@@ -13866,7 +13875,7 @@ html.pick .grid-home-return{display:none}
 <div class="qlook alsheet" id="alertSheet" hidden role="dialog" aria-modal="true" aria-labelledby="alT"><div class="qlook-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="alX">&#215;</button><div class="al-body"><h3 class="al-t" id="alT"></h3><p class="al-s" id="alS"></p><div id="alFormBox"></div><p class="al-ok" id="alOk" hidden></p><p class="al-kept" id="alKept" hidden></p></div></div></div>
 <div class="qlook" id="qlook" hidden role="dialog" aria-modal="true" aria-labelledby="qlName"><div class="qlook-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="qlX" aria-label="Cerrar">&#215;</button><div class="ql-strip" id="qlStrip"></div><div class="ql-dots" id="qlDots" aria-hidden="true"></div><div class="ql-body"><div class="ql-head"><h3 class="ql-name" id="qlName"></h3><span class="ql-price" id="qlPrice"></span></div><p class="ql-meta" id="qlMeta"></p><p class="ql-note" id="qlNote"></p><p class="ql-more"><a class="chip" id="qlMore" href="#available">El anuncio<i class="chev" aria-hidden="true"></i></a></p></div></div></div>
 
-<div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="asX" aria-label="Cerrar">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><i class="chev" aria-hidden="true"></i><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
+<div class="qlook asheet" id="asheet" hidden role="dialog" aria-modal="true" aria-labelledby="asT"><div class="qlook-card as-card"><div class="ql-bar" aria-hidden="true"></div><button type="button" class="ql-x" id="asX" aria-label="Cerrar">&#215;</button><div class="as-body"><button type="button" class="as-back" id="asBack" hidden><svg class="ret-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg><span id="asBackT"></span></button><h3 class="as-t" id="asT" tabindex="-1"></h3><div class="as-a faq-body" id="asA"></div></div></div></div>
 
 <div class="qlook pchange pleave" id="pleave" hidden role="dialog" aria-modal="true" aria-labelledby="plT"><div class="qlook-card pc-card"><h3 class="pc-t" id="plT"></h3><p class="pc-b" id="plB"></p><div class="pc-btns"><button type="button" class="btn btn-primary" id="plStay"></button><button type="button" class="btn btn-tonal" id="plGo"></button></div></div></div>
 
@@ -14133,7 +14142,7 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
   if(strip) new MutationObserver(bnSync).observe(strip,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
 
   var back=document.createElement('button'); back.type='button'; back.className='viewer-photo-back'; back.setAttribute('aria-label','Volver a la ficha'); back.title=back.getAttribute('aria-label');
-  back.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>'; head.appendChild(back);
+  back.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg>'; head.appendChild(back);
   var sourceName=document.getElementById('viewer-name'), name=document.createElement('span'); name.className='viewer-photo-name'; head.appendChild(name);
   function set(on){ vw.classList.toggle('big',on); b.setAttribute('aria-pressed',on?'true':'false'); b.setAttribute('aria-label',on?'Volver a la ficha':'Ampliar la foto'); b.title=b.getAttribute('aria-label'); b.querySelector('svg').innerHTML=on?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>'; b.querySelector('span').textContent=on?'Volver a la ficha':'Ampliar'; }
   function available(){ var im=document.getElementById('viewerImg'), vi=document.getElementById('viewerVideo'); return !vw.classList.contains('vpair')&&getComputedStyle(st).display!=='none'&&!!((im&&!im.hidden&&im.getAttribute('src')&&!/^data:/.test(im.getAttribute('src')))||(vi&&!vi.hidden&&(vi.getAttribute('src')||vi.getAttribute('poster')))); }
@@ -14150,7 +14159,7 @@ if(a&&a.id){ var go=function(){ var el=document.getElementById(a.id); if(!el) re
 (function(){'use strict';
  var es=document.documentElement.lang==='es',tx=function(en,sp){return es?sp:en;},panel=document.createElement('section');
  panel.id='pedDocument';panel.className='ped-document';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','pedDocumentTitle');
- panel.innerHTML='<div class="ped-document-bar"><button type="button" class="ped-document-back" id="pedDocumentBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg><span>'+tx('Back','Volver')+'</span></button><h2 id="pedDocumentTitle">'+tx('Pedigree','Pedigrí')+'</h2><button type="button" class="ped-document-save" id="pedDocumentSave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg><span>'+tx('Save PDF','Guardar PDF')+'</span></button></div><div class="ped-document-tools"><button type="button" id="pedDocumentZoom" aria-pressed="false" aria-controls="pedDocumentCanvas">'+tx('Zoom in','Ampliar')+'</button><p>'+tx('Zoom to read the details.','Amplía para leer los detalles.')+'</p><p class="ped-document-status" id="pedDocumentStatus" role="status"></p><p class="ped-document-fallback" id="pedDocumentFallback" hidden><a id="pedDocumentDownload" download target="_blank" rel="noopener">'+tx('Download PDF','Descargar PDF')+'</a> · <a id="pedDocumentOpen" target="_blank" rel="noopener">'+tx('Open PDF in a new tab','Abrir PDF en otra pestaña')+'</a></p></div><div class="ped-document-canvas" id="pedDocumentCanvas" tabindex="0" aria-label="'+tx('Pedigree preview; scroll when zoomed','Vista previa del pedigrí; desplázate al ampliar')+'"><img id="pedDocumentImage" hidden><p class="ped-document-error" id="pedDocumentError" hidden></p></div>';
+ panel.innerHTML='<div class="ped-document-bar"><button type="button" class="ped-document-back" id="pedDocumentBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4.5 9.5 9 5"/><path d="M4.5 9.5h9.75a5.25 5.25 0 0 1 0 10.5H11"/></svg><span>'+tx('Back','Volver')+'</span></button><h2 id="pedDocumentTitle">'+tx('Pedigree','Pedigrí')+'</h2><button type="button" class="ped-document-save" id="pedDocumentSave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg><span>'+tx('Save PDF','Guardar PDF')+'</span></button></div><div class="ped-document-tools"><button type="button" id="pedDocumentZoom" aria-pressed="false" aria-controls="pedDocumentCanvas">'+tx('Zoom in','Ampliar')+'</button><p>'+tx('Zoom to read the details.','Amplía para leer los detalles.')+'</p><p class="ped-document-status" id="pedDocumentStatus" role="status"></p><p class="ped-document-fallback" id="pedDocumentFallback" hidden><a id="pedDocumentDownload" download target="_blank" rel="noopener">'+tx('Download PDF','Descargar PDF')+'</a> · <a id="pedDocumentOpen" target="_blank" rel="noopener">'+tx('Open PDF in a new tab','Abrir PDF en otra pestaña')+'</a></p></div><div class="ped-document-canvas" id="pedDocumentCanvas" tabindex="0" aria-label="'+tx('Pedigree preview; scroll when zoomed','Vista previa del pedigrí; desplázate al ampliar')+'"><img id="pedDocumentImage" hidden><p class="ped-document-error" id="pedDocumentError" hidden></p></div>';
  document.body.appendChild(panel);
  var q=function(id){return document.getElementById(id);},back=q('pedDocumentBack'),save=q('pedDocumentSave'),zoom=q('pedDocumentZoom'),canvas=q('pedDocumentCanvas'),img=q('pedDocumentImage'),title=q('pedDocumentTitle'),status=q('pedDocumentStatus'),fallback=q('pedDocumentFallback'),error=q('pedDocumentError'),download=q('pedDocumentDownload'),openPDF=q('pedDocumentOpen');
  var manifest=null,manifestPromise=null,current=null,pending=null,token=0,lastReturn=null;
