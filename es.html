@@ -2556,10 +2556,16 @@ html.js .incl.open li small{box-sizing:border-box;padding-top:3px}
   box-shadow:0 0 0 .5px rgba(36,31,29,.1),0 8px 22px rgba(36,31,29,.15),0 1px 3px rgba(36,31,29,.1);opacity:0;transform:translateY(10px);transition:opacity .2s,transform .26s cubic-bezier(.2,.9,.25,1.1)}
 .backpill.on{opacity:1;transform:none}
 /* (26 Nov 2026) the way back steps aside over the rabbit grid while the reader scrolls down through the cards (see bpShow) */
+.grid-back-return{display:none}
 @media(max-width:599px){
   html.bp-away .backpill.on:not(:focus-within){opacity:0;transform:translateY(calc(100% + 26px));pointer-events:none}
-  html.bp-small .backpill:not(:focus-within) .bp-t,html.bp-small .backpill:not(:focus-within) .bp-x{display:none}   /* its words said, the arrow alone stays, as Back to top does */
-  html.bp-small .backpill:not(:focus-within) .bp-go{padding:0 6px}
+  /* and it is set into the page at the grid's end, beside Home, where nothing has to float */
+  html.has-back:not(.pick) .grid-back-return{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;width:max-content;max-width:100%;box-sizing:border-box;margin:18px auto 0;padding:0 18px 0 7px;border:1px solid var(--line);border-radius:24px;color:var(--ink);background:var(--paper-2);font-weight:600;font-size:15px;line-height:1.2;text-decoration:none}
+  .grid-back-return .bp-ic{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(36,31,29,.1)}
+  .grid-back-return .bp-ic svg{display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+  .grid-back-return .gb-t{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .grid-back-return:focus-visible{outline:3px solid var(--brick);outline-offset:3px}
+  html.has-back:not(.pick) .grid-back-return + .grid-home-return{margin-top:10px}
 }
 .backpill[hidden]{display:none}
 /* (26 Nov 2026, owner 5:36am) the way back wears the same round return arrow on every page and in every listing */
@@ -12133,31 +12139,31 @@ html.pick .grid-home-return{display:none}
     function pillOn(t){
       if(!BP) return;
       bpTrail=t; bpName.textContent=t.label; bpShow();
+      if(gbEnd){ gbEnd.querySelector('.gb-t').textContent=(t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to '))+t.label; }
+      document.documentElement.classList.add('has-back');
       bpPre.textContent=t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to ');
       bpGo.setAttribute('aria-label',(t.top?(asES()?'Volver ':'Back to '):(asES()?'Volver a ':'Back to '))+t.label);
       bpGo.setAttribute('href',t.kind==='listing'?t.hash:(t.kind==='trail'?t.href:('#'+(t.sec||'top'))));
       BP.hidden=false; BP.classList.remove('on'); bpFit();
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(bpTrail===t) BP.classList.add('on'); }); });
     }
-    function pillOff(){ if(!BP||BP.hidden) return; BP.classList.remove('on'); BP.hidden=true; bpTrail=null; }
+    function pillOff(){ if(!BP||BP.hidden) return; BP.classList.remove('on'); BP.hidden=true; bpTrail=null; clearTimeout(bpT); bpAway=false; document.documentElement.classList.remove('has-back','bp-away'); }
     /* (26 Nov 2026) THE WAY BACK STAYS OFF THE CARDS. On a phone the pill floats over the left column of the rabbit grid, where it sat on a
        card's price and its Reserve button, so a tap meant for the button went back instead. The menu pill already leaves the grid for this
        reason (rabbit-grid-home-clear). The way back cannot leave: it is how the reader returns. So over the grid it steps aside while the
-       reader scrolls down through the cards and is there again the moment they scroll up, the way a phone's own browser bar behaves. It
-       always shows on arrival, it never hides while the keyboard is on it, and anywhere else on the page it stays put. */
-    var bpY=scrollY, bpAway=false, bpHold=0, bpSayT=0;
+       reader scrolls down through the cards, or leaves it alone for a few seconds, and is there again the moment they scroll up, the way a
+       phone's own browser bar behaves. It always shows on arrival, it never hides while the keyboard is on it, and anywhere else on the
+       page it stays put. The same way back is also set into the page at the grid's end, beside Home (.grid-back-return). */
+    var bpY=scrollY, bpAway=false, bpHold=0, bpT=0, gbEnd=null;
     function bpGrid(){ return document.documentElement.classList.contains('at-rabbit-grid'); }
-    function bpSay(){   /* its words for a few seconds; then, over the cards, the arrow alone (the menu's Back to top does the same) */
-      document.documentElement.classList.remove('bp-small'); clearTimeout(bpSayT);
-      bpSayT=setTimeout(function(){ if(BP&&!BP.hidden&&bpGrid()) document.documentElement.classList.add('bp-small'); },3200);
-    }
-    function bpShow(){ bpY=scrollY; bpHold=Date.now()+1600; if(bpAway){ bpAway=false; document.documentElement.classList.remove('bp-away'); } bpSay(); }
+    function bpSet(away){ if(away===bpAway) return; bpAway=away; document.documentElement.classList.toggle('bp-away',away); }
+    function bpRest(ms){ clearTimeout(bpT); bpT=setTimeout(function(){ if(BP&&!BP.hidden&&bpGrid()) bpSet(true); },ms); }   /* left alone over the cards, it steps aside too */
+    function bpShow(){ bpY=scrollY; bpHold=Date.now()+1600; bpSet(false); bpRest(3600); }
     addEventListener('scroll',function(){
       var y=scrollY, d=y-bpY; if(Math.abs(d)<22) return; bpY=y;
       if(Date.now()<bpHold||!BP||BP.hidden) return;
-      var grid=bpGrid(), away=d>0&&grid;
-      if(!grid) document.documentElement.classList.remove('bp-small');   /* off the cards it is whole again */
-      if(away!==bpAway){ bpAway=away; document.documentElement.classList.toggle('bp-away',away); if(!away&&grid) bpSay(); }
+      if(!bpGrid()){ clearTimeout(bpT); bpSet(false); return; }   /* off the cards it stays put */
+      if(d>0){ clearTimeout(bpT); bpSet(true); } else { bpSet(false); bpRest(4500); }
     },{passive:true});
     function askBackOff(){ if(AB){ AB.hidden=true; abTrail=null; } }
     function trailLeave(to){   /* a listing left for a place on the page */
@@ -12280,6 +12286,14 @@ html.pick .grid-home-return{display:none}
       if(AS) AS.addEventListener('click',asClick);
       if(vBack) vBack.addEventListener('click',vBackClick);
       if(bpGo) bpGo.addEventListener('click',function(ev){ ev.preventDefault(); var t=bpTrail; pillOff(); goBackTo(t); });
+      (function(){   /* (26 Nov 2026) the way back, set into the page at the end of the rabbit grid on a phone (see bpShow) */
+        var rail=g('rail'), wrap=rail&&(rail.closest('.rail')||rail), ic=bpGo&&bpGo.querySelector('.bp-ic'); if(!wrap||!BP||!ic) return;
+        gbEnd=document.createElement('a'); gbEnd.className='grid-back-return'; gbEnd.href='#';
+        gbEnd.innerHTML='<span class="bp-ic" aria-hidden="true">'+ic.innerHTML+'</span><span class="gb-t"></span>';
+        gbEnd.addEventListener('click',function(ev){ ev.preventDefault(); var t=bpTrail; if(!t) return; pillOff(); goBackTo(t); });
+        var gh=wrap.parentNode.querySelector('.grid-home-return');   /* beside Home, after the cards and what is said under them */
+        wrap.parentNode.insertBefore(gbEnd,gh||wrap.nextSibling);
+      })();
       if(bpX) bpX.addEventListener('click',function(){ var tr=bpTrail&&bpTrail.kind==='trail'; pillOff(); if(tr&&window.azTrail) window.azTrail.hide(); });
       if(abA) abA.addEventListener('click',function(ev){ ev.preventDefault(); var t=abTrail; askBackOff(); pillOff(); goBackTo(t); });
       if(PL){ PL.addEventListener('click',function(ev){ if(ev.target===PL) plShut(); }); plStay.addEventListener('click',function(){ plShut(); }); plGo.addEventListener('click',plGoClick); }
