@@ -2591,6 +2591,8 @@ html.pick .lsh{display:none!important}
 .lsh-wait b{font-size:13px;font-weight:700;letter-spacing:0;line-height:1}
 .lsh-wait svg{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .lsh-pic:not(.has-count) .lsh-wait{bottom:6px}
+.lsh-all{display:flex;align-items:center;gap:7px;margin:-2px 0 12px;font-size:14px;line-height:1.4;color:var(--ink-soft);text-wrap:pretty}.lsh-all[hidden]{display:none}.lsh-all b{color:var(--ink);font-weight:600}
+.lsh-all svg{flex:none;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 @keyframes lshWaitIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.lsh-wait{animation:none}}
 @media(prefers-reduced-transparency:reduce){.lsh-wait{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
@@ -5976,6 +5978,7 @@ html.pick .grid-home-return{display:none}
 
     <div class="lsh" id="litterShelf" role="region" hidden aria-labelledby="lshT">
       <div class="lsh-head"><h3 class="lsh-t" id="lshT"></h3><button type="button" class="lsh-go" id="lshGo" aria-haspopup="dialog"></button></div>
+      <p class="lsh-all" id="lshAll" hidden></p>
       <div class="lsh-bar"><div class="lsh-chips" id="lshChips" role="group"></div><div class="lsh-arrs"><button type="button" class="lsh-arr" id="lshPrev"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="lsh-arr" id="lshNext"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
       <ul class="lsh-row" id="lshRow"></ul>
       <div class="lsh-empty" id="lshEmpty" hidden></div>
@@ -13187,17 +13190,24 @@ html.pick .grid-home-return{display:none}
   function waitingText(n, label){
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
   }
-  function showWaiting(el, n, label, mine){
+  /* (27 Nov 2026, his words: "separate them in a clean way to where all the data is still displayed") the number is the
+     litter's own people plus the every-litter list; the line says how it is made up. allN: the every-litter list. */
+  function showWaiting(el, n, label, mine, allN){
     if(!el) return;
     if(typeof n!=='number'||n<1){ el.hidden=true; el.textContent=''; return; }
-    el.innerHTML=mine?('You’re one of <b>'+n+'</b> waiting on '+tieLastWords(label)+'.'):waitingText(n, label);
+    var own=(typeof allN==='number'&&allN>0&&allN<=n)?n-allN:-1;
+    if(mine) el.innerHTML='You’re one of <b>'+n+'</b> waiting on '+tieLastWords(label)+'.';
+    else if(own===0) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> que siguen todas las camadas esperan '+label+'.'):('<b>'+n+' people</b> who follow every litter are waiting on '+tieLastWords(label)+'.');
+    else if(own>0) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> esperan '+label+': <b>'+allN+'</b> siguen todas las camadas, y <b>'+own+'</b> '+(own===1?'pidió':'pidieron')+' esta.'):('<b>'+n+' people</b> are waiting on '+label+': <b>'+allN+'</b> follow every litter, and <b>'+own+'</b> asked for this one.');
+    else el.innerHTML=waitingText(n, label);
     el.hidden=false;
   }
+  window.azAllCount=window.azAllCount||function(){ if(!window.__azAll){ window.__azAll=fetch((typeof ALERT_API!=='undefined'?ALERT_API:'/api/waitlist')+'?litter=all',{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){ return (d&&d.ok&&typeof d.count==='number')?d.count:null; }).catch(function(){ return null; }); } return window.__azAll; };
   function fetchWaiting(litter, el, label, mine){
     if(!el||!litter||!/^https?:/.test(location.protocol)) return;
     fetch(ALERT_API+'?litter='+encodeURIComponent(litter),{cache:'no-store'})
       .then(function(r){ return r.json(); })
-      .then(function(d){ if(d&&d.ok&&typeof d.count==='number') showWaiting(el, d.count, label, mine); })
+      .then(function(d){ if(d&&d.ok&&typeof d.count==='number'){ if(litter==='all'){ showWaiting(el, d.count, label, mine); return; } window.azAllCount().then(function(a){ showWaiting(el, d.count, label, mine, a); }); } })
       .catch(function(){});
   }
   function recordWaiting(email, wants, level, done){
@@ -13505,7 +13515,11 @@ html.pick .grid-home-return{display:none}
       if(typeof n==='number'&&n>=3){ var t=String(n); if(!old){ pic.insertAdjacentHTML('beforeend','<span class="lsh-wait">'+PPL+'<b>'+t+'</b> '+(ES?'esperando':'waiting')+'</span>'); } else if(old.querySelector('b').textContent!==t) old.querySelector('b').textContent=t; }
       else if(old) old.parentNode.removeChild(old);
       if(!(id in WAITC)&&!WAITASK[id]&&/^https?:/.test(location.protocol)){ WAITASK[id]=1;
-        fetch(WAPI+'?litter='+encodeURIComponent(id),{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){ if(d&&d.ok&&typeof d.count==='number'){ WAITC[id]=d.count; waitPaint(); } }).catch(function(){}); } }); }
+        /* (27 Nov 2026, 1:56pm) the pill counts only the people who asked for this litter itself; the every-litter people are said once, on the shelf */
+        Promise.all([fetch(WAPI+'?litter='+encodeURIComponent(id),{cache:'no-store'}).then(function(r){ return r.json(); }),(window.azAllCount?window.azAllCount():Promise.resolve(null))]).then(function(v){ var d=v[0], a=v[1];
+          if(d&&d.ok&&typeof d.count==='number'&&typeof a==='number'){ WAITC[id]=Math.max(0,d.count-a); waitPaint(); } }).catch(function(){}); } });
+      var al=document.getElementById('lshAll'); if(al&&!al.__on&&window.azAllCount){ al.__on=1; window.azAllCount().then(function(a){ if(typeof a!=='number'||a<3) return;
+        al.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span>'+(ES?('<b>'+a+' personas</b> reciben un aviso de cada camada nueva.'):('<b>'+a+' people</b> get an alert for every new litter.'))+'</span>'; al.hidden=false; }); } }
     function fitNames(){ if(!row.clientWidth) return;
       [].forEach.call(row.querySelectorAll('.lsh-p b'),function(b){ b.style.fontSize=''; var f=parseFloat(getComputedStyle(b).fontSize)||12;
         while(b.scrollWidth>b.clientWidth+0.5&&f>10){ f-=0.5; b.style.fontSize=f+'px'; } });
