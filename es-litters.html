@@ -3786,7 +3786,13 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     return 'You’re on the list for '+who+'. '+(level==='all'?'You’ll get '+(every?'new photos':'their new photos')+' as they grow, and an email '+when+'.':'You’ll get an email '+when+'.');
   }
   function tieLastWords(s){ return s.replace(/ (\S+)$/, ' $1'); }
+  function esLabel(t){ var M={January:'enero',February:'febrero',March:'marzo',April:'abril',May:'mayo',June:'junio',July:'julio',August:'agosto',September:'septiembre',October:'octubre',November:'noviembre',December:'diciembre'},
+      M3={Jan:'ene',Feb:'feb',Mar:'mar',Apr:'abr',May:'may',Jun:'jun',Jul:'jul',Aug:'ago',Sep:'sept',Oct:'oct',Nov:'nov',Dec:'dic'};
+    return String(t).replace(/^the litter born (\d+) ([A-Z][a-z]+)$/,function(_,d,m){ return 'la camada nacida el '+d+' de '+(M[m]||m); })
+      .replace(/^the ([A-Z][a-z]+(?: [A-Z][a-z]+)?) crosses born (\d+) ([A-Z][a-z]{2})$/,function(_,b,d,m){ return 'las cruzas de '+b+' nacidas el '+d+' '+(M3[m]||m); })
+      .replace(/^the ([A-Z][a-z]+(?: [A-Z][a-z]+)?)s born (\d+) ([A-Z][a-z]{2})$/,function(_,b,d,m){ return 'los '+b+' nacidos el '+d+' '+(M3[m]||m); }); }
   function waitingText(n, label){
+    if(document.documentElement.lang==='es') return (n===1?'<b>1 persona</b> espera ':'<b>'+n+' personas</b> esperan ')+esLabel(label)+'.';   /* (27 Nov 2026) said in Spanish here: the page's dictionary only reached the label, so the line read half in English */
     return (n===1?'<b>1 person</b> is':'<b>'+n+' people</b> are')+' waiting on '+tieLastWords(label)+'.';
   }
   /* (27 Nov 2026, his words: "separate them in a clean way to where all the data is still displayed") the number is the
@@ -3795,9 +3801,10 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
     if(!el) return;
     if(typeof n!=='number'||n<1){ el.hidden=true; el.textContent=''; return; }
     var own=(typeof allN==='number'&&allN>0&&allN<=n)?n-allN:-1;
-    if(mine) el.innerHTML='You’re one of <b>'+n+'</b> waiting on '+tieLastWords(label)+'.';
-    else if(own===0) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> que siguen todas las camadas esperan '+label+'.'):('<b>'+n+' people</b> who follow every litter are waiting on '+tieLastWords(label)+'.');
-    else if(own>0) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> esperan '+label+': <b>'+allN+'</b> siguen todas las camadas, y <b>'+own+'</b> '+(own===1?'pidió':'pidieron')+' esta.'):('<b>'+n+' people</b> are waiting on '+label+': <b>'+allN+'</b> follow every litter, and <b>'+own+'</b> asked for this one.');
+    if(mine) el.innerHTML=document.documentElement.lang==='es'?('Usted es una de las <b>'+n+'</b> personas que esperan '+esLabel(label)+'.'):('You’re one of <b>'+n+'</b> waiting on '+tieLastWords(label)+'.');
+    else if(own===0) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> que siguen todas las camadas esperan '+esLabel(label)+'.'):('<b>'+n+' people</b> who follow every litter are waiting on '+tieLastWords(label)+'.');
+    /* (27 Nov 2026, 2:58pm, his rule: "if under three people are waiting for a litter, we just don't show it at all for the individual count") */
+    else if(own>=3) el.innerHTML=document.documentElement.lang==='es'?('<b>'+n+' personas</b> esperan '+esLabel(label)+': <b>'+allN+'</b> siguen todas las camadas, y <b>'+own+'</b> '+(own===1?'pidió':'pidieron')+' esta.'):('<b>'+n+' people</b> are waiting on '+label+': <b>'+allN+'</b> follow every litter, and <b>'+own+'</b> asked for this one.');
     else el.innerHTML=waitingText(n, label);
     el.hidden=false;
   }
