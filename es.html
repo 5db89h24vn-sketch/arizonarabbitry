@@ -3216,6 +3216,16 @@ html:root .viewer-box .vcta.buy2 #viewerCta,html:root .viewer-box .vcta.buy2 #vi
 
 .gs-mil{position:relative;margin:0 0 14px;padding:11px 13px;align-items:center;gap:12px}
 .gs:not([data-mode="buy"]) .gs-mil{display:none}
+/* (26 Nov 2026) the last question of a reservation (how the rest is paid), and the one line where "Taking two?" stood */
+.gs:not([data-mode="buy"]) .gs-rest,.gs[data-plan] .gs-mil{display:none}
+.gs-rest{margin:4px 0 14px}
+.gs-rest .opt small{text-wrap:balance}
+.gs-rest .opt em{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15}
+.gs-rest .opt em small{font-size:11.5px;line-height:1.3;font-weight:500;color:var(--ink-soft)}
+.gs-rest-note{margin:8px 0 0;font-size:13px;line-height:1.4;color:var(--ink-soft)}
+.gs-rest-note[hidden]{display:none}
+.gs-sum .gs-change,.gs-sum .gs-add{position:relative;font:inherit;color:var(--brick-dk);background:none;border:0;border-bottom:1px dotted var(--link-line);border-radius:0;padding:0 0 1px;margin:0;cursor:pointer;text-decoration:none;white-space:nowrap}
+.gs-sum .gs-change::after,.gs-sum .gs-add::after{content:"";position:absolute;inset:-9px -4px}
 .gs-mil .gs-mil-t{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
 .gs-mil .gs-mil-t b{font-weight:600;font-size:15px;line-height:1.3;text-wrap:balance}   
 .gs-mil .gs-mil-t small{font-size:13px;line-height:1.35;color:var(--ink-soft);text-wrap:balance}
@@ -6469,7 +6479,7 @@ html.pick .grid-home-return{display:none}
           <p><b>El precio es la parte pequeña; el comienzo es la parte grande.</b> Un conejo que llega a casa comiendo bien, acostumbrado a las manos y revisado, con alguien a quien llamar, es el que sigue siendo fácil de cuidar, y con buen cuidado viven <a class="litterlink" href="#faq-life">de 8&nbsp;a&nbsp;12&nbsp;años</a>.</p>
           
           <p><b>5% de descuento para militares y personal de emergencias.</b> Incluye policías y bomberos. Muestre su identificación al recogerlo. Sirve para todo, también para el hospedaje, y se suma a cualquier otra oferta, pero no a un plan de pagos.</p>
-          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican. <a class="litterlink" href="#faq-pay">Cómo se paga</a>.</p>
+          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Tiene un mes y medio para terminar de pagar un conejo, o tres meses para dos; un plan cubre dos conejos como máximo. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican. <a class="litterlink" href="#faq-pay">Cómo se paga</a>.</p>
           <p><b>Hágale las mismas preguntas a cualquier vendedor.</b> Aquí están <a class="litterlink" href="#faq-ask">las ocho que yo haría</a>.</p>
         </div>
       </details>
@@ -6523,7 +6533,7 @@ html.pick .grid-home-return{display:none}
           <p><b>Zelle, o efectivo al recogerlo.</b> El depósito de $50 reserva el conejo, por Zelle. Pague el resto cuando se lo lleve, o a plazos. El día que se lo lleva, lo más fácil es efectivo.</p>
           <p><b>Por orden de llegada.</b> Envíe su solicitud desde la ficha del conejo. Lo llamo y le pido el pago por Zelle, y hay que pagarlo dentro de una hora después de mi llamada, o paso a la siguiente persona de la lista.</p>
 
-          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican.</p>
+          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Tiene un mes y medio para terminar de pagar un conejo, o tres meses para dos; un plan cubre dos conejos como máximo. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican.</p>
           
           <p><b>Cada pago tiene su recibo.</b> Depósito o resto, pague como pague, le mando una confirmación por escrito en cuanto llega, para que quede registrado.</p>
           
@@ -7234,7 +7244,7 @@ html.pick .grid-home-return{display:none}
           <button type="button" class="opener pay vrow-h" id="viewerPay" aria-expanded="false" aria-controls="viewerPayPanel" hidden><span><b>Pagos a plazos</b><small id="viewerPayS">Pague el resto a plazos.</small></span></button>
         <div class="whypanel paypanel" id="viewerPayPanel" hidden>
           <p class="payplan" id="viewerPayPlan" hidden></p>
-          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican. <a class="litterlink chip" id="viewerPayMore" href="#faq-pay">Cómo se paga<i class="chev" aria-hidden="true"></i></a></p>
+          <p><b>Puede comprar a plazos.</b> Si pagar todo de una vez se le hace difícil, para eso existe: paga poco a poco y aun así se lleva su conejo a casa. Escríbame o llámeme, y armamos un plan que le acomode. Tiene un mes y medio para terminar de pagar un conejo, o tres meses para dos; un plan cubre dos conejos como máximo. Un plan es sobre el precio del anuncio, con las ofertas incluidas; el 20% de descuento en un segundo conejo y el 5% para militares no aplican. <a class="litterlink chip" id="viewerPayMore" href="#faq-pay">Cómo se paga<i class="chev" aria-hidden="true"></i></a></p>
           <p class="paynow" id="viewerPayNow" hidden></p>
         </div>
         </div>
@@ -10156,7 +10166,7 @@ html.pick .grid-home-return{display:none}
     function lnHas(){ try{ if(/^[0-9a-f]{32}$/.test(localStorage.getItem('arLine')||'')) return true; }catch(e){} return !!lnMem; }
     function lnOrd(n,es){ if(es) return n+'.º'; var v=n%100, sf=(v>=11&&v<=13)?'th':({1:'st',2:'nd',3:'rd'}[n%10]||'th'); return n+sf; }
     function lnFor(r){ var a=r?addrOf(r):''; return a&&gsLine[a]?gsLine[a]:null; }
-    function lnOn(){ return gsMode==='reserve'||gsMode==='buy'; }
+    function lnOn(){ return gsMode==='reserve'||gsMode==='buy'||gsMode==='plan'; }   /* (26 Nov 2026) a plan is a reservation whose rest is paid over time: it holds its place as one (the line's own kinds stay reserve and buy) */
     function lnShown(){ return !!(gs&&!gs.hidden); }
     function lnAll(){ var out=[]; if(!lnOn()) return out; [gsR,gsMate()].forEach(function(x){ if(x&&lnFor(x)) out.push(x); }); return out; }
     function lnWaiting(){ return lnAll().filter(function(x){ var L=lnFor(x); return L.state==='waiting'&&L.place>0; }); }
@@ -10211,7 +10221,7 @@ html.pick .grid-home-return{display:none}
           if(t==='ok'||t==='none') lnLooked[a]=1; else if(t==='') lnBack[a]=Date.now()+LN_RETRY;   /* a failed read changes nothing kept */
           lnRepaint(); }); }); }
     function lnSync(a){   /* (3.1) the kind on the sheet wins: a waiting place kept with the other kind is asked again, twice at most */
-      var L=gsLine[a], want=gsMode==='buy'?'buy':gsMode==='reserve'?'reserve':'', mine=[gsR,gsMate()].some(function(x){ return x&&addrOf(x)===a; });
+      var L=gsLine[a], want=gsMode==='buy'?'buy':(gsMode==='reserve'||gsMode==='plan')?'reserve':'', mine=[gsR,gsMate()].some(function(x){ return x&&addrOf(x)===a; });
       if(!L||!want||!mine||L.state!=='waiting'||!lnShown()||L.kind===want){ lnKind[a]=0; return; }
       lnKind[a]=(lnKind[a]||0)+1; if(lnKind[a]<=2) setTimeout(lnClaim,0); }
     function lnClaim(){ if(!lnShown()||!gsR||!lnOn()) return;
@@ -10253,7 +10263,6 @@ html.pick .grid-home-return{display:none}
         '<fieldset class="gs-pick gs-buyset"><legend></legend><div class="opts">'+
           '<label class="opt"><input type="radio" name="gsopt" value="reserve"><span><b>Reserve</b><small class="gs-say-reserve"></small></span><em>$50</em></label>'+
           '<label class="opt"><input type="radio" name="gsopt" value="buy"><span><b class="gs-buyword">Buy</b><small class="gs-say-buy"></small></span><em class="gs-price"></em></label>'+
-          '<label class="opt"><input type="radio" name="gsopt" value="plan"><span><b>Payment plan</b><small>Pay over time. We set it up together.</small></span></label>'+
         '</div></fieldset>'+
         '<fieldset class="gs-pick gs-with" hidden><legend>Taking two?</legend><div class="opts"></div></fieldset>'+
         '<p class="gs-sum" hidden></p>'+
@@ -10273,6 +10282,15 @@ html.pick .grid-home-return{display:none}
         '<div class="field gs-when"><label for="gsWhenIn">When suits you? <span class="opt-note">Optional</span></label><input type="text" id="gsWhenIn" name="when" maxlength="100" placeholder="Like: Saturday morning"></div>'+
         '<div class="field"><label for="gsNoteIn">Your town, and times you’re hard to reach <span class="opt-note">Optional</span></label><input type="text" id="gsNoteIn" name="note" maxlength="140" placeholder="Like: Marana, at work 9 to 5" aria-describedby="gsNoteHelp">'+
           '<small class="gs-help" id="gsNoteHelp">So I can plan the delivery, and a missed call doesn’t cost you your place.</small></div>'+
+        /* (26 Nov 2026, his words, 6:21pm: "Remove payment plan from here and have that be the final question before people check out
+           if they would like to do a payment plan or not, or if they're able to pay in full at pick up") The last question of a
+           reservation, after the buyer's own details and before the send buttons: how the rest is paid. Each way says what it comes
+           to in all, so the plan's full price stands beside the price paid in full (his words, 6:23pm: "accurately reflect the new
+           price, so have a clean UI for that before they check out"). Its words are painted with the figures (gsPaintMoney). */
+        '<fieldset class="gs-pick gs-rest" hidden><legend></legend><div class="opts">'+
+          '<label class="opt"><input type="radio" name="gsrest" value="pickup"><span><b class="gs-rest-t1"></b><small class="gs-say-pickup"></small></span><em class="gs-rest-e1"></em></label>'+
+          '<label class="opt"><input type="radio" name="gsrest" value="plan"><span><b class="gs-rest-t2"></b><small class="gs-say-plan"></small></span><em class="gs-rest-e2"></em></label>'+
+        '</div><p class="gs-rest-note" hidden></p></fieldset>'+
         '<p class="gs-err" role="alert" hidden></p>'+
         '<ol class="gs-rules"><li>First come, first served, by when your message reaches me.</li><li>I call you and request the payment on Zelle.</li><li>Pay within an hour of my call, or I go to the next person in line.</li></ol>'+
         '<ol class="gs-vrules"><li class="gs-vset">I call you back to set a time.</li><li class="gs-vaddr">Once it’s on the books, I send you the apartment number.</li><li class="gs-vhold"></li></ol>'+
@@ -10299,6 +10317,9 @@ html.pick .grid-home-return{display:none}
         if(c.closest('.gs-x')){ gsClose(); return; }
         if(c.closest('.gs-again')){ gs.querySelector('.gs-done').hidden=true; f.hidden=false; focusNoScroll(f.elements.name); return; }
         if(c.closest('.gs-zlink')){ var z=gs.querySelector('#gsZelle'), b=c.closest('.gs-zlink'); z.hidden=!z.hidden; b.setAttribute('aria-expanded',String(!z.hidden)); if(!z.hidden) focusNoScroll(f.elements.zelle); return; }
+        if(c.closest('.gs-change')){ ev.preventDefault(); gsClose(); return; }   /* (26 Nov 2026) back to the sheet for two, where each photo has its pencil */
+        if(c.closest('.gs-add')){ ev.preventDefault(); ev.stopPropagation();   /* (26 Nov 2026) the pair is built on its own sheet: this sheet's step becomes the picker's, so Back from the picker is the listing */
+          if(gsR){ var pk='#r-'+addrOf(gsR)+'~pick'; gsPushed=false; try{ history.replaceState(history.state,'',pk); }catch(e){} lastRouted=location.hash||pk; gsHide(); openFromHash(); } return; }
         if(c.closest('.gs-tovisit')){ gsMove('visit'); return; }
         if(c.closest('.gs-tobuy')){ gsMove((gsR&&gsOne(gsR))?'buy':'reserve'); return; }
         var s=c.closest('.gs-text,.gs-mail');
@@ -10308,7 +10329,8 @@ html.pick .grid-home-return{display:none}
       f.addEventListener('submit',function(ev){ ev.preventDefault(); var b=gs.querySelector(gsScreen()?'.gs-mail':'.gs-text'); if(b) b.click(); });
       f.addEventListener('input',function(ev){ var n=ev.target&&ev.target.name; if(n==='name'||n==='tel'){ clearTimeout(gsLineT); gsLineT=setTimeout(lnClaim,700); } });   /* (Round 194) the line */
       f.addEventListener('change',function(ev){
-        if(ev.target.name==='gsopt') gsMove(ev.target.value,true);
+        if(ev.target.name==='gsopt'){ var gv=ev.target.value; if(gv==='reserve'&&gsRestPlan&&gsPlanOK()) gv='plan'; gsMove(gv,true); }   /* (26 Nov 2026) Reserve again after Buy keeps the way the rest was to be paid */
+        if(ev.target.name==='gsrest'){ gsRestPlan=(ev.target.value==='plan'); gsSteady(ev.target,function(){ gsMove(gsRestPlan?'plan':'reserve',true); }); }   /* (26 Nov 2026) the last question; the military switch above leaves with a plan, so the tapped row is held steady */
         if(ev.target.name==='gshow'){ gsVals.how=ev.target.value==='facetime'?'facetime':'person'; gsPaintMode(true); }
         if(ev.target.name==='gsmil'){ gsVals.mil=!!ev.target.checked; gsSteady(ev.target,function(){ gsRows(gsR); gsPaintMoney(); });   /* ROUND 185 (R185-3) */
           var pc0=document.querySelector('#viewerPair .pc'); if(pc0&&window.pcPaint) window.pcPaint(pc0); if(window.pmSync) window.pmSync(); }   /* ROUND 189 (R189-2): and the receipt of the two under it */   /* ROUND 187: the calculator under the sheet follows it */   /* ROUND 186 (R186-2): the table under the sheet follows it */
@@ -10361,7 +10383,7 @@ html.pick .grid-home-return{display:none}
       var f=gs.querySelector('form'), r=gsR, visit=gsMode==='visit', photos=gsMode==='photos';
       gs.setAttribute('data-mode',gsKind(gsMode));
       f.elements.tel.required=!photos; gs.querySelector('.gs-telopt').hidden=!photos;
-      if(!fromRadio) [].forEach.call(f.elements.gsopt,function(x){ x.checked=(x.value===gsMode); });
+      if(!fromRadio) [].forEach.call(f.elements.gsopt,function(x){ x.checked=(x.value===(gsMode==='plan'?'reserve':gsMode)); });   /* (26 Nov 2026) a plan is a reservation: its first answer is Reserve */
       var fc=visit&&gsVals.how==='facetime';
       [].forEach.call(f.elements.gshow,function(x){ x.checked=(x.value===gsVals.how); });
       gs.querySelector('.gs-zhelp').textContent=photos?'If you’d rather have them by text than in reply to your message.':!visit?'I call you here, and request the Zelle payment from it.':fc?'I call you back here to set a time, and FaceTime you on it.':'I call you back here to set a time.';
@@ -10384,44 +10406,83 @@ html.pick .grid-home-return{display:none}
       gs.querySelector('.gs-phold').textContent='Asking doesn’t hold '+who+': someone else can still reserve first.';
       gs.querySelector('.gs-tovisit').textContent='Rather meet '+who+' first? Visit or FaceTime';
     }
+    /* (26 Nov 2026, his words, 6:21pm to 6:23pm) THE PAYMENT PLAN, ASKED LAST. "they have a month and a half for each rabbit to pay
+       off the total amount. So if they get two rabbits, that's three months they get"; "Maximum two rabbits on a payment plan"; "if
+       they do the payment plan, it also gets rid of the 20%". A plan is a reservation whose rest is paid over time: the first
+       question is Reserve or Buy, and the last one (gs-rest) asks how the rest is paid. On a plan the price is the listed price
+       of each rabbit, sale prices included, with neither the pair's 20% nor the military 5% (his rule of 25 Nov), and every figure
+       on the sheet says so: the heading, the Reserve line, the line for two and the message. The sheet takes two rabbits at most. */
+    var gsRestPlan=false;
+    function gsPlanOK(){ var r=gsR, m=gsMate(); return !!(r&&gsCan(r)&&!gsOne(r)&&!noPlan(r)&&(!m||!noPlan(m))); }
+    function gsPlanTerm(two,es){ return two?(es?'3 meses':'3 months'):(es?'un mes y medio':'a month and a half'); }
     function gsPaintMoney(){
       var r=gsR, f=gs.querySelector('form'), wb=gs.querySelector('.gs-with'), sm=gs.querySelector('.gs-sum');
       if(!r||!wb) return;
       gsPaintVisit();   /* (Round 183) */
-      var visit=gsMode==='visit', photos=gsMode==='photos', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
-      wb.hidden=visit||photos||!wb.querySelector('.opts').children.length;
-      var radios=f.querySelectorAll('input[name="gswith"]'), won=gsPair?(gsWith?'both':'just:'+addrOf(r)):gsWith;   /* (Round 182b) the two's rows: Both, or Just <this one> */
-      for(var i=0;i<radios.length;i++) radios[i].checked=(radios[i].value===won);
+      var visit=gsMode==='visit', photos=gsMode==='photos', plan=gsMode==='plan', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
+      wb.hidden=true;   /* (26 Nov 2026) "Taking two?" has no rows any more: one line under the first question says it (gs-sum, below) */
       gs.querySelector('.gs-buyset legend').textContent=one?(r.name+' is bought outright: no deposit at this price.'):('How do you want to get '+r.name+(mate?' and '+mate.name:'')+'?');
-      var base=q?q.two:p, T=gsCut(base), mil=!!gsVals.mil, esM=gsES();
-      gs.querySelector('.gs-say-reserve').textContent=q?('$100 now ($50 each), $'+(T-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(T-50)+' at pickup (Zelle or cash).');
+      var base=q?q.two:p, T=gsCut(base), mil=!!gsVals.mil, esM=gsES(), full=q?q.sum:p, dep=q?100:50;
+      if(plan) gs.setAttribute('data-plan',''); else gs.removeAttribute('data-plan');   /* on a plan the military switch has nothing to take off: it leaves */
+      gs.querySelector('.gs-say-reserve').textContent=plan
+        ?(q?(esM?'$100 ahora ($50 por cada uno), luego $'+(full-100)+' a\u00a0plazos.':'$100 now ($50 each), then $'+(full-100)+' on a payment\u00a0plan.')
+           :(esM?'$50 ahora, luego $'+(full-50)+' a\u00a0plazos.':'$50 now, then $'+(full-50)+' on a payment\u00a0plan.'))
+        :(q?('$100 now ($50 each), $'+(T-100)+' at pickup (Zelle or cash).'):('$50 now, $'+(T-50)+' at pickup (Zelle or cash).'));
       var rem=gs.querySelector('.gs-buyset input[value="reserve"]'); rem=rem&&rem.closest('.opt').querySelector('em'); if(rem) rem.textContent=q?'$100':'$50';
       gs.querySelector('.gs-price').innerHTML=mil?('<s>$'+base+'</s> $'+T):('$'+base);
       var ms=gs.querySelector('.gs-mil'); if(ms){ var sw=ms.querySelector('input'); if(sw) sw.checked=mil;
         var said=esM?('Lo confirmo cuando vea su identificación al '+(q?'recogerlos':'recogerlo')+'; no está garantizado hasta\u00a0entonces.'):'Confirmed when I see your ID at pickup; not guaranteed until\u00a0then.';
         ms.querySelector('b').textContent=esM?'Militar o personal\u00a0de\u00a0emergencias':'Military or\u00a0first\u00a0responder';   /* (candidate 3) the last three words together, his hanging-word rule (6 Sept; 2:23pm "two words just hanging off"): "emergencias" stood alone at 320 and 360; wrapped, it is "Militar o" over "personal de emergencias" */
         var fig=(!mil?(esM?(gsMilOff()+'% de descuento para militares, policías y\u00a0bomberos.'):(gsMilOff()+'% off for military, police and\u00a0firefighters.'))
-          :(gsMode==='plan')?(esM?(gsMilOff()+'% menos al armar el\u00a0plan.'):(gsMilOff()+'% off when we set up the\u00a0plan.'))
           :(esM?('$'+T+' en lugar de\u00a0$'+base+'.'):('$'+T+' instead of\u00a0$'+base+'.')));
         ms.querySelector('small').innerHTML='<span class="gs-mil-a">'+esc(fig)+'</span> <span class="gs-mil-b">'+esc(said)+'</span>'; }
       var two=q?mate:null, fh=gs.querySelector('.gs-face'), nm=gs.querySelector('#gsName'), sb=gs.querySelector('.gs-sub');
+      var hp=(visit||photos)?base:plan?full:T;   /* (26 Nov 2026) the heading's price is the price of what is being asked for: with the military switch, or the full price on a plan */
       if(two){
         fh.classList.add('two'); fh.innerHTML=faceImg(r,44)+faceImg(two,44);
         nm.textContent=r.name+(gsES()?' y ':' and ')+two.name;
         var breeds=[r.breed,two.breed].filter(Boolean).filter(function(b,i,a){ return a.indexOf(b)===i; }).join(' and ');
-        sb.textContent=[breeds,'$'+q.two+' for the two'].filter(Boolean).join(' · ');   /* no colour: the faces show it, and the line stays one line */
-      } else if(fh.classList.contains('two')){
-        fh.classList.remove('two'); fh.innerHTML=faceImg(r,52);
-        nm.textContent=r.name; sb.textContent=[r.breed,r.colour,'$'+p].filter(Boolean).join(' · ');
+        sb.textContent=[breeds,'$'+hp+' for the two'].filter(Boolean).join(' · ');   /* no colour: the faces show it, and the line stays one line */
+      } else {
+        if(fh.classList.contains('two')){ fh.classList.remove('two'); fh.innerHTML=faceImg(r,52); nm.textContent=r.name; }
+        sb.textContent=[r.breed,r.colour,'$'+hp].filter(Boolean).join(' · ');
       }
       if(!visit&&!photos){ var rdy=gsNow(r)&&(!two||gsNow(two));
         gs.querySelector('.gs-say-buy').textContent=rdy?'Ready now: home as soon as today.':two?'All of it now. They go home on the day I say they’re ready.':'All of it now. It goes home on the day I say it’s ready.'; }
-      if(q&&!wb.hidden){
-        sm.hidden=false;
-        sm.innerHTML=(gsMode==='plan')?'Two on one plan: we set it up\u00a0together.'
-          :((q.bundle&&typeof SPECIAL_GLYPH!=='undefined'?SPECIAL_GLYPH:'')+'<b>'+esc(r.name)+' and '+esc(mate.name)+' together: <s>$'+q.sum+'</s> $'+q.two+'.</b> '+
-            (q.bundle?'Bought at the same time, you save\u00a0$'+q.off+'.':'The second '+gsPairOff()+'% off: you save\u00a0$'+q.off+'.'));
+      /* (26 Nov 2026) ONE LINE WHERE "TAKING TWO?" STOOD (told to him at 6:22pm and 6:34pm; his words of 6:19pm on the buttons of the
+         sheet for two: "make it a lot more cohesive and smooth ... it's also a little confusing too"). For two: what the two come to
+         and why, with the military 5% in it, or the full price on a plan; "Change" goes back to the sheet for two, where each
+         photo has its pencil. For one: the pair is offered in a line, and built on its own sheet (twelve rows stood here). */
+      var buyK=!visit&&!photos, n2=q?(esc(r.name)+(esM?' y ':' and ')+esc(mate.name)):'', chg=' <button type="button" class="gs-change">'+(esM?'Cambiar':'Change')+'</button>';
+      if(q&&buyK&&plan){ sm.hidden=false;
+        var w2=q.bundle?(esM?'el precio especial es':'the special price is')
+              :mil?(esM?'el '+gsPairOff()+'% y el '+gsMilOff()+'% de descuento son':'the '+gsPairOff()+'% and '+gsMilOff()+'% off are')
+              :(esM?'el '+gsPairOff()+'% de descuento es':'the '+gsPairOff()+'% off is');
+        sm.innerHTML='<b>'+n2+(esM?' a plazos: $':' on a payment plan: $')+q.sum+'.</b> '+(esM?'Precio completo: '+w2+' para pago\u00a0completo.':'Full price: '+w2+' for paying in\u00a0full.')+chg;
+      } else if(q&&buyK){ sm.hidden=false;
+        sm.innerHTML=(q.bundle&&typeof SPECIAL_GLYPH!=='undefined'?SPECIAL_GLYPH:'')+'<b>'+n2+(esM?' juntos: ':' together: ')+'<s>$'+q.sum+'</s> $'+T+'.</b> '+
+          (q.bundle?(esM?(mil?'Oferta especial, y luego '+gsMilOff()+'% menos: se ahorra\u00a0$':'Comprados a la vez, se ahorra\u00a0$'):(mil?'A special, then '+gsMilOff()+'% off: you save\u00a0$':'Bought at the same time, you save\u00a0$'))
+                   :(esM?('El segundo con '+gsPairOff()+'% menos'+(mil?', y luego '+gsMilOff()+'% menos':'')+': se ahorra\u00a0$'):('The second '+gsPairOff()+'% off'+(mil?', then '+gsMilOff()+'% off':'')+': you save\u00a0$')))+(q.sum-T)+'.'+chg;
+      } else if(!q&&buyK&&!plan&&!one&&gsMates(r).length){ sm.hidden=false;
+        sm.innerHTML='<b>'+(esM?'¿Se lleva dos?':'Taking two?')+'</b> '+(esM?'El segundo tiene '+gsPairOff()+'% de\u00a0descuento. ':'The second is '+gsPairOff()+'%\u00a0off. ')+
+          '<a class="gs-add" href="#r-'+esc(addrOf(r))+'~pick">'+(esM?'Agregar un segundo conejo':'Add a second rabbit')+'</a>';
       } else { sm.hidden=true; sm.innerHTML=''; }
+      /* the last question: how the rest is paid (Reserve only; not where a rabbit has no payment plan) */
+      var rest=gs.querySelector('.gs-rest');
+      if(rest){ rest.hidden=!((gsMode==='reserve'||plan)&&gsPlanOK());
+        if(!rest.hidden){ var term=gsPlanTerm(!!q,esM), dl=[]; if(q&&!q.bundle) dl.push(gsPairOff()+'%'); if(mil) dl.push(gsMilOff()+'%');
+          var why=(q&&q.bundle)?(esM?(mil?', a precio completo: sin el precio especial ni el '+gsMilOff()+'% de descuento.':', a precio completo: sin el precio especial.')
+                                    :(mil?', at full price: no special price or '+gsMilOff()+'% off.':', at full price: no special price.'))
+                 :dl.length?(esM?', a precio completo: sin el '+dl.join(' ni el ')+' de descuento.':', at full price: no '+dl.join(' or ')+' off.'):'.';
+          var inAll='<small>'+(esM?'en total':'in all')+'</small>';
+          rest.querySelector('legend').textContent=esM?'¿Cómo pagará el resto?':'How will you pay the rest?';
+          rest.querySelector('.gs-rest-t1').textContent=esM?(q?'Todo al recogerlos':'Todo al recogerlo'):'In full at pickup';
+          rest.querySelector('.gs-rest-t2').textContent=esM?'Pago a plazos':'Payment plan';
+          rest.querySelector('.gs-say-pickup').textContent=esM?('$'+(T-dep)+' más al '+(q?'recogerlos':'recogerlo')+', por Zelle o en efectivo.'):('$'+(T-dep)+' more at pickup, Zelle or cash.');
+          rest.querySelector('.gs-say-plan').textContent=(esM?('$'+(full-dep)+' más en un plazo de '+term):('$'+(full-dep)+' more within '+term))+why;
+          rest.querySelector('.gs-rest-e1').innerHTML='$'+T+inAll; rest.querySelector('.gs-rest-e2').innerHTML='$'+full+inAll;
+          [].forEach.call(f.querySelectorAll('input[name="gsrest"]'),function(x){ x.checked=(x.value===(plan?'plan':'pickup')); });
+          var rn=rest.querySelector('.gs-rest-note'); rn.hidden=!plan; rn.textContent=esM?'Organizamos los pagos juntos cuando lo llame.':'We set up the payments together when I call.'; } }
     }
     function gsRowsSmall(q){
       var t=gsCut(q.two);
@@ -10429,18 +10490,9 @@ html.pick .grid-home-return{display:none}
       return gsES()?(q.bundle?'Los dos por $'+t+': oferta especial, y luego '+gsMilOff()+'%\u00a0menos.':'Los dos por $'+t+': el segundo con '+gsPairOff()+'% menos, y luego '+gsMilOff()+'%\u00a0menos.')
                    :(q.bundle?'The two for $'+t+': a special, then '+gsMilOff()+'%\u00a0off.':'The two for $'+t+': the second '+gsPairOff()+'% off, then '+gsMilOff()+'%\u00a0off.');
     }
-    function gsRows(r){
+    function gsRows(r){   /* (26 Nov 2026) the rows of "Taking two?" (Both, Just, With) are gone: the pair is chosen on its own sheet, and gs-sum says it in one line */
       if(!gs) return;
-      var wopts=gs.querySelector('.gs-with .opts'), one=!!(r&&gsOne(r)), mates=(r&&!one)?gsMates(r):[], p=r?+priceOf(r):0, mk=gsVals.mil?'|mil':'';
-      if(gsPair){ var pA=gsPair[0], pB=gsPair[1], pq=gsQuote(pA,pB), pk='two:'+addrOf(pA)+'+'+addrOf(pB)+mk;
-        if(wopts.getAttribute('data-for')!==pk){ wopts.setAttribute('data-for',pk);
-          wopts.innerHTML='<label class="opt"><input type="radio" name="gswith" value="both"><span><b>Both</b><small>'+
-            gsRowsSmall(pq)+'</small></span><em>$'+gsCut(pq.two)+'</em></label>'+
-            [pA,pB].map(function(x){ return '<label class="opt"><input type="radio" name="gswith" value="just:'+esc(addrOf(x))+'"><span><b>Just '+esc(x.name)+'</b></span><em>$'+gsCut(+priceOf(x))+'</em></label>'; }).join(''); }
-      } else { wopts.setAttribute('data-for','one:'+(r?addrOf(r):'')+mk);
-        wopts.innerHTML=mates.length?('<label class="opt"><input type="radio" name="gswith" value=""><span><b>Just '+esc(r.name)+'</b></span><em>$'+gsCut(p)+'</em></label>'+
-        mates.map(function(x){ var q=gsQuote(r,x); return '<label class="opt"><input type="radio" name="gswith" value="'+esc(addrOf(x))+'"><span><b>With '+esc(x.name)+'</b><small>'+
-          gsRowsSmall(q)+'</small></span><em>$'+gsCut(q.two)+'</em></label>'; }).join('')):''; }
+      var wopts=gs.querySelector('.gs-with .opts'); if(wopts){ wopts.innerHTML=''; wopts.removeAttribute('data-for'); }
     }
     function gsShow(r,opt,how,from,withAddr){
       if(r?!gsCan(r):opt!=='visit') return false;     /* no rabbit named: only a visit (#visit) */
@@ -10454,6 +10506,8 @@ html.pick .grid-home-return{display:none}
       if(how!=='pick'){ var wm=null; if(r&&withAddr&&withAddr!=='two') for(var mi=0;mi<mates.length;mi++) if(addrOf(mates[mi])===String(withAddr)) wm=mates[mi]; gsPair=wm?[r,wm]:null; }
       gsRows(r);   /* ROUND 185: the rows, built in one place (gsRows), so the switch can rebuild them with its figures */
       gsWith=String(withAddr||''); if(!gsMate()) gsWith='';
+      if(gsMode==='plan'&&!gsPlanOK()) gsMode='reserve';   /* (26 Nov 2026) nor for two where either has no payment plan */
+      gsRestPlan=(gsMode==='plan');
       var pick=(String(withAddr||'')==='two'&&mates.length>0);   /* ROUND 179: arrived by "Taking two?" (+two): the question is the frame */
       gs.querySelector('.gs-tobuy').textContent=one?'Buy instead':'Reserve instead';
       if(r) gs.removeAttribute('data-general'); else gs.setAttribute('data-general','');
@@ -10505,7 +10559,7 @@ html.pick .grid-home-return{display:none}
       var back=gsFrom; gsFrom=null;
       var lst=!!(gsR&&shown&&!parentOpen&&vw.classList.contains('open')&&addrOf(shown)===addrOf(gsPair?gsPair[0]:gsR));   /* (Round 182b) the two's listing is the first's */
       if(lst&&(!back||!vw.contains(back)||!back.getClientRects().length))
-        back=((gsMode==='buy'||gsMode==='plan')&&vBuy&&!vBuy.hidden)?vBuy:vCta;
+        back=(gsMode==='buy'&&vBuy&&!vBuy.hidden)?vBuy:vCta;   /* (26 Nov 2026) a plan is a reservation */
       if(!gsR&&!back){ var vl=document.querySelector('#visit a[href="#visit"]'); if(vl&&vl.getClientRects().length) back=vl; }
       if(back&&document.documentElement.contains(back)&&(vw.classList.contains('open')||!gsR)) focusNoScroll(back);
     }
@@ -10606,27 +10660,27 @@ html.pick .grid-home-return{display:none}
               :(fc?'I’d like to meet '+who+' on FaceTime.':'I’d like to come and meet '+who+' in person.');
         subj=es?(fc?'Conocer a '+who+' por FaceTime':'Conocer a '+who+' en persona'):(fc?'Meet '+who+' on FaceTime':'Meet '+who+' in person');
       } else {
-        say=es?{reserve:'Me gustaría reservar a '+both+'.',buy:'Me gustaría comprar a '+both+'.',plan:'Me gustaría un plan de pagos para '+both+'.'}[m]
-              :{reserve:'I’d like to reserve '+both+'.',buy:'I’d like to buy '+both+'.',plan:'I’d like a payment plan for '+both+'.'}[m];
+        say=es?{reserve:'Me gustaría reservar a '+both+'.',buy:'Me gustaría comprar a '+both+'.',plan:'Me gustaría reservar a '+both+' con un plan de pagos.'}[m]
+              :{reserve:'I’d like to reserve '+both+'.',buy:'I’d like to buy '+both+'.',plan:'I’d like to reserve '+both+' on a payment plan.'}[m];
         var mil=!!gsVals.mil, cut=function(n){ return mil?(n-Math.round(n*gsMilOff()/100)):n; };
         var src2=q?(q.bundle?(es?'oferta especial':'a special'):(es?'el segundo con '+gsPairOff()+'% menos':'the second '+gsPairOff()+'% off')):'';
         var then10=es?', y luego '+gsMilOff()+'% menos':', then '+gsMilOff()+'% off', only10=es?' ('+gsMilOff()+'% menos).':' ('+gsMilOff()+'% off).';
-        var before10=es?', antes del '+gsMilOff()+'% menos.':', before the '+gsMilOff()+'% off.';
+        /* (26 Nov 2026) a plan: the deposit now, the full price in all (no 20%, no 5%), and the time he gives to pay it off */
         cost=q?(m==='reserve'?(es?'$100 ahora, $'+cut(q.two)+' en total por los dos':'$100 now, $'+cut(q.two)+' in all for the two')+' ('+src2+(mil?then10:'')+').'
                 :m==='buy'?(es?'$'+cut(q.two)+' en total por los dos':'$'+cut(q.two)+' in all for the two')+' ('+src2+(mil?then10:'')+').'
-                :(es?'$'+q.sum+' en total':'$'+q.sum+' in all')+(mil?before10:'.'))
+                :(es?'$100 ahora, $'+q.sum+' en total a precio completo, a pagar en un plazo de '+gsPlanTerm(true,true)+'.':'$100 now, $'+q.sum+' in all at full price, paid off within '+gsPlanTerm(true,false)+'.'))
               :(m==='reserve'?(es?'$50 ahora, $'+cut(p)+' en total':'$50 now, $'+cut(p)+' in all')+(mil?only10:'.')
                 :m==='buy'?(es?'$'+cut(p)+' en total':'$'+cut(p)+' in all')+(mil?only10:'.')
-                :(es?'$'+p+' en total':'$'+p+' in all')+(mil?before10:'.'));
+                :(es?'$50 ahora, $'+p+' en total, a pagar en un plazo de '+gsPlanTerm(false,true)+'.':'$50 now, $'+p+' in all, paid off within '+gsPlanTerm(false,false)+'.'));
         subj=es?{reserve:'Reservar a '+both,buy:'Comprar a '+both,plan:'Plan de pagos para '+both}[m]
                :{reserve:'Reserve '+both,buy:'Buy '+both,plan:'Payment plan for '+both}[m];
       }
       var lines=[(es?'¡Hola, William! ':'Hi William! ')+say];
       if(cost) lines.push(cost);
-      if(m==='reserve'||m==='buy'){ var lnW=lnWaiting(), lnC=lnCode(); if(lnW.length) lines.push((es?(lnW.length>1?'Lugares en la fila: ':'Lugar en la fila: '):(lnW.length>1?'Places in line: ':'Place in line: '))+
+      if(m==='reserve'||m==='buy'||m==='plan'){ var lnW=lnWaiting(), lnC=lnCode(); if(lnW.length) lines.push((es?(lnW.length>1?'Lugares en la fila: ':'Lugar en la fila: '):(lnW.length>1?'Places in line: ':'Place in line: '))+
         lnW.map(function(x){ return lnOrd(lnFor(x).place,es)+(es?' para ':' for ')+x.name; }).join(', ')+(lnC?(es?' (código de fila '+lnC+')':' (line code '+lnC+')'):'')+'.');
         else if(lnC) lines.push((es?'Código de fila: ':'Line code: ')+lnC+'.'); }   /* (Round 194; v3: both of two, the code; 3.1: the code alone when no place) */
-      if(cost&&gsVals.mil) lines.push(es?('Soy militar o del personal de emergencias; mostraré mi identificación al '+(q?'recogerlos':'recogerlo')+'.'):'I\u2019m military or a first responder; I\u2019ll show my ID at pickup.');   /* ROUND 185 (R185-3) */
+      if(cost&&gsVals.mil&&m!=='plan') lines.push(es?('Soy militar o del personal de emergencias; mostraré mi identificación al '+(q?'recogerlos':'recogerlo')+'.'):'I\u2019m military or a first responder; I\u2019ll show my ID at pickup.');   /* ROUND 185 (R185-3) */
       lines.push('',(es?'Nombre: ':'Name: ')+nm);
       if(m==='photos'){ if(gsTelOK(f.elements.tel.value)) lines.push(es?'Teléfono, para enviarlas por mensaje:':'Phone, to text them to:',tel); }   /* gsTelWords('') is "() -": the number itself decides */
       else if(m==='visit') lines.push(fc?(es?'Teléfono, para llamadas y FaceTime:':'Phone, for calls and FaceTime:'):(es?'Teléfono, para devolverme la llamada:':'Phone, to call me back:'),tel);
