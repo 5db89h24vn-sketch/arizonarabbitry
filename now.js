@@ -36,6 +36,18 @@
   var MON=ES?['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function day(iso){ var p=String(iso||'').split('-'); return p.length===3?((+p[2])+NB+MON[+p[1]-1]+NB+p[0]):''; }
   function span(cls,text){ var s=D.createElement('span'); s.className=cls; s.textContent=text; return s; }
+  /* (27 Nov 2026, Site Ideas 220) A dated sale with a name says here what it says under the price on its listing:
+     the name and the last day, the day before dealEnds ("Thanksgiving price, through Sunday 29 Nov"). The last
+     three words of any reason stay together, so no word hangs alone on a second line. */
+  var DAYN=ES?['domingo','lunes','martes','miércoles','jueves','viernes','sábado']:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+      MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  function saleWords(r){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(r.dealEnds||'').trim()), nm=String(ES?(r.dealNameEs||''):(r.dealName||'')).trim();
+    if(!m||!nm||r.dealStays||!hasDeal(r)) return '';
+    var d=new Date(+m[1],+m[2]-1,+m[3]-1,12);
+    return ES?(nm+', hasta el '+DAYN[d.getDay()]+' '+d.getDate()+' de '+MESL[d.getMonth()]):(nm+', through '+DAYN[d.getDay()]+' '+d.getDate()+' '+MON[d.getMonth()]);
+  }
+  function tie3(s){ return String(s).replace(/ (\S+) (\S+)$/,NB+'$1'+NB+'$2'); }
 
   /* ---- a rabbit's own page ---- */
   function rabbitPage(){
@@ -51,10 +63,11 @@
       var oldDeal=st.querySelector('.deal'), keepEs=(ES&&oldDeal&&had==='open')?oldDeal.textContent:'';
       var note=String(ES?(r.dealNoteEs||''):(r.dealNote||'')).trim().replace(/[.!]+$/,'');
       if(ES&&!note&&!r.dealNoteEs) note=keepEs;        /* a reason written at build time stays; one set by the clock brings its own Spanish */
+      var sale=saleWords(r); if(sale) note=sale;
       st.textContent='';
       st.appendChild(span('badge open',ES?'Disponible':'Available'));
       st.appendChild(span('price','$'+priceOf(r)));
-      if(hasDeal(r)){ st.appendChild(span('was','$'+(+r.wasPrice))); if(note) st.appendChild(span('deal',note)); }
+      if(hasDeal(r)){ st.appendChild(span('was','$'+(+r.wasPrice))); if(note){ var dn=span('deal',tie3(note)); try{ dn.style.textWrap='balance'; }catch(e){} st.appendChild(dn); } }
       if(had!=='open'&&go){
         go.setAttribute('href',(ES?'/es.html':'/')+'#r-'+m[2]);
         go.innerHTML=esc(ES?'Ver su anuncio para reservar':'See '+r.name+'’s listing to reserve or buy')+chev;

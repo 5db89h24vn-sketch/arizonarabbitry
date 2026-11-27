@@ -2659,7 +2659,27 @@ const RABBITS = [
    and have no dictionary of their own: now.js reads it there. The words are the ones es.html's dictionary has. */
 (function(){
   if(typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
-  var T6=Date.parse('2026-11-25T18:00:00-07:00'), T7=Date.parse('2026-11-25T19:00:00-07:00'), TEND=Date.parse('2026-11-30T00:00:00-07:00');
+  /* (27 Nov 2026, Site Ideas 220 and 221, his yes that morning) A timed price keeps its last day in its record.
+     SALE.ends is the day the price is over (dealEnds, the rule of 24 Sept 2026). The clock below, the words that
+     name the last day ("through Sunday", "through Sunday 29 November") and their Spanish are all worked out
+     from that one date, so nobody types a day twice. dealThrough tells the page that the tag and the note already
+     say the last day, so it adds no second "until Monday" to them. dealName is the sale's own name: the listing
+     prints it under the price with the last day, and the first screen's row uses its plural. dealBack is the
+     price from the day the sale is over. dealStacks: his words of 24 Nov, "people can still buy multiple rabbits
+     and discount stack". */
+  var SALE={ends:'2026-11-30', tag:'Thanksgiving', name:'Thanksgiving price', names:'Thanksgiving prices',
+            tagEs:'Acción de Gracias', nameEs:'Precio de Acción de Gracias', namesEs:'Precios de Acción de Gracias'};
+  (function(){
+    var p=SALE.ends.split('-'), d=new Date(Date.UTC(+p[0],+p[1]-1,+p[2]-1,12));   /* the last day: the day before it is over */
+    var DAY=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getUTCDay()],
+        DIA=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][d.getUTCDay()],
+        MON=['January','February','March','April','May','June','July','August','September','October','November','December'][d.getUTCMonth()],
+        MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][d.getUTCMonth()];
+    SALE.dealTag=SALE.tag+', through '+DAY;
+    SALE.dealNote=SALE.name+', through '+DAY+' '+d.getUTCDate()+' '+MON;
+    SALE.dealNoteEs=SALE.nameEs+', hasta el '+DIA+' '+d.getUTCDate()+' de '+MES;
+  })();
+  var T6=Date.parse('2026-11-25T18:00:00-07:00'), T7=Date.parse('2026-11-25T19:00:00-07:00'), TEND=Date.parse(SALE.ends+'T00:00:00-07:00');
   var now=Date.now();
   for(var i=0;i<RABBITS.length;i++){
     var r=RABBITS[i]; if(!r||r.status!=='available') continue;
@@ -2669,7 +2689,9 @@ const RABBITS = [
     if(now<T6){ r.opensAt='2026-11-25T18:00:00-07:00'; continue; }
     if(now<T7){ r.price=base-50; r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealNoteEs='Hora de lanzamiento, solo esta noche de 6 a 7 p. m.'; r.dealStays=false; delete r.dealEnds; continue; }
     if(coco){ r.price=250; r.dealOn='2026-11-25'; r.dealTag='Launch-day price'; r.dealNote='Our launch-day price for Coconut, kept'; r.dealNoteEs='El precio de lanzamiento de Coconut, para quedarse'; r.dealStays=true; r.dealScope='rabbit'; delete r.dealEnds; continue; }
-    if(now<TEND){ r.price=base-30; r.dealOn='2026-11-25'; r.dealTag='Thanksgiving, through Sunday'; r.dealNote='Thanksgiving price, through Sunday 29 November'; r.dealNoteEs='Precio de Acción de Gracias, hasta el domingo 29 de noviembre'; r.dealStays=false; delete r.dealEnds; }
+    if(now<TEND){ r.price=base-30; r.dealBack=base; r.dealOn='2026-11-25'; r.dealEnds=SALE.ends; r.dealThrough=true; r.dealStacks=true;
+      r.dealName=SALE.name; r.dealNameEs=SALE.nameEs; r.dealNames=SALE.names; r.dealNamesEs=SALE.namesEs;
+      r.dealTag=SALE.dealTag; r.dealNote=SALE.dealNote; r.dealNoteEs=SALE.dealNoteEs; r.dealStays=false; }
   }
   var next=[T7,TEND].filter(function(t){ return t>now; })[0];
   if(next && next-now<2147000000){ setTimeout(function(){ try{ location.reload(); }catch(e){} }, next-now+1500); }

@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',all); window.addEventListener('load
 
 <script>/* (Round 193d, his words of 4:56pm: "defaults to whatever system settings somebody has") the reader's own choice when they made one; else the system's */(function(){var r=document.documentElement,q=null;function set(d){if(d)r.setAttribute('data-look','dim');else r.removeAttribute('data-look');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',d?'#2D251F':'#FBF8F3');}var l=null;try{l=localStorage.getItem('look');}catch(e){}try{q=window.matchMedia('(prefers-color-scheme: dark)');}catch(e){}set(l==='dim'||(!l&&!!q&&q.matches));if(!l&&q&&q.addEventListener)q.addEventListener('change',function(e){var k=null;try{k=localStorage.getItem('look');}catch(x){}if(!k){set(e.matches);try{document.dispatchEvent(new CustomEvent('lookchange',{detail:{dim:e.matches}}));}catch(x){}}});})();</script>
 
-<link rel="preload" as="script" href="rabbits.js?v=3316a340" data-fact="data-preload">
+<link rel="preload" as="script" href="rabbits.js?v=643d744b" data-fact="data-preload">
 
 <script>document.documentElement.classList.add('boot')</script>
 <script data-fact="hero-preload">(function(){if(/^#[rp]-/.test(location.hash))return;var l=document.createElement("link");l.rel="preload";l.as="image";l.href="img/snickerdoodle.1200.8db66f41.avif";l.setAttribute("imagesrcset","img/snickerdoodle.800.8db66f41.avif 800w, img/snickerdoodle.1200.8db66f41.avif 1200w");l.setAttribute("imagesizes","(max-width:920px) 100vw, 45vw");l.type="image/avif";l.setAttribute("fetchpriority","high");document.head.appendChild(l)})();</script>
@@ -4951,6 +4951,42 @@ html.xmas .hero .facts>details.fact-season+details.fact{grid-column:1 / -1}
   html.xmas .hero .facts>details.fact>summary:active{padding-right:34px}
 }
 </style>
+<style id="sale-row">
+/* (27 Nov 2026, Site Ideas 220, 221 and 230, his yes that morning) A dated sale says its last day where people decide
+   (one line under the price on the listing, one under the name on the request sheet) and once on the first screen
+   while it runs. All of it is written from the records and leaves by itself. */
+.vsale,.gs-sale{display:flex;align-items:baseline;gap:7px;margin:0;color:var(--ink);text-wrap:balance}
+.vsale[hidden],.gs-sale[hidden]{display:none}
+.vsale::before,.gs-sale::before{content:'';flex:none;width:10px;height:12px;transform:translateY(1px);background:var(--brick);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8.9.4c.5 2.1 2.3 3.2 3.4 4.8.9 1.3 1.4 2.7 1.4 4.3 0 3.1-2.5 5.6-5.7 5.6S2.3 12.6 2.3 9.5c0-1.9.9-3.5 2.2-4.7.2 1.3.9 2.3 2 2.7-.6-2.4.6-4.6 2.4-7.1z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8.9.4c.5 2.1 2.3 3.2 3.4 4.8.9 1.3 1.4 2.7 1.4 4.3 0 3.1-2.5 5.6-5.7 5.6S2.3 12.6 2.3 9.5c0-1.9.9-3.5 2.2-4.7.2 1.3.9 2.3 2 2.7-.6-2.4.6-4.6 2.4-7.1z'/%3E%3C/svg%3E") center/contain no-repeat}
+.vsale b,.gs-sale b{font-weight:600}
+.viewer-head .vsale{grid-column:1 / -1;grid-row:3;margin-top:9px;font-size:14.5px;line-height:1.4}
+.gs-sale{margin-top:4px;font-size:13.5px;line-height:1.35}
+.gs-sub{text-wrap:balance}   /* the line above it: when it takes two lines, no price hangs alone on the second */
+/* the first screen's row: the rabbits under the sale, each a door to its listing (the littermates' faces, 25 Nov) */
+.facts .sale-six{grid-template-columns:repeat(auto-fill,minmax(92px,1fr));max-width:640px;margin:12px 0 4px}
+.facts .sale-six .vmate-s{font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.facts .sale-six .vmate-s s{color:var(--ink-faint);margin-right:3px}
+@media(min-width:560px){
+  /* wherever the rows sit side by side, this one takes the whole first line, its two phrases on one line when they fit */
+  .hero .facts.has-sale>details.fact.fact-sale{grid-column:1 / -1}
+  .hero .facts.has-sale>details.fact.fact-sale>summary span{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px}
+  .hero .facts.has-sale>details.fact.fact-sale b,.hero .facts.has-sale>details.fact.fact-sale small{display:inline;margin-top:0;white-space:nowrap}
+}
+/* the season's layouts count the rows; with the sale's row first, each count moves down by one */
+@media (orientation:landscape) and (min-width:560px) and (max-width:659px),(orientation:portrait) and (min-width:560px) and (max-width:659px){
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(3){grid-column:auto}
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(3)>summary span,html.xmas .hero .facts.has-sale>details.fact:nth-of-type(3) b,html.xmas .hero .facts.has-sale>details.fact:nth-of-type(3) small{display:block}
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(3) small{margin-top:2px}
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(4){grid-column:1 / -1}
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(4)>summary span{display:flex;align-items:baseline;gap:10px}
+  html.xmas .hero .facts.has-sale>details.fact:nth-of-type(4) b,html.xmas .hero .facts.has-sale>details.fact:nth-of-type(4) small{display:inline;margin-top:0}
+}
+@media (min-width:921px) and (min-height:661px), (min-width:921px) and (min-height:501px) and (orientation:portrait), (min-width:921px) and (min-height:501px) and (pointer:fine), (min-width:921px) and (min-height:501px) and (pointer:none), (min-width:921px) and (min-height:501px) and (min-width:1100px){
+  html.xmas .hero .facts.has-sale>details.fact.fact-sale{grid-column:1 / -1;grid-row:1}
+  html.xmas .hero .facts.has-sale>details.fact-season,html.xmas .hero .facts.has-sale>details.fact-season+details.fact{grid-row:3}
+}
+</style>
 <style id="side-as-upright">
 
 @media (orientation:landscape) and (max-height:500px) and (min-width:560px) and (max-width:839px),(orientation:portrait) and (min-width:560px) and (max-width:920px) and (min-width:560px) and (max-width:839px){
@@ -5855,7 +5891,7 @@ html.pick .grid-home-return{display:none}
         <details class="fact"><summary><span><b>Meet them before you pay</b><small>For delivery, a $50 deposit first</small></span></summary><div class="whypanel factpanel" id="fact-pay"><ul class="checks"><li>Visits are free, no pressure to buy</li><li>Far away? A FaceTime call first</li><li>Only $50 before you meet</li><li>The rest when it's in your hands</li><li>Zelle or cash, or a payment plan</li></ul><p><a class="litterlink chip" href="#faq-pay">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
         
         <details class="fact"><summary><span><b>First-timers welcome</b><small>Time, space, cats and dogs</small></span></summary><div class="whypanel factpanel" id="fact-first"><ul class="checks"><li>Time every day is what it takes</li><li>A care sheet and two weeks of food</li><li>My number, for life</li><li>Cats or dogs? Often fine, slowly</li><li>Kids do well, an adult in charge</li></ul><p><a class="litterlink chip" href="#faq-first">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
-        <details class="fact fact-season"><summary><span><b>A rabbit for Christmas?</b><small>Plan it together, meet first</small></span></summary><div class="whypanel factpanel" id="fact-xmas"><ul class="checks"><li>A rabbit lives eight to twelve years</li><li>Visits are free, no pressure to buy</li><li>Kids do well, an adult in charge</li><li>Away for the holidays? I board</li><li>My number, for life</li></ul></div></details>
+        <details class="fact fact-season"><summary><span><b>A rabbit for Christmas?</b><small>Plan it together, meet first</small></span></summary><div class="whypanel factpanel" id="fact-xmas"><ul class="checks"><li data-fact="xmas-home" hidden></li><li data-fact="xmas-hold" hidden>Want it home on the day? I keep a reserved rabbit here until 24&nbsp;Dec, at no extra&nbsp;cost</li><li>A rabbit lives eight to twelve years</li><li>Visits are free, no pressure to buy</li><li>Kids do well, an adult in charge</li><li>Away for the holidays? I board</li><li>My number, for life</li></ul></div></details>
         <details class="fact"><summary><span><b>20% off a second rabbit</b><small>When you take two</small></span></summary><div class="whypanel factpanel" id="fact-pair"><ul class="checks"><li>The second is whichever costs less</li><li>Same litter or not</li><li>Unless a litter is one per customer</li><li>Not on a payment plan</li><li>Not sure yet? You have 48 hours</li><li>Littermates already get along</li></ul><p><a class="litterlink chip" href="#faq-pair">The whole answer<i class="chev" aria-hidden="true"></i></a></p></div></details>
 
       </div>
@@ -7138,7 +7174,7 @@ html.pick .grid-home-return{display:none}
     <div class="viewer-body">
       
       <p class="vback" id="viewerBackP" hidden></p>
-      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a></div>
+      <div class="viewer-head"><h2 id="viewer-name" tabindex="-1"></h2><span class="vprice"><span class="price" id="viewerPrice"></span></span><a class="vhistlink" id="viewerHistLink" href="#viewerWhyPanel" hidden>Price history</a><p class="vsale" id="viewerSaleLine" hidden></p></div>
 
       <div class="viewer-sub"><p class="viewer-meta" id="viewerMeta"></p><ul class="viewer-tags" id="viewerTags" hidden></ul></div><button type="button" class="vmix" id="viewerMix" hidden></button><div class="vcm" id="viewerComing" hidden></div>
       <p class="vready" id="viewerReady" hidden></p>
@@ -7234,7 +7270,7 @@ html.pick .grid-home-return{display:none}
 <script id="litterIndex" type="application/json">[{"born":"2026-11-20","count":"Three born, two alive","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Eleventh litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-11-19","count":"Four born","kits":[],"line":"Netherland Dwarf","lost":false,"never":false,"no":"Tenth litter","parents":{"mother":"tajima","father":"maximo"},"roles":["father","mother"]},{"born":"2026-11-05","count":"Four born, three alive","kits":[],"line":"Holland Lop","lost":false,"never":false,"no":"Ninth litter","parents":{"mother":"tango","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-28","count":"Eight born, eight raised","kits":[{"addr":"cocoa","name":"Cocoa"},{"addr":"cookie","name":"Cookie"},{"addr":"crumb","name":"Crumb"},{"addr":"mochi","name":"Mochi"},{"addr":"pepper","name":"Pepper"},{"addr":"snickerdoodle","name":"Snickerdoodle"},{"addr":"sprinkles","name":"Sprinkles"}],"line":"Holland Lop","lost":false,"never":false,"no":"Eighth litter","parents":{"mother":"lop","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-10-21","count":"Eight born, seven raised","kits":[{"addr":"espresso","name":"Espresso"},{"addr":"lavender","name":"Lavender"},{"addr":"licorice","name":"Licorice"},{"addr":"malbec","name":"Malbec"},{"addr":"poppyseed","name":"Poppyseed"},{"addr":"sage","name":"Sage"},{"addr":"truffle","name":"Truffle"}],"line":"Netherland Dwarf cross","lost":false,"never":false,"no":"Seventh litter","parents":{"mother":"saffron","father":"odyssey"},"roles":["father","mother"]},{"born":"2026-10-19","count":"Three born, three raised","kits":[{"addr":"blueberry","name":"Blueberry"},{"addr":"chai","name":"Chai"},{"addr":"juniper","name":"Juniper"}],"line":"Holland Lop","lost":false,"never":false,"no":"Sixth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-09-27","count":"Seven born, seven raised","kits":[{"addr":"churro","name":"Churro"},{"addr":"coconut","name":"Coconut"},{"addr":"dollop","name":"Dollop"},{"addr":"marmalade","name":"Marmalade"},{"addr":"oatmeal","name":"Oatmeal"},{"addr":"pancake","name":"Pancake"},{"addr":"snowcone","name":"Snowcone"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Fifth litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-09-18","count":"Three born, three raised","kits":[{"addr":"latte","name":"Latte"},{"addr":"mocha","name":"Mocha"},{"addr":"nutmeg","name":"Nutmeg"}],"line":"Holland Lop","lost":false,"never":false,"no":"Fourth litter","parents":{"mother":"smorri","father":"rootbeer"},"roles":["father","mother"]},{"born":"2026-08-27","count":"Six born, six raised","kits":[{"addr":"biscuit","name":"Biscuit"},{"addr":"honey","name":"Honey"},{"addr":"maple","name":"Maple"},{"addr":"marshmallow","name":"Marshmallow"},{"addr":"pecan","name":"Pecan"},{"addr":"toffee","name":"Toffee"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Third litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-07-28","count":"Six born, four raised","kits":[{"addr":"butterscotch","name":"Butterscotch"},{"addr":"cloud","name":"Cloud"},{"addr":"sundae","name":"Sundae"},{"addr":"teddy","name":"Teddy"}],"line":"Holland Lop cross","lost":false,"never":false,"no":"Second litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]},{"born":"2026-06-28","count":"Five born, four raised","kits":[],"line":"Holland Lop cross","lost":false,"never":true,"no":"First litter","parents":{"mother":"lop","father":"angora"},"roles":["father","mother"]}]</script>
 
 <script id="pedArchive" type="application/json">{"blueberry|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Blueberry","on":"2026-11-14","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Blue tortoise"},"chai|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Chai","on":"2026-11-15","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"juniper|2026-10-19":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-10-19","ear":"","name":"Juniper","on":"2026-11-15","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Blue tortoise"},"latte|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Latte","on":"2026-10-17","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Sable point"},"lavender|2026-10-21":{"breed":"Netherland Dwarf cross","dam":{"breed":"Holland Lop cross","dam":{"breed":"Holland Lop","key":"lop","name":"Cinnamony","variety":"Sable point"},"dob":"2026-06-28","key":"saffron","name":"Saffron","sire":{"breed":"Satin Angora","dob":"2025-10-30","key":"angora","name":"Frederick","variety":"Fawn"},"variety":"Fawn"},"dob":"2026-10-21","ear":"","name":"Lavender","on":"2026-11-22","sex":"","sire":{"breed":"Netherland Dwarf","dam":{"dam":{"ear":"CHIBIA","key":"chibia","lb":2,"name":"Chibia","oz":6,"reg":"B729U","variety":"Blue"},"ear":"MAS O MENOS","key":"masomenos","lb":2,"name":"Mas O Menos","oz":8,"reg":"H829U","sire":{"ear":"YONKERS","key":"yonkers","lb":2,"name":"Yonkers","oz":5,"reg":"V223S","variety":"Broken blue"},"variety":"Blue"},"dob":"2026-03-14","ear":"ODYSSEY","key":"odyssey","name":"Odyssey","sire":{"dam":{"ear":"PR","key":"promise","lb":2,"name":"Promise","oz":6,"reg":"Z628P","variety":"Broken black"},"ear":"BESITOS","key":"besitos","name":"Besitos","reg":"H834U","sire":{"ear":"DOOHICKY","key":"doohicky","lb":2,"name":"Doohicky","oz":2,"reg":"P881S","variety":"Chestnut"},"variety":"Steel"},"variety":"Black"},"variety":"Blue"},"mocha|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Mocha","on":"2026-10-16","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"},"nutmeg|2026-09-18":{"breed":"Holland Lop","dam":{"dam":{"dam":{"dob":"2023-02-01","ear":"CA2","key":"applejack","name":"Apple Jack","variety":"Broken"},"dob":"2024-06-04","ear":"KC4S","key":"blackbird","name":"Black Bird","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Broken"},"dob":"2025-08-02","ear":"SB1T","key":"smorri","name":"S'Morri","sire":{"dam":{"dob":"2022-11-23","ear":"ROSE","key":"rose","lb":4,"name":"Rose","variety":"Tortoise"},"dob":"2024-03-11","ear":"CR4S","key":"mrstealyogirl","name":"Mr Steal Yo Girl","sire":{"dob":"2022-06-27","ear":"TH","key":"thad","name":"Thad","variety":"Orange"},"variety":"Tortoise"},"variety":"Sable point"},"dob":"2026-09-18","ear":"","name":"Nutmeg","on":"2026-10-24","sex":"","sire":{"dam":{"dam":{"dob":"2020-09-09","key":"cylindrical","lb":2,"name":"Cylindrical","variety":"Broken chinchilla"},"dob":"2024-03-04","ear":"CJ2S","key":"goldie","name":"Goldie","sire":{"dob":"2018-11-18","ear":"CHIM","key":"chimnickchonga","lb":3,"legs":14,"name":"Chimnickchonga","variety":"Tortoise","wins":[{"award":"Best in Show","on":"2020-01-18"},{"award":"Best Reserve in Show","on":"2020-01-18"},{"award":"Best Opposite Sex","on":"2020-01-18"},{"award":"Best of Breed","on":"2019-07-26"}]},"variety":"Orange"},"dob":"2025-07-26","ear":"TA4T","key":"rootbeer","name":"Root Beer","sire":{"dam":{"dob":"2020-06-01","ear":"MAY","key":"may","lb":3,"name":"May","variety":"Orange"},"dob":"2024-05-04","ear":"KM4S","key":"tinytim","name":"Tiny Tim","sire":{"dob":"2023-02-14","ear":"KILO","key":"kilo","lb":3,"name":"Kilo","variety":"Black"},"variety":"Black tortoise"},"variety":"Tortoise"},"variety":"Tortoise"}}</script>
-<script src="rabbits.js?v=3316a340"></script>
+<script src="rabbits.js?v=643d744b"></script>
 
 <script>
 (function(){
@@ -8262,6 +8298,33 @@ html.pick .grid-home-return{display:none}
     var d=new Date(+m[1],+m[2]-1,+m[3]);
     return DAYS[d.getDay()]+(dayOnly?'':' '+d.getDate()+' '+MONTHS_LONG[d.getMonth()]);
   }
+  /* (27 Nov 2026, Site Ideas 220, his yes that morning) A dated sale's last day, said where people decide: one line
+     under the price on the listing and one under the name on the request sheet. It is written from the sale's own
+     name (dealName) and its last day, the day before dealEnds, so nobody types it; and it leaves by itself, because
+     hasSale is false from the day the sale is over. The last three words stay together (his hanging-word rule). */
+  var MON3=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MES3=['ene','feb','mar','abr','may','jun','jul','ago','sept','oct','nov','dic'];
+  function saleLast(r){            /* the last day of a dated sale, at noon; null when the rabbit has none */
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String((r&&r.dealEnds)||'').trim());
+    return (m&&hasSale(r))?new Date(+m[1],+m[2]-1,+m[3]-1,12):null;
+  }
+  function saleName(r,es,many){ return String((es?((many&&r.dealNamesEs)||r.dealNameEs):((many&&r.dealNames)||r.dealName))||'').trim(); }
+  function saleDay(d,es,short){    /* "Sunday 29 Nov"; in Spanish "domingo 29 de noviembre"; short: the weekday alone */
+    var NB=' ';
+    if(es) return DIAS_ES[d.getDay()]+(short?'':NB+d.getDate()+NB+'de'+NB+MESES_ES[d.getMonth()]);
+    return DAYS[d.getDay()]+(short?'':NB+d.getDate()+NB+MON3[d.getMonth()]);
+  }
+  function saleLineHTML(r,mate){   /* for one rabbit, or for the two of a listing or a sheet for two */
+    var es=document.documentElement.lang==='es';
+    var on=[r,mate].filter(function(x){ return x&&saleLast(x)&&saleName(x,es); });
+    if(!on.length) return '';
+    on.sort(function(a,b){ return saleLast(a)-saleLast(b); });
+    var x=on[0], d=saleLast(x), nm=saleName(x,es);
+    var both=on.length>1&&saleName(on[1],es)===nm&&+saleLast(on[1])===+d;
+    var who=(mate&&!both)?((es?' para ':' on ')+esc(x.name)):'';
+    return '<span><b>'+esc(nm)+'</b>'+who+(es?', hasta el ':', through ')+saleDay(d,es)+'</span>';
+  }
+  function saleLinePaint(r,mate){ var el=document.getElementById('viewerSaleLine'); if(!el) return;
+    var h=r?saleLineHTML(r,mate):''; el.innerHTML=h; el.hidden=!h; }
   function saleLeft(r, fine){
     var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(r.dealEnds||'').trim());
     if(!m||!hasSale(r)) return '';
@@ -8334,13 +8397,13 @@ html.pick .grid-home-return{display:none}
         var s=(note?esc(note.replace(/[.!]+$/,''))+', so ':'')+'$'+esc(off)+' off';
         var kind=String(r.dealKind||'').trim();
         var why=(kind==='age'||kind==='health')?' <a class="stagelink chip" href="#faq-price">Why prices come down<i class="chev" aria-hidden="true"></i></a>':'';
-        if(ends) return s+' until '+esc(longDay(ends))+'.'+why;
+        if(ends&&!r.dealThrough) return s+' until '+esc(longDay(ends))+'.'+why;   /* (27 Nov 2026) a sale whose note names its last day adds no second one */
         if(r.dealStays) return s+'. That’s the new price for this '+(r.dealScope==='rabbit'?'rabbit':'line')+', not a sale.'+why;
         return s+'.'+why;
       }
       if(!tag) return '';
       var units=tag.split('|').map(function(t){ return t.trim(); }).filter(Boolean);
-      var more=ends?('$'+now+' until '+longDay(ends,true)):(r.dealStays?'the new price':'');
+      var more=(ends&&!r.dealThrough)?('$'+now+' until '+longDay(ends,true)):(r.dealStays?'the new price':'');
       var html=units.map(function(t){ return '<span class="deal-why">'+esc(t)+'</span>'; }).join(' ');
       if(more) html+=' <span class="deal-why">· '+esc(more)+'</span>';
       var bm=bundleMate(r); if(bm) html+=' <span class="deal-why deal-pair">· '+SPECIAL_GLYPH+'$'+esc(bundleOf(r,bm))+'</span> <span class="deal-why deal-mate"><a class="deal-matel" href="#r-'+esc(addrOf(bm))+'">with\u00a0'+esc(bm.name)+'</a></span>';
@@ -8401,7 +8464,7 @@ html.pick .grid-home-return{display:none}
       '</span>';
   }
   function pathHTML(r){
-    if(!hasSale(r) || !String(r.dealEnds||'').trim()) return '';
+    if(!hasSale(r) || !String(r.dealEnds||'').trim() || r.dealThrough) return '';   /* (27 Nov 2026) the steps box of 24 Sept counts the time left; a sale that says its last day in words has the one line under the price instead */
     var now=+r.price, ends=String(r.dealEnds).trim(), o=objPronoun(r);
     var ES=document.documentElement.lang==='es', la=(o==='her');
     return '<small>'+(ES?'Para asegurar el precio de $':'To lock in $')+now+'</small>'+
@@ -9129,9 +9192,9 @@ html.pick .grid-home-return{display:none}
         var row=document.createElement('span'); row.className='row';
         row.appendChild(s); row.appendChild(b);
         var why=document.createElement('small'); why.className='why';
-        why.textContent=dtag+' · $'+pick.price+' until '+longDay(pick.dealEnds,true);
+        why.textContent=dtag+' · $'+pick.price+(pick.dealThrough?'':' until '+longDay(pick.dealEnds,true));
         chip.appendChild(row); chip.appendChild(why);
-        a.setAttribute('aria-label','See '+pick.name+"'s listing: $"+pick.price+' until '+longDay(pick.dealEnds)+
+        a.setAttribute('aria-label','See '+pick.name+"'s listing: $"+pick.price+(pick.dealThrough?'':' until '+longDay(pick.dealEnds))+
           ', '+String(pick.dealNote||dtag).trim().replace(/[.!]+$/,''));
       } else {
         chip.appendChild(s); chip.appendChild(b);
@@ -9317,6 +9380,7 @@ html.pick .grid-home-return{display:none}
     }
 
     paintAvailability(list);
+    var heroOpens=list.filter(function(r){ return r.status==='available'; });   /* (27 Nov 2026) for the sale's row and the Christmas answers, below */
     var heroBtn=document.querySelector('.hero-cta .btn-primary');
     if(heroBtn){
       var opens=list.filter(function(r){return r.status==='available'}), nOpen=opens.length;
@@ -9325,6 +9389,77 @@ html.pick .grid-home-return{display:none}
         : nOpen===1 ? (nNow===1 ? 'See 1 rabbit ready now' : 'See 1 available rabbit') : 'See the rabbits';
       if(typeof locked==='function'&&opens.some(locked)) heroBtn.textContent=(document.documentElement.lang==='es')?(nOpen>1?'Ver los '+nOpen+' conejos':'Ver los conejos'):(nOpen>1?'See all '+nOpen+' rabbits':'See the rabbits');
     }
+
+    /* (27 Nov 2026, Site Ideas 221, his yes that morning) One row on the first screen while a dated sale runs: first
+       in line and in the rows' own form, written from the sale's own records (its name, its last day, the rabbits
+       under it), so it is never typed, and it leaves by itself when the sale is over. A price with no last day is a
+       new price, not a sale, and never gets a row. Opened, it shows the rabbits themselves, each a door to its
+       listing. */
+    (function(){
+      var facts=document.querySelector('.hero .facts'); if(!facts) return;
+      var es=document.documentElement.lang==='es', NB=' ';
+      var old=facts.querySelector('details.fact-sale'), G={}, best=null;
+      heroOpens.forEach(function(r){ if(!saleLast(r)||!saleName(r,false)||(typeof locked==='function'&&locked(r))) return;
+        var k=saleName(r,false)+'|'+r.dealEnds; (G[k]=G[k]||[]).push(r); });
+      Object.keys(G).forEach(function(k){ var g=G[k]; if(!best||g[0].dealEnds<best[0].dealEnds||(g[0].dealEnds===best[0].dealEnds&&g.length>best.length)) best=g; });
+      if(!best){ if(old) old.parentNode.removeChild(old); facts.classList.remove('has-sale'); return; }
+      var d=saleLast(best[0]), n=best.length, ps=best.map(function(r){ return +priceOf(r); }), lo=Math.min.apply(null,ps), hi=Math.max.apply(null,ps);
+      var soon=(d.getTime()-Date.now())<6*864e5;                       /* within the week, the weekday alone says it */
+      var W=es?['Un','Dos','Tres','Cuatro','Cinco','Seis','Siete','Ocho','Nueve','Diez','Once','Doce']:['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
+      var count=(n<=12?W[n-1]:String(n))+' '+(es?(n===1?'conejo':'conejos'):(n===1?'rabbit':'rabbits'));
+      var range=(lo===hi)?('$'+lo):(es?('de'+NB+'$'+lo+' a'+NB+'$'+hi):('$'+lo+' to'+NB+'$'+hi));
+      var title=saleName(best[0],es,n>1)+(es?', hasta el ':', through ')+saleDay(d,es,soon);
+      var offs=best.map(function(r){ return (+r.dealBack||0)-(+r.price||0); }), off=offs.every(function(x){ return x>0&&x===offs[0]; })?offs[0]:0;
+      var checks=[];
+      if(off) checks.push(n>1?(es?('$'+off+' menos en cada'+NB+'uno'):('$'+off+' less on'+NB+'each')):(es?('$'+off+NB+'menos'):('$'+off+NB+'less')));
+      if(best.every(function(r){ return !gsOne(r); })) checks.push(es?('Reserve a más tardar el '+saleDay(d,true,soon)+' con $'+DEPOSIT+'; el'+NB+'resto,'+NB+'al'+NB+'recogerlo')
+                                                                    :('Reserve by '+saleDay(d,false,soon)+' with $'+DEPOSIT+', the'+NB+'rest'+NB+'at'+NB+'pickup'));
+      if(best.every(function(r){ return !!r.dealStacks; })) checks.push(es?('El '+PAIR_OFF+'% de descuento en un segundo conejo se'+NB+'mantiene'):('The '+PAIR_OFF+'% off a second rabbit still'+NB+'applies'));
+      var chips=best.map(function(r){ return '<a class="vmate" href="#r-'+esc(addrOf(r))+'"><span class="vmate-f" aria-hidden="true">'+faceImg(r,44)+'</span><span class="vmate-n">'+esc(r.name)+'</span><span class="vmate-s">'+priceHTML(r)+'</span></a>'; }).join('');
+      var html='<summary><span><b>'+esc(title)+'</b><small>'+esc(count+', '+range)+'</small></span></summary>'+
+        '<div class="whypanel factpanel" id="fact-sale">'+(checks.length?'<ul class="checks">'+checks.map(function(c){ return '<li>'+esc(c)+'</li>'; }).join('')+'</ul>':'')+
+        '<div class="vmates-row sale-six">'+chips+'</div></div>';
+      var row=old||document.createElement('details');
+      if(row.__h!==html){ row.className='fact fact-sale'; row.innerHTML=html; row.__h=html; }
+      if(!old) facts.insertBefore(row,facts.firstElementChild);
+      facts.classList.add('has-sale');
+    })();
+
+    /* (27 Nov 2026, Site Ideas 230, his yes that morning and his rule, "No extra cost") The Christmas row answers
+       first what a Christmas buyer asks first. Line one is worked out here: the rabbits for sale now, and the litters
+       on the way whose ready day falls on or before 24 December (the ready days are the shelf's own, from readyModel).
+       Line two is his rule, written on the page. Both show from November to Christmas Eve and leave by themselves. */
+    (function(){
+      var li=document.querySelector('[data-fact="xmas-home"]'), hold=document.querySelector('[data-fact="xmas-hold"]'); if(!li&&!hold) return;
+      var t=todayISO(), y=t.slice(0,4), eve=y+'-12-24', on=(t>=y+'-11-01'&&t<=eve);
+      if(hold) hold.hidden=!on;
+      if(!li) return;
+      li.hidden=true; if(!on) return;
+      var es=document.documentElement.lang==='es', NB=' ';
+      var mine=heroOpens.filter(function(r){ return !(typeof locked==='function'&&locked(r)); }), n=mine.length, nNow=mine.filter(gsNow).length;
+      var soon=0, sure=[], est=[];
+      try{
+        var idx=JSON.parse(document.getElementById('litterIndex').textContent||'[]')||[], rm=JSON.parse(document.getElementById('readyModel').textContent).litters||{};
+        idx.forEach(function(l){ if(!l||l.never||l.lost||(l.kits||[]).length) return;
+          if(RABBITS.some(function(r){ return r&&r.dob===l.born; })) return;          /* listed already: its rabbits are counted above */
+          var w=rm[l.born]; if(!w||!w.day||w.day>eve) return;
+          if(w.day<=t) soon++; else (w.kind==='checked'?sure:est).push(w.day); });
+      }catch(e){}
+      sure.sort(); est.sort();
+      function dm(iso){ return (+iso.slice(8,10))+NB+(es?MES3:MON3)[+iso.slice(5,7)-1]; }
+      function lst(a){ a=a.map(function(x){ return es?('el'+NB+dm(x)):dm(x); }); return a.length===1?a[0]:a.slice(0,-1).join(', ')+(es?' y ':' and ')+a[a.length-1]; }
+      var NW=es?['una','dos','tres','cuatro','cinco','seis']:['a','two','three','four','five','six'];
+      var parts=[];
+      if(n) parts.push(es?(n===1?(nNow===n?'el que ya está listo':'el que está a la venta'):('los '+n+(nNow===n?' listos ahora':' a la venta ahora')))
+                         :(n===1?(nNow===n?'the one ready now':'the one for sale now'):('the '+n+(nNow===n?' ready now':' for sale now'))));
+      if(soon) parts.push(es?(soon===1?'una camada que estará lista muy pronto':((NW[soon-1]||soon)+' camadas que estarán listas muy pronto'))
+                            :(soon===1?'a litter ready soon':((NW[soon-1]||soon)+' litters ready soon')));
+      if(sure.length) parts.push(es?(sure.length===1?'la camada lista ':'las camadas listas ')+lst(sure):(sure.length===1?'the litter ready ':'the litters ready ')+lst(sure));
+      if(est.length) parts.push(es?(est.length===1?'la camada que estará lista hacia ':'las camadas que estarán listas hacia ')+lst(est):(est.length===1?'the litter projected ready ':'the litters projected ready ')+lst(est));
+      if(!parts.length) return;
+      var s=(es?'En casa para Navidad: ':'Home by Christmas: ')+(parts.length===1?parts[0]:parts.slice(0,-1).join(', ')+(es?' y ':', and ')+parts[parts.length-1]);
+      li.textContent=s.replace(/ (\S+) (\S+)$/,NB+'$1'+NB+'$2'); li.hidden=false;
+    })();
 
     (function(){
       var SITE='https://arizonarabbits.com/';
@@ -10208,7 +10343,7 @@ html.pick .grid-home-return{display:none}
       gs=document.createElement('div'); gs.className='gs'; gs.id='getSheet'; gs.hidden=true;
       gs.setAttribute('role','dialog'); gs.setAttribute('aria-modal','true'); gs.setAttribute('aria-labelledby','gsName');
       gs.innerHTML='<div class="gs-in" tabindex="-1">'+
-        '<div class="gs-head"><span class="gs-face" aria-hidden="true"></span><div class="gs-who"><h2 id="gsName"></h2><p class="gs-sub"></p></div>'+
+        '<div class="gs-head"><span class="gs-face" aria-hidden="true"></span><div class="gs-who"><h2 id="gsName"></h2><p class="gs-sub"></p><p class="gs-sale" hidden></p></div>'+
         '<button type="button" class="gs-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
         '<div class="gs-health" hidden><p class="gs-hnote"></p><p class="gs-hmore">More about it on the listing.</p></div>'+
         '<form class="gs-form" novalidate>'+
@@ -10392,6 +10527,7 @@ html.pick .grid-home-return{display:none}
           :(esM?('$'+T+' en lugar de\u00a0$'+base+'.'):('$'+T+' instead of\u00a0$'+base+'.')));
         ms.querySelector('small').innerHTML='<span class="gs-mil-a">'+esc(fig)+'</span> <span class="gs-mil-b">'+esc(said)+'</span>'; }
       var two=q?mate:null, fh=gs.querySelector('.gs-face'), nm=gs.querySelector('#gsName'), sb=gs.querySelector('.gs-sub');
+      var gsl2=gs.querySelector('.gs-sale'); if(gsl2){ var slh2=saleLineHTML(r,two); gsl2.innerHTML=slh2; gsl2.hidden=!slh2; }   /* (27 Nov 2026) for two: which of them, when only one is under the sale */
       var hp=(visit||photos)?base:plan?full:T;   /* (26 Nov 2026) the heading's price is the price of what is being asked for: with the military switch, or the full price on a plan */
       if(two){
         fh.classList.add('two'); fh.innerHTML=faceImg(r,44)+faceImg(two,44);
@@ -10471,6 +10607,7 @@ html.pick .grid-home-return{display:none}
       gs.querySelector('.gs-face').innerHTML=r?faceImg(r,52):'<img src="icon.svg" alt="" width="52" height="52">';
       gs.querySelector('#gsName').textContent=r?r.name:'Meet the rabbits';
       gs.querySelector('.gs-sub').textContent=r?[r.breed,r.colour,'$'+p].filter(Boolean).join(' · '):'Free: no deposit, and no pressure to buy.';
+      var gsl=gs.querySelector('.gs-sale'); if(gsl){ var slh=r?saleLineHTML(r,null):''; gsl.innerHTML=slh; gsl.hidden=!slh; }   /* (27 Nov 2026, Site Ideas 220) */
       if(r){
         gs.querySelector('.gs-buyword').textContent='Buy';   /* (Round 148) one word for one action; the line under it says when */
         gs.querySelector('.gs-say-buy').textContent=now?'Ready now: home as soon as today.':'All of it now. It goes home on the day I say it’s ready.';
@@ -11226,6 +11363,7 @@ html.pick .grid-home-return{display:none}
       if(vStatus) vStatus.hidden=true;
       if(vNew) vNew.hidden=true;
       if(vSale) vSale.hidden=true;
+      saleLinePaint(null,null);
       if(vDeal){ vDeal.innerHTML=''; vDeal.hidden=true; }
       if(vToday){ vToday.innerHTML=''; vToday.hidden=true; }   /* a producer is not for sale: nothing to ask for (Round 168) */
       if(vHist){ vHist.innerHTML=''; vHist.hidden=true; }
@@ -11805,6 +11943,7 @@ html.pick .grid-home-return{display:none}
       }
       if(vNew) vNew.hidden=!(isNew(r)&&(!vWith||isNew(vWith)));   /* (pair, 14 Nov 2026) New on the listing for two only when both are */
       if(vSale) vSale.hidden=!(hasSale(r)||!!(vWith&&hasSale(vWith)));   /* (pair) Sale when either is on sale */
+      saleLinePaint(r,vWith);   /* (27 Nov 2026, Site Ideas 220) the sale's name and last day, under the price */
       var openNow=(r.status==='available');
       var anyOpen=RABBITS.some(function(x){ return x.status==='available'; });
       footClear();   /* (Round 149) both slots from nothing, then this rabbit's */
