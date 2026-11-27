@@ -2663,6 +2663,15 @@ html.pick .lsh{display:none!important}
 .pairhero .ph-price{margin:3px 0 0;font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pairhero .ph-price s{color:var(--ink-faint);margin-right:3px}
 .pairhero .ph-tag{margin:6px 0 0;padding:2px 9px;border-radius:999px;background:var(--brick-tone,var(--paper));color:var(--brick-dk);font-size:12.5px;font-weight:600}
+/* (26 Nov 2026) one row for a rabbit's badges: the pair's 20% and, with the military switch on, the 5% beside it; on a narrow phone the
+   second wraps under the first */
+.pairhero .ph-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px 6px;margin:6px 0 0}
+.pairhero .ph-tags .ph-tag{margin:0;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.pairhero .ph-tag .milg{flex:none;width:13px;height:13px}
+/* (26 Nov 2026) "Only want one?": one plain row among the listing's own rows, where three small dark buttons stood */
+.viewer-terms .vt-just{margin-top:7px}
+.viewer-terms .vt-just a{position:relative;white-space:nowrap}
+.viewer-terms .vt-just a::after{content:"";position:absolute;inset:-9px -3px}
 .pairhero .ph-mid{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:calc(min(128px,34vw)/2 - 14px);color:var(--brick-dk)}
 .pairhero .ph-mid svg{width:28px;height:28px}
 .pairhero .ph-mid .pairg{fill:none;stroke:currentColor;stroke-width:1.8}
@@ -7132,7 +7141,6 @@ html.pick .grid-home-return{display:none}
 
         <p class="vtwo" id="viewerTwo" hidden><a class="btn btn-tonal vtwo-b" id="viewerTwoB" href="#contact" hidden><svg class="vti sparkg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/></svg><span class="vtwo-t">A special</span></a><a class="btn btn-tonal vtwo-b" id="viewerAddB" href="#contact" hidden><svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><span class="vtwo-t">Add a second rabbit</span></a></p>
         
-        <p class="vtwo vset" id="viewerPairSet" hidden><a class="chip" id="vsetJust" href="#contact">Just</a><a class="chip" id="vsetChange" href="#contact">Change the second rabbit</a><a class="chip" id="vsetAbout" href="#contact">About</a></p>
       </div>
       
       <p class="vn-label" id="viewerNoteL1" hidden></p>
@@ -11636,16 +11644,28 @@ html.pick .grid-home-return{display:none}
       var x=excl?rabbitByAddr(excl):null;
       return {slots:[addrOf(r),x&&x!==r?addrOf(x):null],editingSlot:1,returnHash:'#r-'+addrOf(r)+(x&&x!==r?'+'+addrOf(x):'')};
     }
+    var pairHeroLast=null;   /* (26 Nov 2026) what the two photos last showed, so the military switch can paint them again */
+    function pairPriceHTML(pq){ return '<s>$'+pq.sum+'</s> $'+gsCut(pq.two)+'<small class="fortwo">'+(gsES()?'por los dos':'for the two')+'</small>'; }
     function pairHeroPaint(items,editing){
       var ph=document.getElementById('viewerPairHero'); if(!ph) return;
+      pairHeroLast=[items,editing];
       var a=items[0],b=items[1],q=a&&b?gsQuote(a,b):null, es=gsES(), cut=q&&!q.bundle?(+priceOf(a)<+priceOf(b)?a:b):null;
+      /* (26 Nov 2026, his words, 6:18pm, with a picture of the sheet with the switch on: "make sure if you add the military discount,
+         it adds a 5% badge on each one as well. for the discount and also accurately reflects the new price") With the switch on,
+         each rabbit wears a 5% badge and its price is what it comes to: its own price, less the pair's 20% where that falls on it,
+         less the 5%. The second rabbit's figure is the total less the first's, so the two always add up to the total the sheet
+         says, to the dollar. A special's price is one price for the two, so its two rabbits keep their own prices here. */
+      var mil=!!(typeof gsVals!=='undefined'&&gsVals&&gsVals.mil), fin=[a?+priceOf(a):0, b?+priceOf(b):0];
+      if(q&&!q.bundle){ fin[0]=gsCut(fin[0]-(cut===a?q.off:0)); fin[1]=gsCut(q.two)-fin[0]; }
+      else if(!q){ fin[0]=gsCut(fin[0]); fin[1]=gsCut(fin[1]); }
       var pencil='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20h4.2L18.6 9.6a2.2 2.2 0 0 0-3.1-3.1L5 16.9V20z"/><path d="M14 8.1l1.9 1.9"/></svg>';
       var one=function(x,i){ var px=x?+priceOf(x):0,label=x?x.name:(es?'Elija un conejo':'Choose a rabbit'), change=x?(es?'Cambiar a ':'Change ')+x.name:(es?'Elegir el segundo conejo':'Choose the second rabbit');
         return '<div class="ph-cell'+(editing===i?' is-editing':'')+'" data-pair-index="'+i+'" data-rabbit="'+(x?esc(addrOf(x)):'')+'">'+
           '<button type="button" class="ph-one" '+(x?'data-ql="'+esc(addrOf(x))+'"':'data-pair-edit="'+i+'"')+' aria-label="'+esc(x?(es?'Ver a ':'A closer look at ')+x.name:change)+'">'+
           '<span class="ph-face'+(x?'':' ph-empty')+'">'+(x?faceImg(x,128):'<span aria-hidden="true">?</span>')+'</span><span class="ph-name">'+esc(label)+'</span>'+
-          (x?'<span class="ph-price">'+(cut===x?'<s>$'+px+'</s> $'+(px-q.off):'$'+px)+'</span>':'')+
-          (cut===x&&x?'<span class="ph-tag">'+(es?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+'</button>'+
+          (x?'<span class="ph-price">'+(fin[i]!==px?'<s>$'+px+'</s> $'+fin[i]:'$'+px)+'</span>':'')+
+          (x&&(cut===x||mil)?'<span class="ph-tags">'+(cut===x?'<span class="ph-tag">'+(es?'20%\u00a0menos':'20%\u00a0off')+'</span>':'')+
+            (mil?'<span class="ph-tag ph-tag-mil">'+MIL_GLYPH+(es?gsMilOff()+'%\u00a0menos':gsMilOff()+'%\u00a0off')+'</span>':'')+'</span>':'')+'</button>'+
           '<button type="button" class="ph-edit" data-pair-edit="'+i+'" aria-label="'+esc(change)+'" aria-pressed="'+(editing===i?'true':'false')+'">'+pencil+'</button></div>'; };
       var mid=q&&q.bundle?'<span class="ph-mid ph-special">'+SPECIAL_GLYPH+'<small>'+(es?'Oferta especial':'Special')+'</small></span>':'<span class="ph-mid"><svg class="pairg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>';
       ph.hidden=false; ph.innerHTML='<div class="ph-row">'+one(a,0)+mid+one(b,1)+'</div>';
@@ -11660,7 +11680,7 @@ html.pick .grid-home-return{display:none}
       if(!pairDraft) return; var x=rabbitByAddr(a), d=JSON.parse(JSON.stringify(pairDraft)), items=pairRecords(d), i=d.editingSlot, other=items[1-i];
       if(!pairEligible(x)||(other&&!pairValid(x,other))) return;
       d.slots[i]=addrOf(x); items=pairRecords(d);
-      if(items[0]&&items[1]) pairStep('#r-'+addrOf(items[1])+'~confirm+'+addrOf(items[0]),d);
+      if(items[0]&&items[1]) pairStep('#r-'+addrOf(items[0])+'~confirm+'+addrOf(items[1]),d);   /* (26 Nov 2026) the first rabbit leads the address: the Confirm step is the listing for two, in the photos' order */
       else { d.editingSlot=items[0]?1:0; pairStep('#r-'+addrOf(x)+'~pick',d); }
     }
     function pairCancel(){ if(pairDraft) stepTo(pairDraft.returnHash||'#r-'+pairDraft.slots[0]); }
@@ -11690,9 +11710,9 @@ html.pick .grid-home-return{display:none}
       vName.textContent=vWith?(r.name+(gsES()?' y ':' and ')+vWith.name):r.name;
       var ph=document.getElementById('viewerPairHero');
       if(vw) vw.classList.toggle('vpair',!!vWith);
-      if(ph){ ph.hidden=!vWith; if(vWith) pairHeroPaint([r,vWith],-1); }
+      if(ph){ ph.hidden=!vWith; if(vWith) pairHeroPaint([r,vWith],-1); else pairHeroLast=null; }
       if(vCtl) vCtl.setAttribute('data-name',vName.textContent);   /* (pair, 14 Nov 2026, his report of 6:02pm) the bar at the top names what the heading names: both rabbits on the listing for two */
-      vPrice.innerHTML=(r.status==='kept')?'':(pq?('<s>$'+pq.sum+'</s> $'+pq.two+'<small class="fortwo">'+(gsES()?'por los dos':'for the two')+'</small>'):priceHTML(r));   /* a producer has no price (Round 167): the price line is empty, never "$0" */
+      vPrice.innerHTML=(r.status==='kept')?'':(pq?pairPriceHTML(pq):priceHTML(r));   /* a producer has no price (Round 167): the price line is empty, never "$0" */
       if(vPlan){ vPlan.innerHTML=planMarkHTML(r); vPlan.hidden=!vPlan.textContent; }
       if(vWhy) vWhy.hidden=!(r.status==='available' && priceOf(r));
       whyShut();
@@ -11741,7 +11761,7 @@ html.pick .grid-home-return{display:none}
         else { b.removeAttribute('aria-disabled'); b.removeAttribute('tabindex'); b.removeAttribute('aria-describedby'); b.removeAttribute('inert'); b.removeAttribute('aria-hidden'); }   /* (row 268) under the glass: inert and hidden from screen readers */
         var vc=b.parentNode; if(vc&&b===vCta){ var old=vc.querySelector('.lkcover'); if(old) old.parentNode.removeChild(old); vc.classList.toggle('bget-locked',on); if(on) vc.insertAdjacentHTML('afterbegin',lockCoverHTML(r)); }   /* (Round 193d) the listing's two, covered */ });   /* (candidate 4) not clickable until the moment */   /* (Round 193) not yet available: the listing's two buttons wear the locked palette */
       if(sell&&vWith&&pq){ vCta.textContent='Reserve \u00B7 $100'; vCta.setAttribute('href',a+'~reserve+'+addrOf(vWith)); if(vBuy){ vBuy.hidden=false; vBuy.textContent='Buy \u00B7 $'+gsCut(pq.two);   /* ROUND 189 (R189-2): what the receipt says */ vBuy.setAttribute('href',a+'~buy+'+addrOf(vWith)); } }
-      if(sell&&vConfirm){ var cq=gsQuote(vConfirm,r); vCta.textContent=(gsES()?'Confirmar a ':'Confirm ')+r.name+'\u00a0\u00b7\u00a0$'+gsCut(cq.two)+(gsES()?' por los dos':' for the two'); vCta.setAttribute('href','#r-'+addrOf(vConfirm)+'+'+addrOf(r)); if(vBuy){ vBuy.hidden=true; } }
+      if(sell&&vConfirm){ var cq=gsQuote(r,vConfirm); vCta.textContent=(gsES()?'Confirmar a ':'Confirm ')+vConfirm.name+'\u00a0\u00b7\u00a0$'+gsCut(cq.two)+(gsES()?' por los dos':' for the two'); vCta.setAttribute('href','#r-'+addrOf(r)+'+'+addrOf(vConfirm)); if(vBuy){ vBuy.hidden=true; } }
       if(vCta.parentNode) vCta.parentNode.classList.toggle('buy2',sell&&!one&&!vConfirm);
       if(openNow&&!sell) vCta.setAttribute('data-ask',r.name);
       else vCta.removeAttribute('data-ask');
@@ -12031,12 +12051,18 @@ html.pick .grid-home-return{display:none}
       if(vw.classList.contains('open')) shut(true);
       vFromHash=true;
       var opened=openFor(r,true);
+      /* (26 Nov 2026, his words, 6:17pm, with a picture of this step: "One big bug, make sure that these bars line up with the rabbit
+         on top") The Confirm step used to be the SECOND rabbit's listing with the first as its mate, while the two photos stood in
+         the order they were picked: so everything under the photos read in the reverse order (the breed bars, the two write-ups,
+         the two About rows). Its address now leads with the first rabbit (#r-first~confirm+second), and the step is the listing
+         for two itself, painted once, in one order, with Confirm as its one button. An address in the old order still opens:
+         the same two, the same price. */
       if(vConfirm){
-        pairDraft={slots:[addrOf(vConfirm),addrOf(r)],editingSlot:1,returnHash:(pairStored()||{}).returnHash||'#r-'+addrOf(vConfirm)+'~pick'}; pairSave(pairDraft);
+        pairDraft={slots:[addrOf(r),addrOf(vConfirm)],editingSlot:1,returnHash:(pairStored()||{}).returnHash||'#r-'+addrOf(r)+'~pick'}; pairSave(pairDraft);
         vw.classList.add('vpair','pair-confirming'); pairHeroPaint(pairRecords(pairDraft),-1);
-        var label=vConfirm.name+(gsES()?' y ':' and ')+r.name; vName.textContent=label; if(vCtl) vCtl.setAttribute('data-name',label);
-        vCta.setAttribute('data-pair-confirm',''); vCta.setAttribute('href','#r-'+addrOf(vConfirm)+'+'+addrOf(r));
-        vCta.textContent=(gsES()?'Confirmar pareja':'Confirm pair')+' · $'+gsCut(gsQuote(vConfirm,r).two);
+        var label=r.name+(gsES()?' y ':' and ')+vConfirm.name; vName.textContent=label; if(vCtl) vCtl.setAttribute('data-name',label);
+        vCta.setAttribute('data-pair-confirm',''); vCta.setAttribute('href','#r-'+addrOf(r)+'+'+addrOf(vConfirm));
+        vCta.textContent=(gsES()?'Confirmar pareja':'Confirm pair')+' · $'+gsCut(gsQuote(r,vConfirm).two);
       } else pairDraft=null;
       return opened;
     }
@@ -12477,7 +12503,7 @@ html.pick .grid-home-return{display:none}
       if(!(vw.contains(a)||(AS&&AS.contains(a))||(ql&&!ql.hidden&&ql.contains(a)))) return;
       var h=a.getAttribute('href')||'';
       if(!h||h==='#'||h==='#contact'||a.target==='_blank'||/^(?:sms|tel|mailto):/.test(h)) return;   /* Ask carries the two to the form; a new tab and the phone leave nothing */
-      if(a.hasAttribute('data-ql')||a.hasAttribute('data-change')||a.id==='viewerBack'||a.closest('.pc-btns')) return;   /* the two's own controls */
+      if(a.hasAttribute('data-ql')||a.hasAttribute('data-change')||a.hasAttribute('data-pair-just')||a.id==='viewerBack'||a.closest('.pc-btns')) return;   /* the two's own controls; (26 Nov 2026) "Just <one of them>" among them */
       if(/^#(?:faq|topic)-|^#stage-w/.test(h)&&asTarget(h.slice(1))) return;   /* answers come over the listing */
       if(/^#r-/.test(h)){   /* the two's own way forward and back: Just, the request, the picker, Confirm */
         var me=listAddr(location.hash), mt=(vWith||vConfirm)?addrOf(vWith||vConfirm):'', to=listAddr(h);
@@ -12550,7 +12576,7 @@ html.pick .grid-home-return{display:none}
     }
     var vCalmR;   /* (Round 189, candidate 2) no initial value: the router can paint a listing before this line runs, and "=null" here wiped what it set (a Confirm opened by its address took the flip and kept its $440) */
     function pmHTML(r){
-      var es1=gsES(), first=vConfirm?vConfirm:r, second=vConfirm?r:vWith, pA=+priceOf(first), pB=+priceOf(second), q1=gsQuote(first,second);
+      var es1=gsES(), first=r, second=vWith||vConfirm, pA=+priceOf(first), pB=+priceOf(second), q1=gsQuote(first,second);   /* (26 Nov 2026) the listing's own order, on the Confirm step too */
       var cut=q1.bundle?null:((pB<pA)?second:((pA<pB)?first:second)), mil=!!(typeof gsVals!=='undefined'&&gsVals&&gsVals.mil);
       var off20=Math.round(Math.min(pA,pB)*gsPairOff()/100), same=(pA===pB), T=gsCut(q1.two), U=gsCut(q1.sum-off20);
       var pmRow=function(x,px){ return '<p class="pm-row"><span class="pm-name">'+esc(x.name)+'</span><span class="pm-amt">$'+px+'</span></p>'; };
@@ -12577,6 +12603,23 @@ html.pick .grid-home-return{display:none}
     function pmFoot(r){ if(!r||!vCta) return;
       if(vWith&&vBuy&&!vBuy.hidden&&gsCan(r)&&gsCan(vWith)){ vBuy.textContent='Buy · $'+gsCut(gsQuote(r,vWith).two); }
       if(vConfirm&&gsCan(r)){ vCta.textContent=(gsES()?'Confirmar pareja':'Confirm pair')+' · $'+gsCut(gsQuote(vConfirm,r).two); } }
+    /* (26 Nov 2026, his words, 6:18pm: the military switch "accurately reflects the new price") One figure for the two, with the
+       switch, wherever the sheet for two says its price: the two photos, the heading, "What the $… covers", the deposit line, the
+       receipt and the buttons. pmPrices paints the first four again when a switch moves (the receipt and the buttons had theirs). */
+    function pmTwo(r){ var m=vWith||vConfirm; return (r&&m&&gsCan(r)&&gsCan(m))?gsCut(gsQuote(r,m).two):0; }
+    function calmWhy(r,p){ var wq=pmTwo(r)||p;
+      if(vWhyS) vWhyS.textContent=(gsCan(r)?'What the $'+wq+' covers':'What the price covers')+((hasDeal(r)||!!(vWith&&hasDeal(vWith)))?'\u00a0\u00b7\u00a0the price\u00a0history':''); }   /* the dot never starts a line (listingroomtest at 320) */
+    function calmDep(r,p){ var dep=vMoney&&vMoney.querySelector('.vt-dep'), sell=gsCan(r), two=pmTwo(r);
+      if(dep) dep.textContent=(sell&&two)?('The $100 deposit for the two counts toward the $'+two+'.'):sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.'; }
+    function pmPrices(){ var r=vCalmR, ph=document.getElementById('viewerPairHero'); if(!r||!(vWith||vConfirm)||!vw.classList.contains('open')) return;
+      if(ph&&!ph.hidden&&pairHeroLast) pairHeroPaint(pairHeroLast[0],pairHeroLast[1]);
+      if(vWith&&r.status!=='kept') vPrice.innerHTML=pairPriceHTML(gsQuote(r,vWith));
+      calmWhy(r,+priceOf(r)); calmDep(r,+priceOf(r)); }
+    /* the switch stays under the finger: on a narrow phone a second badge can wrap under the first and make the photos' block taller */
+    function pmSteady(el,fn){ var sc=vScroller(), lab=el&&el.closest?(el.closest('label')||el):null, t0=lab?lab.getBoundingClientRect().top:0;
+      fn(); if(!sc||!lab||!lab.isConnected) return;
+      var dy=lab.getBoundingClientRect().top-t0; if(Math.abs(dy)<=0.5) return;
+      var sb=sc.style.scrollBehavior; sc.style.scrollBehavior='auto'; sc.scrollTop=sc.scrollTop+dy; sc.style.scrollBehavior=sb; }
     function paintCalm(r){
       var avail=(r.status==='available'), p=+priceOf(r);
       if(vReady){
@@ -12592,8 +12635,7 @@ html.pick .grid-home-return{display:none}
         var okp=(typeof HAVE_PARENTS!=='undefined')&&HAVE_PARENTS&&r.mother&&r.father&&PARENTS[r.mother]&&PARENTS[r.father];
         if(okp) vAboutS.innerHTML=parNamesHTML(r.mother,r.father); else vAboutS.textContent='Litter and record';
       }
-      var wq=(vWith&&gsCan(r)&&gsCan(vWith))?gsQuote(r,vWith).two:p;   /* (pair, 14 Nov 2026) on the listing for two, the price of the two */
-      if(vWhyS) vWhyS.textContent=(gsCan(r)?'What the $'+wq+' covers':'What the price covers')+((hasDeal(r)||!!(vWith&&hasDeal(vWith)))?'\u00a0\u00b7\u00a0the price\u00a0history':'');   /* the dot never starts a line (listingroomtest at 320) */
+      calmWhy(r,p);   /* (pair, 14 Nov 2026) on the listing for two, the price of the two; (26 Nov 2026) and with the military switch */
       if(vPayS) vPayS.textContent=(r.status==='available')?'Pay the rest over time.':'Being paid in parts.';
       if(vHistLink){ var hh=!!((vHist&&!vHist.hidden&&vHist.textContent.trim())||(vDeal&&!vDeal.hidden&&vDeal.textContent.trim()));
         vHistLink.hidden=!(hh&&vWhy&&!vWhy.hidden&&r.status!=='kept')||!!vWith; }   /* (Round 181d) not on the listing for two: the receipt says its price */
@@ -12603,7 +12645,7 @@ html.pick .grid-home-return{display:none}
         vMoney.hidden=!avail;
         var dep=vMoney.querySelector('.vt-dep'), onep=vMoney.querySelector('.vt-one');
         var mate=vWith||vConfirm;   /* ROUND 181: a pair context, the two-rabbit listing or the Confirm listing */
-        if(dep) dep.textContent=(sell&&mate)?('The $100 deposit for the two counts toward the $'+gsQuote(r,mate).two+'.'):sell?'The $50 deposit counts toward the $'+p+'.':'The $50 deposit counts toward the price.';   /* (Round 180) $50 each; (Round 181) the two's on the Confirm listing too */
+        calmDep(r,p);   /* (Round 180) $50 each; (Round 181) the two's on the Confirm listing too; (26 Nov 2026) and with the military switch */
         if(onep) onep.textContent='No deposit: one payment of $'+p+'.';
         if(vStep) vStep.hidden=!sell;
         if(vHow){ vHow.hidden=!sell; if(!sell&&vHowPanel){ vHowPanel.hidden=true; vHow.setAttribute('aria-expanded','false'); } }
@@ -12629,15 +12671,17 @@ html.pick .grid-home-return{display:none}
           if(!twb.hidden){ twt.textContent=r.name+(gsES()?' y ':' and ')+bm.name+'\u00a0\u00b7\u00a0$'+bundleOf(r,bm); twb.setAttribute('href','#r-'+addrOf(r)+'+'+addrOf(bm)); }
           if(!adb.hidden){ adt.textContent=gsES()?('Un segundo conejo\u00a0\u00b7\u00a0'+gsPairOff()+'%\u00a0menos'):('Add a second rabbit\u00a0\u00b7\u00a0'+gsPairOff()+'%\u00a0off'); adb.setAttribute('href','#r-'+addrOf(r)+'~pick'); }
         }
-        if(vset){
-          vset.hidden=!(vWith&&sell);
-          if(!vset.hidden){ var sj=vset.querySelector('#vsetJust'), sc=vset.querySelector('#vsetChange'), sa=vset.querySelector('#vsetAbout');
-            sj.innerHTML=esc(gsES()?('Solo '+r.name):('Just '+r.name))+'<i class="chev" aria-hidden="true"></i>'; sj.setAttribute('href','#r-'+addrOf(r));
-            sc.innerHTML=(gsES()?'Cambiar el segundo conejo':'Change the second rabbit')+'<i class="chev" aria-hidden="true"></i>'; sc.setAttribute('href','#r-'+addrOf(r)+'~pick+'+addrOf(vWith));
-            var scAlts=0; for(var si=0;si<RABBITS.length;si++){ var sz=RABBITS[si]; if(sz&&sz!==vWith&&sz!==r&&gsCan(sz)&&!onePer(sz)) scAlts++; }
-            sc.setAttribute('data-change',addrOf(vWith)); sc.setAttribute('data-name',vWith.name); sc.setAttribute('data-other',addrOf(r)); sc.setAttribute('data-other-name',r.name); sc.setAttribute('data-alts',String(scAlts));
-            sa.innerHTML=esc(gsES()?('Sobre '+vWith.name):('About '+vWith.name))+'<i class="chev" aria-hidden="true"></i>'; sa.setAttribute('href','#r-'+addrOf(vWith)); sa.setAttribute('data-ql',addrOf(vWith)); }   /* (Round 181d) the closer look of that rabbit, over the listing for two (its own listing without the script) */
-        }
+        /* (26 Nov 2026, his words, 6:19pm: "clean up this little menu ... Like I told you, I don't like these little black buttons, so
+           make it a lot more cohesive and smooth ... it's also a little confusing too") Three small dark buttons stood here: "Just
+           <first>", "Change the second rabbit" and "About <second>". Two of them said again what the sheet already does (the pencil
+           on each photo changes that rabbit; each rabbit has its own About row below), and on the Confirm step they named the wrong
+           rabbits. One plain row among the listing's own rows takes their place, with either rabbit a tap away. */
+        if(vset) vset.hidden=true;
+        var pj=document.getElementById('viewerPairJust');
+        if(!pj&&vTerms){ pj=document.createElement('span'); pj.className='vt-row vt-just'; pj.id='viewerPairJust'; pj.hidden=true; vTerms.appendChild(pj); }
+        if(pj){ pj.hidden=!(vWith&&sell&&gsCan(vWith));
+          if(!pj.hidden){ var jes=gsES(), jl=function(x,cap){ return '<a data-pair-just href="#r-'+esc(addrOf(x))+'">'+(jes?(cap?'Solo ':'solo '):(cap?'Just ':'just '))+esc(x.name)+'</a>'; };
+            pj.innerHTML='<svg class="vti pairg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5.5"/></svg><span><b>'+(jes?'¿Solo quiere uno?':'Only want one?')+'</b> '+jl(r,true)+(jes?' o ':' or ')+jl(vWith,false)+'.</span>'; } }
         if(sell){
           if(vStep) vStep.textContent='Choose '+(one?'Buy':'Reserve or Buy')+' to start your request. Send it by text or email; I’ll call to confirm payment.';
         }
@@ -12747,18 +12791,19 @@ html.pick .grid-home-return{display:none}
     if(vPair) vPair.addEventListener('change',function(ev){
       var t=ev.target; if(!t||t.name!=='qvmil') return;
       if(typeof gsVals!=='undefined') gsVals.mil=!!t.checked;
-      var pc=t.closest('.pc'); if(pc) pcPaint(pc);
+      pmSteady(t,function(){ var pc=t.closest('.pc'); if(pc) pcPaint(pc); if(window.pmSync) window.pmSync(); });   /* (26 Nov 2026) the switch in the pair box is the same switch: the sheet above it follows */
     });
     if(vMoney) vMoney.addEventListener('change',function(ev){
       var t=ev.target; if(!t||t.name!=='pmmil') return;
       if(typeof gsVals!=='undefined') gsVals.mil=!!t.checked;
-      var pm=document.getElementById('viewerPairMath'); if(pm&&!pm.hidden&&vCalmR) pm.innerHTML=pmHTML(vCalmR);
-      pmFoot(vCalmR);
+      pmSteady(t,function(){
+        var pm=document.getElementById('viewerPairMath'); if(pm&&!pm.hidden&&vCalmR) pm.innerHTML=pmHTML(vCalmR);
+        pmFoot(vCalmR); pmPrices(); });
       Array.prototype.forEach.call(document.querySelectorAll('#viewerPair .pc'),function(pc){ pcPaint(pc); });
     });
     window.pmSync=function(){ var w=document.getElementById('viewerPairMil'); if(w&&!w.hidden) pmMilPaint(w);
       var pm=document.getElementById('viewerPairMath'); if(pm&&!pm.hidden&&vCalmR) pm.innerHTML=pmHTML(vCalmR);
-      pmFoot(vCalmR); };
+      pmFoot(vCalmR); pmPrices(); };
 
     vClose.addEventListener('click',dismiss);
     vw.addEventListener('click',function(ev){ if(ev.target===vw) dismiss(); });
