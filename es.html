@@ -6154,9 +6154,10 @@ html.pick .grid-home-return{display:none}
       <div>
         <p class="kicker">Disponibles</p>
         <h2 style="margin-bottom:8px">Conozca a los conejos</h2>
-        <p class="lede">Las camadas son pequeñas, y a cada bebé se le carga todos los días. El precio que ve es el precio total. Dos juntos: el segundo tiene 20% de descuento, salvo que un anuncio diga uno por&nbsp;cliente o que pague a&nbsp;plazos.</p>
-
-        <p class="avail-stamp">Disponibilidad <span data-fact="stamp"><a class="stamp-link" href="es-updates.html#changes" title="Cada cambio, con su fecha"><time id="availStamp" datetime="2026-11-25">actualizada al 25 de noviembre de 2026</time></a></span> <span class="ages-note">Las edades se cuentan desde cada fecha de nacimiento, así que están al día hoy. <a href="#faq-ages">Cómo funciona</a></span></p>
+        <p class="lede lede-full">Las camadas son pequeñas, y a cada bebé se le carga todos los días. El precio que ve es el precio total. Dos juntos: el segundo tiene 20% de descuento, salvo que un anuncio diga uno por&nbsp;cliente o que pague a&nbsp;plazos.</p>
+        <p class="lede-short">El precio que ve es el precio&nbsp;total.<button type="button" class="lede-more" aria-expanded="false" aria-controls="availMore">Más</button></p>
+        <div class="avail-more" id="availMore"><p class="lede">Las camadas son pequeñas, y a cada bebé se le carga todos los días. Dos juntos: el segundo tiene 20% de descuento, salvo que un anuncio diga uno por&nbsp;cliente o que pague a&nbsp;plazos.</p>
+        <p class="avail-stamp">Disponibilidad <span data-fact="stamp"><a class="stamp-link" href="es-updates.html#changes" title="Cada cambio, con su fecha"><time id="availStamp" datetime="2026-11-25">actualizada al 25 de noviembre de 2026</time></a></span> <span class="ages-note">Las edades se cuentan desde cada fecha de nacimiento, así que están al día hoy. <a href="#faq-ages">Cómo funciona</a></span></p></div>
       </div>
       
       <div class="avail-controls"><div class="availability-counts" aria-live="polite" aria-atomic="true"><span class="availability-scope">Todas las razas</span><span class="count" id="count">Llame o escriba para saber de las camadas actuales</span><span class="count-next" id="countNext" hidden></span></div>
@@ -15070,17 +15071,23 @@ html:not(.pick) #rail.grid-compact .lkcover .lkclock>i{font-family:var(--sans);f
 html:not(.pick) #rail.grid-compact .lkcover-at{display:none}
 @media(min-width:600px){#rail[data-grid-columns]{column-gap:18px}html:not(.pick) #rail.grid-compact{row-gap:18px}html:not(.pick) #rail.grid-compact .bunny-top h3{font-size:19px}html:not(.pick) #rail.grid-compact .bunny-top .price{font-size:18px}html:not(.pick) #rail.grid-compact .bunny-media>.status,html:not(.pick) #rail.grid-compact .planmark{font-size:12px}html:not(.pick) #rail.grid-compact .lkcover .lkc b{font-size:19px}html:not(.pick) #rail.grid-compact .lkcover .lkc small{font-size:9px}}
 </style>
+<script id="avail-fold-js">(function(){ var b=document.querySelector('#available .lede-more'), m=document.getElementById('availMore'); if(!b||!m) return;
+  b.addEventListener('click',function(){ var o=b.getAttribute('aria-expanded')!=='true'; b.setAttribute('aria-expanded',o?'true':'false'); m.classList.toggle('open',o); b.textContent=o?'Menos':'Más'; }); })();</script>
 <script id="rabbit-grid-preference">
 (function(){
   var rail=document.getElementById('rail'), group=document.getElementById('rabbitGridOptions');
   if(!rail||!group) return;
-  var key='ar-rabbit-grid-columns', preferred=2, buttons=[].slice.call(group.querySelectorAll('[data-grid-choice]'));
+  var key='ar-rabbit-grid-columns', preferred=0,   /* (27 Nov 2026, Site Ideas 222) 0: no choice yet, the width decides */
+  buttons=[].slice.call(group.querySelectorAll('[data-grid-choice]'));
   function valid(value){ value=String(value); return /^(2|3|4)$/.test(value)?+value:2; }
-  try{ preferred=valid(localStorage.getItem(key)); }catch(e){}
+  try{ var saved=localStorage.getItem(key); if(saved) preferred=valid(saved); }catch(e){}
   function apply(){
-    var wide=window.innerWidth>=600, columns=Math.min(preferred,wide?4:3), focused=document.activeElement;
+    var vw=window.innerWidth, wide=vw>=600, auto=vw<600?2:(vw<1100?3:4), columns=preferred?Math.min(preferred,wide?4:3):auto, focused=document.activeElement;
+    /* (27 Nov 2026, Site Ideas 223) on a phone Columns lives in the Aa panel with Text size; wider, beside the count */
+    var pop=document.getElementById('szPop'), dk=pop&&pop.querySelector('.sz-dark'), home=document.querySelector('#available .avail-controls');
+    if(pop&&dk&&!wide&&group.parentNode!==pop) pop.insertBefore(group,dk); else if(wide&&home&&group.parentNode!==home) home.appendChild(group);
     rail.setAttribute('data-grid-columns',String(columns));
-    rail.classList.toggle('grid-compact',columns>2);
+    rail.classList.toggle('grid-compact',columns>2&&!wide);   /* (Site Ideas 222) from a tablet's width up the card keeps everything */
     buttons.forEach(function(button){ var n=+button.getAttribute('data-grid-choice'); button.hidden=n===4&&!wide; button.setAttribute('aria-pressed',n===columns?'true':'false'); });
     group.hidden=false;
     if(focused&&buttons.indexOf(focused)!==-1&&focused.hidden){ buttons.filter(function(b){return +b.getAttribute('data-grid-choice')===columns;})[0].focus(); }
@@ -15100,6 +15107,26 @@ html:not(.pick) #rail.grid-compact .lkcover-at{display:none}
 })();
 </script>
 
+<style id="avail-fold">
+/* (27 Nov 2026, Site Ideas 223) phones: one line under the heading, the rest behind More, so the first two rabbits show whole */
+.lede-short,.avail-more>.lede{display:none}
+@media(max-width:599px){
+  #available .lede-full{display:none}
+  #available .lede-short{display:block;margin:0;font-size:16.5px;line-height:1.55;color:var(--ink-soft);text-wrap:pretty}
+  #available .lede-more{display:inline-flex;align-items:center;gap:5px;min-height:32px;margin:0 0 0 6px;padding:0 12px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:600 13.5px/1 var(--sans);vertical-align:1px;white-space:nowrap;cursor:pointer}
+  #available .lede-more::after{content:'';width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+  #available .lede-more[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  #available .avail-more{display:none}
+  #available .avail-more.open{display:block}
+  #available .avail-more.open>.lede{display:block;margin-top:8px}
+  #available .avail-controls{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  #available .avail-head{margin-bottom:14px}
+}
+/* Columns inside the Aa panel (phones) */
+.sz-pop .rabbit-grid-options{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 0;padding:8px 6px 0;border-top:1px solid var(--line)}
+.sz-pop .rabbit-grid-options[hidden]{display:none}
+.sz-pop .rabbit-grid-options .grid-options-label{font-size:14px;font-weight:600;color:var(--ink)}
+</style>
 <style id="rabbit-breed-filters">
 .availability-scope{flex:1 0 100%;font-size:12px;font-weight:600;line-height:1.3;color:var(--ink-faint)}
 .rabbit-breed-browser{margin:-8px 0 20px}
