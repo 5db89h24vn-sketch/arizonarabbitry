@@ -2654,7 +2654,9 @@ const RABBITS = [
      7 PM to Sun   Thanksgiving: each dwarf cross $30 under its price until the end of Sun 29 Nov, then back by itself;
                    Coconut $250 from 7 PM for good (to be written into its record at the next build).
    The struck price stays each rabbit's first price (his rule of 30 Oct). The 20% second-rabbit rule is untouched, so
-   it stacks. The page loads itself once at 7 PM and at midnight starting Mon 30 Nov, never otherwise. */
+   it stacks. The page loads itself once at 7 PM and at midnight starting Mon 30 Nov, never otherwise.
+   (27 Nov 2026) Each timed reason carries its Spanish (dealNoteEs), for the pages that are written at build time
+   and have no dictionary of their own: now.js reads it there. The words are the ones es.html's dictionary has. */
 (function(){
   if(typeof RABBITS==='undefined'||!Array.isArray(RABBITS)) return;
   var T6=Date.parse('2026-11-25T18:00:00-07:00'), T7=Date.parse('2026-11-25T19:00:00-07:00'), TEND=Date.parse('2026-11-30T00:00:00-07:00');
@@ -2665,9 +2667,9 @@ const RABBITS = [
     if(!dwarf&&!coco) continue;
     var base=+r.price;
     if(now<T6){ r.opensAt='2026-11-25T18:00:00-07:00'; continue; }
-    if(now<T7){ r.price=base-50; r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealStays=false; delete r.dealEnds; continue; }
-    if(coco){ r.price=250; r.dealOn='2026-11-25'; r.dealTag='Launch-day price'; r.dealNote='Our launch-day price for Coconut, kept'; r.dealStays=true; r.dealScope='rabbit'; delete r.dealEnds; continue; }
-    if(now<TEND){ r.price=base-30; r.dealOn='2026-11-25'; r.dealTag='Thanksgiving, through Sunday'; r.dealNote='Thanksgiving price, through Sunday 29 November'; r.dealStays=false; delete r.dealEnds; }
+    if(now<T7){ r.price=base-50; r.dealOn='2026-11-25'; r.dealTag='Launch hour, until 7 PM'; r.dealNote='Launch hour, 6 to 7 PM tonight only'; r.dealNoteEs='Hora de lanzamiento, solo esta noche de 6 a 7 p. m.'; r.dealStays=false; delete r.dealEnds; continue; }
+    if(coco){ r.price=250; r.dealOn='2026-11-25'; r.dealTag='Launch-day price'; r.dealNote='Our launch-day price for Coconut, kept'; r.dealNoteEs='El precio de lanzamiento de Coconut, para quedarse'; r.dealStays=true; r.dealScope='rabbit'; delete r.dealEnds; continue; }
+    if(now<TEND){ r.price=base-30; r.dealOn='2026-11-25'; r.dealTag='Thanksgiving, through Sunday'; r.dealNote='Thanksgiving price, through Sunday 29 November'; r.dealNoteEs='Precio de Acción de Gracias, hasta el domingo 29 de noviembre'; r.dealStays=false; delete r.dealEnds; }
   }
   var next=[T7,TEND].filter(function(t){ return t>now; })[0];
   if(next && next-now<2147000000){ setTimeout(function(){ try{ location.reload(); }catch(e){} }, next-now+1500); }
