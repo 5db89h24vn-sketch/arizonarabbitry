@@ -10369,7 +10369,10 @@ html.pick .grid-home-return{display:none}
     function gsPlanTerm(two,es){ return two?(es?'3 meses':'3 months'):(es?'un mes y medio':'a month and a half'); }
     function gsPaintMoney(){
       var r=gsR, f=gs.querySelector('form'), wb=gs.querySelector('.gs-with'), sm=gs.querySelector('.gs-sum');
-      if(!r||!wb) return;
+      /* (26 Nov 2026, found on the live site the same evening) the sheet with no rabbit in it ("Meet the rabbits") has no price and no
+         pair: the line under the first question, the plan's mark and the two-faces heading are cleared, so nothing of the last rabbit's
+         sheet stays on it */
+      if(!r||!wb){ if(sm){ sm.hidden=true; sm.innerHTML=''; } gs.removeAttribute('data-plan'); var f0=gs.querySelector('.gs-face'); if(f0) f0.classList.remove('two'); return; }
       gsPaintVisit();   /* (Round 183) */
       var visit=gsMode==='visit', photos=gsMode==='photos', plan=gsMode==='plan', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
       wb.hidden=true;   /* (26 Nov 2026) "Taking two?" has no rows any more: one line under the first question says it (gs-sum, below) */
