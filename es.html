@@ -6179,6 +6179,7 @@ html.pick .grid-home-return{display:none}
         <button type="button" data-breed-choice="dwarf" aria-pressed="false"><span class="breed-filter-symbol"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M27 35C25 27 25 17 28 12C31 7 37 8 40 13C43 19 43 24 43 29L47 28C46 21 47 13 50 10C54 6 59 8 61 13C63 18 62 24 61 29C74 30 84 37 85 49C89 54 92 61 90 67L87 68L89 70C87 77 81 82 75 85C61 92 42 93 28 87C15 82 9 71 10 57C10 47 18 39 27 35Z M29 32C33 28 38 26 43 27L43 29C38 29 34 31 31 34Z M58 52C59 48 63 47 66 49C70 51 69 56 66 58C61 60 57 57 58 52Z"/></svg><span class="breed-filter-count" data-breed-count="dwarf">0</span></span><span class="breed-filter-name">Netherland Dwarf</span></button>
       </div>
       <p class="breed-filter-note">Las cifras incluyen cruzas y próximas aperturas.</p>
+      <div class="gone-row"><button type="button" class="gone-btn" id="goneBtn" aria-pressed="false" aria-controls="goneView"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 1.2 1.6 6.6c-.3.2-.3.7 0 .9.2.2.6.2.8 0l.4-.4V13c0 .9.7 1.6 1.6 1.6h7.2c.9 0 1.6-.7 1.6-1.6V7.1l.4.4c.2.2.6.2.8 0 .3-.2.3-.7 0-.9L8 1.2Zm0 5.7c-.7-1-2.6-1-2.8.5-.1 1.1 1.3 2.5 2.8 3.6 1.5-1.1 2.9-2.5 2.8-3.6-.2-1.5-2.1-1.5-2.8-.5Z"/></svg><b>0</b> se fueron a casa</button></div>
       <p class="sr-only" id="rabbitBreedStatus" role="status" aria-live="polite" aria-atomic="true"></p>
       <div class="breed-filter-empty" id="rabbitBreedEmpty" hidden><p>No hay conejos en esta vista.</p><button type="button" id="rabbitBreedReset">Mostrar todos los conejos</button></div>
     </div>
@@ -6187,7 +6188,8 @@ html.pick .grid-home-return{display:none}
       <button class="rail-btn prev" type="button" aria-label="Ver los conejos anteriores" disabled>
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <div class="bunnies rv row" id="rail">
+      <div class="gone-view" id="goneView" hidden></div>
+<div class="bunnies rv row" id="rail">
         
         <noscript>
           <p class="lede" style="max-width:46ch">Los conejos aparecen aquí con fotos, precios y fechas de nacimiento cuando la página termina de cargar. Si no los ve, llámeme o escríbame al <a href="tel:+15202702827">(520) 270-2827</a> y le digo lo que tengo.</p>
@@ -15127,6 +15129,42 @@ html:not(.pick) #rail.grid-compact .lkcover-at{display:none}
 .sz-pop .rabbit-grid-options[hidden]{display:none}
 .sz-pop .rabbit-grid-options .grid-options-label{font-size:14px;font-weight:600;color:var(--ink)}
 </style>
+<style id="gone-home">
+/* (27 Nov 2026, Site Ideas 225) the rabbits that went home, by month, by litter */
+.gone-row{margin:10px 0 0}
+.gone-btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px 0 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper-2);color:var(--ink-soft);font:600 14px/1.2 var(--sans);cursor:pointer}
+.gone-btn svg{width:15px;height:15px;flex:none}
+.gone-btn b{color:var(--ink);font-variant-numeric:tabular-nums}
+.gone-btn[aria-pressed="true"]{background:var(--card);color:var(--brick-dk);border-color:var(--brick);box-shadow:0 1px 4px #0001}
+.gone-btn:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px}
+html.gone-on #rail,html.gone-on #rabbitBreedEmpty{display:none!important}
+.gone-view{margin:4px 0 8px}.gone-view[hidden]{display:none}
+.gone-month{border-top:1px solid var(--line);padding:14px 0 16px}
+.gone-mh{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:44px;padding:0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.gone-mh b{display:block;font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.2}
+.gone-mh small{display:block;margin-top:2px;font-size:13.5px;color:var(--ink-faint)}
+.gone-mh .gone-more{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--paper-2);font-size:13px;font-weight:600;color:var(--ink)}
+.gone-mh .gone-more::after{content:'';width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.gone-month.open .gone-more::after{transform:translateY(1px) rotate(-135deg)}
+.gone-mh:focus-visible{outline:2px solid var(--brick-dk);outline-offset:3px;border-radius:8px}
+.gone-lits{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:12px}
+.gone-lit{min-width:0}
+.gone-lt{margin:0 0 7px;font-size:12.5px;font-weight:600;color:var(--ink-soft)}
+.gone-faces{display:flex;flex-wrap:wrap;gap:8px 4px}
+.gone-face{display:flex;flex-direction:column;align-items:center;gap:5px;width:80px;text-decoration:none;color:var(--ink)}
+.gone-face img,.gone-face i{display:block;width:60px;height:60px;border-radius:50%;object-fit:cover;background:var(--paper-2);box-shadow:0 0 0 1.5px var(--line)}
+.gone-face span{max-width:100%;font-size:12px;letter-spacing:-.01em;font-weight:600;line-height:1.2;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gone-face:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px;border-radius:10px}
+@media(hover:hover){.gone-face:hover img{box-shadow:0 0 0 2px var(--brick)}}
+.gone-list{display:none;margin-top:12px}
+.gone-month.open .gone-lits{display:none}.gone-month.open .gone-list{display:block}
+.gone-list h4{margin:12px 0 6px;font-family:var(--sans);letter-spacing:0;font-size:12.5px;font-weight:600;color:var(--ink-soft)}
+.gone-list h4:first-child{margin-top:0}
+.gone-list ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 16px}
+.gone-list a{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;color:var(--ink)}
+.gone-list img,.gone-list i{flex:none;width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--paper-2);box-shadow:0 0 0 1px var(--line)}
+.gone-list b{font-size:14px;font-weight:600}.gone-list small{display:block;font-size:12.5px;color:var(--ink-faint)}
+</style>
 <style id="rabbit-breed-filters">
 .availability-scope{flex:1 0 100%;font-size:12px;font-weight:600;line-height:1.3;color:var(--ink-faint)}
 .rabbit-breed-browser{margin:-8px 0 20px}
@@ -15262,6 +15300,43 @@ html.pick #rail[data-grid-columns]{grid-template-columns:repeat(2,minmax(0,1fr))
   });
   if(window.MutationObserver)new MutationObserver(function(){paint(false);}).observe(rail,{childList:true});
   paint(false);
+})();
+</script>
+<script id="gone-home-js">
+/* (27 Nov 2026, Site Ideas 225) see the comment on <style id="gone-home">. Worked out from the records each visit. */
+(function(){
+  var btn=document.getElementById('goneBtn'), view=document.getElementById('goneView'); if(!btn||!view||typeof RABBITS==='undefined') return;
+  var ES=document.documentElement.lang==='es', NB=' ', H=document.documentElement;
+  var gone=RABBITS.filter(function(r){ return r&&r.status==='adopted'&&/^\d{4}-\d{2}-\d{2}$/.test(String(r.wentHome||'')); });
+  if(!gone.length){ btn.parentNode.hidden=true; return; }
+  btn.querySelector('b').textContent=String(gone.length);
+  var SZ={}; try{ SZ=JSON.parse(document.getElementById('photoSizes').textContent)||{}; }catch(e){}
+  function small(src,px){ var v=SZ[src]&&SZ[src].v; if(!v) return src; var best=null; v.forEach(function(x){ if(x[0]>=px*2&&(!best||x[0]<best[0])) best=x; }); return best?best[1]:v[v.length-1][1]; }
+  function slug(r){ return r.addr||String(r.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function face(r,px){ var s=r.photo||''; return s?'<img src="'+esc(small(s,px))+'" alt="" width="'+px+'" height="'+px+'" loading="lazy" decoding="async">':'<i></i>'; }
+  var MON=ES?['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']:['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var M3=ES?['ene','feb','mar','abr','may','jun','jul','ago','sept','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function pname(k){ return (typeof PARENTS!=='undefined'&&PARENTS&&PARENTS[k]&&PARENTS[k].name)||''; }
+  function litName(r){ var m=pname(r.mother), f=pname(r.father); var b=String(r.dob||''), d=b?(+b.slice(8,10))+NB+M3[+b.slice(5,7)-1]:'';
+    if(m&&f) return ES?('Camada de '+m+' y '+f+', nacida el '+d):(m+' and '+f+'’s litter, born '+d);
+    return ES?('Camada nacida el '+d):('Litter born '+d); }
+  var months={}; gone.forEach(function(r){ var k=r.wentHome.slice(0,7); (months[k]=months[k]||[]).push(r); });
+  var keys=Object.keys(months).sort().reverse(), html='';
+  keys.forEach(function(k,i){ var list=months[k].slice().sort(function(a,b){ return a.wentHome<b.wentHome?1:-1; }), lits={}, order=[];
+    list.forEach(function(r){ var lk=(r.dob||'')+'|'+(r.mother||''); if(!lits[lk]){ lits[lk]=[]; order.push(lk); } lits[lk].push(r); });
+    var n=list.length, label=ES?(MON[+k.slice(5)-1]+' de '+k.slice(0,4)):(MON[+k.slice(5)-1]+' '+k.slice(0,4));
+    var id='goneM'+k.replace('-','');
+    html+='<section class="gone-month"><button type="button" class="gone-mh" aria-expanded="false" aria-controls="'+id+'"><span><b>'+esc(label)+'</b><small>'+(ES?(n===1?'1 se fue a casa':n+' se fueron a casa'):(n+' went home'))+'</small></span><span class="gone-more">'+(ES?'Lista':'List')+'</span></button>';
+    html+='<div class="gone-lits">'+order.map(function(lk){ var g=lits[lk]; return '<div class="gone-lit"><p class="gone-lt">'+esc(litName(g[0]))+'</p><div class="gone-faces">'+g.map(function(r){ return '<a class="gone-face" href="#r-'+esc(slug(r))+'">'+face(r,60)+'<span>'+esc(r.name)+'</span></a>'; }).join('')+'</div></div>'; }).join('')+'</div>';
+    html+='<div class="gone-list" id="'+id+'">'+order.map(function(lk){ var g=lits[lk]; return '<h4>'+esc(litName(g[0]))+'</h4><ul>'+g.map(function(r){ var w=r.wentHome; return '<li><a href="#r-'+esc(slug(r))+'">'+face(r,34)+'<span><b>'+esc(r.name)+'</b><small>'+(ES?'Se fue a casa el '+(+w.slice(8))+NB+M3[+w.slice(5,7)-1]:'Went home '+(+w.slice(8))+NB+M3[+w.slice(5,7)-1])+'</small></span></a></li>'; }).join('')+'</ul>'; }).join('')+'</div></section>';
+  });
+  view.innerHTML=html;
+  view.addEventListener('click',function(ev){ var b=ev.target.closest&&ev.target.closest('.gone-mh'); if(!b) return; var s=b.parentNode, o=!s.classList.contains('open'); s.classList.toggle('open',o); b.setAttribute('aria-expanded',o?'true':'false'); b.querySelector('.gone-more').textContent=o?(ES?'Fotos':'Photos'):(ES?'Lista':'List'); });
+  function set(on){ btn.setAttribute('aria-pressed',on?'true':'false'); view.hidden=!on; H.classList.toggle('gone-on',on);
+    if(on){ [].forEach.call(document.querySelectorAll('#rabbitBreedFilters [data-breed-choice]'),function(b){ b.setAttribute('aria-pressed','false'); }); } }
+  btn.addEventListener('click',function(){ var on=btn.getAttribute('aria-pressed')!=='true'; set(on); if(!on){ var all=document.querySelector('#rabbitBreedFilters [data-breed-choice="all"]'); if(all) all.click(); } });
+  var bf=document.getElementById('rabbitBreedFilters'); if(bf) bf.addEventListener('click',function(ev){ if(ev.target.closest&&ev.target.closest('[data-breed-choice]')) set(false); },true);
 })();
 </script>
 <script id="one-price">
