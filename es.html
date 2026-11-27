@@ -2817,6 +2817,18 @@ html.pick .lsh{display:none!important}
 @media(prefers-reduced-transparency:reduce){.lsh-count{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
 
 .lsh-pic.has-count{container-type:inline-size}
+/* (27 Nov 2026, Site Ideas 231) people waiting on a coming litter: the baby count's own pill, with an icon, above it */
+.lsh-wait{position:absolute;right:6px;bottom:33px;z-index:1;display:inline-flex;align-items:center;gap:4px;padding:3px 9px 3px 7px;border-radius:100px;background:rgba(24,20,18,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;line-height:1.3;white-space:nowrap;-webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2);animation:lshWaitIn .32s ease-out both}
+.lsh-wait b{font-size:13px;font-weight:700;letter-spacing:0;line-height:1}
+.lsh-wait svg{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lsh-pic:not(.has-count) .lsh-wait{bottom:6px}
+@keyframes lshWaitIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.lsh-wait{animation:none}}
+@media(prefers-reduced-transparency:reduce){.lsh-wait{background:rgba(24,20,18,.9);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* (27 Nov 2026, Site Ideas 229) the free first switch, said where littermates are chosen */
+.gs-switch{margin:-6px 0 14px;font-size:13.5px;line-height:1.45;color:var(--ink-soft);text-wrap:pretty}
+.gs-switch b{color:var(--ink);font-weight:600}
+.gs-switch[hidden]{display:none}
 
 .lsh-end{text-decoration:none;color:inherit}
 .lsh-end .lsh-pic{display:grid;place-items:center;aspect-ratio:4/3;color:var(--ink-soft)}
@@ -6553,7 +6565,7 @@ html.pick .grid-home-return{display:none}
 
           <p><b>¿Cambia de opinión el día que se lo lleva? Los $50 no se devuelven.</b> Solo se devuelven por una razón que sea culpa mía, según los hechos.</p>
           
-          <p><b>Su primer cambio a otro conejo es gratis.</b> Después, cada cambio cuesta $25, la mitad del depósito. Cada cambio después del primero devuelve un conejo a la lista semanas después.</p>
+          <p><b>Su primer cambio a otro conejo es gratis, uno por persona, aunque se lleve dos.</b> Después, cada cambio cuesta $25, la mitad del depósito. Cada cambio después del primero devuelve un conejo a la lista semanas después.</p>
           <p><b>Tres cosas le devuelven los $50, sin discusión:</b></p>
           <ul>
             <li>El conejo se enferma o no sobrevive mientras sigue a mi cuidado.</li>
@@ -10404,7 +10416,7 @@ html.pick .grid-home-return{display:none}
           '<label class="opt"><input type="radio" name="gsopt" value="buy"><span><b class="gs-buyword">Buy</b><small class="gs-say-buy"></small></span><em class="gs-price"></em></label>'+
         '</div></fieldset>'+
         '<fieldset class="gs-pick gs-with" hidden><legend>Taking two?</legend><div class="opts"></div></fieldset>'+
-        '<p class="gs-sum" hidden></p>'+
+        '<p class="gs-sum" hidden></p><p class="gs-switch" hidden></p>'+
         '<label class="opt gs-mil"><span class="gs-mil-t"><span class="gs-mil-n">'+MIL_GLYPH+'<b id="gsMilB"></b></span><small id="gsMilS"></small></span>'+
           '<input type="checkbox" name="gsmil" class="sw-in" role="switch" aria-labelledby="gsMilB" aria-describedby="gsMilS"><i class="sw" aria-hidden="true"></i></label>'+
         '<p class="gs-visit-head"><b class="gs-vtitle"></b><span>Free: no deposit, and no pressure to buy.</span></p>'+
@@ -10559,7 +10571,7 @@ html.pick .grid-home-return{display:none}
       /* (26 Nov 2026, found on the live site the same evening) the sheet with no rabbit in it ("Meet the rabbits") has no price and no
          pair: the line under the first question, the plan's mark and the two-faces heading are cleared, so nothing of the last rabbit's
          sheet stays on it */
-      if(!r||!wb){ if(sm){ sm.hidden=true; sm.innerHTML=''; } gs.removeAttribute('data-plan'); var f0=gs.querySelector('.gs-face'); if(f0) f0.classList.remove('two'); return; }
+      if(!r||!wb){ var sw0=gs.querySelector('.gs-switch'); if(sw0){ sw0.hidden=true; sw0.innerHTML=''; } if(sm){ sm.hidden=true; sm.innerHTML=''; } gs.removeAttribute('data-plan'); var f0=gs.querySelector('.gs-face'); if(f0) f0.classList.remove('two'); return; }
       gsPaintVisit();   /* (Round 183) */
       var visit=gsMode==='visit', photos=gsMode==='photos', plan=gsMode==='plan', mate=gsMate(), q=mate?gsQuote(r,mate):null, p=+priceOf(r), one=gsOne(r);
       wb.hidden=true;   /* (26 Nov 2026) "Taking two?" has no rows any more: one line under the first question says it (gs-sum, below) */
@@ -10610,6 +10622,9 @@ html.pick .grid-home-return{display:none}
         sm.innerHTML='<b>'+(esM?'¿Se lleva dos?':'Taking two?')+'</b> '+(esM?'El segundo tiene '+gsPairOff()+'% de\u00a0descuento. ':'The second is '+gsPairOff()+'%\u00a0off. ')+
           '<a class="gs-add" href="#r-'+esc(addrOf(r))+'~pick">'+(esM?'Agregar un segundo conejo':'Add a second rabbit')+'</a>';
       } else { sm.hidden=true; sm.innerHTML=''; }
+      /* (27 Nov 2026, Site Ideas 229, his condition: one free switch per person, even when they take two) */
+      var swl=gs.querySelector('.gs-switch'); if(swl){ var lm=(!q&&buyK&&!one)?RABBITS.filter(function(x){ return x&&x!==r&&x.name!==r.name&&x.dob&&x.dob===r.dob&&x.mother===r.mother&&x.status==='available'; }).length:0;
+        swl.innerHTML=lm?'<b>¿No se decide entre hermanos de camada?</b> Reserve uno. Su primer cambio a otro conejo es gratis, uno por\u00a0persona.':''; swl.hidden=!lm; }
       /* the last question: how the rest is paid (Reserve only; not where a rabbit has no payment plan) */
       var rest=gs.querySelector('.gs-rest');
       if(rest){ rest.hidden=!((gsMode==='reserve'||plan)&&gsPlanOK());
@@ -13525,8 +13540,17 @@ html.pick .grid-home-return{display:none}
       if(!list.length){ empty.innerHTML=emptyHTML(); empty.hidden=false; }
       else { empty.hidden=true; empty.innerHTML=''; }
       [].forEach.call(chips.querySelectorAll('.lsh-chip'),function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-k')===filter?'true':'false'); });
-      paintGo(); arrows(); fitNames();
+      paintGo(); arrows(); fitNames(); waitPaint();
     }
+    /* (27 Nov 2026, Site Ideas 231) how many people wait on each coming litter, on its photo, from three up: a number
+       only, never a name. The count is the one the sign-up box already reads (/api/waitlist?litter=). */
+    var WAITC={}, WAITASK={}, WAPI=(typeof ALERT_API!=='undefined')?ALERT_API:'/api/waitlist', PPL='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.5" r="3.3"/><path d="M2.8 19.5c.6-3.4 3.1-5.4 6.2-5.4s5.6 2 6.2 5.4"/><path d="M15.6 5.4a3.1 3.1 0 0 1 0 6.1"/><path d="M17.4 14.4c2.1.6 3.4 2.4 3.8 5.1"/></svg>';
+    function waitPaint(){ [].forEach.call(row.querySelectorAll('li[data-id^="L"]'),function(li){ var id=li.getAttribute('data-id'), pic=li.querySelector('.lsh-pic'); if(!pic) return;
+      var n=WAITC[id], old=pic.querySelector('.lsh-wait');
+      if(typeof n==='number'&&n>=3){ var t=String(n); if(!old){ pic.insertAdjacentHTML('beforeend','<span class="lsh-wait">'+PPL+'<b>'+t+'</b> '+(ES?'esperando':'waiting')+'</span>'); } else if(old.querySelector('b').textContent!==t) old.querySelector('b').textContent=t; }
+      else if(old) old.parentNode.removeChild(old);
+      if(!(id in WAITC)&&!WAITASK[id]&&/^https?:/.test(location.protocol)){ WAITASK[id]=1;
+        fetch(WAPI+'?litter='+encodeURIComponent(id),{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){ if(d&&d.ok&&typeof d.count==='number'){ WAITC[id]=d.count; waitPaint(); } }).catch(function(){}); } }); }
     function fitNames(){ if(!row.clientWidth) return;
       [].forEach.call(row.querySelectorAll('.lsh-p b'),function(b){ b.style.fontSize=''; var f=parseFloat(getComputedStyle(b).fontSize)||12;
         while(b.scrollWidth>b.clientWidth+0.5&&f>10){ f-=0.5; b.style.fontSize=f+'px'; } });

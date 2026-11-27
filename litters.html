@@ -2898,20 +2898,26 @@ function setSizes(im,src,sizes){ var s=String(src||'').replace(/\?v=[0-9a-f]+/,'
   var L={}; RABBITS.forEach(function(r){ if(!r.dob||!r.listedOn) return; var k=r.dob+'|'+(r.mother||'')+'|'+(r.father||''); (L[k]=L[k]||[]).push(r); });
   var lit=Object.keys(L).sort().reverse().map(function(k){return L[k];}).filter(function(g){return g.some(function(r){return homed(r)!==null;});}).slice(0,3);
   if(lit.length<3) return;
-  var kits=[].concat.apply([],lit), fast=[], later=0, kept=[], open=[];
-  kits.forEach(function(r){ var h=homed(r); if(r.status==='kept'||r.keptOn) kept.push(r); else if(h!==null&&h<=28) fast.push(h); else if(h!==null) later++; else open.push(r); });
+  /* (27 Nov 2026, Site Ideas 224) "within four weeks" only once every counted litter has had its four weeks; a rabbit still
+     inside its four weeks is ready now, not "still looking"; the link keeps its words together (his note: "No hanging link") */
+  var T0=(function(){ try{ return day(new Intl.DateTimeFormat('en-CA',{timeZone:'America/Phoenix',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())); }catch(e){ return Math.floor((Date.now()-7*36e5)/864e5); } })();
+  var kits=[].concat.apply([],lit), fast=[], later=0, kept=[], open=[], ready=[];
+  var matured=lit.every(function(g){ return g.every(function(r){ var l=day(r.listedOn); return l!==null&&T0-l>=28; }); });
+  kits.forEach(function(r){ var h=homed(r), l=day(r.listedOn); if(r.status==='kept'||r.keptOn) kept.push(r); else if(h!==null&&h<=28) fast.push(h); else if(h!==null) later++; else if(r.status==='available'&&l!==null&&T0-l<28) ready.push(r); else open.push(r); });
   if(!fast.length) return;
   fast.sort(function(a,b){return a-b;}); var med=fast[Math.ceil(fast.length/2)-1];
   var W=ES?['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez']:['no','one','two','three','four','five','six','seven','eight','nine','ten'];
   function num(n){return n<=10?W[n]:String(n);}
   function names(list){ var f=document.createDocumentFragment(); list.forEach(function(r,i){ if(i) f.appendChild(document.createTextNode(i===list.length-1?(ES?' y ':' and '):', '));
     var a=document.createElement('a'); a.className='xlink'; a.href=BASE+addr.get(r); a.textContent=r.name; f.appendChild(a); }); return f; }
-  var t=ES?('De los '+kits.length+' gazapos de las últimas tres camadas, '+fast.length+' encontraron hogar en cuatro semanas o menos desde que se publicaron'+(med===0?', la mitad el mismo día':med<=1?', la mitad a más tardar al día siguiente':med<=7?', la mitad en una semana o menos':'')+(later?'; '+num(later)+' más tarde':'')+'.')
-         :('Of the last three litters’ '+kits.length+' kits, '+fast.length+' found homes within four weeks of being listed'+(med===0?', half of them the same day':med<=1?', half of them by the next day':med<=7?', half of them within a week':'')+(later?'; '+num(later)+' later':'')+'.');
+  var t=ES?('De los '+kits.length+' gazapos de las últimas tres camadas, '+fast.length+(matured?' encontraron hogar en cuatro semanas o menos desde que se publicaron':' ya tienen hogar')+(med===0?', la mitad el mismo día':med<=1?', la mitad a más tardar al día siguiente':med<=7?', la mitad en una semana o menos':'')+(later?'; '+num(later)+' más tarde':'')+'.')
+         :('Of the last three litters’ '+kits.length+' kits, '+fast.length+(matured?' found homes within four weeks of being listed':' already have homes')+(med===0?', half of them the same day':med<=1?', half of them by the next day':med<=7?', half of them within a week':'')+(later?'; '+num(later)+' later':'')+'.');
   el.textContent=t;
   if(kept.length){ el.appendChild(document.createTextNode(' ')); el.appendChild(names(kept)); el.appendChild(document.createTextNode(ES?(kept.length>1?' se quedan aquí.':' se queda aquí.'):(kept.length>1?' stay here.':' stays here.'))); }
   if(open.length&&open.length<=3){ el.appendChild(document.createTextNode(' ')); el.appendChild(names(open)); el.appendChild(document.createTextNode(ES?(open.length>1?' siguen buscando hogar.':' sigue buscando hogar.'):(open.length>1?' are still looking.':' is still looking.'))); }
   else if(open.length) el.appendChild(document.createTextNode(ES?(' '+open.length+' siguen buscando hogar.'):(' '+open.length+' are still looking.')));
+  if(ready.length){ el.appendChild(document.createTextNode(' ')); var ra=document.createElement('a'); ra.className='xlink'; ra.href=ES?'es.html#available':'/#available';
+    ra.textContent=ES?(ready.length+'\u00a0'+(ready.length>1?'están listos':'está listo')+'\u00a0ahora'):(ready.length+'\u00a0'+(ready.length>1?'are ready':'is ready')+'\u00a0now'); el.appendChild(ra); el.appendChild(document.createTextNode('.')); }
   el.hidden=false;
 })();
 </script>
