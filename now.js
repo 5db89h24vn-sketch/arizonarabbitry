@@ -133,6 +133,69 @@
     if(out) fit.addEventListener('change',function(){ fill(out); });   /* the page redraws its answer on a change; this runs after it */
   }
 
+
+  /* ---- (27 Nov 2026, Site Ideas 228 and 227, approved that morning) a rabbit's own page: its photos, the two buttons, and,
+     for a rabbit that went home, who is still here. Written from the record when the page opens, like the state above. */
+  var CSS='.thumbs{display:flex;gap:8px;margin:10px 0 0;overflow-x:auto;scrollbar-width:none}.thumbs::-webkit-scrollbar{display:none}'+
+    '.thumb{position:relative;flex:none;width:64px;height:64px;padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;background:var(--paper-2);cursor:pointer}'+
+    '.thumb img{display:block;width:100%;height:100%;object-fit:cover}.thumb.on{border-color:var(--brick)}'+
+    '.thumb.clip i{position:absolute;inset:0;margin:auto;width:24px;height:24px;border-radius:50%;background:rgba(24,20,18,.72)}'+
+    '.thumb.clip i::after{content:"";position:absolute;left:9px;top:6px;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}'+
+    '.thumb:focus-visible{outline:2px solid var(--brick-dk);outline-offset:2px}'+
+    '.photo video{display:block;width:100%;height:100%;object-fit:cover;background:#000}'+
+    '.go2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 0}.go2 .go{margin:0;font-size:16.5px;white-space:nowrap}.go2 .go.buy{background:var(--brick-tint);color:var(--brick-dk);box-shadow:none}'+
+    '.go2.one{grid-template-columns:1fr}'+
+    '.still{margin:22px 0 0}.still h2{text-wrap:balance;margin:0 0 10px;font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2}'+
+    '.still ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}'+
+    '.still a{display:flex;align-items:center;gap:10px;min-height:56px;padding:6px 10px 6px 6px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);text-decoration:none}'+
+    '.still img{flex:none;width:44px;height:44px;border-radius:50%;object-fit:cover;background:var(--paper-2)}.still b{display:block;font-size:15px;font-weight:600}.still small{display:block;font-size:13.5px;color:var(--ink-soft)}';
+  function css(){ if(D.getElementById('nowCss')) return; var st=D.createElement('style'); st.id='nowCss'; st.textContent=CSS; D.head.appendChild(st); }
+  function real(p){ return !!p&&!/coming-soon/.test(String(p)); }
+  function abs(p){ return '/'+String(p).replace(/^\//,''); }
+  function escA(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function pageExtras(){
+    var m=/^\/(rabbits|conejos)\/([a-z0-9-]+?)(?:\.html)?\/?$/.exec(location.pathname); if(!m) return;
+    var r=BY[m[2]]; if(!r) return; var main=D.querySelector('main'); if(!main) return; css();
+    var HOME=ES?'/es.html':'/', a=slug(r);
+    /* 228: the photos as small squares */
+    var fig=main.querySelector('figure.photo'), shots=(r.photos||[]).filter(function(p){ return p&&(p.video?real(p.poster):real(p.src)); });
+    if(fig&&shots.length>1&&!main.querySelector('.thumbs')){
+      var orig=fig.innerHTML, row=D.createElement('div'); row.className='thumbs'; row.setAttribute('role','group'); row.setAttribute('aria-label',ES?'Fotos y video':'Photos and video');
+      var k=0; shots.forEach(function(p,i){ var b=D.createElement('button'); b.type='button'; b.className='thumb'+(p.video?' clip':'')+(i===0?' on':'');
+        if(!p.video) k++; b.setAttribute('aria-label',p.video?(ES?'Video':'Clip'):((ES?'Foto ':'Photo ')+k)); b.setAttribute('aria-pressed',i===0?'true':'false');
+        b.innerHTML='<img src="'+escA(abs(p.video?p.poster:p.src))+'" alt="" loading="lazy" decoding="async" width="64" height="64">'+(p.video?'<i aria-hidden="true"></i>':'');
+        b.addEventListener('click',function(){ [].forEach.call(row.children,function(x){ x.classList.toggle('on',x===b); x.setAttribute('aria-pressed',x===b?'true':'false'); });
+          if(i===0){ fig.innerHTML=orig; return; }
+          fig.innerHTML=p.video?('<video src="'+escA(abs(p.video))+'" poster="'+escA(abs(p.poster))+'" controls playsinline autoplay muted></video>')
+                               :('<img src="'+escA(abs(p.src))+'" alt="'+escA(r.name)+'">'); });
+        row.appendChild(b); });
+      fig.insertAdjacentElement('afterend',row);
+    }
+    /* 228: the two buttons, and a row to the full listing */
+    var opens=r.opensAt&&Date.parse(r.opensAt)>Date.now();
+    var go=main.querySelector('a.go');
+    if(r.status==='available'&&!opens&&go&&!main.querySelector('.go2')){
+      var p=priceOf(r), box=D.createElement('div'), chev='<i class="chev" aria-hidden="true"></i>';
+      box.className='go2'+(p<=50?' one':'');
+      box.innerHTML=(p>50?'<a class="go" href="'+HOME+'#r-'+escA(a)+'~reserve">'+(ES?'Reservar':'Reserve')+' · $50</a>':'')+
+                    '<a class="go buy" href="'+HOME+'#r-'+escA(a)+'~buy">'+(ES?'Comprar':'Buy')+' · $'+p+'</a>';
+      go.parentNode.replaceChild(box,go);
+      var rows=main.querySelector('ul.rows');
+      if(rows){ var li=D.createElement('li'); li.innerHTML='<a href="'+HOME+'#r-'+escA(a)+'"><span><b>'+(ES?'El anuncio completo':'The full listing')+'</b><small>'+(ES?'Todas las fotos y el video, el historial de precios, los pagos':'Every photo and the clip, the price history, payment plans')+'</small></span>'+chev+'</a>'; rows.insertBefore(li,rows.firstChild); }
+    }
+    /* 227: who is still here */
+    if(r.status==='adopted'&&!main.querySelector('.still')){
+      var avail=R.filter(function(x){ return x&&x.status==='available'&&x!==r&&!(x.opensAt&&Date.parse(x.opensAt)>Date.now()); });
+      var mates=avail.filter(function(x){ return x.dob&&x.dob===r.dob&&x.mother===r.mother; }), head;
+      if(mates.length) head=ES?('Siguen aquí, de la camada de '+r.name):('Still here from '+r.name+'’s litter');
+      else { var fam=/^Holland Lop/i.test(String(r.breed||''))?/^Holland Lop/i:/^Netherland Dwarf/i; mates=avail.filter(function(x){ return fam.test(String(x.breed||'')); }).slice(0,6); head=ES?('A la venta, como '+r.name):('For sale now, like '+r.name); }
+      if(mates.length){ var sec=D.createElement('section'); sec.className='still';
+        sec.innerHTML='<h2>'+escA(tie3(head))+'</h2><ul>'+mates.map(function(x){ var ph=real(x.photo)?'<img src="'+escA(abs(x.photo))+'" alt="" loading="lazy" width="44" height="44">':'';
+          return '<li><a href="/'+(ES?'conejos':'rabbits')+'/'+escA(slug(x))+'">'+ph+'<span><b>'+escA(x.name)+'</b><small>$'+priceOf(x)+'</small></span></a></li>'; }).join('')+'</ul>';
+        var st=main.querySelector('p.state'); if(st) st.insertAdjacentElement('afterend',sec); }
+    }
+  }
   try{ rabbitPage(); }catch(e){}
+  try{ pageExtras(); }catch(e){}
   try{ which(); }catch(e){}
 })();
