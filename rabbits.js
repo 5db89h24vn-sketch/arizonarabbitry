@@ -1867,13 +1867,14 @@ const RABBITS = [
     dob:     "2026-10-28",
     listedOn: "2026-11-25",
     ready:   "",
-    status:  "available",
+    status:  "reserved",                       /* his word, 27 Nov 2026, 4:03pm: "mark snoodoodle moce as" ... "I mean reserved, not sold"; Snickerdoodle and Mochi confirmed by his tap */
+    reservedOn: "2026-11-27",
     soldOn:  "",
     ear:     "",
     weights: [],
     photo:   "photos/snickerdoodle.jpg",
     opensAt: "2026-11-25T18:00:00-07:00",
-    feature: true,
+    /* feature: true came off at 4:03pm 27 Nov 2026, when Snickerdoodle was reserved: the lead passes to Sprinkles ($420), the dearest rabbit available (rule of 27 Sept). */
     note:    "A warm fawn coat with blue-grey ears, and the only clear white mark on the forehead in the litter: the first we've had in our purebred line."
   },
 
@@ -1894,7 +1895,8 @@ const RABBITS = [
     dob:     "2026-10-28",
     listedOn: "2026-11-25",
     ready:   "",
-    status:  "available",
+    status:  "reserved",                       /* his word, 27 Nov 2026, 4:03pm: "mark snoodoodle moce as" ... "I mean reserved, not sold"; Snickerdoodle and Mochi confirmed by his tap */
+    reservedOn: "2026-11-27",
     soldOn:  "",
     ear:     "",
     weights: [],
@@ -1925,6 +1927,7 @@ const RABBITS = [
     ear:     "",
     weights: [],
     photo:   "photos/sprinkles.jpg",
+    feature: true,
     opensAt: "2026-11-25T18:00:00-07:00",
     note:    "The smallest of the litter, with a small, faint white mark on the forehead."
   },
