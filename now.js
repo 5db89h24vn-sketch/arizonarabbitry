@@ -32,6 +32,8 @@
   function dealOver(r){ var u=String(r.dealEnds||'').trim(); return !!u && todayISO()>=u; }
   function priceOf(r){ var was=+r.wasPrice||0, now=+r.price||0; return (dealOver(r)&&was>now)?was:now; }
   function hasDeal(r){ var was=+r.wasPrice||0, now=+r.price||0; return was>now && r.status==='available' && !dealOver(r); }
+  /* Shared read-only rules for record-derived breed hubs (Site Idea 226). */
+  window.ARNow=Object.freeze({priceOf:priceOf,hasDeal:hasDeal,slug:slug});
 
   var MON=ES?['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function day(iso){ var p=String(iso||'').split('-'); return p.length===3?((+p[2])+NB+MON[+p[1]-1]+NB+p[0]):''; }
